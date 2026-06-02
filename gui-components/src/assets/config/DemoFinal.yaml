@@ -1,0 +1,28 @@
+sub1:
+  icon: "database"
+  code: "SIDEBAR.sub1.title"
+  routes:
+    sequences:
+      code: "SIDEBAR.sub1.routes.sequences.title"
+      routerLink: "sequencesBrowse"
+      routes: ["/sequencesBrowse", "/sequencesImport", "/sequenceDetail"]
+      permission: "gui-seqs"
+
+sub10:
+  icon: "cloud-server"
+  code: "SIDEBAR.sub2.title"
+  routes:
+    pag:
+      code: "SIDEBAR.sub2.routes.demo.title"
+      routerLink: "annotationsFieldsBrowse"
+      routes: ["/testpage"]
+      permission: "gui-annotation-fields"
+
+plants_demo:
+  icon: "environment"
+  code: "Plantas (demo)"
+  routes:
+    plantsMap:
+      code: "Plantas en el mapa"
+      routerLink: "plantsMap"
+      routes: ["/plantsMap"]

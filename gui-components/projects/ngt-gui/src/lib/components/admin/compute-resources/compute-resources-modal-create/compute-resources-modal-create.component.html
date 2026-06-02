@@ -1,0 +1,98 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+          [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+  <ng-template #modalTitle>
+    {{'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.TITLE' | translate}}
+  </ng-template>
+  <ng-template #modalContent>
+    <nz-spin [nzSpinning]="loading">
+      <form [formGroup]="formGroup" style="padding: 0px 10px 15px 5px; height: 500px; overflow: auto">
+
+        <div>
+          <nz-form-label
+            nzFor="name">{{'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.INPUTS.NAME.LABEL' | translate}}</nz-form-label>
+          <input nz-input formControlName="name" type="text"
+                 [placeholder]="'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.INPUTS.NAME.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': getMessageNameError().length > 0}">
+          <div class="message-error-default" *ngFor="let message of getMessageNameError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+        <div>
+          <nz-form-label
+            nzFor="jm_type">{{'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.INPUTS.JM_TYPE.LABEL' | translate}}</nz-form-label>
+          <nz-select formControlName="jm_type" [ngClass]="{'select-default-error': getMessageJmTypeError().length > 0}"
+                     [nzPlaceHolder]="'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.INPUTS.JM_TYPE.LABEL' | translate">
+            <nz-option *ngFor="let option of jmTypesOptions" [nzValue]="option.id" [nzLabel]="option.name"></nz-option>
+          </nz-select>
+          <div class="message-error-default" *ngFor="let message of getMessageJmTypeError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+
+        <div>
+          <nz-form-label
+            nzFor="name">
+            Location
+          </nz-form-label>
+          <textarea nz-input [placeholder]="'Location'"
+                    [ngClass]="{'input-error': getMessageLocationError().length > 0}"
+                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                    formControlName="jm_location"></textarea>
+          <div class="message-error-default" *ngFor="let message of getMessageLocationError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+        <div>
+          <nz-form-label
+            nzFor="name">
+            Credentials
+          </nz-form-label>
+          <textarea nz-input [placeholder]="'Credentials'"
+                    [ngClass]="{'input-error': getMessageCredentialsError().length > 0}"
+                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                    formControlName="jm_credentials"></textarea>
+          <div class="message-error-default" *ngFor="let message of getMessageCredentialsError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+        <div>
+          <nz-form-label
+            nzFor="name">Params
+          </nz-form-label>
+          <textarea nz-input [placeholder]="'Params'"
+                    [ngClass]="{'input-error': getMessageParamsError().length > 0}"
+                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                    formControlName="jm_params"></textarea>
+          <div class="message-error-default" *ngFor="let message of getMessageParamsError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+        <div>
+          <nz-form-label
+            nzFor="name">Agreement
+          </nz-form-label>
+          <textarea nz-input [placeholder]="'Agreement'"
+                    [ngClass]="{'input-error': getMessageAgreementError().length > 0}"
+                    [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+                    formControlName="agreement"></textarea>
+          <div class="message-error-default" *ngFor="let message of getMessageAgreementError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+
+      </form>
+    </nz-spin>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="cancelModal()">{{'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.CANCEL_BUTTON' | translate}}</button>
+    <button nz-button nzType="primary" [disabled]="!formGroup.valid || loading"
+            (click)="createComputeResource()">{{'PROCESSES_ADMIN.COMPUTE_RESOURCES.CREATE_MODAL.CREATE_BUTTON' | translate}}</button>
+  </ng-template>
+</nz-modal>

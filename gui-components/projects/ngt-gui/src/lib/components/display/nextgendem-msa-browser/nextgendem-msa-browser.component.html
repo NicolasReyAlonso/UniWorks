@@ -1,0 +1,4 @@
+<div id="browser" class="nextgendem-msa"></div>
+<div class="nextgendem-msa init-loader" *ngIf="initLoading"></div>
+<div class=".nextgendem-msa loader"></div>
+<app-dynamic-input-modal  #dynamicInputModalRef [title]="modalTitle" [fields]="modalFields" [(isVisible)]="isVisibleModal" (acceptInput)="saveFunction($event)"></app-dynamic-input-modal>

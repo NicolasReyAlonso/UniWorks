@@ -1,0 +1,67 @@
+<!--<div *ngIf="this.props.bos==='alignment'">-->
+<!--  <div *ngFor="let in of counter() ;let j = index">-->
+<!--    <nz-divider [nzText]="'Alignment ' + (j+1)" nzOrientation="left"></nz-divider>-->
+<!--    <div class="selector">-->
+<!--      <app-alignment-selector-->
+<!--        [filenameInput]="'alignment_' + (j+1)"-->
+<!--        (valueChangedEvent)="setValue($event)"-->
+<!--        [toInput]="this.to">-->
+<!--      </app-alignment-selector>-->
+<!--      <div *ngIf="props.process === 'beast' && confirmed[j]" nz-row>-->
+<!--          <p class="radio_name">Region: </p>-->
+<!--          <nz-radio-group nzButtonStyle="solid" [(ngModel)]="selectedRegion" (ngModelChange)="changeRegion(j)">-->
+<!--            <label nz-radio nzValue="chloroplast">Chloroplast</label>-->
+<!--            <label nz-radio nzValue="ITS">ITS</label>-->
+<!--          </nz-radio-group>-->
+<!--        </div>-->
+<!--      <button *ngIf="i === j + 1" nz-button nzType="primary" nzBlock (click)="insertSelector()">Add Alignment</button>-->
+<!--      <button *ngIf="i === j + 1 && j !== 0" nz-button nzDanger nzType="primary" nzBlock (click)="removeSelector()">Remove Alignment</button>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--</div>-->
+<div *ngIf="this.props.bos==='alignments'" style="margin-bottom: 1rem">
+  <div>
+    <nz-card>
+      <div *ngFor="let item of value; let j = index">
+        <div style="margin-bottom: .7rem">
+          Alineamiento {{ j + 1 }}
+        </div>
+        <div style="display:flex; margin-bottom: .7rem">
+          <nz-collapse nzAccordion style="flex: 1 1 auto; min-width: 0">
+            <nz-collapse-panel nzHeader="Alignments Selector" [(nzActive)]="collapsePanelActiveDynamicBrowser[j]"
+              [nzDisabled]="collapsePanelDisable || (Object.keys(value[j]).length > 0 && 'filesAPI' === Object.keys(value[j]['object_type'] ?? {n:0})[0])">
+              <app-dynamic-browse BrowserTitle="Alignments"
+                                  [BrowserType]="'alignments'"
+                                  [CanMultipleCheckItems]="false"
+                                  (UpdateDataEvent)="updateDataEventDynamicBrowser($event, j)"
+                                  (SetSelectedEvent)="receiveAlignmentBrowse(j, $event)" #alignmentDynamicBrowser>
+              </app-dynamic-browse>
+            </nz-collapse-panel>
+            <nz-collapse-panel [nzHeader]="this.uploaderHeader"
+            [nzDisabled]="Object.keys(value[j]).length > 0 && 'bos' === Object.keys(value[j]['object_type'] ?? {n:0})[0]">
+              <app-upload-2-files-api  [extension]="this.props.extension" [fileExtensions]="this.props.fileExtensions" numFilesLimit=1
+                                       (filesEvent)="receiveFiles($event, j)" [remoteName]="this.value[j]['remote_name']"
+                                       [files]="this.inputFiles[j]"/>
+            </nz-collapse-panel>
+          </nz-collapse>
+          <div>
+            <button nz-button nzType="primary" nzDanger style="height: 100%" [disabled]="i <= 1" (click)="removeValue(j)">
+              <span nz-icon nzType="delete" nzTheme="outline"></span>
+            </button>
+          </div>
+        </div>
+        <div style="margin-bottom: .7rem">
+          <nz-radio-group [(ngModel)]="value[j].region" (ngModelChange)="radioValueChange(j, $event)">
+            <label nz-radio nzValue="chloroplast">Chloroplast</label>
+            <label nz-radio nzValue="ITS">ITS</label>
+          </nz-radio-group>
+        </div>
+      </div>
+      <div>
+        <button nz-button nzType="primary" style="width: 100%" (click)="insertSelector()">
+          Add Alignment
+        </button>
+      </div>
+    </nz-card>
+  </div>
+</div>

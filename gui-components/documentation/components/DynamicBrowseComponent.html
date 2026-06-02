@@ -1,0 +1,3153 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  DynamicBrowseComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dynamic-browse</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzSpaceModule</code>
+                            <code>NzPageHeaderModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzIconModule</code>
+                                <code><a href="../components/DynamicTableComponent.html" target="_self" >DynamicTableComponent</a></code>
+                                <code><a href="../components/FilterDetailComponent.html" target="_self" >FilterDetailComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./dynamic-browse.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./dynamic-browse.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#browserFilter" >browserFilter</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudiesSubscription" >caseStudiesSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#confirmState" >confirmState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#dynamicTable" >dynamicTable</a>
+                            </li>
+                            <li>
+                                <a href="#fieldID" >fieldID</a>
+                            </li>
+                            <li>
+                                <a href="#filterState" >filterState</a>
+                            </li>
+                            <li>
+                                <a href="#itemsSelectionWhenConfirmed" >itemsSelectionWhenConfirmed</a>
+                            </li>
+                            <li>
+                                <a href="#loadingChadoRequest" >loadingChadoRequest</a>
+                            </li>
+                            <li>
+                                <a href="#pageData" >pageData</a>
+                            </li>
+                            <li>
+                                <a href="#searchValue" >searchValue</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFilter" >selectedFilter</a>
+                            </li>
+                            <li>
+                                <a href="#totalSize" >totalSize</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addCaseStudiesInCustomFilter" >addCaseStudiesInCustomFilter</a>
+                            </li>
+                            <li>
+                                <a href="#applyFilter" >applyFilter</a>
+                            </li>
+                            <li>
+                                <a href="#changePage" >changePage</a>
+                            </li>
+                            <li>
+                                <a href="#checkedChangeEvent" >checkedChangeEvent</a>
+                            </li>
+                            <li>
+                                <a href="#clickCustomButton" >clickCustomButton</a>
+                            </li>
+                            <li>
+                                <a href="#deleteSelection" >deleteSelection</a>
+                            </li>
+                            <li>
+                                <a href="#disableCustomButton" >disableCustomButton</a>
+                            </li>
+                            <li>
+                                <a href="#exportSelection" >exportSelection</a>
+                            </li>
+                            <li>
+                                <a href="#getState" >getState</a>
+                            </li>
+                            <li>
+                                <a href="#initCaseStudiesSubscriptionSubscription" >initCaseStudiesSubscriptionSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#newSearch" >newSearch</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#searchEvent" >searchEvent</a>
+                            </li>
+                            <li>
+                                <a href="#selectedEvent" >selectedEvent</a>
+                            </li>
+                            <li>
+                                <a href="#setState" >setState</a>
+                            </li>
+                            <li>
+                                <a href="#sortEvent" >sortEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#BrowserTitle" >BrowserTitle</a>
+                            </li>
+                            <li>
+                                <a href="#BrowserType" >BrowserType</a>
+                            </li>
+                            <li>
+                                <a href="#CanMultipleCheckItems" >CanMultipleCheckItems</a>
+                            </li>
+                            <li>
+                                <a href="#Checkable" >Checkable</a>
+                            </li>
+                            <li>
+                                <a href="#CheckableAll" >CheckableAll</a>
+                            </li>
+                            <li>
+                                <a href="#CustomActionButtons" >CustomActionButtons</a>
+                            </li>
+                            <li>
+                                <a href="#CustomButtonsBrowser" >CustomButtonsBrowser</a>
+                            </li>
+                            <li>
+                                <a href="#CustomFiltersRequest" >CustomFiltersRequest</a>
+                            </li>
+                            <li>
+                                <a href="#CustomParametersRequest" >CustomParametersRequest</a>
+                            </li>
+                            <li>
+                                <a href="#DefaultShowFields" >DefaultShowFields</a>
+                            </li>
+                            <li>
+                                <a href="#ExcludeFields" >ExcludeFields</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenCreate" >HiddenCreate</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenDelete" >HiddenDelete</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenDeleteItemFunc" >HiddenDeleteItemFunc</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenExport" >HiddenExport</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenImport" >HiddenImport</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenModify" >HiddenModify</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenOpen" >HiddenOpen</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenPaginationSwitch" >HiddenPaginationSwitch</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenPermissions" >HiddenPermissions</a>
+                            </li>
+                            <li>
+                                <a href="#HiddenSelect" >HiddenSelect</a>
+                            </li>
+                            <li>
+                                <a href="#Loading" >Loading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#CreateEvent" >CreateEvent</a>
+                            </li>
+                            <li>
+                                <a href="#DeleteItemEvent" >DeleteItemEvent</a>
+                            </li>
+                            <li>
+                                <a href="#DeleteSelectedEvent" >DeleteSelectedEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ExportItemEvent" >ExportItemEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ExportSelectedEvent" >ExportSelectedEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ImportEvent" >ImportEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ModifyItemEvent" >ModifyItemEvent</a>
+                            </li>
+                            <li>
+                                <a href="#OpenItemEvent" >OpenItemEvent</a>
+                            </li>
+                            <li>
+                                <a href="#PermissionItemEvent" >PermissionItemEvent</a>
+                            </li>
+                            <li>
+                                <a href="#SetSelectedEvent" >SetSelectedEvent</a>
+                            </li>
+                            <li>
+                                <a href="#UpdateDataEvent" >UpdateDataEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>, logService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, activeRoute: ActivatedRoute, topAreaService: <a href="../injectables/TopAreaService.html" target="_self">TopAreaService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:37</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activeRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>topAreaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TopAreaService.html" target="_self" >TopAreaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="BrowserTitle"></a>
+                        <b>BrowserTitle</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:55</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="BrowserType"></a>
+                        <b>BrowserType</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:56</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CanMultipleCheckItems"></a>
+                        <b>CanMultipleCheckItems</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:112</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Checkable"></a>
+                        <b>Checkable</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:111</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CheckableAll"></a>
+                        <b>CheckableAll</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:113</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CustomActionButtons"></a>
+                        <b>CustomActionButtons</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ICustomActionButton.html" target="_self" >ICustomActionButton[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:95</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CustomButtonsBrowser"></a>
+                        <b>CustomButtonsBrowser</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:67</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CustomFiltersRequest"></a>
+                        <b>CustomFiltersRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="117" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:117</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CustomParametersRequest"></a>
+                        <b>CustomParametersRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:116</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DefaultShowFields"></a>
+                        <b>DefaultShowFields</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:110</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ExcludeFields"></a>
+                        <b>ExcludeFields</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:109</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenCreate"></a>
+                        <b>HiddenCreate</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:80</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenDelete"></a>
+                        <b>HiddenDelete</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:82</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenDeleteItemFunc"></a>
+                        <b>HiddenDeleteItemFunc</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:87</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenExport"></a>
+                        <b>HiddenExport</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:81</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenImport"></a>
+                        <b>HiddenImport</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:79</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenModify"></a>
+                        <b>HiddenModify</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:86</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenOpen"></a>
+                        <b>HiddenOpen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:84</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenPaginationSwitch"></a>
+                        <b>HiddenPaginationSwitch</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:108</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenPermissions"></a>
+                        <b>HiddenPermissions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:83</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="HiddenSelect"></a>
+                        <b>HiddenSelect</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:85</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Loading"></a>
+                        <b>Loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:57</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="CreateEvent"></a>
+                        <b>CreateEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:90</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DeleteItemEvent"></a>
+                        <b>DeleteItemEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:102</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="DeleteSelectedEvent"></a>
+                        <b>DeleteSelectedEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:93</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ExportItemEvent"></a>
+                        <b>ExportItemEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:101</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ExportSelectedEvent"></a>
+                        <b>ExportSelectedEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:92</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ImportEvent"></a>
+                        <b>ImportEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:91</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ModifyItemEvent"></a>
+                        <b>ModifyItemEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:100</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="OpenItemEvent"></a>
+                        <b>OpenItemEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:99</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="PermissionItemEvent"></a>
+                        <b>PermissionItemEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:103</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="SetSelectedEvent"></a>
+                        <b>SetSelectedEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;any&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:94</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="UpdateDataEvent"></a>
+                        <b>UpdateDataEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;literal type&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:105</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCaseStudiesInCustomFilter"></a>
+                    <span class="name">
+                        <span ><b>addCaseStudiesInCustomFilter</b></span>
+                        <a href="#addCaseStudiesInCustomFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addCaseStudiesInCustomFilter()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="applyFilter"></a>
+                    <span class="name">
+                        <span ><b>applyFilter</b></span>
+                        <a href="#applyFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>applyFilter(filter)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>filter</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changePage"></a>
+                    <span class="name">
+                        <span ><b>changePage</b></span>
+                        <a href="#changePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changePage()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkedChangeEvent"></a>
+                    <span class="name">
+                        <span ><b>checkedChangeEvent</b></span>
+                        <a href="#checkedChangeEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkedChangeEvent(event: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="193"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:193</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickCustomButton"></a>
+                    <span class="name">
+                        <span ><b>clickCustomButton</b></span>
+                        <a href="#clickCustomButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickCustomButton(item)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="282"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteSelection"></a>
+                    <span class="name">
+                        <span ><b>deleteSelection</b></span>
+                        <a href="#deleteSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteSelection(selection)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>selection</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disableCustomButton"></a>
+                    <span class="name">
+                        <span ><b>disableCustomButton</b></span>
+                        <a href="#disableCustomButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disableCustomButton(button)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="293"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:293</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>button</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportSelection"></a>
+                    <span class="name">
+                        <span ><b>exportSelection</b></span>
+                        <a href="#exportSelection"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportSelection(selection, order)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="271"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:271</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>selection</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>order</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getState"></a>
+                    <span class="name">
+                        <span ><b>getState</b></span>
+                        <a href="#getState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ searchValue: string; }</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initCaseStudiesSubscriptionSubscription"></a>
+                    <span class="name">
+                        <span ><b>initCaseStudiesSubscriptionSubscription</b></span>
+                        <a href="#initCaseStudiesSubscriptionSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initCaseStudiesSubscriptionSubscription()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newSearch"></a>
+                    <span class="name">
+                        <span ><b>newSearch</b></span>
+                        <a href="#newSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>newSearch()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="179"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:179</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>searchEvent</b></span>
+                        <a href="#searchEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>searchEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="215"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:215</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedEvent"></a>
+                    <span class="name">
+                        <span ><b>selectedEvent</b></span>
+                        <a href="#selectedEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectedEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:258</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setState"></a>
+                    <span class="name">
+                        <span ><b>setState</b></span>
+                        <a href="#setState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setState(s: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="171"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:171</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>s</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sortEvent"></a>
+                    <span class="name">
+                        <span ><b>sortEvent</b></span>
+                        <a href="#sortEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>sortEvent(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="254"
+                                    class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:254</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="browserFilter"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>browserFilter</b></span>
+                        <a href="#browserFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/FilterDetailComponent.html" target="_self" >FilterDetailComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(FilterDetailComponent, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudiesSubscription"></a>
+                    <span class="name">
+                        <span ><b>caseStudiesSubscription</b></span>
+                        <a href="#caseStudiesSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:123</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="confirmState"></a>
+                    <span class="name">
+                        <span ><b>confirmState</b></span>
+                        <a href="#confirmState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dynamicTable"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>dynamicTable</b></span>
+                        <a href="#dynamicTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/DynamicTableComponent.html" target="_self" >DynamicTableComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(DynamicTableComponent, {static: true})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fieldID"></a>
+                    <span class="name">
+                        <span ><b>fieldID</b></span>
+                        <a href="#fieldID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterState"></a>
+                    <span class="name">
+                        <span ><b>filterState</b></span>
+                        <a href="#filterState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="itemsSelectionWhenConfirmed"></a>
+                    <span class="name">
+                        <span ><b>itemsSelectionWhenConfirmed</b></span>
+                        <a href="#itemsSelectionWhenConfirmed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingChadoRequest"></a>
+                    <span class="name">
+                        <span ><b>loadingChadoRequest</b></span>
+                        <a href="#loadingChadoRequest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageData"></a>
+                    <span class="name">
+                        <span ><b>pageData</b></span>
+                        <a href="#pageData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchValue"></a>
+                    <span class="name">
+                        <span ><b>searchValue</b></span>
+                        <a href="#searchValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFilter"></a>
+                    <span class="name">
+                        <span ><b>selectedFilter</b></span>
+                        <a href="#selectedFilter"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalSize"></a>
+                    <span class="name">
+                        <span ><b>totalSize</b></span>
+                        <a href="#totalSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/dynamics/dynamic-browse/dynamic-browse.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, Input, Output, EventEmitter, OnInit, OnDestroy, ViewChild, AfterViewInit} from &#x27;@angular/core&#x27;;
+import {ActivatedRoute} from &#x27;@angular/router&#x27;;
+import {StateService} from &#x27;src/app/services/state.service&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {DynamicTableComponent, ICustomActionButton} from &#x27;../dynamic-table/dynamic-table.component&#x27;;
+import {FilterDetailComponent} from &#x27;src/app/components/miscellaneous/filter/filter-detail/filter-detail.component&#x27;;
+import {CommonModule} from &quot;@angular/common&quot;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzSpaceModule} from &quot;ng-zorro-antd/space&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {TopAreaService} from &quot;../../../services/top-area.service&quot;;
+import {Subscription} from &quot;rxjs&quot;;
+
+@Component({
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzButtonModule,
+        NzSpaceModule,
+        NzPageHeaderModule,
+        NzInputModule,
+        NzIconModule,
+        DynamicTableComponent,
+        FilterDetailComponent,
+    ],
+    selector: &#x27;app-dynamic-browse&#x27;,
+    templateUrl: &#x27;./dynamic-browse.component.html&#x27;,
+    styleUrls: [&#x27;./dynamic-browse.component.sass&#x27;]
+})
+export class DynamicBrowseComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  constructor(
+    private backendService: BackendService,
+    private stateService: StateService,
+    private logService: MessageLogService,
+    private activeRoute: ActivatedRoute,
+    private readonly topAreaService: TopAreaService,
+  ) {
+  }
+
+  @ViewChild(DynamicTableComponent, {static: true})
+  dynamicTable: DynamicTableComponent;
+
+  @ViewChild(FilterDetailComponent, {static: true})
+  browserFilter: FilterDetailComponent;
+
+  // BROWSER STATE
+  @Input() BrowserTitle: string;
+  @Input() BrowserType: string;
+  @Input() Loading: boolean &#x3D; false;
+  loadingChadoRequest &#x3D; true;
+  searchValue: string &#x3D; &#x27;&#x27;;
+  fieldID: any;
+  pageData: any &#x3D; [];
+  totalSize &#x3D; 0;
+  confirmState &#x3D; false;
+  itemsSelectionWhenConfirmed: { items: Set&lt;number&gt;, checkedAll: boolean } &#x3D; null;
+
+  // BROWSER CUSTOM BUTTONS
+  @Input() CustomButtonsBrowser: {
+    title: string,
+    eventEmitter: EventEmitter&lt;any&gt;,
+    minimumNumberCheckedItem?: number,
+    cantCheckedAllItem?: boolean,
+    canOnlyCheckOne?: boolean,
+    cantOnlyCheckOne?: boolean,
+    funcCondition?: () &#x3D;&gt; boolean,
+    getObject?: boolean,
+  }[] &#x3D; [];
+
+  // HIDDEN BROWSER EVENT EMITTERS
+  @Input() HiddenImport &#x3D; false;
+  @Input() HiddenCreate &#x3D; false;
+  @Input() HiddenExport &#x3D; false;
+  @Input() HiddenDelete &#x3D; false;
+  @Input() HiddenPermissions &#x3D; false;
+  @Input() HiddenOpen &#x3D; false;
+  @Input() HiddenSelect &#x3D; false;
+  @Input() HiddenModify &#x3D; false;
+  @Input() HiddenDeleteItemFunc: (item: any) &#x3D;&gt; boolean
+
+  // BROWSER EVENT EMITTERS
+  @Output() CreateEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() ImportEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() ExportSelectedEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() DeleteSelectedEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() SetSelectedEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Input() CustomActionButtons: ICustomActionButton[] &#x3D; [];
+
+  // TABLE EVENT EMITTERS
+  // @Output() SortEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() OpenItemEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() ModifyItemEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() ExportItemEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() DeleteItemEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+  @Output() PermissionItemEvent: EventEmitter&lt;any&gt; &#x3D; new EventEmitter();
+
+  @Output() UpdateDataEvent: EventEmitter&lt;{ type: string, data: any }&gt; &#x3D; new EventEmitter();
+
+  // TABLE INPUTS
+  @Input() HiddenPaginationSwitch &#x3D; true;
+  @Input() ExcludeFields: string[] &#x3D; [];
+  @Input() DefaultShowFields: string[] &#x3D; [];
+  @Input() Checkable &#x3D; true;
+  @Input() CanMultipleCheckItems &#x3D; true;
+  @Input() CheckableAll &#x3D; true;
+
+  // CUSTOM PARAMETERS
+  @Input() CustomParametersRequest: any &#x3D; {};
+  @Input() CustomFiltersRequest: any &#x3D; {};
+
+  // FILTER STATE
+  selectedFilter: string &#x3D; &#x27;&#x27;;
+  filterState: any &#x3D; {};
+
+  caseStudiesSubscription: Subscription;
+
+  ngOnInit(): void {
+    this.fieldID &#x3D; this.backendService.getFieldID(this.BrowserType);
+    this.initCaseStudiesSubscriptionSubscription();
+    if (this.stateService.states.gbl_cs) {
+      this.addCaseStudiesInCustomFilter();
+    }
+  }
+
+  initCaseStudiesSubscriptionSubscription() {
+    this.caseStudiesSubscription &#x3D; this.stateService.stateServiceEvent.subscribe((event: {
+      type: string,
+      value: any
+    }) &#x3D;&gt; {
+      if (this.stateService.states.gbl_cs) {
+        this.addCaseStudiesInCustomFilter();
+      } else {
+        if (this.CustomFiltersRequest.case_studies_) {
+          delete this.CustomFiltersRequest.case_studies_;
+        }
+      }
+      this.dynamicTable.pageIndex &#x3D; 1;
+      this.changePage();
+    });
+  }
+
+  addCaseStudiesInCustomFilter() {
+    this.CustomFiltersRequest.case_studies_ &#x3D; {
+      op: &#x27;in&#x27;,
+      unary: [this.stateService.states.gbl_cs],
+    };
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  ngOnDestroy(): void {
+    if(this.caseStudiesSubscription !&#x3D;&#x3D; undefined) {
+      this.caseStudiesSubscription.unsubscribe();
+    }
+  }
+
+  getState() {
+    return {searchValue: this.searchValue};
+  }
+
+  setState(s: any) {
+    if (s) {
+      if (s.searchValue) {
+        this.searchValue &#x3D; s.searchValue;
+      }
+    }
+  }
+
+  newSearch() {
+    this.dynamicTable.restart();
+    this.searchEvent();
+  }
+
+  applyFilter(filter) {
+    // this.filterState &#x3D; filter;
+    this.newSearch();
+  }
+
+  changePage() {
+    this.searchEvent();
+  }
+
+  checkedChangeEvent(event: { items: Set&lt;number&gt;, checkedAll: boolean }): void {
+    if (!this.itemsSelectionWhenConfirmed) {
+      this.confirmState &#x3D; false;
+      return;
+    }
+    if (this.itemsSelectionWhenConfirmed.checkedAll !&#x3D; event.checkedAll) {
+      this.confirmState &#x3D; false;
+      return;
+    }
+    if (this.itemsSelectionWhenConfirmed.items.size !&#x3D; event.items.size) {
+      this.confirmState &#x3D; false;
+      return;
+    }
+    for (const item of this.itemsSelectionWhenConfirmed.items) {
+      if (!event.items.has(item)) {
+        this.confirmState &#x3D; false;
+        return;
+      }
+    }
+    this.confirmState &#x3D; true;
+  }
+
+  private searchEvent() {
+    this.UpdateDataEvent.emit({type: &quot;startUpdate&quot;, data: null});
+    this.loadingChadoRequest &#x3D; true;
+    const filters &#x3D; this.browserFilter.getFilter();
+    for (const key in this.CustomFiltersRequest) {
+      filters[key] &#x3D; this.CustomFiltersRequest[key];
+    }
+    const params &#x3D; {
+      &#x27;filter&#x27;: filters,
+      &#x27;order&#x27;: this.dynamicTable.getOrder(),
+      &#x27;searchValue&#x27;: this.searchValue,
+      ...this.CustomParametersRequest,
+    };
+    if (this.dynamicTable.getPaginationSwitch()) {
+      params.pagination &#x3D; this.dynamicTable.getPagination();
+    }
+    if (this.dynamicTable.showOnlySelected) {
+      params.filter[this.fieldID] &#x3D; {
+        op: &#x27;in&#x27;,
+        unary: Array.from(this.dynamicTable.checkedItems.values()),
+      }
+    }
+    this.backendService.getGenericRequest(this.BrowserType, undefined, params).subscribe({
+      next: (response: any) &#x3D;&gt; {
+        this.pageData &#x3D; response[&#x27;content&#x27;] ? response[&#x27;content&#x27;] : [];
+        this.totalSize &#x3D; response[&#x27;count&#x27;];
+        this.logService.addIssues(response[&#x27;issues&#x27;]);
+        this.loadingChadoRequest &#x3D; false;
+        this.UpdateDataEvent.emit({type: &quot;endUpdate&quot;, data: null});
+      },
+      error: (error) &#x3D;&gt; {
+        this.totalSize &#x3D; 0;
+        this.logService.addIssues(error[&#x27;issues&#x27;]);
+        this.loadingChadoRequest &#x3D; false;
+        this.UpdateDataEvent.emit({type: &quot;endUpdate&quot;, data: null});
+      }
+    });
+  }
+
+  sortEvent(event) {
+    this.searchEvent();
+  }
+
+  selectedEvent() {
+    let selectionFilter &#x3D; this.dynamicTable.getSelectionFilter();
+    if (this.dynamicTable.checkedAll) {
+      selectionFilter &#x3D; {...this.browserFilter.getFilter(), ...selectionFilter};
+    }
+    this.SetSelectedEvent.emit({filter: selectionFilter});
+    this.itemsSelectionWhenConfirmed &#x3D; {
+      items: new Set(this.dynamicTable.checkedItems),
+      checkedAll: this.dynamicTable.checkedAll,
+    };
+    this.confirmState &#x3D; true;
+  }
+
+  exportSelection(selection, order) {
+    let filter &#x3D; {...selection, ...this.browserFilter.getFilter()};
+    this.ExportSelectedEvent.emit({&#x27;filter&#x27;: filter, &#x27;order&#x27;: order});
+  }
+
+  deleteSelection(selection) {
+    let filter &#x3D; {...selection, ...this.browserFilter.getFilter()};
+    this.stateService.states.gbl_cs &amp;&amp; (filter[&#x27;case_study_id&#x27;] &#x3D; this.stateService.states.gbl_cs)
+    this.DeleteSelectedEvent.emit({&#x27;filter&#x27;: filter});
+  }
+
+  clickCustomButton(item) {
+    if (item.getObject) {
+      item.eventEmitter.emit({
+        objects: this.dynamicTable.checkedItemsObject,
+        filter: this.dynamicTable.getSelectionFilter(),
+      });
+      return;
+    }
+    item.eventEmitter.emit(this.dynamicTable.getSelectionFilter());
+  }
+
+  disableCustomButton(button) {
+    if (!button.needCheckedItem) {
+      return false;
+    }
+    if (this.dynamicTable.checkedItems.size &#x3D;&#x3D;&#x3D; 0) {
+      if (!this.dynamicTable.checkedAll) {
+        return true;
+      }
+    }
+    if (this.dynamicTable.checkedAll &amp;&amp; button.cantCheckedAllItem) {
+      return true;
+    }
+    if (button.cantOnlyCheckOne &amp;&amp; this.dynamicTable.checkedItems.size &#x3D;&#x3D; 1) {
+      return true;
+    }
+    return false;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-page-header&gt;
+  &lt;nz-page-header-title *ngIf&#x3D;&quot;BrowserTitle&quot;&gt;{{BrowserTitle | translate}}&lt;/nz-page-header-title&gt;
+  &lt;nz-page-header-content&gt;
+    &lt;form (submit)&#x3D;&quot;newSearch()&quot;&gt;
+      &lt;nz-input-group nzSearch [nzAddOnAfter]&#x3D;&quot;suffixIconButton&quot;&gt;
+        &lt;input [disabled]&#x3D;&quot;Loading || loadingChadoRequest&quot; type&#x3D;&quot;text&quot; nz-input [(ngModel)]&#x3D;&quot;searchValue&quot; name&#x3D;&quot;searchValue&quot;
+               [placeholder]&#x3D;&quot;&#x27;DYNAMIC_BROWSER.SEARCH.PLACEHOLDER&#x27; | translate&quot;/&gt;
+      &lt;/nz-input-group&gt;
+      &lt;ng-template #suffixIconButton&gt;
+        &lt;button nz-button [nzLoading]&#x3D;&quot;Loading || loadingChadoRequest&quot; nzSearch&gt;&lt;i nz-icon nzType&#x3D;&quot;search&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;/ng-template&gt;
+    &lt;/form&gt;
+  &lt;/nz-page-header-content&gt;
+  &lt;nz-page-header-footer style&#x3D;&quot;margin-bottom: 20px&quot;&gt;
+    &lt;nz-space nzAlign&#x3D;&quot;center&quot;&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot; (click)&#x3D;&quot;CreateEvent.emit()&quot; [nzLoading]&#x3D;&quot;Loading || loadingChadoRequest&quot;
+              *ngIf&#x3D;&quot;CreateEvent.observers.length &amp;&amp; !HiddenCreate&quot;&gt;
+        {{&#x27;DYNAMIC_BROWSER.BUTTONS.CREATE&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot; (click)&#x3D;&quot;ImportEvent.emit()&quot; [nzLoading]&#x3D;&quot;Loading || loadingChadoRequest&quot;
+              *ngIf&#x3D;&quot;ImportEvent.observers.length &amp;&amp; !HiddenImport&quot;&gt;
+        {{&#x27;DYNAMIC_BROWSER.BUTTONS.IMPORT&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot;
+              [disabled]&#x3D;&quot;dynamicTable.checkedItems.size &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !dynamicTable.checkedAll&quot; [nzLoading]&#x3D;&quot;Loading || loadingChadoRequest&quot;
+              (click)&#x3D;&quot;exportSelection(dynamicTable.getSelectionFilter(), dynamicTable.getOrder())&quot;
+              *ngIf&#x3D;&quot;ExportSelectedEvent.observers.length &amp;&amp; !HiddenExport&quot;&gt;
+        {{&#x27;DYNAMIC_BROWSER.BUTTONS.EXPORT_SELECTED&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot;
+              [disabled]&#x3D;&quot;dynamicTable.checkedItems.size &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !dynamicTable.checkedAll&quot; [nzLoading]&#x3D;&quot;Loading || loadingChadoRequest&quot;
+              (click)&#x3D;&quot;deleteSelection(dynamicTable.getSelectionFilter())&quot;
+              *ngIf&#x3D;&quot;DeleteSelectedEvent.observers.length &amp;&amp; !HiddenDelete&quot;&gt;
+        {{&#x27;DYNAMIC_BROWSER.BUTTONS.DELETE_SELECTED&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot;
+              [disabled]&#x3D;&quot;dynamicTable.checkedItems.size &#x3D;&#x3D;&#x3D; 0 &amp;&amp; !dynamicTable.checkedAll || confirmState&quot;
+              [nzLoading]&#x3D;&quot;Loading&quot; (click)&#x3D;&quot;selectedEvent()&quot; *ngIf&#x3D;&quot;SetSelectedEvent.observers.length &amp;&amp; !HiddenSelect&quot;&gt;
+        {{&#x27;DYNAMIC_BROWSER.BUTTONS.CONFIRM_SELECTED&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;ng-container *ngFor&#x3D;&quot;let item of  CustomButtonsBrowser&quot;&gt;
+        &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot;
+                *ngIf&#x3D;&quot;!item.funcCondition || item.funcCondition()&quot;
+                [disabled]&#x3D;&quot;disableCustomButton(item)&quot;
+                [nzLoading]&#x3D;&quot;Loading&quot; (click)&#x3D;&quot;clickCustomButton(item)&quot;&gt;
+          {{item.title | translate}}
+        &lt;/button&gt;
+      &lt;/ng-container&gt;
+      &lt;app-filter-detail [browserType]&#x3D;&quot;BrowserType&quot; [(filterState)]&#x3D;&quot;filterState&quot; [(selectedFilter)]&#x3D;&quot;selectedFilter&quot;
+                         (applyFilterEvent)&#x3D;&quot;applyFilter($event)&quot;&gt;&lt;/app-filter-detail&gt;
+    &lt;/nz-space&gt;
+  &lt;/nz-page-header-footer&gt;
+&lt;/nz-page-header&gt;
+&lt;div style&#x3D;&quot;padding: 0px 24px 0px 24px;&quot;&gt;
+  &lt;app-dynamic-table [PageData]&#x3D;&quot;pageData&quot; [DataSize]&#x3D;&quot;totalSize&quot; [DataFieldID]&#x3D;&quot;fieldID&quot;
+                     (PaginationEvent)&#x3D;&quot;changePage()&quot; [CanMultipleCheckItems]&#x3D;&quot;CanMultipleCheckItems&quot;
+                     [Loading]&#x3D;&quot;Loading || loadingChadoRequest&quot; [hiddenPaginationSwitch]&#x3D;&quot;HiddenPaginationSwitch&quot;
+                     [Checkable]&#x3D;&quot;Checkable&quot; [CheckableAll]&#x3D;&quot;CheckableAll&quot;
+                     (SortEvent)&#x3D;&quot;sortEvent($event)&quot;
+                     [hiddenOpenAction]&#x3D;&quot;!OpenItemEvent.observers.length || HiddenOpen&quot;
+                     (OpenEvent)&#x3D;&quot;OpenItemEvent.observers ? this.OpenItemEvent.emit($event) : undefined&quot;
+                     [hiddenModifyAction]&#x3D;&quot;!ModifyItemEvent.observers.length  || HiddenModify&quot;
+                     (ModifyEvent)&#x3D;&quot;ModifyItemEvent.observers ? this.ModifyItemEvent.emit($event) : undefined&quot;
+                     [hiddenExportAction]&#x3D;&quot;!ExportItemEvent.observers.length || HiddenExport&quot;
+                     (ExportEvent)&#x3D;&quot;ExportItemEvent.observers ? this.ExportItemEvent.emit($event) : undefined&quot;
+                     [hiddenDeleteAction]&#x3D;&quot;!DeleteItemEvent.observers.length || HiddenDelete&quot;
+                     (DeleteEvent)&#x3D;&quot;DeleteItemEvent.observers ? this.DeleteItemEvent.emit($event) : undefined&quot;
+                     [HiddenDeleteItemFunc]&#x3D;&quot;HiddenDeleteItemFunc&quot;
+                     [hiddenPermissionAction]&#x3D;&quot;!PermissionItemEvent.observers.length || HiddenPermissions&quot;
+                     (PermissionEvent)&#x3D;&quot;PermissionItemEvent.emit($event)&quot;
+                     (CheckedChangeEvent)&#x3D;&quot;checkedChangeEvent($event)&quot;
+                     (ResetSelectionEvent)&#x3D;&quot;this.SetSelectedEvent.emit(null);&quot;
+                     [DefaultShowFields]&#x3D;&quot;DefaultShowFields&quot;
+                     [ExcludeFields]&#x3D;&quot;ExcludeFields&quot; [CustomActionButtons]&#x3D;&quot;CustomActionButtons&quot;
+                     [ClickRowEventActive]&#x3D;&quot;OpenItemEvent.observers.length &gt; 0 &amp;&amp; !HiddenOpen&quot;
+                     (ClickRowEvent)&#x3D;&quot;OpenItemEvent.observers.length ? this.OpenItemEvent.emit($event) : undefined&quot;&gt;
+  &lt;/app-dynamic-table&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./dynamic-browse.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-page-header>  <nz-page-header-title *ngIf="BrowserTitle">{{BrowserTitle | translate}}</nz-page-header-title>  <nz-page-header-content>    <form (submit)="newSearch()">      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">        <input [disabled]="Loading || loadingChadoRequest" type="text" nz-input [(ngModel)]="searchValue" name="searchValue"               [placeholder]="\'DYNAMIC_BROWSER.SEARCH.PLACEHOLDER\' | translate"/>      </nz-input-group>      <ng-template #suffixIconButton>        <button nz-button [nzLoading]="Loading || loadingChadoRequest" nzSearch><i nz-icon nzType="search"></i></button>      </ng-template>    </form>  </nz-page-header-content>  <nz-page-header-footer style="margin-bottom: 20px">    <nz-space nzAlign="center">      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="CreateEvent.emit()" [nzLoading]="Loading || loadingChadoRequest"              *ngIf="CreateEvent.observers.length && !HiddenCreate">        {{\'DYNAMIC_BROWSER.BUTTONS.CREATE\' | translate}}      </button>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="ImportEvent.emit()" [nzLoading]="Loading || loadingChadoRequest"              *ngIf="ImportEvent.observers.length && !HiddenImport">        {{\'DYNAMIC_BROWSER.BUTTONS.IMPORT\' | translate}}      </button>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll" [nzLoading]="Loading || loadingChadoRequest"              (click)="exportSelection(dynamicTable.getSelectionFilter(), dynamicTable.getOrder())"              *ngIf="ExportSelectedEvent.observers.length && !HiddenExport">        {{\'DYNAMIC_BROWSER.BUTTONS.EXPORT_SELECTED\' | translate}}      </button>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll" [nzLoading]="Loading || loadingChadoRequest"              (click)="deleteSelection(dynamicTable.getSelectionFilter())"              *ngIf="DeleteSelectedEvent.observers.length && !HiddenDelete">        {{\'DYNAMIC_BROWSER.BUTTONS.DELETE_SELECTED\' | translate}}      </button>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll || confirmState"              [nzLoading]="Loading" (click)="selectedEvent()" *ngIf="SetSelectedEvent.observers.length && !HiddenSelect">        {{\'DYNAMIC_BROWSER.BUTTONS.CONFIRM_SELECTED\' | translate}}      </button>      <ng-container *ngFor="let item of  CustomButtonsBrowser">        <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"                *ngIf="!item.funcCondition || item.funcCondition()"                [disabled]="disableCustomButton(item)"                [nzLoading]="Loading" (click)="clickCustomButton(item)">          {{item.title | translate}}        </button>      </ng-container>      <app-filter-detail [browserType]="BrowserType" [(filterState)]="filterState" [(selectedFilter)]="selectedFilter"                         (applyFilterEvent)="applyFilter($event)"></app-filter-detail>    </nz-space>  </nz-page-header-footer></nz-page-header><div style="padding: 0px 24px 0px 24px;">  <app-dynamic-table [PageData]="pageData" [DataSize]="totalSize" [DataFieldID]="fieldID"                     (PaginationEvent)="changePage()" [CanMultipleCheckItems]="CanMultipleCheckItems"                     [Loading]="Loading || loadingChadoRequest" [hiddenPaginationSwitch]="HiddenPaginationSwitch"                     [Checkable]="Checkable" [CheckableAll]="CheckableAll"                     (SortEvent)="sortEvent($event)"                     [hiddenOpenAction]="!OpenItemEvent.observers.length || HiddenOpen"                     (OpenEvent)="OpenItemEvent.observers ? this.OpenItemEvent.emit($event) : undefined"                     [hiddenModifyAction]="!ModifyItemEvent.observers.length  || HiddenModify"                     (ModifyEvent)="ModifyItemEvent.observers ? this.ModifyItemEvent.emit($event) : undefined"                     [hiddenExportAction]="!ExportItemEvent.observers.length || HiddenExport"                     (ExportEvent)="ExportItemEvent.observers ? this.ExportItemEvent.emit($event) : undefined"                     [hiddenDeleteAction]="!DeleteItemEvent.observers.length || HiddenDelete"                     (DeleteEvent)="DeleteItemEvent.observers ? this.DeleteItemEvent.emit($event) : undefined"                     [HiddenDeleteItemFunc]="HiddenDeleteItemFunc"                     [hiddenPermissionAction]="!PermissionItemEvent.observers.length || HiddenPermissions"                     (PermissionEvent)="PermissionItemEvent.emit($event)"                     (CheckedChangeEvent)="checkedChangeEvent($event)"                     (ResetSelectionEvent)="this.SetSelectedEvent.emit(null);"                     [DefaultShowFields]="DefaultShowFields"                     [ExcludeFields]="ExcludeFields" [CustomActionButtons]="CustomActionButtons"                     [ClickRowEventActive]="OpenItemEvent.observers.length > 0 && !HiddenOpen"                     (ClickRowEvent)="OpenItemEvent.observers.length ? this.OpenItemEvent.emit($event) : undefined">  </app-dynamic-table></div></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'DynamicBrowseComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'DynamicBrowseComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

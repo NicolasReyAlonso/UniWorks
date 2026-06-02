@@ -1,0 +1,94 @@
+rect.nextgendem-msa.column
+  stroke: #fff
+  stroke-width: 0
+  shape-rendering: crispEdges
+
+g.nextgendem-msa
+  shape-rendering: crispEdges
+
+text.nextgendem-msa
+  -webkit-touch-callout: none /* iOS Safari */
+  -webkit-user-select: none /* Safari */
+  -moz-user-select: none /* Old versions of Firefox */
+  -ms-user-select: none /* Internet Explorer/Edge */
+  user-select: none /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+div#header.nextgendem-msa
+  display: inline-block
+  white-space: nowrap
+  margin-top: 20px
+
+
+div#forms.nextgendem-msa
+  input
+    margin-right: 10px
+  #checkbox
+    margin-left: 5px
+  #go_to
+    margin-bottom: 10px
+
+div#info.nextgendem-msa
+  display: grid
+  position: absolute
+  left: 207px
+  top: 140px
+  label
+    margin-right: 10px
+  label#cursor_key
+      margin-bottom: 7px
+
+.nextgendem-msa.arrow
+  border: solid black
+  border-width: 0 2px 2px 0
+  display: inline-block
+  padding: 3px
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.nextgendem-msa.right
+  transform: rotate(-45deg)
+
+.nextgendem-msa.left
+  transform: rotate(135deg)
+
+.nextgendem-msa.up
+  transform: rotate(-135deg)
+
+.nextgendem-msa.down
+  transform: rotate(45deg)
+
+.nextgendem-msa.init-loader
+  border: 8px solid #f3f3f3 /* Light grey */
+  border-top: 8px solid #073642 /* Dark Blue */
+  border-bottom: 8px solid #073642
+  border-radius: 50%
+  width: 80px
+  height: 80px
+  animation: spin 1.5s linear infinite
+  position: fixed
+  left: 50%
+  top: 50%
+
+.nextgendem-msa.loader
+  border: 2px solid #f3f3f3 /* Light grey */
+  border-top: 2px solid #073642 /* Dark Blue */
+  border-bottom: 2px solid #073642
+  border-radius: 50%
+  width: 30px
+  height: 30px
+  animation: spin 1.5s linear infinite
+  position: absolute
+  left: 85px
+  top: 170px
+  visibility: hidden
+
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+

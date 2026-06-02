@@ -1,0 +1,822 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  IPreferencesValue</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#language" 
+>
+                                            language
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#theme" 
+>
+                                            theme
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="language"></a>
+                                        <span class="name "><b>language</b>
+                                            <a href="#language">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>language:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="theme"></a>
+                                        <span class="name "><b>theme</b>
+                                            <a href="#theme">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>theme:         <code><a href="../miscellaneous/enumerations.html#ThemeType" target="_self" >ThemeType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ThemeType" target="_self" >ThemeType</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { es_ES, en_US, pt_PT, NzI18nService } from &#x27;ng-zorro-antd/i18n&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { AuthService } from &#x27;src/app/services/auth.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import { ThemeService, ThemeType } from &#x27;src/app/services/theme.service&#x27;;
+import { InternationalizationService, LANGUAGE_OPTION_TYPES } from &#x27;src/app/services/internationalization.service&#x27;;
+import { LangChangeEvent } from &#x27;@ngx-translate/core&#x27;;
+import { BackendService } from &quot;src/app/services/backend.service&quot;;
+import { MessageLogService } from &quot;src/app/services/message-log.service&quot;;
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors
+} from &quot;@angular/forms&quot;;
+import { StateService } from &#x27;src/app/services/state.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzModalModule} from &quot;ng-zorro-antd/modal&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {KeyValueCustomPipe} from &quot;../../../pipes/key-value-custom.pipe&quot;;
+
+interface IPreferencesValue {
+  language: string;
+  theme: ThemeType;
+}
+
+interface IMenuItem {
+  icon: string;
+  title: string;
+  hidden: boolean;
+}
+
+export const MENU_ITEM_TYPES &#x3D; {
+  PROFILE: 1,
+  THEME: 2,
+  LANGUAGES: 3,
+  API_KEYS: 4,
+};
+
+interface IThemeOption {
+  title: string;
+  color: string;
+}
+
+@Component({
+    selector: &#x27;preferences-modal&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzSelectModule,
+        NzFormModule,
+        NzInputModule,
+        NzModalModule,
+        NzListModule,
+        NzTableModule,
+        NzIconModule,
+        NzSpinModule,
+        NzButtonModule,
+        KeyValueCustomPipe,
+    ],
+    templateUrl: &#x27;./preferences-modal.component.html&#x27;,
+    styleUrls: [&#x27;./preferences-modal.component.sass&#x27;]
+})
+export class PreferencesModalComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() isVisible: boolean;
+  @Output() isVisibleChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  previousPreferencesValue: IPreferencesValue;
+  isVisibleConfirmCancelModal &#x3D; false;
+  loadingPreferencesModal &#x3D; false;
+
+  private changeUserSubscription: Subscription;
+
+  selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+  readonly menuItems: Map&lt;number, IMenuItem&gt; &#x3D; new Map([
+    [this.MenuItemType.PROFILE, {
+      icon: &#x27;user&#x27;,
+      title: &#x27;PREFERENCES_MODAL.PROFILE.TITLE&#x27;,
+      hidden: true,
+    }],
+    [this.MenuItemType.THEME, {
+      icon: &#x27;format-painter&#x27;,
+      title: &#x27;PREFERENCES_MODAL.THEMES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.LANGUAGES, {
+      icon: &#x27;translation&#x27;,
+      title: &#x27;PREFERENCES_MODAL.LANGUAGES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.API_KEYS, {
+      icon: &#x27;key&#x27;,
+      title: &#x27;PREFERENCES_MODAL.API_KEYS.TITLE&#x27;,
+      hidden: true,
+    }],
+  ]);
+
+  selectedOptionThemes: ThemeType &#x3D; ThemeType.themeGrassGreen;
+  readonly optionThemes: Map&lt;ThemeType, IThemeOption&gt; &#x3D; new Map([
+    [ThemeType.themeCyan, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_1&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGreenNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GREEN_NEXTGENDEM&#x27;,
+      color: &#x27;#016959&#x27;,
+    }],
+    [ThemeType.themeBlueNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.BLUE_NEXTGENDEM&#x27;,
+      color: &#x27;#0077B3&#x27;,
+    }],
+    [ThemeType.themeCyan2, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_2&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGold, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GOLD&#x27;,
+      color: &#x27;#bcbe6a&#x27;,
+    }],
+    [ThemeType.themeGrassGreen, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRASS_GREEN&#x27;,
+      color: &#x27;#7DB46CFF&#x27;,
+    }],
+    [ThemeType.themeGray, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRAY&#x27;,
+      color: &#x27;#606060&#x27;,
+    }],
+  ]);
+
+  selectedOptionLanguage: string &#x3D; this.LanguageItemType.spanish.id;
+  changeLanguageEvent: EventEmitter&lt;LangChangeEvent&gt;;
+
+  apiKeysUser &#x3D; [];
+  generateApiKeyModalVisible &#x3D; false;
+  generateApiKeyFormGroup: UntypedFormGroup;
+
+  get MenuItemType() {
+    return MENU_ITEM_TYPES;
+  }
+
+  get LanguageItemType() {
+    return LANGUAGE_OPTION_TYPES;
+  }
+
+  constructor(
+    public readonly authService: AuthService,
+    public themeService: ThemeService,
+    private i18n: NzI18nService,
+    private notificationService: NotificationService,
+    private readonly internationalizationService: InternationalizationService,
+    private readonly backendService: BackendService,
+    private readonly messageLogService: MessageLogService,
+    private readonly fb: UntypedFormBuilder,
+    private readonly stateService: StateService,
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.stateService.stateServiceEvent.subscribe((event) &#x3D;&gt; {
+      switch (event.type) {
+        case &#x27;cfg&#x27;:
+          if (event.event.theme) {
+            this.selectedOptionThemes &#x3D; event.event.theme;
+            this.previousPreferencesValue.theme &#x3D; event.event.theme;
+          }
+          if (event.event.language) {
+            this.selectedOptionLanguage &#x3D; event.event.language;
+            this.previousPreferencesValue.language &#x3D; event.event.language;
+          }
+          break;
+      }
+    });
+    this.selectedOptionLanguage &#x3D; this.internationalizationService.getCurrentLanguage();
+    this.changeLanguageEvent &#x3D; this.internationalizationService.getLangChangeEvent();
+    this.changeLanguageEvent.subscribe((value) &#x3D;&gt; {
+      this.selectedOptionLanguage &#x3D; value.lang;
+    });
+    this.selectedOptionThemes &#x3D; this.themeService.currentTheme;
+    this.previousPreferencesValue &#x3D; {
+      language: this.selectedOptionLanguage,
+      theme: this.selectedOptionThemes,
+    };
+    this.changeUserSubscription &#x3D; this.authService.changeUserEvent.subscribe((user) &#x3D;&gt; {
+      if (user) {
+        const menuItemProfile &#x3D; this.menuItems.get(this.MenuItemType.PROFILE);
+        const menuItemApiKeys &#x3D; this.menuItems.get(this.MenuItemType.API_KEYS);
+        menuItemProfile.hidden &#x3D; user.isAnonymous;
+        if (user.isAnonymous) {
+          this.selectedMenuItem &#x3D; this.MenuItemType.THEME;
+        } else {
+          this.selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+        }
+        menuItemApiKeys.hidden &#x3D; !this.authService.haveOnePermissionForApiKeys();
+      }
+    });
+    this.generateApiKeyFormGroup &#x3D; this.fb.group({
+      roles: [[]]
+    }, {
+      validators: [this.generateApiKeyFormGroupRoleValidator.bind(this)]
+    });
+  }
+
+  ngOnChanges(changes) {
+    if (changes.isVisible &amp;&amp; changes.isVisible.currentValue) {
+      if (this.authService.user) {
+        if (this.authService.user.isAnonymous) {
+          this.selectedMenuItem &#x3D; this.MenuItemType.THEME;
+        } else {
+          this.selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+        }
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.changeUserSubscription.unsubscribe();
+    this.changeLanguageEvent.unsubscribe();
+  }
+
+  ngClassMenuActiveJson(id): any {
+    return {
+      &#x27;theme-primary-background&#x27;: id &#x3D;&#x3D; this.selectedMenuItem
+    };
+  }
+
+  changeSelectedMenuItem(id): void {
+    this.selectedMenuItem &#x3D; id;
+    switch (id) {
+      case this.MenuItemType.API_KEYS:
+        this.changeSelectedMenuItemApiKeys().then();
+        break;
+    }
+  }
+
+  async changeSelectedMenuItemApiKeys(): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    try {
+      const responseApiKeys: any &#x3D; await this.backendService.getCurrentUserApiKeys().toPromise();
+      const contentApiKeys &#x3D; responseApiKeys.content ? responseApiKeys.content : [];
+      this.apiKeysUser &#x3D; [];
+      for (const apiKeyResponse of contentApiKeys) {
+        let roles &#x3D; &#x27;&#x27;;
+        let valid_from &#x3D; &#x27;&#x27;;
+        for (const role of apiKeyResponse.roles) {
+          roles +&#x3D; &#x60;${role} &#x60;;
+        }
+        roles.trim();
+        if (apiKeyResponse.valid_from &amp;&amp; apiKeyResponse.valid_from !&#x3D;&#x3D; &#x27;&#x27;) {
+          valid_from &#x3D; new Date(apiKeyResponse.valid_from).toDateString();
+        }
+        this.apiKeysUser &#x3D; [
+          ...this.apiKeysUser, {
+            key_idx: apiKeyResponse.key_idx,
+            roles: roles,
+            valid_from: valid_from,
+            valid_until: apiKeyResponse.valid_until,
+          }];
+      }
+    } catch (e) {
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.GET_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.GET_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  swicthLanguage(value): void {
+    console.log(&#x27;switch language event&#x27;);
+    this.internationalizationService.changeCurrentLanguage(value);
+  }
+
+  async onClickThemeItem(themeId: ThemeType): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    this.selectedOptionThemes &#x3D; themeId;
+    await this.themeService.loadTheme(themeId);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  haveChanges(): boolean {
+    if (this.previousPreferencesValue.theme !&#x3D; this.selectedOptionThemes) {
+      return true;
+    }
+    if (this.previousPreferencesValue.language !&#x3D; this.selectedOptionLanguage) {
+      return true;
+    }
+    return false;
+  }
+
+  modalCancel(): void {
+    if (this.haveChanges()) {
+      this.isVisibleConfirmCancelModal &#x3D; true;
+    } else {
+      this.isVisibleChange.emit(false);
+    }
+  }
+
+  saveChanges() {
+    this.previousPreferencesValue.theme &#x3D; this.selectedOptionThemes;
+    this.previousPreferencesValue.language &#x3D; this.selectedOptionLanguage;
+    this.setState();
+    this.notificationService.createNotificationWithType(
+      TypeNotificationEnum.success,
+      &#x27;Cambios realizados&#x27;,
+      &#x27;Sus cambios se han realizado satisfactoriamente.&#x27;,
+      &#x27;bottomRight&#x27;
+    );
+  }
+
+  saveChangesModal() {
+    this.loadingPreferencesModal &#x3D; true;
+    this.isVisibleConfirmCancelModal &#x3D; false;
+    this.loadingPreferencesModal &#x3D; true;
+    this.saveChanges();
+    this.isVisibleChange.emit(false);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  async discardChanges(): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    this.isVisibleConfirmCancelModal &#x3D; false;
+    this.selectedOptionLanguage &#x3D; this.previousPreferencesValue.language;
+    this.internationalizationService.changeCurrentLanguage(this.selectedOptionLanguage);
+    this.selectedOptionThemes &#x3D; this.previousPreferencesValue.theme;
+    await this.themeService.loadTheme(this.selectedOptionThemes);
+    this.isVisibleChange.emit(false);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  cancelClosePreferences() {
+    this.isVisibleConfirmCancelModal &#x3D; false;
+  }
+
+  getLanguageTypeLabel(key): string {
+    return &#x60;PREFERENCES_MODAL.LANGUAGES.LANGUAGE_TYPES.${key}&#x60;;
+  }
+
+  async setState() {
+    const value: any &#x3D; {};
+    value.theme &#x3D; this.selectedOptionThemes;
+    value.language &#x3D; this.selectedOptionLanguage;
+    this.stateService.setState(&#x27;cfg&#x27;, value);
+  }
+
+  cancelGenerateApiKey() {
+    this.generateApiKeyModalVisible &#x3D; false;
+    this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).setValue([]);
+  }
+
+  openGenerateApiKeyModal() {
+    this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).setValue([]);
+    this.generateApiKeyModalVisible &#x3D; true
+  }
+
+  async generateApiKey() {
+    this.loadingPreferencesModal &#x3D; true;
+    this.generateApiKeyModalVisible &#x3D; false;
+    const rolesValue &#x3D; this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).value;
+    try {
+      const response: any &#x3D; await this.backendService.postCurrentUserApiKey({
+        roles: rolesValue
+      }).toPromise();
+      const content &#x3D; response.content;
+      const copy &#x3D; Object.assign(content);
+      delete copy.hash;
+      const file &#x3D; new Blob([JSON.stringify(copy, null, &quot;\t&quot;)], { type: &#x27;application/json&#x27; });
+      const a &#x3D; document.createElement(&#x27;a&#x27;);
+      const url &#x3D; URL.createObjectURL(file);
+      a.href &#x3D; url;
+      a.download &#x3D; &#x27;api_key.json&#x27;;
+      a.style.display &#x3D; &#x27;none&#x27;;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 0);
+      let roles &#x3D; &#x27;&#x27;;
+      let valid_from &#x3D; &#x27;&#x27;;
+      for (const role of content.roles) {
+        roles +&#x3D; &#x60;${role} &#x60;;
+      }
+      roles.trim();
+      if (content.valid_from &amp;&amp; content.valid_from !&#x3D;&#x3D; &#x27;&#x27;) {
+        valid_from &#x3D; new Date(content.valid_from).toDateString();
+      }
+      this.messageLogService.addIssues(response.issues);
+      this.apiKeysUser &#x3D; [
+        ...this.apiKeysUser, {
+          key_idx: content.key_idx,
+          roles: roles,
+          valid_from: valid_from,
+          valid_until: content.valid_until,
+        }];
+    } catch (e) {
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.POST_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.POST_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  async removeApiKey(data): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    try {
+      const response: any &#x3D; await this.backendService.removeCurrentUserApiKey(data.key_idx).toPromise();
+      if (response.issues) {
+        this.messageLogService.addIssues(response.issues);
+      }
+      this.apiKeysUser &#x3D; this.apiKeysUser.filter(item &#x3D;&gt; item.key_idx !&#x3D;&#x3D; data.key_idx);
+    } catch (e) {
+      console.log(e);
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.DELETE_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.DELETE_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  generateApiKeyFormGroupRoleValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const roles &#x3D; control.get(&#x27;roles&#x27;).value;
+    if (!roles || roles.length &#x3D;&#x3D;&#x3D; 0) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      roleError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showGenerateModalRoleError(): boolean {
+    if (!this.generateApiKeyFormGroup.errors || !this.generateApiKeyFormGroup.errors.roleError) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageGenerateModalNameError(): string[] {
+    const message &#x3D; [];
+    if (!this.generateApiKeyFormGroup.errors || !this.generateApiKeyFormGroup.errors.roleError) {
+      return null;
+    }
+    if (this.generateApiKeyFormGroup.errors.roleError.empty) {
+      message.push(&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'IPreferencesValue.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

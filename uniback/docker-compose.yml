@@ -1,0 +1,195 @@
+services:
+  ub_pg:
+    image: postgres
+    container_name: ub_pg
+    environment:
+      - POSTGRES_PASSWORD=pg_passwd
+      - POSTGRES_DB=ub_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - ub_pg_data:/var/lib/postgresql
+    restart: always
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+  celery:
+    image: python:3.13-slim
+    container_name: celery_worker
+    volumes:
+      - ../uniback:/app
+    working_dir: /app
+    depends_on:
+      - ub_pg
+      - redis
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_WORKER_BROKER_URL=redis://redis:6379/0
+      - UNIBACK_WORKER_BACKEND_URL=redis://redis:6379/0
+      - UNIBACK_WORKER_ENABLED=True
+    # NOTE: Celery integration in uniback seems to be under development.
+    # The command below is a template and will need a valid Celery app path.
+    # To run the worker, you might need to uncomment and adjust the command.
+    # command: celery -A uniback.worker worker --loglevel=info
+    command: tail -f /dev/null
+    restart: on-failure
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_web
+    container_name: uniback_web
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=core
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.core.rule=PathPrefix(`/api/`) || PathPrefix(`/socket.io/`) || PathPrefix(`/`)
+      - traefik.http.routers.core.entrypoints=web
+      - traefik.http.routers.core.priority=1
+  auth_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_auth
+    container_name: uniback_auth
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=auth
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.auth.rule=PathPrefix(`/api/authn`) || PathPrefix(`/api/user_roles`) || PathPrefix(`/api/token_verification`) || PathPrefix(`/api/api_keys`) || PathPrefix(`/api/authr_explain`) || PathPrefix(`/api/authr_ref_entities`) || PathPrefix(`/api/functions`) || PathPrefix(`/api/identities`) || PathPrefix(`/api/identities_authenticators`) || PathPrefix(`/api/roles`) || PathPrefix(`/api/identities_roles`) || PathPrefix(`/api/organizations`) || PathPrefix(`/api/groups`) || PathPrefix(`/api/identity_store`) || PathPrefix(`/api/acl`) || PathPrefix(`/api/acl_expressions`)
+      - traefik.http.routers.auth.entrypoints=web
+      - traefik.http.routers.auth.priority=10
+  species_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_species
+    container_name: uniback_species
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=species
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.species.rule=PathPrefix(`/api/species`)
+      - traefik.http.routers.species.entrypoints=web
+      - traefik.http.routers.species.priority=10
+  files_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_files
+    container_name: uniback_files
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=files
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.files.rule=PathPrefix(`/api/files`) || PathPrefix(`/api/file_stores`)
+      - traefik.http.routers.files.entrypoints=web
+      - traefik.http.routers.files.priority=10
+  annotations_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_annotations
+    container_name: uniback_annotations
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=annotations
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.annotations.rule=PathPrefix(`/api/annotation_form_templates`) || PathPrefix(`/api/annotation_form_fields`) || PathPrefix(`/api/annotation_form_relationships`) || PathPrefix(`/api/annotations`) || PathPrefix(`/api/relationships`)
+      - traefik.http.routers.annotations.entrypoints=web
+      - traefik.http.routers.annotations.priority=10
+  traefik:
+    image: traefik:v3.6.2
+    container_name: traefik
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:8000
+    ports:
+      - 8000:8000
+      - 8080:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - web
+      - auth_node
+      - species_node
+      - files_node
+      - annotations_node
+volumes:
+  ub_pg_data:

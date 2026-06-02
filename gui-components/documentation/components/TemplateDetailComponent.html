@@ -1,0 +1,2453 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TemplateDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/annotations/templates/template-detail/template-detail.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-template-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzInputModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzSelectModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzModalModule</code>
+                            <code>NzListModule</code>
+                            <code>NzTableModule</code>
+                                <code><a href="../directives/DisableControlDirective.html" target="_self" >DisableControlDirective</a></code>
+                            <code>NzSpinModule</code>
+                                <code><a href="../components/BackButtonComponent.html" target="_self" >BackButtonComponent</a></code>
+                            <code>NzPageHeaderModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./template-detail.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./template-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addFieldVisibleModal" >addFieldVisibleModal</a>
+                            </li>
+                            <li>
+                                <a href="#addObjectTypesVisibleModal" >addObjectTypesVisibleModal</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#displayName" >displayName</a>
+                            </li>
+                            <li>
+                                <a href="#fieldsList" >fieldsList</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#formGroupChange" >formGroupChange</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#objectTypesList" >objectTypesList</a>
+                            </li>
+                            <li>
+                                <a href="#selectModal" >selectModal</a>
+                            </li>
+                            <li>
+                                <a href="#snapshotTemplateData" >snapshotTemplateData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addFieldModal" >addFieldModal</a>
+                            </li>
+                            <li>
+                                <a href="#addObjectTypesModal" >addObjectTypesModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelModifyItem" >cancelModifyItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formValueChange" >formValueChange</a>
+                            </li>
+                            <li>
+                                <a href="#getAddFieldsOptions" >getAddFieldsOptions</a>
+                            </li>
+                            <li>
+                                <a href="#getAddObjectTypesOptions" >getAddObjectTypesOptions</a>
+                            </li>
+                            <li>
+                                <a href="#getFieldById" >getFieldById</a>
+                            </li>
+                            <li>
+                                <a href="#getObjectTypeById" >getObjectTypeById</a>
+                            </li>
+                            <li>
+                                <a href="#initFormGroup" >initFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#isDisableEdit" >isDisableEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadListItemsNecessary" >loadListItemsNecessary</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#modifyItem" >modifyItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#openAddModalFields" >openAddModalFields</a>
+                            </li>
+                            <li>
+                                <a href="#openAddModalObjectTypes" >openAddModalObjectTypes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#openField" >openField</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#reloadData" >reloadData</a>
+                            </li>
+                            <li>
+                                <a href="#removeField" >removeField</a>
+                            </li>
+                            <li>
+                                <a href="#removeObjectType" >removeObjectType</a>
+                            </li>
+                            <li>
+                                <a href="#response2FormValues" >response2FormValues</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(activateRoute: ActivatedRoute, fb: UntypedFormBuilder, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, router: Router, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:65</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>activateRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFieldModal"></a>
+                    <span class="name">
+                        <span ><b>addFieldModal</b></span>
+                        <a href="#addFieldModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addFieldModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addObjectTypesModal"></a>
+                    <span class="name">
+                        <span ><b>addObjectTypesModal</b></span>
+                        <a href="#addObjectTypesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addObjectTypesModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelModifyItem"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelModifyItem</b></span>
+                        <a href="#cancelModifyItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelModifyItem()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:195</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formValueChange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formValueChange</b></span>
+                        <a href="#formValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formValueChange(change)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>change</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAddFieldsOptions"></a>
+                    <span class="name">
+                        <span ><b>getAddFieldsOptions</b></span>
+                        <a href="#getAddFieldsOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAddFieldsOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="224"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:224</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>any[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAddObjectTypesOptions"></a>
+                    <span class="name">
+                        <span ><b>getAddObjectTypesOptions</b></span>
+                        <a href="#getAddObjectTypesOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAddObjectTypesOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>any[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFieldById"></a>
+                    <span class="name">
+                        <span ><b>getFieldById</b></span>
+                        <a href="#getFieldById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFieldById(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="206"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:206</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getObjectTypeById"></a>
+                    <span class="name">
+                        <span ><b>getObjectTypeById</b></span>
+                        <a href="#getObjectTypeById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getObjectTypeById(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initFormGroup"></a>
+                    <span class="name">
+                        <span ><b>initFormGroup</b></span>
+                        <a href="#initFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initFormGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="116"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:116</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDisableEdit"></a>
+                    <span class="name">
+                        <span ><b>isDisableEdit</b></span>
+                        <a href="#isDisableEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDisableEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:272</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadListItemsNecessary"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>loadListItemsNecessary</b></span>
+                        <a href="#loadListItemsNecessary"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadListItemsNecessary()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="160"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modifyItem"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>modifyItem</b></span>
+                        <a href="#modifyItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>modifyItem()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openAddModalFields"></a>
+                    <span class="name">
+                        <span ><b>openAddModalFields</b></span>
+                        <a href="#openAddModalFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openAddModalFields()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openAddModalObjectTypes"></a>
+                    <span class="name">
+                        <span ><b>openAddModalObjectTypes</b></span>
+                        <a href="#openAddModalObjectTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openAddModalObjectTypes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="260"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:260</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openField"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>openField</b></span>
+                        <a href="#openField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>openField(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="reloadData"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>reloadData</b></span>
+                        <a href="#reloadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>reloadData(contentTemplate)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>contentTemplate</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeField"></a>
+                    <span class="name">
+                        <span ><b>removeField</b></span>
+                        <a href="#removeField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeField(index)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeObjectType"></a>
+                    <span class="name">
+                        <span ><b>removeObjectType</b></span>
+                        <a href="#removeObjectType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeObjectType(index)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="246"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:246</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="response2FormValues"></a>
+                    <span class="name">
+                        <span ><b>response2FormValues</b></span>
+                        <a href="#response2FormValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>response2FormValues(responseContent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>responseContent</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addFieldVisibleModal"></a>
+                    <span class="name">
+                        <span ><b>addFieldVisibleModal</b></span>
+                        <a href="#addFieldVisibleModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addObjectTypesVisibleModal"></a>
+                    <span class="name">
+                        <span ><b>addObjectTypesVisibleModal</b></span>
+                        <a href="#addObjectTypesVisibleModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;ANNOTATIONS.TEMPLATES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="displayName"></a>
+                    <span class="name">
+                        <span ><b>displayName</b></span>
+                        <a href="#displayName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fieldsList"></a>
+                    <span class="name">
+                        <span ><b>fieldsList</b></span>
+                        <a href="#fieldsList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroupChange"></a>
+                    <span class="name">
+                        <span ><b>formGroupChange</b></span>
+                        <a href="#formGroupChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectTypesList"></a>
+                    <span class="name">
+                        <span ><b>objectTypesList</b></span>
+                        <a href="#objectTypesList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectModal"></a>
+                    <span class="name">
+                        <span ><b>selectModal</b></span>
+                        <a href="#selectModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="snapshotTemplateData"></a>
+                    <span class="name">
+                        <span ><b>snapshotTemplateData</b></span>
+                        <a href="#snapshotTemplateData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/pages/annotations/templates/template-detail/template-detail.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnDestroy, OnInit} from &#x27;@angular/core&#x27;;
+import {ActivatedRoute, Router} from &#x27;@angular/router&#x27;;
+import {FormsModule, ReactiveFormsModule, UntypedFormBuilder} from &#x27;@angular/forms&#x27;;
+import {forkJoin, lastValueFrom} from &#x27;rxjs&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import {StateService} from &quot;src/app/services/state.service&quot;;
+import IView from &quot;@interfaces/view.interfaces&quot;;
+import {CommonModule} from &quot;@angular/common&quot;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzModalModule} from &quot;ng-zorro-antd/modal&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {DisableControlDirective} from &quot;../../../../directives/disable-control.directive&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {BackButtonComponent} from &quot;../../../../components/miscellaneous/back-button/back-button.component&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+@Component({
+    imports: [
+        CommonModule,
+        SharedModule,
+        NzInputModule,
+        NzButtonModule,
+        NzSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzFormModule,
+        NzModalModule,
+        NzListModule,
+        NzTableModule,
+        DisableControlDirective,
+        NzSpinModule,
+        BackButtonComponent,
+        NzPageHeaderModule,
+    ],
+    selector: &#x27;app-template-detail&#x27;,
+    templateUrl: &#x27;./template-detail.component.html&#x27;,
+    styleUrls: [&#x27;./template-detail.component.sass&#x27;]
+})
+export class TemplateDetailComponent implements OnInit, OnDestroy, IView {
+
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;ANNOTATIONS.TEMPLATES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  };
+
+  snapshotTemplateData;
+  displayName &#x3D; &#x27;&#x27;;
+  loading &#x3D; false;
+  formGroup;
+  formGroupChange &#x3D; false;
+
+  addFieldVisibleModal &#x3D; false;
+  addObjectTypesVisibleModal &#x3D; false;
+  selectModal &#x3D; [];
+
+  fieldsList &#x3D; [];
+  objectTypesList &#x3D; [];
+
+  constructor(
+    private readonly activateRoute: ActivatedRoute,
+    private readonly fb: UntypedFormBuilder,
+    private readonly backendService: BackendService,
+    private readonly notificationService: NotificationService,
+    private readonly messageLogService: MessageLogService,
+    private readonly router: Router,
+    private readonly stateService: StateService,
+  ) { }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    this.snapshotTemplateData &#x3D; this.activateRoute.snapshot.data.template.content;
+    this.displayName &#x3D; this.snapshotTemplateData.name;
+    this.initFormGroup();
+    await this.loadListItemsNecessary();
+    const getState &#x3D; await this.stateService.getStateCurrenView();
+    if (!getState || !getState.formGroupChange) {
+      this.reloadData(this.snapshotTemplateData).then();
+    } else {
+      console.log(getState);
+      this.formGroup.get(&#x27;name&#x27;).setValue(getState.name ? getState.name : &#x27;&#x27;);
+      this.formGroup.get(&#x27;description&#x27;).setValue(getState.description ? getState.description : &#x27;&#x27;);
+      this.formGroup.get(&#x27;object_types&#x27;).setValue(getState.object_types ? getState.object_types : []);
+      this.formGroup.get(&#x27;field_id&#x27;).setValue(getState.field_id ? getState.field_id : []);
+      this.formGroup.get(&#x27;standard&#x27;).setValue(getState.standard ? getState.standard : &#x27;&#x27;);
+      this.formGroupChange &#x3D; getState.formGroupChange;
+    }
+    this.loading &#x3D; false;
+  }
+  async ngOnDestroy(): Promise&lt;void&gt; {
+    this.BREADCRUMB_NAME.params.name &#x3D; this.formGroup.get(&#x27;name&#x27;).value;
+    if (!this.formGroupChange) {
+      this.stateService.setStateCurrentView({
+        formGroupChange: this.formGroupChange,
+      }).then();
+    } else {
+      this.stateService.setStateCurrentView({
+        name: this.formGroup.get(&#x27;name&#x27;).value,
+        description: this.formGroup.get(&#x27;description&#x27;).value,
+        object_types: this.formGroup.get(&#x27;object_types&#x27;).value,
+        field_id: this.formGroup.get(&#x27;field_id&#x27;).value,
+        standard: this.formGroup.get(&#x27;standard&#x27;).value,
+        formGroupChange: this.formGroupChange,
+      }).then();
+    }
+  }
+
+
+  initFormGroup(): void {
+    this.formGroup &#x3D; this.fb.group({
+      id: [{value: this.snapshotTemplateData.id, disabled: true}],
+      name: [&#x27;&#x27;],
+      description: [&#x27;&#x27;],
+      object_types: [[]],
+      field_id: [[]],
+      standard: [&#x27;&#x27;],
+      unique: [this.snapshotTemplateData.unique],
+    });
+    this.formGroup.valueChanges.subscribe({next:(change) &#x3D;&gt; this.formValueChange(change)});
+  }
+
+
+  async reloadData(contentTemplate): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    this.response2FormValues(contentTemplate);
+    this.formGroupChange &#x3D; false;
+    this.loading &#x3D; false;
+  }
+
+  response2FormValues(responseContent): void {
+    const fieldId &#x3D; [];
+    const objectTypes &#x3D; [];
+
+    if (responseContent.annotation_form_fields) {
+      for (const item of responseContent.annotation_form_fields) {
+        fieldId.push(item.form_field_id);
+      }
+    }
+    if (responseContent.object_types) {
+      for (const item of responseContent.object_types) {
+        objectTypes.push(item.object_type_id);
+      }
+    }
+
+    this.formGroup.get(&#x27;name&#x27;).setValue(responseContent.name ? responseContent.name : &#x27;&#x27;);
+    this.formGroup.get(&#x27;description&#x27;).setValue(responseContent.description ? responseContent.description : &#x27;&#x27;);
+    this.formGroup.get(&#x27;standard&#x27;).setValue(responseContent.standard ? responseContent.standard : &#x27;&#x27;);
+    this.formGroup.get(&#x27;object_types&#x27;).setValue(objectTypes);
+    this.formGroup.get(&#x27;field_id&#x27;).setValue(fieldId);
+  }
+
+
+  async loadListItemsNecessary(): Promise&lt;void&gt; {
+    const observables &#x3D; {
+      fields: this.backendService.getAnnotationField(),
+      objectTypes: this.backendService.getObjectTypes(),
+    };
+    const response: any &#x3D; await lastValueFrom(forkJoin(observables), { defaultValue: undefined });
+    this.fieldsList &#x3D; response.fields.content;
+    this.objectTypesList &#x3D; response.objectTypes.content;
+  }
+
+  private formValueChange(change) {
+    this.formGroupChange &#x3D; true;
+  }
+
+  async modifyItem(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    const value &#x3D; {
+      name: this.formGroup.get(&#x27;name&#x27;).value,
+      description: this.formGroup.get(&#x27;description&#x27;).value,
+      field_id: this.formGroup.get(&#x27;field_id&#x27;).value,
+      object_type_id: this.formGroup.get(&#x27;object_types&#x27;).value,
+      unique: this.formGroup.get(&#x27;unique&#x27;).value,
+    };
+    try {
+      const response: any &#x3D; await lastValueFrom(this.backendService.putAnnotationTemplates(this.snapshotTemplateData.id, value), { defaultValue: undefined });
+      this.messageLogService.addIssues(response.issues);
+      this.formGroupChange &#x3D; false;
+      this.displayName &#x3D; this.formGroup.get(&#x27;name&#x27;).value;
+    } catch (e) {
+      await this.notificationService.createNotificationWithType(TypeNotificationEnum.error, &#x27;ANNOTATIONS.TEMPLATES.DETAIL.NOTIFICATION_FAIL_MODIFY.TITLE&#x27;,
+        &#x27;ANNOTATIONS.TEMPLATES.DETAIL.NOTIFICATION_FAIL_MODIFY.CONTENT&#x27;, &#x27;bottomRight&#x27;);
+    }
+    this.loading &#x3D; false;
+  }
+
+  async cancelModifyItem(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    const responseTemplate: any &#x3D; await lastValueFrom(this.backendService.getAnnotationsTemplates(this.snapshotTemplateData.id), { defaultValue: undefined });
+    await this.reloadData(responseTemplate.content);
+  }
+
+  /* Fields */
+  async openField(id): Promise&lt;void&gt; {
+    await this.router.navigate([&#x27;annotationsFieldDetail&#x27;, id]);
+  }
+
+  getFieldById(id): any {
+    return this.fieldsList.find((value) &#x3D;&gt; {
+      return value.id &#x3D;&#x3D;&#x3D; id;
+    });
+  }
+
+  removeField(index): any {
+    const control &#x3D; this.formGroup.get(&#x27;field_id&#x27;);
+    const newArray &#x3D; [...control.value];
+    newArray.splice(index, 1);
+    control.setValue(newArray);
+  }
+
+  openAddModalFields(): void {
+    this.selectModal &#x3D; [];
+    this.addFieldVisibleModal &#x3D; true;
+  }
+
+  getAddFieldsOptions(): any[] {
+    const fbValue: any[] &#x3D; this.formGroup.get(&#x27;field_id&#x27;).value;
+    return this.fieldsList.filter( (value) &#x3D;&gt; {
+      return !fbValue.includes(value.id);
+    });
+  }
+
+  addFieldModal() {
+    const control &#x3D; this.formGroup.get(&#x27;field_id&#x27;);
+    control.setValue([...control.value, ...this.selectModal]);
+    this.selectModal &#x3D; [];
+    this.addFieldVisibleModal &#x3D; false;
+  }
+
+  /* Object Types */
+
+  getObjectTypeById(id): any {
+    return this.objectTypesList.find((value) &#x3D;&gt; {
+      return value.id &#x3D;&#x3D;&#x3D; id;
+    });
+  }
+
+  removeObjectType(index): void {
+    const control &#x3D; this.formGroup.get(&#x27;object_types&#x27;);
+    const newArray &#x3D; [...control.value];
+    newArray.splice(index, 1);
+    control.setValue(newArray);
+  }
+
+  getAddObjectTypesOptions(): any[] {
+    const fbValue: any[] &#x3D; this.formGroup.get(&#x27;object_types&#x27;).value;
+    return this.objectTypesList.filter( (value) &#x3D;&gt; {
+      return !fbValue.includes(value.id);
+    });
+  }
+
+  openAddModalObjectTypes() {
+    this.selectModal &#x3D; [];
+    this.addObjectTypesVisibleModal &#x3D; true;
+  }
+
+  addObjectTypesModal() {
+    const control &#x3D; this.formGroup.get(&#x27;object_types&#x27;);
+    control.setValue([...control.value, ...this.selectModal]);
+    this.selectModal &#x3D; [];
+    this.addObjectTypesVisibleModal &#x3D; false;
+  }
+
+  isDisableEdit() {
+    return false; // Permissions
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;height: 100%;display: flex;  flex-flow: column;&quot;&gt;
+  &lt;nz-page-header&gt;
+    &lt;nz-page-header-title&gt;
+      &lt;app-back-button&gt;&lt;/app-back-button&gt;
+      {{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.TITLE&#x27; | translate}} - {{displayName}}
+    &lt;/nz-page-header-title&gt;
+  &lt;/nz-page-header&gt;
+
+  &lt;div style&#x3D;&quot;padding: 0px 24px 30px 24px;&quot;&gt;
+    &lt;nz-spin [nzSpinning]&#x3D;&quot;loading&quot;&gt;
+      &lt;ng-container *ngIf&#x3D;&quot;formGroup&quot;&gt;
+        &lt;form [formGroup]&#x3D;&quot;formGroup&quot;&gt;
+          &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+            &lt;!-- Id --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;nz-form-label nzFor&#x3D;&quot;id&quot;&gt;Id&lt;/nz-form-label&gt;
+              &lt;input nz-input formControlName&#x3D;&quot;id&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Id&quot;&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Name --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;nz-form-label
+                nzFor&#x3D;&quot;name&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.NAME.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+              &lt;input nz-input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot;
+                     [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.NAME.PLACEHOLDER&#x27; | translate&quot;
+                     [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+
+          &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+            &lt;!-- UNIQUE --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;nz-form-label
+                nzFor&#x3D;&quot;view_type&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+              &lt;div class&#x3D;&quot;false-input-disable&quot;&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;this.formGroup.get(&#x27;unique&#x27;).value&quot;&gt;
+                  {{ &#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.OPTIONS.YES&#x27; | translate }}
+                &lt;/ng-container&gt;
+                &lt;ng-container *ngIf&#x3D;&quot;!this.formGroup.get(&#x27;unique&#x27;).value&quot;&gt;
+                  {{ &#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.OPTIONS.NO&#x27; | translate }}
+                &lt;/ng-container&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Standard --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;nz-form-label nzFor&#x3D;&quot;standard&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.STANDARD.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+              &lt;input nz-input formControlName&#x3D;&quot;standard&quot; type&#x3D;&quot;text&quot;
+                     [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.STANDARD.PLACEHOLDER&#x27; | translate&quot;
+                     [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+          &lt;!-- Description --&gt;
+          &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;nz-form-label
+                nzFor&#x3D;&quot;description&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.DESCRIPTION.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+              &lt;textarea formControlName&#x3D;&quot;description&quot; nz-input
+                        [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.DESCRIPTION.PLACEHOLDER&#x27; | translate&quot;
+                        [nzAutosize]&#x3D;&quot;{ minRows: 3, maxRows: 5 }&quot; [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+
+          &lt;div class&#x3D;&quot;row-form&quot; style&#x3D;&quot;margin-top: 10px&quot;&gt;
+
+            &lt;!-- Fields --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;div style&#x3D;&quot;width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;&quot;&gt;
+                &lt;div style&#x3D;&quot;flex-grow: 1;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.LABEL&#x27; | translate}} :&lt;/div&gt;
+                &lt;button nz-button nzType&#x3D;&quot;default&quot; nzSize&#x3D;&quot;default&quot; nzShape&#x3D;&quot;round&quot;
+                        (click)&#x3D;&quot;openAddModalFields()&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                  &lt;i nz-icon nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.ADD_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;nz-table #fieldTable [nzData]&#x3D;&quot;formGroup?.get(&#x27;field_id&#x27;).value&quot; [nzShowPagination]&#x3D;&quot;true&quot;
+                        [nzPageSize]&#x3D;&quot;6&quot; nzBordered&gt;
+                &lt;thead&gt;
+                &lt;tr&gt;
+                  &lt;th nzAlign&#x3D;&quot;center&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.TABLE_TH.NAME&#x27; | translate}}&lt;/th&gt;
+                  &lt;ng-container *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                    &lt;th nzAlign&#x3D;&quot;center&quot; nzRight
+                        nzWidth&#x3D;&quot;100px&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.TABLE_TH.ACTIONS&#x27; | translate}}&lt;/th&gt;
+                  &lt;/ng-container&gt;
+                &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                &lt;tr *ngFor&#x3D;&quot;let item of fieldTable.data; let i &#x3D; index&quot;&gt;
+                  &lt;td nzAlign&#x3D;&quot;center&quot;
+                      [ngClass]&#x3D;&quot;{&#x27;click-row&#x27;: true}&quot; (click)&#x3D;&quot;openField(item)&quot;&gt;
+                    {{ getFieldById(item)?.name }}
+                  &lt;/td&gt;
+                  &lt;td nzAlign&#x3D;&quot;center&quot; nzRight *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                    &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                      &lt;nz-list-item-action&gt;
+                        &lt;i nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                           (click)&#x3D;&quot;removeField(i)&quot;&gt;&lt;/i&gt;
+                      &lt;/nz-list-item-action&gt;
+                    &lt;/ul&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/nz-table&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Object types --&gt;
+            &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+              &lt;div style&#x3D;&quot;width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;&quot;&gt;
+                &lt;div style&#x3D;&quot;flex-grow: 1;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.LABEL&#x27; | translate}}:
+                &lt;/div&gt;
+                &lt;button nz-button nzType&#x3D;&quot;default&quot; nzSize&#x3D;&quot;default&quot; nzShape&#x3D;&quot;round&quot;
+                        (click)&#x3D;&quot;openAddModalObjectTypes()&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                  &lt;i nz-icon
+                     nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.ADD_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;nz-table #objectTypesTable [nzData]&#x3D;&quot;formGroup?.get(&#x27;object_types&#x27;).value&quot; [nzShowPagination]&#x3D;&quot;true&quot;
+                        [nzPageSize]&#x3D;&quot;6&quot; nzBordered&gt;
+                &lt;thead&gt;
+                &lt;tr&gt;
+                  &lt;th
+                    nzAlign&#x3D;&quot;center&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.NAME&#x27; | translate}}&lt;/th&gt;
+                  &lt;ng-container *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                    &lt;th nzAlign&#x3D;&quot;center&quot; nzRight
+                        nzWidth&#x3D;&quot;100px&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.ACTIONS&#x27; | translate}}&lt;/th&gt;
+                  &lt;/ng-container&gt;
+                &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                &lt;tr *ngFor&#x3D;&quot;let item of objectTypesTable.data; let i &#x3D; index&quot;&gt;
+                  &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+                    {{ getObjectTypeById(item)?.name }}
+                  &lt;/td&gt;
+                  &lt;td nzAlign&#x3D;&quot;center&quot; nzRight *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                    &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                      &lt;nz-list-item-action&gt;
+                        &lt;i nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                           (click)&#x3D;&quot;removeObjectType(i)&quot;&gt;&lt;/i&gt;
+                      &lt;/nz-list-item-action&gt;
+                    &lt;/ul&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/nz-table&gt;
+            &lt;/div&gt;
+
+          &lt;/div&gt;
+
+        &lt;/form&gt;
+      &lt;/ng-container&gt;
+
+      &lt;div style&#x3D;&quot;display: flex; flex-direction: row-reverse; align-items: flex-end&quot;&gt;
+        &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin-top: 20px;&quot; (click)&#x3D;&quot;modifyItem()&quot;
+                [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+          {{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODIFY_BUTTON&#x27; | translate}}
+        &lt;/button&gt;
+        &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; nzDanger
+                style&#x3D;&quot;margin-top: 20px; margin-right: 12px;&quot; (click)&#x3D;&quot;cancelModifyItem()&quot;
+                [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+          {{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.CANCEL_BUTTON&#x27; | translate}}
+        &lt;/button&gt;
+      &lt;/div&gt;
+
+    &lt;/nz-spin&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;!-- Modal Add Field --&gt;
+&lt;nz-modal [(nzVisible)]&#x3D;&quot;addFieldVisibleModal&quot; nzCentered
+          [nzTitle]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.TITLE&#x27; | translate&quot;
+          (nzOnCancel)&#x3D;&quot;addFieldVisibleModal &#x3D; false;&quot; [nzMaskClosable]&#x3D;&quot;false&quot;&gt;
+  &lt;div *nzModalContent&gt;
+    &lt;div style&#x3D;&quot;padding-bottom: 3px;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.INPUTS.FIELD.LABEL&#x27; | translate}}
+      :
+    &lt;/div&gt;
+    &lt;nz-select [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.INPUTS.FIELD.PLACEHOLDER&#x27; | translate&quot;
+               nzMode&#x3D;&quot;multiple&quot; nzAllowClear [nzDisabled]&#x3D;&quot;loading&quot; nzShowSearch
+               style&#x3D;&quot;width: 100%;&quot; [(ngModel)]&#x3D;&quot;selectModal&quot; [nzMaxTagCount]&#x3D;&quot;3&quot;&gt;
+      &lt;nz-option [nzValue]&#x3D;&quot;item.id&quot; [nzLabel]&#x3D;&quot;item.name&quot; *ngFor&#x3D;&quot;let item of getAddFieldsOptions()&quot;&gt;&lt;/nz-option&gt;
+    &lt;/nz-select&gt;
+  &lt;/div&gt;
+  &lt;div *nzModalFooter&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger
+            (click)&#x3D;&quot;addFieldVisibleModal &#x3D; false;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.CANCEL_BUTTON&#x27; | translate}}&lt;/button&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot;
+            (click)&#x3D;&quot;addFieldModal()&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.ADD_BUTTON&#x27; | translate}}&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nz-modal&gt;
+
+
+&lt;!-- Modal Add Object Types --&gt;
+&lt;nz-modal [(nzVisible)]&#x3D;&quot;addObjectTypesVisibleModal&quot; nzCentered
+          [nzTitle]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.TITLE&#x27; | translate&quot;
+          (nzOnCancel)&#x3D;&quot;addObjectTypesVisibleModal &#x3D; false;&quot; [nzMaskClosable]&#x3D;&quot;false&quot;&gt;
+  &lt;div *nzModalContent&gt;
+    &lt;div
+      style&#x3D;&quot;padding-bottom: 3px;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.LABEL&#x27; | translate}}
+      :
+    &lt;/div&gt;
+    &lt;nz-select
+      [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.PLACEHOLDER&#x27; | translate&quot;
+      nzMode&#x3D;&quot;multiple&quot; nzAllowClear [nzDisabled]&#x3D;&quot;loading&quot; nzShowSearch
+      style&#x3D;&quot;width: 100%;&quot; [(ngModel)]&#x3D;&quot;selectModal&quot; [nzMaxTagCount]&#x3D;&quot;3&quot;&gt;
+      &lt;nz-option [nzValue]&#x3D;&quot;item.id&quot; [nzLabel]&#x3D;&quot;item.name&quot; *ngFor&#x3D;&quot;let item of getAddObjectTypesOptions()&quot;&gt;&lt;/nz-option&gt;
+    &lt;/nz-select&gt;
+  &lt;/div&gt;
+  &lt;div *nzModalFooter&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger
+            (click)&#x3D;&quot;addObjectTypesVisibleModal &#x3D; false;&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.CANCEL_BUTTON&#x27; | translate}}&lt;/button&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot;
+            (click)&#x3D;&quot;addObjectTypesModal()&quot;&gt;{{&#x27;ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.ADD_BUTTON&#x27; | translate}}&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nz-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./template-detail.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.row-form
+  display: flex
+  flex-wrap: wrap
+  column-gap: 20px
+  row-gap: 10px
+
+.column-input-form
+  min-width: min(360px, 100%)
+  flex: 1 1 0px
+
+.click-row
+  cursor: pointer
+
+.false-input-disable
+  color: rgba(0, 0, 0, 0.25)
+  background-color: #f5f5f5
+  border: 1px solid #d9d9d9
+  padding: 4px 11px 4px 11px
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="height: 100%;display: flex;  flex-flow: column;">  <nz-page-header>    <nz-page-header-title>      <app-back-button></app-back-button>      {{\'ANNOTATIONS.TEMPLATES.DETAIL.TITLE\' | translate}} - {{displayName}}    </nz-page-header-title>  </nz-page-header>  <div style="padding: 0px 24px 30px 24px;">    <nz-spin [nzSpinning]="loading">      <ng-container *ngIf="formGroup">        <form [formGroup]="formGroup">          <div class="row-form">            <!-- Id -->            <div class="column-input-form">              <nz-form-label nzFor="id">Id</nz-form-label>              <input nz-input formControlName="id" type="text" placeholder="Id">            </div>            <!-- Name -->            <div class="column-input-form">              <nz-form-label                nzFor="name">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.NAME.LABEL\' | translate}}</nz-form-label>              <input nz-input formControlName="name" type="text"                     [placeholder]="\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.NAME.PLACEHOLDER\' | translate"                     [disableControl]="isDisableEdit()">            </div>          </div>          <div class="row-form">            <!-- UNIQUE -->            <div class="column-input-form">              <nz-form-label                nzFor="view_type">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.LABEL\' | translate}}</nz-form-label>              <div class="false-input-disable">                <ng-container *ngIf="this.formGroup.get(\'unique\').value">                  {{ \'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.OPTIONS.YES\' | translate }}                </ng-container>                <ng-container *ngIf="!this.formGroup.get(\'unique\').value">                  {{ \'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.UNIQUE.OPTIONS.NO\' | translate }}                </ng-container>              </div>            </div>            <!-- Standard -->            <div class="column-input-form">              <nz-form-label nzFor="standard">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.STANDARD.LABEL\' | translate}}</nz-form-label>              <input nz-input formControlName="standard" type="text"                     [placeholder]="\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.STANDARD.PLACEHOLDER\' | translate"                     [disableControl]="isDisableEdit()">            </div>          </div>          <!-- Description -->          <div class="row-form">            <div class="column-input-form">              <nz-form-label                nzFor="description">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.DESCRIPTION.LABEL\' | translate}}</nz-form-label>              <textarea formControlName="description" nz-input                        [placeholder]="\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.DESCRIPTION.PLACEHOLDER\' | translate"                        [nzAutosize]="{ minRows: 3, maxRows: 5 }" [disableControl]="isDisableEdit()"></textarea>            </div>          </div>          <div class="row-form" style="margin-top: 10px">            <!-- Fields -->            <div class="column-input-form">              <div style="width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;">                <div style="flex-grow: 1;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.LABEL\' | translate}} :</div>                <button nz-button nzType="default" nzSize="default" nzShape="round"                        (click)="openAddModalFields()" *ngIf="!isDisableEdit()">                  <i nz-icon nzType="plus"></i>{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.ADD_BUTTON\' | translate}}                </button>              </div>              <nz-table #fieldTable [nzData]="formGroup?.get(\'field_id\').value" [nzShowPagination]="true"                        [nzPageSize]="6" nzBordered>                <thead>                <tr>                  <th nzAlign="center">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.TABLE_TH.NAME\' | translate}}</th>                  <ng-container *ngIf="!isDisableEdit()">                    <th nzAlign="center" nzRight                        nzWidth="100px">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.FIELD.TABLE_TH.ACTIONS\' | translate}}</th>                  </ng-container>                </tr>                </thead>                <tbody>                <tr *ngFor="let item of fieldTable.data; let i = index">                  <td nzAlign="center"                      [ngClass]="{\'click-row\': true}" (click)="openField(item)">                    {{ getFieldById(item)?.name }}                  </td>                  <td nzAlign="center" nzRight *ngIf="!isDisableEdit()">                    <ul nz-list-item-actions style="margin-left: 6px;">                      <nz-list-item-action>                        <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"                           (click)="removeField(i)"></i>                      </nz-list-item-action>                    </ul>                  </td>                </tr>                </tbody>              </nz-table>            </div>            <!-- Object types -->            <div class="column-input-form">              <div style="width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;">                <div style="flex-grow: 1;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.LABEL\' | translate}}:                </div>                <button nz-button nzType="default" nzSize="default" nzShape="round"                        (click)="openAddModalObjectTypes()" *ngIf="!isDisableEdit()">                  <i nz-icon                     nzType="plus"></i>{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.ADD_BUTTON\' | translate}}                </button>              </div>              <nz-table #objectTypesTable [nzData]="formGroup?.get(\'object_types\').value" [nzShowPagination]="true"                        [nzPageSize]="6" nzBordered>                <thead>                <tr>                  <th                    nzAlign="center">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.NAME\' | translate}}</th>                  <ng-container *ngIf="!isDisableEdit()">                    <th nzAlign="center" nzRight                        nzWidth="100px">{{\'ANNOTATIONS.TEMPLATES.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.ACTIONS\' | translate}}</th>                  </ng-container>                </tr>                </thead>                <tbody>                <tr *ngFor="let item of objectTypesTable.data; let i = index">                  <td nzAlign="center">                    {{ getObjectTypeById(item)?.name }}                  </td>                  <td nzAlign="center" nzRight *ngIf="!isDisableEdit()">                    <ul nz-list-item-actions style="margin-left: 6px;">                      <nz-list-item-action>                        <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"                           (click)="removeObjectType(i)"></i>                      </nz-list-item-action>                    </ul>                  </td>                </tr>                </tbody>              </nz-table>            </div>          </div>        </form>      </ng-container>      <div style="display: flex; flex-direction: row-reverse; align-items: flex-end">        <button nz-button nzType="primary" nzShape="round" style="margin-top: 20px;" (click)="modifyItem()"                [disabled]="!formGroupChange">          {{\'ANNOTATIONS.TEMPLATES.DETAIL.MODIFY_BUTTON\' | translate}}        </button>        <button nz-button nzType="primary" nzShape="round" nzDanger                style="margin-top: 20px; margin-right: 12px;" (click)="cancelModifyItem()"                [disabled]="!formGroupChange">          {{\'ANNOTATIONS.TEMPLATES.DETAIL.CANCEL_BUTTON\' | translate}}        </button>      </div>    </nz-spin>  </div></div><!-- Modal Add Field --><nz-modal [(nzVisible)]="addFieldVisibleModal" nzCentered          [nzTitle]="\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.TITLE\' | translate"          (nzOnCancel)="addFieldVisibleModal = false;" [nzMaskClosable]="false">  <div *nzModalContent>    <div style="padding-bottom: 3px;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.INPUTS.FIELD.LABEL\' | translate}}      :    </div>    <nz-select [nzPlaceHolder]="\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.INPUTS.FIELD.PLACEHOLDER\' | translate"               nzMode="multiple" nzAllowClear [nzDisabled]="loading" nzShowSearch               style="width: 100%;" [(ngModel)]="selectModal" [nzMaxTagCount]="3">      <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of getAddFieldsOptions()"></nz-option>    </nz-select>  </div>  <div *nzModalFooter>    <button nz-button nzType="primary" nzDanger            (click)="addFieldVisibleModal = false;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.CANCEL_BUTTON\' | translate}}</button>    <button nz-button nzType="primary"            (click)="addFieldModal()">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_FIELD.ADD_BUTTON\' | translate}}</button>  </div></nz-modal><!-- Modal Add Object Types --><nz-modal [(nzVisible)]="addObjectTypesVisibleModal" nzCentered          [nzTitle]="\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.TITLE\' | translate"          (nzOnCancel)="addObjectTypesVisibleModal = false;" [nzMaskClosable]="false">  <div *nzModalContent>    <div      style="padding-bottom: 3px;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.LABEL\' | translate}}      :    </div>    <nz-select      [nzPlaceHolder]="\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.PLACEHOLDER\' | translate"      nzMode="multiple" nzAllowClear [nzDisabled]="loading" nzShowSearch      style="width: 100%;" [(ngModel)]="selectModal" [nzMaxTagCount]="3">      <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of getAddObjectTypesOptions()"></nz-option>    </nz-select>  </div>  <div *nzModalFooter>    <button nz-button nzType="primary" nzDanger            (click)="addObjectTypesVisibleModal = false;">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.CANCEL_BUTTON\' | translate}}</button>    <button nz-button nzType="primary"            (click)="addObjectTypesModal()">{{\'ANNOTATIONS.TEMPLATES.DETAIL.MODAL_ADD_OBJECT_TYPES.ADD_BUTTON\' | translate}}</button>  </div></nz-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'TemplateDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TemplateDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

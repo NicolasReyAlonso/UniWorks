@@ -1,0 +1,238 @@
+<div style="height: 100%;display: flex;  flex-flow: column;">
+  <nz-page-header>
+    <nz-page-header-title>
+      <app-back-button></app-back-button>
+      {{'ANNOTATIONS.FIELDS.DETAIL.TITLE' | translate}} - {{displayName}}
+    </nz-page-header-title>
+  </nz-page-header>
+
+  <div style="padding: 0px 24px 30px 24px;">
+    <nz-spin [nzSpinning]="loading">
+      <ng-container *ngIf="formGroup">
+        <form [formGroup]="formGroup">
+          <div class="row-form">
+
+            <!-- Id -->
+            <div class="column-input-form">
+              <nz-form-label nzFor="id">Id</nz-form-label>
+              <input nz-input formControlName="id" type="text" placeholder="Id">
+            </div>
+
+            <!-- Name -->
+            <div class="column-input-form">
+              <nz-form-label nzFor="name">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.NAME.LABEL' | translate}}</nz-form-label>
+              <input nz-input formControlName="name" type="text"
+                     [placeholder]="'ANNOTATIONS.FIELDS.DETAIL.INPUTS.NAME.PLACEHOLDER' | translate"
+                     [disableControl]="isDisableEdit()">
+            </div>
+          </div>
+
+          <div class="row-form">
+
+            <!-- UNIQUE -->
+            <div class="column-input-form">
+              <nz-form-label
+                nzFor="view_type">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.UNIQUE.LABEL' | translate}}</nz-form-label>
+              <div class="false-input-disable">
+                <ng-container *ngIf="this.formGroup.get('unique').value">
+                  {{ 'ANNOTATIONS.FIELDS.DETAIL.INPUTS.UNIQUE.OPTIONS.YES' | translate }}
+                </ng-container>
+                <ng-container *ngIf="!this.formGroup.get('unique').value">
+                  {{ 'ANNOTATIONS.FIELDS.DETAIL.INPUTS.UNIQUE.OPTIONS.NO' | translate }}
+                </ng-container>
+              </div>
+            </div>
+
+            <!-- Standard -->
+            <div class="column-input-form">
+              <nz-form-label nzFor="standard">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.STANDARD.LABEL' | translate}}</nz-form-label>
+              <input nz-input formControlName="standard" type="text"
+                     [placeholder]="'ANNOTATIONS.FIELDS.DETAIL.INPUTS.STANDARD.PLACEHOLDER' | translate"
+                     [disableControl]="isDisableEdit()">
+            </div>
+
+          </div>
+
+          <div class="row-form">
+
+            <div class="column-input-form">
+              <nz-form-label
+                nzFor="view_type">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.VIEW_TYPE.LABEL' | translate}}</nz-form-label>
+              <div class="false-input-disable">{{ getViewTypeLabelByValue() | translate }}</div>
+            </div>
+
+            <div class="column-input-form">
+              <nz-form-label
+                nzFor="multiple">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.MULTIPLE.LABEL' | translate}}</nz-form-label>
+              <div class="false-input-disable">
+                {{ (this.formGroup.get('multiple').value ? 'ANNOTATIONS.FIELDS.DETAIL.INPUTS.MULTIPLE.YES' : 'ANNOTATIONS.FIELDS.DETAIL.INPUTS.MULTIPLE.NO') | translate }}
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Description -->
+          <div class="row-form">
+
+            <div class="column-input-form">
+              <nz-form-label
+                nzFor="description">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.DESCRIPTION.LABEL' | translate}}</nz-form-label>
+              <textarea formControlName="description" nz-input
+                        [placeholder]="'ANNOTATIONS.FIELDS.DETAIL.INPUTS.DESCRIPTION.PLACEHOLDER' | translate"
+                        [nzAutosize]="{ minRows: 3, maxRows: 5 }" [disableControl]="isDisableEdit()"></textarea>
+            </div>
+
+          </div>
+
+
+          <div class="row-form" style="margin-top: 10px">
+
+            <!-- Fields -->
+            <div class="column-input-form">
+              <div style="width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;">
+                <div style="flex-grow: 1;">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.TEMPLATES.LABEL' | translate}} :</div>
+                <button nz-button nzType="default" nzSize="default" nzShape="round"
+                        (click)="openAddModalTemplates()" *ngIf="!isDisableEdit()">
+                  <i nz-icon nzType="plus"></i>{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.TEMPLATES.ADD_BUTTON' | translate}}
+                </button>
+              </div>
+              <nz-table #fieldTable [nzData]="formGroup?.get('template_id').value" [nzShowPagination]="true"
+                        [nzPageSize]="6" nzBordered>
+                <thead>
+                <tr>
+                  <th nzAlign="center">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.TEMPLATES.TABLE_TH.NAME' | translate}}</th>
+                  <ng-container *ngIf="!isDisableEdit()">
+                    <th nzAlign="center" nzRight
+                        nzWidth="100px">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.TEMPLATES.TABLE_TH.ACTIONS' | translate}}</th>
+                  </ng-container>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of fieldTable.data; let i = index">
+                  <td nzAlign="center"
+                      [ngClass]="{'click-row': true}" (click)="openTemplate(item)">
+                    {{ getTemplateById(item)?.name }}
+                  </td>
+                  <td nzAlign="center" nzRight *ngIf="!isDisableEdit()">
+                    <ul nz-list-item-actions style="margin-left: 6px;">
+                      <nz-list-item-action>
+                        <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"
+                           (click)="removeTemplate(i)"></i>
+                      </nz-list-item-action>
+                    </ul>
+                  </td>
+                </tr>
+                </tbody>
+              </nz-table>
+            </div>
+
+            <!-- Object types -->
+            <div class="column-input-form">
+              <div style="width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;">
+                <div style="flex-grow: 1;">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.OBJECT_TYPES.LABEL' | translate}} :</div>
+                <button nz-button nzType="default" nzSize="default" nzShape="round"
+                        (click)="openAddModalObjectTypes()" *ngIf="!isDisableEdit()">
+                  <i nz-icon
+                     nzType="plus"></i>{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.OBJECT_TYPES.ADD_BUTTON' | translate}}
+                </button>
+              </div>
+              <nz-table #objectTypesTable [nzData]="formGroup?.get('object_types').value" [nzShowPagination]="true"
+                        [nzPageSize]="6" nzBordered>
+                <thead>
+                <tr>
+                  <th
+                    nzAlign="center">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.NAME' | translate}}</th>
+                  <ng-container *ngIf="!isDisableEdit()">
+                    <th nzAlign="center" nzRight
+                        nzWidth="100px">{{'ANNOTATIONS.FIELDS.DETAIL.INPUTS.OBJECT_TYPES.TABLE_TH.ACTIONS' | translate}}</th>
+                  </ng-container>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of objectTypesTable.data; let i = index">
+                  <td nzAlign="center">
+                    {{ getObjectTypeById(item)?.name }}
+                  </td>
+                  <td nzAlign="center" nzRight *ngIf="!isDisableEdit()">
+                    <ul nz-list-item-actions style="margin-left: 6px;">
+                      <nz-list-item-action>
+                        <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"
+                           (click)="removeObjectType(i)"></i>
+                      </nz-list-item-action>
+                    </ul>
+                  </td>
+                </tr>
+                </tbody>
+              </nz-table>
+            </div>
+
+          </div>
+
+        </form>
+      </ng-container>
+
+      <div style="display: flex; flex-direction: row-reverse; align-items: flex-end">
+        <button nz-button nzType="primary" nzShape="round" style="margin-top: 20px;" (click)="modifyItem()"
+                [disabled]="!formGroupChange">
+          {{'ANNOTATIONS.FIELDS.DETAIL.MODIFY_BUTTON' | translate}}
+        </button>
+        <button nz-button nzType="primary" nzShape="round" nzDanger
+                style="margin-top: 20px; margin-right: 12px;" (click)="cancelModifyItem()"
+                [disabled]="!formGroupChange">
+          {{'ANNOTATIONS.FIELDS.DETAIL.CANCEL_BUTTON' | translate}}
+        </button>
+      </div>
+
+    </nz-spin>
+  </div>
+</div>
+
+
+<!-- Modal Add Field -->
+<nz-modal [(nzVisible)]="addTemplatesVisibleModal" nzCentered
+          [nzTitle]="'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_TEMPLATES.TITLE' | translate"
+          (nzOnCancel)="addTemplatesVisibleModal = false;" [nzMaskClosable]="false">
+  <div *nzModalContent>
+    <div
+      style="padding-bottom: 3px;">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_TEMPLATES.INPUTS.TEMPLATES.LABEL' | translate}}
+      :
+    </div>
+    <nz-select
+      [nzPlaceHolder]="'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_TEMPLATES.INPUTS.TEMPLATES.PLACEHOLDER' | translate"
+      nzMode="multiple" nzAllowClear [nzDisabled]="loading" nzShowSearch
+      style="width: 100%;" [(ngModel)]="selectModal" [nzMaxTagCount]="3">
+      <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of getAddTemplatesOptions()"></nz-option>
+    </nz-select>
+  </div>
+  <div *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="addTemplatesVisibleModal = false;">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_TEMPLATES.CANCEL_BUTTON' | translate}}</button>
+    <button nz-button nzType="primary"
+            (click)="addTemplateModal()">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_TEMPLATES.ADD_BUTTON' | translate}}</button>
+  </div>
+</nz-modal>
+
+
+<!-- Modal Add Object Types -->
+<nz-modal [(nzVisible)]="addObjectTypesVisibleModal" nzCentered
+          [nzTitle]="'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_OBJECT_TYPES.TITLE' | translate"
+          (nzOnCancel)="addObjectTypesVisibleModal = false;" [nzMaskClosable]="false">
+  <div *nzModalContent>
+    <div
+      style="padding-bottom: 3px;">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.LABEL' | translate}}
+      :
+    </div>
+    <nz-select
+      [nzPlaceHolder]="'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_OBJECT_TYPES.INPUTS.OBJECT_TYPES.PLACEHOLDER' | translate"
+      nzMode="multiple" nzAllowClear [nzDisabled]="loading" nzShowSearch
+      style="width: 100%;" [(ngModel)]="selectModal" [nzMaxTagCount]="3">
+      <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of getAddObjectTypesOptions()"></nz-option>
+    </nz-select>
+  </div>
+  <div *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="addObjectTypesVisibleModal = false;">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_OBJECT_TYPES.CANCEL_BUTTON' | translate}}</button>
+    <button nz-button nzType="primary"
+            (click)="addObjectTypesModal()">{{'ANNOTATIONS.FIELDS.DETAIL.MODAL_ADD_OBJECT_TYPES.ADD_BUTTON' | translate}}</button>
+  </div>
+</nz-modal>

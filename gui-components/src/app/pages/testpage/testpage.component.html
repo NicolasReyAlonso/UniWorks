@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>NGT-GUI Abstract Frontend</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ======================================================
+   RESET + BASE
+   ====================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Ubuntu, sans-serif;
+  line-height: 1.6;
+}
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+header h1 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+nav a {
+  text-decoration: none;
+  margin-left: 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.8;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+/* ======================================================
+   CONTAINER
+   ====================================================== */
+
+.container {
+  padding: 80px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ======================================================
+   HERO
+   ====================================================== */
+
+.hero {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 100px;
+  animation: fadeUp 0.6s ease-out both;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 20px 0;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0.85;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ======================================================
+   LIB SECTION
+   ====================================================== */
+
+.lib-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
+  margin-bottom: 120px;
+}
+
+/* ======================================================
+   CARDS
+   ====================================================== */
+
+.lib-card {
+  padding: 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.lib-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.lib-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.lib-card p {
+  margin-bottom: 20px;
+  opacity: 0.85;
+}
+
+.lib-card ul {
+  list-style: none;
+}
+
+.lib-card li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.lib-card li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  opacity: 0.6;
+}
+
+/* ======================================================
+   SECTION FINAL
+   ====================================================== */
+
+section {
+  max-width: 900px;
+  margin: 0 auto 120px;
+}
+
+section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+section p {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  opacity: 0.85;
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
+footer {
+  padding-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+footer p {
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+/* ======================================================
+   ANIMATIONS
+   ====================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ======================================================
+   RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 900px) {
+  .lib-section {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .container {
+    padding: 60px 6%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>NGT-GUI FRAMEWORK</h1>
+    <nav>
+      <a href="#">Core</a>
+      <a href="#">GUI Components</a>
+      <a href="#">Docs</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    
+    <div class="hero">
+      <span class="badge">Architecture Alpha</span>
+      <h2>Frontend Abstracto</h2>
+      <p>
+        Una arquitectura desacoplada diseñada para aplicaciones empresariales de alta complejidad. 
+        Separación total entre lógica de negocio, servicios de datos y representación visual.
+      </p>
+    </div>
+
+    <div class="lib-section">
+      <div class="lib-card">
+        <h3>ngt-gui/core</h3>
+        <p>El "cerebro" del framework. Gestiona la lógica pura y la comunicación sin depender de la UI.</p>
+        <ul>
+          <li><strong>Interfaces de Servicio:</strong> Contratos abstractos para Backend y Autenticación.</li>
+          <li><strong>State Management:</strong> Gestión del estado global de la aplicación de forma reactiva.</li>
+          <li><strong>Message Log Service:</strong> Sistema centralizado de eventos y logs de sistema.</li>
+          <li><strong>Injection Tokens:</strong> Desacoplamiento total mediante DI de Angular.</li>
+        </ul>
+      </div>
+
+      <div class="lib-card">
+        <h3>ngt-gui/gui</h3>
+        <p>La capa visual inteligente. Componentes dinámicos que se adaptan a los datos del Core.</p>
+        <ul>
+          <li><strong>Dynamic Browser:</strong> Listados automáticos basados en configuración de backend.</li>
+          <li><strong>Modal Info Service:</strong> Ventanas emergentes programáticas y tipadas.</li>
+          <li><strong>Abstract Components:</strong> Clases base para formularios y vistas de detalle.</li>
+          <li><strong>Theming System:</strong> Soporte nativo para modos oscuros y personalización visual.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section style="margin-top: 80px; text-align: center;">
+      <h2 style="font-size: 2rem;">¿Por qué NGT-GUI?</h2>
+      <p style="margin: 20px auto; max-width: 700px;">
+        Al separar el <strong>Core</strong> de la <strong>GUI</strong>, permitimos que la aplicación escale 
+        sin que los cambios en el diseño afecten a la lógica de datos, facilitando el mantenimiento 
+        y los tests unitarios.
+      </p>
+    </section>
+
+    <footer>
+      <p>© 2025 · Creado con la potencia de Angular & NGT Architecture</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

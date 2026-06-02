@@ -1,0 +1,1644 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CaseStudiesDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+                <code>AfterViewInit</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-case-studies-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>NzButtonModule</code>
+                                <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzTabsModule</code>
+                            <code>NzListModule</code>
+                            <code>NzTableModule</code>
+                                <code><a href="../directives/DisableControlDirective.html" target="_self" >DisableControlDirective</a></code>
+                            <code>NzFormModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>FormsModule</code>
+                            <code>NzSpinModule</code>
+                                <code><a href="../components/BackButtonComponent.html" target="_self" >BackButtonComponent</a></code>
+                            <code>NzPageHeaderModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzIconModule</code>
+                                <code><a href="../components/DynamicEntitiesTableComponent.html" target="_self" >DynamicEntitiesTableComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./case-studies-detail.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./case-studies-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#annotationsForm" >annotationsForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudy" >caseStudy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#dynamicEntitiesTableComponent" >dynamicEntitiesTableComponent</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#formGroupChange" >formGroupChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#headerEntities" >headerEntities</a>
+                            </li>
+                            <li>
+                                <a href="#loadingGeneral" >loadingGeneral</a>
+                            </li>
+                            <li>
+                                <a href="#selectedIndexTab" >selectedIndexTab</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelCaseStudy" >cancelCaseStudy</a>
+                            </li>
+                            <li>
+                                <a href="#entitiesListOfDeleteChange" >entitiesListOfDeleteChange</a>
+                            </li>
+                            <li>
+                                <a href="#formValueChange" >formValueChange</a>
+                            </li>
+                            <li>
+                                <a href="#isDisableEdit" >isDisableEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadData" >loadData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#modifyCaseStudy" >modifyCaseStudy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(activeRoute: ActivatedRoute, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, fb: UntypedFormBuilder, router: Router, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, nzModalService: NzModalService, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>, topAreaService: <a href="../injectables/TopAreaService.html" target="_self">TopAreaService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:76</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>activeRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>nzModalService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzModalService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>topAreaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TopAreaService.html" target="_self" >TopAreaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelCaseStudy"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelCaseStudy</b></span>
+                        <a href="#cancelCaseStudy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelCaseStudy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="184"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:184</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="entitiesListOfDeleteChange"></a>
+                    <span class="name">
+                        <span ><b>entitiesListOfDeleteChange</b></span>
+                        <a href="#entitiesListOfDeleteChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>entitiesListOfDeleteChange(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formValueChange"></a>
+                    <span class="name">
+                        <span ><b>formValueChange</b></span>
+                        <a href="#formValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formValueChange(change)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>change</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDisableEdit"></a>
+                    <span class="name">
+                        <span ><b>isDisableEdit</b></span>
+                        <a href="#isDisableEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDisableEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="198"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:198</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>loadData</b></span>
+                        <a href="#loadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadData(caseStudy)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>caseStudy</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modifyCaseStudy"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>modifyCaseStudy</b></span>
+                        <a href="#modifyCaseStudy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>modifyCaseStudy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="148"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="annotationsForm"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>annotationsForm</b></span>
+                        <a href="#annotationsForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;annotationsForm&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;STUDY_CASES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudy"></a>
+                    <span class="name">
+                        <span ><b>caseStudy</b></span>
+                        <a href="#caseStudy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dynamicEntitiesTableComponent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>dynamicEntitiesTableComponent</b></span>
+                        <a href="#dynamicEntitiesTableComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/DynamicEntitiesTableComponent.html" target="_self" >DynamicEntitiesTableComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(DynamicEntitiesTableComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroupChange"></a>
+                    <span class="name">
+                        <span ><b>formGroupChange</b></span>
+                        <a href="#formGroupChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="headerEntities"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>headerEntities</b></span>
+                        <a href="#headerEntities"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      translation: &#x27;STUDY_CASES.DETAIL.INPUTS.ENTITIES.TH.NAME&#x27;,
+      variableName: &#x27;name&#x27;
+    },
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingGeneral"></a>
+                    <span class="name">
+                        <span ><b>loadingGeneral</b></span>
+                        <a href="#loadingGeneral"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedIndexTab"></a>
+                    <span class="name">
+                        <span ><b>selectedIndexTab</b></span>
+                        <a href="#selectedIndexTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/case-studies/case-studies-detail/case-studies-detail.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import {FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup} from &#x27;@angular/forms&#x27;;
+import {ActivatedRoute, Router} from &#x27;@angular/router&#x27;;
+import {NzModalService} from &#x27;ng-zorro-antd/modal&#x27;;
+import {forkJoin, lastValueFrom} from &#x27;rxjs&#x27;;
+import {AuthService} from &#x27;src/app/services/auth.service&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {StateService} from &#x27;src/app/services/state.service&#x27;;
+import IView from &#x27;@interfaces/view.interfaces&#x27;;
+import {AnnotationsFormComponent} from &quot;src/app/components/data/annotations/annotations-form/annotations-form.component&quot;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzTabsModule} from &quot;ng-zorro-antd/tabs&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {DisableControlDirective} from &quot;../../../directives/disable-control.directive&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {BackButtonComponent} from &quot;../../../components/miscellaneous/back-button/back-button.component&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {TopAreaService} from &quot;../../../services/top-area.service&quot;;
+import {
+  DynamicEntitiesTableComponent
+} from &quot;../../../components/dynamics/dynamic-entities-table/dynamic-entities-table.component&quot;;
+
+@Component({
+    selector: &#x27;app-case-studies-detail&#x27;,
+    imports: [
+        CommonModule,
+        NzButtonModule,
+        AnnotationsFormComponent,
+        SharedModule,
+        NzTabsModule,
+        NzListModule,
+        NzTableModule,
+        DisableControlDirective,
+        NzFormModule,
+        ReactiveFormsModule,
+        FormsModule,
+        NzSpinModule,
+        BackButtonComponent,
+        NzPageHeaderModule,
+        NzInputModule,
+        NzIconModule,
+        DynamicEntitiesTableComponent,
+    ],
+    templateUrl: &#x27;./case-studies-detail.component.html&#x27;,
+    styleUrls: [&#x27;./case-studies-detail.component.sass&#x27;]
+})
+export class CaseStudiesDetailComponent implements OnInit, OnDestroy, AfterViewInit, IView {
+
+  @ViewChild(&#x27;annotationsForm&#x27;, {static: false}) annotationsForm: AnnotationsFormComponent;
+  @ViewChild(DynamicEntitiesTableComponent) dynamicEntitiesTableComponent: DynamicEntitiesTableComponent;
+
+  caseStudy;
+  loadingGeneral &#x3D; false;
+  formGroup: UntypedFormGroup;
+  formGroupChange &#x3D; false;
+  selectedIndexTab &#x3D; 0;
+  readonly headerEntities &#x3D; [
+    {
+      translation: &#x27;STUDY_CASES.DETAIL.INPUTS.ENTITIES.TH.NAME&#x27;,
+      variableName: &#x27;name&#x27;
+    },
+  ];
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;STUDY_CASES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  };
+
+  constructor(
+    private readonly activeRoute: ActivatedRoute,
+    private readonly backendService: BackendService,
+    private readonly fb: UntypedFormBuilder,
+    private readonly router: Router,
+    private readonly messageLogService: MessageLogService,
+    private readonly nzModalService: NzModalService,
+    private readonly notificationService: NotificationService,
+    public readonly authService: AuthService,
+    private readonly stateService: StateService,
+    private readonly topAreaService: TopAreaService,
+  ) {
+
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.loadingGeneral &#x3D; true;
+    this.formGroup &#x3D; this.fb.group({
+      name: &#x27;&#x27;,
+    });
+    this.caseStudy &#x3D; this.activeRoute.snapshot.data.caseStudy;
+    this.formGroup.valueChanges.subscribe({next:(change) &#x3D;&gt; this.formValueChange(change)});
+    const getState &#x3D; await this.stateService.getStateCurrenView();
+    if (!getState || !getState.formGroupChange) {
+      await this.loadData(this.caseStudy);
+      this.formGroupChange &#x3D; false;
+    } else {
+      if (getState.name) {
+        this.formGroup.get(&#x27;name&#x27;).setValue(getState.name);
+      }
+      if (getState.formGroupChange) {
+        this.formGroupChange &#x3D; getState.formGroupChange;
+      }
+    }
+    this.loadingGeneral &#x3D; false;
+  }
+
+  async ngAfterViewInit(): Promise&lt;void&gt; {
+    this.annotationsForm.object_uuid &#x3D; this.caseStudy.uuid;
+    this.annotationsForm.loadAnnotations();
+  }
+
+  async ngOnDestroy(): Promise&lt;void&gt; {
+    this.BREADCRUMB_NAME.params.name &#x3D; this.formGroup.get(&#x27;name&#x27;).value;
+    if (!this.formGroupChange) {
+      this.stateService.setStateCurrentView({
+        formGroupChange: this.formGroupChange,
+      }).then();
+    } else {
+      this.stateService.setStateCurrentView({
+        name: this.formGroup.get(&#x27;name&#x27;).value,
+        formGroupChange: this.formGroupChange,
+      }).then();
+    }
+  }
+
+  formValueChange(change) {
+    this.formGroupChange &#x3D; true;
+  }
+
+  entitiesListOfDeleteChange(event) {
+    this.formValueChange(null);
+  }
+
+  private async loadData(caseStudy): Promise&lt;void&gt; {
+    this.loadingGeneral &#x3D; true;
+    this.formGroupChange &#x3D; false;
+    this.formGroup.get(&#x27;name&#x27;).setValue(caseStudy.name);
+  }
+
+  async modifyCaseStudy(): Promise&lt;void&gt; {
+    this.loadingGeneral &#x3D; true;
+    const value &#x3D; {
+      name: this.formGroup.get(&#x27;name&#x27;).value,
+    };
+    try {
+      const putCaseStudyResponse: any &#x3D; await lastValueFrom(this.backendService.putCaseStudy(this.caseStudy.id, value), { defaultValue: undefined });
+      this.topAreaService.topAreaEventEmitter.emit({type: &#x27;load-case-studies&#x27;, value: null});
+      const putCaseStudyContent &#x3D; putCaseStudyResponse.content;
+      this.caseStudy &#x3D; putCaseStudyContent;
+      const observers &#x3D; [];
+      this.dynamicEntitiesTableComponent.listOfDelete.forEach((element) &#x3D;&gt; {
+        observers.push(this.backendService.deleteCaseStudyItemByCaseStudyAndItem(this.caseStudy.id, element));
+      });
+      if (observers.length !&#x3D;&#x3D; 0) await lastValueFrom(forkJoin(observers));
+      this.dynamicEntitiesTableComponent.listOfDelete &#x3D; [];
+      this.dynamicEntitiesTableComponent.loadData();
+      await this.loadData(this.caseStudy);
+      this.messageLogService.addIssues(putCaseStudyResponse.issues);
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.success,
+        &#x27;Caso de estudio&#x27; ,
+        &#x27;Se ha actualizado el caso de estudio correctamente&#x27;,
+        &#x27;bottomRight&#x27;);
+      this.loadingGeneral &#x3D; false;
+      this.formGroupChange &#x3D; false;
+    } catch (err) {
+      console.error(err);
+      this.notificationService.createNotificationWithType(TypeNotificationEnum.error,
+        &#x27;Error&#x27;, &#x27;Hubo un error al actualizar el caso de estudio.&#x27;,
+        &#x27;bottomRight&#x27;);
+      // await this.loadData(this.caseStudy);
+      this.loadingGeneral &#x3D; false;
+    }
+  }
+
+  async cancelCaseStudy(): Promise&lt;void&gt; {
+    try {
+      this.loadingGeneral &#x3D; true;
+      const caseStudyResponse: any &#x3D; await lastValueFrom(this.backendService.getCaseStudies(this.caseStudy.id, {&#x27;no_attach&#x27;: true, &#x27;fast_mode&#x27;: false}), { defaultValue: undefined });
+      this.caseStudy &#x3D; caseStudyResponse.content;
+      await this.loadData(this.caseStudy);
+      this.dynamicEntitiesTableComponent.listOfDelete &#x3D; [];
+      this.formGroupChange &#x3D; false;
+      this.loadingGeneral &#x3D; false;
+    } catch (error) {
+
+    }
+  }
+
+  isDisableEdit() {
+    return !this.authService.havePermission(&#x27;gui-case-study-edit&#x27;);
+  }
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;height: 100%;display: flex;  flex-flow: column;&quot;&gt;
+  &lt;nz-page-header&gt;
+    &lt;nz-page-header-title&gt;
+      &lt;app-back-button&gt;&lt;/app-back-button&gt;
+      {{&#x27;STUDY_CASES.DETAIL.TITLE&#x27; | translate}} - {{caseStudy.name}}
+    &lt;/nz-page-header-title&gt;
+  &lt;/nz-page-header&gt;
+
+  &lt;div style&#x3D;&quot;padding: 0px 24px 30px 24px; flex-grow: 1;&quot;&gt;
+    &lt;nz-tabset [(nzSelectedIndex)]&#x3D;&quot;selectedIndexTab&quot; style&#x3D;&quot;width:100%; height: 100%;&quot;&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;STUDY_CASES.DETAIL.GENERAL_TITLE&#x27; | translate&quot;&gt;
+        &lt;nz-spin [nzSpinning]&#x3D;&quot;loadingGeneral&quot; style&#x3D;&quot;height: 100%&quot;&gt;
+          &lt;form [formGroup]&#x3D;&quot;formGroup&quot; class&#x3D;&quot;layer-form&quot; *ngIf&#x3D;&quot;formGroup&quot;&gt;
+
+            &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+
+              &lt;!-- Name --&gt;
+              &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                &lt;nz-form-label nzFor&#x3D;&quot;name&quot;&gt;{{&#x27;STUDY_CASES.DETAIL.INPUTS.NAME.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                &lt;input nz-input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot;
+                       [placeholder]&#x3D;&quot;&#x27;STUDY_CASES.DETAIL.INPUTS.NAME.LABEL&#x27; | translate&quot;
+                       [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+              &lt;/div&gt;
+
+            &lt;/div&gt;
+
+            &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+              &lt;!-- Layers --&gt;
+              &lt;div class&#x3D;&quot;column-input-form-layer&quot; style&#x3D;&quot;margin-top: 10px;&quot;&gt;
+                &lt;div style&#x3D;&quot;width: 100%; height: 40px; align-items:center ; display: flex;&quot;&gt;
+                  &lt;div style&#x3D;&quot;flex-grow: 1;&quot;&gt;{{&#x27;STUDY_CASES.DETAIL.INPUTS.ENTITIES.LABEL&#x27; | translate}} :&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;app-dynamic-entities-table [urlFilter]&#x3D;&quot;{case_study_id: this.caseStudy.id}&quot;
+                                            [variableHeader]&#x3D;&quot;headerEntities&quot;
+                                            (listOfDeleteChange)&#x3D;&quot;entitiesListOfDeleteChange($event)&quot;&gt;&lt;/app-dynamic-entities-table&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div style&#x3D;&quot;display: flex; flex-direction: row-reverse; align-items: flex-end&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+              &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin-top: 20px;&quot; (click)&#x3D;&quot;modifyCaseStudy()&quot;
+                      [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+                {{&#x27;STUDY_CASES.DETAIL.MODIFY_BUTTON&#x27; | translate}}
+              &lt;/button&gt;
+              &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; nzDanger
+                      style&#x3D;&quot;margin-top: 20px; margin-right: 12px;&quot; (click)&#x3D;&quot;cancelCaseStudy()&quot;
+                      [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+                {{&#x27;STUDY_CASES.DETAIL.CANCEL_BUTTON&#x27; | translate}}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/nz-spin&gt;
+      &lt;/nz-tab&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;STUDY_CASES.DETAIL.ANNOTATIONS_TITLE&#x27; | translate&quot; nzForceRender&gt;
+        &lt;app-annotations-form ObjectType&#x3D;&quot;case_study&quot; #annotationsForm&gt;&lt;/app-annotations-form&gt;
+      &lt;/nz-tab&gt;
+    &lt;/nz-tabset&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./case-studies-detail.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .ant-tabs-content
+  height: 100%
+
+::ng-deep .ant-tabs-content-holder
+  height: 100%
+
+.row-form-layer
+  display: flex
+  flex-wrap: wrap
+  column-gap: 20px
+  row-gap: 10px
+
+.column-input-form-layer
+  min-width: min(360px, 100%)
+  flex: 1 1 0px
+
+.cursor-pointer
+  cursor: pointer
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="height: 100%;display: flex;  flex-flow: column;">  <nz-page-header>    <nz-page-header-title>      <app-back-button></app-back-button>      {{\'STUDY_CASES.DETAIL.TITLE\' | translate}} - {{caseStudy.name}}    </nz-page-header-title>  </nz-page-header>  <div style="padding: 0px 24px 30px 24px; flex-grow: 1;">    <nz-tabset [(nzSelectedIndex)]="selectedIndexTab" style="width:100%; height: 100%;">      <nz-tab [nzTitle]="\'STUDY_CASES.DETAIL.GENERAL_TITLE\' | translate">        <nz-spin [nzSpinning]="loadingGeneral" style="height: 100%">          <form [formGroup]="formGroup" class="layer-form" *ngIf="formGroup">            <div class="row-form-layer">              <!-- Name -->              <div class="column-input-form-layer">                <nz-form-label nzFor="name">{{\'STUDY_CASES.DETAIL.INPUTS.NAME.LABEL\' | translate}}</nz-form-label>                <input nz-input formControlName="name" type="text"                       [placeholder]="\'STUDY_CASES.DETAIL.INPUTS.NAME.LABEL\' | translate"                       [disableControl]="isDisableEdit()">              </div>            </div>            <div class="row-form-layer">              <!-- Layers -->              <div class="column-input-form-layer" style="margin-top: 10px;">                <div style="width: 100%; height: 40px; align-items:center ; display: flex;">                  <div style="flex-grow: 1;">{{\'STUDY_CASES.DETAIL.INPUTS.ENTITIES.LABEL\' | translate}} :</div>                </div>                <app-dynamic-entities-table [urlFilter]="{case_study_id: this.caseStudy.id}"                                            [variableHeader]="headerEntities"                                            (listOfDeleteChange)="entitiesListOfDeleteChange($event)"></app-dynamic-entities-table>              </div>            </div>            <div style="display: flex; flex-direction: row-reverse; align-items: flex-end" *ngIf="!isDisableEdit()">              <button nz-button nzType="primary" nzShape="round" style="margin-top: 20px;" (click)="modifyCaseStudy()"                      [disabled]="!formGroupChange">                {{\'STUDY_CASES.DETAIL.MODIFY_BUTTON\' | translate}}              </button>              <button nz-button nzType="primary" nzShape="round" nzDanger                      style="margin-top: 20px; margin-right: 12px;" (click)="cancelCaseStudy()"                      [disabled]="!formGroupChange">                {{\'STUDY_CASES.DETAIL.CANCEL_BUTTON\' | translate}}              </button>            </div>          </form>        </nz-spin>      </nz-tab>      <nz-tab [nzTitle]="\'STUDY_CASES.DETAIL.ANNOTATIONS_TITLE\' | translate" nzForceRender>        <app-annotations-form ObjectType="case_study" #annotationsForm></app-annotations-form>      </nz-tab>    </nz-tabset>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'CaseStudiesDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CaseStudiesDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

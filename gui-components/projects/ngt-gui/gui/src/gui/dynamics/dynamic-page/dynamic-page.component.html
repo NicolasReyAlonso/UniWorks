@@ -1,0 +1,147 @@
+<!-- DynamicPageComponent template -->
+<!-- Renders browser, editable_table, or form based on screen_type -->
+
+<nz-spin [nzSpinning]="loading" nzTip="Loading screen...">
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- BROWSER MODE (read-only table)                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ng-container *ngIf="!loading && screenType === 'browser'">
+    <app-dynamic-browse
+      [BrowserTitle]="browserTitle"
+      [BrowserType]="browserType"
+      [DefaultShowFields]="browserColumns"
+      [HiddenCreate]="!hasCreateAction"
+      [HiddenDelete]="!hasDeleteAction"
+      [HiddenOpen]="!hasViewAction"
+      [HiddenModify]="!hasEditAction"
+      [HiddenBulkInsert]="!hasCreateAction"
+      [HiddenImport]="true"
+      [HiddenExport]="true"
+      [HiddenSelect]="true"
+      (OpenItemEvent)="onOpenItem($event)"
+      (CreateEvent)="onCreateItem()"
+      (BulkInsertEvent)="onBulkInsert()"
+      (DeleteItemEvent)="onDeleteItem($event)">
+    </app-dynamic-browse>
+  </ng-container>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- EDITABLE TABLE MODE (Excel-like bulk insert/edit)           -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ng-container *ngIf="!loading && screenType === 'editable_table'">
+    <nz-page-header [nzTitle]="browserTitle | translate"></nz-page-header>
+    <ngt-bulk-edit-grid
+      [entityPath]="bulkEntityPath"
+      [screenColumns]="bulkColumns">
+    </ngt-bulk-edit-grid>
+  </ng-container>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- FORM MODE                                                   -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ng-container *ngIf="!loading && screenType === 'form'">
+    <nz-page-header>
+      <nz-page-header-title>
+        {{ screenDef?.definition?.title | translate }}
+      </nz-page-header-title>
+    </nz-page-header>
+
+    <nz-spin [nzSpinning]="formLoading">
+      <div style="padding: 0 24px 24px 24px; max-width: 900px;">
+        <form *ngIf="form" nz-form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+
+          <!-- Defined sections -->
+          <ng-container *ngFor="let section of formSections">
+            <nz-card [nzTitle]="section.title | translate" style="margin-bottom: 16px;">
+              <ng-container *ngFor="let field of section.fields">
+
+                <!-- TEXT -->
+                <nz-form-item *ngIf="field.type === 'text' || field.type === 'number'">
+                  <nz-form-label [nzSpan]="6" [nzRequired]="field.required">
+                    {{ field.label | translate }}
+                  </nz-form-label>
+                  <nz-form-control [nzSpan]="14">
+                    <input nz-input
+                           [formControlName]="field.field"
+                           [type]="field.type === 'number' ? 'number' : 'text'"
+                           [placeholder]="field.label | translate" />
+                  </nz-form-control>
+                </nz-form-item>
+
+                <!-- SELECT -->
+                <nz-form-item *ngIf="field.type === 'select'">
+                  <nz-form-label [nzSpan]="6" [nzRequired]="field.required">
+                    {{ field.label | translate }}
+                  </nz-form-label>
+                  <nz-form-control [nzSpan]="14">
+                    <nz-select [formControlName]="field.field" [nzPlaceHolder]="field.label | translate">
+                      <nz-option *ngFor="let opt of field.options"
+                                 [nzValue]="opt" [nzLabel]="opt">
+                      </nz-option>
+                    </nz-select>
+                  </nz-form-control>
+                </nz-form-item>
+
+                <!-- JSON EDITOR (textarea) -->
+                <nz-form-item *ngIf="field.type === 'json_editor'">
+                  <nz-form-label [nzSpan]="6">
+                    {{ field.label | translate }}
+                  </nz-form-label>
+                  <nz-form-control [nzSpan]="14">
+                    <textarea nz-input
+                              [formControlName]="field.field"
+                              [rows]="8"
+                              [placeholder]="field.label | translate">
+                    </textarea>
+                  </nz-form-control>
+                </nz-form-item>
+
+              </ng-container>
+            </nz-card>
+          </ng-container>
+
+          <!-- Auto-generated fields (if no sections defined) -->
+          <nz-card *ngIf="autoFields.length" nzTitle="Details" style="margin-bottom: 16px;">
+            <nz-form-item *ngFor="let field of autoFields">
+              <nz-form-label [nzSpan]="6">{{ field.label }}</nz-form-label>
+              <nz-form-control [nzSpan]="14">
+                <input nz-input
+                       [formControlName]="field.field"
+                       [type]="field.type"
+                       [placeholder]="field.label" />
+              </nz-form-control>
+            </nz-form-item>
+          </nz-card>
+
+          <!-- Action buttons -->
+          <nz-space>
+            <button nz-button nzType="primary" [nzLoading]="formSaving"
+                    [disabled]="form.invalid" type="submit">
+              {{ (entityId ? 'DYNAMIC_PAGE.SAVE' : 'DYNAMIC_PAGE.CREATE') | translate }}
+            </button>
+            <button nz-button nzType="default" type="button" (click)="onCancel()">
+              {{ 'DYNAMIC_PAGE.CANCEL' | translate }}
+            </button>
+          </nz-space>
+        </form>
+      </div>
+    </nz-spin>
+  </ng-container>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Fallback: no screen definition                              -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ng-container *ngIf="!loading && !screenDef">
+    <div style="padding: 48px; text-align: center;">
+      <i nz-icon nzType="warning" nzTheme="outline" style="font-size: 48px; color: #faad14;"></i>
+      <p style="margin-top: 16px; font-size: 16px;">
+        {{ 'DYNAMIC_PAGE.NOT_FOUND' | translate }}
+      </p>
+      <button nz-button nzType="primary" (click)="onCancel()">
+        {{ 'DYNAMIC_PAGE.GO_BACK' | translate }}
+      </button>
+    </div>
+  </ng-container>
+
+</nz-spin>

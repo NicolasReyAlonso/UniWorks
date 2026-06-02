@@ -1,0 +1,85 @@
+from typing import List, Any
+from fastapi import APIRouter, FastAPI
+from sqlalchemy.orm import Session
+
+from uniback.plugins.contracts import (
+    Exporter,
+    FieldWidget,
+    FKResolver,
+    Importer,
+    SourceAdapter,
+)
+
+
+class UnibackPlugin:
+    """
+    Base class for Uniback Plugins.
+    Plugins should inherit from this class to hook into the framework's lifecycle.
+
+    Todos los ``get_*`` devuelven listas vacias por defecto, asi un plugin solo
+    sobreescribe lo que necesite. Cualquier nuevo tipo inyectable debe seguir
+    este patron para mantener la retrocompatibilidad.
+    """
+    name: str = "BasePlugin"
+    description: str = "Base plugin description"
+    version: str = "0.1.0"
+
+    def on_init(self, settings: Any) -> None:
+        """
+        Called early during framework initialization.
+        Good place to set up third-party services or check configuration.
+        """
+        pass
+
+    def get_model_modules(self) -> List[str]:
+        """
+        Return a list of absolute module paths (e.g. 'my_plugin.models')
+        that contain SQLAlchemy models to be registered before mappers are configured.
+        """
+        return []
+
+    def get_routers(self) -> List[APIRouter]:
+        """
+        Return a list of FastAPI routers to be included in the main app.
+        """
+        return []
+
+    def on_seed(self, db: Session) -> None:
+        """
+        Called during the database auto-seed phase.
+        Use this to inject default rows required by the plugin.
+        """
+        pass
+
+    def on_app_ready(self, app: FastAPI) -> None:
+        """
+        Called right after the FastAPI app is created.
+        Can be used to add custom middlewares or static file mounts.
+        """
+        pass
+
+    # ---------------------------------------------------------------- #
+    # Extensiones inyectables (opcionales). Devolver instancias listas
+    # para usar; el PluginManager las registrara en los singletons de
+    # ``uniback.plugins.registries``.
+    # ---------------------------------------------------------------- #
+
+    def get_source_adapters(self) -> List[SourceAdapter]:
+        """Adaptadores que abren streams desde origenes externos."""
+        return []
+
+    def get_importers(self) -> List[Importer]:
+        """Parsers de formato para el insertador generico (JSON, CSV, ...)."""
+        return []
+
+    def get_exporters(self) -> List[Exporter]:
+        """Serializadores para el exportador generico."""
+        return []
+
+    def get_field_widgets(self) -> List[FieldWidget]:
+        """Pistas de UI que enriquecen el JSON Schema generado."""
+        return []
+
+    def get_fk_resolvers(self) -> List[FKResolver]:
+        """Resolvers para lookups FK ``{by, value}`` en payloads de importacion."""
+        return []

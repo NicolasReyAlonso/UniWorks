@@ -1,0 +1,55 @@
+<div>
+  <div class="theme-header-background-color toolbar">
+    <div>
+      {{'DISPLAY.PHYLOTREES.BREADCRUMB' | translate}}
+    </div>
+    <div style="flex: 1 1 auto; min-width: 0"></div>
+    <div style="display: flex; flex-direction: row; align-items: center">
+      <div id="color-picker" class="archaeopteryxBrowser-node-color-option-select">
+        <input (colorPickerChange)="setColorPicker()" [(colorPicker)]="color" [style.background]="color"
+               class="archaeopteryx-browser-input-color-picker"/>
+        <button *ngIf="selectedSavedColor == undefined" nz-button (click)="saveColor()" nzType="default"
+                class="archaeopteryx-browser-save-button-color-picker"><span nz-icon nzType="save"></span></button>
+        <button *ngIf="selectedSavedColor != undefined" nz-button (click)="removeColor()" nzType="default"
+                class="archaeopteryx-browser-save-button-color-picker"><span nz-icon nzType="delete"></span></button>
+        <nz-select nzSize="default" [(ngModel)]="nodeColorOptionSelected">
+          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODE" nzLabel="1">
+          </nz-option>
+          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODES_CHILDREN" nzLabel="2">
+          </nz-option>
+          <nz-option [nzValue]="NODE_COLOR_OPTIONS.BRANCHES_CHILDREN" nzLabel="3">
+          </nz-option>
+          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODES_AND_BRANCHES" nzLabel="4">
+          </nz-option>
+        </nz-select>
+      </div>
+    </div>
+    <div>
+      <nz-select id="saved-colors" nzSize="default" nzPlaceHolder="Colors" [(ngModel)]="selectedSavedColor"
+                 (ngModelChange)="setColor()" nzAllowClear
+                 [nzPlaceHolder]="'DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS' | translate">
+        <nz-option nzCustomContent *ngFor="let savedColor of savedColors"
+                   [nzLabel]="'DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS' | translate" [nzValue]="savedColor">
+          <div [ngStyle]="{'background-color': savedColor}">&nbsp;</div>
+        </nz-option>
+      </nz-select>
+    </div>
+    <div *ngIf="!hiddenSaveProgress" style="margin-left: 1rem">
+        <button nz-button nzType="default" (click)="saveProgressEvent()">
+          {{'DISPLAY.PHYLOTREES.PAGE.SAVE_PROGRESS' | translate}}
+        </button>
+    </div>
+  </div>
+  <div class="archaeopteryx-browser">
+    <div id='phylogram1'></div>
+    <div id="controls0" class="ui-widget-content"></div>
+  </div>
+</div>
+<app-dynamic-input-modal [title]="'DISPLAY.PHYLOTREES.SAVE_MODAL.SAVE_VIEW' | translate"
+                         [fields]="saveModalFields" [(isVisible)]="isVisibleSaveModal"
+                         (acceptInput)="saveSettingsModal($event)"></app-dynamic-input-modal>
+<div *ngIf="loading">
+  <h1 class="init-loader">Loading</h1>
+</div>
+
+<app-dynamic-input-modal  [title]="'DISPLAY.PHYLOTREES.OVERRIDE_TEXT.TITLE' | translate" [fields]="overrideModalFields" [(isVisible)]="isVisibleOverrideModal" (acceptInput)="overrideTextModal($event)"></app-dynamic-input-modal>

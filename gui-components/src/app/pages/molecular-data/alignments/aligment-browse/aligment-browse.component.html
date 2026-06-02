@@ -1,0 +1,29 @@
+<app-dynamic-browse [Loading]="loading" BrowserTitle="MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.BROWSER.TITLE"
+                    [BrowserType]="'alignments'"
+                    (OpenItemEvent)="openItem($event)" [HiddenOpen]="!authService.havePermission('gui-ma-read')"
+                    (ImportEvent)="importItems()" [HiddenImport]="!authService.havePermission('gui-ma-import')"
+                    (ExportItemEvent)="exportItem($event, exportForm)" [CustomButtonsBrowser]="customButtonsBrowser"
+                    [HiddenExport]="!authService.havePermission('gui-ma-export')"
+                    (DeleteItemEvent)="deleteItem($event)" (DeleteSelectedEvent)="deleteSelection($event)"
+                    [HiddenDelete]="!authService.havePermission('gui-ma-delete')" [CustomActionButtons]="customActionsButtons"
+                    (PermissionItemEvent)="permissionItem($event)" [HiddenPermissions]="!authService.havePermission('gui-ma-acl')"
+></app-dynamic-browse>
+
+<ng-template #exportForm>
+  <nz-select nzShowSearch nzPlaceHolder="Seleccionar formato" [(ngModel)]="selectedFormat" name="selectedFormat">
+    <nz-option *ngFor="let format of formats" nzLabel="{{format}}" nzValue="{{format}}"></nz-option>
+  </nz-select>
+  <div style="margin-top: 10px; display: flex; align-items: center; column-gap: 5px">
+    <label>Header: </label>
+    <nz-select [(ngModel)]="headerSelected">
+      <nz-option *ngFor="let item of headersOptions" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+    </nz-select>
+  </div>
+</ng-template>
+
+<app-acl-modal  #modalAclRef [(isVisible)]="isVisibleAclModal"></app-acl-modal>
+<app-collections-add-items-modal></app-collections-add-items-modal>
+<app-case-studies-add-items-modal></app-case-studies-add-items-modal>
+
+<app-dynamic-input-modal #dynamicInputModalRef [title]="'Concatenar Alineamientos'" [fields]="modalFields" [(isVisible)]="isVisibleConcatModal" (acceptInput)="concat($event)"></app-dynamic-input-modal>
+

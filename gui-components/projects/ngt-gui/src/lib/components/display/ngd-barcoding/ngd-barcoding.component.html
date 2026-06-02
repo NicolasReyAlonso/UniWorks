@@ -1,0 +1,187 @@
+<ng-container *ngIf="!visualizing">
+  <div style="height: 100%; display: flex; flex-direction: column">
+    <div class="ngd-barcoding-toolbar theme-header-background-color" *ngIf="!hiddenTitle">
+      <div>
+        NGD Barcoding
+      </div>
+    </div>
+    <div class="ngd-barcoding-content" [ngClass]="{ 'ngd-barcoding-body-top-border': hiddenTitle }">
+      <nz-tabset nzType="editable-card" nzHideAdd class="ngd-barcoding-tabset" [nzSelectedIndex]="0">
+
+        <nz-tab nzForceRender [nzTitle]="'NEXTGENDEM_BARCODING.GROUPS_TAB' | translate">
+          <nz-table [nzData]="groups | keyValueCustom" [nzShowPagination]="true" [nzPageSize]="1"
+                    nzTableLayout="fixed" [nzBordered]="true" nzFrontPagination
+                    class="data-table">
+            <thead>
+            <tr class="data-table-header-tr">
+              <th class="data-table-th" *ngFor="let item of dataTableHeaderGroups" [nzWidth]="item.nzWidth">
+                {{ item.text | translate }}
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let item of groups | keyValueCustom">
+              <ng-container *ngFor="let seq of item.value; let i = index">
+                <tr class="expandable-table-tbody-tr" style="cursor: pointer">
+                  <td *ngIf="i == 0" [rowSpan]="item.value.length">
+                    {{ item.key }}
+                  </td>
+                  <td>
+                    {{ seq }}
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+            </tbody>
+          </nz-table>
+        </nz-tab>
+
+        <nz-tab nzForceRender [nzTitle]="'NEXTGENDEM_BARCODING.PURES_TAB' | translate">
+          <button nz-button nzType="primary" [style]="{width: '100%', marginBottom: '15px'}" (click)="visualizePures()">
+            Visualizar
+          </button>
+
+          <nz-table [nzData]="pures | keyValueCustom" [nzShowPagination]="false" [nzPageSize]="999999"
+                    nzTableLayout="fixed" [nzBordered]="true"
+                    class="data-table" *ngIf="numberOfPures <= rangedLengthPure">
+            <thead>
+            <tr class="data-table-header-tr">
+              <th class="data-table-th" *ngFor="let item of dataTableHeader" [nzWidth]="item.nzWidth">
+                {{ item.text | translate }}
+              </th>
+            </tr>
+            </thead>
+            <tbody class="data-table-tbody">
+            <ng-container *ngFor="let item of pures | keyValueCustom">
+              <ng-container *ngFor="let posItem of item.value  | keyValueCustom; let i = index;">
+                <tr *ngFor="let pos of posItem.value | keyValueCustom" class="data-table-tbody-tr">
+                  <td *ngIf="i === 0" [rowSpan]="item.value.length">
+                    {{ item.key }}
+                  </td>
+                  <td>
+                    {{ pos.key }}
+                  </td>
+                  <td>
+                    {{ pos.value }}
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+            </tbody>
+          </nz-table>
+
+          <nz-select [(ngModel)]="selectedPure" *ngIf="numberOfPures > rangedLengthPure" style="margin-bottom: 10px">
+            <nz-option *ngFor="let item of pures | keyValueCustom" [nzLabel]="item.key"
+                       [nzValue]="item.key"></nz-option>
+          </nz-select>
+
+          <nz-table [nzData]="pures[selectedPure] | keyValueCustom" [nzShowPagination]="true" [nzPageSize]="10"
+                    nzTableLayout="fixed" [nzBordered]="true" #puresTable
+                    class="data-table" *ngIf="numberOfPures > rangedLengthPure">
+            <thead>
+            <tr class="data-table-header-tr">
+              <th class="data-table-th" *ngFor="let item of dataTableHeader2" [nzWidth]="item.nzWidth">
+                {{ item.text | translate }}
+              </th>
+            </tr>
+            </thead>
+            <tbody class="data-table-tbody">
+            <ng-container *ngFor="let posItem of puresTable.data; let i = index;">
+              <tr *ngFor="let pos of posItem.value | keyValueCustom" class="data-table-tbody-tr">
+                <td>
+                  {{ pos.key }}
+                </td>
+                <td>
+                  {{ pos.value }}
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
+
+
+        </nz-tab>
+
+        <nz-tab nzForceRender [nzTitle]="'NEXTGENDEM_BARCODING.COMBINATIONS_TAB' | translate">
+          <button nz-button nzType="primary" [style]="{width: '100%', marginBottom: '15px'}"
+                  (click)="visualizeCombinations()">Visualizar
+          </button>
+
+          <nz-table [nzData]="combinations | keyValueCustom" [nzShowPagination]="false" [nzPageSize]="99999"
+                    nzTableLayout="fixed" [nzBordered]="true"
+                    class="data-table" *ngIf="numberOfCombinations <= rangedLengthCombinations">
+            <thead>
+            <tr class="data-table-header-tr">
+              <th class="data-table-th" *ngFor="let item of dataTablecombinations" [nzWidth]="item.nzWidth">
+                {{ item.text | translate }}
+              </th>
+            </tr>
+            </thead>
+            <tbody class="data-table-tbody">
+            <ng-container *ngFor="let item of combinations | keyValueCustom;">
+              <ng-container *ngFor="let posItem of item.value  | keyValueCustom; let i = index;">
+                <tr *ngFor="let pos of posItem.value | keyValueCustom; let j = index;">
+                  <td *ngIf="i === 0 && j === 0" [rowSpan]="getNumPositionsInCombination(item.value)">
+                    {{ item.key }}
+                  </td>
+                  <td *ngIf="j === 0" [rowSpan]="Object.keys(posItem.value).length">
+                    {{ 'DNC ' + i.toString() }}
+                  </td>
+                  <td>
+                    {{ pos.key }}
+                  </td>
+                  <td>
+                    {{ pos.value }}
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+            </tbody>
+          </nz-table>
+
+          <nz-select [(ngModel)]="selectedCombination" *ngIf="numberOfCombinations > rangedLengthCombinations"
+                     style="margin-bottom: 10px">
+            <nz-option *ngFor="let item of combinations | keyValueCustom" [nzLabel]="item.key"
+                       [nzValue]="item.key"></nz-option>
+          </nz-select>
+
+          <nz-table [nzData]="combinations[selectedCombination] | keyValueCustom" [nzShowPagination]="true"
+                    [nzPageSize]="10"
+                    nzTableLayout="fixed" [nzBordered]="true" *ngIf="numberOfCombinations > rangedLengthCombinations"
+                    #combinationsTable>
+            <thead>
+            <tr class="data-table-header-tr">
+              <th class="data-table-th" *ngFor="let item of dataTablecombinations2" [nzWidth]="item.nzWidth">
+                {{ item.text | translate }}
+              </th>
+            </tr>
+            </thead>
+
+            <tbody class="data-table-tbody">
+            <ng-container *ngFor="let posItem of combinationsTable.data; let i = index;">
+              <tr *ngFor="let pos of posItem.value | keyValueCustom; let j = index;">
+                <td *ngIf="j === 0" [rowSpan]="Object.keys(posItem.value).length">
+                  {{ 'DNC ' + i.toString() }}
+                </td>
+                <td>
+                  {{ pos.key }}
+                </td>
+                <td>
+                  {{ pos.value }}
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
+
+        </nz-tab>
+      </nz-tabset>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="visualizing">
+  <app-nextgendem-msa-browser id="nextgendemMsaViewer" [style]="{position: 'absolute'}" [Url]="alnUrl"
+                              [analysis_id]="null" [view_id]="null" [barcoding_positions]="msaBrowserPositions"
+                              [barcoding_groups]="msaGroups"></app-nextgendem-msa-browser>
+</ng-container>

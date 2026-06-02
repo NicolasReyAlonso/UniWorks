@@ -1,0 +1,45 @@
+::ng-deep .ant-tabs-content
+    height: 100% !important
+
+::ng-deep .ant-tabs-content-holder
+    height: 100% !important
+
+// 1. Asegura que el contenedor del contenido de la pestaña tome la altura completa.
+// Este es el elemento que contiene <app-annotations-form> cuando la pestaña está activa.
+::ng-deep .ant-tabs-tabpane 
+  height: 100%
+
+
+// 2. Haz que el componente de anotaciones se comporte como un bloque y tome el 100%
+// de la altura del contenedor de la pestaña.
+app-annotations-form 
+  display: block // Importante: por defecto, los componentes Angular son 'inline' o 'inline-block'
+  height: 100%
+
+
+.row-form
+  display: flex
+  flex-wrap: wrap
+  column-gap: 20px
+  row-gap: 10px
+
+.column-input-form
+  min-width: min(360px, 100%)
+  flex: 1 1 0px
+
+.click-row
+  cursor: pointer
+
+.false-input-disable
+  color: rgba(0, 0, 0, 0.25)
+  background-color: #f5f5f5
+  border: 1px solid #d9d9d9
+  padding: 4px 11px 4px 11px
+
+::ng-deep .sequence-detail-general-spin
+  height: 100%
+
+::ng-deep .sequence-detail-general-spin > .ant-spin-container
+  height: 100%
+  display: flex
+  flex-direction: column

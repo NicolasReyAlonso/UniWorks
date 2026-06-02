@@ -1,0 +1,253 @@
+<div>
+
+  <!-- Taxset Table -->
+  <nz-card [nzTitle]="titleTaxset" [nzExtra]="extraTaxset">
+    <nz-table [nzData]="getArrayDataTableTaxset()" nzBordered [nzScroll]="{ x: '500px' }"
+              [nzShowPagination]="false">
+
+      <thead>
+      <tr>
+        <th nzAlign="center">Key</th>
+        <th nzAlign="center">Taxons</th>
+        <th nzAlign="center">Type</th>
+        <th nzRight nzAlign="center" nzWidth="120px">Validation</th>
+        <th nzRight nzWidth="100px" nzAlign="center">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <ng-container *ngFor="let data of dataTableTaxset | keyvalue">
+        <tr>
+
+          <!-- Info -->
+          <ng-container *ngIf="idEditTaxset != data.key">
+            <td [ngClass]="{'info-field-error': !validateName(data.key)}">{{data.value.name}}</td>
+            <td [ngClass]="{'info-field-error': !validateTaxons(data.key)}">
+              {{formatTaxonsInfo(data.key)}}</td>
+            <td [ngClass]="{'info-field-error': !validateType(data.key)}">{{data.value.type}}</td>
+          </ng-container>
+
+          <!-- Edit -->
+          <ng-container *ngIf="idEditTaxset == data.key">
+            <td>
+              <input nz-input placeholder="Nombre" [(ngModel)]="data.value.name"
+                     [ngClass]="{'input-error': !validateName(data.key)}"
+                     (ngModelChange)="activeValueChangeEvent()"
+                     [disabled]="data.value.type == 'outgroup'"/>
+            </td>
+            <td>
+              <nz-select nzMode="multiple" nzPlaceHolder="Taxones" [(ngModel)]="data.value.taxons"
+                         style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"
+                         [ngClass]="{'select-error': !validateTaxons(data.key)}">
+                <nz-option *ngFor="let option of getTaxonOptionTaxset(data.key)" [nzLabel]="option.label"
+                           [nzValue]="option.value">
+                </nz-option>
+              </nz-select>
+            </td>
+            <td>
+              <nz-select nzPlaceHolder="Tipo" [(ngModel)]="data.value.type" style="width: 100%;"
+                         (ngModelChange)="onChangeTypeTaxset(data.key, $event); activeValueChangeEvent()"
+                         [ngClass]="{'select-error': !validateType(data.key)}">
+                <nz-option nzLabel="outgroup" nzValue="outgroup"></nz-option>
+                <nz-option nzLabel="delete" nzValue="delete"></nz-option>
+                <!-- nz-option nzLabel="constraints" nzValue="constraints"></nz-option -->
+              </nz-select>
+            </td>
+          </ng-container>
+
+          <!-- Validate -->
+          <td nzRight nzAlign="center">
+            <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"
+               style="font-size: 20px;" *ngIf="validateTaxset(data.key)"></i>
+            <i nz-icon [nzType]="'close-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff0000'"
+               style="font-size: 20px;" *ngIf="!validateTaxset(data.key)"></i>
+          </td>
+
+          <!-- Actions -->
+          <td nzRight nzAlign="center">
+            <ul nz-list-item-actions style="margin-left: 6px;">
+              <nz-list-item-action>
+                <i nz-icon nzType="edit" nzTheme="outline"
+                   [ngStyle]="{cursor: idEditTaxset || valueEditConstraints ? 'not-allowed' : 'pointer'}"
+                   *ngIf="idEditTaxset != data.key" (click)="onEditTaxset(data.key)"></i>
+                <i nz-icon nzType="check" nzTheme="outline" style="cursor: pointer;"
+                   *ngIf="idEditTaxset == data.key" (click)="onEndEditTaxset()"></i>
+              </nz-list-item-action>
+              <nz-list-item-action>
+                <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"
+                   (click)="removeTaxset(data.key)"></i>
+              </nz-list-item-action>
+            </ul>
+          </td>
+
+        </tr>
+      </ng-container>
+      </tbody>
+
+    </nz-table>
+
+  </nz-card>
+
+  <!-- Constraint Table -->
+  <nz-card [nzTitle]="titleConstraints" style="margin-top: 10px;">
+    <nz-table [nzData]="dataTableConstraints" nzBordered [nzScroll]="{ x: '500px' }" [nzShowPagination]="false">
+      <thead>
+      <tr>
+        <th nzAlign="center">Key</th>
+        <th nzAlign="center">Type</th>
+        <th nzAlign="center" nzWidth="100px">Converse</th>
+        <th nzRight nzAlign="center" nzWidth="120px">Validation</th>
+        <th nzRight nzWidth="100px" nzAlign="center">Actions</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <ng-container *ngFor="let data of dataTableConstraints">
+        <tr>
+
+          <!-- Info -->
+          <ng-container >
+            <td [ngClass]="{'info-field-error': !validateKeyConstraints()}">{{data.key}}
+            </td>
+            <td>{{data.type}}</td>
+            <td nzAlign="center">
+              <label nz-checkbox [(ngModel)]="data.converse"
+                     (ngModelChange)="activeValueChangeEvent()" nzDisabled></label>
+            </td>
+          </ng-container>
+
+
+
+          <!-- Validate -->
+          <td nzRight nzAlign="center">
+            <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"
+               style="font-size: 20px;" *ngIf="validateContraints()"></i>
+            <i nz-icon [nzType]="'close-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff0000'"
+               style="font-size: 20px;" *ngIf="!validateContraints()"></i>
+          </td>
+
+
+          <!-- Actions -->
+          <td nzRight nzAlign="center">
+            <ul nz-list-item-actions style="margin-left: 6px;">
+              <nz-list-item-action>
+                <i nz-icon nzType="edit" nzTheme="outline"
+                   [ngStyle]="{cursor: idEditTaxset || valueEditConstraints ? 'not-allowed' : 'pointer'}"
+                   *ngIf="!valueEditConstraints" (click)="onEditConstraints()"></i>
+                <i nz-icon nzType="check" nzTheme="outline" style="cursor: pointer;"
+                   *ngIf="valueEditConstraints" (click)="onEndEditConstraints()"></i>
+              </nz-list-item-action>
+            </ul>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </nz-table>
+
+    <nz-table [nzData]="dataTableConstraints[0].taxons" nzBordered [nzShowPagination]="false">
+
+      <thead>
+      <tr>
+        <th colspan="3" [ngStyle]="{color: !validateContraints() ? 'red' : null}">Groups
+        </th>
+      </tr>
+      </thead>
+
+      <tbody cdkDropList (cdkDropListDropped)="dropTaxonsConstraints($event)">
+      <tr *ngFor="let taxon of dataTableConstraints[0].taxons; let indexTaxon = index" cdkDrag cdkDragLockAxis="y">
+        <td style="width: 60px;" nzAlign="center">
+          <i nz-icon nzType="drag" nzTheme="outline" style="cursor: n-resize;" cdkDragHandle></i>
+        </td>
+
+        <td>
+          <ng-container *ngIf="!valueEditConstraints">
+            {{getInfoTaxonsConstraints(indexTaxon)}}
+          </ng-container>
+          <ng-container *ngIf="valueEditConstraints">
+            <nz-select nzMode="multiple" nzPlaceHolder="Grupo" [(ngModel)]="dataTableConstraints[0].taxons[indexTaxon]"
+                       style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"
+                       [ngClass]="{'select-error': !validateTaxonGroupConstraints(indexTaxon)}">
+              <nz-option-group nzLabel="Taxset">
+                <ng-container *ngFor="let taxset of dataTableTaxset | keyvalue">
+                  <nz-option *ngIf="taxset.value.type == 'constraints'" [nzValue]="taxset.key"
+                             [nzLabel]="taxset.value.name"></nz-option>
+                </ng-container>
+              </nz-option-group>
+              <nz-option-group nzLabel="Taxones">
+                <nz-option *ngFor="let taxonOption of getTaxonOptionTaxset(null)" [nzValue]="taxonOption.value"
+                           [nzLabel]="taxonOption.label"></nz-option>
+              </nz-option-group>
+            </nz-select>
+          </ng-container>
+        </td>
+
+<!--        &lt;!&ndash; Info &ndash;&gt;-->
+<!--        <ng-container *ngIf="!valueEditConstraints">-->
+<!--          <td [ngClass]="{'info-field-error': !validateTaxonGroupConstraints(indexTaxon)}">-->
+<!--            {{getInfoTaxonsConstraints(indexTaxon)}}</td>-->
+<!--        </ng-container>-->
+
+<!--        &lt;!&ndash; Edit &ndash;&gt;-->
+<!--        <ng-container *ngIf="valueEditConstraints">-->
+<!--          <td>-->
+<!--            <nz-select nzMode="multiple" nzPlaceHolder="Grupo" [(ngModel)]="dataTableConstraints[0].taxons[indexTaxon]"-->
+<!--                       style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"-->
+<!--                       [ngClass]="{'select-error': !validateTaxonGroupConstraints(indexTaxon)}">-->
+<!--              <nz-option-group nzLabel="Taxset">-->
+<!--                <ng-container *ngFor="let taxset of dataTableTaxset | keyvalue">-->
+<!--                  <nz-option *ngIf="taxset.value.type == 'constraints'" [nzValue]="taxset.key"-->
+<!--                             [nzLabel]="taxset.value.name"></nz-option>-->
+<!--                </ng-container>-->
+<!--              </nz-option-group>-->
+<!--              <nz-option-group nzLabel="Taxones">-->
+<!--                <nz-option *ngFor="let taxonOption of getTaxonOptionTaxset(null)" [nzValue]="taxonOption.value"-->
+<!--                           [nzLabel]="taxonOption.label"></nz-option>-->
+<!--              </nz-option-group>-->
+<!--            </nz-select>-->
+<!--          </td>-->
+<!--        </ng-container>-->
+
+        <!-- Actions -->
+        <td style="width: 100px;" nzRight nzAlign="center">
+          <ul nz-list-item-actions style="margin-left: 6px;">
+            <nz-list-item-action>
+              <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"
+                 (click)="removeTaxonConstraints(indexTaxon)"></i>
+            </nz-list-item-action>
+          </ul>
+        </td>
+      </tr>
+
+      <!-- New Group -->
+      <tr *ngIf="valueEditConstraints">
+        <td colspan="3" style="cursor: pointer;" (click)="addTaxonContraints()">
+          <i nz-icon nzType="plus" nzTheme="outline" style="cursor: pointer;"></i> Add Group
+        </td>
+      </tr>
+      </tbody>
+
+    </nz-table>
+
+  </nz-card>
+
+
+</div>
+
+
+<!-- Title Taxset -->
+<ng-template #titleTaxset>
+  <div style="font-weight: bold; font-size: 1.2em;">Taxset</div>
+</ng-template>
+
+<!-- Extra Header Taxset -->
+<ng-template #extraTaxset>
+  <button nz-button nzType="primary" nzShape="round" type="button" (click)="addTaxset(true)"
+          [disabled]="idEditTaxset || valueEditConstraints">
+    <i nz-icon nzType="plus"></i>Add
+  </button>
+</ng-template>
+
+<!-- Title Constraints -->
+<ng-template #titleConstraints>
+  <div style="font-weight: bold; font-size: 1.2em;">Monophyletic Gropus</div>
+</ng-template>

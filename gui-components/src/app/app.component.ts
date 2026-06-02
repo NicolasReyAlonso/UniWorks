@@ -1,0 +1,37 @@
+import {Component} from '@angular/core';
+import {SharedModule} from "ngt-gui/gui";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzSpinModule} from "ng-zorro-antd/spin";
+import {NzMessageModule} from "ng-zorro-antd/message";
+import {NzNotificationModule} from "ng-zorro-antd/notification";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {CommonModule} from "@angular/common";
+//import { TabLayoutComponent } from '@components/layout/tab-layout/tab-layout.component';
+import { TabLayoutComponent } from 'ngt-gui/gui';
+
+@Component({
+  imports: [
+    CommonModule,
+    SharedModule,
+    NzSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzModalModule,
+    NzSpinModule,
+    NzMessageModule,
+    NzNotificationModule,
+    NzIconModule,
+    // Components
+    TabLayoutComponent
+],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: [
+    './app.component.sass',
+    './ng-zorro.sass',
+  ],
+})
+export class AppComponent {
+}

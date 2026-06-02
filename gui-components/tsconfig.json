@@ -1,0 +1,56 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "paths": {
+      "@components/*": [ "src/app/components/*" ],
+      "@guards/*": [ "src/app/guards/*" ],
+      "@interceptors/*": [ "src/app/interceptors/*" ],
+      "@interfaces/*": [ "src/app/interfaces/*" ],
+      "@resolvers/*": [ "src/app/resolvers/*" ],
+      "@models/*": [ "src/app/models/*" ],
+      "@pages/*": [ "src/app/pages/*" ],
+      "@pipes/*": [ "src/app/pipes/*" ],
+      "@services/*": [ "src/app/services/*" ],
+      "@constants/*": [ "src/app/constants/*" ],
+      "@enums/*": [ "src/app/enums/*" ],
+      "@directives/*": [ "src/app/directives/*" ],
+      "@environments/*": [ "src/environments/*" ],
+      "@shared-module/*": [ "src/app/shared-module/*" ],
+      "@tokens/*": [
+        "src/app/tokens/*"
+      ],
+      "ngt-gui": [
+        "dist/ngt-gui"
+      ],
+      "ngt-gui/*": [
+        "dist/ngt-gui/*"
+      ]
+    },
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2022",
+    "types": [
+      "node"
+    ],
+    "lib": [
+      "es2015",
+      "es2018",
+      "es2021",
+      "dom"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

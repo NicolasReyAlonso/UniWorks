@@ -1,0 +1,44 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+          (nzOnCancel)="this.isVisible = false" [nzWidth]="1000">
+    <ng-template #modalTitle>{{'ACL_MODAL.RULES_MODAL.TITLE' | translate}}</ng-template>
+
+    <ng-template #modalContent>
+        <div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+
+            <ng-container *ngIf="loadingModal">
+                <nz-spin nzSimple
+                    style="text-align: center; margin: auto; transform: translateY(-50%); top: 50%; position: relative;">
+                </nz-spin>
+            </ng-container>
+
+
+            <ng-container *ngIf="!loadingModal">
+                <h5 [ngStyle]="{ 'margin-bottom.px': 16 }">{{'ACL_MODAL.RULES_MODAL.SUBTITLES.EXPLANATIONS' | translate}}</h5>
+                <nz-list nzBordered>
+                  <nz-list-item *ngFor="let item of explanations">
+                    {{ item }}
+                  </nz-list-item>
+                </nz-list>
+              <h5 [ngStyle]="{ 'margin-bottom.px': 16, 'margin-top.px': 16 }">{{'ACL_MODAL.RULES_MODAL.SUBTITLES.RULES_TABLE' | translate}}</h5>
+                <nz-table #nzTable [nzData]="rulesContent" [nzShowPagination]="false" [nzScroll]="{ y: '430px' }">
+                    <thead>
+                        <tr style="font-weight: bold;">
+                          <th *ngFor="let column of rulesHeader" >
+                            {{ column }}
+                          </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let row of nzTable.data">
+                          <td *ngFor="let value of row">{{ value }}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </ng-container>
+        </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="primary" (click)="this.isVisible = false">{{ 'ACL_MODAL.RULES_MODAL.FOOTER.ACCEPT' | translate}}</button>
+    </ng-template>
+</nz-modal>

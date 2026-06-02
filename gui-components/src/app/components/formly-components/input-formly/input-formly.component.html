@@ -1,0 +1,11 @@
+<div [ngStyle]="props.style" [ngClass]="{'select-lazy-formly-filter-style': props.filterStyle}">
+    <div [ngStyle]="props.styleLabel" *ngIf="props.label && props.label != ''" [ngClass]="{'select-lazy-formly-filter-labelStyle': props.filterStyle}">
+      {{props.label | translate}}</div>
+    <nz-date-picker *ngIf="props.type == 'date'" [ngModel]="getValue()" (ngModelChange)="changeValueEvent($event)"
+                    [nzPlaceHolder]="props.placeholder | translate" style="width: 100%;" [ngStyle]="props.styleInput"/>
+    <input nz-input *ngIf="props.type != 'date'" [ngModel]="getValue()" (ngModelChange)="changeValueEvent($event)"
+           style="width: 100%;" [ngStyle]="props.styleInput"/>
+    <div *ngIf="checkIfExistErrorByKey(key)" class="message-error">
+        {{getErrorByKey(key)}}
+    </div>
+</div>

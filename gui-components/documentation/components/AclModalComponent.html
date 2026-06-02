@@ -1,0 +1,2159 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AclModalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/admin/acl/acl-modal/acl-modal.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-acl-modal</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzModalModule</code>
+                            <code>NzListModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzTableModule</code>
+                            <code>NzSpinModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzIconModule</code>
+                                <code><a href="../components/AclRulesModalComponent.html" target="_self" >AclRulesModalComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./acl-modal.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./acl-modal.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#_isVisible" >_isVisible</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#aclId" >aclId</a>
+                            </li>
+                            <li>
+                                <a href="#detailsDataTable" >detailsDataTable</a>
+                            </li>
+                            <li>
+                                <a href="#featureId" >featureId</a>
+                            </li>
+                            <li>
+                                <a href="#identityList" >identityList</a>
+                            </li>
+                            <li>
+                                <a href="#identityTypes" >identityTypes</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleAclRulesModal" >isVisibleAclRulesModal</a>
+                            </li>
+                            <li>
+                                <a href="#loadingModal" >loadingModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#objectType" >objectType</a>
+                            </li>
+                            <li>
+                                <a href="#objectTypeName" >objectTypeName</a>
+                            </li>
+                            <li>
+                                <a href="#objectUUID" >objectUUID</a>
+                            </li>
+                            <li>
+                                <a href="#permissionTypes" >permissionTypes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addAclDetail" >addAclDetail</a>
+                            </li>
+                            <li>
+                                <a href="#deleteAclDetail" >deleteAclDetail</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatBody" >formatBody</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formatToDetailsDataTable" >formatToDetailsDataTable</a>
+                            </li>
+                            <li>
+                                <a href="#getArrayDetailsDataTable" >getArrayDetailsDataTable</a>
+                            </li>
+                            <li>
+                                <a href="#getSelectIdentitiestDisabled" >getSelectIdentitiestDisabled</a>
+                            </li>
+                            <li>
+                                <a href="#handleCancel" >handleCancel</a>
+                            </li>
+                            <li>
+                                <a href="#handleConfirm" >handleConfirm</a>
+                            </li>
+                            <li>
+                                <a href="#initModal" >initModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadAclFromBackend" >loadAclFromBackend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadDataFromBackend" >loadDataFromBackend</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#loadIdentitiesFromBackend" >loadIdentitiesFromBackend</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#selectIdentityTypeChange" >selectIdentityTypeChange</a>
+                            </li>
+                            <li>
+                                <a href="#showACLRulesModal" >showACLRulesModal</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isVisible" >isVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isVisibleChange" >isVisibleChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#isVisible" >isVisible</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, logService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, notificationServices: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, modalService: NzModalService)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:87</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationServices</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzModalService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisible"></a>
+                        <b>isVisible</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisibleChange"></a>
+                        <b>isVisibleChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:64</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addAclDetail"></a>
+                    <span class="name">
+                        <span ><b>addAclDetail</b></span>
+                        <a href="#addAclDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addAclDetail(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="276"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:276</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteAclDetail"></a>
+                    <span class="name">
+                        <span ><b>deleteAclDetail</b></span>
+                        <a href="#deleteAclDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>deleteAclDetail(event, data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="272"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:272</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBody"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatBody</b></span>
+                        <a href="#formatBody"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBody()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{ object_type: any; details: {}; }</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatToDetailsDataTable"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formatToDetailsDataTable</b></span>
+                        <a href="#formatToDetailsDataTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatToDetailsDataTable(details)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>details</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getArrayDetailsDataTable"></a>
+                    <span class="name">
+                        <span ><b>getArrayDetailsDataTable</b></span>
+                        <a href="#getArrayDetailsDataTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getArrayDetailsDataTable()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>any[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSelectIdentitiestDisabled"></a>
+                    <span class="name">
+                        <span ><b>getSelectIdentitiestDisabled</b></span>
+                        <a href="#getSelectIdentitiestDisabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSelectIdentitiestDisabled(data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleCancel"></a>
+                    <span class="name">
+                        <span ><b>handleCancel</b></span>
+                        <a href="#handleCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="227"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:227</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleConfirm"></a>
+                    <span class="name">
+                        <span ><b>handleConfirm</b></span>
+                        <a href="#handleConfirm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>handleConfirm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initModal"></a>
+                    <span class="name">
+                        <span ><b>initModal</b></span>
+                        <a href="#initModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="100"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadAclFromBackend"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadAclFromBackend</b></span>
+                        <a href="#loadAclFromBackend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadAclFromBackend()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="136"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:136</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadDataFromBackend"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadDataFromBackend</b></span>
+                        <a href="#loadDataFromBackend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadDataFromBackend()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadIdentitiesFromBackend"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>loadIdentitiesFromBackend</b></span>
+                        <a href="#loadIdentitiesFromBackend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadIdentitiesFromBackend()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="156"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:156</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="96"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectIdentityTypeChange"></a>
+                    <span class="name">
+                        <span ><b>selectIdentityTypeChange</b></span>
+                        <a href="#selectIdentityTypeChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectIdentityTypeChange(event, data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showACLRulesModal"></a>
+                    <span class="name">
+                        <span ><b>showACLRulesModal</b></span>
+                        <a href="#showACLRulesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showACLRulesModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="281"
+                                    class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:281</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_isVisible"></a>
+                    <span class="name">
+                        <span ><b>_isVisible</b></span>
+                        <a href="#_isVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="aclId"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>aclId</b></span>
+                        <a href="#aclId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="detailsDataTable"></a>
+                    <span class="name">
+                        <span ><b>detailsDataTable</b></span>
+                        <a href="#detailsDataTable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DetailTableACL.html" target="_self" >Set&lt;DetailTableACL&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="featureId"></a>
+                    <span class="name">
+                        <span ><b>featureId</b></span>
+                        <a href="#featureId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identityList"></a>
+                    <span class="name">
+                        <span ><b>identityList</b></span>
+                        <a href="#identityList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="identityTypes"></a>
+                    <span class="name">
+                        <span ><b>identityTypes</b></span>
+                        <a href="#identityTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;any, { name: string }&gt;([
+    [IdentityType.IDENTITY, { name: &quot;Usuario&quot; }],
+    [IdentityType.GROUP, { name: &quot;Grupo&quot; }],
+    [IdentityType.ORGANIZATION, { name: &quot;Organización&quot; }],
+    [IdentityType.ROLE, { name: &quot;Rol&quot; }],
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleAclRulesModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleAclRulesModal</b></span>
+                        <a href="#isVisibleAclRulesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingModal"></a>
+                    <span class="name">
+                        <span ><b>loadingModal</b></span>
+                        <a href="#loadingModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectType"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>objectType</b></span>
+                        <a href="#objectType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectTypeName"></a>
+                    <span class="name">
+                        <span ><b>objectTypeName</b></span>
+                        <a href="#objectTypeName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectUUID"></a>
+                    <span class="name">
+                        <span ><b>objectUUID</b></span>
+                        <a href="#objectUUID"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="permissionTypes"></a>
+                    <span class="name">
+                        <span ><b>permissionTypes</b></span>
+                        <a href="#permissionTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;number, { name: string }&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisible"></a>
+                        <span class="name"><b>isVisible</b><a href="#isVisible"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isVisible()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:75</a></div>
+                                </td>
+                            </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>isVisible(val)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/admin/acl/acl-modal/acl-modal.component.ts:66</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Optional</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>val</td>
+                                                    
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from &#x27;@angular/core&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { BackendService } from &#x27;src/app/services/backend.service&#x27;;
+import { MessageLogService } from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {NzModalModule, NzModalService} from &quot;ng-zorro-antd/modal&quot;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {AclRulesModalComponent} from &quot;../acl-rules-modal/acl-rules-modal.component&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+
+enum IdentityType {
+  IDENTITY &#x3D; 1,
+  ORGANIZATION &#x3D; 2,
+  GROUP &#x3D; 3,
+  ROLE &#x3D; 4,
+}
+
+interface DetailTableACL {
+  identityType?: IdentityType,
+  identityId?: number,
+  permissionId?: number,
+  id?: number,
+}
+@Component({
+    selector: &#x27;app-acl-modal&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzModalModule,
+        NzListModule,
+        NzSelectModule,
+        NzTableModule,
+        NzSpinModule,
+        NzButtonModule,
+        NzIconModule,
+        AclRulesModalComponent,
+    ],
+    templateUrl: &#x27;./acl-modal.component.html&#x27;,
+    styleUrls: [&#x27;./acl-modal.component.sass&#x27;]
+})
+export class AclModalComponent implements OnInit {
+
+  identityTypes &#x3D; new Map&lt;any, { name: string }&gt;([
+    [IdentityType.IDENTITY, { name: &quot;Usuario&quot; }],
+    [IdentityType.GROUP, { name: &quot;Grupo&quot; }],
+    [IdentityType.ORGANIZATION, { name: &quot;Organización&quot; }],
+    [IdentityType.ROLE, { name: &quot;Rol&quot; }],
+  ]);
+
+  permissionTypes &#x3D; new Map&lt;number, { name: string }&gt;();
+
+  detailsDataTable: Set&lt;DetailTableACL&gt; &#x3D; new Set();
+  isVisibleAclRulesModal &#x3D; false;
+  _isVisible: boolean;
+  @Output() isVisibleChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  set isVisible(val) {
+    if (val) {
+      this.initModal();
+    }
+    this._isVisible &#x3D; val;
+    this.isVisibleChange.emit(this._isVisible);
+  }
+
+  @Input()
+  get isVisible() {
+    return this._isVisible;
+  }
+
+  objectTypeName &#x3D; null;
+  objectUUID &#x3D; null;
+  featureId &#x3D; null;
+
+  private aclId &#x3D; null;
+  private objectType &#x3D; null;
+
+  loadingModal;
+  identityList: { [key: string]: any[] } &#x3D; {};
+
+  constructor(
+    private readonly backendService: BackendService,
+    private logService: MessageLogService,
+    private notificationServices: NotificationService,
+    private modalService: NzModalService,
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+
+  initModal() {
+    if (!this.objectTypeName || !this.objectUUID) {
+      console.log(&quot;abort&quot;);
+      this.isVisible &#x3D; false;
+      return;
+    }
+    this.identityList[IdentityType.IDENTITY] &#x3D; [];
+    this.identityList[IdentityType.GROUP] &#x3D; [];
+    this.identityList[IdentityType.ORGANIZATION] &#x3D; [];
+    this.identityList[IdentityType.ROLE] &#x3D; [];
+    this.loadDataFromBackend();
+  }
+
+  private loadDataFromBackend(): void {
+    this.loadingModal &#x3D; true;
+    const paramsObjectType &#x3D; {
+      name: this.objectTypeName,
+    };
+    this.backendService.getObjectTypes(undefined, paramsObjectType).subscribe(response &#x3D;&gt; {
+      if (response[&quot;content&quot;].length &#x3D;&#x3D; 1) {
+        const objectType &#x3D; response[&quot;content&quot;][0];
+        this.objectType &#x3D; objectType;
+        this.permissionTypes.clear();
+        for (const permissionType of objectType.permission_types) {
+          this.permissionTypes.set(permissionType.id, { name: permissionType.name });
+        }
+        this.loadAclFromBackend();
+      } else {
+        this.isVisible &#x3D; false;
+      }
+    }, error &#x3D;&gt; {
+      console.log(error);
+      this.isVisible &#x3D; false;
+    });
+  }
+
+  private loadAclFromBackend(): void {
+    this.backendService.getACL(undefined, { object_uuid: this.objectUUID }).subscribe(response &#x3D;&gt; {
+      const content &#x3D; response[&quot;content&quot;];
+      this.formatToDetailsDataTable(content.details);
+      this.aclId &#x3D; content.id;
+      this.loadIdentitiesFromBackend();
+      this.logService.addIssues(response[&#x27;issues&#x27;]);
+    }, error &#x3D;&gt; {
+      if (error.status &#x3D;&#x3D; 404) {
+        this.aclId &#x3D; null;
+        this.formatToDetailsDataTable([]);
+        this.loadIdentitiesFromBackend();
+        return;
+      }
+      this.isVisible &#x3D; false;
+      this.logService.addIssues(error[&#x27;issues&#x27;]);
+      console.log(error);
+    });
+  }
+
+  private loadIdentitiesFromBackend(): void {
+    const identitiesObservable &#x3D; this.backendService.getIdentities();
+    const groupsObservable &#x3D; this.backendService.getGroups();
+    const organizationsObservable &#x3D; this.backendService.getOrganizations();
+    const rolesObservable &#x3D; this.backendService.getRoles();
+
+    forkJoin({
+      identities: identitiesObservable,
+      groups: groupsObservable,
+      organizations: organizationsObservable,
+      roles: rolesObservable,
+    }).subscribe((response) &#x3D;&gt; {
+      this.identityList[IdentityType.IDENTITY] &#x3D; response.identities[&quot;content&quot;];
+      this.identityList[IdentityType.GROUP] &#x3D; response.groups[&quot;content&quot;];
+      this.identityList[IdentityType.ORGANIZATION] &#x3D; response.organizations[&quot;content&quot;];
+      this.identityList[IdentityType.ROLE] &#x3D; response.roles[&quot;content&quot;];
+      this.loadingModal &#x3D; false;
+    });
+  }
+
+  private formatToDetailsDataTable(details) {
+    this.detailsDataTable.clear();
+    for (const detailGetACL of details) {
+      const detail: DetailTableACL &#x3D; {};
+      detail.identityType &#x3D; detailGetACL.authorizable.authorizable_type_id;
+      detail.permissionId &#x3D; detailGetACL.permission_id;
+      if (typeof detail.permissionId &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        detail.permissionId &#x3D; parseInt(detail.permissionId);
+      }
+      detail.identityId &#x3D; detailGetACL.authorizable.id;
+      detail.id &#x3D; detailGetACL.id;
+      this.detailsDataTable.add(detail);
+    }
+  }
+
+  private formatBody() {
+    const body &#x3D; {
+      object_type: this.objectType.id,
+      details: [],
+    };
+    for (const detailDataTable of this.detailsDataTable) {
+      const detail: any &#x3D; {
+        authorizable_id: detailDataTable.identityId,
+        permission_id: detailDataTable.permissionId,
+      };
+      if (detailDataTable.id) {
+        detail.id &#x3D; detailDataTable.id;
+      }
+      body.details.push(detail);
+    }
+    return body;
+  }
+
+  getArrayDetailsDataTable(): any[] {
+    if (this.detailsDataTable.size &#x3D;&#x3D; 0) {
+      return [&#x27;&#x27;];
+    }
+    return Array.from(this.detailsDataTable);
+  }
+
+  selectIdentityTypeChange(event, data) {
+    data.identityId &#x3D; null;
+  }
+
+  getSelectIdentitiestDisabled(data) {
+    if (Object.values(IdentityType).includes(data.identityType)) {
+      return false;
+    }
+    return true;
+  }
+
+  handleCancel(): void {
+    this.isVisible &#x3D; false;
+  }
+
+  handleConfirm(): void {
+    for (const detail of this.detailsDataTable) {
+      if (!detail.identityId || !detail.identityType || !detail.permissionId) {
+        this.notificationServices.createNotificationWithType(
+          TypeNotificationEnum.error,
+          &#x27;Error&#x27;,
+          &#x27;No se admiten campos vacíos en la tabla de permisos.&#x27;,
+          &#x27;bottomRight&#x27;,
+        )
+        return;
+      }
+    }
+    if (this.aclId) {
+
+      this.backendService.putACL(this.aclId, this.formatBody()).subscribe(response &#x3D;&gt; {
+        console.log(response);
+        this.isVisible &#x3D; false;
+        this.logService.addIssues(response[&#x27;issues&#x27;]);
+      }, error &#x3D;&gt; {
+        console.log(error);
+      });
+
+    } else {
+
+      if (this.detailsDataTable.size &gt; 0) {
+        const body &#x3D; this.formatBody();
+        body[&quot;object_uuid&quot;] &#x3D; this.objectUUID;
+        this.backendService.postACL(body).subscribe(response &#x3D;&gt; {
+          console.log(response);
+          this.isVisible &#x3D; false;
+          this.logService.addIssues(response[&#x27;issues&#x27;]);
+        }, error &#x3D;&gt; {
+          console.log(error);
+        });
+      } else {
+        this.isVisible &#x3D; false;
+      }
+
+    }
+  }
+
+  deleteAclDetail(event, data) {
+    this.detailsDataTable.delete(data);
+  }
+
+  addAclDetail(event) {
+    this.detailsDataTable.add({});
+    console.log(this.detailsDataTable);
+  }
+
+  showACLRulesModal() {
+
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-modal [(nzVisible)]&#x3D;&quot;isVisible&quot; [nzTitle]&#x3D;&quot;modalTitle&quot; [nzContent]&#x3D;&quot;modalContent&quot; [nzFooter]&#x3D;&quot;modalFooter&quot;
+    (nzOnCancel)&#x3D;&quot;handleCancel()&quot; [nzWidth]&#x3D;&quot;1000&quot; nzCentered&gt;
+    &lt;ng-template #modalTitle&gt;{{ &#x27;ACL_MODAL.TITLE&#x27; | translate }}&lt;/ng-template&gt;
+
+    &lt;ng-template #modalContent&gt;
+        &lt;div style&#x3D;&quot;height: 500px; overflow-y: auto; overflow-x: hidden;&quot;&gt;
+
+            &lt;ng-container *ngIf&#x3D;&quot;loadingModal&quot;&gt;
+                &lt;nz-spin nzSimple
+                    style&#x3D;&quot;text-align: center; margin: auto; transform: translateY(-50%); top: 50%; position: relative;&quot;&gt;
+                &lt;/nz-spin&gt;
+            &lt;/ng-container&gt;
+
+
+            &lt;ng-container *ngIf&#x3D;&quot;!loadingModal&quot;&gt;
+                &lt;nz-table #nzTable [nzData]&#x3D;&quot;getArrayDetailsDataTable()&quot; [nzShowPagination]&#x3D;&quot;false&quot; [nzScroll]&#x3D;&quot;{ y: &#x27;430px&#x27; }&quot;&gt;
+                    &lt;thead&gt;
+                        &lt;tr style&#x3D;&quot;font-weight: bold;&quot;&gt;
+                            &lt;th nzAlign&#x3D;&quot;center&quot;&gt;{{ &#x27;ACL_MODAL.HEADER.IDENTITY_TYPE&#x27; | translate }}&lt;/th&gt;
+                            &lt;th nzAlign&#x3D;&quot;center&quot;&gt;{{ &#x27;ACL_MODAL.HEADER.IDENTITY_NAME&#x27; | translate }}&lt;/th&gt;
+                            &lt;th nzAlign&#x3D;&quot;center&quot;&gt;{{ &#x27;ACL_MODAL.HEADER.PERMISSION_TYPE&#x27; | translate }}&lt;/th&gt;
+                            &lt;th nzAlign&#x3D;&quot;center&quot; nzWidth&#x3D;&quot;100px&quot;&gt;{{ &#x27;ACL_MODAL.HEADER.ACTIONS&#x27; | translate }}&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;this.detailsDataTable.size &gt; 0&quot;&gt;
+                            &lt;tr *ngFor&#x3D;&quot;let item of nzTable.data&quot;&gt;
+                                &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+                                    &lt;nz-select [(ngModel)]&#x3D;&quot;item.identityType&quot; style&#x3D;&quot;width: 150px;&quot;
+                                        (ngModelChange)&#x3D;&quot;selectIdentityTypeChange($event, item)&quot;&gt;
+                                        &lt;nz-option [nzValue]&#x3D;&quot;identityType.key&quot; [nzLabel]&#x3D;&quot;identityType.value.name&quot;
+                                            *ngFor&#x3D;&quot;let identityType of identityTypes | keyvalue&quot;&gt;&lt;/nz-option&gt;
+                                    &lt;/nz-select&gt;
+                                &lt;/td&gt;
+                                &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+                                    &lt;nz-select #selectIdentity [(ngModel)]&#x3D;&quot;item.identityId&quot;
+                                        [disabled]&#x3D;&quot;getSelectIdentitiestDisabled(item)&quot; style&#x3D;&quot;width: 220px&quot; nzShowSearch&gt;
+                                        &lt;nz-option [nzValue]&#x3D;&quot;identity.id&quot; [nzLabel]&#x3D;&quot;!identity.name || identity.name &#x3D;&#x3D; &#x27;&#x27; ? identity.email : identity.name&quot;
+                                            *ngFor&#x3D;&quot;let identity of identityList[item.identityType]&quot;&gt;&lt;/nz-option&gt;
+                                    &lt;/nz-select&gt;
+                                &lt;/td&gt;
+                                &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+                                    &lt;nz-select [(ngModel)]&#x3D;&quot;item.permissionId&quot; style&#x3D;&quot;width: 220px&quot;&gt;
+                                        &lt;nz-option [nzValue]&#x3D;&quot;permission.key&quot; [nzLabel]&#x3D;&quot;permission.value.name&quot;
+                                        *ngFor&#x3D;&quot;let permission of permissionTypes | keyvalue&quot;&gt;&lt;/nz-option&gt;
+                                    &lt;/nz-select&gt;
+                                &lt;/td&gt;
+                                &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+                                    &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                                        &lt;nz-list-item-action&gt;
+                                            &lt;i (click)&#x3D;&quot;deleteAclDetail($event, item)&quot; nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;&gt;&lt;/i&gt;
+                                        &lt;/nz-list-item-action&gt;
+                                    &lt;/ul&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/ng-container&gt;
+                        &lt;tr&gt;
+                            &lt;td colspan&#x3D;&quot;4&quot; (click)&#x3D;&quot;addAclDetail($event)&quot; style&#x3D;&quot;cursor: pointer;&quot;&gt;
+                                &lt;i nz-icon nzType&#x3D;&quot;plus&quot; nzTheme&#x3D;&quot;outline&quot;&gt;&lt;/i&gt;
+                                &amp;nbsp;{{&#x27;ACL_MODAL.NEW_PERMISSION&#x27; | translate}}
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/nz-table&gt;
+            &lt;/ng-container&gt;
+        &lt;/div&gt;
+    &lt;/ng-template&gt;
+
+    &lt;ng-template #modalFooter&gt;
+        &lt;button nz-button nzType&#x3D;&quot;primary&quot; (click)&#x3D;&quot;handleConfirm()&quot;&gt;{{&#x27;ACL_MODAL.FOOTER.CONFIRM&#x27; | translate}}&lt;/button&gt;
+        &lt;button nz-button (click)&#x3D;&quot;handleCancel()&quot;&gt;{{&#x27;ACL_MODAL.FOOTER.CANCEL&#x27; | translate}}&lt;/button&gt;
+        &lt;a nz-button nzType&#x3D;&quot;link&quot; (click)&#x3D;&quot;this.isVisibleAclRulesModal &#x3D; true&quot;&gt;{{&#x27;ACL_MODAL.FOOTER.RULES&#x27; | translate}}&lt;/a&gt;
+    &lt;/ng-template&gt;
+&lt;/nz-modal&gt;
+
+&lt;app-acl-rules-modal  #modalAclRulesRef [objectUUID]&#x3D;&quot;objectUUID&quot; [(isVisible)]&#x3D;&quot;isVisibleAclRulesModal&quot;&gt;&lt;/app-acl-rules-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./acl-modal.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .ant-table-footer
+    background-color: #fff
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"    (nzOnCancel)="handleCancel()" [nzWidth]="1000" nzCentered>    <ng-template #modalTitle>{{ \'ACL_MODAL.TITLE\' | translate }}</ng-template>    <ng-template #modalContent>        <div style="height: 500px; overflow-y: auto; overflow-x: hidden;">            <ng-container *ngIf="loadingModal">                <nz-spin nzSimple                    style="text-align: center; margin: auto; transform: translateY(-50%); top: 50%; position: relative;">                </nz-spin>            </ng-container>            <ng-container *ngIf="!loadingModal">                <nz-table #nzTable [nzData]="getArrayDetailsDataTable()" [nzShowPagination]="false" [nzScroll]="{ y: \'430px\' }">                    <thead>                        <tr style="font-weight: bold;">                            <th nzAlign="center">{{ \'ACL_MODAL.HEADER.IDENTITY_TYPE\' | translate }}</th>                            <th nzAlign="center">{{ \'ACL_MODAL.HEADER.IDENTITY_NAME\' | translate }}</th>                            <th nzAlign="center">{{ \'ACL_MODAL.HEADER.PERMISSION_TYPE\' | translate }}</th>                            <th nzAlign="center" nzWidth="100px">{{ \'ACL_MODAL.HEADER.ACTIONS\' | translate }}</th>                        </tr>                    </thead>                    <tbody>                        <ng-container *ngIf="this.detailsDataTable.size > 0">                            <tr *ngFor="let item of nzTable.data">                                <td nzAlign="center">                                    <nz-select [(ngModel)]="item.identityType" style="width: 150px;"                                        (ngModelChange)="selectIdentityTypeChange($event, item)">                                        <nz-option [nzValue]="identityType.key" [nzLabel]="identityType.value.name"                                            *ngFor="let identityType of identityTypes | keyvalue"></nz-option>                                    </nz-select>                                </td>                                <td nzAlign="center">                                    <nz-select #selectIdentity [(ngModel)]="item.identityId"                                        [disabled]="getSelectIdentitiestDisabled(item)" style="width: 220px" nzShowSearch>                                        <nz-option [nzValue]="identity.id" [nzLabel]="!identity.name || identity.name == \'\' ? identity.email : identity.name"                                            *ngFor="let identity of identityList[item.identityType]"></nz-option>                                    </nz-select>                                </td>                                <td nzAlign="center">                                    <nz-select [(ngModel)]="item.permissionId" style="width: 220px">                                        <nz-option [nzValue]="permission.key" [nzLabel]="permission.value.name"                                        *ngFor="let permission of permissionTypes | keyvalue"></nz-option>                                    </nz-select>                                </td>                                <td nzAlign="center">                                    <ul nz-list-item-actions style="margin-left: 6px;">                                        <nz-list-item-action>                                            <i (click)="deleteAclDetail($event, item)" nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"></i>                                        </nz-list-item-action>                                    </ul>                                </td>                            </tr>                        </ng-container>                        <tr>                            <td colspan="4" (click)="addAclDetail($event)" style="cursor: pointer;">                                <i nz-icon nzType="plus" nzTheme="outline"></i>                                &nbsp;{{\'ACL_MODAL.NEW_PERMISSION\' | translate}}                            </td>                        </tr>                    </tbody>                </nz-table>            </ng-container>        </div>    </ng-template>    <ng-template #modalFooter>        <button nz-button nzType="primary" (click)="handleConfirm()">{{\'ACL_MODAL.FOOTER.CONFIRM\' | translate}}</button>        <button nz-button (click)="handleCancel()">{{\'ACL_MODAL.FOOTER.CANCEL\' | translate}}</button>        <a nz-button nzType="link" (click)="this.isVisibleAclRulesModal = true">{{\'ACL_MODAL.FOOTER.RULES\' | translate}}</a>    </ng-template></nz-modal><app-acl-rules-modal  #modalAclRulesRef [objectUUID]="objectUUID" [(isVisible)]="isVisibleAclRulesModal"></app-acl-rules-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'AclModalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AclModalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,106 @@
+<ng-template #tableOptions>
+  <div style="padding: 5px 0px 0px 0px">
+
+    <div style="display: flex; align-items: center; padding-bottom: 5px">
+      <div>
+        {{ 'DYNAMIC_TABLE.RESULT'| translate }}
+        <b>{{DataSize}}</b>
+        {{ 'DYNAMIC_TABLE.ELEMENTS_FOUND'| translate }}
+        {{ 'DYNAMIC_TABLE.SELECTION'| translate }}
+        <b>{{  checkedAll ? DataSize - checkedItems.size : checkedItems.size }}</b>
+        {{ 'DYNAMIC_TABLE.ELEMENTS_SELECTED'| translate }}
+      </div>
+      <div style="min-width: 0; flex: 1 1 auto"></div>
+      <div style="display: flex; column-gap: 4px; align-items: center" *ngIf="Checkable">
+        <button nz-button style="margin-right: 1rem" (click)="resetSelected()">
+          {{ 'DYNAMIC_TABLE.RESET_SELECTED' | translate }}
+        </button>
+        <div>{{ 'DYNAMIC_TABLE.SHOW_SELECTED' | translate }}</div>
+        <div>
+          <nz-switch [ngModel]="showOnlySelected" (ngModelChange)="showOnlySelectedSwitchChange($event)"></nz-switch>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; column-gap: 4px; margin: 5px 0px 5px 0px" *ngIf="!hiddenPaginationSwitch">
+      <div>Paginación:</div>
+      <div>
+        <nz-switch [(ngModel)]="paginationSwitch" (ngModelChange)="paginationSwitchChange($event)"></nz-switch>
+      </div>
+    </div>
+    <nz-select style="width: 100%;" nzMode="multiple" [(ngModel)]="selectedFields">
+      <nz-option *ngFor="let item of DataFields" [nzLabel]="item" [nzValue]="item"></nz-option>
+    </nz-select>
+  </div>
+</ng-template>
+<nz-table #table [nzTitle]="tableOptions" [nzFrontPagination]="false" nzShowPagination nzShowSizeChanger nzBordered
+          [nzLoading]="Loading" [nzData]="PageData" [nzTotal]="DataSize" [nzScroll]="{ x: '70vw', y: '45vh' }"
+          [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" (nzCurrentPageDataChange)="changePageData($event)"
+          (nzPageIndexChange)="changePageIndex($event)" (nzPageSizeChange)="changePageSize($event)"
+          [nzShowPagination]="paginationSwitch">
+  <thead>
+  <tr>
+    <th nzAlign="center" nzLeft nzWidth="50px" [nzDisabled]="PageData.length==0" [nzChecked]="checkedAll"
+        [nzIndeterminate]="checkedItems.size>0" (nzCheckedChange)="onAllChecked($event)"
+        *ngIf="Checkable && CanMultipleCheckItems && CheckableAll"></th>
+    <th nzAlign="center" nzLeft nzWidth="50px" (nzCheckedChange)="onAllChecked($event)"
+        *ngIf="Checkable && CanMultipleCheckItems && !CheckableAll"></th>
+    <th nzAlign="center" nzLeft nzWidth="50px" *ngIf="Checkable && !CanMultipleCheckItems"></th>
+    <th *ngFor="let item of selectedFields" [nzShowSort]="SortEvent.observers.length > 0"
+        (nzSortOrderChange)="sorting(item, $event)">{{item}}</th>
+    <th editeditnzRight nzWidth="250px" *ngIf="!isHiddenAction()" nzAlign="center">
+      {{'DYNAMIC_TABLE.TH.ACTIONS' | translate}}</th>
+    <th *ngIf="!Checkable && !CheckableAll && selectedFields.length == 0">&nbsp;</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of table.data;">
+    <td nzAlign="center" nzLeft [nzChecked]="isItemChecked(item)" (nzCheckedChange)="onItemChecked(item, $event)"
+        *ngIf="Checkable && CanMultipleCheckItems">
+    </td>
+    <td nzAlign="center" nzLeft [nzChecked]="isItemChecked(item)" (nzCheckedChange)="onItemChecked(item, $event)"
+        *ngIf="Checkable && !CanMultipleCheckItems">
+    </td>
+    <td *ngFor="let key of selectedFields" style="max-width: 50vw; overflow-x: visible;"
+        [ngClass]="{'click-detail-table': ClickRowEventActive}" (click)="clickRow(item)">
+      {{item[key]}}
+    </td>
+    <td nzAlign="center" nzRight *ngIf="!isHiddenAction()">
+      <ul nz-list-item-actions style="margin-left: 6px;">
+        <nz-list-item-action *ngIf="!hiddenOpenAction && OpenEvent.observers.length">
+          <i nz-icon (click)="open(item)" nzType="file-search" nzTheme="outline" style="cursor: pointer;"></i>
+        </nz-list-item-action>
+        <nz-list-item-action *ngIf="!hiddenModifyAction && ModifyEvent.observers.length">
+          <i nz-icon (click)="modify(item)" nzType="edit" nzTheme="outline" style="cursor: pointer;"></i>
+        </nz-list-item-action>
+        <nz-list-item-action *ngIf="!hiddenExportAction && ExportEvent.observers.length">
+          <i nz-icon (click)="export(item)" nzType="download" nzTheme="outline" style="cursor: pointer;"></i>
+        </nz-list-item-action>
+        <nz-list-item-action *ngIf="!hiddenDeleteAction && DeleteEvent.observers.length && (!HiddenDeleteItemFunc || !HiddenDeleteItemFunc(item))">
+          <i nz-icon (click)="delete(item)" nzType="delete" nzTheme="outline" style="cursor: pointer;"></i>
+        </nz-list-item-action>
+        <nz-list-item-action *ngIf="!hiddenPermissionAction && PermissionEvent.observers.length">
+          <i nz-icon (click)="permission(item)" nzType="user" nzTheme="outline" style="cursor: pointer;"></i>
+        </nz-list-item-action>
+        <nz-list-item-action *ngFor="let customActionButton of CustomActionButtons">
+          <span nz-icon (click)="clickCustomActionButton(item, customActionButton, customActionButton.event)"
+                [nzType]="customActionButton.type" nzTheme="outline"
+                style="cursor: pointer;" *ngIf="customActionButton.type === 'default'"></span>
+          <span nz-icon [nzType]="'eye'" nzTheme="outline" style="cursor: pointer;"
+                *ngIf="customActionButton.type === 'dropdown'"
+                nz-dropdown [nzDropdownMenu]="customButtonsDropdownMenu"></span>
+          <nz-dropdown-menu #customButtonsDropdownMenu>
+            <ul nz-menu>
+              <li nz-menu-item *ngFor="let dropdownItem of customActionButton.dropdownItems"
+                  (click)="clickCustomActionButton(item, customActionButton, dropdownItem.event)">
+                {{ dropdownItem.label | translate }}
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </nz-list-item-action>
+      </ul>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+

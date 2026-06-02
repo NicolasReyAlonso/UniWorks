@@ -1,0 +1,3378 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GeolayerDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-geolayer-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../components/GeopropertyEditModalComponent.html" target="_self" >GeopropertyEditModalComponent</a></code>
+                                <code><a href="../components/GeolayerExportModalComponent.html" target="_self" >GeolayerExportModalComponent</a></code>
+                            <code>NzSelectModule</code>
+                            <code>NzModalModule</code>
+                                <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+                            <code>NzTabsModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzListModule</code>
+                            <code>SafeNullPipe</code>
+                            <code>NzTableModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzSpinModule</code>
+                            <code>NzDatePickerModule</code>
+                                <code><a href="../directives/DisableControlDirective.html" target="_self" >DisableControlDirective</a></code>
+                            <code>NzTagModule</code>
+                            <code>NzPageHeaderModule</code>
+                                <code><a href="../components/BackButtonComponent.html" target="_self" >BackButtonComponent</a></code>
+                            <code>NzButtonModule</code>
+                            <code>NzIconModule</code>
+                                <code><a href="../modules/NextgendemGeolayerModule.html" target="_self" >NextgendemGeolayerModule</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./geolayer-detail.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./geolayer-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addCaseStudiesVisibleModal" >addCaseStudiesVisibleModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#annotationsForm" >annotationsForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudies" >caseStudies</a>
+                            </li>
+                            <li>
+                                <a href="#crs" >crs</a>
+                            </li>
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#formGroupAdvance" >formGroupAdvance</a>
+                            </li>
+                            <li>
+                                <a href="#formGroupChange" >formGroupChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#geolayerExportModal" >geolayerExportModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#geopropertyEditModal" >geopropertyEditModal</a>
+                            </li>
+                            <li>
+                                <a href="#isVisiblePropertyEditModal" >isVisiblePropertyEditModal</a>
+                            </li>
+                            <li>
+                                <a href="#layer" >layer</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#nextgendemGeolayerComponent" >nextgendemGeolayerComponent</a>
+                            </li>
+                            <li>
+                                <a href="#propertySelectEditModal" >propertySelectEditModal</a>
+                            </li>
+                            <li>
+                                <a href="#propertySelectIndexEditModal" >propertySelectIndexEditModal</a>
+                            </li>
+                            <li>
+                                <a href="#selectModal" >selectModal</a>
+                            </li>
+                            <li>
+                                <a href="#sources" >sources</a>
+                            </li>
+                            <li>
+                                <a href="#styles" >styles</a>
+                            </li>
+                            <li>
+                                <a href="#themes" >themes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#acceptGeopropertyEditModal" >acceptGeopropertyEditModal</a>
+                            </li>
+                            <li>
+                                <a href="#addCaseStudiesModal" >addCaseStudiesModal</a>
+                            </li>
+                            <li>
+                                <a href="#addTags" >addTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelModifyLayer" >cancelModifyLayer</a>
+                            </li>
+                            <li>
+                                <a href="#changeValueProperty" >changeValueProperty</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#formValueChange" >formValueChange</a>
+                            </li>
+                            <li>
+                                <a href="#getAddCaseStudiesOptions" >getAddCaseStudiesOptions</a>
+                            </li>
+                            <li>
+                                <a href="#getCaseStudyById" >getCaseStudyById</a>
+                            </li>
+                            <li>
+                                <a href="#initForm" >initForm</a>
+                            </li>
+                            <li>
+                                <a href="#isDisableEdit" >isDisableEdit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadData" >loadData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#modifyLayer" >modifyLayer</a>
+                            </li>
+                            <li>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onClickEditProperty" >onClickEditProperty</a>
+                            </li>
+                            <li>
+                                <a href="#openAddModalCaseStudies" >openAddModalCaseStudies</a>
+                            </li>
+                            <li>
+                                <a href="#openCaseStudy" >openCaseStudy</a>
+                            </li>
+                            <li>
+                                <a href="#openExportLayerModal" >openExportLayerModal</a>
+                            </li>
+                            <li>
+                                <a href="#recreateGeoViewer" >recreateGeoViewer</a>
+                            </li>
+                            <li>
+                                <a href="#removeCaseStudies" >removeCaseStudies</a>
+                            </li>
+                            <li>
+                                <a href="#removeTag" >removeTag</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#startFormValues" >startFormValues</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(activeRoute: ActivatedRoute, fb: UntypedFormBuilder, nzModalService: NzModalService, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, router: Router, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:108</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>activeRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>nzModalService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzModalService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="acceptGeopropertyEditModal"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>acceptGeopropertyEditModal</b></span>
+                        <a href="#acceptGeopropertyEditModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>acceptGeopropertyEditModal(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="428"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:428</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCaseStudiesModal"></a>
+                    <span class="name">
+                        <span ><b>addCaseStudiesModal</b></span>
+                        <a href="#addCaseStudiesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addCaseStudiesModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="349"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:349</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTags"></a>
+                    <span class="name">
+                        <span ><b>addTags</b></span>
+                        <a href="#addTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTags(inputName: HTMLInputElement)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:311</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>inputName</td>
+                                            <td>
+                                                        <code>HTMLInputElement</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelModifyLayer"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelModifyLayer</b></span>
+                        <a href="#cancelModifyLayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelModifyLayer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="399"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:399</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeValueProperty"></a>
+                    <span class="name">
+                        <span ><b>changeValueProperty</b></span>
+                        <a href="#changeValueProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeValueProperty(value, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="447"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:447</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formValueChange"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>formValueChange</b></span>
+                        <a href="#formValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formValueChange(change)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>change</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAddCaseStudiesOptions"></a>
+                    <span class="name">
+                        <span ><b>getAddCaseStudiesOptions</b></span>
+                        <a href="#getAddCaseStudiesOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAddCaseStudiesOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="344"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:344</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCaseStudyById"></a>
+                    <span class="name">
+                        <span ><b>getCaseStudyById</b></span>
+                        <a href="#getCaseStudyById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCaseStudyById(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:307</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initForm"></a>
+                    <span class="name">
+                        <span ><b>initForm</b></span>
+                        <a href="#initForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDisableEdit"></a>
+                    <span class="name">
+                        <span ><b>isDisableEdit</b></span>
+                        <a href="#isDisableEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDisableEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="411"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:411</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadData"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>loadData</b></span>
+                        <a href="#loadData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadData(layer?)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>layer</td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modifyLayer"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>modifyLayer</b></span>
+                        <a href="#modifyLayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>modifyLayer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="363"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:363</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:237</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="125"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:125</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickEditProperty"></a>
+                    <span class="name">
+                        <span ><b>onClickEditProperty</b></span>
+                        <a href="#onClickEditProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onClickEditProperty(data, index)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="415"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:415</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>index</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openAddModalCaseStudies"></a>
+                    <span class="name">
+                        <span ><b>openAddModalCaseStudies</b></span>
+                        <a href="#openAddModalCaseStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openAddModalCaseStudies()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCaseStudy"></a>
+                    <span class="name">
+                        <span ><b>openCaseStudy</b></span>
+                        <a href="#openCaseStudy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCaseStudy(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="333"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:333</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openExportLayerModal"></a>
+                    <span class="name">
+                        <span ><b>openExportLayerModal</b></span>
+                        <a href="#openExportLayerModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openExportLayerModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recreateGeoViewer"></a>
+                    <span class="name">
+                        <span ><b>recreateGeoViewer</b></span>
+                        <a href="#recreateGeoViewer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>recreateGeoViewer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="245"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:245</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCaseStudies"></a>
+                    <span class="name">
+                        <span ><b>removeCaseStudies</b></span>
+                        <a href="#removeCaseStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeCaseStudies(index)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="356"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:356</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeTag"></a>
+                    <span class="name">
+                        <span ><b>removeTag</b></span>
+                        <a href="#removeTag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeTag(event, i)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="324"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:324</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>i</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startFormValues"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>startFormValues</b></span>
+                        <a href="#startFormValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>startFormValues()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addCaseStudiesVisibleModal"></a>
+                    <span class="name">
+                        <span ><b>addCaseStudiesVisibleModal</b></span>
+                        <a href="#addCaseStudiesVisibleModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="annotationsForm"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>annotationsForm</b></span>
+                        <a href="#annotationsForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;annotationsForm&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      layer: &#x27;&#x27;,
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudies"></a>
+                    <span class="name">
+                        <span ><b>caseStudies</b></span>
+                        <a href="#caseStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crs"></a>
+                    <span class="name">
+                        <span ><b>crs</b></span>
+                        <a href="#crs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroupAdvance"></a>
+                    <span class="name">
+                        <span ><b>formGroupAdvance</b></span>
+                        <a href="#formGroupAdvance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroupChange"></a>
+                    <span class="name">
+                        <span ><b>formGroupChange</b></span>
+                        <a href="#formGroupChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="geolayerExportModal"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>geolayerExportModal</b></span>
+                        <a href="#geolayerExportModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/GeolayerExportModalComponent.html" target="_self" >GeolayerExportModalComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(GeolayerExportModalComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="geopropertyEditModal"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>geopropertyEditModal</b></span>
+                        <a href="#geopropertyEditModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/GeopropertyEditModalComponent.html" target="_self" >GeopropertyEditModalComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(GeopropertyEditModalComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisiblePropertyEditModal"></a>
+                    <span class="name">
+                        <span ><b>isVisiblePropertyEditModal</b></span>
+                        <a href="#isVisiblePropertyEditModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layer"></a>
+                    <span class="name">
+                        <span ><b>layer</b></span>
+                        <a href="#layer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextgendemGeolayerComponent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>nextgendemGeolayerComponent</b></span>
+                        <a href="#nextgendemGeolayerComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/NextgendemGeolayerComponent.html" target="_self" >NextgendemGeolayerComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(NextgendemGeolayerComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="propertySelectEditModal"></a>
+                    <span class="name">
+                        <span ><b>propertySelectEditModal</b></span>
+                        <a href="#propertySelectEditModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="propertySelectIndexEditModal"></a>
+                    <span class="name">
+                        <span ><b>propertySelectIndexEditModal</b></span>
+                        <a href="#propertySelectIndexEditModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectModal"></a>
+                    <span class="name">
+                        <span ><b>selectModal</b></span>
+                        <a href="#selectModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sources"></a>
+                    <span class="name">
+                        <span ><b>sources</b></span>
+                        <a href="#sources"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="styles"></a>
+                    <span class="name">
+                        <span ><b>styles</b></span>
+                        <a href="#styles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themes"></a>
+                    <span class="name">
+                        <span ><b>themes</b></span>
+                        <a href="#themes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/geolayer/geolayer-detail/geolayer-detail.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  Component, ComponentRef, createComponent,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild, ViewContainerRef
+} from &#x27;@angular/core&#x27;;
+import {ActivatedRoute, Router} from &#x27;@angular/router&#x27;;
+import {FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from &#x27;@angular/forms&#x27;;
+import {NzModalModule, NzModalService} from &#x27;ng-zorro-antd/modal&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {GeolayerExportModalComponent} from &#x27;src/app/components/data/geolayer/geolayer-export-modal/geolayer-export-modal.component&#x27;;
+import {AuthService} from &#x27;src/app/services/auth.service&#x27;;
+import {StateService} from &#x27;../../../services/state.service&#x27;;
+import {GeopropertyEditModalComponent} from &quot;src/app/components/data/geolayer/geoproperty-edit-modal/geoproperty-edit-modal.component&quot;;
+import {AnnotationsFormComponent} from &quot;src/app/components/data/annotations/annotations-form/annotations-form.component&quot;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzTabsModule} from &quot;ng-zorro-antd/tabs&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {SafeNullPipe} from &quot;../../../pipes/safe-null.pipe&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzDatePickerModule} from &quot;ng-zorro-antd/date-picker&quot;;
+import {DisableControlDirective} from &quot;../../../directives/disable-control.directive&quot;;
+import {NzTagModule} from &quot;ng-zorro-antd/tag&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {BackButtonComponent} from &quot;../../../components/miscellaneous/back-button/back-button.component&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzTreeModule} from &quot;ng-zorro-antd/tree&quot;;
+import {NextgendemGeolayerModule} from &quot;../../../components/display/nextgendem-geolayer/nextgendem-geolayer.module&quot;;
+import {
+  NextgendemGeolayerComponent
+} from &quot;../../../components/display/nextgendem-geolayer/nextgendem-geolayer/nextgendem-geolayer.component&quot;;
+import {lastValueFrom} from &quot;rxjs&quot;;
+
+@Component({
+    selector: &#x27;app-geolayer-detail&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        GeopropertyEditModalComponent,
+        GeolayerExportModalComponent,
+        NzSelectModule,
+        NzModalModule,
+        AnnotationsFormComponent,
+        NzTabsModule,
+        NzInputModule,
+        NzListModule,
+        SafeNullPipe,
+        NzTableModule,
+        NzFormModule,
+        NzSpinModule,
+        NzDatePickerModule,
+        DisableControlDirective,
+        NzTagModule,
+        NzPageHeaderModule,
+        BackButtonComponent,
+        NzButtonModule,
+        NzIconModule,
+        NextgendemGeolayerModule,
+    ],
+    templateUrl: &#x27;./geolayer-detail.component.html&#x27;,
+    styleUrls: [&#x27;./geolayer-detail.component.sass&#x27;]
+})
+export class GeolayerDetailComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  layer: any;
+  formGroup: UntypedFormGroup;
+  formGroupChange &#x3D; false;
+  formGroupAdvance: UntypedFormGroup;
+  loading &#x3D; true;
+  propertySelectEditModal: string &#x3D; null;
+  propertySelectIndexEditModal: number &#x3D; null;
+  @ViewChild(GeolayerExportModalComponent) geolayerExportModal: GeolayerExportModalComponent;
+  @ViewChild(GeopropertyEditModalComponent) geopropertyEditModal: GeopropertyEditModalComponent;
+  @ViewChild(&#x27;annotationsForm&#x27;, {static: false}) annotationsForm: AnnotationsFormComponent;
+  @ViewChild(NextgendemGeolayerComponent) nextgendemGeolayerComponent: NextgendemGeolayerComponent
+
+  // Options
+  sources &#x3D; [];
+  themes &#x3D; [];
+  crs &#x3D; [];
+  caseStudies &#x3D; [];
+  styles &#x3D; [];
+
+  // Modal
+  selectModal &#x3D; [];
+  addCaseStudiesVisibleModal &#x3D; false;
+
+  // Property Edit Modal
+  isVisiblePropertyEditModal &#x3D; false;
+
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      layer: &#x27;&#x27;,
+    }
+  };
+
+  constructor(
+    private readonly activeRoute: ActivatedRoute,
+    private readonly fb: UntypedFormBuilder,
+    private readonly nzModalService: NzModalService,
+    private readonly backendService: BackendService,
+    private readonly messageLogService: MessageLogService,
+    private readonly notificationService: NotificationService,
+    private readonly router: Router,
+    public readonly authService: AuthService,
+    private readonly stateService: StateService,
+  ) {
+    this.layer &#x3D; this.activeRoute.snapshot.data.layer.content;
+    this.BREADCRUMB_NAME.params.layer &#x3D; this.layer.name;
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    this.initForm();
+    this.formGroup.valueChanges.subscribe({next:(change) &#x3D;&gt; this.formValueChange(change)});
+    const activatedRouterDataStyles &#x3D; this.activeRoute.snapshot.data.styles;
+    this.styles &#x3D; [];
+    if (activatedRouterDataStyles) {
+      Object.keys(activatedRouterDataStyles).forEach((key) &#x3D;&gt; {
+        this.styles.push({ style: key, value: activatedRouterDataStyles[key] });
+      });
+    }
+    await this.startFormValues();
+    this.loading &#x3D; false;
+  }
+
+  async ngOnDestroy(): Promise&lt;void&gt; {
+    if (!this.formGroupChange) {
+      this.stateService.setStateCurrentView({
+        formGroupChange: this.formGroupChange,
+      }).then();
+    } else {
+      const value &#x3D; {
+        name: this.formGroup.get(&#x27;name&#x27;).value,
+        tags: this.formGroup.get(&#x27;tags&#x27;).value,
+        authors: this.formGroup.get(&#x27;authors&#x27;).value,
+        themes: this.formGroup.get(&#x27;themes&#x27;).value,
+        crs: this.formGroup.get(&#x27;crs&#x27;).value,
+        creation_date: this.formGroup.get(&#x27;creation_date&#x27;).value,
+        source: this.formGroup.get(&#x27;source&#x27;).value,
+        case_studies: this.formGroup.get(&#x27;case_studies&#x27;).value,
+        formGroupChange: this.formGroupChange,
+      };
+      this.stateService.setStateCurrentView(value).then();
+    }
+  }
+
+  initForm() {
+    this.caseStudies &#x3D; this.activeRoute.snapshot.data.caseStudies;
+    this.themes &#x3D; this.activeRoute.snapshot.data.themes;
+    this.crs &#x3D; this.activeRoute.snapshot.data.crs;
+    this.sources &#x3D; this.activeRoute.snapshot.data.sources;
+    this.layer &#x3D; this.activeRoute.snapshot.data.layer.content;
+    this.formGroup &#x3D; this.fb.group({
+      id: this.fb.control({value: this.layer.id, disabled: true}),
+      name: this.fb.control(&#x27;&#x27;),
+      tags: this.fb.control([]),
+      authors: this.fb.control(&#x27;&#x27;),
+      themes: this.fb.control([]),
+      crs: this.fb.control(null),
+      creation_date: this.fb.control(this.layer.attributes.creation_date ? this.layer.attributes.creation_date : null),
+      types: this.fb.control([]),
+      case_studies: this.fb.control([]),
+      source: this.fb.control([]),
+      file_name: this.fb.control({
+        value: this.layer.attributes.file_name ? this.layer.attributes.file_name : null,
+        disabled: true
+      }),
+    });
+    this.formGroupAdvance &#x3D; this.fb.group({
+      wks: [{value: this.layer.wks, disabled: true}],
+      wms_url: [{value: this.layer.wms_url, disabled: true}],
+      geoserver_name: [{value: this.layer.geoserver_name, disabled: true}],
+      layer_type: [{value: this.layer.layer_type, disabled: true}],
+      properties: [this.layer.properties ? this.layer.properties : []],
+    });
+    if (!this.layer.attributes.instance_id) {
+      this.formGroup.addControl(&#x27;source&#x27;, this.fb.control(null));
+    } else {
+      this.formGroup.addControl(&#x27;instance_id&#x27;, this.fb.control({
+        value: this.layer.attributes.instance_id,
+        disabled: true
+      }));
+    }
+  }
+
+  async startFormValues(): Promise&lt;void&gt; {
+    const getState &#x3D; await this.stateService.getStateCurrenView();
+    if (!getState || !getState.formGroupChange) {
+      await this.loadData();
+      this.formGroupChange &#x3D; false;
+    } else {
+      console.log(getState);
+      if (getState.name) {
+        this.formGroup.get(&#x27;name&#x27;).setValue(getState.name);
+      }
+      if (getState.tags) {
+        this.formGroup.get(&#x27;tags&#x27;).setValue(getState.tags);
+      }
+      if (getState.authors) {
+        this.formGroup.get(&#x27;authors&#x27;).setValue(getState.authors);
+      }
+      if (getState.themes) {
+        this.formGroup.get(&#x27;themes&#x27;).setValue(getState.themes);
+      }
+      if (getState.crs) {
+        this.formGroup.get(&#x27;crs&#x27;).setValue(getState.crs);
+      }
+      if (getState.creation_date) {
+        this.formGroup.get(&#x27;creation_date&#x27;).setValue(getState.creation_date);
+      }
+      if (getState.source) {
+        this.formGroup.get(&#x27;source&#x27;).setValue(getState.source);
+      }
+      if (getState.case_studies) {
+        this.formGroup.get(&#x27;case_studies&#x27;).setValue(getState.case_studies);
+      }
+      if (getState.formGroupChange) {
+        this.formGroupChange &#x3D; getState.formGroupChange;
+      }
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.recreateGeoViewer();
+    this.annotationsForm.object_uuid &#x3D; this.layer.uuid;
+    this.annotationsForm.loadAnnotations();
+    const addAttributeModal &#x3D; this.nextgendemGeolayerComponent.nextgendemGeolayerAddAttributeModalComponent
+    addAttributeModal.uuidLayerFilter &#x3D; [ this.layer.uuid ]
+  }
+
+  recreateGeoViewer() {
+
+  }
+
+  openExportLayerModal() {
+    this.geolayerExportModal.openModal([this.layer]);
+  }
+
+  private formValueChange(change) {
+    this.formGroupChange &#x3D; true;
+  }
+
+  private async loadData(layer?) {
+    this.loading &#x3D; true;
+    this.formGroupChange &#x3D; false;
+    this.layer &#x3D; layer ? layer : this.layer;
+    let firstPropertiesNumeric &#x3D; null;
+    for (const property of this.layer.properties) {
+      if (property.type &#x3D;&#x3D;&#x3D; &#x27;numeric&#x27;) {
+        firstPropertiesNumeric &#x3D; property;
+        break;
+      }
+    }
+    const caseStudies2Field &#x3D; [];
+    for (const caseStudy of this.layer.case_studies) {
+      caseStudies2Field.push(caseStudy.case_study_id);
+    }
+    this.layer.case_studies &#x3D; caseStudies2Field;
+    if (this.layer.name) {
+      this.formGroup.get(&#x27;name&#x27;).setValue(this.layer.name);
+    }
+    if (this.layer.attributes.tags) {
+      this.formGroup.get(&#x27;tags&#x27;).setValue(this.layer.attributes.tags);
+    }
+    if (this.layer.attributes.authors) {
+      this.formGroup.get(&#x27;authors&#x27;).setValue(this.layer.attributes.authors);
+    }
+    if (this.layer.attributes.themes_id) {
+      this.formGroup.get(&#x27;themes&#x27;).setValue(this.layer.attributes.themes_id);
+    }
+    if (this.layer.attributes.crs_id) {
+      this.formGroup.get(&#x27;crs&#x27;).setValue(this.layer.attributes.crs_id);
+    }
+    if (this.layer.attributes.creation_date) {
+      this.formGroup.get(&#x27;creation_date&#x27;).setValue(this.layer.attributes.creation_date);
+    }
+    if (this.layer.types) {
+      this.formGroup.get(&#x27;types&#x27;).setValue(this.layer.types);
+    }
+    if (this.layer.case_studies) {
+      this.formGroup.get(&#x27;case_studies&#x27;).setValue(this.layer.case_studies);
+    }
+    if (this.layer.attributes.file_name) {
+      this.formGroup.get(&#x27;file_name&#x27;).setValue(this.layer.attributes.file_name);
+    }
+    if (!this.layer.attributes.instance_id) {
+      if (this.layer.attributes.source_id) {
+        this.formGroup.get(&#x27;source&#x27;).setValue(this.layer.attributes.source_id);
+      }
+    }
+  }
+
+  getCaseStudyById(id): any {
+    return this.caseStudies.find((value) &#x3D;&gt; value.id &#x3D;&#x3D; id);
+  }
+
+  addTags(inputName: HTMLInputElement): void {
+    const name &#x3D; inputName.value;
+    if (!name || name &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      return;
+    }
+    const tag &#x3D; this.fb.group({
+      name: [name, Validators.required],
+    });
+    const controlTags &#x3D; this.formGroup.get(&#x27;tags&#x27;);
+    controlTags.setValue([name, ...controlTags.value]);
+    inputName.value &#x3D; &#x27;&#x27;;
+  }
+
+  removeTag(event, i): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const controlTags &#x3D; this.formGroup.get(&#x27;tags&#x27;);
+    const newArray &#x3D; [...controlTags.value];
+    newArray.splice(i, 1);
+    controlTags.setValue(newArray);
+  }
+
+  openCaseStudy(id): void {
+    if (this.authService.havePermission(&#x27;gui-case-study-read&#x27;)) {
+      this.router.navigate([&#x27;caseStudiesDetail&#x27;, id]);
+    }
+  }
+
+  openAddModalCaseStudies(): void {
+    this.selectModal &#x3D; [];
+    this.addCaseStudiesVisibleModal &#x3D; true;
+  }
+
+  getAddCaseStudiesOptions(): any {
+    const caseStudiesValue &#x3D; this.formGroup.get(&#x27;case_studies&#x27;).value as any[];
+    return this.caseStudies.filter((value) &#x3D;&gt; !caseStudiesValue.includes(value.id));
+  }
+
+  addCaseStudiesModal() {
+    const controlCaseStudies &#x3D; this.formGroup.get(&#x27;case_studies&#x27;);
+    controlCaseStudies.setValue([...controlCaseStudies.value, ...this.selectModal]);
+    this.selectModal &#x3D; [];
+    this.addCaseStudiesVisibleModal &#x3D; false;
+  }
+
+  removeCaseStudies(index) {
+    const controlCaseStudies &#x3D; this.formGroup.get(&#x27;case_studies&#x27;);
+    const newArray &#x3D; [...controlCaseStudies.value];
+    newArray.splice(index, 1);
+    controlCaseStudies.setValue(newArray);
+  }
+
+  async modifyLayer(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    const value &#x3D; {
+      name: this.formGroup.get(&#x27;name&#x27;).value,
+      types: this.formGroup.get(&#x27;types&#x27;).value,
+      case_studies: this.formGroup.get(&#x27;case_studies&#x27;).value,
+      attributes: {
+        tags: this.formGroup.get(&#x27;tags&#x27;).value,
+        authors: this.formGroup.get(&#x27;authors&#x27;).value,
+        themes_id: this.formGroup.get(&#x27;themes&#x27;).value,
+        crs_id: this.formGroup.get(&#x27;crs&#x27;).value,
+        creation_date: this.formGroup.get(&#x27;creation_date&#x27;).value,
+        file_name: this.formGroup.get(&#x27;file_name&#x27;).value,
+        source_id: this.formGroup.get(&#x27;source&#x27;).value,
+      },
+    };
+    if (!this.layer.attributes.instance_id) {
+      value.attributes.source_id &#x3D; this.formGroup.get(&#x27;source&#x27;).value;
+    }
+    console.log(value);
+    try {
+      const putLayerResponse: any &#x3D; await lastValueFrom(this.backendService.putLayerGIS(this.layer.id, value), { defaultValue: undefined });
+      this.messageLogService.addIssues(putLayerResponse.issues);
+      this.notificationService.createNotificationWithType(TypeNotificationEnum.success, &#x27;Capa actualizada&#x27;, &#x27;Se ha actualizado la capa correctamente&#x27;, &#x27;bottomRight&#x27;);
+      this.loading &#x3D; false;
+      this.formGroupChange &#x3D; false;
+    } catch (err) {
+      this.nzModalService.error({
+        nzTitle: &#x27;Error&#x27;,
+        nzContent: &#x27;No se ha conseguido actualizar la capa.&#x27;,
+        nzCentered: true,
+      });
+      this.loading &#x3D; false;
+    }
+  }
+
+  async cancelModifyLayer(): Promise&lt;void&gt; {
+    try {
+      const layerResponse: any &#x3D; await lastValueFrom(this.backendService.getLayerGIS(this.layer.id), { defaultValue: undefined });
+      const layerResponseContent &#x3D; layerResponse.content;
+      await this.loadData(layerResponseContent);
+      this.formGroupChange &#x3D; false;
+      this.loading &#x3D; false;
+    } catch (error) {
+
+    }
+  }
+
+  isDisableEdit(): boolean {
+    return !this.authService.havePermission(&#x27;gui-layer-edit&#x27;);
+  }
+
+  onClickEditProperty(data, index): void {
+    if (!this.authService.havePermission(&#x27;gui-layer-edit&#x27;)) {
+      return;
+    } else {
+      this.propertySelectEditModal &#x3D; data.name;
+      this.propertySelectIndexEditModal &#x3D; index;
+      this.geopropertyEditModal.changeValuesByProperties(data);
+      this.geopropertyEditModal.name &#x3D; this.propertySelectEditModal;
+      this.geopropertyEditModal.loading &#x3D; false;
+      this.isVisiblePropertyEditModal &#x3D; true;
+    }
+  }
+
+  async acceptGeopropertyEditModal(event): Promise&lt;void&gt; {
+    this.geopropertyEditModal.loading &#x3D; true;
+    try {
+      const response: any &#x3D; await lastValueFrom(this.backendService.putLayerProperty(this.layer.id, this.propertySelectEditModal, event), { defaultValue: undefined });
+      this.changeValueProperty(event, this.propertySelectIndexEditModal);
+      if (response.issues) {
+        this.messageLogService.addIssues(response.issues);
+      }
+      this.isVisiblePropertyEditModal &#x3D; false;
+    } catch (e) {
+      this.geopropertyEditModal.isVisibleModalError &#x3D; true;
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+    }
+    this.recreateGeoViewer();
+    this.geopropertyEditModal.loading &#x3D; false;
+  }
+
+  changeValueProperty(value, index: number): void {
+    const control &#x3D; this.formGroupAdvance.get(&#x27;properties&#x27;);
+    const properties &#x3D; [...control.value];
+    properties[index] &#x3D; {
+      ...properties[index],
+      ...value
+    };
+    control.setValue(properties)
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;height: 100%;display: flex;  flex-flow: column;&quot;&gt;
+  &lt;nz-page-header&gt;
+    &lt;nz-page-header-title&gt;
+      &lt;app-back-button&gt;&lt;/app-back-button&gt;
+      {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TITLE&#x27; | translate}} - {{layer.name}}
+    &lt;/nz-page-header-title&gt;
+    &lt;nz-page-header-extra&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot; (click)&#x3D;&quot;openExportLayerModal()&quot;
+        *ngIf&#x3D;&quot;this.authService.havePermission(&#x27;gui-layer-export&#x27;)&quot;&gt;
+        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.EXPORT_BUTTON&#x27; | translate}}
+      &lt;/button&gt;
+    &lt;/nz-page-header-extra&gt;
+  &lt;/nz-page-header&gt;
+  &lt;div style&#x3D;&quot;padding: 0px 24px 30px 24px; flex: 1 1 auto; height: calc(100% - 48px - 20px + 16px);&quot;&gt;
+
+    &lt;nz-tabset class&#x3D;&quot;geolayer-detail-viewer-tabset&quot; style&#x3D;&quot;height: 100%;&quot; [nzSelectedIndex]&#x3D;&quot;0&quot;&gt;
+
+
+      &lt;!-- Details --&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.TITLE&#x27; | translate&quot;&gt;
+        &lt;nz-spin [nzSpinning]&#x3D;&quot;loading&quot;&gt;
+          &lt;div *ngIf&#x3D;&quot;formGroup&quot;&gt;
+            &lt;form [formGroup]&#x3D;&quot;formGroup&quot; class&#x3D;&quot;layer-form&quot;&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+
+                &lt;!-- Id --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;id&quot;&gt;Id&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;id&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Id&quot;&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Name --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;name&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.NAME.LABEL&#x27; |
+                    translate}}&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.NAME.PLACEHOLDER&#x27; | translate&quot;
+                    [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+
+                &lt;!-- Tags --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;tags&quot;&gt;Tags&lt;/nz-form-label&gt;
+
+                  &lt;div style&#x3D;&quot;display: flex; column-gap: 5px&quot;&gt;
+                    &lt;input nz-input [disabled]&#x3D;&quot;loading || isDisableEdit()&quot; #inputTag (keyup.enter)&#x3D;&quot;addTags(inputTag)&quot;
+                      [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.TAGS.PLACEHOLDER&#x27; | translate&quot;&gt;
+                    &lt;button nz-button (click)&#x3D;&quot;addTags(inputTag)&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                      &lt;i nz-icon
+                        nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.TAGS.ADD_BUTTON&#x27; |
+                      translate}}
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+
+                  &lt;div style&#x3D;&quot;margin-top: 6px;&quot;&gt;
+                    &lt;nz-tag *ngFor&#x3D;&quot;let tag of formGroup?.get(&#x27;tags&#x27;).value; let i &#x3D; index&quot; nzMode&#x3D;&quot;closeable&quot;
+                      [nzColor]&#x3D;&quot;&#x27;green&#x27;&quot; (nzOnClose)&#x3D;&quot;removeTag($event, i)&quot;&gt;
+                      {{tag}}
+                    &lt;/nz-tag&gt;
+                  &lt;/div&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Source --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot; *ngIf&#x3D;&quot;!layer.attributes.instance_id&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;source&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE.LABEL&#x27; |
+                    translate}}&lt;/nz-form-label&gt;
+                  &lt;nz-select
+                    [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE.PLACEHOLDER&#x27; | translate&quot;
+                    nzAllowClear formControlName&#x3D;&quot;source&quot; [nzDisabled]&#x3D;&quot;loading || isDisableEdit()&quot; nzShowSearch
+                    style&#x3D;&quot;width: 100%;&quot;&gt;
+                    &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of sources&quot;&gt;&lt;/nz-option&gt;
+                  &lt;/nz-select&gt;
+                &lt;/div&gt;
+
+                &lt;!-- Instance --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot; *ngIf&#x3D;&quot;layer.attributes.instance_id&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;instance_id&quot;&gt;
+                    {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.INSTANCE_ID.LABEL&#x27; | translate}}
+                  &lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;instance_id&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.INSTANCE_ID.PLACEHOLDER&#x27; | translate&quot;&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+                &lt;!-- Themes --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;themes&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SUBJECTS.LABEL&#x27; |
+                    translate}}&lt;/nz-form-label&gt;
+                  &lt;nz-select
+                    [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SUBJECTS.PLACEHOLDER&#x27; | translate&quot;
+                    formControlName&#x3D;&quot;themes&quot; nzMode&#x3D;&quot;multiple&quot; nzAllowClear [nzDisabled]&#x3D;&quot;loading || isDisableEdit()&quot;
+                    nzShowSearch style&#x3D;&quot;width: 100%;&quot;&gt;
+                    &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of themes&quot;&gt;&lt;/nz-option&gt;
+                  &lt;/nz-select&gt;
+                &lt;/div&gt;
+
+                &lt;!-- CRS --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;crs&quot;&gt;CRS&lt;/nz-form-label&gt;
+                  &lt;nz-select nzPlaceHolder&#x3D;&quot;CRS&quot; formControlName&#x3D;&quot;crs&quot; [nzDisabled]&#x3D;&quot;loading || isDisableEdit()&quot;
+                    nzShowSearch style&#x3D;&quot;width: 100%;&quot;&gt;
+                    &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of crs&quot;&gt;&lt;/nz-option&gt;
+                  &lt;/nz-select&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+
+                &lt;!-- Author --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;authors&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.AUTHORSHIP.LABEL&#x27;
+                    | translate}}&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;authors&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.AUTHORSHIP.PLACEHOLDER&#x27; | translate&quot;
+                    [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+                &lt;/div&gt;
+
+
+                &lt;!-- Date --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;creation_date&quot;&gt;
+                    {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CREATION_DATE.LABEL&#x27; | translate}}
+                  &lt;/nz-form-label&gt;
+                  &lt;nz-date-picker [nzDisabled]&#x3D;&quot;loading || isDisableEdit()&quot; formControlName&#x3D;&quot;creation_date&quot;
+                    style&#x3D;&quot;width: 100%&quot;
+                    [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CREATION_DATE.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/nz-date-picker&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+
+                &lt;!-- File Name --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;
+                  *ngIf&#x3D;&quot;formGroup &amp;&amp; formGroup.get(&#x27;file_name&#x27;) &amp;&amp; formGroup.get(&#x27;file_name&#x27;).value&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;file_name&quot;&gt;
+                    {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE_FILE_NAME.LABEL&#x27; | translate}}
+                  &lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;file_name&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE_FILE_NAME.PLACEHOLDER&#x27; | translate&quot;&gt;
+                &lt;/div&gt;
+
+              &lt;/div&gt;
+
+              &lt;div class&#x3D;&quot;row-form-layer&quot;&gt;
+                &lt;!-- Case Studies --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot; style&#x3D;&quot;margin-top: 10px;&quot;
+                  *ngIf&#x3D;&quot;this.authService.havePermission(&#x27;gui-case-studies&#x27;)&quot;&gt;
+                  &lt;div style&#x3D;&quot;width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;&quot;&gt;
+                    &lt;div style&#x3D;&quot;flex-grow: 1;&quot;&gt;
+                      {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.LABEL&#x27; | translate}}
+                      :
+                    &lt;/div&gt;
+                    &lt;button nz-button nzType&#x3D;&quot;default&quot; nzSize&#x3D;&quot;default&quot; nzShape&#x3D;&quot;round&quot;
+                      (click)&#x3D;&quot;openAddModalCaseStudies()&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;&lt;i nz-icon
+                        nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.ADD_BUTTON&#x27;
+                      | translate}}
+                    &lt;/button&gt;
+                  &lt;/div&gt;
+                  &lt;nz-table #caseStudiesTable [nzData]&#x3D;&quot;formGroup?.get(&#x27;case_studies&#x27;).value&quot; [nzShowPagination]&#x3D;&quot;false&quot;
+                    [nzScroll]&#x3D;&quot;{ y: &#x27;200px&#x27; }&quot; nzBordered&gt;
+                    &lt;thead&gt;
+                      &lt;tr&gt;
+                        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                          {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.TABLE_TH.NAME&#x27; |
+                          translate}}&lt;/th&gt;
+                        &lt;ng-container *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                          &lt;th nzAlign&#x3D;&quot;center&quot; nzRight nzWidth&#x3D;&quot;100px&quot;&gt;
+                            {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.TABLE_TH.ACTIONS&#x27; |
+                            translate}}&lt;/th&gt;
+                        &lt;/ng-container&gt;
+                      &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                      &lt;tr *ngFor&#x3D;&quot;let item of caseStudiesTable.data; let i &#x3D; index&quot;&gt;
+                        &lt;td nzAlign&#x3D;&quot;center&quot;
+                          [ngClass]&#x3D;&quot;{&#x27;click-row&#x27;: this.authService.havePermission(&#x27;gui-case-study-read&#x27;)}&quot;
+                          (click)&#x3D;&quot;openCaseStudy(item)&quot;&gt;{{
+                          getCaseStudyById(item).name }}&lt;/td&gt;
+                        &lt;td nzAlign&#x3D;&quot;center&quot; nzRight *ngIf&#x3D;&quot;!isDisableEdit()&quot;&gt;
+                          &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                            &lt;nz-list-item-action&gt;
+                              &lt;i nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                                (click)&#x3D;&quot;removeCaseStudies(i)&quot;&gt;&lt;/i&gt;
+                            &lt;/nz-list-item-action&gt;
+                          &lt;/ul&gt;
+                        &lt;/td&gt;
+                      &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                  &lt;/nz-table&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div style&#x3D;&quot;display: flex; flex-direction: row-reverse; align-items: flex-end&quot;
+                *ngIf&#x3D;&quot;this.authService.havePermission(&#x27;gui-layer-edit&#x27;)&quot;&gt;
+                &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin-top: 20px;&quot; (click)&#x3D;&quot;modifyLayer()&quot;
+                  [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+                  {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODIFY_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+                &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; nzDanger
+                  style&#x3D;&quot;margin-top: 20px; margin-right: 12px;&quot; (click)&#x3D;&quot;cancelModifyLayer()&quot;
+                  [disabled]&#x3D;&quot;!formGroupChange&quot;&gt;
+                  {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.CANCEL_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+              &lt;/div&gt;
+
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/nz-spin&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;!-- Preview --&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.PREVIEW.TITLE&#x27; | translate&quot; [nzForceRender]&#x3D;&quot;true&quot;&gt;
+        &lt;nz-spin class&#x3D;&quot;geolayer-detail-viewer-spin&quot; [nzSpinning]&#x3D;&quot;loading&quot; style&#x3D;&quot;height: 100%&quot;&gt;
+          &lt;div style&#x3D;&quot;height: 100%; width: 100%; display: flex; flex-flow: column;&quot;&gt;
+            &lt;div style&#x3D;&quot;flex: 1 1 auto; height: 100%&quot; #geoViewerContainer&gt;
+              &lt;app-nextgendem-geolayer [singleMode]&#x3D;&quot;true&quot;/&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/nz-spin&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;!-- Advanced --&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.TITLE&#x27; | translate&quot; nzForceRender&gt;
+        &lt;nz-spin [nzSpinning]&#x3D;&quot;loading&quot;&gt;
+          &lt;div style&#x3D;&quot;height: 100%; width: 100%; display: flex; flex-flow: column;&quot;&gt;
+            &lt;form [formGroup]&#x3D;&quot;formGroupAdvance&quot; class&#x3D;&quot;layer-form&quot; *ngIf&#x3D;&quot;formGroupAdvance&quot;&gt;
+
+              &lt;div style&#x3D;&quot;margin-top: 10px&quot; class&#x3D;&quot;row-form-layer&quot;&gt;
+                &lt;!-- WKS --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;wks&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.WORKSPACE&#x27; |
+                    translate}}&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;wks&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.WORKSPACE&#x27; | translate&quot;&gt;
+                &lt;/div&gt;
+                &lt;!-- WKS Url --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;wms_url&quot;&gt;WMS Url&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;wms_url&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;WMS Url&quot;&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div style&#x3D;&quot;margin-top: 10px&quot; class&#x3D;&quot;row-form-layer&quot;&gt;
+                &lt;!-- WKS --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;geoserver_name&quot;&gt;
+                    {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.NAME_IN_GEOSERVER&#x27; | translate}}
+                  &lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;geoserver_name&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Geoserver&quot;&gt;
+                &lt;/div&gt;
+                &lt;!-- WKS Url --&gt;
+                &lt;div class&#x3D;&quot;column-input-form-layer&quot;&gt;
+                  &lt;nz-form-label nzFor&#x3D;&quot;layer_type&quot;&gt;
+                    {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.TYPE_OF_LAYER&#x27; | translate}}&lt;/nz-form-label&gt;
+                  &lt;input nz-input formControlName&#x3D;&quot;layer_type&quot; type&#x3D;&quot;text&quot;
+                    [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.TYPE_OF_LAYER&#x27; | translate&quot;&gt;
+                &lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;!-- Properties --&gt;
+              &lt;div style&#x3D;&quot;margin-top: 10px&quot;&gt;
+                &lt;nz-form-label nzFor&#x3D;&quot;wks&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.LABEL&#x27; |
+                  translate}}&lt;/nz-form-label&gt;
+                &lt;nz-table #propertiesTable [nzData]&#x3D;&quot;formGroupAdvance?.get(&#x27;properties&#x27;).value&quot;
+                  [nzShowPagination]&#x3D;&quot;false&quot; [nzScroll]&#x3D;&quot;{ y: &#x27;300px&#x27; }&quot; [nzPageSize]&#x3D;&quot;9999&quot;&gt;
+                  &lt;thead&gt;
+                    &lt;tr&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.NAME&#x27; | translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.TYPE&#x27; | translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.CAT_TYPE&#x27; | translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.MIN_VALUE&#x27; | translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.MAX_VALUE&#x27; | translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.RESPRESENTABLE&#x27; |
+                        translate}}
+                      &lt;/th&gt;
+                      &lt;th nzAlign&#x3D;&quot;center&quot; *ngIf&#x3D;&quot;authService.havePermission(&#x27;gui-layer-edit&#x27;)&quot;&gt;
+                        {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.ACTIONS&#x27; | translate}}
+                      &lt;/th&gt;
+                    &lt;/tr&gt;
+                  &lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr *ngFor&#x3D;&quot;let data of propertiesTable.data; let i &#x3D; index&quot;&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;
+                        [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-layer-edit&#x27;) ? &#x27;pointer&#x27; : &#x27;default&#x27;}&quot;&gt;
+                        {{ data.name | safeNull:&#x27;-&#x27; }}
+                      &lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;
+                        {{ data.data_type | safeNull:&#x27;-&#x27; }}
+                      &lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;
+                        {{ data.cat_type | safeNull:&#x27;-&#x27; }}&lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;
+                        {{ data.min | safeNull:&#x27;-&#x27;}}
+                      &lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;
+                        {{ data.max | safeNull:&#x27;-&#x27;}}
+                      &lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; (dblclick)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;
+                        {{ &#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TD.&#x27; + (data.representable ?
+                        &#x27;YES&#x27; : &#x27;NO&#x27;) | translate }}
+                      &lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; *ngIf&#x3D;&quot;authService.havePermission(&#x27;gui-layer-edit&#x27;)&quot;&gt;
+                        &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                          &lt;nz-list-item-action&gt;
+                            &lt;i nz-icon nzType&#x3D;&quot;edit&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                              (click)&#x3D;&quot;onClickEditProperty(data, i)&quot;&gt;&lt;/i&gt;
+                          &lt;/nz-list-item-action&gt;
+                        &lt;/ul&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/nz-table&gt;
+              &lt;/div&gt;
+
+            &lt;/form&gt;
+          &lt;/div&gt;
+        &lt;/nz-spin&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab nzTitle&#x3D;&quot;{{&#x27;MISC.ANNOTATIONS.ANNOTATION_TAB&#x27; | translate}}&quot; nzForceRender&gt;
+        &lt;app-annotations-form ObjectType&#x3D;&quot;geolayer&quot; #annotationsForm&gt;&lt;/app-annotations-form&gt;
+      &lt;/nz-tab&gt;
+
+    &lt;/nz-tabset&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;!-- Modal Add CaseStudies --&gt;
+&lt;nz-modal [(nzVisible)]&#x3D;&quot;addCaseStudiesVisibleModal&quot; nzCentered nzTitle&#x3D;&quot;Añadir Caso de Estudio&quot;
+  (nzOnCancel)&#x3D;&quot;addCaseStudiesVisibleModal &#x3D; false;&quot; [nzMaskClosable]&#x3D;&quot;false&quot;&gt;
+  &lt;div *nzModalContent&gt;
+    &lt;div style&#x3D;&quot;padding-bottom: 3px;&quot;&gt;
+      {{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.INPUTS.CASES_STUDIES.LABEL&#x27; | translate}}
+      :
+    &lt;/div&gt;
+    &lt;nz-select
+      [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.INPUTS.CASES_STUDIES.LABEL&#x27; | translate&quot;
+      nzMode&#x3D;&quot;multiple&quot; nzAllowClear [nzDisabled]&#x3D;&quot;loading&quot; nzShowSearch style&#x3D;&quot;width: 100%;&quot; [(ngModel)]&#x3D;&quot;selectModal&quot;
+      [nzMaxTagCount]&#x3D;&quot;3&quot;&gt;
+      &lt;nz-option [nzValue]&#x3D;&quot;item.id&quot; [nzLabel]&#x3D;&quot;item.name&quot; *ngFor&#x3D;&quot;let item of getAddCaseStudiesOptions()&quot;&gt;&lt;/nz-option&gt;
+    &lt;/nz-select&gt;
+  &lt;/div&gt;
+  &lt;div *nzModalFooter&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger
+      (click)&#x3D;&quot;addCaseStudiesVisibleModal &#x3D; false;&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.CANCEL_BUTTON&#x27;
+      | translate}}&lt;/button&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot;
+      (click)&#x3D;&quot;addCaseStudiesModal()&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.ADD_BUTTON&#x27;
+      | translate}}&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/nz-modal&gt;
+
+&lt;!-- Modal Export --&gt;
+&lt;app-geolayer-export-modal&gt;&lt;/app-geolayer-export-modal&gt;
+
+&lt;!-- Modal Edit Property --&gt;
+&lt;app-geoproperty-edit-modal [(isVisible)]&#x3D;&quot;isVisiblePropertyEditModal&quot;
+  (acceptEmitter)&#x3D;&quot;acceptGeopropertyEditModal($event)&quot;&gt;&lt;/app-geoproperty-edit-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./geolayer-detail.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.row-form-layer
+  display: flex
+  flex-wrap: wrap
+  column-gap: 20px
+  row-gap: 10px
+
+.column-input-form-layer
+  min-width: min(360px, 100%)
+  flex: 1 1 0px
+
+.header-geo-viewer
+    height: 48px
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+    text-align: center
+    line-height: 48px
+    padding-left: 18px
+    font-size: 18px
+    font-weight: 400
+
+.click-row
+  cursor: pointer
+
+::ng-deep .geolayer-detail-viewer-tabset .ant-tabs-content-holder .ant-tabs-content-animated
+  height: 100%
+
+::ng-deep .geolayer-detail-viewer-spin .ant-spin-container
+  height: 100%
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="height: 100%;display: flex;  flex-flow: column;">  <nz-page-header>    <nz-page-header-title>      <app-back-button></app-back-button>      {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TITLE\' | translate}} - {{layer.name}}    </nz-page-header-title>    <nz-page-header-extra>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="openExportLayerModal()"        *ngIf="this.authService.havePermission(\'gui-layer-export\')">        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.EXPORT_BUTTON\' | translate}}      </button>    </nz-page-header-extra>  </nz-page-header>  <div style="padding: 0px 24px 30px 24px; flex: 1 1 auto; height: calc(100% - 48px - 20px + 16px);">    <nz-tabset class="geolayer-detail-viewer-tabset" style="height: 100%;" [nzSelectedIndex]="0">      <!-- Details -->      <nz-tab [nzTitle]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.TITLE\' | translate">        <nz-spin [nzSpinning]="loading">          <div *ngIf="formGroup">            <form [formGroup]="formGroup" class="layer-form">              <div class="row-form-layer">                <!-- Id -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="id">Id</nz-form-label>                  <input nz-input formControlName="id" type="text" placeholder="Id">                </div>                <!-- Name -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="name">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.NAME.LABEL\' |                    translate}}</nz-form-label>                  <input nz-input formControlName="name" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.NAME.PLACEHOLDER\' | translate"                    [disableControl]="isDisableEdit()">                </div>              </div>              <div class="row-form-layer">                <!-- Tags -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="tags">Tags</nz-form-label>                  <div style="display: flex; column-gap: 5px">                    <input nz-input [disabled]="loading || isDisableEdit()" #inputTag (keyup.enter)="addTags(inputTag)"                      [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.TAGS.PLACEHOLDER\' | translate">                    <button nz-button (click)="addTags(inputTag)" *ngIf="!isDisableEdit()">                      <i nz-icon                        nzType="plus"></i>{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.TAGS.ADD_BUTTON\' |                      translate}}                    </button>                  </div>                  <div style="margin-top: 6px;">                    <nz-tag *ngFor="let tag of formGroup?.get(\'tags\').value; let i = index" nzMode="closeable"                      [nzColor]="\'green\'" (nzOnClose)="removeTag($event, i)">                      {{tag}}                    </nz-tag>                  </div>                </div>                <!-- Source -->                <div class="column-input-form-layer" *ngIf="!layer.attributes.instance_id">                  <nz-form-label nzFor="source">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE.LABEL\' |                    translate}}</nz-form-label>                  <nz-select                    [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE.PLACEHOLDER\' | translate"                    nzAllowClear formControlName="source" [nzDisabled]="loading || isDisableEdit()" nzShowSearch                    style="width: 100%;">                    <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of sources"></nz-option>                  </nz-select>                </div>                <!-- Instance -->                <div class="column-input-form-layer" *ngIf="layer.attributes.instance_id">                  <nz-form-label nzFor="instance_id">                    {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.INSTANCE_ID.LABEL\' | translate}}                  </nz-form-label>                  <input nz-input formControlName="instance_id" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.INSTANCE_ID.PLACEHOLDER\' | translate">                </div>              </div>              <div class="row-form-layer">                <!-- Themes -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="themes">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SUBJECTS.LABEL\' |                    translate}}</nz-form-label>                  <nz-select                    [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SUBJECTS.PLACEHOLDER\' | translate"                    formControlName="themes" nzMode="multiple" nzAllowClear [nzDisabled]="loading || isDisableEdit()"                    nzShowSearch style="width: 100%;">                    <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of themes"></nz-option>                  </nz-select>                </div>                <!-- CRS -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="crs">CRS</nz-form-label>                  <nz-select nzPlaceHolder="CRS" formControlName="crs" [nzDisabled]="loading || isDisableEdit()"                    nzShowSearch style="width: 100%;">                    <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of crs"></nz-option>                  </nz-select>                </div>              </div>              <div class="row-form-layer">                <!-- Author -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="authors">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.AUTHORSHIP.LABEL\'                    | translate}}</nz-form-label>                  <input nz-input formControlName="authors" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.AUTHORSHIP.PLACEHOLDER\' | translate"                    [disableControl]="isDisableEdit()">                </div>                <!-- Date -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="creation_date">                    {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CREATION_DATE.LABEL\' | translate}}                  </nz-form-label>                  <nz-date-picker [nzDisabled]="loading || isDisableEdit()" formControlName="creation_date"                    style="width: 100%"                    [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CREATION_DATE.PLACEHOLDER\' | translate">                  </nz-date-picker>                </div>              </div>              <div class="row-form-layer">                <!-- File Name -->                <div class="column-input-form-layer"                  *ngIf="formGroup && formGroup.get(\'file_name\') && formGroup.get(\'file_name\').value">                  <nz-form-label nzFor="file_name">                    {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE_FILE_NAME.LABEL\' | translate}}                  </nz-form-label>                  <input nz-input formControlName="file_name" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.SOURCE_FILE_NAME.PLACEHOLDER\' | translate">                </div>              </div>              <div class="row-form-layer">                <!-- Case Studies -->                <div class="column-input-form-layer" style="margin-top: 10px;"                  *ngIf="this.authService.havePermission(\'gui-case-studies\')">                  <div style="width: 100%; height: 40px; align-items:center; display: flex; line-height: 32px;">                    <div style="flex-grow: 1;">                      {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.LABEL\' | translate}}                      :                    </div>                    <button nz-button nzType="default" nzSize="default" nzShape="round"                      (click)="openAddModalCaseStudies()" *ngIf="!isDisableEdit()"><i nz-icon                        nzType="plus"></i>{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.ADD_BUTTON\'                      | translate}}                    </button>                  </div>                  <nz-table #caseStudiesTable [nzData]="formGroup?.get(\'case_studies\').value" [nzShowPagination]="false"                    [nzScroll]="{ y: \'200px\' }" nzBordered>                    <thead>                      <tr>                        <th nzAlign="center">                          {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.TABLE_TH.NAME\' |                          translate}}</th>                        <ng-container *ngIf="!isDisableEdit()">                          <th nzAlign="center" nzRight nzWidth="100px">                            {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.INPUTS.CASES_STUDIES.TABLE_TH.ACTIONS\' |                            translate}}</th>                        </ng-container>                      </tr>                    </thead>                    <tbody>                      <tr *ngFor="let item of caseStudiesTable.data; let i = index">                        <td nzAlign="center"                          [ngClass]="{\'click-row\': this.authService.havePermission(\'gui-case-study-read\')}"                          (click)="openCaseStudy(item)">{{                          getCaseStudyById(item).name }}</td>                        <td nzAlign="center" nzRight *ngIf="!isDisableEdit()">                          <ul nz-list-item-actions style="margin-left: 6px;">                            <nz-list-item-action>                              <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"                                (click)="removeCaseStudies(i)"></i>                            </nz-list-item-action>                          </ul>                        </td>                      </tr>                    </tbody>                  </nz-table>                </div>              </div>              <div style="display: flex; flex-direction: row-reverse; align-items: flex-end"                *ngIf="this.authService.havePermission(\'gui-layer-edit\')">                <button nz-button nzType="primary" nzShape="round" style="margin-top: 20px;" (click)="modifyLayer()"                  [disabled]="!formGroupChange">                  {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODIFY_BUTTON\' | translate}}                </button>                <button nz-button nzType="primary" nzShape="round" nzDanger                  style="margin-top: 20px; margin-right: 12px;" (click)="cancelModifyLayer()"                  [disabled]="!formGroupChange">                  {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.CANCEL_BUTTON\' | translate}}                </button>              </div>            </form>          </div>        </nz-spin>      </nz-tab>      <!-- Preview -->      <nz-tab [nzTitle]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.PREVIEW.TITLE\' | translate" [nzForceRender]="true">        <nz-spin class="geolayer-detail-viewer-spin" [nzSpinning]="loading" style="height: 100%">          <div style="height: 100%; width: 100%; display: flex; flex-flow: column;">            <div style="flex: 1 1 auto; height: 100%" #geoViewerContainer>              <app-nextgendem-geolayer [singleMode]="true"/>            </div>          </div>        </nz-spin>      </nz-tab>      <!-- Advanced -->      <nz-tab [nzTitle]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.TITLE\' | translate" nzForceRender>        <nz-spin [nzSpinning]="loading">          <div style="height: 100%; width: 100%; display: flex; flex-flow: column;">            <form [formGroup]="formGroupAdvance" class="layer-form" *ngIf="formGroupAdvance">              <div style="margin-top: 10px" class="row-form-layer">                <!-- WKS -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="wks">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.WORKSPACE\' |                    translate}}</nz-form-label>                  <input nz-input formControlName="wks" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.WORKSPACE\' | translate">                </div>                <!-- WKS Url -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="wms_url">WMS Url</nz-form-label>                  <input nz-input formControlName="wms_url" type="text" placeholder="WMS Url">                </div>              </div>              <div style="margin-top: 10px" class="row-form-layer">                <!-- WKS -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="geoserver_name">                    {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.NAME_IN_GEOSERVER\' | translate}}                  </nz-form-label>                  <input nz-input formControlName="geoserver_name" type="text" placeholder="Geoserver">                </div>                <!-- WKS Url -->                <div class="column-input-form-layer">                  <nz-form-label nzFor="layer_type">                    {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.TYPE_OF_LAYER\' | translate}}</nz-form-label>                  <input nz-input formControlName="layer_type" type="text"                    [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.TYPE_OF_LAYER\' | translate">                </div>              </div>              <!-- Properties -->              <div style="margin-top: 10px">                <nz-form-label nzFor="wks">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.LABEL\' |                  translate}}</nz-form-label>                <nz-table #propertiesTable [nzData]="formGroupAdvance?.get(\'properties\').value"                  [nzShowPagination]="false" [nzScroll]="{ y: \'300px\' }" [nzPageSize]="9999">                  <thead>                    <tr>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.NAME\' | translate}}                      </th>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.TYPE\' | translate}}                      </th>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.CAT_TYPE\' | translate}}                      </th>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.MIN_VALUE\' | translate}}                      </th>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.MAX_VALUE\' | translate}}                      </th>                      <th nzAlign="center">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.RESPRESENTABLE\' |                        translate}}                      </th>                      <th nzAlign="center" *ngIf="authService.havePermission(\'gui-layer-edit\')">                        {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TH.ACTIONS\' | translate}}                      </th>                    </tr>                  </thead>                  <tbody>                    <tr *ngFor="let data of propertiesTable.data; let i = index">                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)"                        [ngStyle]="{\'cursor\': authService.havePermission(\'gui-layer-edit\') ? \'pointer\' : \'default\'}">                        {{ data.name | safeNull:\'-\' }}                      </td>                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)">                        {{ data.data_type | safeNull:\'-\' }}                      </td>                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)">                        {{ data.cat_type | safeNull:\'-\' }}</td>                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)">                        {{ data.min | safeNull:\'-\'}}                      </td>                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)">                        {{ data.max | safeNull:\'-\'}}                      </td>                      <td nzAlign="center" (dblclick)="onClickEditProperty(data, i)">                        {{ \'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.ADVANCED.INPUTS.PROPERTIES.TD.\' + (data.representable ?                        \'YES\' : \'NO\') | translate }}                      </td>                      <td nzAlign="center" *ngIf="authService.havePermission(\'gui-layer-edit\')">                        <ul nz-list-item-actions style="margin-left: 6px;">                          <nz-list-item-action>                            <i nz-icon nzType="edit" nzTheme="outline" style="cursor: pointer;"                              (click)="onClickEditProperty(data, i)"></i>                          </nz-list-item-action>                        </ul>                      </td>                    </tr>                  </tbody>                </nz-table>              </div>            </form>          </div>        </nz-spin>      </nz-tab>      <nz-tab nzTitle="{{\'MISC.ANNOTATIONS.ANNOTATION_TAB\' | translate}}" nzForceRender>        <app-annotations-form ObjectType="geolayer" #annotationsForm></app-annotations-form>      </nz-tab>    </nz-tabset>  </div></div><!-- Modal Add CaseStudies --><nz-modal [(nzVisible)]="addCaseStudiesVisibleModal" nzCentered nzTitle="Añadir Caso de Estudio"  (nzOnCancel)="addCaseStudiesVisibleModal = false;" [nzMaskClosable]="false">  <div *nzModalContent>    <div style="padding-bottom: 3px;">      {{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.INPUTS.CASES_STUDIES.LABEL\' | translate}}      :    </div>    <nz-select      [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.INPUTS.CASES_STUDIES.LABEL\' | translate"      nzMode="multiple" nzAllowClear [nzDisabled]="loading" nzShowSearch style="width: 100%;" [(ngModel)]="selectModal"      [nzMaxTagCount]="3">      <nz-option [nzValue]="item.id" [nzLabel]="item.name" *ngFor="let item of getAddCaseStudiesOptions()"></nz-option>    </nz-select>  </div>  <div *nzModalFooter>    <button nz-button nzType="primary" nzDanger      (click)="addCaseStudiesVisibleModal = false;">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.CANCEL_BUTTON\'      | translate}}</button>    <button nz-button nzType="primary"      (click)="addCaseStudiesModal()">{{\'GEOGRAPHICAL_DATA.LAYERS.DETAIL.TABS.DETAIL.MODAL_ADD_CASE_STUDIES.ADD_BUTTON\'      | translate}}</button>  </div></nz-modal><!-- Modal Export --><app-geolayer-export-modal></app-geolayer-export-modal><!-- Modal Edit Property --><app-geoproperty-edit-modal [(isVisible)]="isVisiblePropertyEditModal"  (acceptEmitter)="acceptGeopropertyEditModal($event)"></app-geoproperty-edit-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'GeolayerDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GeolayerDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

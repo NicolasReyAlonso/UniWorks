@@ -1,0 +1,3417 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ArchaeopteryxBrowserComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-archaeopteryx-browser</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../components/DynamicInputModalComponent.html" target="_self" >DynamicInputModalComponent</a></code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzButtonModule</code>
+                            <code>NzIconModule</code>
+                            <code>ColorPickerModule</code>
+                            <code>NzSelectModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./archaeopteryx-browser.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./archaeopteryx-browser.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#branchColors" >branchColors</a>
+                            </li>
+                            <li>
+                                <a href="#color" >color</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#DEFAULT_COLOR" >DEFAULT_COLOR</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#eventsSubscription" >eventsSubscription</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getState" >getState</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleOverrideModal" >isVisibleOverrideModal</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleSaveModal" >isVisibleSaveModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#newickStr" >newickStr</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#NODE_COLOR_OPTIONS" >NODE_COLOR_OPTIONS</a>
+                            </li>
+                            <li>
+                                <a href="#nodeColorOptionSelected" >nodeColorOptionSelected</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#nodeColors" >nodeColors</a>
+                            </li>
+                            <li>
+                                <a href="#oldText" >oldText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#options" >options</a>
+                            </li>
+                            <li>
+                                <a href="#overrideModalFields" >overrideModalFields</a>
+                            </li>
+                            <li>
+                                <a href="#savedColors" >savedColors</a>
+                            </li>
+                            <li>
+                                <a href="#saveModalFields" >saveModalFields</a>
+                            </li>
+                            <li>
+                                <a href="#selectedSavedColor" >selectedSavedColor</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#settings" >settings</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#totalBranches" >totalBranches</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#totalNodes" >totalNodes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#treeReceived" >treeReceived</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#windowListener" >windowListener</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ab2str" >ab2str</a>
+                            </li>
+                            <li>
+                                <a href="#addListenersAndColors" >addListenersAndColors</a>
+                            </li>
+                            <li>
+                                <a href="#escapeRegExp" >escapeRegExp</a>
+                            </li>
+                            <li>
+                                <a href="#getAllChildren" >getAllChildren</a>
+                            </li>
+                            <li>
+                                <a href="#getBranchId" >getBranchId</a>
+                            </li>
+                            <li>
+                                <a href="#getNodeId" >getNodeId</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#launchArchaeopteryx" >launchArchaeopteryx</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#load" >load</a>
+                            </li>
+                            <li>
+                                <a href="#loadDefaultOptions" >loadDefaultOptions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#overrideTextModal" >overrideTextModal</a>
+                            </li>
+                            <li>
+                                <a href="#removeColor" >removeColor</a>
+                            </li>
+                            <li>
+                                <a href="#saveColor" >saveColor</a>
+                            </li>
+                            <li>
+                                <a href="#saveProgressEvent" >saveProgressEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#saveSettings" >saveSettings</a>
+                            </li>
+                            <li>
+                                <a href="#saveSettingsModal" >saveSettingsModal</a>
+                            </li>
+                            <li>
+                                <a href="#setColor" >setColor</a>
+                            </li>
+                            <li>
+                                <a href="#setColorPicker" >setColorPicker</a>
+                            </li>
+                            <li>
+                                <a href="#updateMapKeys" >updateMapKeys</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#hiddenSaveProgress" >hiddenSaveProgress</a>
+                            </li>
+                            <li>
+                                <a href="#tree" >tree</a>
+                            </li>
+                            <li>
+                                <a href="#Url" >Url</a>
+                            </li>
+                            <li>
+                                <a href="#view" >view</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: ActivatedRoute, msg: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, http: HttpClient, globalVariablesServices: <a href="../injectables/GlobalService.html" target="_self">GlobalService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, filesService: <a href="../injectables/FilesService.html" target="_self">FilesService</a>, location: Location, modal: NzModalService, internationalizationService: <a href="../injectables/InternationalizationService.html" target="_self">InternationalizationService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>msg</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>globalVariablesServices</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GlobalService.html" target="_self" >GlobalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>filesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FilesService.html" target="_self" >FilesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>location</td>
+                                                  
+                                                        <td>
+                                                                    <code>Location</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modal</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzModalService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>internationalizationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InternationalizationService.html" target="_self" >InternationalizationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="hiddenSaveProgress"></a>
+                        <b>hiddenSaveProgress</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:67</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tree"></a>
+                        <b>tree</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:66</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Url"></a>
+                        <b>Url</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:64</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="view"></a>
+                        <b>view</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:65</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ab2str"></a>
+                    <span class="name">
+                        <span ><b>ab2str</b></span>
+                        <a href="#ab2str"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ab2str(buf)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>buf</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addListenersAndColors"></a>
+                    <span class="name">
+                        <span ><b>addListenersAndColors</b></span>
+                        <a href="#addListenersAndColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addListenersAndColors(isFirstTime: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>, from_breadcrumb: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="432"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:432</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isFirstTime</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>from_breadcrumb</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="escapeRegExp"></a>
+                    <span class="name">
+                        <span ><b>escapeRegExp</b></span>
+                        <a href="#escapeRegExp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>escapeRegExp(string)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="379"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:379</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>string</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAllChildren"></a>
+                    <span class="name">
+                        <span ><b>getAllChildren</b></span>
+                        <a href="#getAllChildren"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getAllChildren(children, allItems: any[], idChildrenAux?)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="544"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:544</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>children</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>allItems</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>idChildrenAux</td>
+                                            <td>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getBranchId"></a>
+                    <span class="name">
+                        <span ><b>getBranchId</b></span>
+                        <a href="#getBranchId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getBranchId(branch)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="418"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:418</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>branch</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNodeId"></a>
+                    <span class="name">
+                        <span ><b>getNodeId</b></span>
+                        <a href="#getNodeId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getNodeId(node)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="404"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:404</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>node</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="launchArchaeopteryx"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>launchArchaeopteryx</b></span>
+                        <a href="#launchArchaeopteryx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>launchArchaeopteryx(tree, from_breadcrumb)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="241"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:241</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tree</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>from_breadcrumb</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="load"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>load</b></span>
+                        <a href="#load"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>load(data, from_breadcrumb)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>from_breadcrumb</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadDefaultOptions"></a>
+                    <span class="name">
+                        <span ><b>loadDefaultOptions</b></span>
+                        <a href="#loadDefaultOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>loadDefaultOptions()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="258"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:258</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="144"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overrideTextModal"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>overrideTextModal</b></span>
+                        <a href="#overrideTextModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>overrideTextModal(outputModal)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="383"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:383</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>outputModal</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeColor"></a>
+                    <span class="name">
+                        <span ><b>removeColor</b></span>
+                        <a href="#removeColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="568"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:568</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveColor"></a>
+                    <span class="name">
+                        <span ><b>saveColor</b></span>
+                        <a href="#saveColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="576"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:576</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveProgressEvent"></a>
+                    <span class="name">
+                        <span ><b>saveProgressEvent</b></span>
+                        <a href="#saveProgressEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveProgressEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="587"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:587</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveSettings"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>saveSettings</b></span>
+                        <a href="#saveSettings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>saveSettings(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="308"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:308</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveSettingsModal"></a>
+                    <span class="name">
+                        <span ><b>saveSettingsModal</b></span>
+                        <a href="#saveSettingsModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveSettingsModal(outputModal)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:303</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>outputModal</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setColor"></a>
+                    <span class="name">
+                        <span ><b>setColor</b></span>
+                        <a href="#setColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setColor()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="583"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:583</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setColorPicker"></a>
+                    <span class="name">
+                        <span ><b>setColorPicker</b></span>
+                        <a href="#setColorPicker"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setColorPicker()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="564"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:564</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateMapKeys"></a>
+                    <span class="name">
+                        <span ><b>updateMapKeys</b></span>
+                        <a href="#updateMapKeys"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateMapKeys(map, old_text, new_text)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="369"
+                                    class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:369</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>map</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>old_text</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>new_text</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="branchColors"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>branchColors</b></span>
+                        <a href="#branchColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="color"></a>
+                    <span class="name">
+                        <span ><b>color</b></span>
+                        <a href="#color"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ArchaeopteryxBrowserComponent.DEFAULT_COLOR</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_COLOR"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>DEFAULT_COLOR</b></span>
+                        <a href="#DEFAULT_COLOR"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;#909090&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="eventsSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>eventsSubscription</b></span>
+                        <a href="#eventsSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getState</b></span>
+                        <a href="#getState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleOverrideModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleOverrideModal</b></span>
+                        <a href="#isVisibleOverrideModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleSaveModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleSaveModal</b></span>
+                        <a href="#isVisibleSaveModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newickStr"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>newickStr</b></span>
+                        <a href="#newickStr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="NODE_COLOR_OPTIONS"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>NODE_COLOR_OPTIONS</b></span>
+                        <a href="#NODE_COLOR_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>NodeColorOptionsEnum</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodeColorOptionSelected"></a>
+                    <span class="name">
+                        <span ><b>nodeColorOptionSelected</b></span>
+                        <a href="#nodeColorOptionSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#NodeColorOptionsEnum" target="_self" >NodeColorOptionsEnum</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>NodeColorOptionsEnum.NODE</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodeColors"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>nodeColors</b></span>
+                        <a href="#nodeColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="oldText"></a>
+                    <span class="name">
+                        <span ><b>oldText</b></span>
+                        <a href="#oldText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="options"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>options</b></span>
+                        <a href="#options"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overrideModalFields"></a>
+                    <span class="name">
+                        <span ><b>overrideModalFields</b></span>
+                        <a href="#overrideModalFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="savedColors"></a>
+                    <span class="name">
+                        <span ><b>savedColors</b></span>
+                        <a href="#savedColors"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[ArchaeopteryxBrowserComponent.DEFAULT_COLOR]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveModalFields"></a>
+                    <span class="name">
+                        <span ><b>saveModalFields</b></span>
+                        <a href="#saveModalFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSavedColor"></a>
+                    <span class="name">
+                        <span ><b>selectedSavedColor</b></span>
+                        <a href="#selectedSavedColor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="settings"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>settings</b></span>
+                        <a href="#settings"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalBranches"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>totalBranches</b></span>
+                        <a href="#totalBranches"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalNodes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>totalNodes</b></span>
+                        <a href="#totalNodes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="treeReceived"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>treeReceived</b></span>
+                        <a href="#treeReceived"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="windowListener"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>windowListener</b></span>
+                        <a href="#windowListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventListener</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from &#x27;@angular/core&#x27;;
+import {ActivatedRoute} from &#x27;@angular/router&#x27;;
+import {CommonModule, Location} from &quot;@angular/common&quot;;
+import {MessageLogService} from &quot;src/app/services/message-log.service&quot;;
+import { HttpClient } from &quot;@angular/common/http&quot;;
+import {GlobalService} from &#x27;src/app/services/global.service&#x27;;
+import &#x27;./archaeopteryx_dependencies/archaeopteryx&#x27;;
+import &#x27;./archaeopteryx_dependencies/forester&#x27;;
+import {Observable, Subscription} from &quot;rxjs&quot;;
+import {BackendService} from &quot;src/app/services/backend.service&quot;;
+import {v4 as uuid} from &#x27;uuid&#x27;;
+import {NotificationService, TypeNotificationEnum} from &quot;src/app/services/notification.service&quot;;
+import {NzModalService} from &quot;ng-zorro-antd/modal&quot;;
+import {FilesService} from &quot;src/app/services/files.service&quot;;
+import {FormlyFieldConfig} from &quot;@ngx-formly/core&quot;;
+import {InternationalizationService} from "ngt-gui";import {StateService} from &quot;src/app/services/state.service&quot;;
+import {DynamicInputModalComponent} from &quot;../../../dynamics/dynamic-input-modal/dynamic-input-modal.component&quot;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {ColorPickerModule} from &quot;ngx-color-picker&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+
+declare var archaeopteryx: any;
+declare var d3: any;
+
+enum NodeColorOptionsEnum {
+  NODE &#x3D; &quot;NODE&quot;,
+  NODES_CHILDREN &#x3D; &quot;NODES_CHILDREN&quot;,
+  BRANCHES_CHILDREN &#x3D; &quot;BRANCHES_CHILDREN&quot;,
+  NODES_AND_BRANCHES &#x3D; &quot;NODES_AND_BRANCHES&quot;,
+}
+
+@Component({
+    selector: &#x27;app-archaeopteryx-browser&#x27;,
+    imports: [
+        CommonModule,
+        DynamicInputModalComponent,
+        SharedModule,
+        NzButtonModule,
+        NzIconModule,
+        ColorPickerModule,
+        NzSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+    ],
+    templateUrl: &#x27;./archaeopteryx-browser.component.html&#x27;,
+    styleUrls: [&#x27;./archaeopteryx-browser.component.sass&#x27;],
+    encapsulation: ViewEncapsulation.None
+})
+export class ArchaeopteryxBrowserComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  @Input(&#x27;Url&#x27;) Url: string;
+  @Input() view: {};
+  @Input(&#x27;tree&#x27;) tree;
+  @Input() hiddenSaveProgress &#x3D; true;
+
+  private eventsSubscription: Subscription;
+  public loading: boolean;
+  private options &#x3D; {};
+  private settings &#x3D; {};
+  private branchColors &#x3D; {};
+  private nodeColors &#x3D; {};
+  private newickStr: string;
+  private treeReceived &#x3D; false;
+
+  private totalBranches: number;
+  private totalNodes: number;
+  private windowListener: EventListener;
+  private getState: any &#x3D; {};
+
+  static readonly DEFAULT_COLOR &#x3D; &#x27;#909090&#x27;;
+  isVisibleSaveModal &#x3D; false;
+  isVisibleOverrideModal &#x3D; false;
+  saveModalFields: FormlyFieldConfig[];
+  overrideModalFields: FormlyFieldConfig[];
+  selectedSavedColor;
+  color &#x3D; ArchaeopteryxBrowserComponent.DEFAULT_COLOR;
+  savedColors &#x3D; [ArchaeopteryxBrowserComponent.DEFAULT_COLOR];
+  nodeColorOptionSelected: NodeColorOptionsEnum &#x3D; NodeColorOptionsEnum.NODE;
+  readonly NODE_COLOR_OPTIONS &#x3D; NodeColorOptionsEnum;
+
+  oldText &#x3D; &#x27;&#x27;;
+
+  constructor(
+    private route: ActivatedRoute,
+    private msg: MessageLogService,
+    private http: HttpClient,
+    private readonly globalVariablesServices: GlobalService,
+    private readonly backendService: BackendService,
+    private readonly notificationService: NotificationService,
+    private readonly filesService: FilesService,
+    private readonly location: Location,
+    private modal: NzModalService,
+    private internationalizationService: InternationalizationService,
+    private readonly stateService: StateService,
+  ) {
+    this.loading &#x3D; true;
+  }
+
+  ab2str(buf) {
+    let str &#x3D; &quot;&quot;;
+    for (const b of buf) {
+      str +&#x3D; b;
+    }
+    return str;
+  }
+
+  async ngOnInit() {
+    this.loading &#x3D; true;
+    this.saveModalFields &#x3D; [
+      {
+        key: &#x27;name&#x27;,
+        type: &#x27;input&#x27;,
+        props: {
+          required: true,
+          label: await this.internationalizationService.translate(&#x27;DISPLAY.PHYLOTREES.SAVE_MODAL.NAME&#x27;)
+        }
+      }
+    ];
+    this.overrideModalFields &#x3D; [
+      {
+        key: &#x27;new_text&#x27;,
+        type: &#x27;input&#x27;,
+        props: {
+          required: true,
+          label: await this.internationalizationService.translate(&#x27;DISPLAY.PHYLOTREES.OVERRIDE_TEXT.NEW_TEXT&#x27;),
+        }
+      }
+    ];
+  }
+
+  async ngAfterViewInit() {
+    this.getState &#x3D; await this.stateService.getStateCurrenView();
+    if (this.getState &amp;&amp;
+      (this.getState.trees &amp;&amp; this.tree &amp;&amp; btoa(this.tree) in this.getState.trees ||
+        this.getState.views &amp;&amp; this.view)) {
+      let state;
+      if (this.view) {
+        state &#x3D; this.getState.views[this.view[&#x27;id&#x27;]];
+      } else {
+        state &#x3D; this.getState.trees[btoa(this.tree)];
+      }
+      this.treeReceived &#x3D; true;
+      this.savedColors &#x3D; state.savedColors;
+      this.settings &#x3D; state.settings;
+      this.options &#x3D; state.options;
+      this.branchColors &#x3D; state.branchColors;
+      this.nodeColors &#x3D; state.nodeColors;
+      this.newickStr &#x3D; state.tree;
+      await this.load(this.newickStr, true);
+      this.loading &#x3D; false;
+    } else {
+      this.getState &#x3D; {views: {}, trees: {}};
+      if (this.tree) {
+        this.newickStr &#x3D; this.tree;
+        this.treeReceived &#x3D; true;
+        await this.load(this.newickStr, true);
+        this.loading &#x3D; false;
+      } else {
+        const textOption &#x3D; {responseType: &#x27;text&#x27;};
+        const options &#x3D; {...this.globalVariablesServices.authOptions, ...textOption};
+        let obs: Observable&lt;ArrayBuffer&gt;;
+        obs &#x3D; this.http.get(this.Url, options);
+        if (obs !&#x3D;&#x3D; undefined) {
+          obs.subscribe({
+            next: async (newickBinary) &#x3D;&gt; {
+              this.newickStr &#x3D; this.ab2str(newickBinary);
+              await this.load(this.newickStr, false);
+            },
+            error: (error) &#x3D;&gt; {
+              this.loading &#x3D; false;
+              this.msg.error(error.message);
+            },
+            complete: () &#x3D;&gt; {
+              this.loading &#x3D; false;
+            }
+          });
+        } else {
+          this.msg.error(await this.internationalizationService.translate(&quot;DISPLAY.PHYLOTREES.LOG.NO_TREE&quot;))
+        }
+      }
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.windowListener)
+      window.removeEventListener(&quot;update_archaeopteryx&quot;, this.windowListener);
+    const saveMap &#x3D; {
+      savedColors: this.savedColors,
+      settings: this.settings,
+      options: this.options,
+      branchColors: this.branchColors,
+      nodeColors: this.nodeColors,
+      tree: this.newickStr,
+    };
+    if (this.view) {
+      this.getState.views[this.view[&#x27;id&#x27;]] &#x3D; saveMap;
+    } else {
+      if (this.tree)
+        this.getState.trees[btoa(this.tree)] &#x3D; saveMap;
+      else
+        this.getState.trees[btoa(this.newickStr)] &#x3D; saveMap;
+    }
+    this.stateService.setStateCurrentView(this.getState);
+  }
+
+  async load(data, from_breadcrumb) {
+    if (this.view) {
+      const savedData &#x3D; this.view[&#x27;data&#x27;];
+      this.settings &#x3D; savedData[&#x27;settings&#x27;];
+      this.options &#x3D; savedData[&#x27;options&#x27;];
+      this.branchColors &#x3D; savedData[&#x27;branchColors&#x27;];
+      this.nodeColors &#x3D; savedData[&#x27;nodeColors&#x27;];
+    } else {
+      this.loadDefaultOptions();
+    }
+
+    let tree &#x3D; null;
+    try {
+      tree &#x3D; archaeopteryx.parseNewHampshire(data, true, false);
+    } catch (e) {
+      this.msg.error(await this.internationalizationService.translate(&quot;DISPLAY.PHYLOTREES.LOG.ERROR_PARSING&quot;) + e);
+    }
+    if (tree) {
+      await this.launchArchaeopteryx(tree, from_breadcrumb);
+    }
+  }
+
+  async launchArchaeopteryx(tree, from_breadcrumb) {
+    try {
+        await archaeopteryx.launch(&#x27;#phylogram1&#x27;, tree, this.options, this.settings, [],
+          []);
+        this.addListenersAndColors(true, from_breadcrumb);
+        this.windowListener &#x3D; () &#x3D;&gt; {
+          if (!this.loading)
+            this.addListenersAndColors(false, from_breadcrumb);
+        }
+        setTimeout(() &#x3D;&gt; //wait until the page is loaded
+          window.addEventListener(&quot;update_archaeopteryx&quot;, this.windowListener), 3000);
+      } catch (e) {
+        console.log(e);
+        this.msg.error(e);
+      }
+  }
+
+  loadDefaultOptions(): void {
+    this.options[&#x27;alignPhylogram&#x27;] &#x3D; false; // We should launch with &quot;regular&quot; phylogram.
+    this.options[&#x27;branchDataFontSize&#x27;] &#x3D; 9;
+    this.options[&#x27;defaultFont&#x27;] &#x3D; [&#x27;Arial&#x27;, &#x27;Helvetica&#x27;, &#x27;Times&#x27;];
+    this.options[&#x27;minBranchLengthValueToShow&#x27;] &#x3D; 0.000001;
+    this.options[&#x27;phylogram&#x27;] &#x3D; true; // We should launch with &quot;regular&quot; phylogram.
+    this.options[&#x27;showExternalLabels&#x27;] &#x3D; true;
+    this.options[&#x27;showExternalNodes&#x27;] &#x3D; true;
+    this.options[&#x27;showInternalNodes&#x27;] &#x3D; true;
+    this.options[&#x27;showNodeName&#x27;] &#x3D; true;
+    this.options[&#x27;showSequence&#x27;] &#x3D; false; // Do not show &quot;Sequence&quot; upon launch.
+    this.options[&#x27;showSequenceAccession&#x27;] &#x3D; true; // If user turns on &quot;Sequence&quot; display, accession will be shown.
+    this.options[&#x27;searchProperties&#x27;] &#x3D; true;
+    this.options[&#x27;searchIsPartial&#x27;] &#x3D; false;
+    this.options[&#x27;showVisualizationsLegend&#x27;] &#x3D; false;
+    this.options[&#x27;visualizationsLegendOrientation&#x27;] &#x3D; &#x27;vertical&#x27;;
+    this.options[&#x27;nodeSizeDefault&#x27;] &#x3D; 5;
+    this.options[&#x27;internalNodeFontSize&#x27;] &#x3D; &#x27;15px&#x27;;
+    this.options[&#x27;externalNodeFontSize&#x27;] &#x3D; &#x27;15px&#x27;;
+    this.options[&#x27;branchDataFontSize&#x27;] &#x3D; &#x27;15px&#x27;;
+
+
+    this.settings[&#x27;border&#x27;] &#x3D; &#x27;0px&#x27;;
+    this.settings[&#x27;controls0Top&#x27;] &#x3D; 10;
+    this.settings[&#x27;controls1Top&#x27;] &#x3D; 10; // Should have both boxes in line[&#x27;
+    // this.settings[&#x27;displayHeight&#x27;] &#x3D; 700;
+    // this.settings[&#x27;displayWidth&#x27;] &#x3D; 1200;
+    this.settings[&#x27;enableAccessToDatabases&#x27;] &#x3D; false;
+    this.settings[&#x27;enableCollapseByFeature&#x27;] &#x3D; false;
+    this.settings[&#x27;enableDownloads&#x27;] &#x3D; true;
+    this.settings[&#x27;enableDynamicSizing&#x27;] &#x3D; true;
+    this.settings[&#x27;enableSpecialVisualizations2&#x27;] &#x3D; true;
+    this.settings[&#x27;enableSpecialVisualizations3&#x27;] &#x3D; true;
+    this.settings[&#x27;enableSpecialVisualizations4&#x27;] &#x3D; true;
+    this.settings[&#x27;nhExportWriteConfidences&#x27;] &#x3D; true;
+    this.settings[&#x27;searchFieldWidth&#x27;] &#x3D; &#x27;50px&#x27;;
+    this.settings[&#x27;collapseLabelWidth&#x27;] &#x3D; &#x27;36px&#x27;;
+    this.settings[&#x27;textFieldHeight&#x27;] &#x3D; &#x27;14px&#x27;;
+    this.settings[&#x27;showShortenNodeNamesButton&#x27;] &#x3D; true;
+    this.settings[&#x27;showDynahideButton&#x27;] &#x3D; true;
+
+    this.branchColors &#x3D; {};
+    this.nodeColors &#x3D; {};
+  }
+
+  saveSettingsModal(outputModal) {
+    const name &#x3D; outputModal[&#x27;name&#x27;]
+    this.saveSettings(name).then();
+  }
+
+  async saveSettings(name: string): Promise&lt;void&gt; {
+    if (this.treeReceived) {
+      const filename &#x3D; uuid() + &#x27;.nwk&#x27;;
+      const path &#x3D; &#x27;phylotree-viewer&#x27;;
+      this.filesService.postString2FileApi(&#x27;phylotree-viewer&#x27;, filename, this.newickStr, &#x27;text/x-nhx&#x27;).subscribe(
+        response &#x3D;&gt; {
+        }, error &#x3D;&gt; {
+          this.msg.error(error.error.message);
+
+        }, () &#x3D;&gt; {
+        });
+      this.Url &#x3D; &#x60;${this.filesService.baseUrl}/files/${path}/${filename}.content&#x60;
+    }
+
+    const settingsJson &#x3D; {
+      settings: this.settings,
+      options: this.options,
+      branchColors: this.branchColors,
+      nodeColors: this.nodeColors,
+      filesApiUrl: this.view &amp;&amp; this.view[&#x27;data&#x27;][&#x27;filesApiUrl&#x27;] ? this.view[&#x27;data&#x27;][&#x27;filesApiUrl&#x27;] : this.Url.toString(),
+      savedColors: this.savedColors
+    };
+    const view &#x3D; {
+      name: name,
+      type: &#x27;phylotree-viewer&#x27;,
+      data: settingsJson
+    };
+
+    try {
+      let response;
+      if (!this.view) {
+        response &#x3D; await this.backendService.postView(view).toPromise();
+      } else {
+        response &#x3D; await this.backendService.putView(this.view[&#x27;id&#x27;], view).toPromise();
+      }
+      if (response.content &amp;&amp; response.content.id) {
+        this.view &#x3D; response.content;
+        this.location.replaceState(&#x60;/archaeopteryxBrowser?view_id&#x3D;${this.view[&#x27;id&#x27;]}&#x60;);
+      }
+      if (response.issues) {
+        this.msg.addIssues(response.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.success,
+        &#x27;MOLECULAR_DATA.PHYLOTREES.ARCHAEOPTERYX.NOTIFICATION_CREATE_VIEW_CORRECTLY.TITLE&#x27;,
+        &#x27;MOLECULAR_DATA.PHYLOTREES.ARCHAEOPTERYX.NOTIFICATION_CREATE_VIEW_CORRECTLY.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    } catch (e) {
+      if (e.issues) {
+        this.msg.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;MOLECULAR_DATA.PHYLOTREES.ARCHAEOPTERYX.NOTIFICATION_CREATE_VIEW_ERROR.CONTENT&#x27;,
+        &#x27;MOLECULAR_DATA.PHYLOTREES.ARCHAEOPTERYX.NOTIFICATION_CREATE_VIEW_ERROR.TITLE&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+  }
+
+  updateMapKeys(map, old_text, new_text) {
+    for (const key of Object.keys(map)) {
+      if (key.includes(old_text)) {
+        map[key.replace(old_text, new_text)] &#x3D; map[key];
+        delete map[key];
+      }
+    }
+    return map;
+  }
+
+  escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, &#x27;\\$&amp;&#x27;);
+  }
+
+  async overrideTextModal(outputModal) {
+    this.loading &#x3D; true;
+    const newText &#x3D; outputModal[&#x27;new_text&#x27;];
+    this.nodeColors &#x3D; this.updateMapKeys(this.nodeColors, this.oldText, newText);
+    this.branchColors &#x3D; this.updateMapKeys(this.branchColors, this.oldText, newText);
+    const parsedNwk &#x3D; this.newickStr.replaceAll(&#x27;_&#x27;, &#x27; &#x27;);
+    const regexSubStr &#x3D; this.escapeRegExp(this.oldText);
+    const regexp &#x3D; new RegExp(&#x60;[(,]${regexSubStr}:&#x60;);
+    const idxOfSubstr &#x3D; parsedNwk.search(regexp);
+    const before &#x3D; this.newickStr.slice(0, idxOfSubstr + 1); // +1 because of the ( or ,
+    const after &#x3D; this.newickStr.slice(idxOfSubstr + this.oldText.length + 1); // +1 because of the :
+    this.newickStr &#x3D; before + newText.replaceAll(&#x27; &#x27;, &#x27;_&#x27;) + after;
+    const tree &#x3D; archaeopteryx.parseNewHampshire(this.newickStr , true, false);
+    let element &#x3D; document.getElementById(&#x27;phylogram1&#x27;);
+    element.innerHTML &#x3D; &#x27;&#x27;;
+    element &#x3D; document.getElementById(&#x27;controls0&#x27;);
+    element.innerHTML &#x3D; &#x27;&#x27;;
+    await this.launchArchaeopteryx(tree, true);
+    this.loading &#x3D; false;
+  }
+
+  getNodeId(node) {
+    if (!(&#x27;children&#x27; in node[&#x27;__data__&#x27;])) {
+      return node[&#x27;__data__&#x27;].name;
+    } else {
+      const child_names &#x3D; []
+      let child_node;
+      for (let child of node[&#x27;__data__&#x27;].children) {
+        child_node &#x3D; {&#x27;__data__&#x27;: child}
+        child_names.push(this.getNodeId(child_node))
+      }
+      return child_names.sort().join(&#x27;_&#x27;);
+    }
+  }
+
+  getBranchId(branch) {
+    if (!(&#x27;children&#x27; in branch[&#x27;__data__&#x27;][&#x27;target&#x27;])) {
+      return branch[&#x27;__data__&#x27;][&#x27;target&#x27;].name;
+    } else {
+      const child_names &#x3D; []
+      let child_branch;
+      for (let child of branch[&#x27;__data__&#x27;][&#x27;target&#x27;].children) {
+        child_branch &#x3D; {&#x27;__data__&#x27;: {&#x27;target&#x27;: child}}
+        child_names.push(this.getBranchId(child_branch))
+      }
+      return child_names.sort().join(&#x27;_&#x27;);
+    }
+  }
+
+  addListenersAndColors(isFirstTime: boolean, from_breadcrumb: boolean): void {
+    let i &#x3D; 0;
+    const branches &#x3D; Array.from(document.getElementsByClassName(&#x27;link&#x27;));
+    if (isFirstTime || branches.length &gt; this.totalBranches) {
+      this.totalBranches &#x3D; branches.length;
+    }
+    branches.forEach((element) &#x3D;&gt; {
+      element.id &#x3D; this.getBranchId(element);
+      if (this.branchColors[element.id] !&#x3D;&#x3D; undefined) {
+        element.setAttribute(&quot;stroke&quot;, this.branchColors[element.id]);
+      }
+      element.addEventListener(&#x27;click&#x27;, (event) &#x3D;&gt; {
+        const target &#x3D; (event.target as HTMLElement);
+        target.setAttribute(&quot;stroke&quot;, this.color);
+        this.branchColors[target.id] &#x3D; this.color;
+      });
+      i++;
+    });
+    let defaultOnClick;
+    i &#x3D; 0;
+    let style: {};
+    const nodes &#x3D; Array.from(document.getElementsByClassName(&#x27;node&#x27;));
+    if (isFirstTime || nodes.length &gt; this.totalNodes) {
+      this.totalNodes &#x3D; nodes.length;
+    }
+    if (!isFirstTime) {
+      nodes.forEach((element) &#x3D;&gt; {
+        if (style &#x3D;&#x3D;&#x3D; undefined &amp;&amp; element.children[1][&#x27;style&#x27;][&#x27;stroke&#x27;] !&#x3D;&#x3D; &#x27;&#x27;) {
+          style &#x3D; element.children[1][&#x27;style&#x27;];
+          style[&#x27;stroke&#x27;] &#x3D; &#x27;rgb(144, 144, 144)&#x27;;
+          style[&#x27;fill&#x27;] &#x3D; &#x27;rgb(144, 144, 144)&#x27;;
+        }
+      });
+    }
+    let reloadedNode;
+    nodes.forEach((element) &#x3D;&gt; {
+      reloadedNode &#x3D; element.children[1][&#x27;style&#x27;][&#x27;stroke&#x27;] &#x3D;&#x3D;&#x3D; &#x27;&#x27; &amp;&amp; !isFirstTime;
+      element.id &#x3D; this.getNodeId(element)
+      defaultOnClick &#x3D; element.eventListeners(&#x27;click&#x27;)[0];
+
+
+      if (reloadedNode &amp;&amp; style[&#x27;cssText&#x27;]) {
+        element.children[1][&#x27;style&#x27;] &#x3D; style[&#x27;cssText&#x27;];
+      }
+      if (this.nodeColors[element.id] !&#x3D;&#x3D; undefined &amp;&amp; (isFirstTime || reloadedNode)) {
+        element.children[1][&#x27;style&#x27;][&quot;stroke&quot;] &#x3D; this.nodeColors[element.id];
+        element.children[1][&#x27;style&#x27;][&quot;fill&quot;] &#x3D; this.nodeColors[element.id];
+      } else if (this.view || from_breadcrumb) {
+        element.children[1][&#x27;style&#x27;][&quot;stroke&quot;] &#x3D; &#x27;rgb(144, 144, 144)&#x27;;
+        element.children[1][&#x27;style&#x27;][&quot;fill&quot;] &#x3D; &#x27;rgb(144, 144, 144)&#x27;;
+      }
+      if (reloadedNode || isFirstTime) {
+        element.removeEventListener(&quot;click&quot;, element.eventListeners(&#x27;click&#x27;)[0]);
+        element.addEventListener(&#x27;contextmenu&#x27;, (e) &#x3D;&gt; {
+          e.preventDefault();
+        });
+        element.addEventListener(&#x27;contextmenu&#x27;, defaultOnClick);
+
+        element.addEventListener(&#x27;click&#x27;, (event) &#x3D;&gt; {
+          const children &#x3D; event.target[&#x27;__data__&#x27;].children;
+          if (event.target[&#x27;__data__&#x27;].children &amp;&amp; this.nodeColorOptionSelected !&#x3D;&#x3D; NodeColorOptionsEnum.NODE) {
+            const objChildren &#x3D; this.getAllChildren(children, [...d3.selectAll(&#x27;.link&#x27;)[0], ...d3.selectAll(&#x27;.node&#x27;)[0]]);
+            for (let obj of objChildren) {
+              if (obj.classList.contains(&#x27;node&#x27;)) {
+                if (this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODES_CHILDREN || this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODES_AND_BRANCHES) {
+                  const nodeCircle &#x3D; obj.querySelector(&#x27;.nodeCircle&#x27;);
+                  if (nodeCircle) {
+                    nodeCircle[&#x27;style&#x27;][&quot;stroke&quot;] &#x3D; this.color;
+                    nodeCircle[&#x27;style&#x27;][&quot;fill&quot;] &#x3D; this.color;
+                  }
+                }
+              } else {
+                if (this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.BRANCHES_CHILDREN || this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODES_AND_BRANCHES) {
+                  obj[&#x27;style&#x27;][&quot;stroke&quot;] &#x3D; this.color;
+                }
+              }
+            }
+          }
+          if (this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODE
+            || this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODES_AND_BRANCHES
+            || this.nodeColorOptionSelected &#x3D;&#x3D;&#x3D; NodeColorOptionsEnum.NODES_CHILDREN) {
+            const target &#x3D; (event.target as HTMLElement);
+            if (target.tagName !&#x3D;&#x3D; &#x27;text&#x27; &amp;&amp; target.tagName !&#x3D;&#x3D; &#x27;tspan&#x27;) {
+              this.nodeColors[target.parentElement.id] &#x3D; this.color;
+              target.parentElement.children[1][&#x27;style&#x27;][&quot;stroke&quot;] &#x3D; this.color;
+              target.parentElement.children[1][&#x27;style&#x27;][&quot;fill&quot;] &#x3D; this.color;
+            }
+          }
+        });
+      }
+      i++;
+    });
+
+    Array.from(document.getElementsByClassName(&#x27;extlabel first&#x27;)).forEach((element) &#x3D;&gt; {
+      element[&#x27;style&#x27;][&#x27;fill&#x27;] &#x3D; &#x27;#041cac&#x27;;
+    });
+    Array.from(document.getElementsByClassName(&#x27;extlabel second&#x27;)).forEach((element) &#x3D;&gt; {
+      element[&#x27;style&#x27;][&#x27;fill&#x27;] &#x3D; &#x27;#000000&#x27;;
+    });
+    Array.from(document.getElementsByClassName(&#x27;extlabel third&#x27;)).forEach((element) &#x3D;&gt; {
+      element[&#x27;style&#x27;][&#x27;fill&#x27;] &#x3D; &#x27;#ac3235&#x27;;
+    });
+    Array.from(document.getElementsByClassName(&#x27;extlabel&#x27;)).forEach((element) &#x3D;&gt; {
+      if (element.getAttribute(&#x27;text-anchor&#x27;) !&#x3D; undefined &amp;&amp; element.getAttribute(&#x27;text-anchor&#x27;) &#x3D;&#x3D; &#x27;start&#x27;) {
+        element.addEventListener(&#x27;dblclick&#x27;, (event) &#x3D;&gt; {
+          this.oldText &#x3D; element.textContent;
+          this.isVisibleOverrideModal &#x3D; true;
+        });
+      }
+    });
+  }
+
+  getAllChildren(children, allItems: any[], idChildrenAux?) {
+    let idChildren &#x3D; [];
+    if (idChildrenAux) idChildren &#x3D; idChildrenAux;
+    for (let item of children) {
+      idChildren.push(item.id);
+      if (item.children) this.getAllChildren(item.children, allItems, idChildren);
+    }
+    if (!idChildrenAux) {
+      return allItems.filter(item &#x3D;&gt; {
+        if (item[&#x27;__data__&#x27;].id) {
+          return idChildren.includes(item[&#x27;__data__&#x27;].id);
+        } else if (item[&#x27;__data__&#x27;].target) {
+          return idChildren.includes(item[&#x27;__data__&#x27;].target.id);
+        } else {
+          return false;
+        }
+      });
+    }
+  }
+
+  setColorPicker() {
+    this.selectedSavedColor &#x3D; null;
+  }
+
+  removeColor() {
+    const index &#x3D; this.savedColors.indexOf(this.selectedSavedColor, 0);
+    if (index &gt; -1) {
+      this.savedColors.splice(index, 1);
+    }
+    this.selectedSavedColor &#x3D; null;
+  }
+
+  saveColor() {
+    if (!this.savedColors.includes(this.color)) {
+      this.savedColors.push(this.color);
+      this.selectedSavedColor &#x3D; this.color;
+    }
+  }
+
+  setColor() {
+    this.color &#x3D; this.selectedSavedColor;
+  }
+
+  saveProgressEvent() {
+    if (this.view) {
+      this.saveSettings(this.view[&#x27;name&#x27;]).then();
+    } else {
+      this.isVisibleSaveModal &#x3D; true;
+    }
+  }
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+  &lt;div class&#x3D;&quot;theme-header-background-color toolbar&quot;&gt;
+    &lt;div&gt;
+      {{&#x27;DISPLAY.PHYLOTREES.BREADCRUMB&#x27; | translate}}
+    &lt;/div&gt;
+    &lt;div style&#x3D;&quot;flex: 1 1 auto; min-width: 0&quot;&gt;&lt;/div&gt;
+    &lt;div style&#x3D;&quot;display: flex; flex-direction: row; align-items: center&quot;&gt;
+      &lt;div id&#x3D;&quot;color-picker&quot; class&#x3D;&quot;archaeopteryxBrowser-node-color-option-select&quot;&gt;
+        &lt;input (colorPickerChange)&#x3D;&quot;setColorPicker()&quot; [(colorPicker)]&#x3D;&quot;color&quot; [style.background]&#x3D;&quot;color&quot;
+               class&#x3D;&quot;archaeopteryx-browser-input-color-picker&quot;/&gt;
+        &lt;button *ngIf&#x3D;&quot;selectedSavedColor &#x3D;&#x3D; undefined&quot; nz-button (click)&#x3D;&quot;saveColor()&quot; nzType&#x3D;&quot;default&quot;
+                class&#x3D;&quot;archaeopteryx-browser-save-button-color-picker&quot;&gt;&lt;span nz-icon nzType&#x3D;&quot;save&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+        &lt;button *ngIf&#x3D;&quot;selectedSavedColor !&#x3D; undefined&quot; nz-button (click)&#x3D;&quot;removeColor()&quot; nzType&#x3D;&quot;default&quot;
+                class&#x3D;&quot;archaeopteryx-browser-save-button-color-picker&quot;&gt;&lt;span nz-icon nzType&#x3D;&quot;delete&quot;&gt;&lt;/span&gt;&lt;/button&gt;
+        &lt;nz-select nzSize&#x3D;&quot;default&quot; [(ngModel)]&#x3D;&quot;nodeColorOptionSelected&quot;&gt;
+          &lt;nz-option [nzValue]&#x3D;&quot;NODE_COLOR_OPTIONS.NODE&quot; nzLabel&#x3D;&quot;1&quot;&gt;
+          &lt;/nz-option&gt;
+          &lt;nz-option [nzValue]&#x3D;&quot;NODE_COLOR_OPTIONS.NODES_CHILDREN&quot; nzLabel&#x3D;&quot;2&quot;&gt;
+          &lt;/nz-option&gt;
+          &lt;nz-option [nzValue]&#x3D;&quot;NODE_COLOR_OPTIONS.BRANCHES_CHILDREN&quot; nzLabel&#x3D;&quot;3&quot;&gt;
+          &lt;/nz-option&gt;
+          &lt;nz-option [nzValue]&#x3D;&quot;NODE_COLOR_OPTIONS.NODES_AND_BRANCHES&quot; nzLabel&#x3D;&quot;4&quot;&gt;
+          &lt;/nz-option&gt;
+        &lt;/nz-select&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;nz-select id&#x3D;&quot;saved-colors&quot; nzSize&#x3D;&quot;default&quot; nzPlaceHolder&#x3D;&quot;Colors&quot; [(ngModel)]&#x3D;&quot;selectedSavedColor&quot;
+                 (ngModelChange)&#x3D;&quot;setColor()&quot; nzAllowClear
+                 [nzPlaceHolder]&#x3D;&quot;&#x27;DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS&#x27; | translate&quot;&gt;
+        &lt;nz-option nzCustomContent *ngFor&#x3D;&quot;let savedColor of savedColors&quot;
+                   [nzLabel]&#x3D;&quot;&#x27;DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS&#x27; | translate&quot; [nzValue]&#x3D;&quot;savedColor&quot;&gt;
+          &lt;div [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: savedColor}&quot;&gt;&amp;nbsp;&lt;/div&gt;
+        &lt;/nz-option&gt;
+      &lt;/nz-select&gt;
+    &lt;/div&gt;
+    &lt;div *ngIf&#x3D;&quot;!hiddenSaveProgress&quot; style&#x3D;&quot;margin-left: 1rem&quot;&gt;
+        &lt;button nz-button nzType&#x3D;&quot;default&quot; (click)&#x3D;&quot;saveProgressEvent()&quot;&gt;
+          {{&#x27;DISPLAY.PHYLOTREES.PAGE.SAVE_PROGRESS&#x27; | translate}}
+        &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;archaeopteryx-browser&quot;&gt;
+    &lt;div id&#x3D;&#x27;phylogram1&#x27;&gt;&lt;/div&gt;
+    &lt;div id&#x3D;&quot;controls0&quot; class&#x3D;&quot;ui-widget-content&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;app-dynamic-input-modal [title]&#x3D;&quot;&#x27;DISPLAY.PHYLOTREES.SAVE_MODAL.SAVE_VIEW&#x27; | translate&quot;
+                         [fields]&#x3D;&quot;saveModalFields&quot; [(isVisible)]&#x3D;&quot;isVisibleSaveModal&quot;
+                         (acceptInput)&#x3D;&quot;saveSettingsModal($event)&quot;&gt;&lt;/app-dynamic-input-modal&gt;
+&lt;div *ngIf&#x3D;&quot;loading&quot;&gt;
+  &lt;h1 class&#x3D;&quot;init-loader&quot;&gt;Loading&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;app-dynamic-input-modal  [title]&#x3D;&quot;&#x27;DISPLAY.PHYLOTREES.OVERRIDE_TEXT.TITLE&#x27; | translate&quot; [fields]&#x3D;&quot;overrideModalFields&quot; [(isVisible)]&#x3D;&quot;isVisibleOverrideModal&quot; (acceptInput)&#x3D;&quot;overrideTextModal($event)&quot;&gt;&lt;/app-dynamic-input-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./archaeopteryx-browser.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">#search_options
+  fieldset
+    height: auto !important
+
+div.node_mouseover_tooltip
+  position: absolute
+  text-align: center
+  font: 12px sans-serif
+  pointer-events: none
+  background: #dddddd
+  border: solid 1px #aaa
+  border-radius: 8px
+
+#controls0
+  position: relative !important
+  flex: 0 0 auto
+  left: 0 !important
+  top: 0 !important
+  padding-left: 10px !important
+  padding-right: 10px !important
+
+#phylogram1
+  flex: 1 1 auto
+  min-width: 0
+
+#phylogram1 &gt; svg
+  width: 100%
+
+.ui-checkboxradio
+  white-space: pre
+
+.init-loader
+  position: fixed
+  left: 50%
+  top: 50%
+
+.ui-widget
+  font-size: .8rem
+
+.archaeopteryx-browser
+  display: flex
+
+.ui-button
+  height: auto !important
+  width: auto !important
+
+#zoomout_y
+  width: 40px !important
+  margin-left: 40px !important
+
+#zoomout_x
+  width: 40px !important
+
+#zoomin_x
+  width: 40px !important
+
+#zoomin_y
+  width: 40px !important
+  margin-left: 40px !important
+
+#zoomtofit
+  width: 40px !important
+
+.toolbar
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  font-size: 18px
+  font-weight: 80
+  align-items: center
+  display: flex
+  flex: 0 0 auto
+  column-gap: 5px
+  padding: 5px 10px 5px 18px
+
+#color-picker
+  display: flex
+  padding: 0
+  margin-right: 20px
+  align-items: center
+
+.archaeopteryx-browser-input-color-picker
+  padding: 0px
+  border: 1px solid #5d5d5d
+  height: 30px
+
+.archaeopteryx-browser-save-button-color-picker
+  height: 30px !important
+  padding: 4px 10px !important
+
+.archaeopteryxBrowser-node-color-option-select .ant-select-selector
+  height: 30px !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div>  <div class="theme-header-background-color toolbar">    <div>      {{\'DISPLAY.PHYLOTREES.BREADCRUMB\' | translate}}    </div>    <div style="flex: 1 1 auto; min-width: 0"></div>    <div style="display: flex; flex-direction: row; align-items: center">      <div id="color-picker" class="archaeopteryxBrowser-node-color-option-select">        <input (colorPickerChange)="setColorPicker()" [(colorPicker)]="color" [style.background]="color"               class="archaeopteryx-browser-input-color-picker"/>        <button *ngIf="selectedSavedColor == undefined" nz-button (click)="saveColor()" nzType="default"                class="archaeopteryx-browser-save-button-color-picker"><span nz-icon nzType="save"></span></button>        <button *ngIf="selectedSavedColor != undefined" nz-button (click)="removeColor()" nzType="default"                class="archaeopteryx-browser-save-button-color-picker"><span nz-icon nzType="delete"></span></button>        <nz-select nzSize="default" [(ngModel)]="nodeColorOptionSelected">          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODE" nzLabel="1">          </nz-option>          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODES_CHILDREN" nzLabel="2">          </nz-option>          <nz-option [nzValue]="NODE_COLOR_OPTIONS.BRANCHES_CHILDREN" nzLabel="3">          </nz-option>          <nz-option [nzValue]="NODE_COLOR_OPTIONS.NODES_AND_BRANCHES" nzLabel="4">          </nz-option>        </nz-select>      </div>    </div>    <div>      <nz-select id="saved-colors" nzSize="default" nzPlaceHolder="Colors" [(ngModel)]="selectedSavedColor"                 (ngModelChange)="setColor()" nzAllowClear                 [nzPlaceHolder]="\'DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS\' | translate">        <nz-option nzCustomContent *ngFor="let savedColor of savedColors"                   [nzLabel]="\'DISPLAY.PHYLOTREES.PAGE.SAVED_COLORS\' | translate" [nzValue]="savedColor">          <div [ngStyle]="{\'background-color\': savedColor}">&nbsp;</div>        </nz-option>      </nz-select>    </div>    <div *ngIf="!hiddenSaveProgress" style="margin-left: 1rem">        <button nz-button nzType="default" (click)="saveProgressEvent()">          {{\'DISPLAY.PHYLOTREES.PAGE.SAVE_PROGRESS\' | translate}}        </button>    </div>  </div>  <div class="archaeopteryx-browser">    <div id=\'phylogram1\'></div>    <div id="controls0" class="ui-widget-content"></div>  </div></div><app-dynamic-input-modal [title]="\'DISPLAY.PHYLOTREES.SAVE_MODAL.SAVE_VIEW\' | translate"                         [fields]="saveModalFields" [(isVisible)]="isVisibleSaveModal"                         (acceptInput)="saveSettingsModal($event)"></app-dynamic-input-modal><div *ngIf="loading">  <h1 class="init-loader">Loading</h1></div><app-dynamic-input-modal  [title]="\'DISPLAY.PHYLOTREES.OVERRIDE_TEXT.TITLE\' | translate" [fields]="overrideModalFields" [(isVisible)]="isVisibleOverrideModal" (acceptInput)="overrideTextModal($event)"></app-dynamic-input-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'ArchaeopteryxBrowserComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ArchaeopteryxBrowserComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

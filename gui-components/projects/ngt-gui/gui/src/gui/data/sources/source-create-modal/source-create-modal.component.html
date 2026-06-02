@@ -1,0 +1,34 @@
+<nz-modal [(nzVisible)]="isVisible" nzCentered (nzOnCancel)="closeModal()"
+    [nzTitle]="'METADATA.SOURCES.CREATE_MODAL.TITLE' | translate" [nzMaskClosable]="false" [nzClosable]="false">
+    <ng-container *nzModalContent>
+        <div>
+            <nz-spin [nzSpinning]="loading">
+                <form [formGroup]="formGroup">
+                    <div>
+                        <nz-form-label nzFor="name">
+                            {{ 'METADATA.SOURCES.CREATE_MODAL.NAME_INPUT.LABEL' | translate }}
+                        </nz-form-label>
+                        <input nz-input
+                            [placeholder]="'METADATA.SOURCES.CREATE_MODAL.NAME_INPUT.PLACEHOLDER' | translate"
+                            formControlName="name" [ngClass]="{'input-error': getMessageNameError()}" />
+                        <div *ngFor="let item of getMessageNameError()" class="message-error">
+                            {{item | translate}}
+                        </div>
+                    </div>
+                </form>
+            </nz-spin>
+        </div>
+    </ng-container>
+    <ng-container *nzModalFooter>
+        <button nz-button nzType="primary" nzDanger (click)="closeModal()" [disabled]="loading">
+            {{ 'METADATA.SOURCES.CREATE_MODAL.CANCEL_BUTTON' | translate }}
+        </button>
+        <button nz-button nzType="primary" (click)="onCreateTheme()" [disabled]="!formGroup.valid || loading">
+            {{ 'METADATA.SOURCES.CREATE_MODAL.ACCEPT_BUTTON' | translate }}
+        </button>
+    </ng-container>
+</nz-modal>
+
+<app-info-modal [(isVisible)]="isVisibleInfoModal" typeIcon="close-circle" themeIcon="twotone"
+    twotoneColorIcon="#ff0000" title="METADATA.SOURCES.CREATE_MODAL.ERROR_CREATE_THEME.TITLE"
+    content="METADATA.SOURCES.CREATE_MODAL.ERROR_CREATE_THEME.CONTENT" [buttons]="buttonsInfoModal"></app-info-modal>

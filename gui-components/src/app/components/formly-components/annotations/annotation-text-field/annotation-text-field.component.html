@@ -1,0 +1,15 @@
+<div [ngStyle]="props.style">
+  <div style="display: flex; align-items: center; column-gap: 4px">
+    <div style="font-weight: bold">{{props.label}}:</div>
+    <input nz-input [ngModel]="formControl.value" (ngModelChange)="changeValueEvent($event)" style="width: 100%;"
+           *ngIf="!props.multiple"/>
+    <input *ngIf="props.multiple" nz-input style="width: 100%;" (keyup.enter)="keyupEnter($event)"/>
+
+  </div>
+
+  <div style="padding: 5px 5px 5px 20px" *ngIf="props.multiple && formControl.value.length > 0">
+    <nz-tag *ngFor="let item of formControl.value; let i = index" nzMode="closeable" (nzOnClose)="removeValue(i)">
+      {{ item }}
+    </nz-tag>
+  </div>
+</div>

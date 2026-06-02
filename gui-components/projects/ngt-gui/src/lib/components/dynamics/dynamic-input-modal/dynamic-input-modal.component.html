@@ -1,0 +1,15 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="changeIsVisible(false)" [nzMaskClosable]="false" nzCentered [nzWidth]="500"
+    [nzTitle]="modalTitle" [nzContent]="nzModalContent" [nzFooter]="modalFooter">
+
+    <ng-template #modalTitle>{{ title | translate }}</ng-template>
+    <ng-template #nzModalContent>
+      <form [formGroup]="form">
+        <formly-form [fields]="fields" [model]="model" [form]="form"></formly-form>
+      </form>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button nz-button (click)="changeIsVisible(false)">{{ 'DISPLAY.GIS.GENERATE_VIEW_MODAL.CANCEL_BUTTON' | translate}}</button>
+        <button nz-button nzType="primary" [disabled]="!form.valid" (click)="acceptButton()">{{ 'ACL_MODAL.RULES_MODAL.FOOTER.ACCEPT' | translate}}</button>
+    </ng-template>
+</nz-modal>
+

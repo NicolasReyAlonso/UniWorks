@@ -1,0 +1,78 @@
+<nz-spin [nzSpinning]="loading$ | async" style="height: 100%">
+  <ng-container *ngIf="formGroup && containerizationImageDetailOriginalData">
+    <form [formGroup]="formGroup">
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="id">Id</nz-form-label>
+          <input nz-input type="text" placeholder="Id" disabled [ngModel]="containerizationImageDetailOriginalData.id"
+                 [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="uuid">UUID</nz-form-label>
+          <input nz-input type="text" placeholder="UUID" disabled
+                 [ngModel]="containerizationImageDetailOriginalData.uuid" [ngModelOptions]="{standalone: true}">
+        </div>
+      </div>
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="name">
+            {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.NAME.LABEL' | translate }}
+          </nz-form-label>
+          <input nz-input type="text"
+                 formControlName="name"
+                 [placeholder]="'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.NAME.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': getErrorInputMessage({control: formGroup.get('name'), translateKey: 'NAME'}).length > 0}"/>
+          <div class="message-error-default"
+               *ngFor="let message of getErrorInputMessage({control: formGroup.get('name'), translateKey: 'NAME'})">
+            {{ message | translate }}
+          </div>
+        </div>
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="imageType">
+            {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.IMAGE_TYPE.LABEL' | translate }}
+          </nz-form-label>
+          <input nz-input type="text"
+                 formControlName="imageType"
+                 [placeholder]="'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.IMAGE_TYPE.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': getErrorInputMessage({control: formGroup.get('imageType'), translateKey: 'IMAGE_TYPE'}).length > 0}"/>
+          <div class="message-error-default"
+               *ngFor="let message of getErrorInputMessage({control: formGroup.get('imageType'), translateKey: 'IMAGE_TYPE'})">
+            {{ message | translate }}
+          </div>
+        </div>
+      </div>
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="name">
+            {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.LOCATION.LABEL' | translate }}
+          </nz-form-label>
+          <input nz-input type="text"
+                 formControlName="location"
+                 [placeholder]="'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.LOCATION.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': getErrorInputMessage({control: formGroup.get('location'), translateKey: 'LOCATION'}).length > 0}"/>
+          <div class="message-error-default"
+               *ngFor="let message of getErrorInputMessage({control: formGroup.get('location'), translateKey: 'LOCATION'})">
+            {{ message | translate }}
+          </div>
+        </div>
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="name">
+            {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.RECIPE.LABEL' | translate }}
+          </nz-form-label>
+          <textarea nz-input
+                    [placeholder]="'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.DETAIL.INPUTS.RECIPE.PLACEHOLDER' | translate"
+                    formControlName="recipe"
+                    [ngClass]="{'input-error': getErrorInputMessage({control: formGroup.get('recipe'), translateKey: 'RECIPE'}).length > 0}"></textarea>
+          <div class="message-error-default"
+               *ngFor="let message of getErrorInputMessage({control: formGroup.get('recipe'), translateKey: 'RECIPE'})">
+            {{ message | translate }}
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </ng-container>
+</nz-spin>

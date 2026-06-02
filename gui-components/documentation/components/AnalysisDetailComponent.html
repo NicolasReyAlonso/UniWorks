@@ -1,0 +1,2432 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AnalysisDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>AfterViewInit</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-dynamic-analysis-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>NzSelectModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+                            <code>NzTabsModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                                <code><a href="../components/BOCardComponent.html" target="_self" >BOCardComponent</a></code>
+                            <code>NzTableModule</code>
+                            <code>NzSpinModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzDatePickerModule</code>
+                                <code><a href="../directives/DisableControlDirective.html" target="_self" >DisableControlDirective</a></code>
+                            <code>NzPageHeaderModule</code>
+                                <code><a href="../components/BackButtonComponent.html" target="_self" >BackButtonComponent</a></code>
+                            <code>NzInputModule</code>
+                            <code>NzButtonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./analysis-detail.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./analysis-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#analysis" >analysis</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#annotationsForm" >annotationsForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#baseUrl" >baseUrl</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#cvterms" >cvterms</a>
+                            </li>
+                            <li>
+                                <a href="#editing" >editing</a>
+                            </li>
+                            <li>
+                                <a href="#features" >features</a>
+                            </li>
+                            <li>
+                                <a href="#format" >format</a>
+                            </li>
+                            <li>
+                                <a href="#generalFormGroup" >generalFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#generalFormGroupChange" >generalFormGroupChange</a>
+                            </li>
+                            <li>
+                                <a href="#loadingGeneral" >loadingGeneral</a>
+                            </li>
+                            <li>
+                                <a href="#objType" >objType</a>
+                            </li>
+                            <li>
+                                <a href="#processes" >processes</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFormat" >selectedFormat</a>
+                            </li>
+                            <li>
+                                <a href="#sequences" >sequences</a>
+                            </li>
+                            <li>
+                                <a href="#urlMSA" >urlMSA</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelModifyAnalysis" >cancelModifyAnalysis</a>
+                            </li>
+                            <li>
+                                <a href="#exportAnalysis" >exportAnalysis</a>
+                            </li>
+                            <li>
+                                <a href="#getSequencesById" >getSequencesById</a>
+                            </li>
+                            <li>
+                                <a href="#goSubTreeView" >goSubTreeView</a>
+                            </li>
+                            <li>
+                                <a href="#initGeneralFormGroup" >initGeneralFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#isDisableEdit" >isDisableEdit</a>
+                            </li>
+                            <li>
+                                <a href="#navigateAnalysis" >navigateAnalysis</a>
+                            </li>
+                            <li>
+                                <a href="#navigateIndividual" >navigateIndividual</a>
+                            </li>
+                            <li>
+                                <a href="#navigateOrganism" >navigateOrganism</a>
+                            </li>
+                            <li>
+                                <a href="#navigateSequence" >navigateSequence</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#resetGeneralFormGroup" >resetGeneralFormGroup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#updateAnalysis" >updateAnalysis</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, router: Router, activatedRoute: ActivatedRoute, fb: UntypedFormBuilder, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, globalVariablesServices: <a href="../injectables/GlobalService.html" target="_self">GlobalService</a>, modalService: NzModalService, filesService: <a href="../injectables/FilesService.html" target="_self">FilesService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>globalVariablesServices</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GlobalService.html" target="_self" >GlobalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalService</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzModalService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>filesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FilesService.html" target="_self" >FilesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelModifyAnalysis"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelModifyAnalysis</b></span>
+                        <a href="#cancelModifyAnalysis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelModifyAnalysis()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="exportAnalysis"></a>
+                    <span class="name">
+                        <span ><b>exportAnalysis</b></span>
+                        <a href="#exportAnalysis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exportAnalysis(form: TemplateRef<any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>form</td>
+                                            <td>
+                                                        <code>TemplateRef&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getSequencesById"></a>
+                    <span class="name">
+                        <span ><b>getSequencesById</b></span>
+                        <a href="#getSequencesById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getSequencesById(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="186"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:186</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goSubTreeView"></a>
+                    <span class="name">
+                        <span ><b>goSubTreeView</b></span>
+                        <a href="#goSubTreeView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goSubTreeView(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="232"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:232</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initGeneralFormGroup"></a>
+                    <span class="name">
+                        <span ><b>initGeneralFormGroup</b></span>
+                        <a href="#initGeneralFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initGeneralFormGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="114"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:114</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDisableEdit"></a>
+                    <span class="name">
+                        <span ><b>isDisableEdit</b></span>
+                        <a href="#isDisableEdit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isDisableEdit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="134"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:134</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateAnalysis"></a>
+                    <span class="name">
+                        <span ><b>navigateAnalysis</b></span>
+                        <a href="#navigateAnalysis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateAnalysis(a)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>a</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateIndividual"></a>
+                    <span class="name">
+                        <span ><b>navigateIndividual</b></span>
+                        <a href="#navigateIndividual"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateIndividual(id: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="211"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:211</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateOrganism"></a>
+                    <span class="name">
+                        <span ><b>navigateOrganism</b></span>
+                        <a href="#navigateOrganism"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateOrganism(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="197"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:197</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateSequence"></a>
+                    <span class="name">
+                        <span ><b>navigateSequence</b></span>
+                        <a href="#navigateSequence"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateSequence(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="192"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:192</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="109"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:109</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="97"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resetGeneralFormGroup"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>resetGeneralFormGroup</b></span>
+                        <a href="#resetGeneralFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>resetGeneralFormGroup()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateAnalysis"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>updateAnalysis</b></span>
+                        <a href="#updateAnalysis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateAnalysis()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="138"
+                                    class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:138</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="analysis"></a>
+                    <span class="name">
+                        <span ><b>analysis</b></span>
+                        <a href="#analysis"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="annotationsForm"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>annotationsForm</b></span>
+                        <a href="#annotationsForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/AnnotationsFormComponent.html" target="_self" >AnnotationsFormComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;annotationsForm&#x27;, {static: false})<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseUrl"></a>
+                    <span class="name">
+                        <span ><b>baseUrl</b></span>
+                        <a href="#baseUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;MOLECULAR_DATA.ANALYSES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cvterms"></a>
+                    <span class="name">
+                        <span ><b>cvterms</b></span>
+                        <a href="#cvterms"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editing"></a>
+                    <span class="name">
+                        <span ><b>editing</b></span>
+                        <a href="#editing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="features"></a>
+                    <span class="name">
+                        <span ><b>features</b></span>
+                        <a href="#features"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="format"></a>
+                    <span class="name">
+                        <span ><b>format</b></span>
+                        <a href="#format"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;fasta&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generalFormGroup"></a>
+                    <span class="name">
+                        <span ><b>generalFormGroup</b></span>
+                        <a href="#generalFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generalFormGroupChange"></a>
+                    <span class="name">
+                        <span ><b>generalFormGroupChange</b></span>
+                        <a href="#generalFormGroupChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingGeneral"></a>
+                    <span class="name">
+                        <span ><b>loadingGeneral</b></span>
+                        <a href="#loadingGeneral"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objType"></a>
+                    <span class="name">
+                        <span ><b>objType</b></span>
+                        <a href="#objType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;analysis&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processes"></a>
+                    <span class="name">
+                        <span ><b>processes</b></span>
+                        <a href="#processes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFormat"></a>
+                    <span class="name">
+                        <span ><b>selectedFormat</b></span>
+                        <a href="#selectedFormat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sequences"></a>
+                    <span class="name">
+                        <span ><b>sequences</b></span>
+                        <a href="#sequences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>any[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:67</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="urlMSA"></a>
+                    <span class="name">
+                        <span ><b>urlMSA</b></span>
+                        <a href="#urlMSA"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, Component, OnInit, TemplateRef, ViewChild} from &#x27;@angular/core&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {ActivatedRoute, Router} from &#x27;@angular/router&#x27;;
+import IView from &#x27;@interfaces/view.interfaces&#x27;;
+import {FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup} from &#x27;@angular/forms&#x27;;
+import {AuthService} from &#x27;src/app/services/auth.service&#x27;;
+import {MessageLogService} from &#x27;../../../../services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;../../../../services/notification.service&#x27;;
+import {GlobalService} from &#x27;src/app/services/global.service&#x27;;
+import * as FileSaver from &#x27;file-saver&#x27;;
+import {NzModalService} from &#x27;ng-zorro-antd/modal&#x27;;
+import {AnnotationsFormComponent} from &#x27;src/app/components/data/annotations/annotations-form/annotations-form.component&#x27;;
+import {FilesService} from &#x27;../../../../services/files.service&#x27;;
+import OBJECT_TYPES from &#x27;../../../../constants/object-types.constants&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzTabsModule} from &quot;ng-zorro-antd/tabs&quot;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {BOCardComponent} from &quot;../../../../components/miscellaneous/bo-card/bo-card.component&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzDatePickerModule} from &quot;ng-zorro-antd/date-picker&quot;;
+import {DisableControlDirective} from &quot;../../../../directives/disable-control.directive&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {BackButtonComponent} from &quot;../../../../components/miscellaneous/back-button/back-button.component&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {lastValueFrom} from &quot;rxjs&quot;;
+
+@Component({
+    selector: &#x27;app-dynamic-analysis-detail&#x27;,
+    imports: [
+        CommonModule,
+        NzSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AnnotationsFormComponent,
+        NzTabsModule,
+        SharedModule,
+        BOCardComponent,
+        NzTableModule,
+        NzSpinModule,
+        NzFormModule,
+        NzDatePickerModule,
+        DisableControlDirective,
+        NzPageHeaderModule,
+        BackButtonComponent,
+        NzInputModule,
+        NzButtonModule,
+    ],
+    templateUrl: &#x27;./analysis-detail.component.html&#x27;,
+    styleUrls: [&#x27;./analysis-detail.component.sass&#x27;]
+})
+export class AnalysisDetailComponent implements OnInit, AfterViewInit, IView {
+
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;MOLECULAR_DATA.ANALYSES.DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;
+    }
+  };
+
+  analysis;
+  generalFormGroup: UntypedFormGroup;
+  loadingGeneral &#x3D; false;
+  sequences: any[] &#x3D; [];
+
+  baseUrl;
+  format &#x3D; &#x27;fasta&#x27;;
+  editing &#x3D; false;
+  features: any &#x3D; [];
+  cvterms: any &#x3D; [];
+  processes: any &#x3D; [];
+  objType &#x3D; &#x27;analysis&#x27;;
+  urlMSA;
+  selectedFormat &#x3D; null;
+  generalFormGroupChange &#x3D; false;
+  @ViewChild(&#x27;annotationsForm&#x27;, {static: false}) annotationsForm: AnnotationsFormComponent;
+
+  constructor(
+    private backendService: BackendService,
+    private router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly fb: UntypedFormBuilder,
+    public readonly authService: AuthService,
+    private readonly messageLogService: MessageLogService,
+    private readonly notificationService: NotificationService,
+    private readonly globalVariablesServices: GlobalService,
+    private readonly modalService: NzModalService,
+    private readonly filesService: FilesService
+  ) {
+    const analysis &#x3D; this.activatedRoute.snapshot.data.analysis;
+    this.BREADCRUMB_NAME.params.name &#x3D; analysis.name;
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.loadingGeneral &#x3D; true;
+    this.analysis &#x3D; this.activatedRoute.snapshot.data.analysis;
+    this.objType &#x3D; this.activatedRoute.snapshot.url[0].path.replace(&#x27;Detail&#x27;, &#x27;&#x27;);
+    this.initGeneralFormGroup();
+    this.baseUrl &#x3D; this.globalVariablesServices.getParameter(&#x27;host&#x27;) + this.globalVariablesServices.getParameter(&#x27;api_prefix&#x27;);
+    this.urlMSA &#x3D; &#x60;${this.baseUrl}/bos/analyses/${this.analysis.analysis_id}.fasta&#x60;;
+    this.generalFormGroup.get(&#x27;name&#x27;).setValue(this.analysis.name ? this.analysis.name : &#x27;&#x27;);
+    this.generalFormGroup.get(&#x27;description&#x27;).setValue(this.analysis.description ? this.analysis.description : &#x27;&#x27;);
+    this.loadingGeneral &#x3D; false;
+  }
+
+  async ngAfterViewInit(): Promise&lt;void&gt; {
+    this.annotationsForm.object_uuid &#x3D; this.analysis.uuid;
+    this.annotationsForm.loadAnnotations();
+  }
+
+  initGeneralFormGroup() {
+    this.generalFormGroup &#x3D; this.fb.group({
+      analysis_id: [{value: this.analysis.analysis_id, disabled: true}],
+      name: [&#x27;&#x27;],
+      program: [{value: this.analysis.program, disabled: true}],
+      programversion: [{value: this.analysis.programversion, disabled: true}],
+      algorithm: [{value: this.analysis.algorithm, disabled: true}],
+      sourcename: [{value: this.analysis.sourcename, disabled: true}],
+      sourceuri: [{value: this.analysis.sourceuri, disabled: true}],
+      sourceversion: [{value: this.analysis.sourceversion, disabled: true}],
+      timeexecuted: [{value: this.analysis.timeexecuted, disabled: true}],
+      seqlen: [{value: this.analysis.seqlen, disabled: true}],
+      seqnum: [{value: this.analysis.seqnum ?? this.analysis.sequences.length, disabled: true}],
+      description: [&#x27;&#x27;]
+    });
+    this.generalFormGroup.valueChanges.subscribe({next:(change) &#x3D;&gt; {
+      this.generalFormGroupChange &#x3D; true;
+    }});
+  }
+
+  isDisableEdit() {
+    return !this.authService.havePermission(&#x27;gui-ma-edit&#x27;);
+  }
+
+  async updateAnalysis() {
+    const value &#x3D; {
+      name: this.generalFormGroup.get(&#x27;name&#x27;).value,
+      description: this.generalFormGroup.get(&#x27;description&#x27;).value,
+    };
+    this.loadingGeneral &#x3D; true;
+    try {
+      const updateResponse: any &#x3D; await lastValueFrom(this.backendService.putFromChado(this.objType, this.analysis.analysis_id, value), { defaultValue: undefined });
+      this.messageLogService.addIssues(updateResponse.issues);
+      await this.resetGeneralFormGroup();
+    } catch (e) {
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;MOLECULAR_DATA.ANALYSES.DETAIL.GENERAL_TAB.ERROR_UPDATE_NOTIFICATION.TITLE&#x27;,
+        &#x27;MOLECULAR_DATA.ANALYSES.DETAIL.GENERAL_TAB.ERROR_UPDATE_NOTIFICATION.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingGeneral &#x3D; false;
+  }
+
+  async cancelModifyAnalysis() {
+    this.loadingGeneral &#x3D; true;
+    try {
+      await this.resetGeneralFormGroup();
+    } catch (e) {
+      console.log(e);
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+    }
+    this.loadingGeneral &#x3D; false;
+  }
+
+  async resetGeneralFormGroup(): Promise&lt;void&gt; {
+    const responseAnalysis: any &#x3D; await lastValueFrom(this.backendService.getGenericRequest(this.objType, this.analysis.analysis_id), { defaultValue: undefined });
+    const analysis &#x3D; responseAnalysis.content;
+    this.messageLogService.addIssues(responseAnalysis.issues);
+    this.analysis.name &#x3D; analysis.name ? analysis.name : &#x27;&#x27;;
+    this.analysis.description &#x3D; analysis.description ? analysis.description : &#x27;&#x27;;
+    this.generalFormGroup.get(&#x27;name&#x27;).setValue(this.analysis.name);
+    this.generalFormGroup.get(&#x27;description&#x27;).setValue(this.analysis.description);
+    this.generalFormGroupChange &#x3D; false;
+  }
+
+  getSequencesById(id) {
+    return this.sequences.find((value) &#x3D;&gt; {
+      return value.feature_id &#x3D;&#x3D;&#x3D; id;
+    });
+  }
+
+  navigateSequence(id) {
+    if (!this.authService.havePermission(&#x27;gui-seq-read&#x27;)) { return; }
+    this.router.navigate([&#x27;sequenceDetail&#x27;, id]);
+  }
+
+  navigateOrganism(id) {
+    if (!this.authService.havePermission(&#x27;gui-organism-read&#x27;)) { return; }
+    this.router.navigate([&#x27;organismDetail&#x27;, id]);
+  }
+
+  navigateAnalysis(a) {
+    if (!this.authService.havePermission(&#x27;gui-analysis-read&#x27;)) { return; }
+    let url &#x3D; &#x27;&#x27;;
+    if (a.object_type) {
+      url &#x3D; OBJECT_TYPES[a.object_type].pageDetail;
+    }
+    this.router.navigate([url ?? &#x27;analysisDetail&#x27;, a.analysis_id]);
+  }
+
+  navigateIndividual(id: any) {
+    if (!this.authService.havePermission(&#x27;gui-individual-read&#x27;)) { return; }
+    this.router.navigate([&#x27;individualDetail&#x27;, id]);
+  }
+
+  exportAnalysis(form: TemplateRef&lt;any&gt;): void {
+    this.modalService.confirm({
+      nzTitle: &#x27;&lt;i&gt;¿En qué formato desea realizar la descarga?&lt;/i&gt;&#x27;,
+      nzContent: form,
+      nzCentered: true,
+      nzOnOk: () &#x3D;&gt; {
+        this.backendService.exportFromChado(this.objType ?? &#x27;analyses&#x27;, this.analysis.analysis_id, this.selectedFormat).subscribe(
+          {next:(response: any) &#x3D;&gt; {
+            FileSaver.saveAs(new Blob([response]), &#x60;analyses.${this.selectedFormat}&#x60;);
+          }, error: error &#x3D;&gt; {
+            this.messageLogService.addIssues(error.issues);
+          }});
+      }
+    });
+  }
+
+  goSubTreeView(id): void {
+    this.router.navigate([&#x27;archaeopteryxBrowser&#x27;], {
+      queryParams: {
+        url: this.filesService.getFileFromBosRequestUrl(&#x27;phylotrees&#x27;,
+          this.analysis.analysis_id, &#x27;newick&#x27;, {phylotree_id: id})
+      }
+    });
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;display: flex; flex-direction: column; height: 100%;&quot;&gt;
+  &lt;nz-page-header
+    nzSubtitle&#x3D;&quot;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.SUBTITLE&#x27; | translate}}&quot;&gt;
+    &lt;nz-page-header-title&gt;
+      &lt;app-back-button&gt;&lt;/app-back-button&gt;
+      {{analysis.name ? analysis.name : analysis.program + &#x27; &#x27; + analysis.programversion}}
+    &lt;/nz-page-header-title&gt;
+    &lt;nz-page-header-extra&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; style&#x3D;&quot;margin: 0 5px;&quot; (click)&#x3D;&quot;exportAnalysis(exportForm)&quot;
+              *ngIf&#x3D;&quot;this.authService.havePermission(&#x27;gui-ma-export&#x27;)&quot;&gt;
+        {{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.EXPORT_BUTTON&#x27; | translate}}
+      &lt;/button&gt;
+    &lt;/nz-page-header-extra&gt;
+  &lt;/nz-page-header&gt;
+  &lt;div style&#x3D;&quot;padding: 0px 24px 0px 24px; flex: 1 1 auto; min-height: 0&quot;&gt;
+    &lt;nz-tabset [nzSelectedIndex]&#x3D;&quot;0&quot; style&#x3D;&quot;width:100%; height: 100%;&quot;&gt;
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TITLE&#x27; | translate&quot;&gt;
+        &lt;div style&#x3D;&quot;height: 100%; overflow: auto&quot;&gt;
+
+          &lt;nz-spin [nzSpinning]&#x3D;&quot;loadingGeneral&quot;&gt;
+            &lt;ng-container *ngIf&#x3D;&quot;generalFormGroup&quot;&gt;
+              &lt;form [formGroup]&#x3D;&quot;generalFormGroup&quot;&gt;
+
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- Id --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label nzFor&#x3D;&quot;analysis_id&quot;&gt;Id&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;analysis_id&quot; type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Id&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- Name --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;name&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                           [disableControl]&#x3D;&quot;isDisableEdit()&quot;&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- Program --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;program&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;program&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- Program version --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;programversion&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;programversion&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- SeqNum --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;seqnum&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;seqnum&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- SeqLen --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;seqlen&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;seqlen&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- timeexecuted --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;timeexecuted&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;nz-date-picker nz-input formControlName&#x3D;&quot;timeexecuted&quot; nzShowTime nzFormat&#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;
+                                    style&#x3D;&quot;width: 100%;&quot;
+                                    [nzPlaceHolder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;&lt;/nz-date-picker&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- algorithm --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot; *ngIf&#x3D;&quot;generalFormGroup.get(&#x27;algorithm&#x27;).value&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;algorithm&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;algorithm&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- sourcename --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot; *ngIf&#x3D;&quot;generalFormGroup.get(&#x27;sourcename&#x27;).value&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;sourcename&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;sourcename&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- sourceversion --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot; *ngIf&#x3D;&quot;generalFormGroup.get(&#x27;sourceversion&#x27;).value&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;sourceversion&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;sourceversion&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                  &lt;!-- sourceuri --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot; *ngIf&#x3D;&quot;generalFormGroup.get(&#x27;sourceuri&#x27;).value&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;sourceuri&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;input nz-input formControlName&#x3D;&quot;sourceuri&quot; type&#x3D;&quot;text&quot;
+                           [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+
+                &lt;div class&#x3D;&quot;row-form&quot;&gt;
+
+                  &lt;!-- Descripción --&gt;
+                  &lt;div class&#x3D;&quot;column-input-form&quot;&gt;
+                    &lt;nz-form-label
+                      nzFor&#x3D;&quot;description&quot;&gt;{{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+                    &lt;textarea nz-input formControlName&#x3D;&quot;description&quot;
+                              [placeholder]&#x3D;&quot;&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;&lt;/textarea&gt;
+                  &lt;/div&gt;
+
+                &lt;/div&gt;
+
+              &lt;/form&gt;
+
+              &lt;div style&#x3D;&quot;display: flex; flex-direction: row-reverse; margin-top: 20px; column-gap: 5px&quot;&gt;
+                &lt;button nz-button nzShape&#x3D;&quot;round&quot; nzType&#x3D;&quot;primary&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot; (click)&#x3D;&quot;updateAnalysis()&quot;
+                        [disabled]&#x3D;&quot;!generalFormGroupChange&quot;&gt;
+                  {{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.MODIFY_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+                &lt;button nz-button nzShape&#x3D;&quot;round&quot; nzDanger nzType&#x3D;&quot;primary&quot; *ngIf&#x3D;&quot;!isDisableEdit()&quot;
+                        (click)&#x3D;&quot;cancelModifyAnalysis()&quot; [disabled]&#x3D;&quot;!generalFormGroupChange&quot;&gt;
+                  {{&#x27;MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.CANCEL_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/ng-container&gt;
+          &lt;/nz-spin&gt;
+
+        &lt;/div&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.TITLE&#x27; | translate&quot;
+              *ngIf&#x3D;&quot;analysis._phylotrees?.length &gt; 0&quot;&gt;
+        &lt;nz-table #phylotreesTable [nzData]&#x3D;&quot;analysis._phylotrees&quot;&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;{{&#x27;MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.NAME_TH&#x27; | translate}}&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of phylotreesTable.data&quot;&gt;
+            &lt;td style&#x3D;&quot;cursor: pointer&quot; (click)&#x3D;&quot;goSubTreeView(data.phylotree_id)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-pt-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.name}}
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/nz-table&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MISC.TABS.SEQUENCES.TITLE&#x27; | translate&quot;&gt;
+        &lt;nz-table #sequenceTable [nzData]&#x3D;&quot;analysis.sequences&quot;&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;{{&#x27;MISC.TABS.SEQUENCES.NAME_TH&#x27; | translate}}&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of sequenceTable.data&quot;&gt;
+            &lt;td (click)&#x3D;&quot;navigateSequence(data.feature_id)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-seq-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.uniquename}}
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/nz-table&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MISC.TABS.INDIVIDUALS.TITLE&#x27; | translate&quot;&gt;
+        &lt;nz-spin [nzSpinning]&#x3D;&quot;loadingGeneral&quot;&gt;
+          &lt;nz-table #stocksTable [nzData]&#x3D;&quot;analysis.individuals&quot;&gt;
+            &lt;thead&gt;
+            &lt;tr&gt;
+              &lt;th&gt;{{&#x27;MISC.TABS.INDIVIDUALS.NAME_TH&#x27; | translate}}&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;ng-container *ngFor&#x3D;&quot;let data of stocksTable.data&quot;&gt;
+                &lt;tr&gt;
+                  &lt;td [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-individual-read&#x27;) ? &#x27;pointer&#x27; : &#x27;default&#x27;}&quot;
+                  (click)&#x3D;&quot;navigateIndividual(data.stock_id)&quot;&gt;
+                    {{ data.uniquename }}
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/ng-container&gt;
+            &lt;/tbody&gt;
+          &lt;/nz-table&gt;
+        &lt;/nz-spin&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MISC.TABS.SPECIES.TITLE&#x27; | translate&quot;&gt;
+        &lt;nz-table #speciesTable [nzData]&#x3D;&quot;analysis.organisms&quot;&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;{{&#x27;MISC.TABS.SPECIES.NAME_TH&#x27; | translate}}&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of speciesTable.data&quot;&gt;
+            &lt;td (click)&#x3D;&quot;navigateOrganism(data.organism_id)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-organism-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.name}}
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/nz-table&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab [nzTitle]&#x3D;&quot;&#x27;MISC.TABS.ANALYSES.TITLE&#x27; | translate&quot;
+              *ngIf&#x3D;&quot;analysis.derives_from?.length &gt; 0 || analysis.derives_into?.length &gt; 0 &quot;&gt;
+        &lt;nz-table #derivesFromTable [nzData]&#x3D;&quot;analysis.derives_from&quot; nzHideOnSinglePage&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;{{&#x27;MISC.TABS.ANALYSES.TABLES.FROM_TITLE&#x27; | translate}}&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of derivesFromTable.data&quot;&gt;
+            &lt;td (click)&#x3D;&quot;navigateAnalysis(data)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-analysis-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.name}}
+            &lt;/td&gt;
+            &lt;td (click)&#x3D;&quot;navigateAnalysis(data)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-analysis-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.object_type}}
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/nz-table&gt;
+        &lt;nz-table #derivesIntoTable [nzData]&#x3D;&quot;analysis.derives_into&quot;&gt;
+          &lt;thead&gt;
+          &lt;tr&gt;
+            &lt;th&gt;{{&#x27;MISC.TABS.ANALYSES.TABLES.INTO_TITLE&#x27; | translate}}&lt;/th&gt;
+            &lt;th&gt;&lt;/th&gt;
+          &lt;/tr&gt;
+          &lt;/thead&gt;
+          &lt;tbody&gt;
+          &lt;tr *ngFor&#x3D;&quot;let data of derivesIntoTable.data&quot;&gt;
+            &lt;td (click)&#x3D;&quot;navigateAnalysis(data)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-analysis-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.name}}
+            &lt;/td&gt;
+            &lt;td (click)&#x3D;&quot;navigateAnalysis(data)&quot;
+                [ngStyle]&#x3D;&quot;{&#x27;cursor&#x27;: authService.havePermission(&#x27;gui-analysis-read&#x27;) ? &#x27;pointer&#x27;: &#x27;none&#x27;}&quot;&gt;
+              {{data.object_type}}
+            &lt;/td&gt;
+          &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/nz-table&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab *ngIf&#x3D;&quot;false&quot; nzTitle&#x3D;&quot;{{&#x27;MISC.TABS.PROCESSES.TITLE&#x27; | translate}}&quot;&gt;
+        &lt;app-bo-card *ngFor&#x3D;&quot;let process of processes&quot; [data]&#x3D;&quot;process&quot; type&#x3D;&quot;process&quot;&gt;&lt;/app-bo-card&gt;
+      &lt;/nz-tab&gt;
+
+      &lt;nz-tab nzTitle&#x3D;&quot;{{&#x27;MISC.ANNOTATIONS.ANNOTATION_TAB&#x27; | translate}}&quot; nzForceRender&gt;
+        &lt;app-annotations-form ObjectType&#x3D;&quot;analysis&quot; #annotationsForm&gt;&lt;/app-annotations-form&gt;
+      &lt;/nz-tab&gt;
+    &lt;/nz-tabset&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;ng-template #exportForm&gt;
+  &lt;nz-select nzShowSearch nzPlaceHolder&#x3D;&quot;Seleccionar formato&quot; [(ngModel)]&#x3D;&quot;selectedFormat&quot; name&#x3D;&quot;selectedFormat&quot;
+             style&#x3D;&quot;width: 100%&quot;&gt;
+    &lt;nz-option *ngFor&#x3D;&quot;let format of analysis.formats&quot; nzLabel&#x3D;&quot;{{format}}&quot; nzValue&#x3D;&quot;{{format}}&quot;&gt;&lt;/nz-option&gt;
+  &lt;/nz-select&gt;
+&lt;/ng-template&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./analysis-detail.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .ant-tabs-content
+  height: 100%
+
+::ng-deep .ant-tabs-content-holder
+  height: 100%
+
+.row-form
+  display: flex
+  flex-wrap: wrap
+  column-gap: 20px
+  row-gap: 10px
+
+.column-input-form
+  min-width: min(360px, 100%)
+  flex: 1 1 0px
+
+.click-row
+  cursor: pointer
+
+.false-input-disable
+  color: rgba(0, 0, 0, 0.25)
+  background-color: #f5f5f5
+  border: 1px solid #d9d9d9
+  padding: 4px 11px 4px 11px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="display: flex; flex-direction: column; height: 100%;">  <nz-page-header    nzSubtitle="{{\'MOLECULAR_DATA.ANALYSES.DETAIL.SUBTITLE\' | translate}}">    <nz-page-header-title>      <app-back-button></app-back-button>      {{analysis.name ? analysis.name : analysis.program + \' \' + analysis.programversion}}    </nz-page-header-title>    <nz-page-header-extra>      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="exportAnalysis(exportForm)"              *ngIf="this.authService.havePermission(\'gui-ma-export\')">        {{\'MOLECULAR_DATA.ANALYSES.DETAIL.EXPORT_BUTTON\' | translate}}      </button>    </nz-page-header-extra>  </nz-page-header>  <div style="padding: 0px 24px 0px 24px; flex: 1 1 auto; min-height: 0">    <nz-tabset [nzSelectedIndex]="0" style="width:100%; height: 100%;">      <nz-tab [nzTitle]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TITLE\' | translate">        <div style="height: 100%; overflow: auto">          <nz-spin [nzSpinning]="loadingGeneral">            <ng-container *ngIf="generalFormGroup">              <form [formGroup]="generalFormGroup">                <div class="row-form">                  <!-- Id -->                  <div class="column-input-form">                    <nz-form-label nzFor="analysis_id">Id</nz-form-label>                    <input nz-input formControlName="analysis_id" type="text" placeholder="Id">                  </div>                  <!-- Name -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="name">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="name" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.PLACEHOLDER\' | translate"                           [disableControl]="isDisableEdit()">                  </div>                </div>                <div class="row-form">                  <!-- Program -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="program">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="program" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.PLACEHOLDER\' | translate">                  </div>                  <!-- Program version -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="programversion">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="programversion" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.PLACEHOLDER\' | translate">                  </div>                </div>                <div class="row-form">                  <!-- SeqNum -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="seqnum">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="seqnum" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.PLACEHOLDER\' | translate">                  </div>                  <!-- SeqLen -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="seqlen">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="seqlen" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.PLACEHOLDER\' | translate">                  </div>                </div>                <div class="row-form">                  <!-- timeexecuted -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="timeexecuted">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.LABEL\' | translate}}</nz-form-label>                    <nz-date-picker nz-input formControlName="timeexecuted" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss"                                    style="width: 100%;"                                    [nzPlaceHolder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.PLACEHOLDER\' | translate"></nz-date-picker>                  </div>                  <!-- algorithm -->                  <div class="column-input-form" *ngIf="generalFormGroup.get(\'algorithm\').value">                    <nz-form-label                      nzFor="algorithm">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="algorithm" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.PLACEHOLDER\' | translate">                  </div>                </div>                <div class="row-form">                  <!-- sourcename -->                  <div class="column-input-form" *ngIf="generalFormGroup.get(\'sourcename\').value">                    <nz-form-label                      nzFor="sourcename">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="sourcename" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.PLACEHOLDER\' | translate">                  </div>                  <!-- sourceversion -->                  <div class="column-input-form" *ngIf="generalFormGroup.get(\'sourceversion\').value">                    <nz-form-label                      nzFor="sourceversion">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="sourceversion" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.PLACEHOLDER\' | translate">                  </div>                  <!-- sourceuri -->                  <div class="column-input-form" *ngIf="generalFormGroup.get(\'sourceuri\').value">                    <nz-form-label                      nzFor="sourceuri">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.LABEL\' | translate}}</nz-form-label>                    <input nz-input formControlName="sourceuri" type="text"                           [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.PLACEHOLDER\' | translate">                  </div>                </div>                <div class="row-form">                  <!-- Descripción -->                  <div class="column-input-form">                    <nz-form-label                      nzFor="description">{{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.LABEL\' | translate}}</nz-form-label>                    <textarea nz-input formControlName="description"                              [placeholder]="\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.PLACEHOLDER\' | translate"></textarea>                  </div>                </div>              </form>              <div style="display: flex; flex-direction: row-reverse; margin-top: 20px; column-gap: 5px">                <button nz-button nzShape="round" nzType="primary" *ngIf="!isDisableEdit()" (click)="updateAnalysis()"                        [disabled]="!generalFormGroupChange">                  {{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.MODIFY_BUTTON\' | translate}}                </button>                <button nz-button nzShape="round" nzDanger nzType="primary" *ngIf="!isDisableEdit()"                        (click)="cancelModifyAnalysis()" [disabled]="!generalFormGroupChange">                  {{\'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.CANCEL_BUTTON\' | translate}}                </button>              </div>            </ng-container>          </nz-spin>        </div>      </nz-tab>      <nz-tab [nzTitle]="\'MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.TITLE\' | translate"              *ngIf="analysis._phylotrees?.length > 0">        <nz-table #phylotreesTable [nzData]="analysis._phylotrees">          <thead>          <tr>            <th>{{\'MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.NAME_TH\' | translate}}</th>          </tr>          </thead>          <tbody>          <tr *ngFor="let data of phylotreesTable.data">            <td style="cursor: pointer" (click)="goSubTreeView(data.phylotree_id)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-pt-read\') ? \'pointer\': \'none\'}">              {{data.name}}            </td>          </tr>          </tbody>        </nz-table>      </nz-tab>      <nz-tab [nzTitle]="\'MISC.TABS.SEQUENCES.TITLE\' | translate">        <nz-table #sequenceTable [nzData]="analysis.sequences">          <thead>          <tr>            <th>{{\'MISC.TABS.SEQUENCES.NAME_TH\' | translate}}</th>          </tr>          </thead>          <tbody>          <tr *ngFor="let data of sequenceTable.data">            <td (click)="navigateSequence(data.feature_id)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-seq-read\') ? \'pointer\': \'none\'}">              {{data.uniquename}}            </td>          </tr>          </tbody>        </nz-table>      </nz-tab>      <nz-tab [nzTitle]="\'MISC.TABS.INDIVIDUALS.TITLE\' | translate">        <nz-spin [nzSpinning]="loadingGeneral">          <nz-table #stocksTable [nzData]="analysis.individuals">            <thead>            <tr>              <th>{{\'MISC.TABS.INDIVIDUALS.NAME_TH\' | translate}}</th>            </tr>            </thead>            <tbody>              <ng-container *ngFor="let data of stocksTable.data">                <tr>                  <td [ngStyle]="{\'cursor\': authService.havePermission(\'gui-individual-read\') ? \'pointer\' : \'default\'}"                  (click)="navigateIndividual(data.stock_id)">                    {{ data.uniquename }}                  </td>                </tr>              </ng-container>            </tbody>          </nz-table>        </nz-spin>      </nz-tab>      <nz-tab [nzTitle]="\'MISC.TABS.SPECIES.TITLE\' | translate">        <nz-table #speciesTable [nzData]="analysis.organisms">          <thead>          <tr>            <th>{{\'MISC.TABS.SPECIES.NAME_TH\' | translate}}</th>          </tr>          </thead>          <tbody>          <tr *ngFor="let data of speciesTable.data">            <td (click)="navigateOrganism(data.organism_id)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-organism-read\') ? \'pointer\': \'none\'}">              {{data.name}}            </td>          </tr>          </tbody>        </nz-table>      </nz-tab>      <nz-tab [nzTitle]="\'MISC.TABS.ANALYSES.TITLE\' | translate"              *ngIf="analysis.derives_from?.length > 0 || analysis.derives_into?.length > 0 ">        <nz-table #derivesFromTable [nzData]="analysis.derives_from" nzHideOnSinglePage>          <thead>          <tr>            <th>{{\'MISC.TABS.ANALYSES.TABLES.FROM_TITLE\' | translate}}</th>            <th></th>          </tr>          </thead>          <tbody>          <tr *ngFor="let data of derivesFromTable.data">            <td (click)="navigateAnalysis(data)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-analysis-read\') ? \'pointer\': \'none\'}">              {{data.name}}            </td>            <td (click)="navigateAnalysis(data)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-analysis-read\') ? \'pointer\': \'none\'}">              {{data.object_type}}            </td>          </tr>          </tbody>        </nz-table>        <nz-table #derivesIntoTable [nzData]="analysis.derives_into">          <thead>          <tr>            <th>{{\'MISC.TABS.ANALYSES.TABLES.INTO_TITLE\' | translate}}</th>            <th></th>          </tr>          </thead>          <tbody>          <tr *ngFor="let data of derivesIntoTable.data">            <td (click)="navigateAnalysis(data)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-analysis-read\') ? \'pointer\': \'none\'}">              {{data.name}}            </td>            <td (click)="navigateAnalysis(data)"                [ngStyle]="{\'cursor\': authService.havePermission(\'gui-analysis-read\') ? \'pointer\': \'none\'}">              {{data.object_type}}            </td>          </tr>          </tbody>        </nz-table>      </nz-tab>      <nz-tab *ngIf="false" nzTitle="{{\'MISC.TABS.PROCESSES.TITLE\' | translate}}">        <app-bo-card *ngFor="let process of processes" [data]="process" type="process"></app-bo-card>      </nz-tab>      <nz-tab nzTitle="{{\'MISC.ANNOTATIONS.ANNOTATION_TAB\' | translate}}" nzForceRender>        <app-annotations-form ObjectType="analysis" #annotationsForm></app-annotations-form>      </nz-tab>    </nz-tabset>  </div></div><ng-template #exportForm>  <nz-select nzShowSearch nzPlaceHolder="Seleccionar formato" [(ngModel)]="selectedFormat" name="selectedFormat"             style="width: 100%">    <nz-option *ngFor="let format of analysis.formats" nzLabel="{{format}}" nzValue="{{format}}"></nz-option>  </nz-select></ng-template></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'AnalysisDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnalysisDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

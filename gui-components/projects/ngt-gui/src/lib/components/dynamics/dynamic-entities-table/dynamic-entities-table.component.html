@@ -1,0 +1,41 @@
+<nz-table [nzShowPagination]="true" [nzFrontPagination]="false" [nzData]="data" [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex" [nzTotal]="totalItems" [nzLoading]="loading || loadingObjectTypes"
+          nzBordered (nzPageIndexChange)="pageIndexChange($event)">
+  <thead>
+  <tr>
+    <ng-container *ngFor="let item of variableHeader">
+      <th>
+        {{ item.translation | translate }}
+      </th>
+      <th>
+        {{ 'ENTITIES_TABLE.TYPE' | translate }}
+      </th>
+      <th nzAlign="center" nzRight nzWidth="160px" *ngIf="!hiddenActions">
+        {{ 'ENTITIES_TABLE.ACTIONS' | translate }}
+      </th>
+    </ng-container>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of data">
+    <tr [ngClass]="{'dynamic-entitites-table-element-delete-tr': listOfDelete.indexOf(item[identifier]) != -1}">
+      <ng-container *ngFor="let header of variableHeader">
+        <td [ngStyle]="{ 'cursor': canOpenItem && item.canOpen ? 'pointer' : 'default' }" (click)="openEntity(item)">
+          {{ item[header.variableName] }}
+        </td>
+        <td [ngStyle]="{ 'cursor': canOpenItem && item.canOpen ? 'pointer' : 'default' }" (click)="openEntity(item)">
+          {{ item.typeTranslation | translate }}
+        </td>
+        <td *ngIf="!hiddenActions" nzAlign="center">
+          <ul nz-list-item-actions style="margin-left: 6px">
+            <nz-list-item-action>
+              <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer" (click)="deleteEntity(item)" *ngIf="!hiddenDelete && listOfDelete.indexOf(item[identifier]) == -1"></i>
+              <i nz-icon nzType="redo" nzTheme="outline" style="cursor: pointer" (click)="recoverEntity(item)" *ngIf="!hiddenDelete && listOfDelete.indexOf(item[identifier]) != -1"></i>
+            </nz-list-item-action>
+          </ul>
+        </td>
+      </ng-container>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

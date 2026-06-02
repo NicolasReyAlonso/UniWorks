@@ -1,0 +1,122 @@
+<div class="theme-header-background-color" style="display: flex; padding: 5px 30px; align-items: center">
+  <img style="margin-right: 10px;" ngSrc={{icon}} alt="NextGenDem Logo"
+       height="45" width="45">
+
+  <div class="title">
+    {{title}}
+  </div>
+
+  <div class="container-case-study theme-header-background-color-tint-15">
+    <nz-select nzPlaceHolder="{{'MISC.BREADCRUMB.CASE_STUDIES' | translate}}" nzBorderless nzAllowClear
+               class="theme-header-background-color-tint-15" [(ngModel)]="caseStudySelectValue"
+               [nzDisabled]="caseStudySelectDisable" [nzLoading]="caseStudySelectDisable"
+               (ngModelChange)="caseStudySelectValueChange($event)" style="text-align: center">
+      <nz-option *ngFor="let item of caseStudiesOptions" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+  </div>
+
+  <nz-breadcrumb nz-page-header-subtitle nzSeparator=">" *ngIf="breadcrumb.length > 1"
+                 class="theme-header-background-color-tint-15 breadcrumb-routes">
+    <nz-breadcrumb-item [nzOverlay]="overflow" *ngIf="breadcrumb.length > 4" class="breadcrumb-item-overlay">...
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-4] as breadcrumbItem;">
+      <ng-container
+        [ngTemplateOutlet]="breadcrumbTemplate"
+        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">
+      </ng-container>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-3] as breadcrumbItem;">
+      <ng-container
+        [ngTemplateOutlet]="breadcrumbTemplate"
+        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">
+      </ng-container>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-2] as breadcrumbItem;">
+      <ng-container
+        [ngTemplateOutlet]="breadcrumbTemplate"
+        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">
+      </ng-container>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  <nz-dropdown-menu #overflow=nzDropdownMenu>
+    <ul nz-menu nzSelectable class="theme-header-background-color-tint-15"
+        style="box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;">
+      <li nz-menu-item *ngFor="let crumb of breadcrumb.slice(0, breadcrumb.length-4);"
+          style="background-color: unset !important;">
+        <ng-container
+          [ngTemplateOutlet]="breadcrumbTemplate"
+          [ngTemplateOutletContext]="{breadcrumbItem: crumb, isDropdownItem: true} ">
+        </ng-container>
+      </li>
+    </ul>
+  </nz-dropdown-menu>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="height: 100%">
+    <nz-avatar *ngIf="!auth_service.userData[0]" nzSize="large" nzIcon="user" style="cursor: pointer;"></nz-avatar>
+    <nz-avatar *ngIf="auth_service.userData[0]" [nzSrc]="auth_service.userData[0].photoURL" nzSize="large" nzIcon="user"
+               style="cursor: pointer;" nzPopoverTrigger="null" nz-popover nzPopoverContent="Content"
+               nzPopoverPlacement="bottomRight" (click)="changeUserPopoverState()"
+               [(nzPopoverVisible)]="userPopoverVisible"
+               [nzPopoverContent]="userPopoverTemplate"></nz-avatar>
+  </div>
+
+  <div class="theme-header-background-color-tint-15 circle-icon" style="margin-left: 1rem" (click)="onJupyterClick()" *ngIf="auth_service.haveRole('jupyterlab')">
+    <img src="./assets/images/Jupyter_logo.svg" style="filter: invert(1); height: 100%; width: auto">
+  </div>
+
+</div>
+
+<ng-template #userPopoverTemplate>
+  <div style="width: 354px;">
+
+    <div style="display: flex; justify-content: center; margin-top: 10px;">
+      <nz-avatar [nzSize]="80" [nzSrc]="auth_service.userData[0].photoURL" nzIcon="user"></nz-avatar>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 8px;">
+      <div style="display: inline-block; font-size: 16px; font-weight: 500;">
+        <ng-container *ngIf="!auth_service.userData[0].isAnonymous">
+          {{auth_service.userData[0].displayName}}
+        </ng-container>
+        <ng-container *ngIf="auth_service.userData[0].isAnonymous">
+          Invitado/a
+        </ng-container>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center;" *ngIf="!auth_service.userData[0].isAnonymous">
+      <div style="display: inline-block; font-size: 14px; font-weight: 500; color: #5f6368;">
+        {{auth_service.userData[0].email}}
+      </div>
+    </div>
+
+    <div
+      style="background-color: #dfdfdf; width: calc(100% + 32px); height: 1px; margin-top: 8px ; margin-left: -16px;">
+
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 15px; padding-bottom: 10px; gap: 10px;">
+      <button nz-button (click)="openPreferences()">{{'MISC.PROFILE.PREFERENCES' | translate}}</button>
+      <button nz-button (click)="logout()" nzDanger
+              nzType="primary">{{'MISC.PROFILE.CLOSE_SESSION' | translate}}</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #breadcrumbTemplate let-breadcrumbItem="breadcrumbItem" let-isDropdownItem="isDropdownItem">
+  <a (click)="clickBreadcrumbItem(breadcrumbItem)"
+     [ngClass]="{'breadcrumb-dropdown-item': isDropdownItem}"
+     class="theme-header-background-color-tint-15">
+    <ng-container *ngIf="breadcrumbItem.breadcrumbName && isString(breadcrumbItem.breadcrumbName)">
+      {{breadcrumbItem.breadcrumbName | translate}}
+    </ng-container>
+    <ng-container *ngIf="breadcrumbItem.breadcrumbName && isObject(breadcrumbItem.breadcrumbName)">
+      {{breadcrumbItem.breadcrumbName.key | translate: {params: breadcrumbItem.breadcrumbName.params} }}
+    </ng-container>
+  </a>
+</ng-template>
+
+<preferences-modal [(isVisible)]="isVisiblePreferencesModal"></preferences-modal>
+

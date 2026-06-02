@@ -1,0 +1,173 @@
+[build-system]
+requires = ["setuptools>=80.9.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uniback"
+version = "0.1.0"
+description = "A framework for quickly developing standardized backend components with persistence (SQLAlchemy 2.x) and REST API (FastAPI)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.13"
+authors = [
+    {name = "NextGenDem Team"}
+]
+keywords = ["backend", "framework", "sqlalchemy", "fastapi", "rest-api", "persistence"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: FastAPI",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+]
+
+dependencies = [
+    "sqlalchemy>=2.0.45",
+    "fastapi>=0.100",
+    "uvicorn[standard]>=0.23",
+    "pydantic>=2.0",
+    "pydantic-settings>=2.0",
+    "python-multipart>=0.0.6",
+    "python-jose[cryptography]>=3.3",
+    "alembic>=1.12",
+    "pyparsing>=3.0",
+    "jsonpickle>=3.0",
+    "SQLAlchemy-Continuum>=1.5.2",
+    "typing-extensions>=4.0.0",
+    "Mako>=1.3.0",
+    "markupsafe>=3.0.3",
+    "starlette>=0.50.0",
+    "annotated-doc>=0.0.4",
+    "pydantic-core>=2.41.5",
+    "typing-inspection>=0.4.2",
+    "annotated-types>=0.7.0",
+    "anyio>=4.12.0",
+    "python-dotenv>=1.2.1",
+    "fsspec>=2025.12.0",
+    "filetype>=1.2.0",
+    "psycopg2-binary>=2.9.11",
+    "click>=8.3.1",
+    "firebase-admin>=6.2.0",
+    "celery>=5.3.0",
+    "redis>=5.0.0",
+    "h11>=0.16.0",
+    "multidict>=6.7.0",
+    "pandas>=3.0.0rc1",
+    "httpx>=0.28.1",
+    "pygments>=2.19",
+    "nbformat>=5.10",
+    "nbconvert>=7.16",
+    "chardet>=5.2",
+    "appdirs>=1.4.4",
+    "psutil>=7.2.1",
+    "bcrypt>=5.0.0",
+    "python-socketio>=5.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-cov>=4.1",
+    "httpx>=0.24",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "pre-commit>=3.4",
+]
+postgres = [
+    "psycopg2-binary>=2.9",
+    "asyncpg>=0.28",
+]
+mysql = [
+    "pymysql>=1.1",
+    "aiomysql>=0.2",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+    "mkdocstrings[python]>=0.23",
+]
+
+[project.urls]
+Homepage = "https://github.com/nextgendem/uniback"
+Documentation = "https://github.com/nextgendem/uniback#readme"
+Repository = "https://github.com/nextgendem/uniback"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+uniback = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ['py313']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 100
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "C",  # flake8-comprehensions
+    "B",  # flake8-bugbear
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=uniback --cov-report=term-missing"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.coverage.run]
+source = ["src/uniback"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.2",
+]

@@ -1,0 +1,78 @@
+<form nz-form nzLayout="vertical" [formGroup]="formGroup" #formIdentityDetails>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label nzFor="name">{{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.NAME' | translate }}</nz-form-label>
+        <nz-form-control [nzValidateStatus]="getStatusInput('name') == 'INVALID' ? 'error' : ''"
+                         nzErrorTip="Campo requerido.">
+          <input nz-input formControlName="name" autocomplete="off"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label nzFor="identities">{{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.USERS' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="identities" nzMode="multiple"
+                     [nzPlaceHolder]="'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.USERS' | translate" nzShowSearch
+                     [nzCustomTemplate]="multipleTemplate" (nzOpenChange)="selectOpenChange($event)"
+                     #identitiesSelect>
+            <nz-option *ngIf="loadingIdentitiesSelect" nzDisabled nzCustomContent>
+              <i nz-icon nzType="loading" class="loading-icon"></i> Cargando Datos
+            </nz-option>
+            <nz-option *ngFor="let item of identitiesList" [nzValue]="item.id" [nzLabel]="item.name">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-form-control style="align-items: flex-end;">
+    <div style="display: flex">
+      <button nz-button (click)="test()" *ngIf="showTestButton">Test</button>
+      <button class="buttons-forms-group-details" nz-button nzType="primary" nzShape="round" nzDanger
+              *ngIf="cancelEventEmiter.observers.length > 0" (click)="onClickCancelButton()">
+        {{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.CANCEL_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-group-details" nz-button nzType="primary" nzShape="round" *ngIf="showCreateButton"
+              [disabled]="disableEdit">
+        {{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.CREATE_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-group-details" nz-button nzType="primary" nzShape="round" *ngIf="showEditButton"
+              [disabled]="disableEdit || !formGroup.valid" (click)="modifyGroup()">
+        {{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.MODIFY_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-group-details" nz-button nzType="primary" nzShape="round" *ngIf="showDeleteButton"
+              [disabled]="disableEdit" nzDanger>
+        {{ 'SECURITY_ADMIN.ORGANIZATION_FORM.DELETE_BUTTON' | translate }}
+      </button>
+    </div>
+  </nz-form-control>
+</form>
+
+<!-- Select Template -->
+<ng-template #multipleTemplate let-selected>
+  <div (click)="selectItemClick(selected)" style="cursor: pointer;">{{ selected.nzLabel }}</div>
+</ng-template>
+
+<!-- Identity Modal -->
+<ng-template #modalIdentityTitle>
+  <span>{{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.MODIFY_USER' | translate }}</span>
+</ng-template>
+<ng-template #modalIdentityContent>
+  <div class="content-modal">
+    <app-identity-form #identityFormElementRef [disableEdit]="true" [showTestButton]="false"
+                       [disableEditEvent]="disableEditFormSubject.asObservable()"
+                       (requestEnd)="requestEndItemForm($event, 'Identity')" [identityId]="idIdentityOpenModal">
+    </app-identity-form>
+  </div>
+</ng-template>
+<ng-template #modalIdentityFooter let-ref="modalRef">
+  <button nz-button (click)="onClickDestroyModal(ref)">{{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.CANCEL_BUTTON' | translate }}</button>
+  <button nz-button (click)="onClickModifyIdentityModal()" [disabled]="disableModifyButtonIdentityModal()"
+          nzType="primary" nzDanger>
+    {{ 'SECURITY_ADMIN.ORGANIZATIONS.ORGANIZATION_FORM.MODIFY_BUTTON' | translate }}
+  </button>
+</ng-template>

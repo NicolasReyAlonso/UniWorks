@@ -1,0 +1,3553 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TaxsetComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/formly-components/taxset/taxset.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>taxset-component</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzListModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzTableModule</code>
+                            <code>NzIconModule</code>
+                            <code>NzCardModule</code>
+                            <code>NzButtonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./taxset.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./taxset.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#idEditTaxset" >idEditTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#nextIdConstraints" >nextIdConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#nextIdTaxset" >nextIdTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#valueEditConstraints" >valueEditConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#valueValidateResult" >valueValidateResult</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#activeValueChangeEvent" >activeValueChangeEvent</a>
+                            </li>
+                            <li>
+                                <a href="#addTaxonContraints" >addTaxonContraints</a>
+                            </li>
+                            <li>
+                                <a href="#addTaxset" >addTaxset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkTaxonExistInConstraints" >checkTaxonExistInConstraints</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkTaxsetConflictInConstraints" >checkTaxsetConflictInConstraints</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convert2StringPaup" >convert2StringPaup</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convert2StringResult" >convert2StringResult</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convert2StringSets" >convert2StringSets</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convert2StringTaxonsGroupsContraint" >convert2StringTaxonsGroupsContraint</a>
+                            </li>
+                            <li>
+                                <a href="#dropTaxonsConstraints" >dropTaxonsConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#formatTaxonsInfo" >formatTaxonsInfo</a>
+                            </li>
+                            <li>
+                                <a href="#getArrayDataTableTaxset" >getArrayDataTableTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#getInfoTaxonsConstraints" >getInfoTaxonsConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#getTaxonLabel" >getTaxonLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getTaxonOptionTaxset" >getTaxonOptionTaxset</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initValidateEvent" >initValidateEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#onChangeTypeTaxset" >onChangeTypeTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#onEditConstraints" >onEditConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#onEditTaxset" >onEditTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#onEndEditConstraints" >onEndEditConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#onEndEditTaxset" >onEndEditTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#removeTaxonConstraints" >removeTaxonConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#removeTaxset" >removeTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#validateContraints" >validateContraints</a>
+                            </li>
+                            <li>
+                                <a href="#validateKeyConstraints" >validateKeyConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#validateName" >validateName</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#validateResult" >validateResult</a>
+                            </li>
+                            <li>
+                                <a href="#validateTaxonGroupConstraints" >validateTaxonGroupConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#validateTaxons" >validateTaxons</a>
+                            </li>
+                            <li>
+                                <a href="#validateTaxonsConstraints" >validateTaxonsConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#validateTaxset" >validateTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#validateType" >validateType</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#dataTableConstraints" >dataTableConstraints</a>
+                            </li>
+                            <li>
+                                <a href="#dataTableTaxset" >dataTableTaxset</a>
+                            </li>
+                            <li>
+                                <a href="#taxons" >taxons</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ValidateChangeEvent" >ValidateChangeEvent</a>
+                            </li>
+                            <li>
+                                <a href="#ValueChangeEvent" >ValueChangeEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:69</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataTableConstraints"></a>
+                        <b>dataTableConstraints</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[Contraints]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:61</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dataTableTaxset"></a>
+                        <b>dataTableTaxset</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Map&lt;number | Taxset&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:55</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="taxons"></a>
+                        <b>taxons</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:66</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ValidateChangeEvent"></a>
+                        <b>ValidateChangeEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:69</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="ValueChangeEvent"></a>
+                        <b>ValueChangeEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:68</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeValueChangeEvent"></a>
+                    <span class="name">
+                        <span ><b>activeValueChangeEvent</b></span>
+                        <a href="#activeValueChangeEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>activeValueChangeEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTaxonContraints"></a>
+                    <span class="name">
+                        <span ><b>addTaxonContraints</b></span>
+                        <a href="#addTaxonContraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTaxonContraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="397"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:397</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTaxset"></a>
+                    <span class="name">
+                        <span ><b>addTaxset</b></span>
+                        <a href="#addTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTaxset(stateEdit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="246"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:246</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>stateEdit</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkTaxonExistInConstraints"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>checkTaxonExistInConstraints</b></span>
+                        <a href="#checkTaxonExistInConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkTaxonExistInConstraints(taxon: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, excludeGroup: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="486"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:486</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>taxon</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>excludeGroup</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkTaxsetConflictInConstraints"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>checkTaxsetConflictInConstraints</b></span>
+                        <a href="#checkTaxsetConflictInConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkTaxsetConflictInConstraints(taxsetId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, excludeGroup: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="514"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:514</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>taxsetId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>excludeGroup</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convert2StringPaup"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>convert2StringPaup</b></span>
+                        <a href="#convert2StringPaup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convert2StringPaup(outputString: <a href="../interfaces/StringResult.html" target="_self">StringResult</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>outputString</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StringResult.html" target="_self" >StringResult</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convert2StringResult"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>convert2StringResult</b></span>
+                        <a href="#convert2StringResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convert2StringResult()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="115"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:115</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/StringResult.html" target="_self" >StringResult</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convert2StringSets"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>convert2StringSets</b></span>
+                        <a href="#convert2StringSets"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convert2StringSets(outputString: <a href="../interfaces/StringResult.html" target="_self">StringResult</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="126"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:126</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>outputString</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StringResult.html" target="_self" >StringResult</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convert2StringTaxonsGroupsContraint"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>convert2StringTaxonsGroupsContraint</b></span>
+                        <a href="#convert2StringTaxonsGroupsContraint"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convert2StringTaxonsGroupsContraint(outputString: <a href="../interfaces/StringResult.html" target="_self">StringResult</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="181"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:181</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>outputString</td>
+                                            <td>
+                                                            <code><a href="../interfaces/StringResult.html" target="_self" >StringResult</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dropTaxonsConstraints"></a>
+                    <span class="name">
+                        <span ><b>dropTaxonsConstraints</b></span>
+                        <a href="#dropTaxonsConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dropTaxonsConstraints(event: CdkDragDrop<any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="408"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:408</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>CdkDragDrop&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatTaxonsInfo"></a>
+                    <span class="name">
+                        <span ><b>formatTaxonsInfo</b></span>
+                        <a href="#formatTaxonsInfo"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatTaxonsInfo(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="295"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:295</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getArrayDataTableTaxset"></a>
+                    <span class="name">
+                        <span ><b>getArrayDataTableTaxset</b></span>
+                        <a href="#getArrayDataTableTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getArrayDataTableTaxset()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInfoTaxonsConstraints"></a>
+                    <span class="name">
+                        <span ><b>getInfoTaxonsConstraints</b></span>
+                        <a href="#getInfoTaxonsConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInfoTaxonsConstraints(indexTaxon)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="416"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:416</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>indexTaxon</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTaxonLabel"></a>
+                    <span class="name">
+                        <span ><b>getTaxonLabel</b></span>
+                        <a href="#getTaxonLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTaxonLabel(taxonValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="286"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:286</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>taxonValue</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTaxonOptionTaxset"></a>
+                    <span class="name">
+                        <span ><b>getTaxonOptionTaxset</b></span>
+                        <a href="#getTaxonOptionTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTaxonOptionTaxset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initValidateEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initValidateEvent</b></span>
+                        <a href="#initValidateEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initValidateEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="73"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onChangeTypeTaxset"></a>
+                    <span class="name">
+                        <span ><b>onChangeTypeTaxset</b></span>
+                        <a href="#onChangeTypeTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onChangeTypeTaxset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, type: "delete" | "outgroup")</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="311"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:311</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>type</td>
+                                            <td>
+                                                        <code>&quot;delete&quot; | &quot;outgroup&quot;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEditConstraints"></a>
+                    <span class="name">
+                        <span ><b>onEditConstraints</b></span>
+                        <a href="#onEditConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEditConstraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="386"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:386</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEditTaxset"></a>
+                    <span class="name">
+                        <span ><b>onEditTaxset</b></span>
+                        <a href="#onEditTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEditTaxset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="259"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:259</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEndEditConstraints"></a>
+                    <span class="name">
+                        <span ><b>onEndEditConstraints</b></span>
+                        <a href="#onEndEditConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEndEditConstraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="393"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:393</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onEndEditTaxset"></a>
+                    <span class="name">
+                        <span ><b>onEndEditTaxset</b></span>
+                        <a href="#onEndEditTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onEndEditTaxset()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="266"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:266</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeTaxonConstraints"></a>
+                    <span class="name">
+                        <span ><b>removeTaxonConstraints</b></span>
+                        <a href="#removeTaxonConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeTaxonConstraints(indexTaxon: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="403"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:403</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>indexTaxon</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeTaxset"></a>
+                    <span class="name">
+                        <span ><b>removeTaxset</b></span>
+                        <a href="#removeTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeTaxset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="270"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:270</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateContraints"></a>
+                    <span class="name">
+                        <span ><b>validateContraints</b></span>
+                        <a href="#validateContraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateContraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="553"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:553</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateKeyConstraints"></a>
+                    <span class="name">
+                        <span ><b>validateKeyConstraints</b></span>
+                        <a href="#validateKeyConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateKeyConstraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="439"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:439</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateName"></a>
+                    <span class="name">
+                        <span ><b>validateName</b></span>
+                        <a href="#validateName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateName(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="330"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:330</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateResult"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>validateResult</b></span>
+                        <a href="#validateResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>validateResult()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="95"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTaxonGroupConstraints"></a>
+                    <span class="name">
+                        <span ><b>validateTaxonGroupConstraints</b></span>
+                        <a href="#validateTaxonGroupConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTaxonGroupConstraints(indexGroup: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="462"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:462</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>indexGroup</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTaxons"></a>
+                    <span class="name">
+                        <span ><b>validateTaxons</b></span>
+                        <a href="#validateTaxons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTaxons(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="351"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:351</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTaxonsConstraints"></a>
+                    <span class="name">
+                        <span ><b>validateTaxonsConstraints</b></span>
+                        <a href="#validateTaxonsConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTaxonsConstraints()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="451"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:451</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateTaxset"></a>
+                    <span class="name">
+                        <span ><b>validateTaxset</b></span>
+                        <a href="#validateTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateTaxset(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateType"></a>
+                    <span class="name">
+                        <span ><b>validateType</b></span>
+                        <a href="#validateType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateType(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="360"
+                                    class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:360</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idEditTaxset"></a>
+                    <span class="name">
+                        <span ><b>idEditTaxset</b></span>
+                        <a href="#idEditTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextIdConstraints"></a>
+                    <span class="name">
+                        <span ><b>nextIdConstraints</b></span>
+                        <a href="#nextIdConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextIdTaxset"></a>
+                    <span class="name">
+                        <span ><b>nextIdTaxset</b></span>
+                        <a href="#nextIdTaxset"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valueEditConstraints"></a>
+                    <span class="name">
+                        <span ><b>valueEditConstraints</b></span>
+                        <a href="#valueEditConstraints"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="63" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="valueValidateResult"></a>
+                    <span class="name">
+                        <span ><b>valueValidateResult</b></span>
+                        <a href="#valueValidateResult"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/formly-components/taxset/taxset.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkDragDrop, moveItemInArray } from &#x27;@angular/cdk/drag-drop&#x27;;
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &quot;@angular/common&quot;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzCardModule} from &quot;ng-zorro-antd/card&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+
+interface Taxset {
+  name: string;
+  taxons: any[];
+  type: &#x27;outgroup&#x27; | &#x27;delete&#x27; | &#x27;constraints&#x27;;
+}
+
+interface Contraints {
+  key: string;
+  taxons: any[][];
+  converse: boolean;
+  type: &#x27;monophyly&#x27; | &#x27;backbone&#x27; ;
+}
+
+interface StringResult {
+  sets: string;
+  paup: string;
+  enforce_converse: string;
+}
+
+@Component({
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzListModule,
+        NzSelectModule,
+        NzTableModule,
+        NzIconModule,
+        NzCardModule,
+        NzButtonModule
+    ],
+    selector: &#x27;taxset-component&#x27;,
+    templateUrl: &#x27;./taxset.component.html&#x27;,
+    styleUrls: [&#x27;./taxset.component.sass&#x27;]
+})
+export class TaxsetComponent implements OnDestroy {
+
+  valueValidateResult &#x3D; false;
+
+  // Taxset
+  @Input()
+  dataTableTaxset: Map&lt;number, Taxset&gt;;
+  nextIdTaxset &#x3D; 1;
+  idEditTaxset &#x3D; null;
+
+  // Constraints
+  @Input()
+  dataTableConstraints: [Contraints];
+  nextIdConstraints &#x3D; 1;
+  valueEditConstraints &#x3D; false;
+
+
+  @Input(&#x27;taxons&#x27;) taxons: {label: string, value: string}[];
+
+  @Output() ValueChangeEvent &#x3D; new EventEmitter&lt;{taxsets: any, constraints: any}&gt;();
+  @Output() ValidateChangeEvent &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  constructor() { }
+
+  ngOnDestroy(): void {
+    this.ValueChangeEvent.unsubscribe();
+  }
+
+  private initValidateEvent(): void {
+    this.ValueChangeEvent.subscribe(event &#x3D;&gt; {
+
+      if (this.validateResult()) {
+        if (!this.valueValidateResult) {
+          this.ValidateChangeEvent.emit(true);
+          this.valueValidateResult &#x3D; true;
+        }
+      } else {
+        if (this.valueValidateResult) {
+          this.ValidateChangeEvent.emit(false);
+          this.valueValidateResult &#x3D; false;
+        }
+      }
+
+    });
+  }
+
+  private validateResult(): boolean {
+    for (const key of this.dataTableTaxset.keys()) {
+      if (!this.validateTaxset(key)) {
+        return false;
+      }
+    }
+    if (!this.validateContraints()) {
+      return false;
+    }
+    return true;
+  }
+
+  activeValueChangeEvent() {
+    const taxsets &#x3D; {};
+    for (const key of this.dataTableTaxset.keys()) {//change from Map to {}
+      taxsets[key] &#x3D; this.dataTableTaxset.get(key);
+    }
+    this.ValueChangeEvent.emit({taxsets: taxsets, constraints: this.dataTableConstraints});
+  }
+
+  private convert2StringResult(): StringResult {
+    const outputString: StringResult &#x3D; {
+      sets: &quot;&quot;,
+      paup: &quot;&quot;,
+      enforce_converse: &quot;&quot;
+    };
+    this.convert2StringSets(outputString);
+    this.convert2StringPaup(outputString);
+    return outputString;
+  }
+
+  private convert2StringSets(outputString: StringResult): void {
+    for (const key of this.dataTableTaxset.keys()) {
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      outputString.sets +&#x3D; &#x60;\ttaxset ${taxset.name} &#x3D;&#x60;;
+      for (const taxon of taxset.taxons) {
+        outputString.sets +&#x3D; &#x60; ${taxon}&#x60;;
+      }
+      outputString.sets +&#x3D; &#x27;;\n&#x27;;
+    }
+  }
+
+  private convert2StringPaup(outputString: StringResult): void {
+    const indexTaxsetsDelete &#x3D; [];
+    const indexTaxsetsOutgroup &#x3D; [];
+
+    for (const key of this.dataTableTaxset.keys()) {
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      switch (taxset.type) {
+        case &#x27;delete&#x27;:
+          indexTaxsetsDelete.push(key);
+          break;
+        case &#x27;outgroup&#x27;:
+          indexTaxsetsOutgroup.push(key);
+          break;
+      }
+    }
+
+    if (indexTaxsetsDelete.length &gt; 0) {
+      outputString.paup +&#x3D; &#x27;\tdelete&#x27;;
+      for (const index of indexTaxsetsDelete) {
+        const taxset &#x3D; this.dataTableTaxset.get(index);
+        outputString.paup +&#x3D; &#x60; ${taxset.name}&#x60;;
+      }
+      outputString.paup +&#x3D; &#x27;;\n&#x27;;
+    }
+
+    if (indexTaxsetsOutgroup.length &gt; 0) {
+      outputString.paup +&#x3D; &#x27;\toutgroup&#x27;;
+      for (const index of indexTaxsetsOutgroup) {
+        const taxset &#x3D; this.dataTableTaxset.get(index);
+        outputString.paup +&#x3D; &#x60; ${taxset.name}&#x60;;
+      }
+      outputString.paup +&#x3D; &#x27;;\n&#x27;;
+    }
+
+    const constraint &#x3D; this.dataTableConstraints[0];
+    if (constraint.taxons.length &gt; 0) {
+      outputString.paup +&#x3D; &#x60;\tconstraints ${constraint.key} ${constraint.type &#x3D;&#x3D; &quot;monophyly&quot; ? &quot;&quot; : constraint.type} &#x3D; &#x60;;
+      this.convert2StringTaxonsGroupsContraint(outputString);
+      outputString.enforce_converse +&#x3D; &quot;enforce&#x3D;yes &quot;
+      outputString.enforce_converse +&#x3D; &quot;converse&#x3D;&quot;
+      outputString.enforce_converse +&#x3D; this.dataTableConstraints[0].converse ? &quot;yes&quot; : &quot;no&quot;;
+    }
+  }
+
+  private convert2StringTaxonsGroupsContraint(outputString: StringResult) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    outputString.paup +&#x3D; &quot;(&quot;;
+    for (let i &#x3D; 0; i &lt; constraint.taxons.length; i++) {
+      outputString.paup +&#x3D; &quot;(&quot;;
+    }
+    let firstIteration &#x3D; true;
+    for (const taxonGroup of constraint.taxons.reverse()) {
+      if (!firstIteration) {
+        outputString.paup +&#x3D; &#x27;), &#x27;;
+      } else {
+        firstIteration &#x3D; false;
+      }
+      let firstIterationInGroup &#x3D; true;
+      for (const taxon of taxonGroup) {
+        if (!firstIterationInGroup) {
+          outputString.paup +&#x3D; &#x27;, &#x27;;
+        } else {
+          firstIterationInGroup &#x3D; false;
+        }
+        outputString.paup +&#x3D; taxon;
+        /* No numbers in contraints groups or taxsets
+        switch (typeof taxon) {
+          case &#x27;string&#x27;:
+            outputString.paup +&#x3D; taxon;
+            break;
+          case &#x27;number&#x27;:
+            outputString.paup +&#x3D; this.dataTableTaxset.get(taxon).name;
+            break;
+        }
+         */
+      }
+    }
+    outputString.paup +&#x3D; &quot;));\n&quot;;
+  }
+
+  // Functions Taxset
+  getArrayDataTableTaxset() {
+    return Array.from(this.dataTableTaxset);
+  }
+
+  getTaxonOptionTaxset(id: number): { label: string, value: string }[] {
+    const taxonOptions &#x3D; [...this.taxons];
+    for (const key of this.dataTableTaxset.keys()) {
+      if (id &#x3D;&#x3D;&#x3D; key) {
+        continue;
+      }
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      for (const taxon of taxset.taxons) {
+        let index &#x3D; -1;
+        taxonOptions.find((element, i) &#x3D;&gt; {
+          if (taxon.value &#x3D;&#x3D;&#x3D; element.value) {
+            index &#x3D; i;
+            return true;
+          }
+          return false;
+        });
+        if (index &gt; -1) {
+          taxonOptions.splice(index, 1);
+        }
+      }
+    }
+    return taxonOptions;
+  }
+
+  addTaxset(stateEdit: boolean): void {
+    this.dataTableTaxset.set(this.nextIdTaxset, {
+      name: this.nextIdTaxset &gt; 1 ? &#x60;key_${this.nextIdTaxset}&#x60; : &#x27;myOutgroup&#x27;,
+      taxons: [],
+      type: this.nextIdTaxset &gt; 1 ? &#x27;delete&#x27; : &#x27;outgroup&#x27;,
+    });
+    if (stateEdit) {
+      this.idEditTaxset &#x3D; this.nextIdTaxset;
+    }
+    this.nextIdTaxset++;
+    this.activeValueChangeEvent();
+  }
+
+  onEditTaxset(id: number): void {
+    if (this.valueEditConstraints || this.idEditTaxset) {
+      return;
+    }
+    this.idEditTaxset &#x3D; id;
+  }
+
+  onEndEditTaxset(): void {
+    this.idEditTaxset &#x3D; null;
+  }
+
+  removeTaxset(id: number): void {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    for (const taxons of constraint.taxons) {
+      for (let i &#x3D; 0; i &lt; taxons.length; i++) {
+        if (id &#x3D;&#x3D;&#x3D; taxons[i]) {
+          taxons.splice(i, 1);
+        }
+      }
+    }
+    if (this.idEditTaxset &#x3D;&#x3D; id) {
+      this.idEditTaxset &#x3D; null;
+    }
+    this.dataTableTaxset.delete(id);
+    this.activeValueChangeEvent();
+  }
+
+  getTaxonLabel(taxonValue: string) {
+    for (const t of this.taxons) {
+      if (taxonValue &#x3D;&#x3D;&#x3D; t.value) {
+        return t.label;
+      }
+    }
+    return &#x27;&#x27;;
+  }
+
+  formatTaxonsInfo(id: number) {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const taxons &#x3D; taxset.taxons;
+    let formatTaxons &#x3D; &quot;&quot;;
+    let firstIteration &#x3D; true;
+    for (const taxon of taxons) {
+      if (firstIteration) {
+        formatTaxons +&#x3D; this.getTaxonLabel(taxon);
+        firstIteration &#x3D; false;
+      } else {
+        formatTaxons +&#x3D; &#x60;, ${this.getTaxonLabel(taxon)}&#x60;;
+      }
+    }
+    return formatTaxons;
+  }
+
+  onChangeTypeTaxset(id: number, type: &#x27;delete&#x27; | &#x27;outgroup&#x27; /*| &#x27;constraints&#x27;*/) {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    /*if (type !&#x3D; &#x27;constraints&#x27;) {
+      const constraint &#x3D; this.dataTableConstraints[0];
+      for (const taxonGroup of constraint.taxons) {
+
+        const index &#x3D; taxonGroup.indexOf(id, 0);
+        if (index &gt; -1) {
+          taxonGroup.splice(index, 1);
+        }
+
+      }
+    }*/
+    if (type &#x3D;&#x3D;&#x3D; &#x27;outgroup&#x27;) {
+      taxset.name &#x3D; &#x27;myOutgroup&#x27;;
+    }
+  }
+
+  // Validations Taxset
+  validateName(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const name &#x3D; taxset.name;
+    if (!name || name &#x3D;&#x3D; &#x27;&#x27;) {
+      return false;
+    }
+    if (name.includes(&#x27; &#x27;)) {
+      return false;
+    }
+    for (const key of this.dataTableTaxset.keys()) {
+      if (key &#x3D;&#x3D; id) {
+        continue;
+      }
+      const taxsetIteration &#x3D; this.dataTableTaxset.get(key);
+      if (name &#x3D;&#x3D; taxsetIteration.name) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validateTaxons(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const taxons &#x3D; taxset.taxons;
+    if (taxons.length &lt; 1) {
+      return false;
+    }
+    return true;
+  }
+
+  validateType(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const type &#x3D; taxset.type;
+    if (type &#x3D;&#x3D; &#x27;outgroup&#x27;) {
+      for (let key of this.dataTableTaxset.keys()) {
+        if (key &#x3D;&#x3D; id) {
+          continue;
+        }
+        const taxsetIterate &#x3D; this.dataTableTaxset.get(key);
+        if (taxsetIterate.type &#x3D;&#x3D; &#x27;outgroup&#x27;) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  validateTaxset(id: number): boolean {
+    if (!this.validateName(id) || !this.validateTaxons(id) || !this.validateType(id)) {
+      return false;
+    }
+    return true;
+  }
+
+  // Constraints
+
+  onEditConstraints(): void {
+    if (this.idEditTaxset || this.valueEditConstraints) {
+      return;
+    }
+    this.valueEditConstraints &#x3D; true;
+  }
+
+  onEndEditConstraints(): void {
+    this.valueEditConstraints &#x3D; false;
+  }
+
+  addTaxonContraints(): void {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    constraint.taxons &#x3D; [...constraint.taxons, []];
+    this.activeValueChangeEvent();
+  }
+
+  removeTaxonConstraints(indexTaxon: number): void {
+    this.dataTableConstraints[0].taxons.splice(indexTaxon, 1);
+    this.activeValueChangeEvent();
+  }
+
+  dropTaxonsConstraints(event: CdkDragDrop&lt;any&gt;): void {
+    if (event.previousIndex &#x3D;&#x3D; event.currentIndex) {
+      return;
+    }
+    moveItemInArray(this.dataTableConstraints[0].taxons, event.previousIndex, event.currentIndex);
+    this.activeValueChangeEvent();
+  }
+
+  getInfoTaxonsConstraints(indexTaxon) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    let formatInfo &#x3D; &quot;&quot;;
+    let firstIteration &#x3D; true;
+    for (const taxon of constraint.taxons[indexTaxon]) {
+      if (!firstIteration) {
+        formatInfo +&#x3D; &#x27;, &#x27;;
+      }
+
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        formatInfo +&#x3D; this.getTaxonLabel(taxon);
+      }
+      /* No numbers in contraints groups or taxsets
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+        formatInfo +&#x3D; this.dataTableTaxset.get(taxon).name;
+      }*/
+
+      firstIteration &#x3D; false;
+    }
+    return formatInfo;
+  }
+
+  // Validate
+  validateKeyConstraints(): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const key &#x3D; constraint.key;
+    if (!key || key &#x3D;&#x3D; &#x27;&#x27;) {
+      return false;
+    }
+    if (key.includes(&#x27; &#x27;)) {
+      return false;
+    }
+    return true;
+  }
+
+  validateTaxonsConstraints(): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      if (!this.validateTaxonGroupConstraints(i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validateTaxonGroupConstraints(indexGroup: number): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    if (taxonsConstraint[indexGroup].length &lt; 1) {
+      return false;
+    }
+    for (const taxon of taxonsConstraint[indexGroup]) {
+
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        if (this.checkTaxonExistInConstraints(taxon, indexGroup)) {
+          return false;
+        }
+      }
+      /* No numbers in contraints groups or taxsets
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+        if (this.checkTaxsetConflictInConstraints(taxon, indexGroup)) {
+          return false;
+        }
+      }*/
+
+    }
+    return true;
+  }
+
+  private checkTaxonExistInConstraints(taxon: string, excludeGroup: number) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      for (const taxonIteration of taxonsConstraint[i]) {
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+          if (excludeGroup &#x3D;&#x3D; i) {
+            continue;
+          }
+          if (taxonIteration &#x3D;&#x3D; taxon) {
+            return true;
+          }
+        }
+
+        /* No numbers in contraints groups or taxsets
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+          const taxset &#x3D; this.dataTableTaxset.get(taxonIteration);
+          for (const taxonIterationTaxset of taxset.taxons) {
+            if (taxonIterationTaxset &#x3D;&#x3D; taxon) {
+              return true;
+            }
+          }
+        }*/
+      }
+    }
+    return false;
+  }
+
+  private checkTaxsetConflictInConstraints(taxsetId: number, excludeGroup: number) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    const taxset &#x3D; this.dataTableTaxset.get(taxsetId);
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      for (const taxonIteration of taxonsConstraint[i]) {
+
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+          for (const taxon of taxset.taxons) {
+            if (taxonIteration &#x3D;&#x3D; taxon) {
+              return true;
+            }
+          }
+        }
+
+        /* No numbers in contraints groups or taxsets
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+          if (taxsetId &#x3D;&#x3D; taxonIteration) {
+            if (excludeGroup &#x3D;&#x3D; i) {
+              continue;
+            } else {
+              return true;
+            }
+          }
+          const taxsetIteration &#x3D; this.dataTableTaxset.get(taxonIteration);
+          for (const taxon of taxset.taxons) {
+            for (const taxonTaxsetIteration of taxsetIteration.taxons) {
+              if (taxon &#x3D;&#x3D; taxonTaxsetIteration) {
+                return true;
+              }
+            }
+          }
+        }*/
+
+      }
+    }
+    return false;
+  }
+
+  validateContraints(): boolean {
+    if (!this.validateKeyConstraints() || !this.validateTaxonsConstraints()) {
+      return false;
+    }
+    return true;
+  }
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+
+  &lt;!-- Taxset Table --&gt;
+  &lt;nz-card [nzTitle]&#x3D;&quot;titleTaxset&quot; [nzExtra]&#x3D;&quot;extraTaxset&quot;&gt;
+    &lt;nz-table [nzData]&#x3D;&quot;getArrayDataTableTaxset()&quot; nzBordered [nzScroll]&#x3D;&quot;{ x: &#x27;500px&#x27; }&quot;
+              [nzShowPagination]&#x3D;&quot;false&quot;&gt;
+
+      &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;Key&lt;/th&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;Taxons&lt;/th&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;Type&lt;/th&gt;
+        &lt;th nzRight nzAlign&#x3D;&quot;center&quot; nzWidth&#x3D;&quot;120px&quot;&gt;Validation&lt;/th&gt;
+        &lt;th nzRight nzWidth&#x3D;&quot;100px&quot; nzAlign&#x3D;&quot;center&quot;&gt;Actions&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;/thead&gt;
+
+      &lt;tbody&gt;
+      &lt;ng-container *ngFor&#x3D;&quot;let data of dataTableTaxset | keyvalue&quot;&gt;
+        &lt;tr&gt;
+
+          &lt;!-- Info --&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;idEditTaxset !&#x3D; data.key&quot;&gt;
+            &lt;td [ngClass]&#x3D;&quot;{&#x27;info-field-error&#x27;: !validateName(data.key)}&quot;&gt;{{data.value.name}}&lt;/td&gt;
+            &lt;td [ngClass]&#x3D;&quot;{&#x27;info-field-error&#x27;: !validateTaxons(data.key)}&quot;&gt;
+              {{formatTaxonsInfo(data.key)}}&lt;/td&gt;
+            &lt;td [ngClass]&#x3D;&quot;{&#x27;info-field-error&#x27;: !validateType(data.key)}&quot;&gt;{{data.value.type}}&lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Edit --&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;idEditTaxset &#x3D;&#x3D; data.key&quot;&gt;
+            &lt;td&gt;
+              &lt;input nz-input placeholder&#x3D;&quot;Nombre&quot; [(ngModel)]&#x3D;&quot;data.value.name&quot;
+                     [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;: !validateName(data.key)}&quot;
+                     (ngModelChange)&#x3D;&quot;activeValueChangeEvent()&quot;
+                     [disabled]&#x3D;&quot;data.value.type &#x3D;&#x3D; &#x27;outgroup&#x27;&quot;/&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+              &lt;nz-select nzMode&#x3D;&quot;multiple&quot; nzPlaceHolder&#x3D;&quot;Taxones&quot; [(ngModel)]&#x3D;&quot;data.value.taxons&quot;
+                         style&#x3D;&quot;width: 100%;&quot; (ngModelChange)&#x3D;&quot;activeValueChangeEvent()&quot;
+                         [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: !validateTaxons(data.key)}&quot;&gt;
+                &lt;nz-option *ngFor&#x3D;&quot;let option of getTaxonOptionTaxset(data.key)&quot; [nzLabel]&#x3D;&quot;option.label&quot;
+                           [nzValue]&#x3D;&quot;option.value&quot;&gt;
+                &lt;/nz-option&gt;
+              &lt;/nz-select&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+              &lt;nz-select nzPlaceHolder&#x3D;&quot;Tipo&quot; [(ngModel)]&#x3D;&quot;data.value.type&quot; style&#x3D;&quot;width: 100%;&quot;
+                         (ngModelChange)&#x3D;&quot;onChangeTypeTaxset(data.key, $event); activeValueChangeEvent()&quot;
+                         [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: !validateType(data.key)}&quot;&gt;
+                &lt;nz-option nzLabel&#x3D;&quot;outgroup&quot; nzValue&#x3D;&quot;outgroup&quot;&gt;&lt;/nz-option&gt;
+                &lt;nz-option nzLabel&#x3D;&quot;delete&quot; nzValue&#x3D;&quot;delete&quot;&gt;&lt;/nz-option&gt;
+                &lt;!-- nz-option nzLabel&#x3D;&quot;constraints&quot; nzValue&#x3D;&quot;constraints&quot;&gt;&lt;/nz-option --&gt;
+              &lt;/nz-select&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- Validate --&gt;
+          &lt;td nzRight nzAlign&#x3D;&quot;center&quot;&gt;
+            &lt;i nz-icon [nzType]&#x3D;&quot;&#x27;check-circle&#x27;&quot; [nzTheme]&#x3D;&quot;&#x27;twotone&#x27;&quot; [nzTwotoneColor]&#x3D;&quot;&#x27;#52c41a&#x27;&quot;
+               style&#x3D;&quot;font-size: 20px;&quot; *ngIf&#x3D;&quot;validateTaxset(data.key)&quot;&gt;&lt;/i&gt;
+            &lt;i nz-icon [nzType]&#x3D;&quot;&#x27;close-circle&#x27;&quot; [nzTheme]&#x3D;&quot;&#x27;twotone&#x27;&quot; [nzTwotoneColor]&#x3D;&quot;&#x27;#ff0000&#x27;&quot;
+               style&#x3D;&quot;font-size: 20px;&quot; *ngIf&#x3D;&quot;!validateTaxset(data.key)&quot;&gt;&lt;/i&gt;
+          &lt;/td&gt;
+
+          &lt;!-- Actions --&gt;
+          &lt;td nzRight nzAlign&#x3D;&quot;center&quot;&gt;
+            &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+              &lt;nz-list-item-action&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;edit&quot; nzTheme&#x3D;&quot;outline&quot;
+                   [ngStyle]&#x3D;&quot;{cursor: idEditTaxset || valueEditConstraints ? &#x27;not-allowed&#x27; : &#x27;pointer&#x27;}&quot;
+                   *ngIf&#x3D;&quot;idEditTaxset !&#x3D; data.key&quot; (click)&#x3D;&quot;onEditTaxset(data.key)&quot;&gt;&lt;/i&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;check&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                   *ngIf&#x3D;&quot;idEditTaxset &#x3D;&#x3D; data.key&quot; (click)&#x3D;&quot;onEndEditTaxset()&quot;&gt;&lt;/i&gt;
+              &lt;/nz-list-item-action&gt;
+              &lt;nz-list-item-action&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                   (click)&#x3D;&quot;removeTaxset(data.key)&quot;&gt;&lt;/i&gt;
+              &lt;/nz-list-item-action&gt;
+            &lt;/ul&gt;
+          &lt;/td&gt;
+
+        &lt;/tr&gt;
+      &lt;/ng-container&gt;
+      &lt;/tbody&gt;
+
+    &lt;/nz-table&gt;
+
+  &lt;/nz-card&gt;
+
+  &lt;!-- Constraint Table --&gt;
+  &lt;nz-card [nzTitle]&#x3D;&quot;titleConstraints&quot; style&#x3D;&quot;margin-top: 10px;&quot;&gt;
+    &lt;nz-table [nzData]&#x3D;&quot;dataTableConstraints&quot; nzBordered [nzScroll]&#x3D;&quot;{ x: &#x27;500px&#x27; }&quot; [nzShowPagination]&#x3D;&quot;false&quot;&gt;
+      &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;Key&lt;/th&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot;&gt;Type&lt;/th&gt;
+        &lt;th nzAlign&#x3D;&quot;center&quot; nzWidth&#x3D;&quot;100px&quot;&gt;Converse&lt;/th&gt;
+        &lt;th nzRight nzAlign&#x3D;&quot;center&quot; nzWidth&#x3D;&quot;120px&quot;&gt;Validation&lt;/th&gt;
+        &lt;th nzRight nzWidth&#x3D;&quot;100px&quot; nzAlign&#x3D;&quot;center&quot;&gt;Actions&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;/thead&gt;
+
+      &lt;tbody&gt;
+      &lt;ng-container *ngFor&#x3D;&quot;let data of dataTableConstraints&quot;&gt;
+        &lt;tr&gt;
+
+          &lt;!-- Info --&gt;
+          &lt;ng-container &gt;
+            &lt;td [ngClass]&#x3D;&quot;{&#x27;info-field-error&#x27;: !validateKeyConstraints()}&quot;&gt;{{data.key}}
+            &lt;/td&gt;
+            &lt;td&gt;{{data.type}}&lt;/td&gt;
+            &lt;td nzAlign&#x3D;&quot;center&quot;&gt;
+              &lt;label nz-checkbox [(ngModel)]&#x3D;&quot;data.converse&quot;
+                     (ngModelChange)&#x3D;&quot;activeValueChangeEvent()&quot; nzDisabled&gt;&lt;/label&gt;
+            &lt;/td&gt;
+          &lt;/ng-container&gt;
+
+
+
+          &lt;!-- Validate --&gt;
+          &lt;td nzRight nzAlign&#x3D;&quot;center&quot;&gt;
+            &lt;i nz-icon [nzType]&#x3D;&quot;&#x27;check-circle&#x27;&quot; [nzTheme]&#x3D;&quot;&#x27;twotone&#x27;&quot; [nzTwotoneColor]&#x3D;&quot;&#x27;#52c41a&#x27;&quot;
+               style&#x3D;&quot;font-size: 20px;&quot; *ngIf&#x3D;&quot;validateContraints()&quot;&gt;&lt;/i&gt;
+            &lt;i nz-icon [nzType]&#x3D;&quot;&#x27;close-circle&#x27;&quot; [nzTheme]&#x3D;&quot;&#x27;twotone&#x27;&quot; [nzTwotoneColor]&#x3D;&quot;&#x27;#ff0000&#x27;&quot;
+               style&#x3D;&quot;font-size: 20px;&quot; *ngIf&#x3D;&quot;!validateContraints()&quot;&gt;&lt;/i&gt;
+          &lt;/td&gt;
+
+
+          &lt;!-- Actions --&gt;
+          &lt;td nzRight nzAlign&#x3D;&quot;center&quot;&gt;
+            &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+              &lt;nz-list-item-action&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;edit&quot; nzTheme&#x3D;&quot;outline&quot;
+                   [ngStyle]&#x3D;&quot;{cursor: idEditTaxset || valueEditConstraints ? &#x27;not-allowed&#x27; : &#x27;pointer&#x27;}&quot;
+                   *ngIf&#x3D;&quot;!valueEditConstraints&quot; (click)&#x3D;&quot;onEditConstraints()&quot;&gt;&lt;/i&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;check&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                   *ngIf&#x3D;&quot;valueEditConstraints&quot; (click)&#x3D;&quot;onEndEditConstraints()&quot;&gt;&lt;/i&gt;
+              &lt;/nz-list-item-action&gt;
+            &lt;/ul&gt;
+          &lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/ng-container&gt;
+      &lt;/tbody&gt;
+    &lt;/nz-table&gt;
+
+    &lt;nz-table [nzData]&#x3D;&quot;dataTableConstraints[0].taxons&quot; nzBordered [nzShowPagination]&#x3D;&quot;false&quot;&gt;
+
+      &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th colspan&#x3D;&quot;3&quot; [ngStyle]&#x3D;&quot;{color: !validateContraints() ? &#x27;red&#x27; : null}&quot;&gt;Groups
+        &lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;/thead&gt;
+
+      &lt;tbody cdkDropList (cdkDropListDropped)&#x3D;&quot;dropTaxonsConstraints($event)&quot;&gt;
+      &lt;tr *ngFor&#x3D;&quot;let taxon of dataTableConstraints[0].taxons; let indexTaxon &#x3D; index&quot; cdkDrag cdkDragLockAxis&#x3D;&quot;y&quot;&gt;
+        &lt;td style&#x3D;&quot;width: 60px;&quot; nzAlign&#x3D;&quot;center&quot;&gt;
+          &lt;i nz-icon nzType&#x3D;&quot;drag&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: n-resize;&quot; cdkDragHandle&gt;&lt;/i&gt;
+        &lt;/td&gt;
+
+        &lt;td&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;!valueEditConstraints&quot;&gt;
+            {{getInfoTaxonsConstraints(indexTaxon)}}
+          &lt;/ng-container&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;valueEditConstraints&quot;&gt;
+            &lt;nz-select nzMode&#x3D;&quot;multiple&quot; nzPlaceHolder&#x3D;&quot;Grupo&quot; [(ngModel)]&#x3D;&quot;dataTableConstraints[0].taxons[indexTaxon]&quot;
+                       style&#x3D;&quot;width: 100%;&quot; (ngModelChange)&#x3D;&quot;activeValueChangeEvent()&quot;
+                       [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: !validateTaxonGroupConstraints(indexTaxon)}&quot;&gt;
+              &lt;nz-option-group nzLabel&#x3D;&quot;Taxset&quot;&gt;
+                &lt;ng-container *ngFor&#x3D;&quot;let taxset of dataTableTaxset | keyvalue&quot;&gt;
+                  &lt;nz-option *ngIf&#x3D;&quot;taxset.value.type &#x3D;&#x3D; &#x27;constraints&#x27;&quot; [nzValue]&#x3D;&quot;taxset.key&quot;
+                             [nzLabel]&#x3D;&quot;taxset.value.name&quot;&gt;&lt;/nz-option&gt;
+                &lt;/ng-container&gt;
+              &lt;/nz-option-group&gt;
+              &lt;nz-option-group nzLabel&#x3D;&quot;Taxones&quot;&gt;
+                &lt;nz-option *ngFor&#x3D;&quot;let taxonOption of getTaxonOptionTaxset(null)&quot; [nzValue]&#x3D;&quot;taxonOption.value&quot;
+                           [nzLabel]&#x3D;&quot;taxonOption.label&quot;&gt;&lt;/nz-option&gt;
+              &lt;/nz-option-group&gt;
+            &lt;/nz-select&gt;
+          &lt;/ng-container&gt;
+        &lt;/td&gt;
+
+&lt;!--        &amp;lt;!&amp;ndash; Info &amp;ndash;&amp;gt;--&gt;
+&lt;!--        &lt;ng-container *ngIf&#x3D;&quot;!valueEditConstraints&quot;&gt;--&gt;
+&lt;!--          &lt;td [ngClass]&#x3D;&quot;{&#x27;info-field-error&#x27;: !validateTaxonGroupConstraints(indexTaxon)}&quot;&gt;--&gt;
+&lt;!--            {{getInfoTaxonsConstraints(indexTaxon)}}&lt;/td&gt;--&gt;
+&lt;!--        &lt;/ng-container&gt;--&gt;
+
+&lt;!--        &amp;lt;!&amp;ndash; Edit &amp;ndash;&amp;gt;--&gt;
+&lt;!--        &lt;ng-container *ngIf&#x3D;&quot;valueEditConstraints&quot;&gt;--&gt;
+&lt;!--          &lt;td&gt;--&gt;
+&lt;!--            &lt;nz-select nzMode&#x3D;&quot;multiple&quot; nzPlaceHolder&#x3D;&quot;Grupo&quot; [(ngModel)]&#x3D;&quot;dataTableConstraints[0].taxons[indexTaxon]&quot;--&gt;
+&lt;!--                       style&#x3D;&quot;width: 100%;&quot; (ngModelChange)&#x3D;&quot;activeValueChangeEvent()&quot;--&gt;
+&lt;!--                       [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: !validateTaxonGroupConstraints(indexTaxon)}&quot;&gt;--&gt;
+&lt;!--              &lt;nz-option-group nzLabel&#x3D;&quot;Taxset&quot;&gt;--&gt;
+&lt;!--                &lt;ng-container *ngFor&#x3D;&quot;let taxset of dataTableTaxset | keyvalue&quot;&gt;--&gt;
+&lt;!--                  &lt;nz-option *ngIf&#x3D;&quot;taxset.value.type &#x3D;&#x3D; &#x27;constraints&#x27;&quot; [nzValue]&#x3D;&quot;taxset.key&quot;--&gt;
+&lt;!--                             [nzLabel]&#x3D;&quot;taxset.value.name&quot;&gt;&lt;/nz-option&gt;--&gt;
+&lt;!--                &lt;/ng-container&gt;--&gt;
+&lt;!--              &lt;/nz-option-group&gt;--&gt;
+&lt;!--              &lt;nz-option-group nzLabel&#x3D;&quot;Taxones&quot;&gt;--&gt;
+&lt;!--                &lt;nz-option *ngFor&#x3D;&quot;let taxonOption of getTaxonOptionTaxset(null)&quot; [nzValue]&#x3D;&quot;taxonOption.value&quot;--&gt;
+&lt;!--                           [nzLabel]&#x3D;&quot;taxonOption.label&quot;&gt;&lt;/nz-option&gt;--&gt;
+&lt;!--              &lt;/nz-option-group&gt;--&gt;
+&lt;!--            &lt;/nz-select&gt;--&gt;
+&lt;!--          &lt;/td&gt;--&gt;
+&lt;!--        &lt;/ng-container&gt;--&gt;
+
+        &lt;!-- Actions --&gt;
+        &lt;td style&#x3D;&quot;width: 100px;&quot; nzRight nzAlign&#x3D;&quot;center&quot;&gt;
+          &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+            &lt;nz-list-item-action&gt;
+              &lt;i nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;
+                 (click)&#x3D;&quot;removeTaxonConstraints(indexTaxon)&quot;&gt;&lt;/i&gt;
+            &lt;/nz-list-item-action&gt;
+          &lt;/ul&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+
+      &lt;!-- New Group --&gt;
+      &lt;tr *ngIf&#x3D;&quot;valueEditConstraints&quot;&gt;
+        &lt;td colspan&#x3D;&quot;3&quot; style&#x3D;&quot;cursor: pointer;&quot; (click)&#x3D;&quot;addTaxonContraints()&quot;&gt;
+          &lt;i nz-icon nzType&#x3D;&quot;plus&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;cursor: pointer;&quot;&gt;&lt;/i&gt; Add Group
+        &lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;/tbody&gt;
+
+    &lt;/nz-table&gt;
+
+  &lt;/nz-card&gt;
+
+
+&lt;/div&gt;
+
+
+&lt;!-- Title Taxset --&gt;
+&lt;ng-template #titleTaxset&gt;
+  &lt;div style&#x3D;&quot;font-weight: bold; font-size: 1.2em;&quot;&gt;Taxset&lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;!-- Extra Header Taxset --&gt;
+&lt;ng-template #extraTaxset&gt;
+  &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; type&#x3D;&quot;button&quot; (click)&#x3D;&quot;addTaxset(true)&quot;
+          [disabled]&#x3D;&quot;idEditTaxset || valueEditConstraints&quot;&gt;
+    &lt;i nz-icon nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;Add
+  &lt;/button&gt;
+&lt;/ng-template&gt;
+
+&lt;!-- Title Constraints --&gt;
+&lt;ng-template #titleConstraints&gt;
+  &lt;div style&#x3D;&quot;font-weight: bold; font-size: 1.2em;&quot;&gt;Monophyletic Gropus&lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./taxset.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.input-error
+    border-color: #ff0000
+
+    &amp;:focus
+        box-shadow: 0 0 0 2px rgba(225,24,24,.2)
+
+.info-field-error
+    color: #ff0000
+
+::ng-deep .select-error .ant-select-selector
+    border-color: #ff0000 !important
+
+::ng-deep .select-error:hover .ant-select-selector
+    border-color: #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector
+    box-shadow: 0 0 0 2px rgba(225,24,24,.2)
+
+::ng-deep .cdk-drag-preview
+    display: table
+
+::ng-deep .cdk-drag-placeholder
+    opacity: 0
+
+::ng-deep tr.ant-table-expanded-row &gt; td
+    background-color: #fff
+
+::ng-deep .ant-table-expanded-row-fixed
+    padding: 0px 0px 0px 0px !important
+
+::ng-deep .ant-table-tbody &gt; tr.ant-table-row:hover &gt; td
+    background-color: #fff !important
+
+::ng-deep tr.ant-table-expanded-row:hover &gt; td, tr.ant-table-expanded-row &gt; td
+    background-color: #fff !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div>  <!-- Taxset Table -->  <nz-card [nzTitle]="titleTaxset" [nzExtra]="extraTaxset">    <nz-table [nzData]="getArrayDataTableTaxset()" nzBordered [nzScroll]="{ x: \'500px\' }"              [nzShowPagination]="false">      <thead>      <tr>        <th nzAlign="center">Key</th>        <th nzAlign="center">Taxons</th>        <th nzAlign="center">Type</th>        <th nzRight nzAlign="center" nzWidth="120px">Validation</th>        <th nzRight nzWidth="100px" nzAlign="center">Actions</th>      </tr>      </thead>      <tbody>      <ng-container *ngFor="let data of dataTableTaxset | keyvalue">        <tr>          <!-- Info -->          <ng-container *ngIf="idEditTaxset != data.key">            <td [ngClass]="{\'info-field-error\': !validateName(data.key)}">{{data.value.name}}</td>            <td [ngClass]="{\'info-field-error\': !validateTaxons(data.key)}">              {{formatTaxonsInfo(data.key)}}</td>            <td [ngClass]="{\'info-field-error\': !validateType(data.key)}">{{data.value.type}}</td>          </ng-container>          <!-- Edit -->          <ng-container *ngIf="idEditTaxset == data.key">            <td>              <input nz-input placeholder="Nombre" [(ngModel)]="data.value.name"                     [ngClass]="{\'input-error\': !validateName(data.key)}"                     (ngModelChange)="activeValueChangeEvent()"                     [disabled]="data.value.type == \'outgroup\'"/>            </td>            <td>              <nz-select nzMode="multiple" nzPlaceHolder="Taxones" [(ngModel)]="data.value.taxons"                         style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"                         [ngClass]="{\'select-error\': !validateTaxons(data.key)}">                <nz-option *ngFor="let option of getTaxonOptionTaxset(data.key)" [nzLabel]="option.label"                           [nzValue]="option.value">                </nz-option>              </nz-select>            </td>            <td>              <nz-select nzPlaceHolder="Tipo" [(ngModel)]="data.value.type" style="width: 100%;"                         (ngModelChange)="onChangeTypeTaxset(data.key, $event); activeValueChangeEvent()"                         [ngClass]="{\'select-error\': !validateType(data.key)}">                <nz-option nzLabel="outgroup" nzValue="outgroup"></nz-option>                <nz-option nzLabel="delete" nzValue="delete"></nz-option>                <!-- nz-option nzLabel="constraints" nzValue="constraints"></nz-option -->              </nz-select>            </td>          </ng-container>          <!-- Validate -->          <td nzRight nzAlign="center">            <i nz-icon [nzType]="\'check-circle\'" [nzTheme]="\'twotone\'" [nzTwotoneColor]="\'#52c41a\'"               style="font-size: 20px;" *ngIf="validateTaxset(data.key)"></i>            <i nz-icon [nzType]="\'close-circle\'" [nzTheme]="\'twotone\'" [nzTwotoneColor]="\'#ff0000\'"               style="font-size: 20px;" *ngIf="!validateTaxset(data.key)"></i>          </td>          <!-- Actions -->          <td nzRight nzAlign="center">            <ul nz-list-item-actions style="margin-left: 6px;">              <nz-list-item-action>                <i nz-icon nzType="edit" nzTheme="outline"                   [ngStyle]="{cursor: idEditTaxset || valueEditConstraints ? \'not-allowed\' : \'pointer\'}"                   *ngIf="idEditTaxset != data.key" (click)="onEditTaxset(data.key)"></i>                <i nz-icon nzType="check" nzTheme="outline" style="cursor: pointer;"                   *ngIf="idEditTaxset == data.key" (click)="onEndEditTaxset()"></i>              </nz-list-item-action>              <nz-list-item-action>                <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"                   (click)="removeTaxset(data.key)"></i>              </nz-list-item-action>            </ul>          </td>        </tr>      </ng-container>      </tbody>    </nz-table>  </nz-card>  <!-- Constraint Table -->  <nz-card [nzTitle]="titleConstraints" style="margin-top: 10px;">    <nz-table [nzData]="dataTableConstraints" nzBordered [nzScroll]="{ x: \'500px\' }" [nzShowPagination]="false">      <thead>      <tr>        <th nzAlign="center">Key</th>        <th nzAlign="center">Type</th>        <th nzAlign="center" nzWidth="100px">Converse</th>        <th nzRight nzAlign="center" nzWidth="120px">Validation</th>        <th nzRight nzWidth="100px" nzAlign="center">Actions</th>      </tr>      </thead>      <tbody>      <ng-container *ngFor="let data of dataTableConstraints">        <tr>          <!-- Info -->          <ng-container >            <td [ngClass]="{\'info-field-error\': !validateKeyConstraints()}">{{data.key}}            </td>            <td>{{data.type}}</td>            <td nzAlign="center">              <label nz-checkbox [(ngModel)]="data.converse"                     (ngModelChange)="activeValueChangeEvent()" nzDisabled></label>            </td>          </ng-container>          <!-- Validate -->          <td nzRight nzAlign="center">            <i nz-icon [nzType]="\'check-circle\'" [nzTheme]="\'twotone\'" [nzTwotoneColor]="\'#52c41a\'"               style="font-size: 20px;" *ngIf="validateContraints()"></i>            <i nz-icon [nzType]="\'close-circle\'" [nzTheme]="\'twotone\'" [nzTwotoneColor]="\'#ff0000\'"               style="font-size: 20px;" *ngIf="!validateContraints()"></i>          </td>          <!-- Actions -->          <td nzRight nzAlign="center">            <ul nz-list-item-actions style="margin-left: 6px;">              <nz-list-item-action>                <i nz-icon nzType="edit" nzTheme="outline"                   [ngStyle]="{cursor: idEditTaxset || valueEditConstraints ? \'not-allowed\' : \'pointer\'}"                   *ngIf="!valueEditConstraints" (click)="onEditConstraints()"></i>                <i nz-icon nzType="check" nzTheme="outline" style="cursor: pointer;"                   *ngIf="valueEditConstraints" (click)="onEndEditConstraints()"></i>              </nz-list-item-action>            </ul>          </td>        </tr>      </ng-container>      </tbody>    </nz-table>    <nz-table [nzData]="dataTableConstraints[0].taxons" nzBordered [nzShowPagination]="false">      <thead>      <tr>        <th colspan="3" [ngStyle]="{color: !validateContraints() ? \'red\' : null}">Groups        </th>      </tr>      </thead>      <tbody cdkDropList (cdkDropListDropped)="dropTaxonsConstraints($event)">      <tr *ngFor="let taxon of dataTableConstraints[0].taxons; let indexTaxon = index" cdkDrag cdkDragLockAxis="y">        <td style="width: 60px;" nzAlign="center">          <i nz-icon nzType="drag" nzTheme="outline" style="cursor: n-resize;" cdkDragHandle></i>        </td>        <td>          <ng-container *ngIf="!valueEditConstraints">            {{getInfoTaxonsConstraints(indexTaxon)}}          </ng-container>          <ng-container *ngIf="valueEditConstraints">            <nz-select nzMode="multiple" nzPlaceHolder="Grupo" [(ngModel)]="dataTableConstraints[0].taxons[indexTaxon]"                       style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"                       [ngClass]="{\'select-error\': !validateTaxonGroupConstraints(indexTaxon)}">              <nz-option-group nzLabel="Taxset">                <ng-container *ngFor="let taxset of dataTableTaxset | keyvalue">                  <nz-option *ngIf="taxset.value.type == \'constraints\'" [nzValue]="taxset.key"                             [nzLabel]="taxset.value.name"></nz-option>                </ng-container>              </nz-option-group>              <nz-option-group nzLabel="Taxones">                <nz-option *ngFor="let taxonOption of getTaxonOptionTaxset(null)" [nzValue]="taxonOption.value"                           [nzLabel]="taxonOption.label"></nz-option>              </nz-option-group>            </nz-select>          </ng-container>        </td><!--        &lt;!&ndash; Info &ndash;&gt;--><!--        <ng-container *ngIf="!valueEditConstraints">--><!--          <td [ngClass]="{\'info-field-error\': !validateTaxonGroupConstraints(indexTaxon)}">--><!--            {{getInfoTaxonsConstraints(indexTaxon)}}</td>--><!--        </ng-container>--><!--        &lt;!&ndash; Edit &ndash;&gt;--><!--        <ng-container *ngIf="valueEditConstraints">--><!--          <td>--><!--            <nz-select nzMode="multiple" nzPlaceHolder="Grupo" [(ngModel)]="dataTableConstraints[0].taxons[indexTaxon]"--><!--                       style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"--><!--                       [ngClass]="{\'select-error\': !validateTaxonGroupConstraints(indexTaxon)}">--><!--              <nz-option-group nzLabel="Taxset">--><!--                <ng-container *ngFor="let taxset of dataTableTaxset | keyvalue">--><!--                  <nz-option *ngIf="taxset.value.type == \'constraints\'" [nzValue]="taxset.key"--><!--                             [nzLabel]="taxset.value.name"></nz-option>--><!--                </ng-container>--><!--              </nz-option-group>--><!--              <nz-option-group nzLabel="Taxones">--><!--                <nz-option *ngFor="let taxonOption of getTaxonOptionTaxset(null)" [nzValue]="taxonOption.value"--><!--                           [nzLabel]="taxonOption.label"></nz-option>--><!--              </nz-option-group>--><!--            </nz-select>--><!--          </td>--><!--        </ng-container>-->        <!-- Actions -->        <td style="width: 100px;" nzRight nzAlign="center">          <ul nz-list-item-actions style="margin-left: 6px;">            <nz-list-item-action>              <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"                 (click)="removeTaxonConstraints(indexTaxon)"></i>            </nz-list-item-action>          </ul>        </td>      </tr>      <!-- New Group -->      <tr *ngIf="valueEditConstraints">        <td colspan="3" style="cursor: pointer;" (click)="addTaxonContraints()">          <i nz-icon nzType="plus" nzTheme="outline" style="cursor: pointer;"></i> Add Group        </td>      </tr>      </tbody>    </nz-table>  </nz-card></div><!-- Title Taxset --><ng-template #titleTaxset>  <div style="font-weight: bold; font-size: 1.2em;">Taxset</div></ng-template><!-- Extra Header Taxset --><ng-template #extraTaxset>  <button nz-button nzType="primary" nzShape="round" type="button" (click)="addTaxset(true)"          [disabled]="idEditTaxset || valueEditConstraints">    <i nz-icon nzType="plus"></i>Add  </button></ng-template><!-- Title Constraints --><ng-template #titleConstraints>  <div style="font-weight: bold; font-size: 1.2em;">Monophyletic Gropus</div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'TaxsetComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TaxsetComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,17 @@
+<nz-collapse nzAccordion style="margin-bottom:20px;">
+  <nz-collapse-panel nzHeader="Alignments Selector" [(nzActive)]="collapsePanelActiveDynamicBrowser"
+                     [nzDisabled]="collapsePanelDisable || Object.keys(this.preValue[1]).length !== 0">
+    <app-dynamic-browse BrowserTitle="Alignments"
+                        [BrowserType]="'alignments'"
+                        [CanMultipleCheckItems]="false"
+                        (UpdateDataEvent)="updateDataEventDynamicBrowser($event)"
+                        (SetSelectedEvent)="receiveDataBrowse($event, 'alignments')" #alignmentDynamicBrowser>
+></app-dynamic-browse>
+  </nz-collapse-panel>
+  <nz-collapse-panel [nzHeader]="this.uploaderHeader">
+    <app-upload-2-files-api  [extension]=this.type [fileExtensions]="this.props.fileExtensions" numFilesLimit=1
+                             (filesEvent)="receiveFiles($event)" [remoteName]="this.filename + '.' + this.type"
+                             [files]="Object.keys(this.preValue[1]).length > 0 ? [this.preValue[1]] : []"/>
+  </nz-collapse-panel>
+</nz-collapse>
+

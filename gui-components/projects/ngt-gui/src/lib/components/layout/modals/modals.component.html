@@ -1,0 +1,26 @@
+<nz-modal [nzVisible]="showModal()" [nzTitle]="modalTitle" [nzClosable]="false" [nzFooter]="null" nzCentered>
+  <ng-template #modalTitle>
+    <ng-container *ngIf="!isActiveRegister">
+      {{'AUTH_MODAL.LOGIN_TITLE' | translate}}
+    </ng-container>
+    <ng-container *ngIf="isActiveRegister">
+      {{'AUTH_MODAL.REGISTER_TITLE' | translate}}
+    </ng-container>
+  </ng-template>
+  <ng-container *nzModalContent>
+    <div style="display: flex; justify-content: flex-end">
+      <nz-select [(ngModel)]="selectedOptionLanguage" class="preferences-languages-select" style="margin-top: 10px;"
+                 (ngModelChange)="swicthLanguage($event)">
+        <nz-option [nzValue]="item.value.id" [nzLabel]="getLanguageTypeLabel(item.value.id) | translate"
+                   *ngFor="let item of LanguageItemType | keyvalue">
+        </nz-option>
+      </nz-select>
+    </div>
+    <ng-template #modalFooter>
+      <button nz-button nzType="primary" [disabled]="!validateLogin">Iniciar sesión</button>
+    </ng-template>
+    <app-login (validityChange)="validateLogin = $event" (activeRegister)="isActiveRegister = true"
+               *ngIf="!isActiveRegister"></app-login>
+    <app-registration (desactiveRegister)="isActiveRegister = false" *ngIf="isActiveRegister"></app-registration>
+  </ng-container>
+</nz-modal>

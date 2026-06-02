@@ -1,0 +1,30 @@
+<nz-spin [nzSpinning]="loading">
+    <div style="padding: 0px 30px 40px 30px;">
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <nz-avatar [nzSize]="120" nzIcon="user"></nz-avatar>
+          </div>
+
+          <form nz-form nzLayout="vertical" style="margin-top: 15px;" [formGroup]="registerFormGroup" (keydown.enter)="submitRegister()">
+            <nz-form-item>
+              <nz-form-label>Email</nz-form-label>
+              <nz-form-control>
+                <nz-input-group>
+                  <input type="text" nz-input formControlName="email" placeholder="Email" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+            <nz-form-item>
+              <nz-form-label>Contraseña</nz-form-label>
+              <nz-form-control>
+                <nz-input-group>
+                  <input type="password" nz-input formControlName="password" placeholder="Contraseña" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </form>
+
+          <div style="margin-top: -20px; color: #717171;">¿Ya tienes cuenta? <a class="link-login" (click)="onClickLinkLogin()">Accede a ella.</a></div>
+
+          <button nz-button nzType="primary" style="width: 100%; margin-top: 15px;" [disabled]="!this.registerFormGroup.valid" (click)="submitRegister()">Registrarse</button>
+    </div>
+</nz-spin>

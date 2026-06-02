@@ -1,0 +1,76 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalTitle" [nzContent]="modalContent" [nzFooter]="modalFooter"
+    (nzOnCancel)="handleCancel()" [nzWidth]="1000" nzCentered>
+    <ng-template #modalTitle>{{ 'ACL_MODAL.TITLE' | translate }}</ng-template>
+
+    <ng-template #modalContent>
+        <div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+
+            <ng-container *ngIf="loadingModal">
+                <nz-spin nzSimple
+                    style="text-align: center; margin: auto; transform: translateY(-50%); top: 50%; position: relative;">
+                </nz-spin>
+            </ng-container>
+
+
+            <ng-container *ngIf="!loadingModal">
+                <nz-table #nzTable [nzData]="getArrayDetailsDataTable()" [nzShowPagination]="false" [nzScroll]="{ y: '430px' }">
+                    <thead>
+                        <tr style="font-weight: bold;">
+                            <th nzAlign="center">{{ 'ACL_MODAL.HEADER.IDENTITY_TYPE' | translate }}</th>
+                            <th nzAlign="center">{{ 'ACL_MODAL.HEADER.IDENTITY_NAME' | translate }}</th>
+                            <th nzAlign="center">{{ 'ACL_MODAL.HEADER.PERMISSION_TYPE' | translate }}</th>
+                            <th nzAlign="center" nzWidth="100px">{{ 'ACL_MODAL.HEADER.ACTIONS' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="this.detailsDataTable.size > 0">
+                            <tr *ngFor="let item of nzTable.data">
+                                <td nzAlign="center">
+                                    <nz-select [(ngModel)]="item.identityType" style="width: 150px;"
+                                        (ngModelChange)="selectIdentityTypeChange($event, item)">
+                                        <nz-option [nzValue]="identityType.key" [nzLabel]="identityType.value.name"
+                                            *ngFor="let identityType of identityTypes | keyvalue"></nz-option>
+                                    </nz-select>
+                                </td>
+                                <td nzAlign="center">
+                                    <nz-select #selectIdentity [(ngModel)]="item.identityId"
+                                        [disabled]="getSelectIdentitiestDisabled(item)" style="width: 220px" nzShowSearch>
+                                        <nz-option [nzValue]="identity.id" [nzLabel]="!identity.name || identity.name == '' ? identity.email : identity.name"
+                                            *ngFor="let identity of identityList[item.identityType]"></nz-option>
+                                    </nz-select>
+                                </td>
+                                <td nzAlign="center">
+                                    <nz-select [(ngModel)]="item.permissionId" style="width: 220px">
+                                        <nz-option [nzValue]="permission.key" [nzLabel]="permission.value.name"
+                                        *ngFor="let permission of permissionTypes | keyvalue"></nz-option>
+                                    </nz-select>
+                                </td>
+                                <td nzAlign="center">
+                                    <ul nz-list-item-actions style="margin-left: 6px;">
+                                        <nz-list-item-action>
+                                            <i (click)="deleteAclDetail($event, item)" nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"></i>
+                                        </nz-list-item-action>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        <tr>
+                            <td colspan="4" (click)="addAclDetail($event)" style="cursor: pointer;">
+                                <i nz-icon nzType="plus" nzTheme="outline"></i>
+                                &nbsp;{{'ACL_MODAL.NEW_PERMISSION' | translate}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </ng-container>
+        </div>
+    </ng-template>
+
+    <ng-template #modalFooter>
+        <button nz-button nzType="primary" (click)="handleConfirm()">{{'ACL_MODAL.FOOTER.CONFIRM' | translate}}</button>
+        <button nz-button (click)="handleCancel()">{{'ACL_MODAL.FOOTER.CANCEL' | translate}}</button>
+        <a nz-button nzType="link" (click)="this.isVisibleAclRulesModal = true">{{'ACL_MODAL.FOOTER.RULES' | translate}}</a>
+    </ng-template>
+</nz-modal>
+
+<app-acl-rules-modal  #modalAclRulesRef [objectUUID]="objectUUID" [(isVisible)]="isVisibleAclRulesModal"></app-acl-rules-modal>

@@ -1,0 +1,48 @@
+.file-addition-container
+  width: 100%
+  display: flex
+  flex-direction: column
+  background: #ffffff
+  border: 1px solid #c4c4c4
+  margin-bottom: 20px
+
+.file-addition-files
+  height: 300px
+
+.file-addition-files-title
+  padding: .4rem 1rem
+
+.file-addition-files-list
+  overflow: auto
+  height: 100%
+
+.file-addition-files-list > .file-addition-files-list-item:nth-of-type(2n)
+  background: #f0f0f0
+
+.file-addition-files-list-item
+  padding: .5rem 1rem
+  border-bottom: 1px solid #c4c4c4
+  cursor: grab
+  background: #ffffff
+  display: flex
+  align-items: center
+  &.cdk-drag-preview
+    cursor: grabbing
+    border: 1px solid #c4c4c4
+
+.file-addition-files-list-item-name
+  flex: 1 1 auto
+
+.file-addition-file
+  display: flex
+  border-top: 1px solid #c4c4c4
+  position: relative
+
+.file-addition-file-text
+  flex:  1 1 auto
+  min-width: 0
+
+.file-addition-file-add-button
+  position: absolute
+  bottom: 10px
+  right: 10px

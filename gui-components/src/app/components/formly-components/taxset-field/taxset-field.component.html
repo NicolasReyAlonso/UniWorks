@@ -1,0 +1,6 @@
+<nz-collapse nzAccordion style="margin-bottom:20px;">
+  <nz-collapse-panel nzHeader="Taxset" >
+    <taxset-component [taxons]="props.taxons" [dataTableTaxset]="dataTableTaxset" [dataTableConstraints]="dataTableConstraints" (ValueChangeEvent)="formControlChangeValue($event)"
+        (ValidateChangeEvent)="formControlChangeValidate($event)"></taxset-component>
+  </nz-collapse-panel>
+</nz-collapse>

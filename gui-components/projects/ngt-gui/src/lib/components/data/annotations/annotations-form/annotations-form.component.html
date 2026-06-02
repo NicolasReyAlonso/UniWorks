@@ -1,0 +1,186 @@
+<div class="container-annotations-form" [ngStyle]="ContainerStyle">
+  <nz-spin class="annotations-spin" [nzSpinning]="loading || !object_uuid">
+    <div class="header-annotations-form">
+      <button nz-dropdown [nzDropdownMenu]="menuAddForm" class="button-header-annotations-form">
+        <i nz-icon nzType="plus" nzTheme="outline" class="icon-button-header-annotations-form"></i>{{'MISC.ANNOTATIONS.FORM' | translate}}
+      </button>
+      <nz-dropdown-menu #menuAddForm="nzDropdownMenu">
+        <ul nz-menu>
+          <li nz-menu-item (click)="openTemplateSelectorModal()">{{'MISC.ANNOTATIONS.TEMPLATE' | translate}}</li>
+          <li nz-menu-item (click)="openFieldSelectorModal()">{{'MISC.ANNOTATIONS.FREE_FIELD' | translate}}</li>
+        </ul>
+      </nz-dropdown-menu>
+      <button class="button-header-annotations-form" style="cursor: pointer;" (click)="addRichTextAnnotation()">
+        <i nz-icon nzType="plus" nzTheme="outline" class="icon-button-header-annotations-form"></i>{{'MISC.ANNOTATIONS.RICH_TEXT_FIELD' | translate}}
+      </button>
+      <div style="flex: 1 1 auto"></div>
+      <div style="padding-right: 8px; display: flex">
+        <button class="button-header-annotations-form" style="cursor: pointer;" (click)="cancelChangesAnnotations()">
+          <i nz-icon nzType="close" nzTheme="outline" class="icon-button-header-annotations-form"></i>{{'ANNOTATIONS.ANNOTATIONS_FORM.HEADER.CANCEL_BUTTON' | translate}}
+        </button>
+        <button class="button-header-annotations-form" style="cursor: pointer;" (click)="saveAnnotations()">
+          <i nz-icon nzType="save" nzTheme="outline" class="icon-button-header-annotations-form"></i>{{'ANNOTATIONS.ANNOTATIONS_FORM.HEADER.SAVE_BUTTON' | translate}}
+        </button>
+      </div>
+    </div>
+    <div class="content-annotations-form" cdkDropList (cdkDropListDropped)="annotationDrop($event)" #contentAnnotationsForm>
+      <ng-container *ngFor="let item of listAnnotations; let index = index ">
+
+
+        <div class="container-annotation"
+             [ngClass]="{'container-annotation-selected': idSelectedAnnotation == index}"
+             (click)="selectAnnotation(index)" cdkDrag (cdkDragStarted)="annotationDragStart($event)"
+             (cdkDragEnded)="annotationDragEnd($event)"  (dblclick)="selectAnnotation(index); changeStateEditMode(true)">
+
+          <div class="toolbar-annotation" *ngIf="idSelectedAnnotation == index">
+            <i nz-icon nzType="edit" nzTheme="outline" class="icon-toolbar-annotation"
+               (click)="changeStateEditMode(true)" *ngIf="editModeAnnotation == false"></i>
+            <i nz-icon nzType="stop" nzTheme="outline" class="icon-toolbar-annotation"
+               (click)="changeStateEditMode(false)" *ngIf="editModeAnnotation == true"></i>
+            <i nz-icon nzType="delete" nzTheme="outline" class="icon-toolbar-annotation"
+               (click)="removeAnnotation(index)"></i>
+            <i nz-icon nzType="drag" nzTheme="outline" class="icon-toolbar-annotation icon-toolbar-annotation-grab"
+               cdkDragHandle></i>
+          </div>
+
+          <!-- Rich Text -->
+          <ng-container *ngIf="item.annotation_type == 'richText'">
+            <ng-container [ngTemplateOutlet]="richText"
+                          [ngTemplateOutletContext]="{item: item, index: index}"></ng-container>
+          </ng-container>
+
+          <!-- Field -->
+          <ng-container *ngIf="item.annotation_type == 'field'">
+            <ng-container [ngTemplateOutlet]="field"
+                          [ngTemplateOutletContext]="{item: item, index: index}"></ng-container>
+          </ng-container>
+
+          <!-- Template -->
+          <ng-container *ngIf="item.annotation_type == 'template'">
+            <ng-container [ngTemplateOutlet]="template"
+                          [ngTemplateOutletContext]="{item: item, index: index}"></ng-container>
+          </ng-container>
+        </div>
+
+
+      </ng-container>
+    </div>
+  </nz-spin>
+</div>
+
+<!-- Field Selector -->
+<nz-modal [(nzVisible)]="fieldSelectorModalVisible" [nzTitle]="fieldSelectModalTitle" nzCentered
+          (nzOnCancel)="closeFieldSelectorModal()">
+  <ng-template #fieldSelectModalTitle>
+    {{ 'ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.TITLE' | translate }}
+  </ng-template>
+  <ng-container *nzModalContent>
+    <div>
+      <form [formGroup]="formGroupFieldSelector">
+        <div>
+          <nz-form-label nzFor="fields">
+            {{ 'ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.CONTENT.FIELDS_INPUT.LABEL' | translate }}
+          </nz-form-label>
+          <nz-select nzMode="multiple" style="width: 100%" [ngClass]="{'select-error': getMessageFieldSelectorError()}"
+                     [nzPlaceHolder]="'ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.CONTENT.FIELDS_INPUT.PLACEHOLDER' | translate"
+                     formControlName="fields">
+            <nz-option *ngFor="let item of fieldSelectorOptions" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+          </nz-select>
+          <div *ngFor="let item of getMessageFieldSelectorError()" class="message-error">{{item | translate}}</div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+
+  <ng-container *nzModalFooter>
+    <button nz-button nzDanger nzType="primary" (click)="closeFieldSelectorModal()">
+      {{'ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.CANCEL_BUTTON' | translate}}
+    </button>
+    <button nz-button nzType="primary" [disabled]="!formGroupFieldSelector.valid" (click)="confirmFieldSelectorModal()">
+      {{'ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.ADD_BUTTON' | translate}}
+    </button>
+  </ng-container>
+</nz-modal>
+
+<!-- Template Selector -->
+<nz-modal [nzVisible]="templateSelectorModalVisible" [nzTitle]="templateSelectModalTitle" nzCentered
+          (nzOnCancel)="closeTemplateSelectorModal()">
+  <ng-template #templateSelectModalTitle>
+    {{ 'ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.TITLE' | translate }}
+  </ng-template>
+  <ng-container *nzModalContent>
+    <div>
+      <form [formGroup]="formGroupTemplateSelector">
+        <div>
+          <nz-form-label nzFor="templates">
+            {{ 'ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.CONTENT.TEMPLATES_INPUT.LABEL' | translate }}
+          </nz-form-label>
+          <nz-select nzMode="multiple" style="width: 100%"
+                     [ngClass]="{'select-error': getMessageTemplateSelectorError()}"
+                     [nzPlaceHolder]="'ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.CONTENT.TEMPLATES_INPUT.PLACEHOLDER' | translate"
+                     formControlName="templates">
+            <nz-option *ngFor="let item of templateSelectorOptions" [nzLabel]="item.name" [nzValue]="item"></nz-option>
+          </nz-select>
+          <div *ngFor="let item of getMessageTemplateSelectorError()" class="message-error">{{item | translate}}</div>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzDanger nzType="primary" (click)="closeTemplateSelectorModal()">
+      {{'ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.CANCEL_BUTTON' | translate}}
+    </button>
+    <button nz-button nzType="primary" [disabled]="!formGroupTemplateSelector.valid"
+            (click)="confirmTemplatesSelectorModal()">
+      {{'ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.ADD_BUTTON' | translate}}
+    </button>
+  </ng-container>
+</nz-modal>
+
+<!-- richText -->
+<ng-template #richText let-item="item" let-index="index">
+  <ng-container *ngIf="idSelectedAnnotation != index || !editModeAnnotation">
+    <ng-container *ngIf="!item.model || item.model == ''">
+      Campo de texto enriquecido vacío
+    </ng-container>
+    <ng-container *ngIf="item.model && item.model != ''">
+      <div class="ck-content" [innerHTML]="item.model | safeHtml"></div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="idSelectedAnnotation == index && editModeAnnotation">
+    <ckeditor [editor]="CKEditor" [data]="dataWhenEdit" [config]="CKEditorConfig"
+              (change)="onChangeValueRichText($event, index)"></ckeditor>
+  </ng-container>
+</ng-template>
+
+<!-- field -->
+<ng-template #field let-item="item" let-index="index">
+
+  <ng-container *ngIf="idSelectedAnnotation != index || !editModeAnnotation">
+    <formly-form [model]="item.model" [fields]="item.formlyReadMode" [form]="item.formGroup"></formly-form>
+  </ng-container>
+
+  <ng-container *ngIf="idSelectedAnnotation == index && editModeAnnotation">
+    <formly-form [model]="item.model" [fields]="item.formlyEditMode" [form]="item.formGroup"></formly-form>
+  </ng-container>
+</ng-template>
+
+<!-- template -->
+<ng-template #template let-item="item" let-index="index">
+
+  <div style="font-size: 20px; font-weight: bold">{{item.templateName}}</div>
+
+  <div style="padding-left: 15px">
+    <ng-container *ngIf="idSelectedAnnotation != index || !editModeAnnotation">
+      <formly-form [model]="item.model" [fields]="item.formlyReadMode" [form]="item.formGroup"></formly-form>
+    </ng-container>
+
+    <ng-container *ngIf="idSelectedAnnotation == index && editModeAnnotation">
+      <formly-form [model]="item.model" [fields]="item.formlyEditMode" [form]="item.formGroup"></formly-form>
+    </ng-container>
+  </div>
+
+</ng-template>
+
+

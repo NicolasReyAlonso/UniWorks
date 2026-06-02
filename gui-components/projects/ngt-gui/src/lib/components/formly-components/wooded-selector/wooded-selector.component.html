@@ -1,0 +1,15 @@
+<div *ngIf="!loading">
+  <nz-input-group [nzSuffix]="suffixIcon">
+    <input name="search" type="text" nz-input placeholder="Search" [(ngModel)]="searchValue" />
+  </nz-input-group>
+  <ng-template #suffixIcon>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+  <nz-tree nzCheckable nzAsyncData nzVirtualHeight="300px" nzHideUnMatched=true
+           [nzData]="tree" [nzSearchValue]="searchValue"
+           (nzClick)="nzEvent($event)" (nzExpandChange)="nzEvent($event)"
+           (nzSearchValueChange)="nzEvent($event)"></nz-tree>
+</div>
+<div [hidden]="!loading" nz-row nzJustify="center">
+  <nz-spin nzSimple></nz-spin>
+</div>

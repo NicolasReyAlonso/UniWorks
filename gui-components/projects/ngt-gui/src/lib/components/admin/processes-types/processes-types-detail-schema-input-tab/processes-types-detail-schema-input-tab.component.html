@@ -1,0 +1,9 @@
+<div>
+  <textarea
+    nz-input
+    [nzAutosize]="{ minRows: 8, maxRows: 16 }"
+    [disabled]="isReadOnly$ | async"
+    [ngModel]="inputValue"
+    (ngModelChange)="valueChange($event)"
+  ></textarea>
+</div>

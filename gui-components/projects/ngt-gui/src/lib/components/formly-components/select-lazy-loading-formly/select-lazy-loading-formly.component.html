@@ -1,0 +1,21 @@
+<div [ngStyle]="props.style" [ngClass]="{'select-lazy-formly-filter-style': props.filterStyle}">
+  <div [ngStyle]="props.labelStyle" *ngIf="props.label && props.label != ''" [ngClass]="{'select-lazy-formly-filter-labelStyle': props.filterStyle}">
+    {{props.label | translate}}
+  </div>
+  <div [ngStyle]="props.fieldStyle">
+    <!--    <input nz-input [ngModel]="props.value" (ngModelChange)="changeValueEvent($event)" style="width: 100%;"-->
+    <!--           [ngStyle]="props.styleInput"/>-->
+    <app-select-lazy-loading [object_type]="props.object_type" [variableLabel]="props.variableLabel"
+                             [variableValue]="props.variableValue" [multiple]="props.multiple"
+                             [allowClear]="props.allowClear" [placeholder]="props.placeholder"
+                             [sizePage]="props.sizePage" [disableSelect]="props.disableSelect"
+                             [customFilter]="props.customFilter" [variableGroup]="props.variableGroup"
+                             [customParams]="props.customParams"
+                             [msWaitToLoadOnSearch]="props.msWaitToLoadOnSearch" [value]="this.formControl.value"
+                             (valueChange)="changeValueEvent($event)" *ngIf="finishInitComponent">
+    </app-select-lazy-loading>
+  </div>
+  <div *ngIf="checkIfExistErrorByKey(key)" class="message-error">
+    {{getErrorByKey(key)}}
+  </div>
+</div>

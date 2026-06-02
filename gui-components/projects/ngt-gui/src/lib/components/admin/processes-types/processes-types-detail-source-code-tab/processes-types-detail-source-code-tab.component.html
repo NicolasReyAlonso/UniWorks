@@ -1,0 +1,90 @@
+<div class="processes-type-detail-source-code-container">
+
+  <div class="processes-type-detail-source-code-main-container">
+
+    <div class="processes-type-detail-source-code-list-container">
+      <div class="processes-type-detail-source-code-main-title">
+        {{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.FILE_LIST' | translate }}
+      </div>
+
+      <div class="processes-type-detail-source-code-box-white" style="margin-bottom: 10px; padding: 10px 10px">
+        <nz-tree #nzTreeSourceCode [nzTreeTemplate]="nzTreeTemplate" [nzData]="nodes | async" class="processes-type-detail-source-code-list"
+                  (nzClick)="onNzTreeClick($event)" [nzSelectedKeys]="selectedKeysNodes | async" >
+
+          <ng-template #nzTreeTemplate let-node let-origin="origin">
+
+            <ng-container *ngIf="origin.type === 'file'">
+              <span nz-icon nzType="file"></span>
+              <ng-container *ngIf="!editSelectedNode || selectedNode?.key != node.key">
+                {{ origin.title }}
+              </ng-container>
+              <ng-container *ngIf="editSelectedNode && selectedNode?.key == node.key">
+                <input nz-input (click)="onClickEditFileNode($event)" [ngModel]="origin.name" appAutofocus
+                       (keyup.enter)="changeNodeName(origin, $event)" (focusout)="changeNodeName(origin, $event)"/>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="origin.type === 'directory'">
+              <span nz-icon [nzType]="node.isExpanded ? 'folder-open' : 'folder'"></span>
+              <ng-container *ngIf="!editSelectedNode || selectedNode?.key != node.key">
+                {{ origin.title }}
+              </ng-container>
+              <ng-container *ngIf="editSelectedNode && selectedNode?.key == node.key">
+                <input nz-input (click)="onClickEditFileNode($event)" [ngModel]="origin.name" appAutofocus
+                       (keyup.enter)="changeNodeName(origin, $event)" (focusout)="changeNodeName(origin, $event)"/>
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngIf="origin.type === 'zip'">
+              <span nz-icon [nzType]="'file-zip'"></span>
+              <ng-container *ngIf="!editSelectedNode || selectedNode?.key != node.key">
+                {{ origin.title }}
+              </ng-container>
+              <ng-container *ngIf="editSelectedNode && selectedNode?.key == node.key">
+                <input nz-input (click)="onClickEditFileNode($event)" [ngModel]="origin.name" appAutofocus
+                       (keyup.enter)="changeNodeName(origin, $event)" (focusout)="changeNodeName(origin, $event)"/>
+              </ng-container>
+            </ng-container>
+
+          </ng-template>
+
+
+        </nz-tree>
+
+      </div>
+
+      <div class="processes-type-detail-source-code-list-options-container">
+        <button nz-button nzType="primary" nzDanger [disabled]="!selectedNode || selectNodeHaveZipParent" (click)="onClickDeleteNodeButton()">
+          <span nz-icon nzType="delete"></span>
+        </button>
+        <button nz-button nzType="primary" [disabled]="selectedNode && selectedNode.origin.type != 'directory' || selectNodeHaveZipParent"
+                (click)="onAddFolderClick()">
+          <span nz-icon nzType="folder-add"></span>
+        </button>
+        <nz-upload [nzMultiple]="false" [(nzFileList)]="uploadFiles" [nzBeforeUpload]="beforeUpload.bind(this)"
+                   [nzRemove]="removeFile.bind(this)">
+          <button nz-button nzType="primary" [disabled]="selectedNode && selectedNode.origin.type != 'directory'">
+            <span nz-icon nzType="file-add"></span>
+          </button>
+        </nz-upload>
+        <nz-select style="flex: 1 1 auto; min-width: 0" [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.MAIN_FILE_SELECT' | translate" [ngModel]="selectedMainFile" (ngModelChange)="onChangeSelectedMainFile($event)">
+          <ng-container *ngFor="let option of mainFileOptions">
+            <nz-option [nzLabel]="option.path" [nzValue]="option.path"/>
+          </ng-container>
+        </nz-select>
+      </div>
+    </div>
+
+    <div class="processes-type-detail-source-code-preview-container">
+      <div class="processes-type-detail-source-code-main-title">
+        {{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.PREVIEW' | translate }}
+      </div>
+      <div class="processes-type-detail-source-code-box-white">
+        <ng-container *ngIf="selectedNodePath">
+          <iframe [src]="selectedNodePath" height="100%" width="100%"></iframe>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div [ngStyle]="props.style">
+    <div style="display: flex; align-items: center; column-gap: 4px">
+        <div style="font-weight: bold;">{{props.label}}:</div>
+        <div style="margin-left: 8px" *ngIf="!props.range.multiple">{{!formControl.value || formControl.value === '' ?
+            ('ANNOTATIONS.ANNOTATIONS_FORM.CONTENT.EMPTY_FIELD' | translate) : formControl.value }}</div>
+        <div style="margin-left: 8px" *ngIf="props.range.multiple">
+            <ng-container *ngIf="!formControl.value || formControl.value.length < 1 ">
+                {{'ANNOTATIONS.ANNOTATIONS_FORM.CONTENT.EMPTY_FIELD' | translate}}
+            </ng-container>
+            <ng-container *ngFor="let item of formControl.value; let i = index">
+                {{ item }}<ng-container *ngIf="i != (formControl.value.length - 1)">,</ng-container>
+            </ng-container>
+        </div>
+    </div>
+</div>

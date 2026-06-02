@@ -1,0 +1,40 @@
+<ul nz-menu nzMode="inline" class="sidebar">
+  <!-- Barra de búsqueda fija -->
+  <ng-container style="height: fit-content;">
+    <li nz-menu-item disabled
+      style="cursor: default; background: transparent; border: none; padding: 8px; position: sticky; top: 0; z-index: 10; overflow: hidden;">
+      <div class="searchContainer">
+        <input class="searchInput" nz-input (input)="onSearchChange()" placeholder="Buscar..."
+          [(ngModel)]="searchText" />
+        <img class="searchIcon" src="assets/images/SearchICON.svg" alt="Buscar" width="18" height="18" />
+        <button *ngIf="searchText" type="button" class="clearButton" (click)="clearSearch()">
+          ×
+        </button>
+      </div>
+    </li>
+  </ng-container>
+
+  <!-- Menús del sidebar -->
+  <div style="flex: 1; overflow-wrap: break-word;">
+    <ng-container *ngFor="let subMenu of filteredItems | keyValueCustom">
+
+      <!-- Submenú desplegable -->
+      <li nz-submenu [(nzOpen)]="openMap[subMenu.key]" (nzOpenChange)="openHandler(subMenu.key)"
+        [nzTitle]="getText(subMenu) | translate" [nzIcon]="subMenu.value.icon" *ngIf="showSubMenu(subMenu.value)"
+        style="overflow-wrap: break-word;">
+
+        <ul>
+          <!-- Items del menú -->
+          <ng-container *ngFor="let item of subMenu.value.routes | keyValueCustom">
+            <li nz-menu-item class="scrollable-text" [routerLink]="item.value.routes[0]"
+              [nzSelected]="isSelectedItem(item.value)" [queryParams]="item.value.queryParams"
+              *ngIf="!item.value.permission || funcCondition(item.value.permission)" (click)="debugClick(item)">
+              {{ getText(item) | translate }}
+            </li>
+          </ng-container>
+        </ul>
+
+      </li>
+    </ng-container>
+  </div>
+</ul>

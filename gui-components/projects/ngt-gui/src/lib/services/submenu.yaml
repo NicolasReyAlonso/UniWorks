@@ -1,0 +1,200 @@
+sub1:
+  icon: "database"
+  routes:
+    sequences:
+      routerLink: "sequencesBrowse"
+      routes: ["/sequencesBrowse", "/sequencesImport", "/sequenceDetail"]
+      permission: "gui-seqs"
+
+    multiple_alignments:
+      routerLink: "alignmentsBrowse"
+      routes: ["/alignmentsBrowse", "/alignmentsImport", "/alignmentDetail", "/alignmentNextgendemMissingEditor"]
+      permission: "gui-mas"
+
+    phylogenetic_trees:
+      routerLink: "phylotreesBrowse"
+      routes: ["/phylotreesBrowse", "/phylotreesImport", "/phylotreeDetail", "/archaeopteryxBrowser"]
+      permission: "gui-pts"
+
+    discriminant_matrix:
+      routerLink: "discriminantMatricesBrowse"
+      routes: ["/discriminantMatricesBrowse", "/discriminantMatrixDetail", "/ngdBarconding"]
+      permission: "gui-cmatrices"
+
+    supermatrices:
+      routerLink: "supermatricesBrowse"
+      routes: ["/supermatricesBrowse", "/supermatrixDetail", "/supermatricesImport", "/supermatrixNextgendemMissingEditor"]
+      permission: "gui-smatrices"
+
+    collections:
+      routerLink: "collectionsBrowse"
+      routes: ["/collectionsBrowse", "/collectionDetail"]
+      permission: "gui-collections"
+
+sub2:
+  icon: "database"
+  routes:
+    layers:
+      routerLink: "geolayersBrowse"
+      routes: ["/geolayersBrowse", "/geolayerImport", "/geolayerDetail"]
+      permission: "gui-layers"
+
+sub5:
+  icon: "folder"
+  routes:
+    list:
+      routerLink: "caseStudiesBrowse"
+      routes: ["/caseStudiesBrowse", "/caseStudiesDetail"]
+      permission: "gui-case-studies"
+
+sub3:
+  icon: "play-circle"
+  routes:
+    launch:
+      routerLink: "process/processSetup"
+      routes: ["/process/processSetup"]
+      permission: "gui-job-create"
+
+    pending:
+      routerLink: "process/processesBrowseToDo"
+      routes: ["/process/processesBrowseToDo?status=todo"]
+      queryParams:
+        status: "todo"
+      permission: "gui-jobs-executing"
+
+    completed:
+      routerLink: "process/processesBrowseDone"
+      routes: ["/process/processesBrowseDone?status=done"]
+      queryParams:
+        status: "done"
+      permission: "gui-jobs-finished"
+
+sub4:
+  icon: "eye"
+  routes:
+    viewers:
+      routerLink: "viewersBrowse"
+      routes: ["/viewersBrowse"]
+      permission: "gui-viewers"
+
+    gis:
+      routerLink: "phylogeographyBrowse"
+      routes: ["/phylogeographyBrowse"]
+      permission: "gui-layers-graphical"
+
+sub6:
+  icon: "cloud-server"
+  routes:
+    ontologies:
+      routerLink: "ontologiesBrowse"
+      routes: ["/ontologiesBrowse", "/ontologyDetail", "/ontologiesImport"]
+      permission: "gui-ontologies"
+
+    terms:
+      routerLink: "termsBrowse"
+      routes: ["/termsBrowse", "/termDetail"]
+      permission: "gui-terms"
+
+    taxonomies:
+      routerLink: "taxonomiesBrowse"
+      routes: ["/taxonomiesBrowse", "/taxonomiesImport", "/taxonomyDetail"]
+      permission: "gui-taxonomies"
+
+    organisms:
+      routerLink: "organismsBrowse"
+      routes: ["/organismsBrowse", "/organismsImport", "/organismDetail"]
+      permission: "gui-organisms"
+
+    individuals:
+      routerLink: "individualsBrowse"
+      routes: ["/individualsBrowse", "/individualDetail"]
+      permission: "gui-individuals"
+
+    analysis:
+      routerLink: "analysesBrowse"
+      routes: ["/analysesBrowse", "/analysisDetail"]
+      permission: "gui-analyses"
+
+    publications:
+      routerLink: "publicationsBrowse"
+      routes: ["/publicationsBrowse"]
+      permission: "gui-publications"
+
+    subject:
+      routerLink: "themesBrowse"
+      routes: ["/themesBrowse"]
+      permission: "gui-subjects"
+
+    sources:
+      routerLink: "sourcesBrowse"
+      routes: ["/sourcesBrowse"]
+      permission: "gui-sources"
+
+    crs:
+      routerLink: "crsBrowse"
+      routes: ["/crsBrowse", "/crsDetail"]
+      permission: "gui-crs"
+
+sub9:
+  icon: "cloud-server"
+  routes:
+    fields:
+      routerLink: "annotationsFieldsBrowse"
+      routes: ["/annotationsFieldsBrowse", "/annotationsFieldDetail"]
+      permission: "gui-annotation-fields"
+
+    templates:
+      routerLink: "annotationsTemplatesBrowse"
+      routes: ["/annotationsTemplatesBrowse", "/annotationsTemplateDetail"]
+      permission: "gui-annotation-templates"
+
+sub7:
+  icon: "setting"
+  routes:
+    process_types:
+      routerLink: "processTypesBrowse"
+      routes: ["/processTypesBrowse", "/processTypeDetail"]
+      permission: "gui-process-types"
+
+    computing_resources:
+      routerLink: "computeResourcesBrowse"
+      routes: ["/computeResourcesBrowse", "/computeResourcesDetail"]
+      permission: "gui-cresources"
+
+    containerization_images:
+      routerLink: "containerizationImagesBrowse"
+      routes: ["/containerizationImagesBrowse", "/containerizationImagesDetail"]
+      permission: "gui-container-images"
+
+sub8:
+  icon: "lock"
+  routes:
+    users:
+      routerLink: "identitiesBrowse"
+      routes: ["/identitiesBrowse", "/identityDetail", "/identityModify"]
+      permission: "gui-users"
+
+    organizations:
+      routerLink: "organizationsBrowse"
+      routes: ["/organizationsBrowse", "/organizationDetail", "/organizationModify"]
+      permission: "gui-organizations"
+
+    roles:
+      routerLink: "rolesBrowse"
+      routes: ["/rolesBrowse", "/roleDetail", "/roleModify"]
+      permission: "gui-roles"
+
+    references_acl:
+      routerLink: "referencesAclBrowse"
+      routes: ["/referencesAclBrowse"]
+      permission: "gui-references-acl"
+
+    system_functions:
+      routerLink: "systemFunctionsBrowse"
+      routes: ["/systemFunctionsBrowse"]
+      permission: "gui-system-functions"
+
+    status_checkers:
+      routerLink: "statusCheckersDetail"
+      routes: ["/statusCheckersDetail"]
+      permission: "gui-status-checkers"

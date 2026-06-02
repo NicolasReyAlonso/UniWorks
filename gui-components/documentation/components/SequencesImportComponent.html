@@ -1,0 +1,1285 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  SequencesImportComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-sequences-import</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzPageHeaderModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzDividerModule</code>
+                            <code>NzUploadModule</code>
+                            <code>NzRadioModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzCollapseModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzIconModule</code>
+                            <code>NzCheckboxModule</code>
+                                <code><a href="../components/SelectLazyLoadingComponent.html" target="_self" >SelectLazyLoadingComponent</a></code>
+                            <code>NzSwitchModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./sequences-import.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./sequences-import.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#backendService" >backendService</a>
+                            </li>
+                            <li>
+                                <a href="#beforeUpload" >beforeUpload</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#dataForm" >dataForm</a>
+                            </li>
+                            <li>
+                                <a href="#fileList" >fileList</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#only_individuals" >only_individuals</a>
+                            </li>
+                            <li>
+                                <a href="#removeFile" >removeFile</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addGene" >addGene</a>
+                            </li>
+                            <li>
+                                <a href="#importFiles" >importFiles</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#selectDynamicValueChange" >selectDynamicValueChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, logService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, activatedRoute: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:61</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>logService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addGene"></a>
+                    <span class="name">
+                        <span ><b>addGene</b></span>
+                        <a href="#addGene"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addGene(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="137"
+                                    class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:137</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>name</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importFiles"></a>
+                    <span class="name">
+                        <span ><b>importFiles</b></span>
+                        <a href="#importFiles"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>importFiles()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectDynamicValueChange"></a>
+                    <span class="name">
+                        <span ><b>selectDynamicValueChange</b></span>
+                        <a href="#selectDynamicValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectDynamicValueChange(event, field)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="142"
+                                    class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:142</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="backendService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>backendService</b></span>
+                        <a href="#backendService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="beforeUpload"></a>
+                    <span class="name">
+                        <span ><b>beforeUpload</b></span>
+                        <a href="#beforeUpload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;MOLECULAR_DATA.SEQUENCES.IMPORT.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    organisms: [],
+    caseStudies: [],
+    collections: [],
+    genes: []
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataForm"></a>
+                    <span class="name">
+                        <span ><b>dataForm</b></span>
+                        <a href="#dataForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new UntypedFormGroup({
+    organism_id: new UntypedFormControl(),
+    gene_tags: new UntypedFormControl(),
+    case_study_id: new UntypedFormControl([]),
+    collection_id: new UntypedFormControl([]),
+    target_genes: new UntypedFormControl(),
+    duplicates: new UntypedFormControl(&#x27;&#x27;),
+    no_annotations: new UntypedFormControl(false),
+    split_genes: new UntypedFormControl(true),
+  }, {
+    validators: [
+
+    ]
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileList"></a>
+                    <span class="name">
+                        <span ><b>fileList</b></span>
+                        <a href="#fileList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:69</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="only_individuals"></a>
+                    <span class="name">
+                        <span ><b>only_individuals</b></span>
+                        <a href="#only_individuals"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFile"></a>
+                    <span class="name">
+                        <span ><b>removeFile</b></span>
+                        <a href="#removeFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnInit} from &#x27;@angular/core&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {
+  UntypedFormGroup,
+  UntypedFormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  AbstractControl,
+  ValidationErrors
+} from &#x27;@angular/forms&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import IView from &#x27;@interfaces/view.interfaces&#x27;;
+import {ActivatedRoute} from &#x27;@angular/router&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzDividerModule} from &quot;ng-zorro-antd/divider&quot;;
+import {NzUploadModule} from &quot;ng-zorro-antd/upload&quot;;
+import {NzRadioModule} from &quot;ng-zorro-antd/radio&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzCollapseModule} from &quot;ng-zorro-antd/collapse&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzCheckboxModule} from &quot;ng-zorro-antd/checkbox&quot;;
+import { SelectLazyLoadingComponent } from &#x27;src/app/components/miscellaneous/select-lazy-loading/select-lazy-loading.component&#x27;;
+import {NzSwitchModule} from &quot;ng-zorro-antd/switch&quot;;
+
+@Component({
+    selector: &#x27;app-sequences-import&#x27;,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        NzPageHeaderModule,
+        NzButtonModule,
+        NzDividerModule,
+        NzUploadModule,
+        NzRadioModule,
+        NzFormModule,
+        NzSelectModule,
+        NzCollapseModule,
+        NzInputModule,
+        NzIconModule,
+        NzCheckboxModule,
+        SelectLazyLoadingComponent,
+        NzSwitchModule,
+    ],
+    templateUrl: &#x27;./sequences-import.component.html&#x27;,
+    styleUrls: [&#x27;./sequences-import.component.sass&#x27;]
+})
+export class SequencesImportComponent implements OnInit, IView {
+
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;MOLECULAR_DATA.SEQUENCES.IMPORT.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  };
+
+  constructor(
+    public backendService: BackendService,
+    private logService: MessageLogService,
+    private readonly activatedRoute: ActivatedRoute,
+  ) {}
+
+  fileList &#x3D; [];
+  data: any &#x3D; {
+    organisms: [],
+    caseStudies: [],
+    collections: [],
+    genes: []
+  };
+  dataForm: UntypedFormGroup &#x3D; new UntypedFormGroup({
+    organism_id: new UntypedFormControl(),
+    gene_tags: new UntypedFormControl(),
+    case_study_id: new UntypedFormControl([]),
+    collection_id: new UntypedFormControl([]),
+    target_genes: new UntypedFormControl(),
+    duplicates: new UntypedFormControl(&#x27;&#x27;),
+    no_annotations: new UntypedFormControl(false),
+    split_genes: new UntypedFormControl(true),
+  }, {
+    validators: [
+
+    ]
+  });
+  only_individuals &#x3D; false;
+  loading &#x3D; false;
+
+  ngOnInit(): void {
+    this.data &#x3D; this.activatedRoute.snapshot.data.data;
+  }
+
+  beforeUpload &#x3D; (file): boolean &#x3D;&gt; {
+    this.fileList &#x3D; this.fileList.concat(file);
+    return false;
+  }
+
+  removeFile &#x3D; (event): void &#x3D;&gt; {
+    for (let index &#x3D; 0; index &lt; this.fileList.length; index++) {
+      if (event[&#x27;uid&#x27;] &#x3D;&#x3D; this.fileList[index][&#x27;uid&#x27;]) {
+        this.fileList.splice(index, 1);
+      }
+    }
+  }
+
+  importFiles(): void {
+    this.loading &#x3D; true;
+    if(this.only_individuals) {
+      this.backendService.importFromChado(&#x27;individuals&#x27;, this.fileList, undefined, this.dataForm.value).subscribe(
+        {next: response &#x3D;&gt; {
+          this.logService.addIssues(response[&#x27;issues&#x27;]);
+        }, error: error &#x3D;&gt; {
+          this.loading &#x3D; false;
+          this.logService.addIssues(error[&#x27;issues&#x27;]);
+        }, complete: () &#x3D;&gt; {
+          this.loading &#x3D; false;
+          this.fileList &#x3D; [];
+        }});
+    } else {
+      this.backendService.importFromChado(&#x27;sequences&#x27;, this.fileList, undefined, this.dataForm.value).subscribe(
+        {next: response &#x3D;&gt; {
+          this.logService.addIssues(response[&#x27;issues&#x27;]);
+        }, error: error &#x3D;&gt; {
+          this.loading &#x3D; false;
+          this.logService.addIssues(error[&#x27;issues&#x27;]);
+        }, complete: () &#x3D;&gt; {
+          this.loading &#x3D; false;
+          this.fileList &#x3D; [];
+        }});
+    }
+  }
+
+  addGene(name: string) {
+    if (!name) { return; }
+    this.data.genes.push({value: name});
+  }
+
+  selectDynamicValueChange(event, field) {
+    this.dataForm.get(field).setValue(event);
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-page-header nzTitle&#x3D;&quot;{{&#x27;MOLECULAR_DATA.SEQUENCES.IMPORT.TITLE&#x27; | translate}}&quot;&gt;
+&lt;/nz-page-header&gt;
+&lt;form nz-form [formGroup]&#x3D;&quot;dataForm&quot;&gt;
+  &lt;nz-divider nzText&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INFO_TITLE&#x27; | translate}}&quot;&gt;&lt;/nz-divider&gt;
+  &lt;nz-collapse nzAccordion&gt;
+    &lt;nz-collapse-panel nzHeader&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.DATA_COLLAPSE&#x27; | translate}}&quot;&gt;
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.LABEL&#x27; |
+          translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;app-select-lazy-loading object_type&#x3D;&quot;case_studies&quot; variableLabel&#x3D;&quot;name&quot; variableValue&#x3D;&quot;id&quot;
+                                   placeholder&#x3D;&quot;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.PLACEHOLDER&quot;
+                                   [value]&#x3D;&quot;this.dataForm.get(&#x27;case_study_id&#x27;).value&quot; [multiple]&#x3D;&quot;true&quot; allowClear
+                                   (valueChange)&#x3D;&quot;selectDynamicValueChange($event, &#x27;case_study_id&#x27;)&quot;&gt;&lt;/app-select-lazy-loading&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.LABEL&#x27; |
+          translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;app-select-lazy-loading object_type&#x3D;&quot;collections&quot; variableLabel&#x3D;&quot;name&quot; variableValue&#x3D;&quot;id&quot;
+                                   placeholder&#x3D;&quot;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.PLACEHOLDER&quot;
+                                   [value]&#x3D;&quot;this.dataForm.get(&#x27;collection_id&#x27;).value&quot; [multiple]&#x3D;&quot;true&quot;
+                                   (valueChange)&#x3D;&quot;selectDynamicValueChange($event, &#x27;collection_id&#x27;)&quot;&gt;&lt;/app-select-lazy-loading&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+    &lt;/nz-collapse-panel&gt;
+
+    &lt;nz-collapse-panel nzHeader&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.BIODATA_COLLAPSE&#x27; | translate}}&quot;&gt;
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;app-select-lazy-loading object_type&#x3D;&quot;organisms&quot; variableLabel&#x3D;&quot;name&quot; variableValue&#x3D;&quot;organism_id&quot;
+                                   placeholder&#x3D;&quot;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.PLACEHOLDER&quot;
+                                   [value]&#x3D;&quot;this.dataForm.get(&#x27;organism_id&#x27;).value&quot; [multiple]&#x3D;&quot;false&quot; allowClear
+                                   (valueChange)&#x3D;&quot;selectDynamicValueChange($event, &#x27;organism_id&#x27;)&quot;&gt;&lt;/app-select-lazy-loading&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+      &lt;nz-form-item *ngIf&#x3D;&quot;!only_individuals&quot;&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-select [nzDisabled]&#x3D;&quot;loading || (dataForm.value.target_genes &amp;&amp; dataForm.value.target_genes.length &gt; 0)&quot;
+                     nzShowSearch nzAllowClear formControlName&#x3D;&quot;gene_tags&quot; nzMode&#x3D;&quot;multiple&quot;
+                     [nzDropdownRender]&#x3D;&quot;customGene&quot;
+                     nzPlaceHolder&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.PLACEHOLDER&#x27; | translate}}&quot;&gt;
+            &lt;nz-option *ngFor&#x3D;&quot;let gene of data.genes&quot; nzLabel&#x3D;&quot;{{gene.value}}&quot; nzValue&#x3D;&quot;{{gene.value}}&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+    &lt;/nz-collapse-panel&gt;
+  &lt;/nz-collapse&gt;
+
+  &lt;nz-divider nzText&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.CONF_TITLE&#x27; | translate}}&quot;&gt;&lt;/nz-divider&gt;
+  &lt;nz-form-item&gt;
+    &lt;nz-form-label
+      [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_INDIVIDUALS&#x27; | translate}}&lt;/nz-form-label&gt;
+    &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+      &lt;nz-switch [nzDisabled]&#x3D;&quot;loading&quot; [(ngModel)]&#x3D;&quot;only_individuals&quot;
+                 [ngModelOptions]&#x3D;&quot;{standalone: true}&quot;&gt;&lt;/nz-switch&gt;
+    &lt;/nz-form-control&gt;
+  &lt;/nz-form-item&gt;
+  &lt;nz-form-item *ngIf&#x3D;&quot;!only_individuals&quot;&gt;
+    &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+    &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+      &lt;nz-select [nzDisabled]&#x3D;&quot;loading || (dataForm.value.gene_tags &amp;&amp; dataForm.value.gene_tags.length &gt; 0)&quot;
+                 nzShowSearch nzAllowClear formControlName&#x3D;&quot;target_genes&quot; nzMode&#x3D;&quot;multiple&quot;
+                 [nzDropdownRender]&#x3D;&quot;customGene&quot;
+                 nzPlaceHolder&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.PLACEHOLDER&#x27; | translate}}&quot;&gt;
+        &lt;nz-option *ngFor&#x3D;&quot;let gene of data.genes&quot; nzLabel&#x3D;&quot;{{gene.value}}&quot; nzValue&#x3D;&quot;{{gene.value}}&quot;&gt;&lt;/nz-option&gt;
+      &lt;/nz-select&gt;
+    &lt;/nz-form-control&gt;
+  &lt;/nz-form-item&gt;
+  &lt;nz-form-item *ngIf&#x3D;&quot;!only_individuals&quot;&gt;
+    &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+    &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+      &lt;label nz-checkbox
+             formControlName&#x3D;&quot;no_annotations&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_RESIDUES&#x27; |
+        translate}}&lt;/label&gt;
+      &lt;label nz-checkbox formControlName&#x3D;&quot;split_genes&quot;
+             [nzDisabled]&#x3D;&quot;loading || (dataForm.value.gene_tags &amp;&amp; dataForm.value.gene_tags.length &gt; 0)&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.SPLIT_GENES&#x27;
+        | translate}}&lt;/label&gt;
+    &lt;/nz-form-control&gt;
+  &lt;/nz-form-item&gt;
+  &lt;nz-form-item&gt;
+    &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+    &lt;nz-radio-group formControlName&#x3D;&quot;duplicates&quot;&gt;
+      &lt;label nz-radio nzValue&#x3D;&quot;&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.DEFAULT&#x27; | translate}}&lt;/label&gt;
+      &lt;label nz-radio nzValue&#x3D;&quot;ignore&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.IGNORE&#x27; | translate}}&lt;/label&gt;
+      &lt;label nz-radio nzValue&#x3D;&quot;update&quot;&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.UPDATE&#x27; | translate}}&lt;/label&gt;
+    &lt;/nz-radio-group&gt;
+  &lt;/nz-form-item&gt;
+
+  &lt;nz-divider nzText&#x3D;&quot;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.FILES_TITLE&#x27; | translate}}&quot;&gt;&lt;/nz-divider&gt;
+  &lt;div nz-row nzJustify&#x3D;&#x27;center&#x27;&gt;
+    &lt;button nz-button [nzType]&#x3D;&quot;&#x27;primary&#x27;&quot; (click)&#x3D;&quot;importFiles()&quot; [nzLoading]&#x3D;&quot;loading&quot;
+            [disabled]&#x3D;&quot;fileList.length &#x3D;&#x3D; 0 || !dataForm.valid&quot;&gt;
+      {{ (loading ? &#x27;IMPORT_BUTTON.LOADING&#x27; : &#x27;IMPORT_BUTTON.START_UPLOADING&#x27;) | translate }}
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;br&gt;
+  &lt;nz-upload nzType&#x3D;&quot;drag&quot; [nzMultiple]&#x3D;&quot;true&quot; nzListType&#x3D;&quot;picture&quot; [(nzFileList)]&#x3D;&quot;fileList&quot; [nzRemove]&#x3D;&quot;removeFile&quot;
+             [nzBeforeUpload]&#x3D;&quot;beforeUpload&quot;&gt;
+    &lt;p class&#x3D;&quot;ant-upload-drag-icon&quot;&gt;
+      &lt;i nz-icon nzType&#x3D;&quot;inbox&quot;&gt;&lt;/i&gt;
+    &lt;/p&gt;
+    &lt;p class&#x3D;&quot;ant-upload-text&quot;&gt;{{&#x27;MISC.IMPORTS.TEXT_LABEL&#x27; | translate}}&lt;/p&gt;
+    &lt;p class&#x3D;&quot;ant-upload-hint&quot;&gt;{{&#x27;MISC.IMPORTS.HINT_LABEL&#x27; | translate}}&lt;/p&gt;
+  &lt;/nz-upload&gt;
+&lt;/form&gt;
+&lt;ng-template #customGene&gt;
+  &lt;nz-divider&gt;&lt;/nz-divider&gt;
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;input type&#x3D;&quot;text&quot; nz-input #inputElement/&gt;
+    &lt;a nz-button nzType&#x3D;&quot;link&quot; (click)&#x3D;&quot;addGene(inputElement.value)&quot; [disabled]&#x3D;&quot;!inputElement&quot;&gt;
+      &lt;i nz-icon nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;MOLECULAR_DATA.IMPORT.FORMS.INPUTS.SUGGEST_OPTION&#x27; | translate}}
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./sequences-import.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .ant-upload-list-item
+    background: #fff !important
+    &amp;:hover
+       background: #fff !important
+
+.ant-upload-list-item-info
+    background: #fff !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-page-header nzTitle="{{\'MOLECULAR_DATA.SEQUENCES.IMPORT.TITLE\' | translate}}"></nz-page-header><form nz-form [formGroup]="dataForm">  <nz-divider nzText="{{\'MOLECULAR_DATA.IMPORT.FORMS.INFO_TITLE\' | translate}}"></nz-divider>  <nz-collapse nzAccordion>    <nz-collapse-panel nzHeader="{{\'MOLECULAR_DATA.IMPORT.FORMS.DATA_COLLAPSE\' | translate}}">      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.LABEL\' |          translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <app-select-lazy-loading object_type="case_studies" variableLabel="name" variableValue="id"                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.PLACEHOLDER"                                   [value]="this.dataForm.get(\'case_study_id\').value" [multiple]="true" allowClear                                   (valueChange)="selectDynamicValueChange($event, \'case_study_id\')"></app-select-lazy-loading>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.LABEL\' |          translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <app-select-lazy-loading object_type="collections" variableLabel="name" variableValue="id"                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.PLACEHOLDER"                                   [value]="this.dataForm.get(\'collection_id\').value" [multiple]="true"                                   (valueChange)="selectDynamicValueChange($event, \'collection_id\')"></app-select-lazy-loading>        </nz-form-control>      </nz-form-item>    </nz-collapse-panel>    <nz-collapse-panel nzHeader="{{\'MOLECULAR_DATA.IMPORT.FORMS.BIODATA_COLLAPSE\' | translate}}">      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <app-select-lazy-loading object_type="organisms" variableLabel="name" variableValue="organism_id"                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.PLACEHOLDER"                                   [value]="this.dataForm.get(\'organism_id\').value" [multiple]="false" allowClear                                   (valueChange)="selectDynamicValueChange($event, \'organism_id\')"></app-select-lazy-loading>        </nz-form-control>      </nz-form-item>      <nz-form-item *ngIf="!only_individuals">        <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-select [nzDisabled]="loading || (dataForm.value.target_genes && dataForm.value.target_genes.length > 0)"                     nzShowSearch nzAllowClear formControlName="gene_tags" nzMode="multiple"                     [nzDropdownRender]="customGene"                     nzPlaceHolder="{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.PLACEHOLDER\' | translate}}">            <nz-option *ngFor="let gene of data.genes" nzLabel="{{gene.value}}" nzValue="{{gene.value}}"></nz-option>          </nz-select>        </nz-form-control>      </nz-form-item>    </nz-collapse-panel>  </nz-collapse>  <nz-divider nzText="{{\'MOLECULAR_DATA.IMPORT.FORMS.CONF_TITLE\' | translate}}"></nz-divider>  <nz-form-item>    <nz-form-label      [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_INDIVIDUALS\' | translate}}</nz-form-label>    <nz-form-control [nzSpan]="12">      <nz-switch [nzDisabled]="loading" [(ngModel)]="only_individuals"                 [ngModelOptions]="{standalone: true}"></nz-switch>    </nz-form-control>  </nz-form-item>  <nz-form-item *ngIf="!only_individuals">    <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.LABEL\' | translate}}</nz-form-label>    <nz-form-control [nzSpan]="12">      <nz-select [nzDisabled]="loading || (dataForm.value.gene_tags && dataForm.value.gene_tags.length > 0)"                 nzShowSearch nzAllowClear formControlName="target_genes" nzMode="multiple"                 [nzDropdownRender]="customGene"                 nzPlaceHolder="{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.PLACEHOLDER\' | translate}}">        <nz-option *ngFor="let gene of data.genes" nzLabel="{{gene.value}}" nzValue="{{gene.value}}"></nz-option>      </nz-select>    </nz-form-control>  </nz-form-item>  <nz-form-item *ngIf="!only_individuals">    <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.LABEL\' | translate}}</nz-form-label>    <nz-form-control [nzSpan]="12">      <label nz-checkbox             formControlName="no_annotations">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_RESIDUES\' |        translate}}</label>      <label nz-checkbox formControlName="split_genes"             [nzDisabled]="loading || (dataForm.value.gene_tags && dataForm.value.gene_tags.length > 0)">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.SPLIT_GENES\'        | translate}}</label>    </nz-form-control>  </nz-form-item>  <nz-form-item>    <nz-form-label [nzSpan]="7">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.LABEL\' | translate}}</nz-form-label>    <nz-radio-group formControlName="duplicates">      <label nz-radio nzValue="">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.DEFAULT\' | translate}}</label>      <label nz-radio nzValue="ignore">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.IGNORE\' | translate}}</label>      <label nz-radio nzValue="update">{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.UPDATE\' | translate}}</label>    </nz-radio-group>  </nz-form-item>  <nz-divider nzText="{{\'MOLECULAR_DATA.IMPORT.FORMS.FILES_TITLE\' | translate}}"></nz-divider>  <div nz-row nzJustify=\'center\'>    <button nz-button [nzType]="\'primary\'" (click)="importFiles()" [nzLoading]="loading"            [disabled]="fileList.length == 0 || !dataForm.valid">      {{ (loading ? \'IMPORT_BUTTON.LOADING\' : \'IMPORT_BUTTON.START_UPLOADING\') | translate }}    </button>  </div>  <br>  <nz-upload nzType="drag" [nzMultiple]="true" nzListType="picture" [(nzFileList)]="fileList" [nzRemove]="removeFile"             [nzBeforeUpload]="beforeUpload">    <p class="ant-upload-drag-icon">      <i nz-icon nzType="inbox"></i>    </p>    <p class="ant-upload-text">{{\'MISC.IMPORTS.TEXT_LABEL\' | translate}}</p>    <p class="ant-upload-hint">{{\'MISC.IMPORTS.HINT_LABEL\' | translate}}</p>  </nz-upload></form><ng-template #customGene>  <nz-divider></nz-divider>  <div class="container">    <input type="text" nz-input #inputElement/>    <a nz-button nzType="link" (click)="addGene(inputElement.value)" [disabled]="!inputElement">      <i nz-icon nzType="plus"></i>{{\'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.SUGGEST_OPTION\' | translate}}    </a>  </div></ng-template></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'SequencesImportComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SequencesImportComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

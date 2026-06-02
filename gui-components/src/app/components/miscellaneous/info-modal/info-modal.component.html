@@ -1,0 +1,28 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="closeModal()" [nzMaskClosable]="false" nzCentered [nzWidth]="480"
+    [nzFooter]="null">
+    <ng-container *nzModalContent>
+        <div>
+            <div style="display: flex; column-gap: 20px; padding: 32px; width: 100%">
+                <div style="flex: 0 1 auto">
+                    <i nz-icon [nzType]="typeIcon" [nzTheme]="themeIcon" [nzTwotoneColor]="twotoneColorIcon"
+                        style="font-size: 24px;"></i>
+                </div>
+                <div
+                    style="flex: 1 1 auto; min-width: 0; min-height: 0; row-gap: 9px; display: flex; flex-direction: column">
+                    <div style="font-size: 18px; line-height: 1.4">
+                        {{ title | translate }}
+                    </div>
+                    <div style="font-size: 14px; width: 100%">
+                        {{ content | translate:contentParams }}
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row-reverse; column-gap: 5px; margin-top: 22px">
+                <ng-container *ngFor="let button of buttons">
+                    <button nz-button nzType="primary" [nzDanger]="button.options.isDanger" (click)="button.func()">{{
+                        button.text | translate }}</button>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+</nz-modal>

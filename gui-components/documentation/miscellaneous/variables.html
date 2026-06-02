@@ -1,0 +1,1986 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#appConfig" title="src/app/app.config.ts" ><b>appConfig</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#archaeopteryx" title="src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts" ><b>archaeopteryx</b>&nbsp;&nbsp;&nbsp;(src/.../archaeopteryx-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#COLORS" title="src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts" ><b>COLORS</b>&nbsp;&nbsp;&nbsp;(src/.../nextgendem-msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#d3" title="src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts" ><b>d3</b>&nbsp;&nbsp;&nbsp;(src/.../archaeopteryx-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_MSA_VIEWER_HEIGHT" title="src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts" ><b>DEFAULT_MSA_VIEWER_HEIGHT</b>&nbsp;&nbsp;&nbsp;(src/.../nextgendem-msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#DEFAULT_MSA_VIEWER_WIDTH" title="src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts" ><b>DEFAULT_MSA_VIEWER_WIDTH</b>&nbsp;&nbsp;&nbsp;(src/.../nextgendem-msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.gh.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.gh.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.prod.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#environment" title="src/environments/environment.ts" ><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#IUPAC_CODES" title="src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts" ><b>IUPAC_CODES</b>&nbsp;&nbsp;&nbsp;(src/.../nextgendem-msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#LANGUAGE_OPTION_TYPES" title="src/app/services/internationalization.service.ts" ><b>LANGUAGE_OPTION_TYPES</b>&nbsp;&nbsp;&nbsp;(src/.../internationalization.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MENU_ITEM_TYPES" title="src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts" ><b>MENU_ITEM_TYPES</b>&nbsp;&nbsp;&nbsp;(src/.../preferences-modal.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MSABrowser" title="src/app/components/display/msa/msa-browser/msa-browser.component.ts" ><b>MSABrowser</b>&nbsp;&nbsp;&nbsp;(src/.../msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#MSAProcessor" title="src/app/components/display/msa/msa-browser/msa-browser.component.ts" ><b>MSAProcessor</b>&nbsp;&nbsp;&nbsp;(src/.../msa-browser.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OBJECT_TYPES" title="src/app/constants/object-types.constants.ts" ><b>OBJECT_TYPES</b>&nbsp;&nbsp;&nbsp;(src/.../object-types.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#OBJECT_TYPES_TRANSLATION_PREFIX" title="src/app/constants/object-types.constants.ts" ><b>OBJECT_TYPES_TRANSLATION_PREFIX</b>&nbsp;&nbsp;&nbsp;(src/.../object-types.constants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_KERNEL_OPTIONS" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_KERNEL_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_KERNEL_VALUES" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_KERNEL_VALUES</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_SYSTEM_OPTIONS" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_SYSTEM_OPTIONS</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#PROCESSES_TYPES_SYSTEM_VALUES" title="src/app/constants/processes-types.contants.ts" ><b>PROCESSES_TYPES_SYSTEM_VALUES</b>&nbsp;&nbsp;&nbsp;(src/.../processes-types.contants.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#routerFeatures" title="src/app/app.config.ts" ><b>routerFeatures</b>&nbsp;&nbsp;&nbsp;(src/.../app.config.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#routes" title="src/app/app.routes.ts" ><b>routes</b>&nbsp;&nbsp;&nbsp;(src/.../app.routes.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#SIDEBAR_YAML_PATH" title="src/app/tokens/sidebar-config.token.ts" ><b>SIDEBAR_YAML_PATH</b>&nbsp;&nbsp;&nbsp;(src/.../sidebar-config.token.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#sidebarOpenCloseAnimation" title="src/app/components/layout/basiclayout/basiclayout.component.ts" ><b>sidebarOpenCloseAnimation</b>&nbsp;&nbsp;&nbsp;(src/.../basiclayout.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#sidebarOpenCloseAnimation" title="src/app/components/layout/tab-layout/tab-layout.component.ts" ><b>sidebarOpenCloseAnimation</b>&nbsp;&nbsp;&nbsp;(src/.../tab-layout.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#TEST_PERMISSIONS" title="src/app/services/auth.service.ts" ><b>TEST_PERMISSIONS</b>&nbsp;&nbsp;&nbsp;(src/.../auth.service.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#viewTypes" title="src/app/components/data/annotations/fields/field-view-types.ts" ><b>viewTypes</b>&nbsp;&nbsp;&nbsp;(src/.../field-view-types.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/app/app.config.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="appConfig"></a>
+                    <span class="name">
+                        <span ><b>appConfig</b></span>
+                        <a href="#appConfig"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ApplicationConfig</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  providers: [
+    provideHttpClient(withInterceptorsFromDi(), withFetch()),
+    {provide: LOCALE_ID, useValue: &#x27;es-ES&#x27;},
+    provideAppInitializer(() &#x3D;&gt; {
+      const initializerFn &#x3D; ((themeService: ThemeService) &#x3D;&gt; () &#x3D;&gt; {
+        return themeService.loadTheme(ThemeType.themeCyan);
+      })(inject(ThemeService));
+      return initializerFn();
+    }),
+    provideAppInitializer(() &#x3D;&gt; {
+      const _auth &#x3D; inject(AuthService)
+      const _angularDireAuth &#x3D; inject(AngularFireAuth)
+      const initializerFn &#x3D; ((auth: AuthService, angularDireAuth: AngularFireAuth) &#x3D;&gt; {
+        return auth.load.bind(auth, angularDireAuth);
+      })
+      return initializerFn(_auth, _angularDireAuth);
+    }),
+    provideRouter(routes, ...routerFeatures),
+    importProvidersFrom(
+      AngularFireModule.initializeApp(environment.firebase_config),
+      NzModalModule,
+      FormlyComponentsModule
+    ),
+    provideTranslateService({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      }
+    }),
+    provideAnimations()
+  ]
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routerFeatures"></a>
+                    <span class="name">
+                        <span ><b>routerFeatures</b></span>
+                        <a href="#routerFeatures"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>RouterFeatures[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>isDevMode() ? [withHashLocation()] : []</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/display/archaeopteryx/archaeopteryx-browser/archaeopteryx-browser.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="archaeopteryx"></a>
+                    <span class="name">
+                        <span ><b>archaeopteryx</b></span>
+                        <a href="#archaeopteryx"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="d3"></a>
+                    <span class="name">
+                        <span ><b>d3</b></span>
+                        <a href="#d3"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="COLORS"></a>
+                    <span class="name">
+                        <span ><b>COLORS</b></span>
+                        <a href="#COLORS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  &#x27;#FF6384&#x27;, // Pinkish Red
+  &#x27;#36A2EB&#x27;, // Sky Blue
+  &#x27;#FFCE56&#x27;, // Yellow
+  &#x27;#4BC0C0&#x27;, // Turquoise
+  &#x27;#9966FF&#x27;, // Soft Purple
+  &#x27;#FF9F40&#x27;, // Orange
+  &#x27;#FFCD56&#x27;, // Gold
+  &#x27;#4DBEA9&#x27;, // Sea Green
+  &#x27;#605ca8&#x27;, // Indigo
+  &#x27;#d81b60&#x27;, // Crimson
+  &#x27;#00d2d3&#x27;, // Bright Turquoise
+  &#x27;#f012be&#x27;, // Magenta
+  &#x27;#6f42c1&#x27;, // Lavender
+  &#x27;#01FF70&#x27;, // Neon Green
+  &#x27;#39CCCC&#x27;, // Teal
+  &#x27;#85144b&#x27;, // Maroon
+  &#x27;#3D9970&#x27;, // Olive
+  &#x27;#FF851B&#x27;, // Tangerine
+  &#x27;#B10DC9&#x27;, // Purple
+  &#x27;#000000&#x27;  // Black
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_MSA_VIEWER_HEIGHT"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_MSA_VIEWER_HEIGHT</b></span>
+                        <a href="#DEFAULT_MSA_VIEWER_HEIGHT"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1145</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEFAULT_MSA_VIEWER_WIDTH"></a>
+                    <span class="name">
+                        <span ><b>DEFAULT_MSA_VIEWER_WIDTH</b></span>
+                        <a href="#DEFAULT_MSA_VIEWER_WIDTH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1848</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="IUPAC_CODES"></a>
+                    <span class="name">
+                        <span ><b>IUPAC_CODES</b></span>
+                        <a href="#IUPAC_CODES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  &#x27;R&#x27;: &#x27;AG&#x27;,
+  &#x27;Y&#x27;: &#x27;CT&#x27;,
+  &#x27;S&#x27;: &#x27;CG&#x27;,
+  &#x27;W&#x27;: &#x27;AT&#x27;,
+  &#x27;K&#x27;: &#x27;GT&#x27;,
+  &#x27;M&#x27;: &#x27;AC&#x27;,
+  &#x27;B&#x27;: &#x27;CGT&#x27;,
+  &#x27;D&#x27;: &#x27;AGT&#x27;,
+  &#x27;H&#x27;: &#x27;ACT&#x27;,
+  &#x27;V&#x27;: &#x27;ACG&#x27;,
+  &#x27;N&#x27;: &#x27;ACGT&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.gh.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  backend_url: process.env[&quot;BACKEND_URL&quot;],
+  firebase_config: JSON.parse(process.env[&quot;FIREBASE_CONFIG&quot;]),
+  firebaseui_config: {
+    enableFirestoreSync: true, // enable/disable autosync users with firestore
+    toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
+    toastMessageOnAuthError: false, // whether to open/show a snackbar message on auth error - default : true
+    authGuardFallbackURL: &#x27;login&#x27;, // url for unauthenticated users - to use in combination with canActivate feature on a route
+    authGuardLoggedInURL: &#x27;logout&#x27;, // url for authenticated users - to use in combination with canActivate feature on a route
+    passwordMaxLength: 60, // &#x60;min/max&#x60; input parameters in components should be within this range.
+    passwordMinLength: 8, // Password length min/max in forms independently of each componenet min/max.
+    // Same as password but for the name
+    nameMaxLength: 50,
+    nameMinLength: 2,
+    // If set, sign-in/up form is not available until email has been verified.
+    // Plus protected routes are still protected even though user is connected.
+    guardProtectedRoutesUntilEmailIsVerified: true,
+    enableEmailVerification: true, // default: true
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.prod.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: true,
+  backend_url: &#x27;https://sys.nextgendem.eu&#x27;,
+  firebase_config: firebase_private.default,
+  firebaseui_config: {
+    enableFirestoreSync: true, // enable/disable autosync users with firestore
+    toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
+    toastMessageOnAuthError: false, // whether to open/show a snackbar message on auth error - default : true
+    authGuardFallbackURL: &#x27;login&#x27;, // url for unauthenticated users - to use in combination with canActivate feature on a route
+    authGuardLoggedInURL: &#x27;logout&#x27;, // url for authenticated users - to use in combination with canActivate feature on a route
+    passwordMaxLength: 60, // &#x60;min/max&#x60; input parameters in components should be within this range.
+    passwordMinLength: 8, // Password length min/max in forms independently of each componenet min/max.
+    // Same as password but for the name
+    nameMaxLength: 50,
+    nameMinLength: 2,
+    // If set, sign-in/up form is not available until email has been verified.
+    // Plus protected routes are still protected even though user is connected.
+    guardProtectedRoutesUntilEmailIsVerified: true,
+    enableEmailVerification: true, // default: true
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/environments/environment.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="environment"></a>
+                    <span class="name">
+                        <span ><b>environment</b></span>
+                        <a href="#environment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  production: false,
+  backend_url: &#x27;https://sys.nextgendem.eu&#x27;,
+  firebase_config: firebase_private.default,
+  firebaseui_config: {
+    enableFirestoreSync: true, // enable/disable autosync users with firestore
+    toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true
+    toastMessageOnAuthError: false, // whether to open/show a snackbar message on auth error - default : true
+    authGuardFallbackURL: &#x27;login&#x27;, // url for unauthenticated users - to use in combination with canActivate feature on a route
+    authGuardLoggedInURL: &#x27;logout&#x27;, // url for authenticated users - to use in combination with canActivate feature on a route
+    passwordMaxLength: 60, // &#x60;min/max&#x60; input parameters in components should be within this range.
+    passwordMinLength: 8, // Password length min/max in forms independently of each componenet min/max.
+    // Same as password but for the name
+    nameMaxLength: 50,
+    nameMinLength: 2,
+    // If set, sign-in/up form is not available until email has been verified.
+    // Plus protected routes are still protected even though user is connected.
+    guardProtectedRoutesUntilEmailIsVerified: true,
+    enableEmailVerification: true, // default: true
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/services/internationalization.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="LANGUAGE_OPTION_TYPES"></a>
+                    <span class="name">
+                        <span ><b>LANGUAGE_OPTION_TYPES</b></span>
+                        <a href="#LANGUAGE_OPTION_TYPES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  spanish: {
+    id: &#x27;private-es&#x27;,
+  },
+  english: {
+    id: &#x27;private-en&#x27;,
+  },
+  portuguese: {
+    id: &#x27;private-pt&#x27;,
+  },
+  french: {
+    id: &#x27;private-fr&#x27;,
+  }
+
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MENU_ITEM_TYPES"></a>
+                    <span class="name">
+                        <span ><b>MENU_ITEM_TYPES</b></span>
+                        <a href="#MENU_ITEM_TYPES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  PROFILE: 1,
+  THEME: 2,
+  LANGUAGES: 3,
+  API_KEYS: 4,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/display/msa/msa-browser/msa-browser.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MSABrowser"></a>
+                    <span class="name">
+                        <span ><b>MSABrowser</b></span>
+                        <a href="#MSABrowser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="MSAProcessor"></a>
+                    <span class="name">
+                        <span ><b>MSAProcessor</b></span>
+                        <a href="#MSAProcessor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/constants/object-types.constants.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OBJECT_TYPES"></a>
+                    <span class="name">
+                        <span ><b>OBJECT_TYPES</b></span>
+                        <a href="#OBJECT_TYPES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  sequence: {
+    pageDetail: &#x27;sequenceDetail&#x27;,
+    readPermission: &#x27;gui-seq-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}SEQUENCE&#x60;,
+  },
+  &#x27;multiple-sequence-alignment&#x27;: {
+    pageDetail: &#x27;alignmentDetail&#x27;,
+    readPermission: &#x27;gui-ma-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}MULTIPLE_SEQUENCE_ALIGNMENT&#x60;,
+  },
+  &#x27;phylogenetic-tree&#x27;: {
+    pageDetail: &#x27;phylotreeDetail&#x27;,
+    readPermission: &#x27;gui-pt-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}PHYLOGENETIC_TREE&#x60;,
+  },
+  blast: {
+    pageDetail: &#x27;blastDetail&#x27;,
+    readPermission: &#x27;gui-blast-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}BLAST&#x60;,
+  },
+  &#x27;sequence-similarity&#x27;: {
+    pageDetail: &#x27;sequenceSimilarityDetail&#x27;,
+    readPermission: &#x27;gui-sequence-similarity-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}SEQUENCE_SIMILARITY_DETAIL&#x60;,
+  },
+  &#x27;discriminant-matrix&#x27;: {
+    pageDetail: &#x27;discriminantMatrixDetail&#x27;,
+    readPermission: &#x27;gui-discriminant-matrix-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}DISCRIMINANT_MATRIX&#x60;,
+  },
+  supermatrix: {
+    pageDetail: &#x27;supermatrixDetail&#x27;,
+    readPermission: &#x27;gui-smatrix-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}SUPERMATRIX&#x60;,
+  },
+  geolayer: {
+    pageDetail: &#x27;geolayerDetail&#x27;,
+    readPermission: &#x27;gui-layer-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}GEOLAYER&#x60;,
+  },
+  &#x27;case-studies&#x27;: {
+    pageDetail: &#x27;caseStudiesDetail&#x27;,
+    readPermission: &#x27;gui-case-study-read&#x27;,
+    translation: &#x60;${OBJECT_TYPES_TRANSLATION_PREFIX}CASE_STUDIES&#x60;,
+  }
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="OBJECT_TYPES_TRANSLATION_PREFIX"></a>
+                    <span class="name">
+                        <span ><b>OBJECT_TYPES_TRANSLATION_PREFIX</b></span>
+                        <a href="#OBJECT_TYPES_TRANSLATION_PREFIX"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;OBJECT_TYPES.&#x27;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/constants/processes-types.contants.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS</b></span>
+                        <a href="#PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    label: &#x27;Python&#x27;,
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.PYTHON,
+  },
+  {
+    label: &#x27;R&#x27;,
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.R,
+  },
+  {
+    label: &#x27;QGIS&#x27;,
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.QGIS,
+  },
+  {
+    label: &#x27;PostGIS&#x27;,
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.POSTGIS,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES</b></span>
+                        <a href="#PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  PYTHON: &#x27;python&#x27;,
+  R: &#x27;r&#x27;,
+  QGIS: &#x27;qgis&#x27;,
+  POSTGIS: &#x27;postgis&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_KERNEL_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_KERNEL_OPTIONS</b></span>
+                        <a href="#PROCESSES_TYPES_KERNEL_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    label: &#x27;Python&#x27;,
+    value: PROCESSES_TYPES_KERNEL_VALUES.PYTHON,
+  },
+  {
+    label: &#x27;R&#x27;,
+    value: PROCESSES_TYPES_KERNEL_VALUES.R,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_KERNEL_VALUES"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_KERNEL_VALUES</b></span>
+                        <a href="#PROCESSES_TYPES_KERNEL_VALUES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  PYTHON: &#x27;python&#x27;,
+  R: &#x27;r&#x27;
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_SYSTEM_OPTIONS"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_SYSTEM_OPTIONS</b></span>
+                        <a href="#PROCESSES_TYPES_SYSTEM_OPTIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    label: &#x27;PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.JUPYTER&#x27;,
+    value: PROCESSES_TYPES_SYSTEM_VALUES.JUPYTER,
+  },
+  {
+    label: &#x27;PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.GEOPROCESS&#x27;,
+    value: PROCESSES_TYPES_SYSTEM_VALUES.GEOPROCESS,
+  },
+  {
+    label: &#x27;PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.SNAKEMAKE&#x27;,
+    value: PROCESSES_TYPES_SYSTEM_VALUES.SNAKEMAKE,
+  },
+  {
+    label: &#x27;PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.NEXTFLOW&#x27;,
+    value: PROCESSES_TYPES_SYSTEM_VALUES.NEXTFLOW,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="PROCESSES_TYPES_SYSTEM_VALUES"></a>
+                    <span class="name">
+                        <span ><b>PROCESSES_TYPES_SYSTEM_VALUES</b></span>
+                        <a href="#PROCESSES_TYPES_SYSTEM_VALUES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+  JUPYTER: &#x27;jupyter&#x27;,
+  GEOPROCESS: &#x27;geoprocess&#x27;,
+  SNAKEMAKE: &#x27;snakemake&#x27;,
+  NEXTFLOW: &#x27;nextflow&#x27;,
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/app.routes.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Routes</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  {
+    path: &#x27;&#x27;,
+    canActivate: [CheckLoginGuard],
+    canActivateChild: [CanEnterPage],
+    children: [
+      {
+        path: &#x27;sequencesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/sequence/sequences-browse/sequences-browse.component&#x27;).then(mod &#x3D;&gt; mod.SequencesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;sequencesImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/sequence/sequences-import/sequences-import.component&#x27;).then(mod &#x3D;&gt; mod.SequencesImportComponent)&quot;,
+        resolve: {
+          data: ImportResolver,
+        }
+      },
+      {
+        path: &#x27;sequenceDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/sequence/sequence-detail/sequence-detail.component&#x27;).then(mod &#x3D;&gt; mod.SequenceDetailComponent)&quot;,
+        resolve: {
+          sequence: SequencesResolver,
+        }
+      },
+      {
+        path: &#x27;sequenceDetail&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/sequence/sequence-detail/sequence-detail.component&#x27;).then(mod &#x3D;&gt; mod.SequenceDetailComponent)&quot;,
+        resolve: {
+          sequence: SequencesResolver,
+        }
+      },
+      {
+        path: &#x27;alignmentsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/alignments/aligment-browse/aligment-browse.component&#x27;).then(mod &#x3D;&gt; mod.AlignmentBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;alignmentsImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/alignments/alignments-import/alignments-import.component&#x27;).then(mod &#x3D;&gt; mod.AlignmentsImportComponent)&quot;,
+        resolve: {
+          data: ImportResolver,
+        }
+      },
+      {
+        path: &#x27;alignmentDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/alignments/alignment-detail/alignment-detail.component&#x27;).then(mod &#x3D;&gt; mod.AlignmentDetailComponent)&quot;,
+        resolve: {
+          analysis: AnalysesResolver,
+        },
+      },
+      {
+        path: &#x27;alignmentNextgendemMissingEditor/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/alignments/alignment-nextgendem-missing-editor/alignment-nextgendem-missing-editor.component&#x27;).then(mod &#x3D;&gt; mod.AligmentNextgendemMissingEditorComponent)&quot;,
+      },
+      {
+        path: &#x27;alignmentNextgendemMissingEditor&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/alignments/alignment-nextgendem-missing-editor/alignment-nextgendem-missing-editor.component&#x27;).then(mod &#x3D;&gt; mod.AligmentNextgendemMissingEditorComponent)&quot;,
+      },
+      {
+        path: &#x27;nextgendemMsaBrowser&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/nextgendem-msa/nextgendem-msa-page/nextgendem-msa-page.component&#x27;).then(mod &#x3D;&gt; mod.NextgendemMsaPageComponent)&quot;,
+      },
+      {
+        path: &#x27;phylotreesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/phylotrees/phylotress-browse/phylotress-browse.component&#x27;).then(mod &#x3D;&gt; mod.PhylotreesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;phylotreesImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/phylotrees/phylotrees-import/phylotrees-import.component&#x27;).then(mod &#x3D;&gt; mod.PhylotreesImportComponent)&quot;,
+        resolve: {
+          data: ImportResolver,
+        },
+      },
+      {
+        path: &#x27;phylotreeDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/phylotrees/phylotree-detail/phylotree-detail.component&#x27;).then(mod &#x3D;&gt; mod.PhylotreeDetailComponent)&quot;,
+        resolve: {
+          analysis: AnalysesResolver,
+        }
+      },
+      {
+        path: &#x27;supermatricesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/super-matrix/super-matrix-browse/super-matrix-browse.component&#x27;).then(mod &#x3D;&gt; mod.SuperMatrixBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;supermatricesImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/super-matrix/super-matrix-import/super-matrix-import.component&#x27;).then(mod &#x3D;&gt; mod.SuperMatrixImportComponent)&quot;,
+        resolve: {
+          data: ImportResolver,
+        }
+      },
+      {
+        path: &#x27;supermatrixDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/super-matrix/super-matrix-detail/super-matrix-detail.component&#x27;).then(mod &#x3D;&gt; mod.SuperMatrixDetailComponent)&quot;,
+        resolve: {
+          analysis: AnalysesResolver,
+        }
+      },
+      {
+        path: &#x27;supermatrixNextgendemMissingEditor/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/super-matrix/super-matrix-nextgendem-missing-editor/super-matrix-nextgendem-missing-editor.component&#x27;).then(mod &#x3D;&gt; mod.SuperMatrixNextgendemMissingEditorComponent)&quot;,
+      },
+      {
+        path: &#x27;discriminantMatricesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/discriminant-matrix/discriminant-matrix-browse/discriminant-matrix-browse.component&#x27;).then(mod &#x3D;&gt; mod.DiscriminantMatrixBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;discriminantMatrixDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/discriminant-matrix/discriminant-matrix-detail/discriminant-matrix-detail.component&#x27;).then(mod &#x3D;&gt; mod.DiscriminantMatrixDetailComponent)&quot;,
+        resolve: {
+          analysis: AnalysesResolver,
+        }
+      },
+      // {
+      //   path: &#x27;blastBrowse&#x27;,
+      //   loadComponent: () &#x3D;&gt; import(&#x27;src/app/pages/molecular-data/blast/blast-results-browse/blast-results-browse.component&#x27;).then(mod &#x3D;&gt; mod.BlastResultsBrowseComponent),
+      // },
+      // {
+      //   path: &#x27;blastDetail/:id&#x27;,
+      //   loadComponent: () &#x3D;&gt; import(&#x27;src/app/pages/molecular-data/blast/blast-result-detail/blast-result-detail.component&#x27;).then(mod &#x3D;&gt; mod.BlastResultsBrowseComponent),
+      //   resolve: {
+      //     analysis: AnalysesResolver,
+      //   }
+      // },
+      {
+        path: &quot;blasterPage&quot;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/blast/blasterjs-page/blasterjs-page.component&#x27;).then(mod &#x3D;&gt; mod.BlasterjsPageComponent)&quot;,
+      },
+      {
+        path: &#x27;collectionsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/collections/collections-browse/collections-browse.component&#x27;).then(mod &#x3D;&gt; mod.CollectionsBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;collectionDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/molecular-data/collections/collections-detail/collections-detail.component&#x27;).then(mod &#x3D;&gt; mod.CollectionsDetailComponent)&quot;,
+      },
+      // Geographical data
+      {
+        path: &#x27;geolayersBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/geolayer/geolayer-browse/geolayer-browse.component&#x27;).then(mod &#x3D;&gt; mod.GeolayerBrowseComponent)&quot;,
+        resolve: {
+          layers: LayerResolver,
+          identities: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;geolayerImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/geolayer/geolayer-import/geolayer-import.component&#x27;).then(mod &#x3D;&gt; mod.GeolayerImportComponent)&quot;,
+        resolve: {
+          sources: MetadataSourcesResolver,
+          themes: MetadataThemesResolver,
+          crs: MetadataCrsResolver,
+          caseStudies: CaseStudiesResolver,
+        },
+      },
+      {
+        path: &#x27;geolayerDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/geolayer/geolayer-detail/geolayer-detail.component&#x27;).then(mod &#x3D;&gt; mod.GeolayerDetailComponent)&quot;,
+        resolve: {
+          layer: LayerResolver,
+          caseStudies: CaseStudiesResolver,
+          themes: MetadataThemesResolver,
+          sources: MetadataSourcesResolver,
+          crs: MetadataCrsResolver,
+          styles: LayerStylesResolver,
+        }
+      },
+      // Case Studies
+      {
+        path: &#x27;caseStudiesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/case-studies/case-studies-browse/case-studies-browse.component&#x27;).then(mod &#x3D;&gt; mod.CaseStudiesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;caseStudiesDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/case-studies/case-studies-detail/case-studies-detail.component&#x27;).then(mod &#x3D;&gt; mod.CaseStudiesDetailComponent)&quot;,
+        resolve: {
+          caseStudy: CaseStudiesResolver,
+        }
+      },
+      {
+        path: &#x27;process&#x27;,
+        resolve: {
+          processes: ProcessResolver,
+        },
+        children: [
+          {
+            path: &#x27;processSetup&#x27;,
+            loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes/process-setup/process-setup.component&#x27;).then(mod &#x3D;&gt; mod.ProcessSetupComponent)&quot;,
+            // resolve: {organisms: OrganismsResolver},
+          },
+          {
+            path: &#x27;processesBrowseDone&#x27;,
+            loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes/processes-browse/processes-browse.component&#x27;).then(mod &#x3D;&gt; mod.ProcessesBrowseComponent)&quot;,
+          },
+          {
+            path: &#x27;processesBrowseToDo&#x27;,
+            loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes/processes-browse/processes-browse.component&#x27;).then(mod &#x3D;&gt; mod.ProcessesBrowseComponent)&quot;,
+          },
+          {
+            path: &#x27;processDetail/:id&#x27;,
+            loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes/process-detail/process-detail.component&#x27;).then(mod &#x3D;&gt; mod.ProcessDetailComponent)&quot;,
+            resolve: {
+              job: JobResolver,
+              resources: ResourceResolver,
+            }
+          },
+        ]
+      },
+      {
+        path: &#x27;viewersBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/viewers/viewers-browse/viewers-browse.component&#x27;).then(mod &#x3D;&gt; mod.ViewersBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;phylogeographyBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/geolayer/geolayers-viewer/geolayers-viewer.component&#x27;).then(mod &#x3D;&gt; mod.GeolayersViewerComponent)&quot;,
+        resolve: {
+          layers: LayerResolver,
+        }
+      },
+      {
+        path: &#x27;ontologiesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/ontologies/ontologies-browse/ontologies-browse.component&#x27;).then(mod &#x3D;&gt; mod.OntologiesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;ontologiesImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/ontologies/ontologies-import/ontologies-import.component&#x27;).then(mod &#x3D;&gt; mod.OntologiesImportComponent)&quot;,
+      },
+      {
+        path: &#x27;ontologyDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/ontologies/ontology-detail/ontology-detail.component&#x27;).then(mod &#x3D;&gt; mod.OntologyDetailComponent)&quot;,
+      },
+      {
+        path: &#x27;termsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/terms/terms-browse/terms-browse.component&#x27;).then(mod &#x3D;&gt; mod.TermsBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;termDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/terms/term-detail/term-detail.component&#x27;).then(mod &#x3D;&gt; mod.TermDetailComponent)&quot;,
+        resolve: {
+          term: TermsResolver,
+        }
+      },
+      {
+        path: &#x27;taxonomiesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/taxonomies/taxonomies-browse/taxonomies-browse.component&#x27;).then(mod &#x3D;&gt; mod.TaxonomiesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;taxonomiesImport&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/taxonomies/taxonomies-import/taxonomies-import.component&#x27;).then(mod &#x3D;&gt; mod.TaxonomiesImportComponent)&quot;,
+      },
+      {
+        path: &#x27;taxonomyDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/taxonomies/taxonomy-detail/taxonomy-detail.component&#x27;).then(mod &#x3D;&gt; mod.TaxonomyDetailComponent)&quot;,
+      },
+      {
+        path: &#x27;organismsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/organisms/organisms-browse/organisms-browse.component&#x27;).then(mod &#x3D;&gt; mod.OrganismsBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;organismDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/organisms/organism-detail/organism-detail.component&#x27;).then(mod &#x3D;&gt; mod.OrganismDetailComponent)&quot;,
+        resolve: {
+          organism: OrganismsResolver,
+        }
+      },
+      {
+        path: &#x27;individualsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/individual/individual-browse/individual-browse.component&#x27;).then(mod &#x3D;&gt; mod.IndividualBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;individualDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/individual/individual-detail/individual-detail.component&#x27;).then(mod &#x3D;&gt; mod.IndividualDetailComponent)&quot;,
+        resolve: {
+          individual: IndividualResolver,
+        }
+      },
+      {
+        path: &#x27;analysesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/analyses/analyses-browse/analyses-browse.component&#x27;).then(mod &#x3D;&gt; mod.AnalysesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;analysisDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/analyses/analysis-detail/analysis-detail.component&#x27;).then(mod &#x3D;&gt; mod.AnalysisDetailComponent)&quot;,
+        resolve: {
+          analysis: AnalysesResolver,
+        },
+      },
+      {
+        path: &#x27;themesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/themes/themes-browse/themes-browse.component&#x27;).then(mod &#x3D;&gt; mod.ThemesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;crsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/crs/crs-browse/crs-browse.component&#x27;).then(mod &#x3D;&gt; mod.CrsBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;crsDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/crs/crs-detail/crs-detail.component&#x27;).then(mod &#x3D;&gt; mod.CrsDetailComponent)&quot;,
+        resolve: {
+          crs: MetadataCrsResolver
+        }
+      },
+      {
+        path: &#x27;sourcesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/metadata/sources/sources-browse/sources-browse.component&#x27;).then(mod &#x3D;&gt; mod.SourcesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;annotationsFieldsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/annotations/fields/fields-browse/fields-browse.component&#x27;).then(mod &#x3D;&gt; mod.FieldsBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;annotationsFieldDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/annotations/fields/field-detail/field-detail.component&#x27;).then(mod &#x3D;&gt; mod.FieldDetailComponent)&quot;,
+        resolve: {
+          field: AnnotationsFieldsResolver,
+        }
+      },
+      {
+        path: &#x27;annotationsTemplatesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/annotations/templates/templates-browse/templates-browse.component&#x27;).then(mod &#x3D;&gt; mod.TemplatesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;annotationsTemplateDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/annotations/templates/template-detail/template-detail.component&#x27;).then(mod &#x3D;&gt; mod.TemplateDetailComponent)&quot;,
+        resolve: {
+          template: AnnotationsTemplatesResolver,
+        }
+      },
+      {
+        path: &#x27;computeResourcesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/compute-resources/compute-resources-browse/compute-resources-browse.component&#x27;).then(mod &#x3D;&gt; mod.ComputeResourcesBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;computeResourcesDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/compute-resources/compute-resources-detail/compute-resources-detail.component&#x27;).then(mod &#x3D;&gt; mod.ComputeResourcesDetailComponent)&quot;,
+      },
+      {
+        path: &#x27;identitiesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/identities/identities-browser/identities-browser.component&#x27;).then(mod &#x3D;&gt; mod.IdentitiesBrowserComponent)&quot;,
+        resolve: {
+          identities: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;identityDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/identities/identity-details/identity-details.component&#x27;).then(mod &#x3D;&gt; mod.IdentityDetailsComponent)&quot;,
+        resolve: {
+          roles: RolesResolver,
+          organizations: OrganizationsResolver,
+          groups: GroupsResolver,
+          identity: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;identityModify/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/identities/identity-modify/identity-modify.component&#x27;).then(mod &#x3D;&gt; mod.IdentityModifyComponent)&quot;,
+        resolve: {
+          identity: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;organizationsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/organizations/organizations-browser/organizations-browser.component&#x27;).then(mod &#x3D;&gt; mod.OrganizationsBrowserComponent)&quot;,
+        resolve: {
+          organizations: OrganizationsResolver,
+        }
+      },
+      {
+        path: &#x27;organizationDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/organizations/organization-details/organization-details.component&#x27;).then(mod &#x3D;&gt; mod.OrganizationDetailsComponent)&quot;,
+        resolve: {
+          organization: OrganizationsResolver,
+          identities: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;organizationModify/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/organizations/organization-modify/organization-modify.component&#x27;).then(mod &#x3D;&gt; mod.OrganizationModifyComponent)&quot;,
+        resolve: {
+          organization: OrganizationsResolver,
+        }
+      },
+      {
+        path: &#x27;rolesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/roles/roles-browser/roles-browser.component&#x27;).then(mod &#x3D;&gt; mod.RolesBrowserComponent)&quot;,
+        resolve: {
+          roles: RolesResolver,
+        }
+      },
+      {
+        path: &#x27;roleDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/roles/role-details/role-details.component&#x27;).then(mod &#x3D;&gt; mod.RoleDetailsComponent)&quot;,
+        resolve: {
+          role: RolesResolver,
+          identities: IdentitiesResolver,
+        }
+      },
+      {
+        path: &#x27;roleModify/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/roles/role-modify/role-modify.component&#x27;).then(mod &#x3D;&gt; mod.RoleModifyComponent)&quot;,
+        resolve: {
+          role: RolesResolver,
+        }
+      },
+      {
+        path: &#x27;referencesAclBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/references-acl/references-acl-browse/references-acl-browse.component&#x27;).then(mod &#x3D;&gt; mod.ReferencesAclBrowseComponent)&quot;,
+      },
+      {
+        path: &#x27;systemFunctionsBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/security-admin/system-functions/system-functions-browse/system-functions-browse.component&#x27;).then(mod &#x3D;&gt; mod.SystemFunctionsBrowseComponent)&quot;,
+        resolve: {
+          systemFunctions: SystemFunctionsResolver,
+        }
+      },
+      {
+        path: &#x27;archaeopteryxBrowser&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/archaeopteryx/archaeopteryx-page/archaeopteryx-page.component&#x27;).then(mod &#x3D;&gt; mod.ArchaeopteryxPageComponent)&quot;,
+      },
+      {
+        path: &#x27;testPage&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/test-page/test-page.component&#x27;).then(mod &#x3D;&gt; mod.TestPageComponent)&quot;,
+      },
+      {
+        path: &#x27;ngdBarconding&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/ngd-barcoding/ngd-barcoding-page/ngd-barcoding-page.component&#x27;).then(mod &#x3D;&gt; mod.NgdBarcodingPageComponent)&quot;,
+      },
+      {
+        path: &#x27;processTypesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/processes-types/processes-types-browser/processes-types-browser.component&#x27;).then(mod &#x3D;&gt; mod.ProcessesTypesBrowserComponent)&quot;,
+      },
+      {
+        path: &#x27;processTypeDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/processes-types/processes-types-detail/processes-types-detail.component&#x27;).then(mod &#x3D;&gt; mod.ProcessesTypesDetailComponent)&quot;,
+      },
+      {
+        path: &#x27;containerizationImagesBrowse&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/containerization-images/containerization-images-browser/containerization-images-browser.component&#x27;).then(mod &#x3D;&gt; mod.ContainerizationImagesBrowserComponent)&quot;
+      },
+      {
+        path: &#x27;containerizationImagesDetail/:id&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/processes-admin/containerization-images/containerization-images-detail/containerization-images-detail.component&#x27;).then(mod &#x3D;&gt; mod.ContainerizationImagesDetailComponent)&quot;
+      },
+      {
+        path: &#x27;statusCheckersDetail&#x27;,
+        loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/status-checkers/status-checkers-detail/status-checkers-detail.component&#x27;).then(mod &#x3D;&gt; mod.StatusCheckersDetailComponent)&quot;,
+      },
+    ],
+  },
+  {
+    path: &#x27;home&#x27;,
+    loadComponent: () &#x3D;&gt; &quot;import(&#x27;src/app/pages/home/home.component&#x27;).then(mod &#x3D;&gt; mod.HomeComponent)&quot;,
+  },
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/tokens/sidebar-config.token.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="SIDEBAR_YAML_PATH"></a>
+                    <span class="name">
+                        <span ><b>SIDEBAR_YAML_PATH</b></span>
+                        <a href="#SIDEBAR_YAML_PATH"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new InjectionToken&lt;string&gt;(&#x27;SIDEBAR_YAML_PATH&#x27;)</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/layout/basiclayout/basiclayout.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarOpenCloseAnimation"></a>
+                    <span class="name">
+                        <span ><b>sidebarOpenCloseAnimation</b></span>
+                        <a href="#sidebarOpenCloseAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>trigger(&#x27;sidebarOpenClose&#x27;, [
+  state(&#x27;true&#x27;, style({width: &#x27;*&#x27;})),
+  state(&#x27;false&#x27;, style({width: &#x27;0px&#x27;})),
+  transition(&#x27;false &lt;&#x3D;&gt; true&#x27;, animate(100))
+])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/layout/tab-layout/tab-layout.component.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarOpenCloseAnimation"></a>
+                    <span class="name">
+                        <span ><b>sidebarOpenCloseAnimation</b></span>
+                        <a href="#sidebarOpenCloseAnimation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>trigger(&#x27;sidebarOpenClose&#x27;, [
+  state(&#x27;true&#x27;, style({ width: &#x27;*&#x27; })),
+  state(&#x27;false&#x27;, style({ width: &#x27;0px&#x27; })),
+  transition(&#x27;false &lt;&#x3D;&gt; true&#x27;, animate(100))
+])</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/services/auth.service.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="TEST_PERMISSIONS"></a>
+                    <span class="name">
+                        <span ><b>TEST_PERMISSIONS</b></span>
+                        <a href="#TEST_PERMISSIONS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+  // Blast
+  {name: &#x27;gui-blasts&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-read-content&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-blast-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Collections
+  {name: &#x27;gui-collections&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-collection-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-collection-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-collection-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-collection-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-collection-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Siscriminant Matrix
+  {name: &#x27;gui-cmatrices&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cmatrix-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cmatrix-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cmatrix-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cmatrix-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cmatrix-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Alignments
+  {name: &#x27;gui-mas&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-read-content&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ma-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Phylogenetic Trees
+  {name: &#x27;gui-pts&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-pt-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Sequences
+  {name: &#x27;gui-seqs&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-read-content&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-seq-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Supermatrices
+  {name: &#x27;gui-smatrices&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-read-content&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-smatrix-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Layers
+  {name: &#x27;gui-layers&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layer-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-layers-graphical&#x27;, permissions: [&#x27;read&#x27;]},
+  // Jobs
+  {name: &#x27;gui-jobs&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-jobs-executing&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-jobs-finished&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-job-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-job-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-job-respawn&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-job-cancel&#x27;, permissions: [&#x27;read&#x27;]},
+  // GeoViewer
+  {name: &#x27;gui-layers-graphical&#x27;, permissions: [&#x27;read&#x27;]},
+  // Sequences Viewer
+  {name: &#x27;gui-seqs-graphical&#x27;, permissions: [&#x27;read&#x27;]},
+  // Case studies
+  {name: &#x27;gui-case-studies&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-case-study-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-case-study-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-case-study-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-case-study-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-case-study-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Subjects
+  {name: &#x27;gui-subjects&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-subject-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-subject-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Sources
+  {name: &#x27;gui-sources&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-source-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-source-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Crs
+  {name: &#x27;gui-crs&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-crs-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-crs-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-crs-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  // Analyses
+  {name: &#x27;gui-analyses&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-analysis-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-analysis-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-analysis-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-analysis-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Ontologies
+  {name: &#x27;gui-ontologies&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ontology-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ontology-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ontology-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-ontology-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Terms
+  {name: &#x27;gui-terms&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-term-read&#x27;, permissions: [&#x27;read&#x27;]},
+  // Publications
+  {name: &#x27;gui-publications&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-publication-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-publication-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-publication-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-publication-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Taxonomies
+  {name: &#x27;gui-taxonomies&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-taxonomy-import&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-taxonomy-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-taxonomy-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-taxonomy-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Compute Resources
+  {name: &#x27;gui-cresources&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cresource-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cresource-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cresource-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cresource-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-cresource-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Algorithms
+  {name: &#x27;gui-algorithms&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-algorithm-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-algorithm-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-algorithm-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-algorithm-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-algorithm-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Users
+  {name: &#x27;gui-users&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-users-authorize&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-user-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-user-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-user-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Roles
+  {name: &#x27;gui-roles&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-role-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-role-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  // Organizations
+  {name: &#x27;gui-organizations&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organization-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organization-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organization-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-groups&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-authenticators&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-permission-types&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-system-functions&#x27;, permissions: [&#x27;read&#x27;]},
+  // References ACL
+  {name: &#x27;gui-references-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-reference-acl-read&#x27;, permissions: [&#x27;read&#x27;]},
+  // System Functions
+  {name: &#x27;gui-system-functions&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-system-functions&#x27;, permissions: [&#x27;read&#x27;]},
+  // Organisms
+  {name: &#x27;gui-organisms&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-export&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-organism-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Individuals
+  {name: &#x27;gui-individuals&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-individual-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-individual-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-individual-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-individual-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-individual-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Annotations
+  {name: &#x27;gui-annotation-fields&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-field-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-field-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-field-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-field-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-field-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-templates&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-template-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-template-read&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-template-edit&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-template-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-annotation-template-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  // Viewer
+  {name: &#x27;gui-viewers&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-viewer-create&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-viewer-delete&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-viewer-acl&#x27;, permissions: [&#x27;read&#x27;]},
+  {name: &#x27;gui-status-checkers&#x27;, permissions: [&#x27;read&#x27;]},
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/app/components/data/annotations/fields/field-view-types.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewTypes"></a>
+                    <span class="name">
+                        <span ><b>viewTypes</b></span>
+                        <a href="#viewTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>IViewTypes[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      label: &#x27;ANNOTATIONS.FIELDS.VIEW_TYPES.TEXT.LABEL&#x27;,
+      value: &#x27;annotation-text&#x27;,
+      canMultiple: true,
+    },
+    {
+      label: &#x27;ANNOTATIONS.FIELDS.VIEW_TYPES.TEXT_OPTIONS.LABEL&#x27;,
+      value: &#x27;annotation-text-options&#x27;,
+      canMultiple: true,
+      typeRange: TYPE_RANGE.TEXT_OPTIONS,
+    }
+]</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

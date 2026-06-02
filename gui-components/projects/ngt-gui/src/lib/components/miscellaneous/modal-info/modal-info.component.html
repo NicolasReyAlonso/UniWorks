@@ -1,0 +1,25 @@
+<nz-modal nzCentered [nzVisible]="modalInfoService.isVisibleModalInfo" [nzFooter]="null" [nzClosable]="true"
+          [nzMaskClosable]="true"
+          (nzOnCancel)="close()">
+  <ng-container *nzModalContent>
+    <div style="display: flex; column-gap: 1rem; padding: 1rem 0rem 1rem 0rem">
+      <div style="flex: 0 0 auto; min-width: 0">
+        <i nz-icon [nzType]="modalInfoService.iconTypeModalInfo" [nzTheme]="modalInfoService.iconThemeModalInfo"
+           [nzTwotoneColor]="modalInfoService.iconTwotoneColorModalInfo" style="font-size: 2rem;"></i>
+      </div>
+      <div style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column">
+        <div style="font-size: 1.1rem; color: #000000d9; font-weight: 600;">
+          {{ modalInfoService.titleModalInfo | translate }}
+        </div>
+        <div style="font-size: 1rem; margin-top: .6rem; color: #000000d9;"
+             [innerHTML]="modalInfoService.contentModalInfo | translate: modalInfoService.contentParamsModalInfo">
+        </div>
+        <div *ngIf="modalInfoService.buttonsModalInfo"
+             style="margin-top: 2rem; display: flex; flex-direction: row-reverse; column-gap: .4rem">
+          <button nz-button *ngFor="let button of modalInfoService.buttonsModalInfo" [nzType]="button.type"
+                  [nzDanger]="button.danger" (click)="button.onClickFunc()">{{ button.text | translate }}</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

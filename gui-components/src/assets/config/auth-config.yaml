@@ -1,0 +1,5 @@
+firebase: any;
+backendBaseUrl?: string;
+  enableWebSockets?: boolean;
+  redirectAfterLogout?: string;
+  customHeaders?: Record<string, string>;

@@ -1,0 +1,83 @@
+<nz-page-header>
+  <nz-page-header-title *ngIf="BrowserTitle">{{BrowserTitle | translate}}</nz-page-header-title>
+  <nz-page-header-content>
+    <form (submit)="newSearch()">
+      <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+        <input [disabled]="Loading || loadingChadoRequest" type="text" nz-input [(ngModel)]="searchValue" name="searchValue"
+               [placeholder]="'DYNAMIC_BROWSER.SEARCH.PLACEHOLDER' | translate"/>
+      </nz-input-group>
+      <ng-template #suffixIconButton>
+        <button nz-button [nzLoading]="Loading || loadingChadoRequest" nzSearch><i nz-icon nzType="search"></i></button>
+      </ng-template>
+    </form>
+  </nz-page-header-content>
+  <nz-page-header-footer style="margin-bottom: 20px">
+    <nz-space nzAlign="center">
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="CreateEvent.emit()" [nzLoading]="Loading || loadingChadoRequest"
+              *ngIf="CreateEvent.observers.length && !HiddenCreate">
+        {{'DYNAMIC_BROWSER.BUTTONS.CREATE' | translate}}
+      </button>
+      <button nz-button nzType="default" nzShape="round" style="margin: 0 5px;" (click)="BulkInsertEvent.emit()" [nzLoading]="Loading || loadingChadoRequest"
+              *ngIf="BulkInsertEvent.observers.length && !HiddenBulkInsert">
+        <i nz-icon nzType="table"></i>
+        {{'DYNAMIC_BROWSER.BUTTONS.BULK_INSERT' | translate:{default: 'Bulk insert'} }}
+      </button>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="ImportEvent.emit()" [nzLoading]="Loading || loadingChadoRequest"
+              *ngIf="ImportEvent.observers.length && !HiddenImport">
+        {{'DYNAMIC_BROWSER.BUTTONS.IMPORT' | translate}}
+      </button>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"
+              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll" [nzLoading]="Loading || loadingChadoRequest"
+              (click)="exportSelection(dynamicTable.getSelectionFilter(), dynamicTable.getOrder())"
+              *ngIf="ExportSelectedEvent.observers.length && !HiddenExport">
+        {{'DYNAMIC_BROWSER.BUTTONS.EXPORT_SELECTED' | translate}}
+      </button>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"
+              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll" [nzLoading]="Loading || loadingChadoRequest"
+              (click)="deleteSelection(dynamicTable.getSelectionFilter())"
+              *ngIf="DeleteSelectedEvent.observers.length && !HiddenDelete">
+        {{'DYNAMIC_BROWSER.BUTTONS.DELETE_SELECTED' | translate}}
+      </button>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"
+              [disabled]="dynamicTable.checkedItems.size === 0 && !dynamicTable.checkedAll || confirmState"
+              [nzLoading]="Loading" (click)="selectedEvent()" *ngIf="SetSelectedEvent.observers.length && !HiddenSelect">
+        {{'DYNAMIC_BROWSER.BUTTONS.CONFIRM_SELECTED' | translate}}
+      </button>
+      <ng-container *ngFor="let item of  CustomButtonsBrowser">
+        <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;"
+                *ngIf="!item.funcCondition || item.funcCondition()"
+                [disabled]="disableCustomButton(item)"
+                [nzLoading]="Loading" (click)="clickCustomButton(item)">
+          {{item.title | translate}}
+        </button>
+      </ng-container>
+      <app-filter-detail [browserType]="BrowserType" [(filterState)]="filterState" [(selectedFilter)]="selectedFilter"
+                         (applyFilterEvent)="applyFilter($event)"></app-filter-detail>
+    </nz-space>
+  </nz-page-header-footer>
+</nz-page-header>
+<div style="padding: 0px 24px 0px 24px;">
+  <app-dynamic-table [PageData]="pageData" [DataSize]="totalSize" [DataFieldID]="fieldID"
+                     (PaginationEvent)="changePage()" [CanMultipleCheckItems]="CanMultipleCheckItems"
+                     [Loading]="Loading || loadingChadoRequest" [hiddenPaginationSwitch]="HiddenPaginationSwitch"
+                     [Checkable]="Checkable" [CheckableAll]="CheckableAll"
+                     (SortEvent)="sortEvent($event)"
+                     [hiddenOpenAction]="!OpenItemEvent.observers.length || HiddenOpen"
+                     (OpenEvent)="OpenItemEvent.observers ? this.OpenItemEvent.emit($event) : undefined"
+                     [hiddenModifyAction]="!ModifyItemEvent.observers.length  || HiddenModify"
+                     (ModifyEvent)="ModifyItemEvent.observers ? this.ModifyItemEvent.emit($event) : undefined"
+                     [hiddenExportAction]="!ExportItemEvent.observers.length || HiddenExport"
+                     (ExportEvent)="ExportItemEvent.observers ? this.ExportItemEvent.emit($event) : undefined"
+                     [hiddenDeleteAction]="!DeleteItemEvent.observers.length || HiddenDelete"
+                     (DeleteEvent)="DeleteItemEvent.observers ? this.DeleteItemEvent.emit($event) : undefined"
+                     [HiddenDeleteItemFunc]="HiddenDeleteItemFunc"
+                     [hiddenPermissionAction]="!PermissionItemEvent.observers.length || HiddenPermissions"
+                     (PermissionEvent)="PermissionItemEvent.emit($event)"
+                     (CheckedChangeEvent)="checkedChangeEvent($event)"
+                     (ResetSelectionEvent)="this.SetSelectedEvent.emit(null);"
+                     [DefaultShowFields]="DefaultShowFields"
+                     [ExcludeFields]="ExcludeFields" [CustomActionButtons]="CustomActionButtons"
+                     [ClickRowEventActive]="OpenItemEvent.observers.length > 0 && !HiddenOpen"
+                     (ClickRowEvent)="OpenItemEvent.observers.length ? this.OpenItemEvent.emit($event) : undefined">
+  </app-dynamic-table>
+</div>

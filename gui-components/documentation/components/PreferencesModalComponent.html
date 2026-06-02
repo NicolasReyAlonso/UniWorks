@@ -1,0 +1,3127 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  PreferencesModalComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+                <code>OnChanges</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>preferences-modal</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzModalModule</code>
+                            <code>NzListModule</code>
+                            <code>NzTableModule</code>
+                            <code>NzIconModule</code>
+                            <code>NzSpinModule</code>
+                            <code>NzButtonModule</code>
+                            <code>KeyValueCustomPipe</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./preferences-modal.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./preferences-modal.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#apiKeysUser" >apiKeysUser</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#changeLanguageEvent" >changeLanguageEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#changeUserSubscription" >changeUserSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#generateApiKeyFormGroup" >generateApiKeyFormGroup</a>
+                            </li>
+                            <li>
+                                <a href="#generateApiKeyModalVisible" >generateApiKeyModalVisible</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleConfirmCancelModal" >isVisibleConfirmCancelModal</a>
+                            </li>
+                            <li>
+                                <a href="#loadingPreferencesModal" >loadingPreferencesModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#menuItems" >menuItems</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#optionThemes" >optionThemes</a>
+                            </li>
+                            <li>
+                                <a href="#previousPreferencesValue" >previousPreferencesValue</a>
+                            </li>
+                            <li>
+                                <a href="#selectedMenuItem" >selectedMenuItem</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOptionLanguage" >selectedOptionLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOptionThemes" >selectedOptionThemes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#themeService" >themeService</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cancelClosePreferences" >cancelClosePreferences</a>
+                            </li>
+                            <li>
+                                <a href="#cancelGenerateApiKey" >cancelGenerateApiKey</a>
+                            </li>
+                            <li>
+                                <a href="#changeSelectedMenuItem" >changeSelectedMenuItem</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#changeSelectedMenuItemApiKeys" >changeSelectedMenuItemApiKeys</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#discardChanges" >discardChanges</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#generateApiKey" >generateApiKey</a>
+                            </li>
+                            <li>
+                                <a href="#generateApiKeyFormGroupRoleValidator" >generateApiKeyFormGroupRoleValidator</a>
+                            </li>
+                            <li>
+                                <a href="#getLanguageTypeLabel" >getLanguageTypeLabel</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageGenerateModalNameError" >getMessageGenerateModalNameError</a>
+                            </li>
+                            <li>
+                                <a href="#haveChanges" >haveChanges</a>
+                            </li>
+                            <li>
+                                <a href="#modalCancel" >modalCancel</a>
+                            </li>
+                            <li>
+                                <a href="#ngClassMenuActiveJson" >ngClassMenuActiveJson</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges" >ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onClickThemeItem" >onClickThemeItem</a>
+                            </li>
+                            <li>
+                                <a href="#openGenerateApiKeyModal" >openGenerateApiKeyModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeApiKey" >removeApiKey</a>
+                            </li>
+                            <li>
+                                <a href="#saveChanges" >saveChanges</a>
+                            </li>
+                            <li>
+                                <a href="#saveChangesModal" >saveChangesModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#setState" >setState</a>
+                            </li>
+                            <li>
+                                <a href="#showGenerateModalRoleError" >showGenerateModalRoleError</a>
+                            </li>
+                            <li>
+                                <a href="#swicthLanguage" >swicthLanguage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isVisible" >isVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isVisibleChange" >isVisibleChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#MenuItemType" >MenuItemType</a>
+                                </li>
+                                <li>
+                                    <a href="#LanguageItemType" >LanguageItemType</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, themeService: <a href="../injectables/ThemeService.html" target="_self">ThemeService</a>, i18n: NzI18nService, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, internationalizationService: <a href="../injectables/InternationalizationService.html" target="_self">InternationalizationService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, fb: UntypedFormBuilder, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:157</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>themeService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ThemeService.html" target="_self" >ThemeService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzI18nService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>internationalizationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InternationalizationService.html" target="_self" >InternationalizationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisible"></a>
+                        <b>isVisible</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:79</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isVisibleChange"></a>
+                        <b>isVisibleChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:80</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelClosePreferences"></a>
+                    <span class="name">
+                        <span ><b>cancelClosePreferences</b></span>
+                        <a href="#cancelClosePreferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelClosePreferences()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="350"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:350</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelGenerateApiKey"></a>
+                    <span class="name">
+                        <span ><b>cancelGenerateApiKey</b></span>
+                        <a href="#cancelGenerateApiKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>cancelGenerateApiKey()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="365"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:365</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeSelectedMenuItem"></a>
+                    <span class="name">
+                        <span ><b>changeSelectedMenuItem</b></span>
+                        <a href="#changeSelectedMenuItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeSelectedMenuItem(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="241"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:241</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeSelectedMenuItemApiKeys"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>changeSelectedMenuItemApiKeys</b></span>
+                        <a href="#changeSelectedMenuItemApiKeys"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeSelectedMenuItemApiKeys()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="discardChanges"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>discardChanges</b></span>
+                        <a href="#discardChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>discardChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateApiKey"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>generateApiKey</b></span>
+                        <a href="#generateApiKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>generateApiKey()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="375"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:375</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateApiKeyFormGroupRoleValidator"></a>
+                    <span class="name">
+                        <span ><b>generateApiKeyFormGroupRoleValidator</b></span>
+                        <a href="#generateApiKeyFormGroupRoleValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateApiKeyFormGroupRoleValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="452"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:452</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLanguageTypeLabel"></a>
+                    <span class="name">
+                        <span ><b>getLanguageTypeLabel</b></span>
+                        <a href="#getLanguageTypeLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLanguageTypeLabel(key)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="354"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:354</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageGenerateModalNameError"></a>
+                    <span class="name">
+                        <span ><b>getMessageGenerateModalNameError</b></span>
+                        <a href="#getMessageGenerateModalNameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageGenerateModalNameError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="474"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:474</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="haveChanges"></a>
+                    <span class="name">
+                        <span ><b>haveChanges</b></span>
+                        <a href="#haveChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>haveChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="300"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:300</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalCancel"></a>
+                    <span class="name">
+                        <span ><b>modalCancel</b></span>
+                        <a href="#modalCancel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>modalCancel()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="310"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:310</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngClassMenuActiveJson"></a>
+                    <span class="name">
+                        <span ><b>ngClassMenuActiveJson</b></span>
+                        <a href="#ngClassMenuActiveJson"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngClassMenuActiveJson(id)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:235</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <span ><b>ngOnChanges</b></span>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>changes</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="230"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:230</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickThemeItem"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onClickThemeItem</b></span>
+                        <a href="#onClickThemeItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onClickThemeItem(themeId: <a href="../undefineds/ThemeType.html" target="_self">ThemeType</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="293"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:293</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>themeId</td>
+                                            <td>
+                                                            <code><a href="../miscellaneous/enumerations.html#ThemeType" target="_self" >ThemeType</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openGenerateApiKeyModal"></a>
+                    <span class="name">
+                        <span ><b>openGenerateApiKeyModal</b></span>
+                        <a href="#openGenerateApiKeyModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openGenerateApiKeyModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="370"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:370</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeApiKey"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>removeApiKey</b></span>
+                        <a href="#removeApiKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeApiKey(data)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="429"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:429</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>data</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveChanges"></a>
+                    <span class="name">
+                        <span ><b>saveChanges</b></span>
+                        <a href="#saveChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveChanges()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="318"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:318</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveChangesModal"></a>
+                    <span class="name">
+                        <span ><b>saveChangesModal</b></span>
+                        <a href="#saveChangesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>saveChangesModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="330"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:330</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setState"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>setState</b></span>
+                        <a href="#setState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setState()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="358"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:358</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showGenerateModalRoleError"></a>
+                    <span class="name">
+                        <span ><b>showGenerateModalRoleError</b></span>
+                        <a href="#showGenerateModalRoleError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showGenerateModalRoleError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="467"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:467</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swicthLanguage"></a>
+                    <span class="name">
+                        <span ><b>swicthLanguage</b></span>
+                        <a href="#swicthLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>swicthLanguage(value)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="288"
+                                    class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:288</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="apiKeysUser"></a>
+                    <span class="name">
+                        <span ><b>apiKeysUser</b></span>
+                        <a href="#apiKeysUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:147</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:160</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeLanguageEvent"></a>
+                    <span class="name">
+                        <span ><b>changeLanguageEvent</b></span>
+                        <a href="#changeLanguageEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;LangChangeEvent&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="145" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeUserSubscription"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>changeUserSubscription</b></span>
+                        <a href="#changeUserSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateApiKeyFormGroup"></a>
+                    <span class="name">
+                        <span ><b>generateApiKeyFormGroup</b></span>
+                        <a href="#generateApiKeyFormGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:149</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateApiKeyModalVisible"></a>
+                    <span class="name">
+                        <span ><b>generateApiKeyModalVisible</b></span>
+                        <a href="#generateApiKeyModalVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:148</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleConfirmCancelModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleConfirmCancelModal</b></span>
+                        <a href="#isVisibleConfirmCancelModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadingPreferencesModal"></a>
+                    <span class="name">
+                        <span ><b>loadingPreferencesModal</b></span>
+                        <a href="#loadingPreferencesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="menuItems"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>menuItems</b></span>
+                        <a href="#menuItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IMenuItem.html" target="_self" >Map&lt;number | IMenuItem&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+    [this.MenuItemType.PROFILE, {
+      icon: &#x27;user&#x27;,
+      title: &#x27;PREFERENCES_MODAL.PROFILE.TITLE&#x27;,
+      hidden: true,
+    }],
+    [this.MenuItemType.THEME, {
+      icon: &#x27;format-painter&#x27;,
+      title: &#x27;PREFERENCES_MODAL.THEMES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.LANGUAGES, {
+      icon: &#x27;translation&#x27;,
+      title: &#x27;PREFERENCES_MODAL.LANGUAGES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.API_KEYS, {
+      icon: &#x27;key&#x27;,
+      title: &#x27;PREFERENCES_MODAL.API_KEYS.TITLE&#x27;,
+      hidden: true,
+    }],
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="optionThemes"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>optionThemes</b></span>
+                        <a href="#optionThemes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IThemeOption.html" target="_self" >Map&lt;ThemeType | IThemeOption&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map([
+    [ThemeType.themeCyan, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_1&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGreenNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GREEN_NEXTGENDEM&#x27;,
+      color: &#x27;#016959&#x27;,
+    }],
+    [ThemeType.themeBlueNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.BLUE_NEXTGENDEM&#x27;,
+      color: &#x27;#0077B3&#x27;,
+    }],
+    [ThemeType.themeCyan2, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_2&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGold, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GOLD&#x27;,
+      color: &#x27;#bcbe6a&#x27;,
+    }],
+    [ThemeType.themeGrassGreen, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRASS_GREEN&#x27;,
+      color: &#x27;#7DB46CFF&#x27;,
+    }],
+    [ThemeType.themeGray, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRAY&#x27;,
+      color: &#x27;#606060&#x27;,
+    }],
+  ])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:113</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="previousPreferencesValue"></a>
+                    <span class="name">
+                        <span ><b>previousPreferencesValue</b></span>
+                        <a href="#previousPreferencesValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/IPreferencesValue.html" target="_self" >IPreferencesValue</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedMenuItem"></a>
+                    <span class="name">
+                        <span ><b>selectedMenuItem</b></span>
+                        <a href="#selectedMenuItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.MenuItemType.PROFILE</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOptionLanguage"></a>
+                    <span class="name">
+                        <span ><b>selectedOptionLanguage</b></span>
+                        <a href="#selectedOptionLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.LanguageItemType.spanish.id</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:144</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOptionThemes"></a>
+                    <span class="name">
+                        <span ><b>selectedOptionThemes</b></span>
+                        <a href="#selectedOptionThemes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#ThemeType" target="_self" >ThemeType</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>ThemeType.themeGrassGreen</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="112" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themeService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>themeService</b></span>
+                        <a href="#themeService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/ThemeService.html" target="_self" >ThemeService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="161" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="MenuItemType"></a>
+                        <span class="name"><b>MenuItemType</b><a href="#MenuItemType"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>MenuItemType()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:151</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="LanguageItemType"></a>
+                        <span class="name"><b>LanguageItemType</b><a href="#LanguageItemType"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>LanguageItemType()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="155" class="link-to-prism">src/app/components/miscellaneous/preferences-modal/preferences-modal.component.ts:155</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
+import { es_ES, en_US, pt_PT, NzI18nService } from &#x27;ng-zorro-antd/i18n&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
+import { AuthService } from &#x27;src/app/services/auth.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import { ThemeService, ThemeType } from &#x27;src/app/services/theme.service&#x27;;
+import { InternationalizationService, LANGUAGE_OPTION_TYPES } from &#x27;src/app/services/internationalization.service&#x27;;
+import { LangChangeEvent } from &#x27;@ngx-translate/core&#x27;;
+import { BackendService } from &quot;src/app/services/backend.service&quot;;
+import { MessageLogService } from &quot;src/app/services/message-log.service&quot;;
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors
+} from &quot;@angular/forms&quot;;
+import { StateService } from &#x27;src/app/services/state.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzModalModule} from &quot;ng-zorro-antd/modal&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {KeyValueCustomPipe} from &quot;../../../pipes/key-value-custom.pipe&quot;;
+
+interface IPreferencesValue {
+  language: string;
+  theme: ThemeType;
+}
+
+interface IMenuItem {
+  icon: string;
+  title: string;
+  hidden: boolean;
+}
+
+export const MENU_ITEM_TYPES &#x3D; {
+  PROFILE: 1,
+  THEME: 2,
+  LANGUAGES: 3,
+  API_KEYS: 4,
+};
+
+interface IThemeOption {
+  title: string;
+  color: string;
+}
+
+@Component({
+    selector: &#x27;preferences-modal&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzSelectModule,
+        NzFormModule,
+        NzInputModule,
+        NzModalModule,
+        NzListModule,
+        NzTableModule,
+        NzIconModule,
+        NzSpinModule,
+        NzButtonModule,
+        KeyValueCustomPipe,
+    ],
+    templateUrl: &#x27;./preferences-modal.component.html&#x27;,
+    styleUrls: [&#x27;./preferences-modal.component.sass&#x27;]
+})
+export class PreferencesModalComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() isVisible: boolean;
+  @Output() isVisibleChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  previousPreferencesValue: IPreferencesValue;
+  isVisibleConfirmCancelModal &#x3D; false;
+  loadingPreferencesModal &#x3D; false;
+
+  private changeUserSubscription: Subscription;
+
+  selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+  readonly menuItems: Map&lt;number, IMenuItem&gt; &#x3D; new Map([
+    [this.MenuItemType.PROFILE, {
+      icon: &#x27;user&#x27;,
+      title: &#x27;PREFERENCES_MODAL.PROFILE.TITLE&#x27;,
+      hidden: true,
+    }],
+    [this.MenuItemType.THEME, {
+      icon: &#x27;format-painter&#x27;,
+      title: &#x27;PREFERENCES_MODAL.THEMES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.LANGUAGES, {
+      icon: &#x27;translation&#x27;,
+      title: &#x27;PREFERENCES_MODAL.LANGUAGES.TITLE&#x27;,
+      hidden: false,
+    }],
+    [this.MenuItemType.API_KEYS, {
+      icon: &#x27;key&#x27;,
+      title: &#x27;PREFERENCES_MODAL.API_KEYS.TITLE&#x27;,
+      hidden: true,
+    }],
+  ]);
+
+  selectedOptionThemes: ThemeType &#x3D; ThemeType.themeGrassGreen;
+  readonly optionThemes: Map&lt;ThemeType, IThemeOption&gt; &#x3D; new Map([
+    [ThemeType.themeCyan, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_1&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGreenNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GREEN_NEXTGENDEM&#x27;,
+      color: &#x27;#016959&#x27;,
+    }],
+    [ThemeType.themeBlueNextgendem, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.BLUE_NEXTGENDEM&#x27;,
+      color: &#x27;#0077B3&#x27;,
+    }],
+    [ThemeType.themeCyan2, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.CYAN_2&#x27;,
+      color: &#x27;#073642&#x27;,
+    }],
+    [ThemeType.themeGold, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GOLD&#x27;,
+      color: &#x27;#bcbe6a&#x27;,
+    }],
+    [ThemeType.themeGrassGreen, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRASS_GREEN&#x27;,
+      color: &#x27;#7DB46CFF&#x27;,
+    }],
+    [ThemeType.themeGray, {
+      title: &#x27;PREFERENCES_MODAL.THEMES.TYPES.GRAY&#x27;,
+      color: &#x27;#606060&#x27;,
+    }],
+  ]);
+
+  selectedOptionLanguage: string &#x3D; this.LanguageItemType.spanish.id;
+  changeLanguageEvent: EventEmitter&lt;LangChangeEvent&gt;;
+
+  apiKeysUser &#x3D; [];
+  generateApiKeyModalVisible &#x3D; false;
+  generateApiKeyFormGroup: UntypedFormGroup;
+
+  get MenuItemType() {
+    return MENU_ITEM_TYPES;
+  }
+
+  get LanguageItemType() {
+    return LANGUAGE_OPTION_TYPES;
+  }
+
+  constructor(
+    public readonly authService: AuthService,
+    public themeService: ThemeService,
+    private i18n: NzI18nService,
+    private notificationService: NotificationService,
+    private readonly internationalizationService: InternationalizationService,
+    private readonly backendService: BackendService,
+    private readonly messageLogService: MessageLogService,
+    private readonly fb: UntypedFormBuilder,
+    private readonly stateService: StateService,
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.stateService.stateServiceEvent.subscribe((event) &#x3D;&gt; {
+      switch (event.type) {
+        case &#x27;cfg&#x27;:
+          if (event.event.theme) {
+            this.selectedOptionThemes &#x3D; event.event.theme;
+            this.previousPreferencesValue.theme &#x3D; event.event.theme;
+          }
+          if (event.event.language) {
+            this.selectedOptionLanguage &#x3D; event.event.language;
+            this.previousPreferencesValue.language &#x3D; event.event.language;
+          }
+          break;
+      }
+    });
+    this.selectedOptionLanguage &#x3D; this.internationalizationService.getCurrentLanguage();
+    this.changeLanguageEvent &#x3D; this.internationalizationService.getLangChangeEvent();
+    this.changeLanguageEvent.subscribe((value) &#x3D;&gt; {
+      this.selectedOptionLanguage &#x3D; value.lang;
+    });
+    this.selectedOptionThemes &#x3D; this.themeService.currentTheme;
+    this.previousPreferencesValue &#x3D; {
+      language: this.selectedOptionLanguage,
+      theme: this.selectedOptionThemes,
+    };
+    this.changeUserSubscription &#x3D; this.authService.changeUserEvent.subscribe((user) &#x3D;&gt; {
+      if (user) {
+        const menuItemProfile &#x3D; this.menuItems.get(this.MenuItemType.PROFILE);
+        const menuItemApiKeys &#x3D; this.menuItems.get(this.MenuItemType.API_KEYS);
+        menuItemProfile.hidden &#x3D; user.isAnonymous;
+        if (user.isAnonymous) {
+          this.selectedMenuItem &#x3D; this.MenuItemType.THEME;
+        } else {
+          this.selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+        }
+        menuItemApiKeys.hidden &#x3D; !this.authService.haveOnePermissionForApiKeys();
+      }
+    });
+    this.generateApiKeyFormGroup &#x3D; this.fb.group({
+      roles: [[]]
+    }, {
+      validators: [this.generateApiKeyFormGroupRoleValidator.bind(this)]
+    });
+  }
+
+  ngOnChanges(changes) {
+    if (changes.isVisible &amp;&amp; changes.isVisible.currentValue) {
+      if (this.authService.user) {
+        if (this.authService.user.isAnonymous) {
+          this.selectedMenuItem &#x3D; this.MenuItemType.THEME;
+        } else {
+          this.selectedMenuItem &#x3D; this.MenuItemType.PROFILE;
+        }
+      }
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.changeUserSubscription.unsubscribe();
+    this.changeLanguageEvent.unsubscribe();
+  }
+
+  ngClassMenuActiveJson(id): any {
+    return {
+      &#x27;theme-primary-background&#x27;: id &#x3D;&#x3D; this.selectedMenuItem
+    };
+  }
+
+  changeSelectedMenuItem(id): void {
+    this.selectedMenuItem &#x3D; id;
+    switch (id) {
+      case this.MenuItemType.API_KEYS:
+        this.changeSelectedMenuItemApiKeys().then();
+        break;
+    }
+  }
+
+  async changeSelectedMenuItemApiKeys(): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    try {
+      const responseApiKeys: any &#x3D; await this.backendService.getCurrentUserApiKeys().toPromise();
+      const contentApiKeys &#x3D; responseApiKeys.content ? responseApiKeys.content : [];
+      this.apiKeysUser &#x3D; [];
+      for (const apiKeyResponse of contentApiKeys) {
+        let roles &#x3D; &#x27;&#x27;;
+        let valid_from &#x3D; &#x27;&#x27;;
+        for (const role of apiKeyResponse.roles) {
+          roles +&#x3D; &#x60;${role} &#x60;;
+        }
+        roles.trim();
+        if (apiKeyResponse.valid_from &amp;&amp; apiKeyResponse.valid_from !&#x3D;&#x3D; &#x27;&#x27;) {
+          valid_from &#x3D; new Date(apiKeyResponse.valid_from).toDateString();
+        }
+        this.apiKeysUser &#x3D; [
+          ...this.apiKeysUser, {
+            key_idx: apiKeyResponse.key_idx,
+            roles: roles,
+            valid_from: valid_from,
+            valid_until: apiKeyResponse.valid_until,
+          }];
+      }
+    } catch (e) {
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.GET_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.GET_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  swicthLanguage(value): void {
+    console.log(&#x27;switch language event&#x27;);
+    this.internationalizationService.changeCurrentLanguage(value);
+  }
+
+  async onClickThemeItem(themeId: ThemeType): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    this.selectedOptionThemes &#x3D; themeId;
+    await this.themeService.loadTheme(themeId);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  haveChanges(): boolean {
+    if (this.previousPreferencesValue.theme !&#x3D; this.selectedOptionThemes) {
+      return true;
+    }
+    if (this.previousPreferencesValue.language !&#x3D; this.selectedOptionLanguage) {
+      return true;
+    }
+    return false;
+  }
+
+  modalCancel(): void {
+    if (this.haveChanges()) {
+      this.isVisibleConfirmCancelModal &#x3D; true;
+    } else {
+      this.isVisibleChange.emit(false);
+    }
+  }
+
+  saveChanges() {
+    this.previousPreferencesValue.theme &#x3D; this.selectedOptionThemes;
+    this.previousPreferencesValue.language &#x3D; this.selectedOptionLanguage;
+    this.setState();
+    this.notificationService.createNotificationWithType(
+      TypeNotificationEnum.success,
+      &#x27;Cambios realizados&#x27;,
+      &#x27;Sus cambios se han realizado satisfactoriamente.&#x27;,
+      &#x27;bottomRight&#x27;
+    );
+  }
+
+  saveChangesModal() {
+    this.loadingPreferencesModal &#x3D; true;
+    this.isVisibleConfirmCancelModal &#x3D; false;
+    this.loadingPreferencesModal &#x3D; true;
+    this.saveChanges();
+    this.isVisibleChange.emit(false);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  async discardChanges(): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    this.isVisibleConfirmCancelModal &#x3D; false;
+    this.selectedOptionLanguage &#x3D; this.previousPreferencesValue.language;
+    this.internationalizationService.changeCurrentLanguage(this.selectedOptionLanguage);
+    this.selectedOptionThemes &#x3D; this.previousPreferencesValue.theme;
+    await this.themeService.loadTheme(this.selectedOptionThemes);
+    this.isVisibleChange.emit(false);
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  cancelClosePreferences() {
+    this.isVisibleConfirmCancelModal &#x3D; false;
+  }
+
+  getLanguageTypeLabel(key): string {
+    return &#x60;PREFERENCES_MODAL.LANGUAGES.LANGUAGE_TYPES.${key}&#x60;;
+  }
+
+  async setState() {
+    const value: any &#x3D; {};
+    value.theme &#x3D; this.selectedOptionThemes;
+    value.language &#x3D; this.selectedOptionLanguage;
+    this.stateService.setState(&#x27;cfg&#x27;, value);
+  }
+
+  cancelGenerateApiKey() {
+    this.generateApiKeyModalVisible &#x3D; false;
+    this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).setValue([]);
+  }
+
+  openGenerateApiKeyModal() {
+    this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).setValue([]);
+    this.generateApiKeyModalVisible &#x3D; true
+  }
+
+  async generateApiKey() {
+    this.loadingPreferencesModal &#x3D; true;
+    this.generateApiKeyModalVisible &#x3D; false;
+    const rolesValue &#x3D; this.generateApiKeyFormGroup.get(&#x27;roles&#x27;).value;
+    try {
+      const response: any &#x3D; await this.backendService.postCurrentUserApiKey({
+        roles: rolesValue
+      }).toPromise();
+      const content &#x3D; response.content;
+      const copy &#x3D; Object.assign(content);
+      delete copy.hash;
+      const file &#x3D; new Blob([JSON.stringify(copy, null, &quot;\t&quot;)], { type: &#x27;application/json&#x27; });
+      const a &#x3D; document.createElement(&#x27;a&#x27;);
+      const url &#x3D; URL.createObjectURL(file);
+      a.href &#x3D; url;
+      a.download &#x3D; &#x27;api_key.json&#x27;;
+      a.style.display &#x3D; &#x27;none&#x27;;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function () {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 0);
+      let roles &#x3D; &#x27;&#x27;;
+      let valid_from &#x3D; &#x27;&#x27;;
+      for (const role of content.roles) {
+        roles +&#x3D; &#x60;${role} &#x60;;
+      }
+      roles.trim();
+      if (content.valid_from &amp;&amp; content.valid_from !&#x3D;&#x3D; &#x27;&#x27;) {
+        valid_from &#x3D; new Date(content.valid_from).toDateString();
+      }
+      this.messageLogService.addIssues(response.issues);
+      this.apiKeysUser &#x3D; [
+        ...this.apiKeysUser, {
+          key_idx: content.key_idx,
+          roles: roles,
+          valid_from: valid_from,
+          valid_until: content.valid_until,
+        }];
+    } catch (e) {
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.POST_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.POST_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  async removeApiKey(data): Promise&lt;void&gt; {
+    this.loadingPreferencesModal &#x3D; true;
+    try {
+      const response: any &#x3D; await this.backendService.removeCurrentUserApiKey(data.key_idx).toPromise();
+      if (response.issues) {
+        this.messageLogService.addIssues(response.issues);
+      }
+      this.apiKeysUser &#x3D; this.apiKeysUser.filter(item &#x3D;&gt; item.key_idx !&#x3D;&#x3D; data.key_idx);
+    } catch (e) {
+      console.log(e);
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;PREFERENCES_MODAL.API_KEYS.DELETE_NOTIFICATION_ERROR.TITLE&#x27;,
+        &#x27;PREFERENCES_MODAL.API_KEYS.DELETE_NOTIFICATION_ERROR.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      ).then();
+    }
+    this.loadingPreferencesModal &#x3D; false;
+  }
+
+  generateApiKeyFormGroupRoleValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const roles &#x3D; control.get(&#x27;roles&#x27;).value;
+    if (!roles || roles.length &#x3D;&#x3D;&#x3D; 0) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      roleError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showGenerateModalRoleError(): boolean {
+    if (!this.generateApiKeyFormGroup.errors || !this.generateApiKeyFormGroup.errors.roleError) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageGenerateModalNameError(): string[] {
+    const message &#x3D; [];
+    if (!this.generateApiKeyFormGroup.errors || !this.generateApiKeyFormGroup.errors.roleError) {
+      return null;
+    }
+    if (this.generateApiKeyFormGroup.errors.roleError.empty) {
+      message.push(&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-modal [(nzVisible)]&#x3D;&quot;isVisible&quot; [nzTitle]&#x3D;&quot;modalHeaderPreferences&quot; [nzFooter]&#x3D;&quot;modalFooterPreferences&quot; nzCentered
+  [nzBodyStyle]&#x3D;&quot;{ height: &#x27;623px&#x27; }&quot; [nzWidth]&#x3D;&quot;900&quot; (nzOnCancel)&#x3D;&quot;modalCancel()&quot; [nzMaskClosable]&#x3D;&quot;false&quot;&gt;
+  &lt;ng-container *nzModalContent&gt;
+    &lt;nz-spin [nzSpinning]&#x3D;&quot;loadingPreferencesModal&quot; style&#x3D;&quot;width: 100%; height: 100%;&quot; class&#x3D;&quot;spin-center&quot;&gt;
+      &lt;div class&#x3D;&quot;preferences-body-container&quot;&gt;
+
+        &lt;!-- menu --&gt;
+        &lt;div class&#x3D;&quot;preferences-menu&quot;&gt;
+          &lt;ng-container *ngFor&#x3D;&quot;let item of menuItems | keyvalue&quot;&gt;
+            &lt;div class&#x3D;&quot;preferences-menu-item&quot; [ngClass]&#x3D;&quot;ngClassMenuActiveJson(item.key)&quot;
+              (click)&#x3D;&quot;changeSelectedMenuItem(item.key)&quot; [hidden]&#x3D;&quot;item.value.hidden&quot;&gt;
+              &lt;i nz-icon [nzType]&#x3D;&quot;item.value.icon&quot; nzTheme&#x3D;&quot;outline&quot;
+                class&#x3D;&quot;preferences-menu-item-icon&quot;&gt;&lt;/i&gt;{{item.value.title | translate}}
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;!-- container --&gt;
+        &lt;div class&#x3D;&quot;preferences-menu-option-body&quot;&gt;
+
+          &lt;!-- themes --&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;selectedMenuItem &#x3D;&#x3D; MenuItemType.THEME&quot;&gt;
+            &lt;div class&#x3D;&quot;preferences-themes-container&quot;&gt;
+              &lt;ng-container *ngFor&#x3D;&quot;let item of optionThemes | keyValueCustom&quot;&gt;
+                &lt;div class&#x3D;&quot;preferences-themes-item&quot;
+                  [ngClass]&#x3D;&quot;{&#x27;preferences-themes-item-active&#x27;: selectedOptionThemes &#x3D;&#x3D; item.key}&quot;
+                  (click)&#x3D;&quot;onClickThemeItem(item.key)&quot;&gt;
+                  &lt;div class&#x3D;&quot;preferences-themes-item-color&quot; [ngStyle]&#x3D;&quot;{&#x27;background-color&#x27;: item.value.color}&quot;
+                    [ngClass]&#x3D;&quot;{&#x27;preferences-themes-item-color-active&#x27;: selectedOptionThemes &#x3D;&#x3D; item.key}&quot;&gt;
+                  &lt;/div&gt;
+                  &lt;div class&#x3D;&quot;preferences-themes-item-footer&quot;
+                    [ngClass]&#x3D;&quot;{&#x27;preferences-themes-item-footer-active&#x27;: selectedOptionThemes &#x3D;&#x3D; item.key}&quot;&gt;
+                    {{item.value.title | translate}}
+                  &lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/ng-container&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- languages --&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;selectedMenuItem &#x3D;&#x3D; MenuItemType.LANGUAGES&quot;&gt;
+            &lt;div class&#x3D;&quot;preferences-languages-container&quot;&gt;
+              &lt;div class&#x3D;&quot;preferences-languages-title&quot;&gt;{{&#x27;PREFERENCES_MODAL.LANGUAGES.LANGUAGE_LABEL&#x27; | translate}}
+              &lt;/div&gt;
+              &lt;nz-select [(ngModel)]&#x3D;&quot;selectedOptionLanguage&quot; class&#x3D;&quot;preferences-languages-select&quot;
+                style&#x3D;&quot;margin-top: 10px;&quot; (ngModelChange)&#x3D;&quot;swicthLanguage($event)&quot;&gt;
+                &lt;nz-option [nzValue]&#x3D;&quot;item.value.id&quot; [nzLabel]&#x3D;&quot;getLanguageTypeLabel(item.value.id) | translate&quot;
+                  *ngFor&#x3D;&quot;let item of LanguageItemType | keyvalue&quot;&gt;
+                &lt;/nz-option&gt;
+              &lt;/nz-select&gt;
+              &lt;div style&#x3D;&quot;margin-top: 9px; color: #737373; font-weight: 400; font-size: 15px;&quot;&gt;
+                {{&#x27;PREFERENCES_MODAL.LANGUAGES.LANGUAGE_DESCRIPTION&#x27; | translate}}&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+
+          &lt;!-- API Keys --&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;selectedMenuItem &#x3D;&#x3D; MenuItemType.API_KEYS&quot;&gt;
+            &lt;div class&#x3D;&quot;preferences-apikeys-container&quot;&gt;
+              &lt;div class&#x3D;&quot;preferences-apikeys-generate-button-container&quot;&gt;
+                &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzShape&#x3D;&quot;round&quot; (click)&#x3D;&quot;openGenerateApiKeyModal()&quot;&gt;
+                  {{&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_BUTTON&#x27; | translate}}
+                &lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class&#x3D;&quot;preferences-apikeys-items-container&quot;&gt;
+                &lt;nz-table #apiKeysTable [nzData]&#x3D;&quot;apiKeysUser&quot; nzBordered [nzPageSize]&#x3D;&quot;8&quot; nzOuterBordered&gt;
+                  &lt;thead&gt;
+                    &lt;tr&gt;
+                      &lt;th nzWidth&#x3D;&quot;50px&quot;&gt;{{&#x27;PREFERENCES_MODAL.API_KEYS.TABLE.ID_TH&#x27; | translate}}&lt;/th&gt;
+                      &lt;th&gt;{{&#x27;PREFERENCES_MODAL.API_KEYS.TABLE.ROLES_TH&#x27; | translate}}&lt;/th&gt;
+                      &lt;th&gt;{{&#x27;PREFERENCES_MODAL.API_KEYS.TABLE.VALID_FROM_TH&#x27; | translate}}&lt;/th&gt;
+                      &lt;th nzRight nzWidth&#x3D;&quot;80px&quot;&gt;{{&#x27;PREFERENCES_MODAL.API_KEYS.TABLE.ACTIONS_TH&#x27; | translate}}&lt;/th&gt;
+                    &lt;/tr&gt;
+                  &lt;/thead&gt;
+                  &lt;tbody&gt;
+                    &lt;tr *ngFor&#x3D;&quot;let data of apiKeysTable.data&quot;&gt;
+                      &lt;td&gt;{{data.key_idx}}&lt;/td&gt;
+                      &lt;td&gt;{{data.roles}}&lt;/td&gt;
+                      &lt;td&gt;{{data.valid_from}}&lt;/td&gt;
+                      &lt;td nzAlign&#x3D;&quot;center&quot; nzRight&gt;
+                        &lt;ul nz-list-item-actions style&#x3D;&quot;margin-left: 6px;&quot;&gt;
+                          &lt;nz-list-item-action&gt;
+                            &lt;i (click)&#x3D;&quot;removeApiKey(data)&quot; nz-icon nzType&#x3D;&quot;delete&quot; nzTheme&#x3D;&quot;outline&quot;
+                              style&#x3D;&quot;cursor: pointer;&quot;&gt;&lt;/i&gt;
+                          &lt;/nz-list-item-action&gt;
+                        &lt;/ul&gt;
+                      &lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/tbody&gt;
+                &lt;/nz-table&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+    &lt;/nz-spin&gt;
+  &lt;/ng-container&gt;
+&lt;/nz-modal&gt;
+
+&lt;ng-template #modalHeaderPreferences&gt;
+  {{&#x27;PREFERENCES_MODAL.TITLE&#x27; | translate}}
+&lt;/ng-template&gt;
+&lt;ng-template #modalFooterPreferences&gt;
+  &lt;button nz-button nzType&#x3D;&quot;primary&quot; style&#x3D;&quot;border-radius: 5px;&quot; (click)&#x3D;&quot;saveChanges()&quot;
+    [disabled]&#x3D;&quot;!haveChanges() || loadingPreferencesModal&quot;&gt;{{&#x27;PREFERENCES_MODAL.BUTTONS.CONFIRM_CHANGES&#x27; |
+    translate}}&lt;/button&gt;
+&lt;/ng-template&gt;
+
+&lt;nz-modal [nzTitle]&#x3D;&quot;&quot; [nzContent]&#x3D;&quot;modalCancelConfirmContent&quot; [nzVisible]&#x3D;&quot;isVisibleConfirmCancelModal&quot;
+  [nzFooter]&#x3D;&quot;null&quot; nzCentered [nzMaskClosable]&#x3D;&quot;false&quot; [nzClosable]&#x3D;&quot;false&quot; [nzWidth]&#x3D;&quot;416&quot;&gt;
+
+  &lt;ng-template #modalCancelConfirmContent&gt;
+    &lt;div style&#x3D;&quot;height: 120px;&quot;&gt;
+      &lt;i nz-icon nzType&#x3D;&quot;info-circle&quot; nzTheme&#x3D;&quot;twotone&quot; nzTwotoneColor&#x3D;&quot;#faad14&quot;
+        style&#x3D;&quot;font-size: 22px; margin-right: 16px;&quot;&gt;&lt;/i&gt;
+      &lt;span style&#x3D;&quot;font-size: 16px;&quot;&gt;{{&#x27;PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.TITLE&#x27; | translate}}&lt;/span&gt;
+      &lt;div style&#x3D;&quot;font-size: 14px; margin: 8px 0px 0px 38px;&quot;&gt;{{&#x27;PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BODY&#x27; |
+        translate}}&lt;/div&gt;
+      &lt;div
+        style&#x3D;&quot; margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0px 30px 0px 30px;&quot;&gt;
+        &lt;button nz-button nzType&#x3D;&quot;default&quot;
+          (click)&#x3D;&quot;saveChangesModal()&quot;&gt;{{&#x27;PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.SAVE&#x27; | translate}}&lt;/button&gt;
+        &lt;button nz-button nzType&#x3D;&quot;default&quot;
+          (click)&#x3D;&quot;discardChanges()&quot;&gt;{{&#x27;PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.DISCARD&#x27; |
+          translate}}&lt;/button&gt;
+        &lt;button nz-button nzType&#x3D;&quot;default&quot;
+          (click)&#x3D;&quot;cancelClosePreferences()&quot;&gt;{{&#x27;PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.CANCEL&#x27; |
+          translate}}&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+&lt;/nz-modal&gt;
+
+&lt;nz-modal [nzVisible]&#x3D;&quot;generateApiKeyModalVisible&quot; [nzClosable]&#x3D;&quot;false&quot; nzCentered&gt;
+  &lt;ng-container *nzModalTitle&gt;
+    {{&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.TITLE&#x27; | translate}}
+  &lt;/ng-container&gt;
+  &lt;ng-container *nzModalContent&gt;
+    &lt;form [formGroup]&#x3D;&quot;generateApiKeyFormGroup&quot;&gt;
+      &lt;nz-form-label nzFor&#x3D;&quot;roles&quot;&gt;{{&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.LABEL&#x27; | translate}}
+      &lt;/nz-form-label&gt;
+      &lt;nz-select nzShowSearch nzMode&#x3D;&quot;multiple&quot;
+        [nzPlaceHolder]&#x3D;&quot;&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+        style&#x3D;&quot;width: 100%;&quot; formControlName&#x3D;&quot;roles&quot; [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: showGenerateModalRoleError()}&quot;&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;read-molecular-api&quot; nzValue&#x3D;&quot;read-molecular-api&quot;
+          *ngIf&#x3D;&quot;authService.haveRole(&#x27;read-molecular-api&#x27;)&quot;&gt;&lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;write-molecular-api&quot; nzValue&#x3D;&quot;write-molecular-api&quot;
+          *ngIf&#x3D;&quot;authService.haveRole(&#x27;write-molecular-api&#x27;)&quot;&gt;&lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;read-geo-api&quot; nzValue&#x3D;&quot;read-geo-api&quot; *ngIf&#x3D;&quot;authService.haveRole(&#x27;read-geo-api&#x27;)&quot;&gt;
+        &lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;write-geo-api&quot; nzValue&#x3D;&quot;write-geo-api&quot; *ngIf&#x3D;&quot;authService.haveRole(&#x27;write-geo-api&#x27;)&quot;&gt;
+        &lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;jobs-api&quot; nzValue&#x3D;&quot;jobs-api&quot; *ngIf&#x3D;&quot;authService.haveRole(&#x27;jobs-api&#x27;)&quot;&gt;&lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;read-files-api&quot; nzValue&#x3D;&quot;read-files-api&quot; *ngIf&#x3D;&quot;authService.haveRole(&#x27;read-files-api&#x27;)&quot;&gt;
+        &lt;/nz-option&gt;
+        &lt;nz-option nzLabel&#x3D;&quot;write-files-api&quot; nzValue&#x3D;&quot;write-files-api&quot; *ngIf&#x3D;&quot;authService.haveRole(&#x27;write-files-api&#x27;)&quot;&gt;
+        &lt;/nz-option&gt;
+      &lt;/nz-select&gt;
+      &lt;div *ngFor&#x3D;&quot;let item of getMessageGenerateModalNameError()&quot; class&#x3D;&quot;message-error&quot;&gt;{{item | translate}}&lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-container *nzModalFooter&gt;
+    &lt;div style&#x3D;&quot;display: flex; flex-direction: row-reverse; column-gap: 10px&quot;&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; [disabled]&#x3D;&quot;!generateApiKeyFormGroup.valid&quot; (click)&#x3D;&quot;generateApiKey()&quot;&gt;
+        {{&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.FOOTER.GENERATE_BUTTON&#x27; | translate}}
+      &lt;/button&gt;
+      &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger (click)&#x3D;&quot;cancelGenerateApiKey()&quot;&gt;
+        {{&#x27;PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.FOOTER.CANCEL_BUTTON&#x27; | translate}}
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
+&lt;/nz-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./preferences-modal.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">$preferences-themes-item-active-border: 3px solid #215aff !important
+
+.preferences-body-container
+  display: flex
+  gap: 10px
+  height: 100%
+
+.preferences-menu
+  width: 198px
+
+.preferences-menu-item
+  padding: 4px 8px 4px 8px
+  cursor: pointer
+  border-radius: 5px
+  font-size: 16px
+  font-weight: 550
+  color: #3d3d3d
+  margin-bottom: 3px
+  display: flex
+  align-items: center
+
+.preferences-menu-item-icon
+  margin-right: 8px
+
+.preferences-menu-option-body
+  flex-grow: 1
+
+.preferences-themes-container
+  display: grid
+  column-gap: 12px
+  row-gap: 12px
+  grid-template-columns: repeat(3, 1fr)
+  width: 100%
+
+.preferences-themes-item
+  width: 100%
+  cursor: pointer
+
+.preferences-themes-item-active
+  box-shadow: rgba(33, 90, 255, 0.2) 0px 4px 16px, rgba(33, 90, 255, 0.2) 0px 8px 24px, rgba(33, 90, 255, 0.2) 0px 16px 56px
+
+.preferences-themes-item-color
+  height: 108px
+  width: 100%
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+
+.preferences-themes-item-color-active
+  border-right: $preferences-themes-item-active-border
+  border-top: $preferences-themes-item-active-border
+  border-left: $preferences-themes-item-active-border
+
+.preferences-themes-item-footer
+  border-bottom: 1px solid #a2a2a2
+  border-right: 1px solid #a2a2a2
+  border-left: 1px solid #a2a2a2
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  width: 100%
+  padding: 16px
+  text-align: center
+
+.preferences-themes-item-footer-active
+  border-bottom: $preferences-themes-item-active-border
+  border-right: $preferences-themes-item-active-border
+  border-left: $preferences-themes-item-active-border
+
+.preferences-languages-title
+  font-size: 15px
+  font-weight: 700
+
+.preferences-languages-select
+  width: 100%
+
+.preferences-apikeys-container
+  display: flex
+  flex-direction: column
+  row-gap: 10px
+
+.preferences-apikeys-generate-button-container
+  display: flex
+  flex-direction: row-reverse
+
+.preferences-apikeys-items-container
+  flex: 1 0 auto
+  min-height: 0
+
+::ng-deep .spin-center &gt; div &gt; .ant-spin-spinning
+  max-height: none !important
+
+::ng-deep .select-error .ant-select-selector
+  border: 1px solid #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused .ant-select-selector
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3) !important
+
+.message-error
+  color: #ff0000
+  font-size: 12px
+  margin-top: 2px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-modal [(nzVisible)]="isVisible" [nzTitle]="modalHeaderPreferences" [nzFooter]="modalFooterPreferences" nzCentered  [nzBodyStyle]="{ height: \'623px\' }" [nzWidth]="900" (nzOnCancel)="modalCancel()" [nzMaskClosable]="false">  <ng-container *nzModalContent>    <nz-spin [nzSpinning]="loadingPreferencesModal" style="width: 100%; height: 100%;" class="spin-center">      <div class="preferences-body-container">        <!-- menu -->        <div class="preferences-menu">          <ng-container *ngFor="let item of menuItems | keyvalue">            <div class="preferences-menu-item" [ngClass]="ngClassMenuActiveJson(item.key)"              (click)="changeSelectedMenuItem(item.key)" [hidden]="item.value.hidden">              <i nz-icon [nzType]="item.value.icon" nzTheme="outline"                class="preferences-menu-item-icon"></i>{{item.value.title | translate}}            </div>          </ng-container>        </div>        <!-- container -->        <div class="preferences-menu-option-body">          <!-- themes -->          <ng-container *ngIf="selectedMenuItem == MenuItemType.THEME">            <div class="preferences-themes-container">              <ng-container *ngFor="let item of optionThemes | keyValueCustom">                <div class="preferences-themes-item"                  [ngClass]="{\'preferences-themes-item-active\': selectedOptionThemes == item.key}"                  (click)="onClickThemeItem(item.key)">                  <div class="preferences-themes-item-color" [ngStyle]="{\'background-color\': item.value.color}"                    [ngClass]="{\'preferences-themes-item-color-active\': selectedOptionThemes == item.key}">                  </div>                  <div class="preferences-themes-item-footer"                    [ngClass]="{\'preferences-themes-item-footer-active\': selectedOptionThemes == item.key}">                    {{item.value.title | translate}}                  </div>                </div>              </ng-container>            </div>          </ng-container>          <!-- languages -->          <ng-container *ngIf="selectedMenuItem == MenuItemType.LANGUAGES">            <div class="preferences-languages-container">              <div class="preferences-languages-title">{{\'PREFERENCES_MODAL.LANGUAGES.LANGUAGE_LABEL\' | translate}}              </div>              <nz-select [(ngModel)]="selectedOptionLanguage" class="preferences-languages-select"                style="margin-top: 10px;" (ngModelChange)="swicthLanguage($event)">                <nz-option [nzValue]="item.value.id" [nzLabel]="getLanguageTypeLabel(item.value.id) | translate"                  *ngFor="let item of LanguageItemType | keyvalue">                </nz-option>              </nz-select>              <div style="margin-top: 9px; color: #737373; font-weight: 400; font-size: 15px;">                {{\'PREFERENCES_MODAL.LANGUAGES.LANGUAGE_DESCRIPTION\' | translate}}</div>            </div>          </ng-container>          <!-- API Keys -->          <ng-container *ngIf="selectedMenuItem == MenuItemType.API_KEYS">            <div class="preferences-apikeys-container">              <div class="preferences-apikeys-generate-button-container">                <button nz-button nzType="primary" nzShape="round" (click)="openGenerateApiKeyModal()">                  {{\'PREFERENCES_MODAL.API_KEYS.GENERATE_BUTTON\' | translate}}                </button>              </div>              <div class="preferences-apikeys-items-container">                <nz-table #apiKeysTable [nzData]="apiKeysUser" nzBordered [nzPageSize]="8" nzOuterBordered>                  <thead>                    <tr>                      <th nzWidth="50px">{{\'PREFERENCES_MODAL.API_KEYS.TABLE.ID_TH\' | translate}}</th>                      <th>{{\'PREFERENCES_MODAL.API_KEYS.TABLE.ROLES_TH\' | translate}}</th>                      <th>{{\'PREFERENCES_MODAL.API_KEYS.TABLE.VALID_FROM_TH\' | translate}}</th>                      <th nzRight nzWidth="80px">{{\'PREFERENCES_MODAL.API_KEYS.TABLE.ACTIONS_TH\' | translate}}</th>                    </tr>                  </thead>                  <tbody>                    <tr *ngFor="let data of apiKeysTable.data">                      <td>{{data.key_idx}}</td>                      <td>{{data.roles}}</td>                      <td>{{data.valid_from}}</td>                      <td nzAlign="center" nzRight>                        <ul nz-list-item-actions style="margin-left: 6px;">                          <nz-list-item-action>                            <i (click)="removeApiKey(data)" nz-icon nzType="delete" nzTheme="outline"                              style="cursor: pointer;"></i>                          </nz-list-item-action>                        </ul>                      </td>                    </tr>                  </tbody>                </nz-table>              </div>            </div>          </ng-container>        </div>      </div>    </nz-spin>  </ng-container></nz-modal><ng-template #modalHeaderPreferences>  {{\'PREFERENCES_MODAL.TITLE\' | translate}}</ng-template><ng-template #modalFooterPreferences>  <button nz-button nzType="primary" style="border-radius: 5px;" (click)="saveChanges()"    [disabled]="!haveChanges() || loadingPreferencesModal">{{\'PREFERENCES_MODAL.BUTTONS.CONFIRM_CHANGES\' |    translate}}</button></ng-template><nz-modal [nzTitle]="" [nzContent]="modalCancelConfirmContent" [nzVisible]="isVisibleConfirmCancelModal"  [nzFooter]="null" nzCentered [nzMaskClosable]="false" [nzClosable]="false" [nzWidth]="416">  <ng-template #modalCancelConfirmContent>    <div style="height: 120px;">      <i nz-icon nzType="info-circle" nzTheme="twotone" nzTwotoneColor="#faad14"        style="font-size: 22px; margin-right: 16px;"></i>      <span style="font-size: 16px;">{{\'PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.TITLE\' | translate}}</span>      <div style="font-size: 14px; margin: 8px 0px 0px 38px;">{{\'PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BODY\' |        translate}}</div>      <div        style=" margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 0px 30px 0px 30px;">        <button nz-button nzType="default"          (click)="saveChangesModal()">{{\'PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.SAVE\' | translate}}</button>        <button nz-button nzType="default"          (click)="discardChanges()">{{\'PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.DISCARD\' |          translate}}</button>        <button nz-button nzType="default"          (click)="cancelClosePreferences()">{{\'PREFERENCES_MODAL.MODAL_CANCEL_OR_CONFIRM.BUTTONS.CANCEL\' |          translate}}</button>      </div>    </div>  </ng-template></nz-modal><nz-modal [nzVisible]="generateApiKeyModalVisible" [nzClosable]="false" nzCentered>  <ng-container *nzModalTitle>    {{\'PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.TITLE\' | translate}}  </ng-container>  <ng-container *nzModalContent>    <form [formGroup]="generateApiKeyFormGroup">      <nz-form-label nzFor="roles">{{\'PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.LABEL\' | translate}}      </nz-form-label>      <nz-select nzShowSearch nzMode="multiple"        [nzPlaceHolder]="\'PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.CONTENT.ROLE_INPUT.PLACEHOLDER\' | translate"        style="width: 100%;" formControlName="roles" [ngClass]="{\'select-error\': showGenerateModalRoleError()}">        <nz-option nzLabel="read-molecular-api" nzValue="read-molecular-api"          *ngIf="authService.haveRole(\'read-molecular-api\')"></nz-option>        <nz-option nzLabel="write-molecular-api" nzValue="write-molecular-api"          *ngIf="authService.haveRole(\'write-molecular-api\')"></nz-option>        <nz-option nzLabel="read-geo-api" nzValue="read-geo-api" *ngIf="authService.haveRole(\'read-geo-api\')">        </nz-option>        <nz-option nzLabel="write-geo-api" nzValue="write-geo-api" *ngIf="authService.haveRole(\'write-geo-api\')">        </nz-option>        <nz-option nzLabel="jobs-api" nzValue="jobs-api" *ngIf="authService.haveRole(\'jobs-api\')"></nz-option>        <nz-option nzLabel="read-files-api" nzValue="read-files-api" *ngIf="authService.haveRole(\'read-files-api\')">        </nz-option>        <nz-option nzLabel="write-files-api" nzValue="write-files-api" *ngIf="authService.haveRole(\'write-files-api\')">        </nz-option>      </nz-select>      <div *ngFor="let item of getMessageGenerateModalNameError()" class="message-error">{{item | translate}}</div>    </form>  </ng-container>  <ng-container *nzModalFooter>    <div style="display: flex; flex-direction: row-reverse; column-gap: 10px">      <button nz-button nzType="primary" [disabled]="!generateApiKeyFormGroup.valid" (click)="generateApiKey()">        {{\'PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.FOOTER.GENERATE_BUTTON\' | translate}}      </button>      <button nz-button nzType="primary" nzDanger (click)="cancelGenerateApiKey()">        {{\'PREFERENCES_MODAL.API_KEYS.GENERATE_MODAL.FOOTER.CANCEL_BUTTON\' | translate}}      </button>    </div>  </ng-container></nz-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'PreferencesModalComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'PreferencesModalComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

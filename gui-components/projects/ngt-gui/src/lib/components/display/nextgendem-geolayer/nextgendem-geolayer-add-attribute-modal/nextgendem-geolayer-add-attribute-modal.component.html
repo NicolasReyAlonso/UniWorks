@@ -1,0 +1,91 @@
+<nz-modal nzCentered [(nzVisible)]="isVisible" (nzOnCancel)="onCancel()" [nzWidth]="1048">
+  <ng-container *nzModalTitle>
+    {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.TITLE' | translate }}
+  </ng-container>
+  <ng-container *nzModalContent>
+    <nz-spin [nzSpinning]="loading" class="nextgendem-geolayer-add-attribute-modal-spin">
+      <div style="height: 700px; display: flex">
+
+        <div style="flex: 1 0 auto; display: flex; flex-direction: column; padding: 0 10px;">
+          <div style="font-size: 1.2rem; font-weight: 500; padding-bottom: 10px; flex: 0 0 auto">
+            {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.LAYERS' | translate }}
+          </div>
+          <div style="display: flex; width: 500px; column-gap: 10px; flex: 0 0 auto" *ngIf="!singleMode">
+            <input nz-input [(ngModel)]="layerSearchInput" (keyup.enter)="onSearchLayer()"/>
+            <button nz-button (click)="onSearchLayer()">
+              {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.SEARCH_BUTTON' | translate }}
+            </button>
+          </div>
+          <div
+            style="flex: 1 1 auto; min-height: 0; border: 1px solid hsl(210, 8%, 85%); margin-bottom: 10px; overflow: auto; width: 500px;">
+            <ng-container *ngIf="pageTotalLayers === 0">
+              <div style="height: 100%; display: flex; justify-content: center; align-items: center;">
+                <div>
+                  {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.NOT_ELEMENTS_FOUND' | translate }}
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="pageTotalLayers > 0">
+              <div
+                style="border-bottom: 1px solid hsl(210, 8%, 85%); padding: 10px 0 10px 5px; text-align: center; cursor: pointer"
+                [ngClass]="{'theme-header-background-color': item.id === layerIdSelected}"
+                *ngFor="let item of layers" (click)="onLayerClick(item)">
+                {{ item.name }}
+              </div>
+            </ng-container>
+          </div>
+          <div style="flex: 0 0 auto; display: flex; margin-top: 10px;" *ngIf="pageTotalLayers > 0 && !singleMode">
+            <nz-pagination [nzPageIndex]="pageIndexLayers" [nzTotal]="pageTotalLayers"
+                           [nzPageSize]="PAGE_SIZE"
+                           (nzPageIndexChange)="onPageIndexChangeLayers($event)"></nz-pagination>
+          </div>
+          <div style="margin-top: 10px" *ngIf="uuidLayerFilter && !singleMode">
+            <label nz-checkbox [(ngModel)]="uuidLayerFilterActive"
+                   (ngModelChange)="uuidLayerFilterActiveChange($event)">{{ 'DISPLAY.GIS.FILTER_LAYERS' | translate }}
+            </label>
+          </div>
+        </div>
+
+        <div style="width: 500px; flex: 1 0 auto; display: flex; flex-direction: column; padding: 0 10px">
+          <div style="font-size: 1.2rem; font-weight: 500; padding-bottom: 10px; flex: 0 0 auto">
+            {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.PROPERTIES' | translate }}
+          </div>
+          <div
+            style="flex: 1 1 auto; min-height: 0; border: 1px solid hsl(210, 8%, 85%); margin-bottom: 10px; overflow: auto">
+            <ng-container *ngIf="properties.length === 0">
+              <div style="height: 100%; display: flex; justify-content: center; align-items: center;">
+                <div>
+                  {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.NOT_ELEMENTS_FOUND' | translate }}
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="properties.length > 0">
+              <ng-container *ngFor="let item of properties">
+                <div *ngIf="!checkIfExistProperty(item)"
+                  style="border-bottom: 1px solid hsl(210, 8%, 85%); padding: 10px 0 10px 5px; display: flex; cursor: pointer">
+                  <div>
+                    <label nz-checkbox [ngModel]="initCheckbox" (ngModelChange)="checkProperty($event, item)"></label>
+                  </div>
+                  <div style="padding-left: 20px">
+                    {{ item.name }}
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+
+      </div>
+    </nz-spin>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <div style="display: flex; justify-content: end">
+      <button nz-button nzType="primary" nzDanger [disabled]="loading" (click)="onCancel()">
+        {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.CANCEL_BUTTON' | translate }}
+      </button>
+      <button nz-button nzType="primary" [disabled]="loading" (click)="onAccept()">
+        {{ 'DISPLAY.GIS.ADD_ATTRIBUTE_MODAL.ACCEPT_BUTTON' | translate }}
+      </button>
+    </div>
+  </ng-container>
+</nz-modal>

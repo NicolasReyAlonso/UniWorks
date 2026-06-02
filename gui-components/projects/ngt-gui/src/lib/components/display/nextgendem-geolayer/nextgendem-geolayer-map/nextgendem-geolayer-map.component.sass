@@ -1,0 +1,76 @@
+.nextgendem-geolayer-map-container
+  display: flex
+  flex-direction: column
+  height: 100%
+
+.nextgendem-geolayer-map-overlay-click-container
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px
+
+.nextgendem-geolayer-map-overlay-click-header
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+  background-color: #001529
+  color: #ffffff
+  width: 450px
+  padding: 8px 0px 8px 10px
+  position: relative
+
+.nextgendem-geolayer-map-overlay-click-body
+  background-color: #ffffff
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  width: 450px
+  nz-spin
+    height: 100%
+
+.nextgendem-geolayer-map-overlay-click-pointer
+  margin: auto
+  width: 30px
+  height: 15px
+  background-color: #ffffff
+  clip-path: polygon(50% 100%, 0 0, 100% 0)
+  box-sizing: border-box
+
+.nextgendem-geolayer-map-overlay-click-top-buttons
+  height: 100%
+  float: right
+  margin-right: 10px
+
+  &:hover
+    cursor: pointer
+
+.nextgendem-geolayer-map-overlay-click-top-buttons-close
+  &:hover
+    color: #ff0000
+
+.nextgendem-geolayer-map-overlay-click-top-buttons-vertical-left
+  &:hover
+    color: #ffffff
+
+.legends-container
+  z-index: 99
+  position: absolute
+  bottom: 10px
+  right: 10px
+  display: flex
+
+.legend-image-container
+  z-index: 99
+  margin-right: 7px
+  background-color: #fff
+  padding: 7px 10px 7px 10px
+  border-radius: 5px
+  flex-direction: column
+
+.legend-image-title
+  text-align: center
+  font-size: 13px
+  font-weight: bold
+
+.legend-image-attribute
+  margin-bottom: 7px
+  text-align: center
+  font-size: 13px
+  font-weight: bold
+  display: flex
+  column-gap: 5px

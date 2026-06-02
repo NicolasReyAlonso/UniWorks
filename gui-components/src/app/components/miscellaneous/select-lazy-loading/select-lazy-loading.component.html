@@ -1,0 +1,20 @@
+<div style="width: 100%;">
+  <ng-container *ngIf="firstLoad === false">
+    <div class="false-input-disable-loading"
+         [ngClass]="disableSelect ? 'false-input-loading-disable' : 'false-input-loading-enable'">
+      <nz-spin nzSpinning style="height: 100%"></nz-spin>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="firstLoad === true">
+    <nz-select (nzScrollToBottom)="scrollBottomEvent($event)" [(ngModel)]="value" [nzDisabled]="disableSelect"
+               [nzShowSearch]="true" [nzServerSearch]="true"
+               (nzOnSearch)="onSearchChange($event)" [nzPlaceHolder]="placeholder | translate"
+               (ngModelChange)="valueChangeEvent($event)" [nzAutoClearSearchValue]="false"
+               [nzMode]="multiple ? 'multiple' : 'default'" [nzAllowClear]="allowClear" [nzOptions]="options">
+    </nz-select>
+  </ng-container>
+</div>
+
+<ng-template #loadingOption>
+    <nz-spin style="height: 100%;"></nz-spin>
+</ng-template>

@@ -1,0 +1,67 @@
+export const PROCESSES_TYPES_SYSTEM_VALUES = {
+  JUPYTER: 'jupyter',
+  GEOPROCESS: 'geoprocess',
+  SNAKEMAKE: 'snakemake',
+  NEXTFLOW: 'nextflow',
+}
+
+export const PROCESSES_TYPES_SYSTEM_OPTIONS = [
+  {
+    label: 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.JUPYTER',
+    value: PROCESSES_TYPES_SYSTEM_VALUES.JUPYTER,
+  },
+  {
+    label: 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.GEOPROCESS',
+    value: PROCESSES_TYPES_SYSTEM_VALUES.GEOPROCESS,
+  },
+  {
+    label: 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.SNAKEMAKE',
+    value: PROCESSES_TYPES_SYSTEM_VALUES.SNAKEMAKE,
+  },
+  {
+    label: 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.OPTIONS.NEXTFLOW',
+    value: PROCESSES_TYPES_SYSTEM_VALUES.NEXTFLOW,
+  },
+]
+
+export const PROCESSES_TYPES_KERNEL_VALUES = {
+  PYTHON: 'python',
+  R: 'r'
+}
+
+export const PROCESSES_TYPES_KERNEL_OPTIONS = [
+  {
+    label: 'Python',
+    value: PROCESSES_TYPES_KERNEL_VALUES.PYTHON,
+  },
+  {
+    label: 'R',
+    value: PROCESSES_TYPES_KERNEL_VALUES.R,
+  },
+]
+
+export const PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES = {
+  PYTHON: 'python',
+  R: 'r',
+  QGIS: 'qgis',
+  POSTGIS: 'postgis'
+}
+
+export const PROCESSES_TYPES_GEOPROCESS_TYPE_OPTIONS = [
+  {
+    label: 'Python',
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.PYTHON,
+  },
+  {
+    label: 'R',
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.R,
+  },
+  {
+    label: 'QGIS',
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.QGIS,
+  },
+  {
+    label: 'PostGIS',
+    value: PROCESSES_TYPES_GEOPROCESS_TYPE_VALUES.POSTGIS,
+  },
+]

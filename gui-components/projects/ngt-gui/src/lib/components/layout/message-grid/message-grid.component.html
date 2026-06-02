@@ -1,0 +1,29 @@
+<nz-badge [nzCount]="messages.notSeen" nzStyle="background-color: olive;" [nzOffset]="[-30,0]" (click)="showDrawer()">
+  <button nz-button #buttonRegisters
+          style="height: 30px; width: 30px; display: flex; align-items: center; justify-content:center">
+    <i nz-icon nzType="info-circle" nzTheme="outline" style="font-size: 18px;"></i>
+  </button>
+</nz-badge>
+
+<nz-drawer nzPlacement="bottom" nzHeight="65vh" [nzClosable]="false" [nzVisible]="showFilter"
+           (nzOnClose)="closeDrawer()">
+  <ng-container *nzDrawerContent>
+    <nz-table #basicTable [nzData]="messages.messages" [nzFrontPagination]="false">
+      <thead>
+      <tr>
+        <th>Tipo</th>
+        <th>Mensaje</th>
+        <th>Vista</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- Messages, in reverse order -->
+      <tr *ngFor="let data of basicTable.data.slice().reverse()">
+        <td>{{data.type}}</td>
+        <td>{{data.message}}</td>
+        <td>{{data.view}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </ng-container>
+</nz-drawer>

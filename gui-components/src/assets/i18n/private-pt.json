@@ -1,0 +1,3008 @@
+{
+  "ANNOTATIONS": {
+    "ANNOTATIONS_FORM": {
+      "CONTENT": {
+        "EMPTY_FIELD": "Campo vazio"
+      },
+      "FIELD_SELECTOR_MODAL": {
+        "ADD_BUTTON": "Adicionar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CONTENT": {
+          "FIELDS_INPUT": {
+            "ERROR_EMPTY": "Você deve escolher pelo menos um campo.",
+            "LABEL": "Campos",
+            "PLACEHOLDER": "Campos"
+          }
+        },
+        "TITLE": "Adicionar campos"
+      },
+      "HEADER": {
+        "CANCEL_BUTTON": "Cancelar",
+        "SAVE_BUTTON": "Salvar"
+      },
+      "NOTIFICATIONS": {
+        "LOAD_FAIL": {
+          "CONTENT": "Ocorreu um erro ao tentar carregar as anotações.",
+          "TITLE": "Erro"
+        },
+        "SAVE_FAIL": {
+          "CONTENT": "Ocorreu um erro ao tentar salvar as anotações.",
+          "TITLE": "Erro"
+        },
+        "SAVE_SUCCESS": {
+          "CONTENT": "As anotações foram salvas com sucesso.",
+          "TITLE": "Anotações salvas"
+        }
+      },
+      "TEMPLATE_SELECTOR_MODAL": {
+        "ADD_BUTTON": "Adicionar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CONTENT": {
+          "TEMPLATES_INPUT": {
+            "ERROR_EMPTY": "Você deve escolher pelo menos um modelo.",
+            "LABEL": "Modelos",
+            "PLACEHOLDER": "Modelos"
+          }
+        },
+        "TITLE": "Adicionar modelos"
+      }
+    },
+    "FIELDS": {
+      "BROWSE": {
+        "BREADCRUMB": "Campos",
+        "ERROR_REMOVE": {
+          "CONTENT": "Ocorreu um erro ao tentar excluir o campo.",
+          "TITLE": "Erro"
+        },
+        "REMOVE_MODAL": {
+          "CONTENT": "Campo",
+          "TITLE": "Tem certeza de que deseja remover este campo e os dados associados?"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "O campo foi removido com sucesso.",
+          "TITLE": "Campo removido"
+        },
+        "TITLE": "Campos"
+      },
+      "CREATE_MODAL": {
+        "CANCEL_BUTTON": "Cancelar",
+        "CREATE_BUTTON": "Criar",
+        "ERROR_UNKNOWN_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar criar o campo.",
+          "TITLE": "Erro"
+        },
+        "MULTIPLE_INPUT": {
+          "LABEL": "Multiple",
+          "OPTIONS": {
+            "NO": "No",
+            "YES": "Sim"
+          },
+          "PLACEHOLDER": "Multiple"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Digite o nome para o campo.",
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "OBJECT_TYPE_INPUT": {
+          "ERROR_EMPTY": "Selecione o tipo de objeto",
+          "LABEL": "Tipos de objetos",
+          "PLACEHOLDER": "Tipos de objeto"
+        },
+        "RANGE_INPUT": {
+          "TEXT_OPTIONS": {
+            "ERROR_EMPTY": "Você deve escolher pelo menos uma opção",
+            "LABEL": "Opções",
+            "PLACEHOLDER": "Digite o valor e pressione a tecla ENTER para adicioná-lo como uma opção"
+          }
+        },
+        "STANDARD_INPUT": {
+          "LABEL": "Padrão",
+          "PLACEHOLDER": "Padrão"
+        },
+        "TEMPLATE_INPUT": {
+          "LABEL": "Modelos",
+          "PLACEHOLDER": "Modelos"
+        },
+        "TITLE": "Criar Campo",
+        "UNIQUE_INPUT": {
+          "LABEL": "Único",
+          "OPTIONS": {
+            "NO": "No",
+            "YES": "Sim"
+          },
+          "PLACEHOLDER": "Único"
+        },
+        "VIEW_TYPE_INPUT": {
+          "ERROR_EMPTY": "Selecione o tipo de campo.",
+          "LABEL": "Tipo de campo",
+          "OPTIONS": {
+            "STRING": ""
+          },
+          "PLACEHOLDER": "Tipo de campo"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Campo - {{params.name}}",
+        "CANCEL_BUTTON": "Cancelar",
+        "INPUTS": {
+          "DESCRIPTION": {
+            "LABEL": "Descrição",
+            "PLACEHOLDER": "Descrição"
+          },
+          "MULTIPLE": {
+            "LABEL": "Múltiplo",
+            "NO": "Não",
+            "YES": "Sim"
+          },
+          "NAME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "OBJECT_TYPES": {
+            "ADD_BUTTON": "Adicionar",
+            "LABEL": "Tipos de objeto",
+            "TABLE_TH": {
+              "ACTIONS": "Ações",
+              "NAME": "Nome"
+            }
+          },
+          "STANDARD": {
+            "LABEL": "Padrão",
+            "PLACEHOLDER": "Padrão"
+          },
+          "TEMPLATES": {
+            "ADD_BUTTON": "Adicionar",
+            "LABEL": "Template",
+            "TABLE_TH": {
+              "ACTIONS": "Ações",
+              "NAME": "Nome"
+            }
+          },
+          "UNIQUE": {
+            "LABEL": "Único",
+            "OPTIONS": {
+              "NO": "Não",
+              "YES": "Sim"
+            }
+          },
+          "VIEW_TYPE": {
+            "LABEL": "Tipo de campo"
+          }
+        },
+        "MODAL_ADD_OBJECT_TYPES": {
+          "ADD_BUTTON": "Adicionar",
+          "CANCEL_BUTTON": "Cancelar",
+          "INPUTS": {
+            "OBJECT_TYPES": {
+              "LABEL": "Tipos de objeto",
+              "PLACEHOLDER": "Tipos de objeto"
+            }
+          },
+          "TITLE": "Adicionar tipos de objeto"
+        },
+        "MODAL_ADD_TEMPLATES": {
+          "ADD_BUTTON": "Adicionar",
+          "CANCEL_BUTTON": "Cancelar",
+          "INPUTS": {
+            "TEMPLATES": {
+              "LABEL": "Modelos",
+              "PLACEHOLDER": "Modelos"
+            }
+          },
+          "TITLE": "Adicionar modelos"
+        },
+        "MODIFY_BUTTON": "Modificar",
+        "NOTIFICATION_FAIL_MODIFY": {
+          "CONTENT": "Ocorreu um erro ao tentar modificar o modelo.",
+          "TITLE": "Erro"
+        },
+        "TITLE": "Campo"
+      },
+      "VIEW_TYPES": {
+        "TEXT": {
+          "LABEL": "Campo de texto"
+        },
+        "TEXT_OPTIONS": {
+          "LABEL": "Seletor de opções (texto)"
+        }
+      }
+    },
+    "TEMPLATES": {
+      "BROWSE": {
+        "BREADCRUMB": "Modelos",
+        "ERROR_REMOVE": {
+          "CONTENT": "Ocorreu um erro ao tentar excluir um modelo",
+          "TITLE": "Erro"
+        },
+        "REMOVE_MODAL": {
+          "CONTENT": "Template",
+          "TITLE": "Tem certeza de que deseja excluir este modelo e os dados associados?"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "O modelo foi excluído com sucesso.",
+          "TITLE": "Modelo deletado"
+        },
+        "TITLE": "Modelos"
+      },
+      "CREATE_MODAL": {
+        "CANCEL_BUTTON": "Cancelar",
+        "CREATE_BUTTON": "Criar",
+        "ERROR_UNKNOWN_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar criar um modelo.",
+          "TITLE": "Erro"
+        },
+        "FIELD_INPUT": {
+          "LABEL": "Campos",
+          "PLACEHOLDER": "Campos"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Digite o nome para o modelo",
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "OBJECT_TYPE_INPUT": {
+          "ERROR_EMPTY": "Selecione um tipo de objeto",
+          "LABEL": "Tipo de Objeto",
+          "PLACEHOLDER": "Tipo de Objeto"
+        },
+        "STANDARD_INPUT": {
+          "LABEL": "Padrão",
+          "PLACEHOLDER": "Padrão"
+        },
+        "TITLE": "Criar modelo",
+        "UNIQUE_INPUT": {
+          "LABEL": "Único",
+          "OPTIONS": {
+            "NO": "Não",
+            "YES": "Sim"
+          },
+          "PLACEHOLDER": "Único"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Modelo - {{params.name}}",
+        "CANCEL_BUTTON": "Cancelar",
+        "INPUTS": {
+          "DESCRIPTION": {
+            "LABEL": "Descrição",
+            "PLACEHOLDER": "Descrição"
+          },
+          "FIELD": {
+            "ADD_BUTTON": "Adicionar",
+            "LABEL": "Campos",
+            "TABLE_TH": {
+              "ACTIONS": "Ações",
+              "NAME": "Nome"
+            }
+          },
+          "NAME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "OBJECT_TYPES": {
+            "ADD_BUTTON": "Adicionar",
+            "LABEL": "Tipos de objeto",
+            "TABLE_TH": {
+              "ACTIONS": "Ações",
+              "NAME": "Nome"
+            }
+          },
+          "STANDARD": {
+            "LABEL": "Padrão",
+            "PLACEHOLDER": "Padrão"
+          },
+          "UNIQUE": {
+            "LABEL": "Único",
+            "OPTIONS": {
+              "NO": "Não",
+              "YES": "Sim"
+            }
+          }
+        },
+        "MODAL_ADD_FIELD": {
+          "ADD_BUTTON": "Añadir",
+          "CANCEL_BUTTON": "Cancelar",
+          "INPUTS": {
+            "FIELD": {
+              "LABEL": "Campos",
+              "PLACEHOLDER": "Campos"
+            }
+          },
+          "TITLE": "Añadir campos"
+        },
+        "MODAL_ADD_OBJECT_TYPES": {
+          "ADD_BUTTON": "Añadir",
+          "CANCEL_BUTTON": "Cancelar",
+          "INPUTS": {
+            "OBJECT_TYPES": {
+              "LABEL": "Tipos de objeto",
+              "PLACEHOLDER": "Tipos de objeto"
+            }
+          },
+          "TITLE": "Adicionar tipos de objeto"
+        },
+        "MODIFY_BUTTON": "Modificar",
+        "NOTIFICATION_FAIL_MODIFY": {
+          "CONTENT": "Ocorreu um erro ao tentar modificar o modelo.",
+          "TITLE": "Erro"
+        },
+        "TITLE": "Template"
+      }
+    }
+  },
+  "AUTH_MODAL": {
+    "INPUTS": {
+      "LANGUAGE": {
+        "TYPES": {
+          "private-en": "English",
+          "private-es": "Español",
+          "private-fr": "Français",
+          "private-pt": "Português"
+        }
+      }
+    },
+    "LOGIN_TITLE": "Iniciar sessão",
+    "REGISTER_TITLE": "Registre-se"
+  },
+  "DISPLAY": {
+    "GIS": {
+      "BREADCRUMB": "GIS",
+      "GENERATE_VIEW_ERROR_MODAL": {
+        "CONTENT": "Ocorreu um erro ao tentar criar a camada.",
+        "TITLE": "Error"
+      },
+      "GENERATE_VIEW_MODAL": {
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "ERROR_VALIDATE_GENERATE_VIEW_MODAL": {
+          "ERROR_JOIN": "Todas as camadas selecionadas devem estar envolvidas na união.",
+          "NUMBERS_LAYERS": "Você deve escolher mais de uma camada.",
+          "VALIDATE_FORM": "Falha na validação. Verifique se há erros no formulário"
+        },
+        "TABS": {
+          "FIELDS_TO_DISPLAY": {
+            "LAYER_TH": "Camada",
+            "NAME_TH": "Nome",
+            "TITLE": "Campos para mostrar",
+            "TYPE_TH": "Tipo"
+          },
+          "FILTER": {
+            "TITLE": "Filtros"
+          },
+          "JOIN": {
+            "TITLE": "União"
+          },
+          "LAYERS": {
+            "NAME_TH": "Nome",
+            "TITLE": "Camadas",
+            "WARNING_UNCHECKED": "* Ao desmarcar qualquer camada, as etapas a seguir serão reiniciadas."
+          }
+        },
+        "TITLE": {
+          "GENERATE_LAYER": "Gerar camada",
+          "GENERATE_VIEW": "Generar vista"
+        },
+        "ERROR_WHEN_OPEN": {
+          "CONTENT": "Ocorreu um erro ao carregar os dados para construir a nova camada."
+        }
+      },
+      "LAYERS_EMPTY_OPEN_GENERATE_VIEW_MODAL_ERROR": {
+        "CONTENT": "Você deve ter pelo menos uma camada selecionada.",
+        "TITLE": "Aviso"
+      },
+      "OVERWRITE_MAP_MODAL": {
+        "CANCEL_BUTTON": "Cancelar",
+        "CONTENT": "Deseja substituir o mapa \"{{name}}\" ou criar um novo mapa?",
+        "CREATE_BUTTON": "Crear",
+        "NOTIFICATION_OVERWRITE_MAP_CORRECTLY": {
+          "CONTENT": "O mapa foi modificado com sucesso.",
+          "TITLE": "Mapa modificado"
+        },
+        "NOTIFICATION_OVERWRITE_MAP_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar modificar o mapa",
+          "TITLE": "Erro"
+        },
+        "OVERWRITE_BUTTON": "Substituir",
+        "TITLE": "Salvar mapa"
+      },
+      "SAVE_MAP_MODAL": {
+        "CANCEL_BUTTON": "Cancelar",
+        "NAME_EMPTY_ERROR": "O nome não pode estar vazio.",
+        "NAME_INPUT": {
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "NOTIFICATION_CREATE_MAP_CORRECTLY": {
+          "CONTENT": "O mapa foi criado com sucesso.",
+          "TITLE": "Mapa criado"
+        },
+        "NOTIFICATION_CREATE_MAP_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar criar o mapa",
+          "TITLE": "Erro"
+        },
+        "SAVE_BUTTON": "Salvar",
+        "TITLE": "Salvar mapa"
+      },
+      "TOOLBAR_GEOVIEWER": {
+        "CREATE_LAYER_BUTTON": "Criar Camada",
+        "CREATE_VIEW_BUTTON": "Criar vista",
+        "EXPORT_MAP": "Exportar mapa",
+        "SAVE_BUTTON": "Salvar mapa",
+        "TITLE": "Visualizador de Dados Geográficos"
+      },
+      "OPACITY": "Opacidade:",
+      "EDIT_STYLE_BUTTON": "Editar estilo",
+      "SHOW_LEGEND": "Mostrar legenda",
+      "SETTINGS_BUTTON": "Ajustes",
+      "SELECT_FILTER": "Selecionar filtro",
+      "CREATE_FILTER": "Criar filtro",
+      "PROPERTIES": "Propriedades",
+      "CONFIGURATION_PANEL_WINDOW": {
+        "FILTERS": {
+          "LAYER": "Camada:",
+          "FILTER": "Filtro:",
+          "CQL": "CQL:"
+        }
+      },
+      "EDIT_STYLE_MODAL": {
+        "TITLE": "Editar estilos",
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "COLORMAP": {
+          "LABEL": "Paleta de cores:",
+          "PLACEHOLDER": "Paleta de cores"
+        }
+      },
+      "ADD_ATTRIBUTE_MODAL": {
+        "TITLE": "Adicionar novos atributos",
+        "LOAD_LAYERS_ERROR": "Ocorreu um erro ao carregar as camadas",
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "SEARCH_BUTTON": "Procurar",
+        "LAYERS": "Camadas",
+        "PROPERTIES": "Propriedades",
+        "NOT_ELEMENTS_FOUND": "0 elementos encontrados"
+      },
+      "FILTER_LAYERS": "Filtrado de camadas",
+      "NAME_MAP_INPUT": {
+        "PLACEHOLDER": "Mapa"
+      }
+    },
+    "PHYLOTREES": {
+      "BREADCRUMB": "Visualizador de Árvore Filogenética",
+      "PAGE": {
+        "REMOVE_COLOR": "Remover Cor",
+        "SAVED_COLORS": "Cores salvas",
+        "SAVE_COLOR": "Salvar cor",
+        "SAVE_PROGRESS": "Salvar progresso"
+      },
+      "LOG": {
+        "NO_TREE": "Não existe a árvore no sistema",
+        "ERROR_PARSING": "Erro ao ler a árvore:"
+      },
+      "MODAL": {
+        "SAVE_VIEW": "Guardar Vista",
+        "NAME": "Nome"
+      },
+      "SAVE_MODAL": {
+        "SAVE_VIEW": "Guardar Vista",
+        "NAME": "Nome"
+      },
+      "OVERRIDE_TEXT": {
+        "TITLE": "Sobrescrever texto",
+        "NEW_TEXT": "Novo texto"
+      }
+    },
+    "VIEWERS": {
+      "BROWSE": {
+        "BREADCRUMB": "Visualizadores",
+        "CUSTOM_BUTTONS": {
+          "CLONE": {
+            "TITLE": "Clonar visualizador"
+          }
+        },
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Aceitar",
+          "CANCEL_BUTTON": "Cancelar",
+          "CONTENT": "Tem certeza de que deseja excluir a visualização \"{{name}}\"?",
+          "TITLE": "Excluir visualizador"
+        },
+        "NOTIFICATION_DELETE_VIEW_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar excluir a visualização.",
+          "TITLE": "Erro"
+        },
+        "TITLE": "Visualizadores",
+        "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "Ocorreu um erro ao tentar deletar as visualizações.",
+        "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "As visualizações foram deletadas com sucesso."
+      },
+      "DELETE_SELECTED_MODAL": {
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CONTENT": "Você tem certeza que deseja deletar as visualizações?",
+        "TITLE": "Deletar visualizações"
+      }
+    }
+  },
+  "DYNAMIC_BROWSER": {
+    "BUTTONS": {
+      "CONFIRM_SELECTED": "Confirmar selecionados",
+      "CREATE": "Criar",
+      "DELETE_SELECTED": "Remover selecionados",
+      "EXPORT_SELECTED": "Exportar selecionados",
+      "IMPORT": "Importar"
+    },
+    "SEARCH": {
+      "PLACEHOLDER": "Digite os termos da sua pesquisa."
+    }
+  },
+  "DYNAMIC_TABLE": {
+    "RESULT": "RESULTADO:",
+    "ELEMENTS_FOUND": "elementos encontrados",
+    "SELECTION": "SELEÇÃO:",
+    "ELEMENTS_SELECTED": "elementos selecionados",
+    "SHOW_SELECTED": "Mostrar selecionados:",
+    "TH": {
+      "ACTIONS": "Ações"
+    },
+    "RESET_SELECTED": "Resetar selecionados"
+  },
+  "FILTER": {
+    "DETAIL": {
+      "BUTTON": "Filtrar",
+      "DRAWER": {
+        "BUTTONS": {
+          "APPLY": "Aplicar",
+          "RESTART": "Reiniciar"
+        },
+        "SELECT": {
+          "SELECTED_FILTER": {
+            "BUTTONS": {
+              "ADD_FILTER": "Adicionar filtro"
+            },
+            "PLACEHOLDER": "Salvar filtros"
+          }
+        },
+        "TITLE": "Filtrado"
+      }
+    },
+    "FORM": {
+      "DATETIME_LABEL": {
+        "ADDED_FROM": {
+          "LABEL": "Adicionado após",
+          "PLACEHOLDER": "Selecionar data"
+        },
+        "ADDED_TO": {
+          "LABEL": "Adicionado antes de",
+          "PLACEHOLDER": "Selecionar data"
+        },
+        "MODIFIED_FROM": {
+          "LABEL": "Modificado após",
+          "PLACEHOLDER": "Selecionar data"
+        },
+        "MODIFIED_TO": {
+          "LABEL": "Modificado antes de",
+          "PLACEHOLDER": "Selecionar data"
+        }
+      },
+      "CASE_STUDIES": {
+        "LABEL": "Casos de estudo",
+        "PLACEHOLDER": "Casos de estudo de interesse"
+      },
+      "COLLECTIONS": {
+        "LABEL": "Coleções",
+        "PLACEHOLDER": "Coleções de interesse"
+      },
+      "IS_ANALYSIS": {
+        "LABEL": "Sequências",
+        "PLACEHOLDER": "Sequências a mostrar",
+        "TRUE": "Processadas",
+        "FALSE": "Sem processar"
+      },
+      "TYPES": {
+        "LABEL": "Tipo",
+        "PLACEHOLDER": "Tipo de elementos"
+      },
+      "STANDARDS": {
+        "LABEL": "Padrões",
+        "PLACEHOLDER": "Padrões associados"
+      },
+      "ANNOTATION_FORM_TEMPLATES": {
+        "LABEL": "Modelos",
+        "PLACEHOLDER": "Modelos associados"
+      },
+      "ANNOTATION_FORM_FIELDS": {
+        "LABEL": "Campos",
+        "PLACEHOLDER": "Campos associados"
+      },
+      "ANNOTATION_FIELDS": {
+        "LABEL": "Propriedades",
+        "PLACEHOLDER": "Propriedades associadas"
+      },
+      "DBXREFS": {
+        "LABEL": "Referências",
+        "PLACEHOLDER": "Referências externas"
+      },
+      "ORGANISMS": {
+        "LABEL": "Organismos",
+        "PLACEHOLDER": "Organismos de interesse"
+      },
+      "TAX_NODES": {
+        "LABEL": "Taxones",
+        "PLACEHOLDER": "Taxones de interesse"
+      },
+      "GENUS": {
+        "LABEL": "Género",
+        "PLACEHOLDER": "Géneros de interesse"
+      },
+      "ANALYSES": {
+        "LABEL": "Análises",
+        "PLACEHOLDER": "Análises de interesse"
+      },
+      "PROGRAMS": {
+        "LABEL": "Programa",
+        "PLACEHOLDER": "Programa de interesse"
+      },
+      "PROGRAMVERSIONS": {
+        "LABEL": "Programa versão",
+        "PLACEHOLDER": "Versões de interesse"
+      },
+      "ALGORITHMS": {
+        "LABEL": "Algoritmo",
+        "PLACEHOLDER": "Algoritmo de interesse"
+      },
+      "SEQLEN": {
+        "LABEL": "Tamanho da sequência",
+        "PLACEHOLDER_MIN": "Mínimo",
+        "PLACEHOLDER_MAX": "Máximo"
+      },
+      "SEQNUM": {
+        "LABEL": "Número de sequências",
+        "PLACEHOLDER_MIN": "Mínimo",
+        "PLACEHOLDER_MAX": "Máximo"
+      },
+      "PHYLEN": {
+        "LABEL": "Número de sequências",
+        "PLACEHOLDER_MIN": "Mínimo",
+        "PLACEHOLDER_MAX": "Máximo"
+      },
+      "PHYNUM": {
+        "LABEL": "Número de árvores",
+        "PLACEHOLDER_MIN": "Mínimo",
+        "PLACEHOLDER_MAX": "Máximo"
+      }
+    }
+  },
+  "GEOGRAPHICAL_DATA": {
+    "LAYERS": {
+      "BROWSER": {
+        "BREADCRUMB": "Capas",
+        "CUSTOM_BUTTONS": {
+          "CASES_STUDIES": {
+            "TITLE": "Criar caso de estudo"
+          },
+          "CREATE_LAYER": {
+            "TITLE": "Crear capa"
+          },
+          "EXPORT_LAYERS": {
+            "TITLE": "Exportar camadas"
+          },
+          "OPEN_IN_GIS": {
+            "TITLE": "Abrir em GIS"
+          }
+        },
+        "TITLE": "Camadas"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Camada - {{params.layer}}",
+        "EXPORT_BUTTON": "Exportação",
+        "TABS": {
+          "ADVANCED": {
+            "INPUTS": {
+              "NAME_IN_GEOSERVER": "Nome no Geoserver",
+              "PROPERTIES": {
+                "LABEL": "Propriedades",
+                "TD": {
+                  "NO": "Não",
+                  "YES": "Sim"
+                },
+                "TH": {
+                  "ACTIONS": "Ações",
+                  "CAT_TYPE": "Tipo de Categoria",
+                  "MAX_VALUE": "Valor máximo",
+                  "MIN_VALUE": "Valor mínimo",
+                  "NAME": "Nome",
+                  "RESPRESENTABLE": "Representável",
+                  "TYPE": "Tipo"
+                }
+              },
+              "TYPE_OF_LAYER": "Tipo de camada",
+              "WORKSPACE": "Espaço de trabalho"
+            },
+            "TITLE": "Avançado"
+          },
+          "DETAIL": {
+            "CANCEL_BUTTON": "Cancelar",
+            "INPUTS": {
+              "AUTHORSHIP": {
+                "LABEL": "Autoría",
+                "PLACEHOLDER": "Autoria"
+              },
+              "CASES_STUDIES": {
+                "ADD_BUTTON": "Adicionar",
+                "LABEL": "Casos de estudo",
+                "TABLE_TH": {
+                  "ACTIONS": "Ações",
+                  "NAME": "Nome"
+                }
+              },
+              "CREATION_DATE": {
+                "LABEL": "Data de criação",
+                "PLACEHOLDER": "Selecione a data"
+              },
+              "INSTANCE_ID": {
+                "LABEL": "ID da instância",
+                "PLACEHOLDER": "ID da instância"
+              },
+              "NAME": {
+                "LABEL": "Nome",
+                "PLACEHOLDER": "Nome"
+              },
+              "SOURCE": {
+                "LABEL": "Fonte",
+                "PLACEHOLDER": "Fonte"
+              },
+              "SOURCE_FILE_NAME": {
+                "LABEL": "Nome do arquivo de origem",
+                "PLACEHOLDER": "Arquivo fonte"
+              },
+              "SUBJECTS": {
+                "LABEL": "Temas",
+                "PLACEHOLDER": "Temas"
+              },
+              "TAGS": {
+                "ADD_BUTTON": "Adicionar",
+                "PLACEHOLDER": "Tags"
+              }
+            },
+            "MODAL_ADD_CASE_STUDIES": {
+              "ADD_BUTTON": "Adicionar",
+              "CANCEL_BUTTON": "Cancelar",
+              "INPUTS": {
+                "CASES_STUDIES": {
+                  "LABEL": "Casos de estudo"
+                }
+              }
+            },
+            "MODIFY_BUTTON": "Modificar",
+            "TITLE": "Detalhes"
+          },
+          "PREVIEW": {
+            "TITLE": "Antevisão",
+            "TOOLBAR_TITLE": "Antevisão"
+          }
+        },
+        "TITLE": "Camada"
+      },
+      "EXPORT_MODAL": {
+        "BUTTONS": {
+          "CANCEL": "Cancelar",
+          "EXPORT": "Exportação"
+        },
+        "SELECT": {
+          "FORMAT_TYPE": {
+            "LABEL": "Tipos de formato:",
+            "PLACEHOLDER": "Tipos de formato"
+          }
+        },
+        "TITLE": "Exportar camadas"
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Importar camada",
+        "BUTTONS": {
+          "IMPORT_LAYER": "Importar camada"
+        },
+        "INPUTS_FILE": {
+          "FILE": {
+            "INPUT_TITLE": "Clique ou arraste o arquivo para esta área",
+            "LABEL": "Arquivo"
+          }
+        },
+        "NOTIFICATION_SERVICE": {
+          "FAIL_FORM": {
+            "CONTENT": "Existem erros no formulário. Por favor, corrija-os antes de continuar.",
+            "TITLE": "Erro"
+          },
+          "FAIL_IMPORT_LAYER": {
+            "CONTENT": "Falha ao importar a camada.",
+            "TITLE": "Erro"
+          },
+          "IMPORTING_LAYER": {
+            "CONTENT": "Importando camada, isso pode demorar um pouco.",
+            "TITLE": "Info"
+          },
+          "IMPORT_LAYER_SUCCESS": {
+            "CONTENT": "A camada foi importada com sucesso.",
+            "TITLE": "Camada importada"
+          }
+        },
+        "SELECT": {
+          "AUTHOR": {
+            "LABEL": "Autoria",
+            "PLACEHOLDER": "Autoria"
+          },
+          "CASES_STUDIES": {
+            "LABEL": "Casos de estudo",
+            "PLACEHOLDER": "Casos de estudo"
+          },
+          "CREATION_DATE": {
+            "LABEL": "Data de criação",
+            "PLACEHOLDER": "Selecione a data"
+          },
+          "CRS": {
+            "LABEL": "CRS",
+            "PLACEHOLDER": "CRS"
+          },
+          "NAME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "SOURCE": {
+            "LABEL": "Fonte",
+            "PLACEHOLDER": "Fonte"
+          },
+          "SUBJECTS": {
+            "LABEL": "Tematicas",
+            "PLACEHOLDER": "Temas"
+          },
+          "TAGS": {
+            "BUTTONS": {
+              "ADD_BUTTON": "Adicionar"
+            },
+            "LABEL": "Tags",
+            "PLACEHOLDER": "Tags"
+          }
+        },
+        "TITLE": "Importar camada"
+      },
+      "PROPERTY_EDIT_MODAL": {
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "ERROR_MODAL": {
+          "CONTENT": "Ocorreu um erro ao tentar atualizar a propriedade.",
+          "TITLE": "Erro"
+        },
+        "INPUTS": {
+          "AUTODETECT_CATEGORIES": {
+            "LABEL": "Detecção automática das Categorias:",
+            "PLACEHOLDER": "Detecção automática das Categorias"
+          },
+          "CATEGORIES": {
+            "EMPTY_ERROR": "Você deve inserir pelo menos uma categoria.",
+            "LABEL": "Categorias:",
+            "PLACEHOLDER": "Categorias"
+          },
+          "CAT_TYPE": {
+            "LABEL": "Tipos de categoria:",
+            "PLACEHOLDER": "Tipo de Categoria"
+          },
+          "COL_TYPE": {
+            "LABEL": "COL_TYPE:",
+            "PLACEHOLDER": "COL_TYPE:"
+          },
+          "DATA_TYPE": {
+            "LABEL": "Tipo:",
+            "PLACEHOLDER": "Tipo"
+          },
+          "MAX": {
+            "BAD_FORMAT_ERROR": "O formato não está correto.",
+            "LABEL": "Máximo:",
+            "MAX_VALUE_LESS_ERROR": "O valor máximo não pode ser menor que o mínimo.",
+            "PLACEHOLDER": "Máximo"
+          },
+          "MIN": {
+            "BAD_FORMAT_ERROR": "O formato não está correto.",
+            "EMPTY_ERROR": "Você deve inserir pelo menos uma categoria.",
+            "LABEL": "Mínimo:",
+            "MIN_VALUE_GREATER_ERROR": "O valor mínimo não pode ser maior que o máximo.",
+            "PLACEHOLDER": "Mínimo"
+          },
+          "NATURE": {
+            "LABEL": "Natureza:",
+            "PLACEHOLDER": "Natureza"
+          },
+          "REPRESENTABLE": {
+            "LABEL": "Representable:",
+            "PLACEHOLDER": "Representável"
+          },
+          "UNIT": {
+            "LABEL": "Unidades:",
+            "PLACEHOLDER": "Unidades"
+          }
+        }
+      }
+    }
+  },
+  "GEO_VIEWER": {
+    "INFO": {
+      "ATTRIBUTE": {
+        "NAME": "Nome",
+        "STYLE": "Estilo",
+        "TITLE": "Atributo"
+      },
+      "ATTRIBUTES_TYPES": {
+        "CATEGORY": "Categoria",
+        "EMPTY": "Vazio",
+        "GEOMETRY": "Geometria",
+        "INT": "Entero",
+        "NUMERIC": "Numérico",
+        "STRING": "Cadeia de caracteres"
+      },
+      "FILTERS": {
+        "APPLY_BUTTON": "Aplicar",
+        "FILTERS": {
+          "ADD_FILTER": "Adicionar",
+          "LABEL": "Filtros:"
+        },
+        "LAYER": {
+          "LABEL": "Capa:"
+        },
+        "MODAL_GENERATE_CQL": {
+          "ACCEPT_BUTTON": "Aceitar",
+          "CANCEL_BUTTON": "Cancelar",
+          "ERROR": {
+            "VALIDATION": {
+              "CONTENT": "Erro ao validar o filtro. Verifique os erros.",
+              "TITLE": "Erro"
+            }
+          },
+          "TITLE": "Gerar CQL"
+        },
+        "TITLE": "Filtros",
+        "GENERATE_LAYER": "Exportar camada"
+      },
+      "INFORMATION": {
+        "NOT_FOUND_INFO": "Nenhuma informação encontrada",
+        "TITLE": "Informação"
+      },
+      "LAYER": {
+        "ATTRIBUTES": "Atributos",
+        "LEGEND": {
+          "CHECKBOX": "Mostrar legenda",
+          "TITLE": "Legend"
+        },
+        "NAME": "Nome",
+        "OPACITY": "Opacidade",
+        "TITLE": "Capa"
+      }
+    },
+    "OVERLAY_CLICK_MAP": {
+      "NOT_FOUND_INFO": "Nenhuma informação encontrada",
+      "TOOLBAR": {
+        "TITLE": "Info"
+      }
+    },
+    "TABS": {
+      "LAYER": {
+        "CONTENT": {
+          "INPUTS": {
+            "SEARCH": {
+              "PLACEHOLDER": "Pesquisar"
+            }
+          },
+          "TITLE": "Camadas"
+        },
+        "TITLE": "Camadas"
+      },
+      "MAP": {
+        "MODAL_SETTNGS": {
+          "CONTENT": {
+            "BASE_LAYER_INPUT": {
+              "LABEL": "Camada de base:",
+              "PLACEHOLDER": "Camada Base",
+              "TYPE": {
+                "CUSTOM": "Custom",
+                "DEFAULT": "Padrão"
+              }
+            },
+            "PROJECTION_INPUT": {
+              "LABEL": "Projeção:",
+              "PLACEHOLDER": "Projeção"
+            }
+          },
+          "ERROR_CHANGE_BASE_LAYER_NOTIFICATION": {
+            "CONTENT": "Ocorreu um erro ao tentar alterar a camada base.",
+            "TITLE": "Erro"
+          },
+          "FOOTER": {
+            "ACCEPT_BUTTON": "Aceitar",
+            "CANCEL_BUTTON": "Cancelar"
+          },
+          "TITLE": "Configurações do mapa"
+        },
+        "TITLE": "Mapa"
+      }
+    }
+  },
+  "LOGIN": {
+    "CAN_LOGIN_WITH": "Ou você pode fazer login usando",
+    "FORGOT_PASSWORD": "Esqueceu sua senha?",
+    "GUEST": "Convidado/a",
+    "INPUTS": {
+      "PASSWORD": {
+        "LABEL": "Senha"
+      }
+    },
+    "LINK_REGISTRATION": {
+      "NORMAL_TEXT": "Ainda não tem uma conta?",
+      "TEXT_LINK": "Você pode criar um."
+    },
+    "LOGIN_BUTTON": "Iniciar sessão"
+  },
+  "METADATA": {
+    "ANALYSIS": {
+      "BROWSER": {
+        "BREADCRUMB": "Análisis",
+        "CREATE_MODAL": {
+          "INPUTS": {
+            "ALGORITHM": {
+              "LABEL": "Algoritmo"
+            },
+            "DESCRIPTION": {
+              "LABEL": "Descrição"
+            },
+            "NAME": {
+              "LABEL": "Nome"
+            },
+            "PROGRAM": {
+              "LABEL": "Programa"
+            },
+            "VERSION": {
+              "LABEL": "Versão"
+            }
+          },
+          "TITLE": "Dados de análise"
+        },
+        "DELETE_MODAL_ITEM": {
+          "TITLE": "Tem certeza de que deseja excluir esta análise e os dados associados?"
+        },
+        "DELETE_MODAL_SELECTION": {
+          "CONTENT": "Número de análises selecionadas:",
+          "TITLE": "Tem certeza de que deseja excluir as análises selecionadas e os dados associados?"
+        },
+        "TITLE": "Análise"
+      },
+      "DETAIL": {
+        "EDIT_BUTTON": "Editar Detalhes",
+        "SAVE_BUTTON": "Guardar mudanças",
+        "TABS": {
+          "CHRONOLOGY": {
+            "TITLE": "Cronologia"
+          },
+          "GENERAL": {
+            "TITLE": "Geral"
+          },
+          "PHYLOGENIES": {
+            "TITLE": "Filogenias"
+          },
+          "PROCESSES": {
+            "TITLE": "Processos"
+          },
+          "SEQUENCES": {
+            "TITLE": "Sequências"
+          }
+        },
+        "TITLE": "Análise"
+      }
+    },
+    "CRS": {
+      "BROWSER": {
+        "BREADCRUMB": "CRS",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Aceitar",
+          "CANCEL_BUTTON": "Cancelar",
+          "CONTENT": "Tem certeza de que deseja excluir o CRS \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "Ocorreu um erro ao tentar excluir o CRS.",
+            "TITLE": "Erro"
+          },
+          "TITLE": "Remover CRS"
+        },
+        "TITLE": "CRS"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CODE_INPUT": {
+          "ERROR_EMPTY": "Você deve inserir o código.",
+          "LABEL": "Code",
+          "PLACEHOLDER": "Code"
+        },
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "Ocorreu um erro ao tentar criar um CRS.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Erro"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Você deve digitar o nome.",
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "PROJ4_INPUT": {
+          "ERROR_EMPTY": "Você deve inserir o código Proj4.",
+          "ERROR_FORMAT": "Não está no formato correto.",
+          "LABEL": "Proj4",
+          "PLACEHOLDER": "Proj4"
+        },
+        "TITLE": "Criar CRS"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "CRS - {{params.name}}",
+        "CANCEL_BUTTON": "Cancelar",
+        "CODE_INPUT": {
+          "ERROR_EMPTY": "Você deve inserir o código.",
+          "LABEL": "Code",
+          "PLACEHOLDER": "Code"
+        },
+        "ID_INPUT": {
+          "LABEL": "Id"
+        },
+        "MODIFY_BUTTON": "Modificar",
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Você deve digitar o nome.",
+          "ERROR_FORMAT": "Não está no formato correto.",
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "PROJ4_INPUT": {
+          "ERROR_EMPTY": "Você deve inserir o código Proj4.",
+          "LABEL": "Proj4",
+          "PLACEHOLDER": "Proj4"
+        },
+        "TITLE": "CRS",
+        "UPDATE_ERROR_MODAL": {
+          "CONTENT": "Ocorreu um erro ao tentar atualizar o CRS.",
+          "TITLE": "Erro"
+        }
+      }
+    },
+    "INDIVIDUALS": {
+      "BROWSER": {
+        "BREADCRUMB": "Indivíduos",
+        "TITLE": "Indivíduos"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Indivíduo - {{name}}",
+        "CANCEL_BUTTON": "Cancelar",
+        "DESCRIPTION_INPUT": {
+          "LABEL": "Descrição",
+          "PLACEHOLDER": "Descrição"
+        },
+        "ID_INPUT": {
+          "LABEL": "Id"
+        },
+        "MODIFY_BUTTON": "Modificar",
+        "NAME_INPUT": {
+          "LABEL": "Nome",
+          "PLACEHOLDER": "Nome"
+        },
+        "TITLE": "Indivíduo - {{name}}",
+        "UNIQUENAME_INPUT": {
+          "ERROR_EMPTY": "Você deve inserir o nome exclusivo.",
+          "LABEL": "Nome único",
+          "PLACEHOLDER": "Nome único"
+        },
+        "UPDATE_ERROR_MODAL": {
+          "CONTENT": "Ocorreu um erro ao tentar atualizar o indivíduo.",
+          "TITLE": "Erro"
+        },
+        "GENERAL_TAB": {
+          "TITLE": "Geral",
+          "ORGANISM_INPUT": {
+            "LABEL": "Organismo",
+            "DETAIL_BUTTON": "Ver detalhes"
+          },
+          "ONTOLOGY_INPUT": {
+            "LABEL": "Termo",
+            "DETAIL_BUTTON": "Ver detalhes"
+          }
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Nome",
+          "TITLE": "Sequências"
+        }
+      }
+    },
+    "ONTOLOGIES": {
+      "BROWSER": {
+        "TITLE": "Ontologias"
+      },
+      "DETAIL": {
+        "TABS": {
+          "GENERAL": {
+            "TITLE": "Geral"
+          },
+          "TERMS": {
+            "TITLE": "Términos"
+          }
+        },
+        "TITLE": "Ontologia"
+      },
+      "IMPORT": {
+        "LOAD_BUTTON": "A carregar",
+        "SUBTITLE": "(de arquivos OBO)",
+        "TITLE": "Importar ontologia",
+        "UPLOAD_BUTTON": "Iniciar upload"
+      }
+    },
+    "ORGANISMS": {
+      "BROWSER": {
+        "BREADCRUMB": "Organismos",
+        "CREATE_MODAL": {
+          "ACCEPT_BUTTON": "Aceitar",
+          "CANCEL_BUTTON": "Cancelar",
+          "INPUTS": {
+            "ABRIDGING": {
+              "LABEL": "Abreviação"
+            },
+            "COMMENTARY": {
+              "LABEL": "Comentário"
+            },
+            "COMMON_NAME": {
+              "LABEL": "Nome comum"
+            },
+            "GENUS": {
+              "LABEL": "Genus"
+            },
+            "SPECIES": {
+              "LABEL": "Especies"
+            }
+          },
+          "TITLE": "Datos del organismo"
+        },
+        "DELETE_ITEM_MODAL": {
+          "TITLE": "¿Seguro que desea eliminar este organismo y los datos asociados?"
+        },
+        "DELETE_SELECTION_MODAL": {
+          "CONTENT": "Número de organismos seleccionados:",
+          "TITLE": "¿Seguro que desea eliminar los organismos seleccionados y los datos asociados?"
+        },
+        "TITLE": "Organismos"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Organismo - {{params.name}}",
+        "CANCEL_CHANGES": "Cancelar cambios",
+        "MODIFY": "Modificar",
+        "NOTIFICATION_ERROR_LOAD_DATA": {
+          "CONTENT": "Ha ocurrido un error al intentar cargar los datos desde el servidor.",
+          "TITLE": "Error"
+        },
+        "NOTIFICATION_ERROR_SAVE_CHANGES": {
+          "CONTENT": "Ha ocurrido un error al intentar modificar el organismo.",
+          "TITLE": "Error"
+        },
+        "TABS": {
+          "GENERAL": {
+            "ABBREVIATION_INPUT": {
+              "LABEL": "Abreviación",
+              "PLACEHOLDER": "Abreviación"
+            },
+            "COMMON_NAME_INPUT": {
+              "LABEL": "Nombre común",
+              "PLACEHOLDER": "Nombre común"
+            },
+            "GENUS_INPUT": {
+              "LABEL": "Género",
+              "PLACEHOLDER": "Género"
+            },
+            "NAME_INPUT": {
+              "LABEL": "Nombre",
+              "PLACEHOLDER": "Nombre"
+            },
+            "SPECIES_INPUT": {
+              "LABEL": "Especie",
+              "PLACEHOLDER": "Especie"
+            },
+            "TITLE": "General",
+            "INFRASPEC_INPUT": {
+              "LABEL": "Especificação",
+              "PLACEHOLDER": "Especificação"
+            },
+            "TYPE": {
+              "LABEL": "Termo",
+              "DETAIL_BUTTON": "Ver detalhes"
+            }
+          },
+          "SAMPLES": {
+            "NAME_TH": "Nombre",
+            "TITLE": "Muestras"
+          },
+          "INDIVIDUALS": {
+            "NAME_TH": "Nome",
+            "TITLE": "Indivíduos"
+          }
+        },
+        "TITLE": "Organismo",
+        "SUBTITLE": "Informação detalhada"
+      }
+    },
+    "SOURCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Fuentes",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Aceptar",
+          "CANCEL_BUTTON": "Cancelar",
+          "CONTENT": "¿Estás seguro de borrar la fuente \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "Ha ocurrido un error al intentar eliminar la fuente.",
+            "TITLE": "Error"
+          },
+          "TITLE": "Borrar fuente"
+        },
+        "TITLE": "Fuentes"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Aceptar",
+        "CANCEL_BUTTON": "Cancelar",
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "Ha ocurrido un error al intentar crear la fuente.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Error"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Debes introducir el nombre.",
+          "LABEL": "Nombre",
+          "PLACEHOLDER": "Nombre"
+        },
+        "TITLE": "Crear fuente"
+      },
+      "TITLE": ""
+    },
+    "SUBJECTS": {
+      "BROWSER": {
+        "BREADCRUMB": "Temas",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Aceptar",
+          "CANCEL_BUTTON": "Cancelar",
+          "CONTENT": "¿Estás seguro de borrar el tema \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "Ha ocurrido un error al intentar eliminar el tema.",
+            "TITLE": "Error"
+          },
+          "TITLE": "Borrar tema"
+        },
+        "TITLE": "Temas"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Aceptar",
+        "CANCEL_BUTTON": "Cancelar",
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "Ha ocurrido un error al intentar crear un tema.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Error"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Debes introducir el nombre.",
+          "LABEL": "Nombre",
+          "PLACEHOLDER": "Nombre"
+        },
+        "TITLE": "Crear tema"
+      },
+      "TITLE": ""
+    },
+    "TERMS": {
+      "BROWSE": {
+        "TITLE": "Términos"
+      },
+      "DETAIL": {
+        "GENERAL_TAB": {
+          "DEFINITION_INPUT": {
+            "LABEL": "Definición",
+            "PLACEHOLDER": "Definición"
+          },
+          "NAME_INPUT": {
+            "LABEL": "Nombre",
+            "PLACEHOLDER": "Nombre"
+          },
+          "TITLE": "General"
+        },
+        "TITLE": "Término"
+      }
+    },
+    "TAXONOMIES": {
+      "BROWSER": {
+        "TITLE": "Taxonomias"
+      },
+      "DETAIL": {
+        "TABS": {
+          "GENERAL": {
+            "TITLE": "Geral"
+          },
+          "TERMS": {
+            "TITLE": "Termos"
+          }
+        },
+        "TITLE": "Taxonomia"
+      },
+      "IMPORT": {
+        "LOAD_BUTTON": "Carregando",
+        "SUBTITLE": "(desde arquivos XLS)",
+        "TITLE": "Importar taxonomia",
+        "UPLOAD_BUTTON": "Começar upload"
+      }
+    }
+  },
+  "MISC": {
+    "ANALYSIS_TAB": "Análise",
+    "ANNOTATIONS": {
+      "ANNOTATION_TAB": "Anotações",
+      "FORM": "Formulário",
+      "FREE_FIELD": "Campo livre",
+      "RICH_TEXT_FIELD": "Texto rico",
+      "TEMPLATE": "Template"
+    },
+    "BREADCRUMB": {
+      "CASE_STUDIES": "Caso de estudo"
+    },
+    "BROWSER": {
+      "ITEMS_PER_PAGE": {
+        "PAGE": "página"
+      }
+    },
+    "PHYLOGENIES_TAB": "Filogenias",
+    "PROCESSES_TAB": "Processos",
+    "PROFILE": {
+      "CLOSE_SESSION": "Fechar Sessão",
+      "PREFERENCES": "Preferências"
+    },
+    "IMPORTS": {
+      "LOADING_LABEL": "Carregando",
+      "START_LABEL": "Começar upload",
+      "TEXT_LABEL": "Clique ou arraste arquivos para esta área",
+      "HINT_LABEL": "Os arquivos serão adicionados a uma lista. Quando tudo estiver pronto, clique no botão 'Começar upload'."
+    },
+    "TABS": {
+      "SEQUENCES": {
+        "TITLE": "Sequências",
+        "NAME_TH": "Nomes"
+      },
+      "SPECIES": {
+        "TITLE": "Taxons",
+        "NAME_TH": "Nomes"
+      },
+      "INDIVIDUALS": {
+        "TITLE": "Indivíduos",
+        "NAME_TH": "Nomes"
+      },
+      "ANALYSES": {
+        "TITLE": "Análise",
+        "NAME_TH": "Nomes",
+        "TABLES": {
+          "ACTIONS": "Ações",
+          "FROM_TITLE": "Deriva de",
+          "INTO_TITLE": "Deriva em",
+          "TH_NAME": "Nome",
+          "TH_OBJECT_TYPE": "Tipo"
+        }
+      },
+      "PHYLOGENIES": {
+        "TITLE": "Filogenias",
+        "NAME_TH": "Nomes"
+      },
+      "JOBS": {
+        "TITLE": "Processos",
+        "NAME_TH": "Nomes"
+      },
+      "PROCESSES": {
+        "TITLE": "Processos",
+        "NAME_TH": "Nomes"
+      }
+    }
+  },
+  "MOLECULAR_DATA": {
+    "BLAST": {
+      "BROWSER": {
+        "BREADCRUMB": "BLAST",
+        "TITLE": "BLAST"
+      }
+    },
+    "COLLECTIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "Coleções",
+        "TITLE": "Coleções",
+        "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "Foram eliminadas com sucesso as coleções selecionadas.",
+        "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "Ocorreu um erro ao tentar eliminar as coleções.",
+        "NOTIFICATION_DELETE_ITEM_SUCCESS_CONTENT": "A coleção foi eliminada com sucesso.",
+        "NOTIFICATION_DELETE_ITEM_ERROR_CONTENT": "Ocorreu um erro ao tentar eliminar a coleção."
+      },
+      "DETAIL": {
+        "GENERAL_TITLE": "Geral",
+        "ANNOTATIONS_TITLE": "Anotações",
+        "CANCEL_BUTTON": "Cancelar",
+        "MODIFY_BUTTON": "Modificar",
+        "BREADCRUMB": "Coleção - {{params.name}}",
+        "TITLE": "Coleção",
+        "INPUTS": {
+          "ENTITIES": {
+            "LABEL": "Entidades",
+            "TH": {
+              "ACTIONS": "Ações",
+              "NAME": "Nome",
+              "TYPE": "Tipo"
+            }
+          },
+          "NAME": {
+            "LABEL": "Nome"
+          }
+        },
+        "NOTIFICATION_ERROR_LOAD_ENTITIES": {
+          "CONTENT": "Ocorreu um erro ao tentar carregar as entidades"
+        }
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Criar coleção",
+        "CREATE_BUTTON": "Criar",
+        "CANCEL_BUTTON": "Cancelar",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Nome"
+          }
+        }
+      },
+      "ADD_ITEMS_MODAL": {
+        "TITLE": "Adicionar à coleção",
+        "CANCEL_BUTTON": "Cancelar",
+        "ACCEPT_BUTTON": "Aceitar",
+        "INPUTS": {
+          "COLLECTIONS": {
+            "LABEL": "Coleções",
+            "ERROR_EMPTY": "Selecione uma coleção"
+          }
+        }
+      },
+      "ADD_BUTTON_ITEM": "Adicionar à coleção"
+    },
+    "DISCRIMINANT_MATRIX": {
+      "BROWSER": {
+        "BREADCRUMB": "Matrizes discriminantes",
+        "TITLE": "Matrizes discriminantes"
+      }
+    },
+    "MULTIPLE_ALIGNMENTS": {
+      "BROWSER": {
+        "BREADCRUMB": "Alinhamentos múltiplos",
+        "TITLE": "Alinhamentos múltiplos",
+        "CONCAT_BUTTON": "Concatenar",
+        "CUSTOM_ACTIONS_BUTTONS": {
+          "NEXTGENDEM_MISSING_EDITOR": "Nextgendem missing editor",
+          "NEXTGENDEM_MSA": "Nextgendem MSA"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Múltiplos Alinhamentos - {{params.name}}",
+        "GENERAL_TAB": {
+          "CANCEL_BUTTON": "Cancelar",
+          "DESCRIPTION_INPUT": {
+            "LABEL": "Descrição",
+            "PLACEHOLDER": "Descrição"
+          },
+          "ERROR_UPDATE_NOTIFICATION": {
+            "CONTENT": "Ocorreu um erro ao tentar atualizar o alinhamento múltiplo.",
+            "TITLE": "Erro"
+          },
+          "MODIFY_BUTTON": "Modificar",
+          "NAME_INPUT": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "PROGRAMVERSION_INPUT": {
+            "LABEL": "Versão do programa",
+            "PLACEHOLDER": "Versão do programa"
+          },
+          "PROGRAM_INPUT": {
+            "LABEL": "Programa",
+            "PLACEHOLDER": "Programa"
+          },
+          "SEQLEN_INPUT": {
+            "LABEL": "Comprimento da sequência",
+            "PLACEHOLDER": "Comprimento da sequência"
+          },
+          "SEQNUM_INPUT": {
+            "LABEL": "Número sequência",
+            "PLACEHOLDER": "Número sequência"
+          },
+          "SOURCENAME_INPUT": {
+            "LABEL": "Nome da fonte",
+            "PLACEHOLDER": "Nome da fonte"
+          },
+          "SOURCEVERSION_INPUT": {
+            "LABEL": "Versão da fonte",
+            "PLACEHOLDER": "Versão da fonte"
+          },
+          "SOURCE_URI_INPUT": {
+            "LABEL": "URI de origem",
+            "PLACEHOLDER": "URI de origem"
+          },
+          "TIMEEXECUTED_INPUT": {
+            "LABEL": "Data de execução",
+            "PLACEHOLDER": "Nome"
+          },
+          "TITLE": "Geral",
+          "ALGORITHM_INPUT": {
+            "LABEL": "Algoritmo",
+            "PLACEHOLDER": "Algoritmo del análisis"
+          }
+        },
+        "PHYLOTREE_TAB": {
+          "NAME_TH": "Nome",
+          "TITLE": "Árvores filogenéticas"
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Nome",
+          "TITLE": "Secuencias"
+        },
+        "SPECIES_TAB": {
+          "NAME_TH": "Nome",
+          "TITLE": "Espécies"
+        },
+        "TABS": {
+          "ANALYSES": {
+            "FROM_NAME_TH": "Deriva de",
+            "INTO_NAME_TH": "Fuente de",
+            "TITLE": "Análisis"
+          },
+          "SEQUENCES": {
+            "NAME_TH": "Nome",
+            "TITLE": "Sequencias"
+          },
+          "SPECIES": {
+            "NAME_TH": "Nome",
+            "TITLE": "Especies"
+          }
+        }
+      },
+      "NUCLEOTIDE_EDITOR": {
+        "BREADCRUMB": "Nextgendem MSA Editor",
+        "HEADER_STRINGS": {
+          "SAVE": "Salvar",
+          "SAVE_NAME": "Nome sem extensão",
+          "SEQUENCE_KEY": "Chave da sequência",
+          "MOTIF": "Motif",
+          "POSITION": "Posição",
+          "COMPLEMENT": "Complementar",
+          "INVERSE": "Inversa",
+          "NEXT": "Seguinte",
+          "GO": "Ir",
+          "CURSOR_KEY": "Chave do cursor",
+          "CURSOR_POS": "Posição do cursor",
+          "N_NUCLEOTIDES_ARROWS": "Número de nucleótidos a mover com as setas"
+        },
+        "LOG": {
+          "DUPLICATED_SEQUENCES": "As sequências {{sequences}} estão repetidas"
+        },
+        "SAVE_MODAL": {
+          "NAME": "Nome",
+          "DOWNLOAD_SVG": "Descarregar imagem SVG",
+          "DOWNLOAD_FASTA": "Descarregar alinhamento em FASTA",
+          "IMPORT_VIEW": "Importar Vista",
+          "IMPORT_NEW_ALIGNMENT": "Importar novo alinhamento"
+        },
+        "SAVE_OPTIONS": {
+          "SVG_IMAGE": "Imagem SVG",
+          "FASTA": "Ficheiro FASTA",
+          "VIEW": "Guardar Vista",
+          "ALN": "Importar Alinhamento",
+          "VERSION": "Guardar Versão"
+        },
+        "SAVE_VIEW": {
+          "NOTIFICATION_CREATE_VIEW_CORRECTLY": {
+            "CONTENT": "A vista foi salva corretamente.",
+            "TITLE": "Vista Salva"
+          },
+          "NOTIFICATION_CREATE_VIEW_ERROR": {
+            "TITLE": "Erro",
+            "CONTENT": "Ocorreu um erro ao tentar salvar a vista"
+          }
+        },
+        "IMPORT_ALN": {
+          "NOTIFICATION_IMPORT_ALN_CORRECTLY": {
+            "CONTENT": "O alinhamento foi importado com sucesso.",
+            "TITLE": "Alinhamento importado"
+          },
+          "NOTIFICATION_IMPORT_ALN_ERROR": {
+            "TITLE": "Erro",
+            "CONTENT": "Ocorreu um erro ao tentar importar o alinhamento"
+          }
+        },
+        "IMPORT_VERSION": {
+          "NOTIFICATION_IMPORT_VERSION_CORRECTLY": {
+            "CONTENT": "Foi importada uma nova versão do alinhamento.",
+            "TITLE": "Nova versão importada"
+          },
+          "NOTIFICATION_IMPORT_VERSION_ERROR": {
+            "TITLE": "Erro",
+            "CONTENT": "Ocorreu um erro ao tentar importar a nova versão do alinhamento"
+          }
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Importar alinhamentos múltiplos"
+      },
+      "NEXTGENDEM_MISSING_VALUES": {
+        "BREADCRUMB": "Nextgendem Missing Values - {{params.name}}",
+        "BREADCRUMB_NOT_ID": "Nextgendem Missing Values"
+      }
+    },
+    "PHYLOTREES": {
+      "BROWSER": {
+        "BREADCRUMB": "Árvores filogenéticas",
+        "TITLE": "Árvores filogenéticas"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Árvore filogenética - {{params.name}}",
+        "EXPORT_BUTTON": "Exportação",
+        "EXPORT_MODAL_CONTENT": "Em que formato você deseja baixar?",
+        "GENERAL_TAB": {
+          "ALIGNMENT_INPUT": {
+            "DETAIL_BUTTON": "Detalhes",
+            "LABEL": "Alinhamento filogenético",
+            "PLACEHOLDER": "Alinhamento filogenético"
+          },
+          "CANCEL_BUTTON": "Cancelar",
+          "COMMENT_INPUT": {
+            "LABEL": "Comentário",
+            "PLACEHOLDER": "Comentário"
+          },
+          "MODIFY_BUTTON": "Modificar",
+          "NAME_INPUT": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "TERMS_INPUT": {
+            "DETAIL_BUTTON": "Detalhes",
+            "LABEL": "Termo",
+            "PLACEHOLDER": "Termo"
+          },
+          "TITLE": "Geral",
+          "UPDATE_ERROR_NOTIFICATION": {
+            "CONTENT": "Ocorreu um erro ao tentar atualizar a árvore filogenética.",
+            "TITLE": "Erro"
+          }
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Nome",
+          "TITLE": "Sequências"
+        },
+        "PHYLOTREES_TAB": {
+          "TITLE": "Árvores Filogenéticas",
+          "NAME_TH": "Nome"
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Importar árvore filogenética"
+      },
+      "ARCHAEOPTERYX": {
+        "BREADCRUMB": "Archaeopteryx",
+        "NOTIFICATION_CREATE_VIEW_ERROR": {
+          "CONTENT": "Ocorreu um erro ao tentar salvar a vista",
+          "TITLE": "Erro"
+        },
+        "NOTIFICATION_CREATE_VIEW_CORRECTLY": {
+          "CONTENT": "A vista foi salva corretamente.",
+          "TITLE": "Vista Salva"
+        }
+      }
+    },
+    "SEQUENCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Sequências genéticas",
+        "TITLE": "Sequências genéticas"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Sequência - {{params.name}}",
+        "EXPORT_BUTTON": "Exportação",
+        "GENERAL_TAB": {
+          "CANCEL_BUTTON": "Cancelar",
+          "DIMENSION_INPUT": {
+            "LABEL": "Dimensão"
+          },
+          "INDIVIDUAL_INPUT": {
+            "DETAIL_BUTTON": "Ver detalhe",
+            "LABEL": "Individual"
+          },
+          "LAST_MODIFICATION_INPUT": {
+            "LABEL": "Última modificação"
+          },
+          "MODIFY_BUTTON": "Modificar",
+          "NAME_INPUT": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "ONTOLOGY_INPUT": {
+            "DETAIL_BUTTON": "Ver detalhe",
+            "LABEL": "Termo"
+          },
+          "ORGANISM_INPUT": {
+            "DETAIL_BUTTON": "Ver detalhe",
+            "LABEL": "Organismo"
+          },
+          "REGISTRATION_DATE_INPUT": {
+            "LABEL": "Data de registro"
+          },
+          "TITLE": "Geral",
+          "UNIQUE_NAME_INPUT": {
+            "LABEL": "Nome único",
+            "PLACEHOLDER": "Nome único"
+          },
+          "UPDATE_ERROR_NOTIFICATION": {
+            "CONTENT": "Ocorreu um erro ao tentar atualizar a sequência.",
+            "TITLE": "Erro"
+          },
+          "SRCFEATURE_INPUT": {
+            "DETAIL_BUTTON": "Ver detalhe",
+            "LABEL": "Sequência origem"
+          }
+        },
+        "SUBTITLE": "Informação detalhada",
+        "FROM_SEQUENCE_TAB": {
+          "LABEL": "Sequências",
+          "NAME_TH": "Variantes"
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Importar sequências",
+        "TITLE": "Importar sequências",
+        "FORMS": {
+          "INFO_TITLE": "Informação adicional",
+          "CONF_TITLE": "Procedimento",
+          "BIODATA_COLLAPSE": "Dados avançados",
+          "DATA_COLLAPSE": "Dados gerais",
+          "FILES_TITLE": "Arquivos",
+          "INPUTS": {
+            "ORG": {
+              "LABEL": "Organismo",
+              "PLACEHOLDER": "Atribuir táxon"
+            },
+            "STUDY_CASES": {
+              "LABEL": "Casos de estudo",
+              "PLACEHOLDER": "Incluir em casos de estudo"
+            },
+            "COLLECTIONS": {
+              "LABEL": "Coleções",
+              "PLACEHOLDER": "Incluir em coleções"
+            },
+            "GENE": {
+              "LABEL": "Gene",
+              "PLACEHOLDER": "Atribuir região do ADN"
+            },
+            "GENES": {
+              "LABEL": "Genes de interesse",
+              "PLACEHOLDER": "Selecionar genes para dividir e extrair"
+            },
+            "DUPLICATES": {
+              "LABEL": "Duplicidade",
+              "DEFAULT": "Sem duplicados",
+              "IGNORE": "Ignorar",
+              "UPDATE": "Sobrescrever"
+            },
+            "ONLY_RESIDUES": {
+              "LABEL": "Sem anotações"
+            }
+          }
+        }
+      }
+    },
+    "SUPERMATRIX": {
+      "BROWSER": {
+        "BREADCRUMB": "Supermatrizes",
+        "TITLE": "Supermatrizes"
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Supermatrizes",
+        "TITLE": "Supermatrizes"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Supermatriz - {{ params.name }}"
+      }
+    },
+    "ANALYSES": {
+      "DETAIL": {
+        "BREADCRUMB": "Análise - {{params.name}}",
+        "SUBTITLE": "Informação detalhada",
+        "EXPORT_BUTTON": "Exportar",
+        "TABS": {
+          "GENERAL": {
+            "CANCEL_BUTTON": "Cancelar",
+            "DESCRIPTION_INPUT": {
+              "LABEL": "Descrição",
+              "PLACEHOLDER": "Descrição"
+            },
+            "ERROR_UPDATE_NOTIFICATION": {
+              "CONTENT": "Ocorreu um erro ao tentar atualizar o alinhamento múltiplo.",
+              "TITLE": "Erro"
+            },
+            "MODIFY_BUTTON": "Modificar",
+            "NAME_INPUT": {
+              "LABEL": "Nome",
+              "PLACEHOLDER": "Nome"
+            },
+            "PROGRAMVERSION_INPUT": {
+              "LABEL": "Versão do programa",
+              "PLACEHOLDER": "Versão do programa"
+            },
+            "PROGRAM_INPUT": {
+              "LABEL": "Programa",
+              "PLACEHOLDER": "Programa"
+            },
+            "SEQLEN_INPUT": {
+              "LABEL": "Comprimento da sequência",
+              "PLACEHOLDER": "Comprimento da sequência"
+            },
+            "SEQNUM_INPUT": {
+              "LABEL": "Número da sequência",
+              "PLACEHOLDER": "Número da sequência"
+            },
+            "SOURCENAME_INPUT": {
+              "LABEL": "Fonte",
+              "PLACEHOLDER": "Nome da fonte"
+            },
+            "ALGORITHM_INPUT": {
+              "LABEL": "Algoritmo",
+              "PLACEHOLDER": "Algoritmo de análise"
+            },
+            "SOURCEVERSION_INPUT": {
+              "LABEL": "Versão da fonte",
+              "PLACEHOLDER": "Versão da fonte"
+            },
+            "SOURCE_URI_INPUT": {
+              "LABEL": "URI da fonte",
+              "PLACEHOLDER": "URI da fonte"
+            },
+            "TIMEEXECUTED_INPUT": {
+              "LABEL": "Data de execução",
+              "PLACEHOLDER": "Nome"
+            },
+            "TITLE": "Geral"
+          },
+          "CASES_STUDY": {
+            "TITLE": "Casos de estudo"
+          },
+          "COLLECTIONS": {
+            "TITLE": "Coleções"
+          }
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Importar análise computacional",
+        "TITLE": "Importar análise computacional",
+        "FORMS": {
+          "INFO_TITLE": "Informação adicional",
+          "CONF_TITLE": "Procedimento",
+          "BIODATA_COLLAPSE": "Dados avançados",
+          "DATA_COLLAPSE": "Dados gerais",
+          "FILES_TITLE": "Arquivos",
+          "INPUTS": {
+            "PROGRAM": {
+              "LABEL": "Programa"
+            },
+            "PROGRAMVERSION": {
+              "LABEL": "Versão",
+              "PLACEHOLDER": "Importado arquivo"
+            },
+            "NAME": {
+              "LABEL": "Nome"
+            },
+            "ALGORITHM": {
+              "LABEL": "Algoritmo"
+            },
+            "DESCRIPTION": {
+              "LABEL": "Descrição"
+            },
+            "ORG": {
+              "LABEL": "Organismo",
+              "PLACEHOLDER": "Atribuir táxon"
+            },
+            "SOURCE": {
+              "LABEL": "Derivar de",
+              "PLACEHOLDER": "Selecionar análise de procedência"
+            },
+            "STUDY_CASES": {
+              "LABEL": "Casos de estudo",
+              "PLACEHOLDER": "Incluir em casos de estudo"
+            },
+            "COLLECTIONS": {
+              "LABEL": "Coleções",
+              "PLACEHOLDER": "Incluir em coleções"
+            },
+            "GENE": {
+              "LABEL": "Gene",
+              "PLACEHOLDER": "Atribuir região do ADN"
+            },
+            "GENES": {
+              "LABEL": "Genes de interesse",
+              "PLACEHOLDER": "Selecionar genes para dividir e extrair"
+            },
+            "DUPLICATES": {
+              "LABEL": "Duplicidade",
+              "DEFAULT": "Sem duplicados",
+              "IGNORE": "Ignorar",
+              "UPDATE": "Sobrescrever"
+            },
+            "OVERWRITE": {
+              "LABEL": "Sobrescrever",
+              "PLACEHOLDER": "Selecionar análise já existente"
+            },
+            "ONLY_RESIDUES": {
+              "LABEL": "Sem anotações"
+            }
+          }
+        }
+      }
+    },
+    "IMPORT": {
+      "FORMS": {
+        "INFO_TITLE": "Informação adicional",
+        "CONF_TITLE": "Procedimento",
+        "BIODATA_COLLAPSE": "Dados avançados",
+        "DATA_COLLAPSE": "Dados gerais",
+        "FILES_TITLE": "Ficheiros",
+        "INPUTS": {
+          "SUGGEST_OPTION": "Adicionar opção",
+          "STUDY_CASES": {
+            "LABEL": "Casos de estudo",
+            "PLACEHOLDER": "Incluir em casos de estudo"
+          },
+          "COLLECTIONS": {
+            "LABEL": "Coleções",
+            "PLACEHOLDER": "Incluir em coleções"
+          },
+          "SOURCE": {
+            "LABEL": "Deriva de",
+            "PLACEHOLDER": "Seleccionar a análise de proveniência"
+          },
+          "ORG": {
+            "LABEL": "Organismo",
+            "PLACEHOLDER": "Atribuir táxon"
+          },
+          "GENE_TAGS": {
+            "LABEL": "Genes",
+            "PLACEHOLDER": "Atribuir região do ADN"
+          },
+          "TARGET_GENES": {
+            "LABEL": "Genes de interés",
+            "PLACEHOLDER": "Seleccionar genes a dividir y extraer"
+          },
+          "DUPLICATES": {
+            "LABEL": "Duplicidad",
+            "DEFAULT": "Sin duplicados",
+            "IGNORE": "Ignorar",
+            "UPDATE": "Sobrescrever"
+          },
+          "OVERWRITE": {
+            "LABEL": "Sobrescrever",
+            "PLACEHOLDER": "Seleccionar a análise existente"
+          },
+          "MORE_OPTIONS": {
+            "LABEL": "Opções adicionais",
+            "ONLY_RESIDUES": "Sem anotações",
+            "REMOVE_GAPS": "Sem gaps",
+            "SPLIT_GENES": "Dividir todos os genes",
+            "ONLY_INDIVIDUALS": "Apenas indivíduos"
+          },
+          "MISSING_VALUE": {
+            "LABEL": "Representação de dados ausentes",
+            "PLACEHOLDER": "?",
+            "EMPTY_ERROR": "Este campo é obrigatório."
+          },
+          "PROGRAM": {
+            "LABEL": "Programa"
+          },
+          "PROGRAMVERSION": {
+            "LABEL": "Versão",
+            "PLACEHOLDER": "(Arquivo importado)"
+          },
+          "NAME": {
+            "LABEL": "Nome"
+          },
+          "ALGORITHM": {
+            "LABEL": "Algoritmo"
+          },
+          "DESCRIPTION": {
+            "LABEL": "Descrição"
+          }
+        },
+        "BUTTONS": {
+          "LOADING": "Carregando",
+          "START_UPLOAD": "Iniciar upload"
+        }
+      }
+    }
+  },
+  "PREFERENCES_MODAL": {
+    "API_KEYS": {
+      "DELETE_NOTIFICATION_ERROR": {
+        "CONTENT": "Ocorreu um erro inesperado ao tentar excluir uma chave de API.",
+        "TITLE": "Erro"
+      },
+      "GENERATE_BUTTON": "Gerar",
+      "GENERATE_MODAL": {
+        "CONTENT": {
+          "ROLE_INPUT": {
+            "ERROR_EMPTY": "Deve haver pelo menos uma função selecionada.",
+            "LABEL": "Papéis",
+            "PLACEHOLDER": "Papéis"
+          }
+        },
+        "FOOTER": {
+          "CANCEL_BUTTON": "Cancelar",
+          "GENERATE_BUTTON": "Gerar"
+        },
+        "TITLE": "Gerar chave de API"
+      },
+      "GET_NOTIFICATION_ERROR": {
+        "CONTENT": "Ocorreu um erro inesperado ao tentar carregar as chaves de API.",
+        "TITLE": "Erro"
+      },
+      "POST_NOTIFICATION_ERROR": {
+        "CONTENT": "Ocorreu um erro inesperado ao tentar criar uma chave de API.",
+        "TITLE": "Erro"
+      },
+      "TABLE": {
+        "ACTIONS_TH": "Ações",
+        "ID_TH": "ID",
+        "ROLES_TH": "Papéis",
+        "VALID_FROM_TH": "Válido de"
+      },
+      "TITLE": "API Keys"
+    },
+    "BUTTONS": {
+      "CONFIRM_CHANGES": "Confirmar alterações"
+    },
+    "LANGUAGES": {
+      "LANGUAGE_DESCRIPTION": "Escolha o idioma em que deseja utilizar o sistema NEXTGENDEM.",
+      "LANGUAGE_LABEL": "Idioma",
+      "LANGUAGE_TYPES": {
+        "private-en": "Inglês",
+        "private-es": "Espanhol",
+        "private-fr": "Francês",
+        "private-pt": "Português"
+      },
+      "TITLE": "Idiomas"
+    },
+    "MODAL_CANCEL_OR_CONFIRM": {
+      "BODY": "Deseja salvar as alterações?",
+      "BUTTONS": {
+        "CANCEL": "Cancelar",
+        "DISCARD": "Descartar",
+        "SAVE": "Guardar"
+      },
+      "TITLE": "Atenção"
+    },
+    "PROFILE": {
+      "TITLE": "Perfil"
+    },
+    "THEMES": {
+      "TITLE": "Temas",
+      "TYPES": {
+        "CYAN_1": "Ciano #1",
+        "CYAN_2": "Ciano #2",
+        "GOLD": "Ouro",
+        "GRASS_GREEN": "Grama verde",
+        "GRAY": "Cinzento",
+        "GREEN_NEXTGENDEM": "Verde NEXTGENDEM",
+        "BLUE_NEXTGENDEM": "Azul NEXTGENDEM"
+      }
+    },
+    "TITLE": "Preferências"
+  },
+  "PROCESSES": {
+    "BROWSER": {
+      "BREADCRUMB": {
+        "DONE": "Processos Concluídos",
+        "TO_DO": "Processos Pendentes"
+      },
+      "TITLE": {
+        "DONE": "Processos Concluídos",
+        "TO_DO": "Processos Pendentes"
+      },
+      "NAME_TH": "Nome",
+      "STATE_TH": "Estado",
+      "PROCESSES_TH": "Processos",
+      "SERVER_TH": "Servidor",
+      "ACTIONS_TH": "Ações"
+    },
+    "PROCESSES_DETAIL": {
+      "BREADCRUMB": "Processo {{params.name}}",
+      "CANCEL_BUTTON": "Cancelar",
+      "CANCEL_PROCCESS_MODAL": {
+        "ACCEPT_BUTTON": "Aceitar",
+        "CLOSE_BUTTON": "Fechar",
+        "CONTENT": "Tem certeza que deseja abortar o processo {{name}}?",
+        "TITLE": "Cancelar Processo"
+      },
+      "CANCEL_PROCESS_NOTIFICATION_CORRECTLY": {
+        "CONTENT": "Foi cancelado com sucesso.",
+        "TITLE": "Processo cancelado"
+      },
+      "CANCEL_PROCESS_NOTIFICATION_ERROR": {
+        "CONTENT": "Ocorreu um problema ao tentar cancelar o processo.",
+        "TITLE": "Erro"
+      },
+      "INFO": {
+        "DOWNLOAD_BUTTON": "Baixar",
+        "FILES": "Arquivos",
+        "IMPORT_BUTTON": "Importar",
+        "DETAIL_BUTTON": "Detalhe",
+        "RESOURCE": "Recurso",
+        "RESOURCE_TYPE": "Tipo de recurso",
+        "STATUS": "Estado",
+        "STEPS_DESC": {
+          "cancelled": "Processo cancelado",
+          "cancelling": "Cancelando processo",
+          "cleanup": "Limpando o espaço de trabalho do servidor remoto",
+          "created": "Processo enviado.",
+          "error": "Erro",
+          "export": "Exportando os dados de entrada do banco de dados",
+          "preparing_workspace": "Preparando o espaço de trabalho no servidor remoto",
+          "store_result_in_backend": "Salvando resultados no banco de dados",
+          "submit": "Enviando o processo para o servidor remoto",
+          "success": "Concluído",
+          "transfer_data_from_resource": "Obtendo resultados do processo do servidor remoto",
+          "transfer_data_to_resource": "Transferindo dados para servidor remoto",
+          "wait_for_execution_end": "Aguardando o servidor finalizar a execução do processo enviado",
+          "wait_until_execution_starts": "Aguardando o servidor executar o processo enviado",
+          "manage_error": "Gerenciando um erro"
+        },
+        "SUBPROCESSES_PARAMETERS": "Parâmetros de subprocessos",
+        "VISUALIZE_BUTTON": "Visualizar"
+      },
+      "RELAUNCH_BUTTON": "Relançar",
+      "TITLE": "Processo",
+      "IMPORT_MODAL": {
+        "NAME": "Nome",
+        "TITLE": "Importar resultado"
+      }
+    },
+    "PROCESSES_SETUP": {
+      "BREADCRUMB": "Inicie processo",
+      "STEPS": {
+        "PROGRAM": {
+          "COMPUTING_RESOURCE_INPUT": {
+            "LABEL": "Recursos de computação",
+            "PLACEHOLDER": "Selecione recursos de computação"
+          },
+          "N_CPU_PER_PROCESSES_INPUT": {
+            "LABEL": "Número de CPUs por processo"
+          },
+          "N_PROCESSES_INPUT": {
+            "LABEL": "Número de processos"
+          },
+          "N_NODES_INPUT": {
+            "LABEL": "Número de nós"
+          },
+          "PROGRAM_INPUT": {
+            "LABEL": "Programa",
+            "PLACEHOLDER": "Selecione o programa"
+          },
+          "TIME_IN_HOURS_INPUT": {
+            "LABEL": "Tempo em horas"
+          },
+          "TITLE": "Programa"
+        },
+        "SETTING": {
+          "TITLE": "Configuração"
+        },
+        "SUMMARY": {
+          "LAUNCH_TASK": "Iniciar tarefa",
+          "LOADING": "A carregar",
+          "PLACE_OF_EXECUTION_TD": "Local de Execução",
+          "PROGRAM_TD": "Programa",
+          "PROGRAM_VERSION_TD": "Versão do programa",
+          "SELECTED_FILES_TD": "Arquivos Selecionados",
+          "SELECTED_SEQUENCES_TD": "Sequências selecionadas",
+          "SETTINGS_TH": "Definições",
+          "TASK_PRIORITY_TD": "Prioridade da tarefa",
+          "TITLE": "Sumário"
+        },
+        "EXECUTE_JOB_MODAL": {
+          "BODY": "Você tem certeza que deseja executar este processo?"
+        }
+      },
+      "INFO_BUTTON": "Info",
+      "NEXT_BUTTON": "Próximo",
+      "PREVIOUS_BUTTON": "Anterior",
+      "OPEN_IN_NEW_TAB_BUTTON": "Abrir em nova aba",
+      "EXECUTE_JOB_MODAL": {
+        "BODY": "Você tem certeza de que deseja executar este processo?"
+      },
+      "LAUNCH_TASK_BUTTON": "Lançar tarefa"
+    },
+    "BLAST": {
+      "RESOURCES_WARNING": "O número de threads será definido automaticamente de acordo com o número de sequências na consulta."
+    },
+    "MAFFT": {
+      "RESOURCES_WARNING": "O número de threads será selecionado proporcionalmente ao número de pares possíveis das n sequências de entrada; número de pares = n (n - 1) / 2"
+    },
+    "BEAST": {
+      "RESOURCES_TIP": "Número da cadeia de Markov. Este é o número de soluções simultâneas de árvores filogenéticas que serão calculadas compartilhando informações entre si."
+    },
+    "MR_BAYES": {
+      "RESOURCES_TIP": "Número da cadeia de Markov. Este é o número de soluções simultâneas de árvores filogenéticas que serão calculadas compartilhando informações entre si."
+    },
+    "NGDTRIMMER": {
+      "RESOURCES_TIP": "Aceita valores de 1 a 20, enquanto maior for mais rápido será executado. Experimente com 2 para começar e se executar muito lento aumente-o na próxima vez."
+    }
+  },
+  "PROCESSES_ADMIN": {
+    "COMPUTE_RESOURCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Recursos de computação",
+        "TITLE": "Recursos de computação"
+      },
+      "DETAIL": {
+        "TITLE": "Recurso de computação",
+        "BREADCRUMB": "Recurso de cómputo - {{ params.name }}",
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome"
+          },
+          "LAUNCHABLE_PROCESSES": {
+            "LABEL": "Processos lançáveis",
+            "PLACEHOLDER": "Processos lançáveis"
+          },
+          "JM_TYPE": {
+            "LABEL": "Tipo de recurso de cómputo",
+            "PLACEHOLDER": "Tipo de recurso de cómputo",
+            "EMPTY_ERROR": "Deves introduzir o tipo de recurso de cómputo."
+          },
+          "LOCATION": {
+            "JSON_ERROR": "O campo deve ter uma estrutura tipo JSON."
+          },
+          "CREDENTIALS": {
+            "JSON_ERROR": "O campo deve ter uma estrutura tipo JSON."
+          },
+          "PARAMS": {
+            "JSON_ERROR": "O campo deve ter uma estrutura tipo JSON."
+          },
+          "AGREEMENT": {
+            "JSON_ERROR": "O campo deve ter uma estrutura tipo JSON."
+          }
+        },
+        "NOTIFICATION_LOAD_DATA_ERROR": {
+          "TITLE": "Erro",
+          "CONTENT": "Ocorreu um erro ao tentar carregar os dados."
+        },
+        "NOTIFICATION_UPDATE_ERROR": {
+          "TITLE": "Erro",
+          "CONTENT": "Ocorreu um erro ao tentar atualizar."
+        }
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Criar recurso de computação",
+        "CREATE_BUTTON": "Criar",
+        "CANCEL_BUTTON": "Cancelar",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Nome",
+            "PLACEHOLDER": "Nome",
+            "EMPTY_ERROR": "Você deve inserir o nome."
+          },
+          "JM_TYPE": {
+            "LABEL": "Tipo de recurso de computação",
+            "PLACEHOLDER": "Tipo de recurso de computação",
+            "EMPTY_ERROR": "Você deve inserir o tipo de recurso de computação."
+          },
+          "LOCATION": {
+            "JSON_ERROR": "O campo deve ter uma estrutura do tipo JSON."
+          },
+          "CREDENTIALS": {
+            "JSON_ERROR": "O campo deve ter uma estrutura do tipo JSON."
+          },
+          "PARAMS": {
+            "JSON_ERROR": "O campo deve ter uma estrutura do tipo JSON."
+          },
+          "AGREEMENT": {
+            "JSON_ERROR": "O campo deve ter uma estrutura do tipo JSON."
+          }
+        }
+      },
+      "REMOVE_MODAL": {
+        "TITLE": "Tem certeza que deseja excluir este elemento?",
+        "CONTENT": "Recurso de computação: {{name}}",
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "NOTIFICATION_ERROR": {
+          "TITLE": "Erro",
+          "CONTENT": "Ocorreu um erro ao tentar excluir o recurso de computação."
+        }
+      }
+    },
+    "PROCESS_TYPES": {
+      "BROWSER": {
+        "TITLE": "Tipos de processos",
+        "BREADCRUMB": "Tipos de processos"
+      },
+      "DETAIL": {
+        "TITLE": "Tipo de processo - {{name}}",
+        "BREADCRUMB": "Tipo de processo - {{params.name}}",
+        "ACCEPT_BUTTON": "Aceitar",
+        "CANCEL_BUTTON": "Cancelar",
+        "NOTIFICATION_UPDATE_ERROR": {
+          "TITLE": "Erro",
+          "CONTENT": "Ocorreu um erro ao tentar atualizar o tipo de processo."
+        },
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Nome"
+          },
+          "DESCRIPTION": {
+            "LABEL": "Descrição"
+          },
+          "RESOURCES": {
+            "LABEL": "Recursos de computação que estão disponíveis",
+            "PLACEHOLDER": "Recursos de computação que estão disponíveis"
+          }
+        }
+      }
+    }
+  },
+  "SECURITY_ADMIN": {
+    "IDENTITIES": {
+      "BROWSER": {
+        "BREADCRUMB": "Usuários",
+        "TITLE": "Usuários",
+        "ENABLE_BUTTON": "Habilitar",
+        "DISABLE_BUTTON": "Desabilitar"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Detalhes do usuário - {{params.name}}",
+        "EDIT_BUTTON": "Editar",
+        "SUBTITLE": "Informação",
+        "NAME": "Nome",
+        "EMAIL": "Email",
+        "ENABLE": "Habilitado",
+        "DEACTIVATION_DATE": "Data de desativação",
+        "CREATION_DATE": "Data de criação",
+        "ORGANIZATIONS": "Organizações",
+        "ROLES": "Roles"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Editar usuário - {{params.name}}",
+        "SUBTITLE": "Informação"
+      },
+      "IDENTITY_FORM": {
+        "MODIFY_BUTTON": "Modificar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CREATE_BUTTON": "Criar",
+        "DELETE_BUTTON": "Eliminar",
+        "NAME": "Nome",
+        "EMAIL": "Email",
+        "ENABLE": "Habilitado",
+        "DEACTIVATION_DATE": "Data de desativação",
+        "CREATION_DATE": "Data de criação",
+        "ORGANIZATIONS": "Organizações",
+        "ROLES": "Roles",
+        "YES_OPTION": "Sim",
+        "NO_OPTION": "Não"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Criar usuário",
+        "CANCEL_BUTTON": "Cancelar",
+        "ACCEPT_BUTTON": "Aceitar"
+      }
+    },
+    "ORGANIZATIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "Organizações",
+        "TITLE": "Organizações"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Detalhe da organização - {{params.name}}",
+        "SUBTITLE": "Informação",
+        "EDIT_BUTTON": "Editar",
+        "NAME": "Nome",
+        "USERS": "Usuários"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Editar organização - {{params.name}}",
+        "SUBTITLE": "Editar"
+      },
+      "ORGANIZATION_FORM": {
+        "NAME": "Nome",
+        "USERS": "Usuários",
+        "MODIFY_USER": "Modificar usuário",
+        "MODIFY_BUTTON": "Modificar",
+        "CANCEL_BUTTON": "Cancelar",
+        "CREATE_BUTTON": "Criar",
+        "DELETE_BUTTON": "Eliminar"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Criar organização",
+        "CANCEL_BUTTON": "Cancelar",
+        "ACCEPT_BUTTON": "Aceitar"
+      }
+    },
+    "REFERENCES_ACL": {
+      "BROWSER": {
+        "BREADCRUMB": "Referências ACL",
+        "TITLE": "Referências ACL"
+      }
+    },
+    "ROLES": {
+      "BROWSER": {
+        "BREADCRUMB": "Papéis",
+        "TITLE": "Papéis"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Detalhe da função - {{params.name}}",
+        "SUBTITLE": "Informação",
+        "EDIT_BUTTON": "Editar",
+        "NAME": "Nome",
+        "USERS": "Usuários"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Editar rol - {{params.name}}",
+        "SUBTITLE": "Editar"
+      },
+      "ROLE_FORM": {
+        "NAME": "Nome:",
+        "USERS": "Usuários:",
+        "MODIFY_USER": "Modificar usuário",
+        "CREATE_BUTTON": "Criar",
+        "DELETE_BUTTON": "Eliminar",
+        "CANCEL_BUTTON": "Cancelar",
+        "MODIFY_BUTTON": "Modificar"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Criar rol",
+        "CANCEL_BUTTON": "Cancelar",
+        "ACCEPT_BUTTON": "Aceitar"
+      }
+    },
+    "SYSTEM_FUNCTIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "Funções do Sistema",
+        "TITLE": "Funções do Sistema",
+        "SAVE": "Salvar"
+      }
+    },
+    "STATUS_CHECKERS": {
+      "DETAIL": {
+        "STATUS_SERVICES": {
+          "TITLE": "Estado dos serviços",
+          "BREADCRUMB": "Estado dos serviços"
+        }
+      }
+    }
+  },
+  "SIDEBAR": {
+    "sub1": {
+      "routes": {
+        "blast": {
+          "title": "BLAST"
+        },
+        "collections": {
+          "title": "Coleções"
+        },
+        "discriminant_matrix": {
+          "title": "Matrizes discriminantes"
+        },
+        "multiple_alignments": {
+          "title": "Alinhamentos múltiplos"
+        },
+        "phylogenetic_trees": {
+          "title": "Árvores filogenéticas"
+        },
+        "sequences": {
+          "title": "Sequências"
+        },
+        "supermatrices": {
+          "title": "Supermatrizes"
+        }
+      },
+      "title": "Dados moleculares"
+    },
+    "sub2": {
+      "routes": {
+        "layers": {
+          "title": "Camadas"
+        },
+        "pda": {
+          "title": "PDA"
+        },
+        "regions": {
+          "title": "Regiões"
+        }
+      },
+      "title": "Dados geográficos"
+    },
+    "sub3": {
+      "routes": {
+        "completed": {
+          "title": "Processos Concluídos"
+        },
+        "launch": {
+          "title": "Lançamento de processo"
+        },
+        "pending": {
+          "title": "Processos Pendentes"
+        }
+      },
+      "title": "Processos"
+    },
+    "sub4": {
+      "routes": {
+        "gis": {
+          "title": "GIS"
+        },
+        "sequences": {
+          "title": "Secuencias"
+        },
+        "viewers": {
+          "title": "Vistas"
+        }
+      },
+      "title": "Visualização"
+    },
+    "sub5": {
+      "routes": {
+        "list": {
+          "title": "Lista"
+        }
+      },
+      "title": "Casos de estudo"
+    },
+    "sub6": {
+      "routes": {
+        "analysis": {
+          "title": "Análise"
+        },
+        "crs": {
+          "title": "CRS"
+        },
+        "individuals": {
+          "title": "Indivíduos"
+        },
+        "ontologies": {
+          "title": "Ontologias"
+        },
+        "organisms": {
+          "title": "Organismos"
+        },
+        "publications": {
+          "title": "Publicações"
+        },
+        "sources": {
+          "title": "Fontes"
+        },
+        "subject": {
+          "title": "Temas"
+        },
+        "taxonomies": {
+          "title": "Taxonomias"
+        },
+        "terms": {
+          "title": "Termos"
+        }
+      },
+      "title": "Metadados"
+    },
+    "sub7": {
+      "routes": {
+        "computing_resources": {
+          "title": "Recursos de computação"
+        },
+        "process_types": {
+          "title": "Tipos de Processo"
+        },
+        "processes": {
+          "title": "Processos"
+        }
+      },
+      "title": "Admin. de processos"
+    },
+    "sub8": {
+      "routes": {
+        "acl": {
+          "title": "ACLs"
+        },
+        "authenticators": {
+          "title": "Autenticadores"
+        },
+        "groups": {
+          "title": "Grupos"
+        },
+        "organizations": {
+          "title": "Organizações"
+        },
+        "permission_types": {
+          "title": "Tipos de permissão"
+        },
+        "references_acl": {
+          "title": "Referências ACL"
+        },
+        "roles": {
+          "title": "Papéis"
+        },
+        "system_functions": {
+          "title": "Funções do sistema"
+        },
+        "users": {
+          "title": "Usuários"
+        },
+        "status_checkers": {
+          "title": "Estado dos serviços"
+        }
+      },
+      "title": "Admin. segurança"
+    },
+    "sub9": {
+      "routes": {
+        "fields": {
+          "title": "Campos"
+        },
+        "templates": {
+          "title": "Modelos"
+        }
+      },
+      "title": "Anotações"
+    }
+  },
+  "SIGNIN_MODAL": {
+    "INPUTS": {
+      "PASSWORD": {
+        "LABEL": "Senha"
+      }
+    },
+    "LINK_LOGIN": {
+      "NORMAL_TEXT": "Já tem uma conta?",
+      "TEXT_LINK": "Faça o login"
+    },
+    "SIGNIN_BUTTON": "Inscreva-se"
+  },
+  "STUDY_CASES": {
+    "CREATE_MODAL": {
+      "CANCEL_BUTTON": "Cancelar",
+      "CREATE_BUTTON": "Criar",
+      "INPUTS": {
+        "LAYERS": {
+          "LABEL": "Camadas"
+        },
+        "NAME": {
+          "ERROR_MESSAGE_EMPTY": "Digite um nome para o estudo de caso.",
+          "LABEL": "Nome"
+        },
+        "ENTITIES": {
+          "LABEL": "Entidades"
+        }
+      },
+      "TITLE": "Criar estudo de caso"
+    },
+    "DETAIL": {
+      "ANNOTATIONS_TITLE": "Anotações",
+      "BREADCRUMB": "Caso de estudo - {{params.name}}",
+      "CANCEL_BUTTON": "Cancelar",
+      "GENERAL_TITLE": "Geral",
+      "INPUTS": {
+        "LAYERS": {
+          "ADD_BUTTON": "Adicionar",
+          "ADD_LAYERS_MODAL": {
+            "ADD_BUTTON": "Adicionar",
+            "CANCEL_BUTTON": "Cancelar",
+            "INPUTS": {
+              "LAYERS": {
+                "LABEL": "Camadas"
+              }
+            },
+            "TITLE": "Adicionar camada"
+          },
+          "LABEL": "Camadas",
+          "TH": {
+            "ACTIONS": "Ações",
+            "NAME": "Nome"
+          }
+        },
+        "NAME": {
+          "LABEL": "Nome"
+        },
+        "ENTITIES": {
+          "LABEL": "Entidades",
+          "TH": {
+            "ACTIONS": "Ações",
+            "NAME": "Nome",
+            "TYPE": "Tipo"
+          }
+        }
+      },
+      "MODIFY_BUTTON": "Modificar",
+      "TITLE": "Caso de estudo"
+    },
+    "LIST": {
+      "BREADCRUMB": "Casos de estudo",
+      "NOTIFICATIONS": {
+        "ERROR_REMOVE": {
+          "CONTENT": "Falha ao excluir o estudo de caso.",
+          "TITLE": "Erro"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "O estudo de caso foi removido com sucesso.",
+          "TITLE": "Estudo de caso removido"
+        }
+      },
+      "REMOVE_MODAL": {
+        "STUDY_CASE": "Caso de estudo",
+        "TITLE": "Tem certeza de que deseja excluir este item?"
+      },
+      "TITLE": "Casos de estudo"
+    },
+    "ADD_ITEMS_MODAL": {
+      "TITLE": "Adicionar entidades ao caso de estudo",
+      "ACCEPT_BUTTON": "Aceitar",
+      "CANCEL_BUTTON": "Cancelar",
+      "INPUTS": {
+        "CASE_STUDIES": {
+          "LABEL": "Casos de estudo",
+          "ERROR_EMPTY": "Selecione um caso de estudo"
+        }
+      }
+    },
+    "ADD_ITEM_CUSTOM_BUTTON_BROWSERS": {
+      "TEXT": "Adicionar ao caso de estudo"
+    },
+    "DELETE_SELECTED_MODAL": {
+      "ACCEPT_BUTTON": "Aceitar",
+      "CANCEL_BUTTON": "Cancelar",
+      "CONTENT": "Tem a certeza que pretende apagar os casos de estudo?",
+      "TITLE": "Apagar casos de estudo"
+    },
+    "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "Os casos de estudo foram apagados com sucesso.",
+    "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "Ocorreu um erro ao tentar eliminar os casos de estudo."
+  },
+  "USER_AVATAR": {
+    "PREFERENCES": "Preferências",
+    "SIGN_OUT": "Fechar Sessão"
+  },
+  "ACL_MODAL": {
+    "TITLE": "Permissões",
+    "HEADER": {
+      "IDENTITY_TYPE": "Tipo de identidade",
+      "IDENTITY_NAME": "Nome da identidade",
+      "PERMISSION_TYPE": "Tipo de permissão",
+      "ACTIONS": "Ações"
+    },
+    "NEW_PERMISSION": "Adicionar nova permissão",
+    "FOOTER": {
+      "CONFIRM": "Confirmar",
+      "CANCEL": "Cancelar",
+      "RULES": "Ver Regras"
+    },
+    "RULES_MODAL": {
+      "TITLE": "Regras",
+      "SUBTITLES": {
+        "EXPLANATIONS": "Explicações",
+        "RULES_TABLE": "Tabela de Regras"
+      },
+      "FOOTER": {
+        "ACCEPT": "Aceitar"
+      }
+    }
+  },
+  "MODAL_INFO": {
+    "DEFAULT_ERROR": {
+      "TITLE": "Erro"
+    }
+  },
+  "NEXTGENDEM_MISSING_EDITOR": {
+    "CHANGE_BUTTON": "Alterar",
+    "DELETE_BUTTON": "Eliminar",
+    "EXPORT_BUTTON": {
+      "TEXT": "Exportar",
+      "PNG": "PNG",
+      "FASTA": "FASTA"
+    },
+    "IMPORT_BUTTON": {
+      "TEXT": "Importar",
+      "ALIGNMENT": "Alinhamento",
+      "NEW_VERSION": "Nova versão"
+    },
+    "TOOLBAR": {
+      "TITLE": "Nextgendem missing editor"
+    },
+    "INPUTS": {
+      "NUMBER_NUCLEOTIDES_PER_GROUP": {
+        "LABEL": "Nº de nucleotídeos por grupo:",
+        "NOT_NUMBER_ERROR": "Você deve inserir um número positivo.",
+        "LESS_THAN_MINIMUM_ERROR": "Você deve inserir um número maior que {{number}}."
+      },
+      "DELETE_NUCLEOTIDES_PER_GROUP": {
+        "LABEL": "Excluir por grupo (Intervalo):",
+        "NOT_NUMBER_ERROR": "Você deve inserir números positivos.",
+        "INITIAL_GREATER_THAN_FINAL": "O valor inicial deve ser menor que o final."
+      },
+      "COUNT_TYPE": {
+        "LABEL": "Tipo de conta:"
+      },
+      "DELETE_SEQUENCES": {
+        "LABEL": "Excluir sequências:"
+      }
+    },
+    "TABS": {
+      "OPTIONS": {
+        "TITLE": "Opções"
+      },
+      "HISTORY": {
+        "TITLE": "Histórico",
+        "TYPES": {
+          "REMOVE_BY_GROUPS": "Nucleotídeos excluídos da posição {{startIndex}} à {{endIndex}}.",
+          "DELETE_SEQUENCE": "Exclusão de sequências."
+        }
+      }
+    },
+    "NEW_ALIGNMENT_MODAL": {
+      "TITLE": "Novo alinhamento"
+    }
+  },
+  "IMPORT_BUTTON": {
+    "START_UPLOADING": "Iniciar upload",
+    "LOADING": "Carregando"
+  },
+  "NEXTGENDEM_BARCODING": {
+    "DATA_TABLE": {
+      "TAXON_TH": "Taxão",
+      "RESULT_TH": "Resultado",
+      "POSITION_TH": "Posição",
+      "NUCLEOTIDE_TH": "Nucleótido",
+      "NUMBERS_SEQUENCES_TH": "Número de sequências",
+      "STATE": {
+        "not_robust": "Não robusto",
+        "not_possible": "Impossível",
+        "success": "Sucesso"
+      },
+      "GROUPS_TH": "Posições Diagnóstico",
+      "GROUP": "DNC {{ number }}",
+      "GROUP_TH": "Grupo",
+      "SEQUENCES_TH": "Sequências",
+      "COMBINATION_TH": "Combinação"
+    },
+    "POSITIONS_TAB": "Posições",
+    "GROUPS_TAB": "Grupos",
+    "PURES_TAB": "Posições Puras",
+    "COMBINATIONS_TAB": "Posições Combinadas"
+  },
+  "HOME_PAGE": {
+    "CORRECT_IDENTIFICATION": "Identificação correta"
+  },
+  "NOTIFICATION": {
+    "DELETE_SUCCESS": "Eliminação concluída",
+    "ERROR_TITLE": "Erro"
+  },
+  "ENTITIES_TABLE": {
+    "ACTIONS": "Ações",
+    "TYPE": "Tipo"
+  },
+  "OBJECT_TYPES": {
+    "SEQUENCE": "Sequência",
+    "MULTIPLE_SEQUENCE_ALIGNMENT": "Alinhamento múltiplo",
+    "PHYLOGENETIC_TREE": "Árvore filogenética",
+    "BLAST": "BLAST",
+    "DISCRIMINANT_MATRIX": "Matriz discriminante",
+    "SUPERMATRIX": "Supermatriz",
+    "GEOLAYER": "Camada",
+    "CASE_STUDIES": "Casos de estudo"
+  },
+  "DYNAMIC_TABLE_OBJECTS": {
+    "NAME_TH": "Nome",
+    "ERROR_LOAD_DATA": "Ocorreu um erro ao carregar os dados de {{ object_type }}."
+  },
+  "FORMLY": {
+    "RANGE": {
+      "DEFAULT_PLACEHOLDERS": {
+        "MINIMUM": "Mínimo",
+        "MAXIMUM": "Máximo"
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+          [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+  <ng-template #modalTitle>
+    {{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.TITLE' | translate}}
+  </ng-template>
+  <ng-template #modalContent>
+    <nz-spin [nzSpinning]="loading">
+      <form [formGroup]="formGroup" style="padding: 0px 0px 15px 0px;">
+        <div>
+          <nz-form-label
+            nzFor="name">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.NAME_INPUT.LABEL' | translate}}</nz-form-label>
+          <input nz-input formControlName="name" type="text"
+                 [placeholder]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.NAME_INPUT.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': showNameError()}">
+          <ng-container *ngIf="showNameError()">
+            <div *ngFor="let item of getMessageNameError()" class="message-error">{{item | translate}}</div>
+          </ng-container>
+        </div>
+        <!-- UNIQUE -->
+        <div style="margin-top: 5px">
+          <nz-form-label nzFor="unique">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.UNIQUE_INPUT.LABEL' |
+            translate}}</nz-form-label>
+          <nz-select nzMode="default" formControlName="unique"
+                     [nzPlaceHolder]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.UNIQUE_INPUT.PLACEHOLDER' | translate"
+                     style="width: 100%">
+            <nz-option [nzValue]="false"
+                       [nzLabel]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.NO' | translate">
+            </nz-option>
+            <nz-option [nzValue]="true"
+                       [nzLabel]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.YES' | translate">
+            </nz-option>
+          </nz-select>
+        </div>
+
+        <!-- STANDARD -->
+        <div>
+          <nz-form-label nzFor="standard">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.STANDARD_INPUT.LABEL' | translate}}
+          </nz-form-label>
+          <input nz-input formControlName="standard" type="text"
+                 [placeholder]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.STANDARD_INPUT.PLACEHOLDER' | translate">
+        </div>
+        <div style="margin-top: 5px">
+          <nz-form-label
+            nzFor="object_type">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.OBJECT_TYPE_INPUT.LABEL' | translate}}</nz-form-label>
+          <nz-select nzShowSearch nzMode="multiple" formControlName="object_type" nzAllowClear
+                     [nzPlaceHolder]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.OBJECT_TYPE_INPUT.PLACEHOLDER' | translate"
+                     style="width: 100%" [ngClass]="{'select-error': showObjectTypeError()}">
+            <nz-option *ngFor="let item of objectTypesOptions" [nzValue]="item.name"
+                       [nzLabel]="item.name | translate"></nz-option>
+          </nz-select>
+          <ng-container *ngIf="showObjectTypeError()">
+            <div *ngFor="let item of getMessageObjectTypeError()" class="message-error">{{item | translate}}</div>
+          </ng-container>
+        </div>
+        <div style="margin-top: 5px">
+          <nz-form-label
+            nzFor="field_id">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.FIELD_INPUT.LABEL' | translate}}</nz-form-label>
+          <nz-select nzShowSearch nzMode="multiple" formControlName="field_id" nzAllowClear
+                     [nzPlaceHolder]="'ANNOTATIONS.TEMPLATES.CREATE_MODAL.FIELD_INPUT.PLACEHOLDER' | translate"
+                     style="width: 100%">
+            <nz-option *ngFor="let item of fieldsOptions" [nzValue]="item.id"
+                       [nzLabel]="item.name | translate"></nz-option>
+          </nz-select>
+        </div>
+      </form>
+    </nz-spin>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="cancelModal()">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.CANCEL_BUTTON' | translate}}</button>
+    <button nz-button nzType="default" [disabled]="!formGroup.valid || loading"
+            (click)="createTemplate()">{{'ANNOTATIONS.TEMPLATES.CREATE_MODAL.CREATE_BUTTON' | translate}}</button>
+  </ng-template>
+</nz-modal>

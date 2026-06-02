@@ -1,0 +1,74 @@
+<h2>API Contract Pilot — Incrementos 2 · 3 · 4</h2>
+<p>Demuestra el contrato Back↔Front, formularios dinámicos y bundle de esquemas.</p>
+
+<section>
+  <h3>0. Schema bundle — /api/sys/schemas (Incremento 4)</h3>
+  <div *ngIf="bundleError" class="issue ERROR">{{ bundleError }}</div>
+  <p *ngIf="bundleLoading">Cargando bundle…</p>
+  <ng-container *ngIf="bundle">
+    <p>
+      <strong>Versión:</strong> <code>{{ bundle.version }}</code> ·
+      <strong>Generado:</strong> {{ bundle.generated_at }} ·
+      <strong>Entidades:</strong> {{ (bundle.entities | keyvalue).length }}
+    </p>
+    <button (click)="loadBundle(true)">Recargar bundle</button>
+  </ng-container>
+</section>
+
+<section>
+  <h3>1. Discovery — /api/sys/entities</h3>
+  <ng-container *ngIf="discoveryError; else discoveryOk">
+    <div class="issue ERROR">{{ discoveryError }}</div>
+  </ng-container>
+  <ng-template #discoveryOk>
+    <p>{{ entities.length }} entidad(es) detectadas.</p>
+    <label>
+      Recurso:
+      <select [(ngModel)]="selectedPath" (change)="refresh()">
+        <option *ngFor="let e of entities" [value]="e.path">
+          {{ e.path }} (pk: {{ e.pk }}; {{ (e.capabilities.list ? 'L' : '-') + (e.capabilities.get ? 'G' : '-') + (e.capabilities.create ? 'C' : '-') + (e.capabilities.update ? 'U' : '-') + (e.capabilities.delete ? 'D' : '-') + (e.capabilities.schema ? 'S' : '-') }})
+        </option>
+      </select>
+    </label>
+    <button (click)="refresh()" [disabled]="!selectedPath">Recargar</button>
+  </ng-template>
+</section>
+
+<section *ngIf="selectedPath">
+  <h3>2. Schema — {{ selectedPath }}/schema.json</h3>
+  <div *ngIf="schemaError" class="issue ERROR">{{ schemaError }}</div>
+  <pre *ngIf="schema">{{ schema | json }}</pre>
+</section>
+
+<section *ngIf="selectedPath">
+  <h3>3. Dynamic form — generated from {{ selectedPath }}/schema.json</h3>
+  <div *ngIf="createError" class="issue ERROR">{{ createError }}</div>
+  <div *ngFor="let issue of createIssues" class="issue" [ngClass]="issue.type">
+    <strong>{{ issue.type }}</strong>
+    <span *ngIf="issue.code"> [{{ issue.code }}]</span>
+    — {{ issue.message }}
+  </div>
+  <ngt-dynamic-form
+    [entityPath]="selectedPath"
+    [(model)]="formModel"
+    submitButton="Crear"
+    (submitted)="onCreate($event)">
+  </ngt-dynamic-form>
+  <ng-container *ngIf="createdItem">
+    <h4>Creado:</h4>
+    <pre>{{ createdItem | json }}</pre>
+  </ng-container>
+</section>
+
+<section *ngIf="selectedPath">
+  <h3>4. List — GET {{ selectedPath }}/</h3>
+  <div *ngIf="listError" class="issue ERROR">{{ listError }}</div>
+  <div *ngFor="let issue of listIssues" class="issue" [ngClass]="issue.type">
+    <strong>{{ issue.type }}</strong>
+    <span *ngIf="issue.code"> [{{ issue.code }}]</span>
+    — {{ issue.message }}
+  </div>
+  <p *ngIf="loading">Cargando…</p>
+  <p *ngIf="!loading && !listError">{{ items.length }} item(s)</p>
+  <pre *ngIf="items.length">{{ items | json }}</pre>
+</section>

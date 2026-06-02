@@ -1,0 +1,35 @@
+.input-error
+    border-color: #ff0000
+
+    &:focus
+        box-shadow: 0 0 0 2px rgba(225,24,24,.2)
+
+.info-field-error
+    color: #ff0000
+
+::ng-deep .select-error .ant-select-selector
+    border-color: #ff0000 !important
+
+::ng-deep .select-error:hover .ant-select-selector
+    border-color: #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector
+    box-shadow: 0 0 0 2px rgba(225,24,24,.2)
+
+::ng-deep .cdk-drag-preview
+    display: table
+
+::ng-deep .cdk-drag-placeholder
+    opacity: 0
+
+::ng-deep tr.ant-table-expanded-row > td
+    background-color: #fff
+
+::ng-deep .ant-table-expanded-row-fixed
+    padding: 0px 0px 0px 0px !important
+
+::ng-deep .ant-table-tbody > tr.ant-table-row:hover > td
+    background-color: #fff !important
+
+::ng-deep tr.ant-table-expanded-row:hover > td, tr.ant-table-expanded-row > td
+    background-color: #fff !important

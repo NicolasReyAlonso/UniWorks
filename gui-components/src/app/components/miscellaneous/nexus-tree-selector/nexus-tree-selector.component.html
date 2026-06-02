@@ -1,0 +1,15 @@
+<nz-table #fixedTable [nzData]="trees" nzTableLayout="fixed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th nzWidth="90%">Tree</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="pointer" *ngFor="let tree of fixedTable.data" (click)="selectTree(tree)">
+      <td>{{ tree.name }}</td>
+      <td>{{ tree.newick }}</td>
+    </tr>
+  </tbody>
+</nz-table>
+

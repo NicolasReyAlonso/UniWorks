@@ -1,0 +1,32 @@
+<nz-modal [nzVisible]="isVisible" nzCentered (nzOnCancel)="onCancelButtonClick()">
+  <ng-container *nzModalTitle>
+    {{ 'DISPLAY.GIS.EDIT_STYLE_MODAL.TITLE' | translate }}
+  </ng-container>
+  <ng-container *nzModalContent>
+    <nz-spin [nzSpinning]="loading">
+      <form [formGroup]="formGroup" *ngIf="formGroup">
+        <div>
+          <label>
+            {{ 'DISPLAY.GIS.EDIT_STYLE_MODAL.COLORMAP.LABEL' | translate }}
+          </label>
+          <nz-select formControlName="colormap"
+                     [nzPlaceHolder]="'DISPLAY.GIS.EDIT_STYLE_MODAL.COLORMAP.LABEL' | translate">
+            <ng-container *ngFor="let colormap of colorMapsList | keyvalue">
+              <nz-option [nzLabel]="colormap.key" [nzValue]="colormap.key" *ngIf="colormap.value"></nz-option>
+              <nz-option [nzLabel]="colormap.key" [nzValue]="colormap.key"
+                         *ngIf="!colormap.value && dataType == 'category'"></nz-option>
+            </ng-container>
+          </nz-select>
+        </div>
+      </form>
+    </nz-spin>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger (click)="onCancelButtonClick()" [disabled]="loading">
+      {{ 'DISPLAY.GIS.EDIT_STYLE_MODAL.CANCEL_BUTTON' | translate }}
+    </button>
+    <button nz-button nzType="primary" (click)="onAcceptButtonClick()" [disabled]="loading">
+      {{ 'DISPLAY.GIS.EDIT_STYLE_MODAL.ACCEPT_BUTTON' | translate }}
+    </button>
+  </ng-container>
+</nz-modal>

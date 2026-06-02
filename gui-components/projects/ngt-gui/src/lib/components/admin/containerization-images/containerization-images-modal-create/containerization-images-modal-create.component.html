@@ -1,0 +1,43 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+          [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+  <ng-template #modalTitle>
+    {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.CREATE_MODAL.TITLE' | translate }}
+  </ng-template>
+  <ng-template #modalContent>
+    <nz-spin [nzSpinning]="loading">
+      <form (ngSubmit)="createItemModal()" [formGroup]="formGroup" style="padding: 0px 10px 15px 5px; height: 300px; overflow: auto" *ngIf="formGroup">
+
+
+        <ng-container *ngFor="let field of fieldsArray">
+
+          <div *ngIf="field.value.type === 'input-text'">
+            <nz-form-label
+              [nzFor]="field.key">
+              {{ field.value.prefixTranslateKey + '.LABEL' | translate }}
+            </nz-form-label>
+            <input nz-input [formControlName]="field.key" type="text"
+                   [placeholder]="field.value.prefixTranslateKey + '.PLACEHOLDER' | translate"
+                   [ngClass]="{'input-error': formGroup.get(field.key).errors}">
+            <ng-container *ngIf="formGroup.get(field.key).errors">
+              <div class="message-error-default" *ngFor="let message of (formGroup.get(field.key).errors | keyvalue)">
+                {{ field.value.prefixTranslateKey + '.' + message.key | translate }}
+              </div>
+            </ng-container>
+          </div>
+
+        </ng-container>
+
+        <button type="submit" hidden></button>
+      </form>
+    </nz-spin>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="cancelModal()">
+      {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.CREATE_MODAL.CANCEL_BUTTON' | translate }}
+    </button>
+    <button nz-button nzType="primary" [disabled]="!formGroup.valid || loading" (click)="createItemModal()">
+      {{ 'PROCESSES_ADMIN.CONTAINERIZATION_IMAGES.CREATE_MODAL.CREATE_BUTTON' | translate }}
+    </button>
+  </ng-template>
+</nz-modal>

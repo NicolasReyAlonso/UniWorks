@@ -1,0 +1,1 @@
+../../../src/lib/tokens/sidebar-config.token.ts

@@ -1,0 +1,36 @@
+<nz-modal [(nzVisible)]="visible" nzCentered [nzTitle]="modalTitle"
+          (nzOnCancel)="visible = false;" [nzMaskClosable]="false">
+  <ng-template #modalTitle>
+    {{'GEOGRAPHICAL_DATA.LAYERS.EXPORT_MODAL.TITLE' | translate}}
+  </ng-template>
+  <div *nzModalContent>
+    <div
+      style="padding-bottom: 3px;">{{'GEOGRAPHICAL_DATA.LAYERS.EXPORT_MODAL.SELECT.FORMAT_TYPE.LABEL' | translate}}</div>
+    <nz-select [nzPlaceHolder]="'GEOGRAPHICAL_DATA.LAYERS.EXPORT_MODAL.SELECT.FORMAT_TYPE.PLACEHOLDER' | translate"
+               [nzDisabled]="loading"
+               nzShowSearch style="width: 100%;" [(ngModel)]="selectModal" [nzMaxTagCount]="3">
+      <ng-container *ngFor="let item of options">
+        <nz-option [nzValue]="item.value" [nzLabel]="item.label"></nz-option>
+      </ng-container>
+    </nz-select>
+  </div>
+  <div *nzModalFooter>
+    <div style="display: flex">
+      <button nz-button nzType="primary" nzDanger
+              (click)="visible = false;">{{'GEOGRAPHICAL_DATA.LAYERS.EXPORT_MODAL.BUTTONS.CANCEL' | translate}}</button>
+      <button nz-button nzType="primary" (click)="exportLayers()" [disabled]="selectModal.length == 0">
+        {{'GEOGRAPHICAL_DATA.LAYERS.EXPORT_MODAL.BUTTONS.EXPORT' | translate}}
+      </button>
+    </div>
+  </div>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="visibleModalSpin" [nzFooter]="null" [nzClosable]="false" nzTitle="Exportando capas" nzCentered>
+  <div *nzModalContent>
+    <div>Esto podría llevar un tiempo. Por favor espere...</div>
+    <nz-spin nzSimple [nzIndicator]="indicatorTemplate" style="text-align: center; margin: 20px 0px 20px 0px"></nz-spin>
+  </div>
+</nz-modal>
+
+<ng-template #indicatorTemplate><i nz-icon nzType="loading" style="font-size: 50px;"></i></ng-template>
+

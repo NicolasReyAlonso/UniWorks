@@ -1,0 +1,37 @@
+<nz-modal [nzVisible]="isVisibleCreateModal" nzCentered (nzOnCancel)="closeCreateModal()">
+  <ng-container *nzModalTitle>
+    {{'DISPLAY.GIS.SAVE_MAP_MODAL.TITLE' | translate}}
+  </ng-container>
+  <ng-container *nzModalContent>
+
+
+    <nz-spin [nzSpinning]="isLoadingCreateModal">
+      <form [formGroup]="formGroupCreateModal">
+        <div>
+          <label>
+            {{ 'DISPLAY.GIS.SAVE_MAP_MODAL.NAME_INPUT.LABEL' | translate }}
+          </label>
+          <input nz-input formControlName="name" [ngClass]="{'input-error': getMessageNameError().length > 0}"
+                 [placeholder]="'DISPLAY.GIS.SAVE_MAP_MODAL.NAME_INPUT.PLACEHOLDER' | translate"/>
+          <div class="message-error-default" *ngFor="let message of getMessageNameError()">
+            {{message | translate}}
+          </div>
+        </div>
+      </form>
+    </nz-spin>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger [disabled]="isLoadingCreateModal" (click)="closeCreateModal()">
+      {{ 'DISPLAY.GIS.SAVE_MAP_MODAL.CANCEL_BUTTON' | translate }}
+    </button>
+    <button nz-button nzType="primary" [disabled]="!!(isLoadingCreateModal || formGroupCreateModal.errors)"
+            (click)="onSaveMap()">
+      {{ 'DISPLAY.GIS.SAVE_MAP_MODAL.SAVE_BUTTON' | translate }}
+    </button>
+  </ng-container>
+</nz-modal>
+
+
+<nz-modal [nzVisible]="isVisibleOverwriteModal" nzCentered (nzOnCancel)="closeCreateModal()">
+
+</nz-modal>

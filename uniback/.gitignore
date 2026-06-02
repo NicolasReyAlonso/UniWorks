@@ -1,0 +1,30 @@
+
+.idea/
+
+__pycache__/
+
+curl_vars.sh
+
+app-cookies.txt
+/src/uniback.egg-info/
+
+# Firebase credentials (never commit secrets)
+firebase-credentials.json
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# macOS
+.DS_Store
+
+# Environment
+.env
+venv/
+.venv/
+
+.claude/settings.json

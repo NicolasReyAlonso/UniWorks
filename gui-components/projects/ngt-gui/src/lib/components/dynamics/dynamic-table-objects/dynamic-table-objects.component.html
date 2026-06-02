@@ -1,0 +1,23 @@
+<nz-table [nzData]="data" [nzFrontPagination]="false" [nzPageIndex]="pageIndex" [nzPageSize]="pageSize"
+          [nzTotal]="totalItems" (nzPageIndexChange)="onPageIndexChange($event)" [nzLoading]="loadingData" nzBordered>
+  <thead>
+  <tr>
+    <ng-container *ngFor="let item of headerItems">
+      <th>
+        {{ item.translation | translate }}
+      </th>
+    </ng-container>
+  </tr>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let item of data">
+    <tr>
+      <ng-container *ngFor="let headerItem of headerItems">
+        <td (click)="openItemDetail(item)" [ngStyle]="{cursor: havePermissionToDetail && canOpenDetail ? 'pointer' : 'default'}">
+          {{ item[headerItem.variable] }}
+        </td>
+      </ng-container>
+    </tr>
+  </ng-container>
+  </tbody>
+</nz-table>

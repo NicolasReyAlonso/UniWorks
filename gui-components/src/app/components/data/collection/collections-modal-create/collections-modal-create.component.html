@@ -1,0 +1,25 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+    [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+    <ng-template #modalTitle>
+        {{'MOLECULAR_DATA.COLLECTIONS.CREATE_MODAL.TITLE' | translate}}
+    </ng-template>
+    <ng-template #modalContent>
+        <nz-spin [nzSpinning]="loading">
+            <form [formGroup]="formGroup" style="padding: 0px 0px 15px 0px;">
+                <div>
+                    <nz-form-label nzFor="name">{{'MOLECULAR_DATA.COLLECTIONS.CREATE_MODAL.INPUTS.NAME.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="name" type="text" [placeholder]="'MOLECULAR_DATA.COLLECTIONS.CREATE_MODAL.INPUTS.NAME.LABEL' | translate" [ngClass]="{'input-error': getMessageNameError()}">
+                    <ng-container *ngIf="getMessageNameError()">
+                      <div *ngFor="let item of getMessageNameError()" class="message-error-default">{{item | translate}}</div>
+                    </ng-container>
+
+                </div>
+            </form>
+        </nz-spin>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button nz-button nzType="primary" nzDanger (click)="cancelModal()">{{'MOLECULAR_DATA.COLLECTIONS.CREATE_MODAL.CANCEL_BUTTON' | translate}}</button>
+        <button nz-button nzType="default" [disabled]="!formGroup.valid || loading" (click)="createCollection()">{{'MOLECULAR_DATA.COLLECTIONS.CREATE_MODAL.CREATE_BUTTON' | translate}}</button>
+    </ng-template>
+</nz-modal>
+

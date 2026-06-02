@@ -1,0 +1,7 @@
+<div nz-row style="margin: 15px 40px 24px" [nzGutter]="16">
+  <div nz-col> <!-- Ajusta el nzSpan según sea necesario -->
+    <nz-select nzPlaceHolder="Capa Geográfica" nzShowSearch [(ngModel)]="selectedLayer" (ngModelChange)="selectLayer($event)">
+      <nz-option *ngFor="let geolayer of geolayers" [nzValue]="geolayer" [nzLabel]="geolayer['name'] + ' ( ID: ' + geolayer['id'] + ' )'"></nz-option>
+    </nz-select>
+  </div>
+</div>

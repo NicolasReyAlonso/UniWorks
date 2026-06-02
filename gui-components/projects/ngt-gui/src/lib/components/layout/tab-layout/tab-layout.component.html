@@ -1,0 +1,78 @@
+<div style="height: 100%; display: flex; flex-direction: column;">
+  <!-- Header -->
+  <div class="theme-header-background-color" style="flex: 0 0 auto;">
+    <app-top-area [title]="topBarTitle" [icon]="topBarIcon"></app-top-area>
+  </div>
+  
+  <!-- Body -->
+  <div style="flex: 1 1 auto; display: flex; min-height: 0; position: relative;">
+    <as-split direction="horizontal" #mainSplit [gutterSize]="1" [unit]="'percent'"
+      style="flex: 1 1 auto; height: 100%;" (gutterDblClick)="toggleSidebar()" [gutterDblClickDuration]="500"
+      [useTransition]="true">
+      
+      <div *asSplitGutter="let isDragged = isDragged" class="custom-shade-gutter" [class.dragged]="isDragged">
+        <div class="custom-shade-gutter-icon"></div>
+      </div>
+      
+      <!-- Sidebar -->
+      <as-split-area [size]="sidebarSize" [minSize]="20" [maxSize]="35">
+        <div style="display: flex; flex: 1 1 auto; height: 100%;" class="block1">
+          <div style="position: relative; height: 100%;" class="sidebarComponent"
+            [@sidebarOpenClose]="!isSidebarCollapsed">
+            <app-sidebar></app-sidebar>
+          </div>
+        </div>
+      </as-split-area>
+      
+      <!-- Content -->
+      <as-split-area [size]="100 - sidebarSize" [minSize]="20" [maxSize]="100">
+        <div style="display: flex; flex-direction: column; height: 100%;" class="block2 theme-body-background-color">
+          
+          <!-- Tabs de navegación -->
+          <div style="flex: 0 0 auto;">
+            <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedIndexChange)="selectTab($event)">
+              <mat-tab *ngFor="let tab of tabs; let i = index">
+                <ng-template mat-tab-label>
+                  <span *ngIf="!tab.editing" (dblclick)="startEditing(tab)">
+                    {{ tab.label }}
+                  </span>
+                  <input *ngIf="tab.editing" type="text" [(ngModel)]="tab.label"
+                    (blur)="finishEditing(tab)" (keydown.enter)="finishEditing(tab)"
+                    (click)="$event.stopPropagation()" class="tab-edit-input" />
+                  <button mat-icon-button (click)="closeTab(i); $event.stopPropagation();"
+                    style="margin-left: 8px;">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </ng-template>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+          
+          <!-- Contenido del router -->
+          <div style="flex: 1 1 auto; min-height: 0; position: relative;">
+            
+            <ng-container *ngIf="!loading; else loadingTemplate">
+              <!-- Wrapper absoluto para el contenido del router -->
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column;">
+                <router-outlet (activate)="onActivate($event)"></router-outlet>
+              </div>
+            </ng-container>
+            
+            <ng-template #loadingTemplate>
+              <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+                <nz-spin nzTip="Loading..." class="spin"></nz-spin>
+              </div>
+            </ng-template>
+          </div>
+          
+        </div>
+      </as-split-area>
+    </as-split>
+  </div>
+  
+  <div style="position: fixed; bottom: 0; right: 0;">
+    <app-message-grid></app-message-grid>
+  </div>
+  
+  <app-modals></app-modals>
+</div>

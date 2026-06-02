@@ -1,0 +1,316 @@
+<div style="display: flex; flex-direction: column; height: 100%;">
+  <nz-page-header
+    nzSubtitle="{{'MOLECULAR_DATA.ANALYSES.DETAIL.SUBTITLE' | translate}}">
+    <nz-page-header-title>
+      <app-back-button></app-back-button>
+      {{analysis.name ? analysis.name : analysis.program + ' ' + analysis.programversion}}
+    </nz-page-header-title>
+    <nz-page-header-extra>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="exportAnalysis(exportForm)"
+              *ngIf="this.authService.havePermission('gui-ma-export')">
+        {{'MOLECULAR_DATA.ANALYSES.DETAIL.EXPORT_BUTTON' | translate}}
+      </button>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <div style="padding: 0px 24px 0px 24px; flex: 1 1 auto; min-height: 0">
+    <nz-tabset [nzSelectedIndex]="0" style="width:100%; height: 100%;">
+      <nz-tab [nzTitle]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TITLE' | translate">
+        <div style="height: 100%; overflow: auto">
+
+          <nz-spin [nzSpinning]="loadingGeneral">
+            <ng-container *ngIf="generalFormGroup">
+              <form [formGroup]="generalFormGroup">
+
+                <div class="row-form">
+
+                  <!-- Id -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="analysis_id">Id</nz-form-label>
+                    <input nz-input formControlName="analysis_id" type="text" placeholder="Id">
+                  </div>
+
+                  <!-- Name -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="name">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="name" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.NAME_INPUT.PLACEHOLDER' | translate"
+                           [disableControl]="isDisableEdit()">
+                  </div>
+
+                </div>
+
+                <div class="row-form">
+
+                  <!-- Program -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="program">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="program" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAM_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                  <!-- Program version -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="programversion">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="programversion" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.PROGRAMVERSION_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                </div>
+
+                <div class="row-form">
+
+                  <!-- SeqNum -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="seqnum">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="seqnum" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQNUM_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                  <!-- SeqLen -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="seqlen">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="seqlen" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SEQLEN_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                </div>
+
+                <div class="row-form">
+
+                  <!-- timeexecuted -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="timeexecuted">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.LABEL' | translate}}</nz-form-label>
+                    <nz-date-picker nz-input formControlName="timeexecuted" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss"
+                                    style="width: 100%;"
+                                    [nzPlaceHolder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.TIMEEXECUTED_INPUT.PLACEHOLDER' | translate"></nz-date-picker>
+                  </div>
+
+                  <!-- algorithm -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('algorithm').value">
+                    <nz-form-label
+                      nzFor="algorithm">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="algorithm" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.ALGORITHM_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                </div>
+                <div class="row-form">
+
+                  <!-- sourcename -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('sourcename').value">
+                    <nz-form-label
+                      nzFor="sourcename">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="sourcename" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCENAME_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                  <!-- sourceversion -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('sourceversion').value">
+                    <nz-form-label
+                      nzFor="sourceversion">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="sourceversion" type="text"
+                           [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCEVERSION_INPUT.PLACEHOLDER' | translate">
+                  </div>
+
+                  <!-- sourceuri -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('sourceuri').value">
+                    <nz-form-label
+                      nzFor="sourceuri">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.LABEL' | translate}}</nz-form-label>
+                    <div style="display: flex; flex-direction: row; column-gap: 2px">
+                      <input nz-input formControlName="sourceuri" type="text"
+                             [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.SOURCE_URI_INPUT.PLACEHOLDER' | translate">
+                      <div>
+                        <button nz-button *ngIf="authService.havePermission('gui-job-read')
+                         && generalFormGroup.get('sourceversion').value === 'job'"
+                          (click)="goJobDetail()">{{'PROCESSES.PROCESSES_DETAIL.INFO.DETAIL_BUTTON' | translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row-form">
+
+                  <!-- Descripción -->
+                  <div class="column-input-form">
+                    <nz-form-label
+                      nzFor="description">{{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.LABEL' | translate}}</nz-form-label>
+                    <textarea nz-input formControlName="description"
+                              [placeholder]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.DESCRIPTION_INPUT.PLACEHOLDER' | translate"></textarea>
+                  </div>
+
+                </div>
+
+              </form>
+
+              <div style="display: flex; flex-direction: row-reverse; margin-top: 20px; column-gap: 5px">
+                <button nz-button nzShape="round" nzType="primary" *ngIf="!isDisableEdit()" (click)="updateAnalysis()"
+                        [disabled]="!generalFormGroupChange">
+                  {{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.MODIFY_BUTTON' | translate}}
+                </button>
+                <button nz-button nzShape="round" nzDanger nzType="primary" *ngIf="!isDisableEdit()"
+                        (click)="cancelModifyAnalysis()" [disabled]="!generalFormGroupChange">
+                  {{'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.GENERAL.CANCEL_BUTTON' | translate}}
+                </button>
+              </div>
+            </ng-container>
+          </nz-spin>
+
+        </div>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.TITLE' | translate"
+              *ngIf="analysis._phylotrees?.length > 0">
+        <nz-table #phylotreesTable [nzData]="analysis._phylotrees">
+          <thead>
+          <tr>
+            <th>{{'MOLECULAR_DATA.PHYLOTREES.DETAIL.PHYLOTREES_TAB.NAME_TH' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of phylotreesTable.data">
+            <td style="cursor: pointer" (click)="goSubTreeView(data.phylotree_id)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-pt-read') ? 'pointer': 'none'}">
+              {{data.name}}
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MISC.TABS.SEQUENCES.TITLE' | translate">
+        <nz-table #sequenceTable [nzData]="analysis.sequences">
+          <thead>
+          <tr>
+            <th>{{'MISC.TABS.SEQUENCES.NAME_TH' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of sequenceTable.data">
+            <td (click)="navigateSequence(data.feature_id)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-seq-read') ? 'pointer': 'none'}">
+              {{data.uniquename}}
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MISC.TABS.INDIVIDUALS.TITLE' | translate">
+        <nz-spin [nzSpinning]="loadingGeneral">
+          <nz-table #stocksTable [nzData]="analysis.individuals">
+            <thead>
+            <tr>
+              <th>{{'MISC.TABS.INDIVIDUALS.NAME_TH' | translate}}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let data of stocksTable.data">
+              <tr>
+                <td [ngStyle]="{'cursor': authService.havePermission('gui-individual-read') ? 'pointer' : 'default'}"
+                    (click)="navigateIndividual(data.stock_id)">
+                  {{ data.uniquename }}
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </nz-table>
+        </nz-spin>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MISC.TABS.SPECIES.TITLE' | translate">
+        <nz-table #speciesTable [nzData]="analysis.organisms">
+          <thead>
+          <tr>
+            <th>{{'MISC.TABS.SPECIES.NAME_TH' | translate}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of speciesTable.data">
+            <td (click)="navigateOrganism(data.organism_id)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-organism-read') ? 'pointer': 'none'}">
+              {{data.name}}
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MISC.TABS.ANALYSES.TITLE' | translate"
+              *ngIf="analysis.derives_from?.length > 0 || analysis.derives_into?.length > 0 ">
+        <nz-table #derivesFromTable [nzData]="analysis.derives_from" nzHideOnSinglePage>
+          <thead>
+          <tr>
+            <th>{{'MISC.TABS.ANALYSES.TABLES.FROM_TITLE' | translate}}</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of derivesFromTable.data">
+            <td (click)="navigateAnalysis(data)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-analysis-read') ? 'pointer': 'none'}">
+              {{data.name}}
+            </td>
+            <td (click)="navigateAnalysis(data)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-analysis-read') ? 'pointer': 'none'}">
+              {{data.object_type}}
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+        <nz-table #derivesIntoTable [nzData]="analysis.derives_into">
+          <thead>
+          <tr>
+            <th>{{'MISC.TABS.ANALYSES.TABLES.INTO_TITLE' | translate}}</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of derivesIntoTable.data">
+            <td (click)="navigateAnalysis(data)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-analysis-read') ? 'pointer': 'none'}">
+              {{data.name}}
+            </td>
+            <td (click)="navigateAnalysis(data)"
+                [ngStyle]="{'cursor': authService.havePermission('gui-analysis-read') ? 'pointer': 'none'}">
+              {{data.object_type}}
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab *ngIf="false" nzTitle="{{'MISC.TABS.PROCESSES.TITLE' | translate}}">
+        <app-bo-card *ngFor="let process of processes" [data]="process" type="process"></app-bo-card>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.CASES_STUDY.TITLE' | translate">
+        <app-dynamic-table-objects [headerItems]="headerTableCasesStudiesAndCollections" objectType="case_studies" [filterRequest]="{ object_uuid: analysis.uuid }"
+                                   readPermission="gui-case-study-read" urlPageDetail="caseStudiesDetail"></app-dynamic-table-objects>
+      </nz-tab>
+
+      <nz-tab [nzTitle]="'MOLECULAR_DATA.ANALYSES.DETAIL.TABS.COLLECTIONS.TITLE' | translate">
+        <app-dynamic-table-objects [headerItems]="headerTableCasesStudiesAndCollections" objectType="collections" [filterRequest]="{ object_uuid: analysis.uuid }"
+                                   readPermission="gui-collection-read" urlPageDetail="collectionDetail"></app-dynamic-table-objects>
+      </nz-tab>
+
+      <nz-tab nzTitle="{{'MISC.ANNOTATIONS.ANNOTATION_TAB' | translate}}" nzForceRender>
+        <app-annotations-form [ObjectType]="this.objType" #annotationsForm></app-annotations-form>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
+
+<ng-template #exportForm>
+  <nz-select nzShowSearch nzPlaceHolder="Seleccionar formato" [(ngModel)]="selectedFormat" name="selectedFormat"
+             style="width: 100%">
+    <nz-option *ngFor="let format of analysis.formats" nzLabel="{{format}}" nzValue="{{format}}"></nz-option>
+  </nz-select>
+</ng-template>
+

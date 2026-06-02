@@ -1,0 +1,71 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="closeModal()" [nzMaskClosable]="false" nzCentered [nzWidth]="'70vw'">
+  <ng-container *nzModalTitle>
+    {{ ModalTitle | translate }}
+  </ng-container>
+  <ng-container *nzModalContent>
+    <div style="height: 60vh; overflow-y: auto">
+      <nz-spin [nzSpinning]="loading">
+        <nz-tabset>
+          <nz-tab [nzTitle]="'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.LAYERS.TITLE' | translate">
+            <div>
+              <div style="color: #f00; font-size: 14px; font-weight: 700; margin-bottom: 8px;">
+                {{'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.LAYERS.WARNING_UNCHECKED' | translate}}
+              </div>
+              <nz-table #selectedLayersTable [nzData]="Layers" [nzPageSize]="10">
+                <thead>
+                <tr>
+                  <th nzWidth="20px"></th>
+                  <th>{{'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.LAYERS.NAME_TH' | translate}}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let data of selectedLayersTable.data">
+                  <td>
+                    <label *ngIf="!isCheckedLayer(data)" nz-checkbox (ngModelChange)="onSelectLayer(data, true)"
+                           [ngModel]="false"></label>
+                    <label *ngIf="isCheckedLayer(data)" nz-checkbox (ngModelChange)="onSelectLayer(data, false)"
+                           [ngModel]="true"></label>
+                  </td>
+                  <td>{{data.name}}</td>
+                </tr>
+                </tbody>
+              </nz-table>
+            </div>
+          </nz-tab>
+          <nz-tab [nzTitle]="'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.JOIN.TITLE' | translate" [nzForceRender]="true"
+                  [nzDisabled]="2 > selectedLayers.length">
+            <app-jquery-querybuilder #joinJQueryBuilder [conditions]="['JOIN']" [default_condition]="'JOIN'"
+                                     [allow_groups]="false"
+                                     [operators]="joinOperatorsJQueryBuilder"></app-jquery-querybuilder>
+          </nz-tab>
+          <nz-tab [nzTitle]="'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.FILTER.TITLE' | translate" [nzForceRender]="true"
+                  [nzDisabled]="1 > selectedLayers.length">
+            <div>
+              <app-jquery-querybuilder #filterJQueryBuilder [conditions]="['AND', 'OR', 'NOT']"
+                                       [default_condition]="'AND'"
+                                       [operators]="filterOperatorsJQueryBuilder"
+                                       [allow_empty]="true"></app-jquery-querybuilder>
+            </div>
+          </nz-tab>
+          <nz-tab [nzTitle]="'DISPLAY.GIS.GENERATE_VIEW_MODAL.TABS.FIELDS_TO_DISPLAY.TITLE' | translate"
+                  [nzDisabled]="1 > selectedLayers.length" [nzForceRender]="true">
+            <div>
+              <app-jquery-querybuilder #showFieldsJQueryBuilder [conditions]="['FIELDS']" [default_condition]="'FIELDS'"
+                                       [operators]="showFieldsOperatorsJQueryBuilder"
+                                       [allow_groups]="false"></app-jquery-querybuilder>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </nz-spin>
+    </div>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger (click)="closeModal()">
+      {{ 'DISPLAY.GIS.GENERATE_VIEW_MODAL.CANCEL_BUTTON' | translate }}
+    </button>
+    <button nz-button nzType="primary" (click)="onAcceptButtonGeneraViewModal()"
+            [disabled]="disableAcceptButtonGenerateViewModal()">
+      {{ 'DISPLAY.GIS.GENERATE_VIEW_MODAL.ACCEPT_BUTTON' | translate }}
+    </button>
+  </ng-container>
+</nz-modal>

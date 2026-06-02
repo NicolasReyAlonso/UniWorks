@@ -1,0 +1,23 @@
+<nz-modal [(nzVisible)]="isVisible" nzCentered [nzClosable]="false" nzWidth="80vw">
+  <ng-container *nzModalTitle>
+    {{ 'GEO_VIEWER.INFO.FILTERS.MODAL_GENERATE_CQL.TITLE' | translate }}
+  </ng-container>
+  <ng-container *nzModalContent>
+    <div style="max-height: 70vh; overflow-y: auto; padding-right: 20px;">
+      <nz-spin [nzSpinning]="loading">
+        <app-jquery-querybuilder #jquerybuilder [conditions]="['AND', 'OR']" [default_condition]="'AND'"
+                                 [operators]="operators" [allow_groups]="true"></app-jquery-querybuilder>
+      </nz-spin>
+    </div>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <div style="display: flex; justify-content: end">
+      <button nz-button nzType="primary" nzDanger
+              (click)="onCancelClick()">{{ 'GEO_VIEWER.INFO.FILTERS.MODAL_GENERATE_CQL.CANCEL_BUTTON' |
+        translate }}</button>
+      <button nz-button nzType="primary"
+              (click)="onAcceptClick()">{{ 'GEO_VIEWER.INFO.FILTERS.MODAL_GENERATE_CQL.ACCEPT_BUTTON' |
+        translate }}</button>
+    </div>
+  </ng-container>
+</nz-modal>

@@ -1,0 +1,2273 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TopAreaComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/layout/top-area/top-area.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Componente que representa el área superior de la aplicación (header).</p>
+<p>Muestra el título, el icono principal, el breadcrumb, las opciones de usuario
+y un selector de “case studies” (estudios de caso).</p>
+<p>También gestiona los cambios de idioma, la sesión de usuario,
+y la apertura de preferencias.</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-html">&lt;app-top-area [title]=&quot;&#39;NGTGUIDEMO&#39;&quot; [icon]=&quot;&#39;/assets/logo.png&#39;&quot;&gt;&lt;/app-top-area&gt;</code></pre></div>
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-top-area</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzAvatarModule</code>
+                            <code>NzPopoverModule</code>
+                            <code>NzDropDownModule</code>
+                            <code>NzBreadCrumbModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzButtonModule</code>
+                                <code><a href="../components/PreferencesModalComponent.html" target="_self" >PreferencesModalComponent</a></code>
+                            <code>NgOptimizedImage</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./top-area.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./top-area.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#auth_service" >auth_service</a>
+                            </li>
+                            <li>
+                                <a href="#breadcrumb" >breadcrumb</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudiesOptions" >caseStudiesOptions</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudySelectDisable" >caseStudySelectDisable</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudySelectValue" >caseStudySelectValue</a>
+                            </li>
+                            <li>
+                                <a href="#isVisiblePreferencesModal" >isVisiblePreferencesModal</a>
+                            </li>
+                            <li>
+                                <a href="#titleString" >titleString</a>
+                            </li>
+                            <li>
+                                <a href="#userPopoverVisible" >userPopoverVisible</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#caseStudySelectValueChange" >caseStudySelectValueChange</a>
+                            </li>
+                            <li>
+                                <a href="#changeUserPopoverState" >changeUserPopoverState</a>
+                            </li>
+                            <li>
+                                <a href="#clickBreadcrumbItem" >clickBreadcrumbItem</a>
+                            </li>
+                            <li>
+                                <a href="#closePreferences" >closePreferences</a>
+                            </li>
+                            <li>
+                                <a href="#getUrlWithoutParam" >getUrlWithoutParam</a>
+                            </li>
+                            <li>
+                                <a href="#initializerSubscriptionLoadCasesStudies" >initializerSubscriptionLoadCasesStudies</a>
+                            </li>
+                            <li>
+                                <a href="#isObject" >isObject</a>
+                            </li>
+                            <li>
+                                <a href="#isString" >isString</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#loadCaseStudies" >loadCaseStudies</a>
+                            </li>
+                            <li>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onJupyterClick" >onJupyterClick</a>
+                            </li>
+                            <li>
+                                <a href="#openPreferences" >openPreferences</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#removeCaseStudySelectIfNotExist" >removeCaseStudySelectIfNotExist</a>
+                            </li>
+                            <li>
+                                <a href="#switchLanguage" >switchLanguage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#icon" >icon</a>
+                            </li>
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(i18n: NzI18nService, auth_service: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, route: Router, route_path: <a href="../injectables/RoutePathService.html" target="_self">RoutePathService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, topAreaService: <a href="../injectables/TopAreaService.html" target="_self">TopAreaService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:88</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor del componente.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>i18n</td>
+                                                  
+                                                        <td>
+                                                                    <code>NzI18nService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de internacionalización de Ng-Zorro.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>auth_service</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de autenticación de la aplicación.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de enrutamiento de Angular.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>route_path</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RoutePathService.html" target="_self" >RoutePathService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de navegación y rutas personalizadas.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio para comunicación con el backend.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>topAreaService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TopAreaService.html" target="_self" >TopAreaService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio de eventos relacionados con el área superior.</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Servicio para gestión de estado global.</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="icon"></a>
+                        <b>icon</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;./assets/images/main_icon_ngtgui_white.png&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:67</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Ruta del ícono mostrado junto al título.
+Por defecto: <code>&#39;./assets/images/main_icon_ngtgui_white.png&#39;</code></p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="title"></a>
+                        <b>title</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;TITLE NOT DEFINED&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:61</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Título mostrado en el área superior.
+Si no se especifica, se muestra <code>&#39;TITLE NOT DEFINED&#39;</code>.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudySelectValueChange"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>caseStudySelectValueChange</b></span>
+                        <a href="#caseStudySelectValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>caseStudySelectValueChange(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="200"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:200</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Evento al cambiar el valor del selector de estudios de caso.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Valor seleccionado.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeUserPopoverState"></a>
+                    <span class="name">
+                        <span ><b>changeUserPopoverState</b></span>
+                        <a href="#changeUserPopoverState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeUserPopoverState(state?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:233</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cambia el estado de visibilidad del menú del usuario.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Estado deseado (opcional). Si no se pasa, se alterna.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickBreadcrumbItem"></a>
+                    <span class="name">
+                        <span ><b>clickBreadcrumbItem</b></span>
+                        <a href="#clickBreadcrumbItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickBreadcrumbItem(routing: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navega hacia un elemento del breadcrumb.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>routing</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Objeto con la ruta y los parámetros de navegación.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closePreferences"></a>
+                    <span class="name">
+                        <span ><b>closePreferences</b></span>
+                        <a href="#closePreferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closePreferences()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra la ventana modal de preferencias.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUrlWithoutParam"></a>
+                    <span class="name">
+                        <span ><b>getUrlWithoutParam</b></span>
+                        <a href="#getUrlWithoutParam"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUrlWithoutParam(rawUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="265"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:265</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Devuelve la URL sin parámetros de consulta.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rawUrl</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>URL original.</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>La URL sin parámetros.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializerSubscriptionLoadCasesStudies"></a>
+                    <span class="name">
+                        <span ><b>initializerSubscriptionLoadCasesStudies</b></span>
+                        <a href="#initializerSubscriptionLoadCasesStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializerSubscriptionLoadCasesStudies()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa la suscripción al cambio de usuario para
+actualizar dinámicamente la lista de estudios de caso.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isObject"></a>
+                    <span class="name">
+                        <span ><b>isObject</b></span>
+                        <a href="#isObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isObject(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="275"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:275</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Verifica si el valor es un objeto.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>val</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isString"></a>
+                    <span class="name">
+                        <span ><b>isString</b></span>
+                        <a href="#isString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isString(val: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="270"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:270</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Verifica si el valor es una cadena.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>val</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loadCaseStudies"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>loadCaseStudies</b></span>
+                        <a href="#loadCaseStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>loadCaseStudies()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="188"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:188</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Carga la lista de estudios de caso disponibles desde el backend.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logout"></a>
+                    <span class="name">
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>logout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="242"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:242</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cierra sesión y redirige al inicio.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="119"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Inicializa el componente:</p>
+<ul>
+<li>Configura el idioma por defecto.</li>
+<li>Se suscribe a eventos del área superior y del servicio de estado.</li>
+<li>Carga los “case studies” disponibles si el usuario está autenticado.</li>
+</ul>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onJupyterClick"></a>
+                    <span class="name">
+                        <span ><b>onJupyterClick</b></span>
+                        <a href="#onJupyterClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onJupyterClick()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="280"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:280</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre el entorno Jupyter en una nueva pestaña.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openPreferences"></a>
+                    <span class="name">
+                        <span ><b>openPreferences</b></span>
+                        <a href="#openPreferences"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openPreferences()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="249"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:249</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Abre la ventana modal de preferencias.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeCaseStudySelectIfNotExist"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>removeCaseStudySelectIfNotExist</b></span>
+                        <a href="#removeCaseStudySelectIfNotExist"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeCaseStudySelectIfNotExist()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="174"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:174</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Verifica si el estudio de caso seleccionado sigue existiendo en el backend.
+Si no existe, se limpia del estado global.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="switchLanguage"></a>
+                    <span class="name">
+                        <span ><b>switchLanguage</b></span>
+                        <a href="#switchLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>switchLanguage(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="209"
+                                    class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:209</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Cambia el idioma de la interfaz.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Código del idioma (ej: <code>&#39;es_ES&#39;</code>, <code>&#39;en_US&#39;</code>, <code>&#39;pt_PT&#39;</code>).</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth_service"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>auth_service</b></span>
+                        <a href="#auth_service"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">Servicio de autenticación de la aplicación.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="breadcrumb"></a>
+                    <span class="name">
+                        <span ><b>breadcrumb</b></span>
+                        <a href="#breadcrumb"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de elementos de breadcrumb (navegación jerárquica).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudiesOptions"></a>
+                    <span class="name">
+                        <span ><b>caseStudiesOptions</b></span>
+                        <a href="#caseStudiesOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lista de opciones de “case studies” obtenidas del backend.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudySelectDisable"></a>
+                    <span class="name">
+                        <span ><b>caseStudySelectDisable</b></span>
+                        <a href="#caseStudySelectDisable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el selector de estudios de caso está deshabilitado.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudySelectValue"></a>
+                    <span class="name">
+                        <span ><b>caseStudySelectValue</b></span>
+                        <a href="#caseStudySelectValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Valor actualmente seleccionado en el selector de “case studies”.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisiblePreferencesModal"></a>
+                    <span class="name">
+                        <span ><b>isVisiblePreferencesModal</b></span>
+                        <a href="#isVisiblePreferencesModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si la ventana modal de preferencias está visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="titleString"></a>
+                    <span class="name">
+                        <span ><b>titleString</b></span>
+                        <a href="#titleString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Cadena del título final mostrado en el componente.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userPopoverVisible"></a>
+                    <span class="name">
+                        <span ><b>userPopoverVisible</b></span>
+                        <a href="#userPopoverVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/layout/top-area/top-area.component.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indica si el menú desplegable del usuario está visible.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+import { es_ES, en_US, pt_PT, NzI18nService } from &#x27;ng-zorro-antd/i18n&#x27;;
+import { AuthService } from &#x27;@services/auth.service&#x27;;
+import { RoutePathService } from &#x27;@services/route-path.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { StateService } from &#x27;@services/state.service&#x27;;
+import { BackendService } from &#x27;@services/backend.service&#x27;;
+import { TopAreaService } from &#x27;@services/top-area.service&#x27;;
+import { CommonModule, NgOptimizedImage } from &quot;@angular/common&quot;;
+import { SharedModule } from &quot;@shared-module/shared.module&quot;;
+import { PreferencesModalComponent } from &quot;@components/miscellaneous/preferences-modal/preferences-modal.component&quot;;
+import { NzAvatarModule } from &quot;ng-zorro-antd/avatar&quot;;
+import { NzPopoverModule } from &quot;ng-zorro-antd/popover&quot;;
+import { NzDropDownModule } from &quot;ng-zorro-antd/dropdown&quot;;
+import { NzBreadCrumbModule } from &quot;ng-zorro-antd/breadcrumb&quot;;
+import { NzSelectModule } from &quot;ng-zorro-antd/select&quot;;
+import { FormsModule, ReactiveFormsModule } from &quot;@angular/forms&quot;;
+import { NzButtonModule } from &quot;ng-zorro-antd/button&quot;;
+import { lastValueFrom } from &quot;rxjs&quot;;
+
+/**
+ * Componente que representa el área superior de la aplicación (header).
+ * 
+ * Muestra el título, el icono principal, el breadcrumb, las opciones de usuario
+ * y un selector de “case studies” (estudios de caso).
+ * 
+ * También gestiona los cambios de idioma, la sesión de usuario, 
+ * y la apertura de preferencias.
+ * 
+ * @example
+ * &#x60;&#x60;&#x60;html
+ * &lt;app-top-area [title]&#x3D;&quot;&#x27;NGTGUIDEMO&#x27;&quot; [icon]&#x3D;&quot;&#x27;/assets/logo.png&#x27;&quot;&gt;&lt;/app-top-area&gt;
+ * &#x60;&#x60;&#x60;
+ */
+@Component({
+  selector: &#x27;app-top-area&#x27;,
+  imports: [
+    CommonModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzAvatarModule,
+    NzPopoverModule,
+    NzDropDownModule,
+    NzBreadCrumbModule,
+    NzSelectModule,
+    NzButtonModule,
+    PreferencesModalComponent,
+    NgOptimizedImage,
+  ],
+  templateUrl: &#x27;./top-area.component.html&#x27;,
+  styleUrls: [&#x27;./top-area.component.sass&#x27;]
+})
+export class TopAreaComponent implements OnInit {
+
+  /** 
+   * Título mostrado en el área superior.  
+   * Si no se especifica, se muestra &#x60;&#x27;TITLE NOT DEFINED&#x27;&#x60;.
+   */
+  @Input() title: string &#x3D; &quot;TITLE NOT DEFINED&quot;;
+
+  /**
+   * Ruta del ícono mostrado junto al título.  
+   * Por defecto: &#x60;&#x27;./assets/images/main_icon_ngtgui_white.png&#x27;&#x60;
+   */
+  @Input() icon: string &#x3D; &quot;./assets/images/main_icon_ngtgui_white.png&quot;;
+
+  /** Lista de elementos de breadcrumb (navegación jerárquica). */
+  breadcrumb: any;
+
+  /** Indica si el menú desplegable del usuario está visible. */
+  userPopoverVisible &#x3D; false;
+
+  /** Indica si la ventana modal de preferencias está visible. */
+  isVisiblePreferencesModal &#x3D; false;
+
+  /** Indica si el selector de estudios de caso está deshabilitado. */
+  caseStudySelectDisable &#x3D; true;
+
+  /** Lista de opciones de “case studies” obtenidas del backend. */
+  caseStudiesOptions &#x3D; [];
+
+  /** Valor actualmente seleccionado en el selector de “case studies”. */
+  caseStudySelectValue &#x3D; null;
+
+  /** Cadena del título final mostrado en el componente. */
+  titleString: string;
+
+  /**
+   * Constructor del componente.
+   * 
+   * @param i18n Servicio de internacionalización de Ng-Zorro.
+   * @param auth_service Servicio de autenticación de la aplicación.
+   * @param route Servicio de enrutamiento de Angular.
+   * @param route_path Servicio de navegación y rutas personalizadas.
+   * @param backendService Servicio para comunicación con el backend.
+   * @param topAreaService Servicio de eventos relacionados con el área superior.
+   * @param stateService Servicio para gestión de estado global.
+   */
+  constructor(
+    private i18n: NzI18nService,
+    public auth_service: AuthService,
+    private route: Router,
+    private route_path: RoutePathService,
+    private backendService: BackendService,
+    private topAreaService: TopAreaService,
+    private readonly stateService: StateService,
+  ) {
+    this.breadcrumb &#x3D; this.route_path._log;
+  }
+
+  /**
+   * Inicializa el componente:
+   * - Configura el idioma por defecto.
+   * - Se suscribe a eventos del área superior y del servicio de estado.
+   * - Carga los “case studies” disponibles si el usuario está autenticado.
+   */
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.i18n.setLocale(es_ES);
+
+    this.topAreaService.topAreaEventEmitter.subscribe(async (event: { type: string, value: any }) &#x3D;&gt; {
+      switch (event.type) {
+        case &#x27;load-case-studies&#x27;:
+          const caseStudySelected &#x3D; this.stateService.getState(&#x27;gbl_cs&#x27;);
+          if (event.value &amp;&amp; event.value.deleteCaseStudy &amp;&amp; caseStudySelected &#x3D;&#x3D; event.value.deleteCaseStudy) {
+            await this.stateService.setState(&#x27;gbl_cs&#x27;, null);
+          }
+          this.loadCaseStudies().then();
+          break;
+      }
+    });
+
+    if (this.auth_service.user) {
+      await this.loadCaseStudies();
+      const gbl_cs &#x3D; this.stateService.getState(&#x27;gbl_cs&#x27;);
+      if (gbl_cs) {
+        this.caseStudySelectValue &#x3D; gbl_cs;
+      }
+    }
+
+    this.stateService.stateServiceEvent.subscribe((event) &#x3D;&gt; {
+      switch (event.type) {
+        case &#x27;gbl_cs&#x27;:
+          this.caseStudySelectValue &#x3D; event.event;
+          break;
+      }
+    });
+
+    this.initializerSubscriptionLoadCasesStudies();
+  }
+
+  /**
+   * Inicializa la suscripción al cambio de usuario para
+   * actualizar dinámicamente la lista de estudios de caso.
+   */
+  initializerSubscriptionLoadCasesStudies(): void {
+    this.auth_service.changeUserEvent.subscribe(async (user) &#x3D;&gt; {
+      if (user) {
+        await this.loadCaseStudies();
+        await this.removeCaseStudySelectIfNotExist();
+      } else {
+        this.caseStudySelectDisable &#x3D; true;
+        this.caseStudiesOptions &#x3D; [];
+        this.caseStudySelectValue &#x3D; null;
+      }
+    });
+  }
+
+  /**
+   * Verifica si el estudio de caso seleccionado sigue existiendo en el backend.
+   * Si no existe, se limpia del estado global.
+   */
+  async removeCaseStudySelectIfNotExist(): Promise&lt;void&gt; {
+    const caseStudySelectedId &#x3D; this.stateService.getState(&#x27;gbl_cs&#x27;);
+    if (!caseStudySelectedId) {
+      return;
+    }
+    const response: any &#x3D; await lastValueFrom(this.backendService.getCaseStudies(caseStudySelectedId));
+    if (!response.content) {
+      this.stateService.setState(&#x27;gbl_cs&#x27;, null);
+    }
+  }
+
+  /**
+   * Carga la lista de estudios de caso disponibles desde el backend.
+   */
+  async loadCaseStudies(): Promise&lt;void&gt; {
+    this.caseStudySelectDisable &#x3D; true;
+    const caseStudiesResponse: any &#x3D; await this.backendService.getCaseStudies().toPromise();
+    this.caseStudiesOptions &#x3D; caseStudiesResponse.content;
+    this.caseStudySelectDisable &#x3D; false;
+  }
+
+  /**
+   * Evento al cambiar el valor del selector de estudios de caso.
+   * 
+   * @param event Valor seleccionado.
+   */
+  async caseStudySelectValueChange(event): Promise&lt;void&gt; {
+    await this.stateService.setState(&#x27;gbl_cs&#x27;, event);
+  }
+
+  /**
+   * Cambia el idioma de la interfaz.
+   * 
+   * @param value Código del idioma (ej: &#x60;&#x27;es_ES&#x27;&#x60;, &#x60;&#x27;en_US&#x27;&#x60;, &#x60;&#x27;pt_PT&#x27;&#x60;).
+   */
+  switchLanguage(value: string): void {
+    switch (value) {
+      case &#x27;es_ES&#x27;: this.i18n.setLocale(es_ES); break;
+      case &#x27;en_US&#x27;: this.i18n.setLocale(en_US); break;
+      case &#x27;pt_PT&#x27;: this.i18n.setLocale(pt_PT); break;
+      default: break;
+    }
+  }
+
+  /**
+   * Navega hacia un elemento del breadcrumb.
+   * 
+   * @param routing Objeto con la ruta y los parámetros de navegación.
+   */
+  clickBreadcrumbItem(routing: any): void {
+    this.route_path.goBack(routing);
+    this.route.navigate([routing.url], { queryParams: routing.queryParams });
+  }
+
+  /**
+   * Cambia el estado de visibilidad del menú del usuario.
+   * 
+   * @param state Estado deseado (opcional). Si no se pasa, se alterna.
+   */
+  changeUserPopoverState(state?: boolean): void {
+    if (state &#x3D;&#x3D;&#x3D; undefined) {
+      this.userPopoverVisible &#x3D; !this.userPopoverVisible;
+      return;
+    }
+    this.userPopoverVisible &#x3D; state;
+  }
+
+  /** Cierra sesión y redirige al inicio. */
+  logout(): void {
+    this.changeUserPopoverState(false);
+    this.route.navigate([&#x27;&#x27;]).then();
+    this.auth_service.logout().then();
+  }
+
+  /** Abre la ventana modal de preferencias. */
+  openPreferences(): void {
+    this.userPopoverVisible &#x3D; false;
+    this.isVisiblePreferencesModal &#x3D; true;
+  }
+
+  /** Cierra la ventana modal de preferencias. */
+  closePreferences(): void {
+    this.isVisiblePreferencesModal &#x3D; false;
+  }
+
+  /**
+   * Devuelve la URL sin parámetros de consulta.
+   * 
+   * @param rawUrl URL original.
+   * @returns La URL sin parámetros.
+   */
+  getUrlWithoutParam(rawUrl: string): string {
+    return rawUrl.split(&#x27;?&#x27;)[0];
+  }
+
+  /** Verifica si el valor es una cadena. */
+  isString(val: any): boolean {
+    return typeof val &#x3D;&#x3D;&#x3D; &#x27;string&#x27;;
+  }
+
+  /** Verifica si el valor es un objeto. */
+  isObject(val: any): boolean {
+    return typeof val &#x3D;&#x3D;&#x3D; &#x27;object&#x27;;
+  }
+
+  /** Abre el entorno Jupyter en una nueva pestaña. */
+  onJupyterClick(): void {
+    window.open(&quot;http://jupyter.nextgendem.eu&quot;, &quot;_blank&quot;);
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;theme-header-background-color&quot; style&#x3D;&quot;display: flex; padding: 5px 30px; align-items: center&quot;&gt;
+  &lt;img style&#x3D;&quot;margin-right: 10px;&quot; ngSrc&#x3D;{{icon}} alt&#x3D;&quot;NextGenDem Logo&quot;
+       height&#x3D;&quot;45&quot; width&#x3D;&quot;45&quot;&gt;
+
+  &lt;div class&#x3D;&quot;title&quot;&gt;
+    {{title}}
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;container-case-study theme-header-background-color-tint-15&quot;&gt;
+    &lt;nz-select nzPlaceHolder&#x3D;&quot;{{&#x27;MISC.BREADCRUMB.CASE_STUDIES&#x27; | translate}}&quot; nzBorderless nzAllowClear
+               class&#x3D;&quot;theme-header-background-color-tint-15&quot; [(ngModel)]&#x3D;&quot;caseStudySelectValue&quot;
+               [nzDisabled]&#x3D;&quot;caseStudySelectDisable&quot; [nzLoading]&#x3D;&quot;caseStudySelectDisable&quot;
+               (ngModelChange)&#x3D;&quot;caseStudySelectValueChange($event)&quot; style&#x3D;&quot;text-align: center&quot;&gt;
+      &lt;nz-option *ngFor&#x3D;&quot;let item of caseStudiesOptions&quot; [nzValue]&#x3D;&quot;item.id&quot; [nzLabel]&#x3D;&quot;item.name&quot;&gt;&lt;/nz-option&gt;
+    &lt;/nz-select&gt;
+  &lt;/div&gt;
+
+  &lt;nz-breadcrumb nz-page-header-subtitle nzSeparator&#x3D;&quot;&gt;&quot; *ngIf&#x3D;&quot;breadcrumb.length &gt; 1&quot;
+                 class&#x3D;&quot;theme-header-background-color-tint-15 breadcrumb-routes&quot;&gt;
+    &lt;nz-breadcrumb-item [nzOverlay]&#x3D;&quot;overflow&quot; *ngIf&#x3D;&quot;breadcrumb.length &gt; 4&quot; class&#x3D;&quot;breadcrumb-item-overlay&quot;&gt;...
+    &lt;/nz-breadcrumb-item&gt;
+    &lt;nz-breadcrumb-item *ngIf&#x3D;&quot;breadcrumb[breadcrumb.length-4] as breadcrumbItem;&quot;&gt;
+      &lt;ng-container
+        [ngTemplateOutlet]&#x3D;&quot;breadcrumbTemplate&quot;
+        [ngTemplateOutletContext]&#x3D;&quot;{breadcrumbItem: breadcrumbItem} &quot;&gt;
+      &lt;/ng-container&gt;
+    &lt;/nz-breadcrumb-item&gt;
+    &lt;nz-breadcrumb-item *ngIf&#x3D;&quot;breadcrumb[breadcrumb.length-3] as breadcrumbItem;&quot;&gt;
+      &lt;ng-container
+        [ngTemplateOutlet]&#x3D;&quot;breadcrumbTemplate&quot;
+        [ngTemplateOutletContext]&#x3D;&quot;{breadcrumbItem: breadcrumbItem} &quot;&gt;
+      &lt;/ng-container&gt;
+    &lt;/nz-breadcrumb-item&gt;
+    &lt;nz-breadcrumb-item *ngIf&#x3D;&quot;breadcrumb[breadcrumb.length-2] as breadcrumbItem;&quot;&gt;
+      &lt;ng-container
+        [ngTemplateOutlet]&#x3D;&quot;breadcrumbTemplate&quot;
+        [ngTemplateOutletContext]&#x3D;&quot;{breadcrumbItem: breadcrumbItem} &quot;&gt;
+      &lt;/ng-container&gt;
+    &lt;/nz-breadcrumb-item&gt;
+  &lt;/nz-breadcrumb&gt;
+  &lt;nz-dropdown-menu #overflow&#x3D;nzDropdownMenu&gt;
+    &lt;ul nz-menu nzSelectable class&#x3D;&quot;theme-header-background-color-tint-15&quot;
+        style&#x3D;&quot;box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;&quot;&gt;
+      &lt;li nz-menu-item *ngFor&#x3D;&quot;let crumb of breadcrumb.slice(0, breadcrumb.length-4);&quot;
+          style&#x3D;&quot;background-color: unset !important;&quot;&gt;
+        &lt;ng-container
+          [ngTemplateOutlet]&#x3D;&quot;breadcrumbTemplate&quot;
+          [ngTemplateOutletContext]&#x3D;&quot;{breadcrumbItem: crumb, isDropdownItem: true} &quot;&gt;
+        &lt;/ng-container&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nz-dropdown-menu&gt;
+
+  &lt;div style&#x3D;&quot;flex-grow: 1&quot;&gt;&lt;/div&gt;
+
+  &lt;div style&#x3D;&quot;height: 100%&quot;&gt;
+    &lt;nz-avatar *ngIf&#x3D;&quot;!auth_service.userData[0]&quot; nzSize&#x3D;&quot;large&quot; nzIcon&#x3D;&quot;user&quot; style&#x3D;&quot;cursor: pointer;&quot;&gt;&lt;/nz-avatar&gt;
+    &lt;nz-avatar *ngIf&#x3D;&quot;auth_service.userData[0]&quot; [nzSrc]&#x3D;&quot;auth_service.userData[0].photoURL&quot; nzSize&#x3D;&quot;large&quot; nzIcon&#x3D;&quot;user&quot;
+               style&#x3D;&quot;cursor: pointer;&quot; nzPopoverTrigger&#x3D;&quot;null&quot; nz-popover nzPopoverContent&#x3D;&quot;Content&quot;
+               nzPopoverPlacement&#x3D;&quot;bottomRight&quot; (click)&#x3D;&quot;changeUserPopoverState()&quot;
+               [(nzPopoverVisible)]&#x3D;&quot;userPopoverVisible&quot;
+               [nzPopoverContent]&#x3D;&quot;userPopoverTemplate&quot;&gt;&lt;/nz-avatar&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;theme-header-background-color-tint-15 circle-icon&quot; style&#x3D;&quot;margin-left: 1rem&quot; (click)&#x3D;&quot;onJupyterClick()&quot; *ngIf&#x3D;&quot;auth_service.haveRole(&#x27;jupyterlab&#x27;)&quot;&gt;
+    &lt;img src&#x3D;&quot;./assets/images/Jupyter_logo.svg&quot; style&#x3D;&quot;filter: invert(1); height: 100%; width: auto&quot;&gt;
+  &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;ng-template #userPopoverTemplate&gt;
+  &lt;div style&#x3D;&quot;width: 354px;&quot;&gt;
+
+    &lt;div style&#x3D;&quot;display: flex; justify-content: center; margin-top: 10px;&quot;&gt;
+      &lt;nz-avatar [nzSize]&#x3D;&quot;80&quot; [nzSrc]&#x3D;&quot;auth_service.userData[0].photoURL&quot; nzIcon&#x3D;&quot;user&quot;&gt;&lt;/nz-avatar&gt;
+    &lt;/div&gt;
+
+    &lt;div style&#x3D;&quot;display: flex; justify-content: center; margin-top: 8px;&quot;&gt;
+      &lt;div style&#x3D;&quot;display: inline-block; font-size: 16px; font-weight: 500;&quot;&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;!auth_service.userData[0].isAnonymous&quot;&gt;
+          {{auth_service.userData[0].displayName}}
+        &lt;/ng-container&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;auth_service.userData[0].isAnonymous&quot;&gt;
+          Invitado/a
+        &lt;/ng-container&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div style&#x3D;&quot;display: flex; justify-content: center;&quot; *ngIf&#x3D;&quot;!auth_service.userData[0].isAnonymous&quot;&gt;
+      &lt;div style&#x3D;&quot;display: inline-block; font-size: 14px; font-weight: 500; color: #5f6368;&quot;&gt;
+        {{auth_service.userData[0].email}}
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div
+      style&#x3D;&quot;background-color: #dfdfdf; width: calc(100% + 32px); height: 1px; margin-top: 8px ; margin-left: -16px;&quot;&gt;
+
+    &lt;/div&gt;
+
+    &lt;div style&#x3D;&quot;display: flex; justify-content: center; margin-top: 15px; padding-bottom: 10px; gap: 10px;&quot;&gt;
+      &lt;button nz-button (click)&#x3D;&quot;openPreferences()&quot;&gt;{{&#x27;MISC.PROFILE.PREFERENCES&#x27; | translate}}&lt;/button&gt;
+      &lt;button nz-button (click)&#x3D;&quot;logout()&quot; nzDanger
+              nzType&#x3D;&quot;primary&quot;&gt;{{&#x27;MISC.PROFILE.CLOSE_SESSION&#x27; | translate}}&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #breadcrumbTemplate let-breadcrumbItem&#x3D;&quot;breadcrumbItem&quot; let-isDropdownItem&#x3D;&quot;isDropdownItem&quot;&gt;
+  &lt;a (click)&#x3D;&quot;clickBreadcrumbItem(breadcrumbItem)&quot;
+     [ngClass]&#x3D;&quot;{&#x27;breadcrumb-dropdown-item&#x27;: isDropdownItem}&quot;
+     class&#x3D;&quot;theme-header-background-color-tint-15&quot;&gt;
+    &lt;ng-container *ngIf&#x3D;&quot;breadcrumbItem.breadcrumbName &amp;&amp; isString(breadcrumbItem.breadcrumbName)&quot;&gt;
+      {{breadcrumbItem.breadcrumbName | translate}}
+    &lt;/ng-container&gt;
+    &lt;ng-container *ngIf&#x3D;&quot;breadcrumbItem.breadcrumbName &amp;&amp; isObject(breadcrumbItem.breadcrumbName)&quot;&gt;
+      {{breadcrumbItem.breadcrumbName.key | translate: {params: breadcrumbItem.breadcrumbName.params} }}
+    &lt;/ng-container&gt;
+  &lt;/a&gt;
+&lt;/ng-template&gt;
+
+&lt;preferences-modal [(isVisible)]&#x3D;&quot;isVisiblePreferencesModal&quot;&gt;&lt;/preferences-modal&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./top-area.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.title
+  color: white
+  font-family: Courier New, Courier, monospace
+  font-size: 32px
+  font-weight: 600
+  margin-left: 15px
+
+.container-case-study
+  margin: 0px 0px 0px 30px
+  color: black
+  padding: 0px 15px
+  border-radius: 5px
+  display: flex
+  flex-direction: row
+  align-items: center
+  min-height: 41px
+  min-width: 174px
+
+.breadcrumb-routes
+  border-radius: 5px
+  margin-left: 30px
+  padding: 0px 18px
+  min-height: 41px
+  align-items: center
+  display: flex
+
+.circle-icon
+  height: 30px
+  width: 30px
+  border-radius: 20px
+  display: flex
+  justify-content: center
+  padding: 3px
+  cursor: pointer
+
+::ng-deep .container-case-study &gt; .ant-select &gt; .ant-select-arrow,
+::ng-deep .container-case-study &gt; .ant-select &gt; .ant-select-clear
+  color: inherit !important
+  background-color: inherit !important
+
+::ng-deep .ant-breadcrumb &gt; nz-breadcrumb-item,
+::ng-deep .ant-breadcrumb &gt; nz-breadcrumb-item:last-child a,
+::ng-deep .ant-breadcrumb a,
+::ng-deep .ant-breadcrumb-separator
+  color: inherit !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="theme-header-background-color" style="display: flex; padding: 5px 30px; align-items: center">  <img style="margin-right: 10px;" ngSrc={{icon}} alt="NextGenDem Logo"       height="45" width="45">  <div class="title">    {{title}}  </div>  <div class="container-case-study theme-header-background-color-tint-15">    <nz-select nzPlaceHolder="{{\'MISC.BREADCRUMB.CASE_STUDIES\' | translate}}" nzBorderless nzAllowClear               class="theme-header-background-color-tint-15" [(ngModel)]="caseStudySelectValue"               [nzDisabled]="caseStudySelectDisable" [nzLoading]="caseStudySelectDisable"               (ngModelChange)="caseStudySelectValueChange($event)" style="text-align: center">      <nz-option *ngFor="let item of caseStudiesOptions" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>    </nz-select>  </div>  <nz-breadcrumb nz-page-header-subtitle nzSeparator=">" *ngIf="breadcrumb.length > 1"                 class="theme-header-background-color-tint-15 breadcrumb-routes">    <nz-breadcrumb-item [nzOverlay]="overflow" *ngIf="breadcrumb.length > 4" class="breadcrumb-item-overlay">...    </nz-breadcrumb-item>    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-4] as breadcrumbItem;">      <ng-container        [ngTemplateOutlet]="breadcrumbTemplate"        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">      </ng-container>    </nz-breadcrumb-item>    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-3] as breadcrumbItem;">      <ng-container        [ngTemplateOutlet]="breadcrumbTemplate"        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">      </ng-container>    </nz-breadcrumb-item>    <nz-breadcrumb-item *ngIf="breadcrumb[breadcrumb.length-2] as breadcrumbItem;">      <ng-container        [ngTemplateOutlet]="breadcrumbTemplate"        [ngTemplateOutletContext]="{breadcrumbItem: breadcrumbItem} ">      </ng-container>    </nz-breadcrumb-item>  </nz-breadcrumb>  <nz-dropdown-menu #overflow=nzDropdownMenu>    <ul nz-menu nzSelectable class="theme-header-background-color-tint-15"        style="box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;">      <li nz-menu-item *ngFor="let crumb of breadcrumb.slice(0, breadcrumb.length-4);"          style="background-color: unset !important;">        <ng-container          [ngTemplateOutlet]="breadcrumbTemplate"          [ngTemplateOutletContext]="{breadcrumbItem: crumb, isDropdownItem: true} ">        </ng-container>      </li>    </ul>  </nz-dropdown-menu>  <div style="flex-grow: 1"></div>  <div style="height: 100%">    <nz-avatar *ngIf="!auth_service.userData[0]" nzSize="large" nzIcon="user" style="cursor: pointer;"></nz-avatar>    <nz-avatar *ngIf="auth_service.userData[0]" [nzSrc]="auth_service.userData[0].photoURL" nzSize="large" nzIcon="user"               style="cursor: pointer;" nzPopoverTrigger="null" nz-popover nzPopoverContent="Content"               nzPopoverPlacement="bottomRight" (click)="changeUserPopoverState()"               [(nzPopoverVisible)]="userPopoverVisible"               [nzPopoverContent]="userPopoverTemplate"></nz-avatar>  </div>  <div class="theme-header-background-color-tint-15 circle-icon" style="margin-left: 1rem" (click)="onJupyterClick()" *ngIf="auth_service.haveRole(\'jupyterlab\')">    <img src="./assets/images/Jupyter_logo.svg" style="filter: invert(1); height: 100%; width: auto">  </div></div><ng-template #userPopoverTemplate>  <div style="width: 354px;">    <div style="display: flex; justify-content: center; margin-top: 10px;">      <nz-avatar [nzSize]="80" [nzSrc]="auth_service.userData[0].photoURL" nzIcon="user"></nz-avatar>    </div>    <div style="display: flex; justify-content: center; margin-top: 8px;">      <div style="display: inline-block; font-size: 16px; font-weight: 500;">        <ng-container *ngIf="!auth_service.userData[0].isAnonymous">          {{auth_service.userData[0].displayName}}        </ng-container>        <ng-container *ngIf="auth_service.userData[0].isAnonymous">          Invitado/a        </ng-container>      </div>    </div>    <div style="display: flex; justify-content: center;" *ngIf="!auth_service.userData[0].isAnonymous">      <div style="display: inline-block; font-size: 14px; font-weight: 500; color: #5f6368;">        {{auth_service.userData[0].email}}      </div>    </div>    <div      style="background-color: #dfdfdf; width: calc(100% + 32px); height: 1px; margin-top: 8px ; margin-left: -16px;">    </div>    <div style="display: flex; justify-content: center; margin-top: 15px; padding-bottom: 10px; gap: 10px;">      <button nz-button (click)="openPreferences()">{{\'MISC.PROFILE.PREFERENCES\' | translate}}</button>      <button nz-button (click)="logout()" nzDanger              nzType="primary">{{\'MISC.PROFILE.CLOSE_SESSION\' | translate}}</button>    </div>  </div></ng-template><ng-template #breadcrumbTemplate let-breadcrumbItem="breadcrumbItem" let-isDropdownItem="isDropdownItem">  <a (click)="clickBreadcrumbItem(breadcrumbItem)"     [ngClass]="{\'breadcrumb-dropdown-item\': isDropdownItem}"     class="theme-header-background-color-tint-15">    <ng-container *ngIf="breadcrumbItem.breadcrumbName && isString(breadcrumbItem.breadcrumbName)">      {{breadcrumbItem.breadcrumbName | translate}}    </ng-container>    <ng-container *ngIf="breadcrumbItem.breadcrumbName && isObject(breadcrumbItem.breadcrumbName)">      {{breadcrumbItem.breadcrumbName.key | translate: {params: breadcrumbItem.breadcrumbName.params} }}    </ng-container>  </a></ng-template><preferences-modal [(isVisible)]="isVisiblePreferencesModal"></preferences-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'TopAreaComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TopAreaComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

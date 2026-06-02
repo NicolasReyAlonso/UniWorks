@@ -1,0 +1,3849 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  ProcessDetailComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/processes/process-detail/process-detail.component.ts</code>
+</p>
+
+
+
+    <p class="comment">
+        <h3>Extends</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+    </p>
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                <code>OnDestroy</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-process-detail</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                            <code>NzButtonModule</code>
+                                <code><a href="../components/DynamicInputModalComponent.html" target="_self" >DynamicInputModalComponent</a></code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                                <code><a href="../components/InfoModalComponent.html" target="_self" >InfoModalComponent</a></code>
+                            <code>NzProgressModule</code>
+                            <code>FormlyModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzCollapseModule</code>
+                                <code><a href="../components/ProcessLogComponent.html" target="_self" >ProcessLogComponent</a></code>
+                            <code>NzCardModule</code>
+                            <code>RouterModule</code>
+                            <code>NzPageHeaderModule</code>
+                                <code><a href="../components/BackButtonComponent.html" target="_self" >BackButtonComponent</a></code>
+                            <code>NzIconModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./process-detail.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./process-detail.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#authService" >authService</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#buttonsDeleteModal" >buttonsDeleteModal</a>
+                            </li>
+                            <li>
+                                <a href="#contentParamsCancelProcessModal" >contentParamsCancelProcessModal</a>
+                            </li>
+                            <li>
+                                <a href="#DEBUG_JSON_FORMLY_FIELDS" >DEBUG_JSON_FORMLY_FIELDS</a>
+                            </li>
+                            <li>
+                                <a href="#fields" >fields</a>
+                            </li>
+                            <li>
+                                <a href="#form" >form</a>
+                            </li>
+                            <li>
+                                <a href="#imported_analyses" >imported_analyses</a>
+                            </li>
+                            <li>
+                                <a href="#importFunction" >importFunction</a>
+                            </li>
+                            <li>
+                                <a href="#importModalFields" >importModalFields</a>
+                            </li>
+                            <li>
+                                <a href="#isImporting" >isImporting</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleCancelProcessModal" >isVisibleCancelProcessModal</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleImportModal" >isVisibleImportModal</a>
+                            </li>
+                            <li>
+                                <a href="#job" >job</a>
+                            </li>
+                            <li>
+                                <a href="#model" >model</a>
+                            </li>
+                            <li>
+                                <a href="#options" >options</a>
+                            </li>
+                            <li>
+                                <a href="#process" >process</a>
+                            </li>
+                            <li>
+                                <a href="#processLogString" >processLogString</a>
+                            </li>
+                            <li>
+                                <a href="#processStatusChangeSubscription" >processStatusChangeSubscription</a>
+                            </li>
+                            <li>
+                                <a href="#progressPercentage" >progressPercentage</a>
+                            </li>
+                            <li>
+                                <a href="#progressStatus" >progressStatus</a>
+                            </li>
+                            <li>
+                                <a href="#resource" >resource</a>
+                            </li>
+                            <li>
+                                <a href="#selectedFile" >selectedFile</a>
+                            </li>
+                            <li>
+                                <a href="#step_description" >step_description</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#STEPS" >STEPS</a>
+                            </li>
+                            <li>
+                                <a href="#subprocesses" >subprocesses</a>
+                            </li>
+                            <li>
+                                <a href="#initializedFields" >initializedFields</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelProcess" >cancelProcess</a>
+                            </li>
+                            <li>
+                                <a href="#canViewFile" >canViewFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#changeProgressStatus" >changeProgressStatus</a>
+                            </li>
+                            <li>
+                                <a href="#downloadFile" >downloadFile</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getImportedObjects" >getImportedObjects</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#goToDetail" >goToDetail</a>
+                            </li>
+                            <li>
+                                <a href="#import" >import</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onClickCancelProcess" >onClickCancelProcess</a>
+                            </li>
+                            <li>
+                                <a href="#progressFormat" >progressFormat</a>
+                            </li>
+                            <li>
+                                <a href="#showCancelButton" >showCancelButton</a>
+                            </li>
+                            <li>
+                                <a href="#showImportModal" >showImportModal</a>
+                            </li>
+                            <li>
+                                <a href="#viewFile" >viewFile</a>
+                            </li>
+                            <li>
+                                <a href="#viewLog" >viewLog</a>
+                            </li>
+                            <li>
+                                <a href="#changeTaxons" >changeTaxons</a>
+                            </li>
+                            <li>
+                                <a href="#destroyFields" >destroyFields</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#destroyTaxons" >destroyTaxons</a>
+                            </li>
+                            <li>
+                                <a href="#existsField" >existsField</a>
+                            </li>
+                            <li>
+                                <a href="#getField" >getField</a>
+                            </li>
+                            <li>
+                                <a href="#getModelValue" >getModelValue</a>
+                            </li>
+                            <li>
+                                <a href="#initializeFields" >initializeFields</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initTaxons" >initTaxons</a>
+                            </li>
+                            <li>
+                                <a href="#parse_alignment_value" >parse_alignment_value</a>
+                            </li>
+                            <li>
+                                <a href="#parse_sequence_value" >parse_sequence_value</a>
+                            </li>
+                            <li>
+                                <a href="#setValueFieldGroup" >setValueFieldGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fields" >fields</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(filesService: <a href="../injectables/FilesService.html" target="_self">FilesService</a>, socketService: <a href="../injectables/SocketService.html" target="_self">SocketService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, msg: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, router: Router, activatedRoute: ActivatedRoute, sidebarService: <a href="../injectables/SidebarService.html" target="_self">SidebarService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, internationalizationService: <a href="../injectables/InternationalizationService.html" target="_self">InternationalizationService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:121</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>filesService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FilesService.html" target="_self" >FilesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>socketService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SocketService.html" target="_self" >SocketService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>msg</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>sidebarService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/SidebarService.html" target="_self" >SidebarService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>internationalizationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InternationalizationService.html" target="_self" >InternationalizationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fields"></a>
+                        <b>fields</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4" colspan="2">
+                                    <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:10</a></code>
+</div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelProcess"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelProcess</b></span>
+                        <a href="#cancelProcess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelProcess()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="427"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:427</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canViewFile"></a>
+                    <span class="name">
+                        <span ><b>canViewFile</b></span>
+                        <a href="#canViewFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>canViewFile(file: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="371"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:371</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeProgressStatus"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>changeProgressStatus</b></span>
+                        <a href="#changeProgressStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeProgressStatus(status: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>status</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadFile"></a>
+                    <span class="name">
+                        <span ><b>downloadFile</b></span>
+                        <a href="#downloadFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>downloadFile(fileName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="316"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:316</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fileName</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getImportedObjects"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getImportedObjects</b></span>
+                        <a href="#getImportedObjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getImportedObjects(object_type: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, filter_dict: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="253"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:253</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>object_type</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>filter_dict</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToDetail"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>goToDetail</b></span>
+                        <a href="#goToDetail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>goToDetail(resultFile: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="460"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:460</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>resultFile</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="import"></a>
+                    <span class="name">
+                        <span ><b>import</b></span>
+                        <a href="#import"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>import(resultFile: literal type, importModalOutput: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="398"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:398</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>resultFile</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>importModalOutput</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:302</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="140"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:140</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickCancelProcess"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onClickCancelProcess</b></span>
+                        <a href="#onClickCancelProcess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onClickCancelProcess()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="422"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:422</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressFormat"></a>
+                    <span class="name">
+                        <span ><b>progressFormat</b></span>
+                        <a href="#progressFormat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>progressFormat(percent: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="306"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:306</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>percent</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showCancelButton"></a>
+                    <span class="name">
+                        <span ><b>showCancelButton</b></span>
+                        <a href="#showCancelButton"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showCancelButton()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="454"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:454</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showImportModal"></a>
+                    <span class="name">
+                        <span ><b>showImportModal</b></span>
+                        <a href="#showImportModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showImportModal(resultFile: literal type)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="393"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:393</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>resultFile</td>
+                                            <td>
+                                                        <code>literal type</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewFile"></a>
+                    <span class="name">
+                        <span ><b>viewFile</b></span>
+                        <a href="#viewFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewFile(file: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="320"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:320</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewLog"></a>
+                    <span class="name">
+                        <span ><b>viewLog</b></span>
+                        <a href="#viewLog"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewLog()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="389"
+                                    class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:389</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeTaxons"></a>
+                    <span class="name">
+                        <span ><b>changeTaxons</b></span>
+                        <a href="#changeTaxons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeTaxons($event, field)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:139</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>$event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyFields"></a>
+                    <span class="name">
+                        <span ><b>destroyFields</b></span>
+                        <a href="#destroyFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>destroyFields()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:75</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroyTaxons"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>destroyTaxons</b></span>
+                        <a href="#destroyTaxons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>destroyTaxons()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:177</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="existsField"></a>
+                    <span class="name">
+                        <span ><b>existsField</b></span>
+                        <a href="#existsField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>existsField(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fields: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:44</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fields</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getField"></a>
+                    <span class="name">
+                        <span ><b>getField</b></span>
+                        <a href="#getField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getField(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fields: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:18</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fields</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>FormlyFieldConfig</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getModelValue"></a>
+                    <span class="name">
+                        <span ><b>getModelValue</b></span>
+                        <a href="#getModelValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getModelValue(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, model: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:56</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>model</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeFields"></a>
+                    <span class="name">
+                        <span ><b>initializeFields</b></span>
+                        <a href="#initializeFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initializeFields(initFunction: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, field: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, fromValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:68</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>initFunction</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fromValue</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initTaxons"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initTaxons</b></span>
+                        <a href="#initTaxons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initTaxons(field: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, fromValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:100</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>field</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fromValue</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parse_alignment_value"></a>
+                    <span class="name">
+                        <span ><b>parse_alignment_value</b></span>
+                        <a href="#parse_alignment_value"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parse_alignment_value(fromValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:85</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromValue</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parse_sequence_value"></a>
+                    <span class="name">
+                        <span ><b>parse_sequence_value</b></span>
+                        <a href="#parse_sequence_value"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>parse_sequence_value(fromValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:95</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>fromValue</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setValueFieldGroup"></a>
+                    <span class="name">
+                        <span ><b>setValueFieldGroup</b></span>
+                        <a href="#setValueFieldGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setValueFieldGroup(key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, path: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, fieldGroup: literal type[], newValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:33</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>path</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>fieldGroup</td>
+                                            <td>
+                                                        <code>literal type[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>newValue</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>{}</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="authService"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>authService</b></span>
+                        <a href="#authService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="133" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    key: &#x27;PROCESSES.PROCESSES_DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:58</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="buttonsDeleteModal"></a>
+                    <span class="name">
+                        <span ><b>buttonsDeleteModal</b></span>
+                        <a href="#buttonsDeleteModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    {
+      text: &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.ACCEPT_BUTTON&quot;,
+      options: {
+        isDanger: false,
+      },
+      func: this.cancelProcess.bind(this),
+    },
+    {
+      text: &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.CLOSE_BUTTON&quot;,
+      options: {
+        isDanger: true,
+      },
+      func: () &#x3D;&gt; {
+        this.isVisibleCancelProcessModal &#x3D; false;
+      },
+    }
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="contentParamsCancelProcessModal"></a>
+                    <span class="name">
+                        <span ><b>contentParamsCancelProcessModal</b></span>
+                        <a href="#contentParamsCancelProcessModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    name: &#x27;&#x27;,
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DEBUG_JSON_FORMLY_FIELDS"></a>
+                    <span class="name">
+                        <span ><b>DEBUG_JSON_FORMLY_FIELDS</b></span>
+                        <a href="#DEBUG_JSON_FORMLY_FIELDS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="464" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:464</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fields"></a>
+                    <span class="name">
+                        <span ><b>fields</b></span>
+                        <a href="#fields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="form"></a>
+                    <span class="name">
+                        <span ><b>form</b></span>
+                        <a href="#form"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="imported_analyses"></a>
+                    <span class="name">
+                        <span ><b>imported_analyses</b></span>
+                        <a href="#imported_analyses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importFunction"></a>
+                    <span class="name">
+                        <span ><b>importFunction</b></span>
+                        <a href="#importFunction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:121</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importModalFields"></a>
+                    <span class="name">
+                        <span ><b>importModalFields</b></span>
+                        <a href="#importModalFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isImporting"></a>
+                    <span class="name">
+                        <span ><b>isImporting</b></span>
+                        <a href="#isImporting"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleCancelProcessModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleCancelProcessModal</b></span>
+                        <a href="#isVisibleCancelProcessModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleImportModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleImportModal</b></span>
+                        <a href="#isVisibleImportModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:119</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="job"></a>
+                    <span class="name">
+                        <span ><b>job</b></span>
+                        <a href="#job"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="model"></a>
+                    <span class="name">
+                        <span ><b>model</b></span>
+                        <a href="#model"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:87</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="options"></a>
+                    <span class="name">
+                        <span ><b>options</b></span>
+                        <a href="#options"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyJsonschemaOptions</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:86</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="process"></a>
+                    <span class="name">
+                        <span ><b>process</b></span>
+                        <a href="#process"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processLogString"></a>
+                    <span class="name">
+                        <span ><b>processLogString</b></span>
+                        <a href="#processLogString"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processStatusChangeSubscription"></a>
+                    <span class="name">
+                        <span ><b>processStatusChangeSubscription</b></span>
+                        <a href="#processStatusChangeSubscription"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Subscription</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressPercentage"></a>
+                    <span class="name">
+                        <span ><b>progressPercentage</b></span>
+                        <a href="#progressPercentage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="progressStatus"></a>
+                    <span class="name">
+                        <span ><b>progressStatus</b></span>
+                        <a href="#progressStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resource"></a>
+                    <span class="name">
+                        <span ><b>resource</b></span>
+                        <a href="#resource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedFile"></a>
+                    <span class="name">
+                        <span ><b>selectedFile</b></span>
+                        <a href="#selectedFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="step_description"></a>
+                    <span class="name">
+                        <span ><b>step_description</b></span>
+                        <a href="#step_description"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="STEPS"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>STEPS</b></span>
+                        <a href="#STEPS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
+    &#x27;created&#x27;,
+    &#x27;preparing_workspace&#x27;,
+    &#x27;export&#x27;,
+    &#x27;transfer_data_to_resource&#x27;,
+    &#x27;submit&#x27;,
+    &#x27;wait_until_execution_starts&#x27;,
+    &#x27;wait_for_execution_end&#x27;,
+    &#x27;transfer_data_from_resource&#x27;,
+    &#x27;store_result_in_backend&#x27;,
+    &#x27;cleanup&#x27;,
+    &#x27;success&#x27;,
+  ]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:65</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="subprocesses"></a>
+                    <span class="name">
+                        <span ><b>subprocesses</b></span>
+                        <a href="#subprocesses"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/pages/processes/process-detail/process-detail.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializedFields"></a>
+                    <span class="name">
+                        <span ><b>initializedFields</b></span>
+                        <a href="#initializedFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Set&lt;string&gt;()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../directives/FormlyUser.html" target="_self" >FormlyUser</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../directives/FormlyUser.html#source" target="_self" >FormlyUser:12</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, OnDestroy, OnInit} from &#x27;@angular/core&#x27;;
+import {FormsModule, ReactiveFormsModule, UntypedFormGroup} from &#x27;@angular/forms&#x27;;
+import {lastValueFrom, Subscription} from &#x27;rxjs&#x27;;
+import {SocketService} from &#x27;src/app/services/socket.service&#x27;;
+import {FilesService} from &#x27;src/app/services/files.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &quot;src/app/services/notification.service&quot;;
+import {MessageLogService} from &quot;src/app/services/message-log.service&quot;;
+import {ActivatedRoute, Router, RouterModule} from &#x27;@angular/router&#x27;;
+import {SidebarService} from &#x27;src/app/services/sidebar.service&#x27;;
+import IView from &quot;@interfaces/view.interfaces&quot;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {AuthService} from &#x27;src/app/services/auth.service&#x27;;
+import {FormlyFieldConfig, FormlyModule} from &quot;@ngx-formly/core&quot;;
+import {FormlyUser} from &quot;src/app/components/formly-components/change-and-init-functions&quot;;
+import {FormlyJsonschemaOptions} from &quot;@ngx-formly/core/json-schema/formly-json-schema.service&quot;;
+import {InternationalizationService} from "ngt-gui";import {CommonModule} from &#x27;@angular/common&#x27;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {
+  DynamicInputModalComponent
+} from &quot;../../../components/dynamics/dynamic-input-modal/dynamic-input-modal.component&quot;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {InfoModalComponent} from &quot;../../../components/miscellaneous/info-modal/info-modal.component&quot;;
+import {NzProgressModule} from &quot;ng-zorro-antd/progress&quot;;
+import {NzCollapseModule} from &quot;ng-zorro-antd/collapse&quot;;
+import {ProcessLogComponent} from &quot;../../../components/display/process-log/process-log.component&quot;;
+import {NzCardModule} from &quot;ng-zorro-antd/card&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {BackButtonComponent} from &quot;../../../components/miscellaneous/back-button/back-button.component&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+
+@Component({
+    selector: &#x27;app-process-detail&#x27;,
+    imports: [
+        CommonModule,
+        NzButtonModule,
+        DynamicInputModalComponent,
+        SharedModule,
+        InfoModalComponent,
+        NzProgressModule,
+        FormlyModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzCollapseModule,
+        ProcessLogComponent,
+        NzCardModule,
+        RouterModule,
+        NzPageHeaderModule,
+        BackButtonComponent,
+        NzIconModule
+    ],
+    templateUrl: &#x27;./process-detail.component.html&#x27;,
+    styleUrls: [&#x27;./process-detail.component.sass&#x27;]
+})
+export class ProcessDetailComponent extends FormlyUser implements OnInit, OnDestroy, IView {
+
+
+  BREADCRUMB_NAME &#x3D; {
+    key: &#x27;PROCESSES.PROCESSES_DETAIL.BREADCRUMB&#x27;,
+    params: {
+      name: &#x27;&#x27;,
+    }
+  };
+
+  static STEPS &#x3D; [
+    &#x27;created&#x27;,
+    &#x27;preparing_workspace&#x27;,
+    &#x27;export&#x27;,
+    &#x27;transfer_data_to_resource&#x27;,
+    &#x27;submit&#x27;,
+    &#x27;wait_until_execution_starts&#x27;,
+    &#x27;wait_for_execution_end&#x27;,
+    &#x27;transfer_data_from_resource&#x27;,
+    &#x27;store_result_in_backend&#x27;,
+    &#x27;cleanup&#x27;,
+    &#x27;success&#x27;,
+  ];
+
+  job: any;
+  process: any;
+  subprocesses: any;
+  resource: any;
+  imported_analyses: any;
+  form: any;
+  fields: any;
+  options: FormlyJsonschemaOptions;
+  model: {};
+  progressPercentage: number;
+  progressStatus: string;
+  step_description: string;
+  selectedFile: string;
+  isImporting: string;
+  processStatusChangeSubscription: Subscription;
+  processLogString;
+
+  isVisibleCancelProcessModal &#x3D; false;
+  contentParamsCancelProcessModal &#x3D; {
+    name: &#x27;&#x27;,
+  }
+  buttonsDeleteModal &#x3D; [
+    {
+      text: &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.ACCEPT_BUTTON&quot;,
+      options: {
+        isDanger: false,
+      },
+      func: this.cancelProcess.bind(this),
+    },
+    {
+      text: &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.CLOSE_BUTTON&quot;,
+      options: {
+        isDanger: true,
+      },
+      func: () &#x3D;&gt; {
+        this.isVisibleCancelProcessModal &#x3D; false;
+      },
+    }
+  ];
+
+  isVisibleImportModal &#x3D; false;
+  importModalFields: FormlyFieldConfig[];
+  importFunction: Function;
+
+  constructor(
+    private readonly filesService: FilesService,
+    private readonly socketService: SocketService,
+    private readonly notificationService: NotificationService,
+    private readonly msg: MessageLogService,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly sidebarService: SidebarService,
+    private readonly backendService: BackendService,
+    private readonly internationalizationService: InternationalizationService,
+    public readonly authService: AuthService,
+  ) {
+    super(filesService);
+    const job &#x3D; this.activatedRoute.snapshot.data.job;
+    this.BREADCRUMB_NAME.params.name &#x3D; &#x60;${job.id} - ${job.process.name}&#x60;;
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.job &#x3D; this.activatedRoute.snapshot.data.job;
+    this.process &#x3D; this.job.process;
+    const resources: any[] &#x3D; this.activatedRoute.snapshot.data.resources[&quot;content&quot;];
+    this.resource &#x3D; resources.find(value &#x3D;&gt; {
+      return this.job.resource_id &#x3D;&#x3D;&#x3D; value.id;
+    }).name;
+    this.options &#x3D; this.process.schema_inputs.options;
+    this.subprocesses &#x3D; [];
+    this.form &#x3D; new UntypedFormGroup({});
+    this.changeProgressStatus(this.job.status);
+    this.model &#x3D; JSON.parse(JSON.parse(this.job.inputs)).parameters.script_params;
+    if (this.options) {
+      if (!(&#x27;formState&#x27; in this.options))
+        this.options[&#x27;formState&#x27;] &#x3D; {}
+      this.options[&#x27;formState&#x27;][&#x27;mainModel&#x27;] &#x3D; this.model;
+    }
+
+    let resultFiles;
+    const processes &#x3D; this.DEBUG_JSON_FORMLY_FIELDS ?? this.process.schema_inputs.fields;
+    // Gives a field an onChange function
+    const initField &#x3D; function(field){
+      if (field.props &amp;&amp; field.props.changeExpr !&#x3D;&#x3D; undefined) {
+        field.props.changeFunc &#x3D; Function(&#x27;$event&#x27;, &#x27;field&#x27;, field.props.changeExpr).bind(this);
+      }
+      if (field.props.initExpr !&#x3D;&#x3D; undefined) {
+        this.initializeFields(field.props.initExpr, field, this.getModelValue(field.key, this.model));
+      }
+      return field;
+    }.bind(this);
+    for (const [i, subprocess] of processes.entries()) {
+      if (&#x27;advanced_parameters&#x27; &#x3D;&#x3D;&#x3D; subprocess.fieldGroup.at(-1).key) {
+          let newFieldGroup;
+          newFieldGroup &#x3D; subprocess.fieldGroup.slice(0, -1).map(initField);
+          subprocess.fieldGroup.at(-1).fieldGroup &#x3D; subprocess.fieldGroup.at(-1).fieldGroup.map(initField)
+          newFieldGroup.push(subprocess.fieldGroup.at(-1));
+          processes[i].fieldGroup &#x3D; newFieldGroup;
+        } else {
+          processes[i].fieldGroup &#x3D; subprocess.fieldGroup.map(initField);
+        }
+    }
+    this.fields &#x3D; processes;
+    let importedObjects &#x3D; {};
+    let object_type: string;
+    const import_object_types &#x3D; {
+      &#x27;phylotrees&#x27;: [],
+      &#x27;layers&#x27;: [],
+      &#x27;alignments&#x27;: []
+    };
+    for (const subprocess of this.fields) {
+      for (const field of subprocess.fieldGroup) {
+        if (field.key &#x3D;&#x3D;&#x3D; &#x27;advanced_parameters&#x27;) {
+          for (const adv_p of field.fieldGroup) {
+            adv_p.props.disabled &#x3D; true;
+          }
+        }
+        else
+          field.props.disabled &#x3D; true;
+      }
+
+      resultFiles &#x3D; [];
+      for (const output of JSON.parse(this.job.outputs)) {
+        const outputMap &#x3D; JSON.parse(output);
+        if (outputMap.subprocess &#x3D;&#x3D;&#x3D; subprocess.key) {
+          object_type &#x3D; Object.values(outputMap[&#x27;object_type&#x27;])[0].toString();
+          if (object_type in import_object_types) {
+            if (!(object_type in importedObjects)) {
+              importedObjects[object_type] &#x3D; await this.getImportedObjects(object_type,
+                {&#x27;job_id&#x27;: this.job.id.toString()})
+            }
+
+            outputMap[&#x27;imported&#x27;] &#x3D; false;
+            outputMap[&#x27;analysis_id&#x27;] &#x3D; -1;
+
+            for (const obj of importedObjects
+              [object_type]) {
+              if (obj[&#x27;sourceuri&#x27;].split(&quot;/&quot;).at(-1) &#x3D;&#x3D; outputMap[&#x27;file&#x27;]) {
+                outputMap[&#x27;imported&#x27;] &#x3D; true;
+                outputMap[&#x27;analysis_id&#x27;] &#x3D; obj[&#x27;analysis_id&#x27;]
+              }
+            }
+          }
+          resultFiles.push(outputMap);
+        }
+      }
+
+      this.subprocesses.push({
+        schemaInputs: [subprocess],
+        formlyModel: this.model,
+        name: subprocess.key,
+        outputs: resultFiles
+      });
+    }
+    this.processStatusChangeSubscription &#x3D; this.socketService.processStatusChangeSubject.subscribe({next:(event) &#x3D;&gt; {
+      if (this.job.id &#x3D;&#x3D;&#x3D; event.id) {
+        this.changeProgressStatus(event.status);
+      }
+    }});
+
+    //IMPORT MODAL
+
+    this.importModalFields &#x3D; [
+      {
+        key: &#x27;name&#x27;,
+        type: &#x27;input&#x27;,
+        props: {
+          required: true,
+          label: await this.internationalizationService.translate(&quot;PROCESSES.PROCESSES_DETAIL.IMPORT_MODAL.NAME&quot;),
+        }
+      }
+    ];
+  }
+
+  private async getImportedObjects(object_type: string,filter_dict: {}): Promise&lt;{}&gt; {
+    const filter &#x3D; this.backendService.filter(filter_dict)
+    let response: ArrayBuffer;
+    if (object_type &#x3D;&#x3D; &#x27;alignments&#x27;) {
+      response &#x3D; await lastValueFrom(this.backendService.getAlignments(null, filter), { defaultValue: undefined });
+    } else if (object_type &#x3D;&#x3D; &#x27;phylotrees&#x27;) {
+      response &#x3D; await lastValueFrom(this.backendService.getPhylotrees(null, filter), { defaultValue: undefined });
+    } /*else if (object_type &#x3D;&#x3D; &#x27;layers&#x27;) {
+      response &#x3D; await lastValueFrom(this.backendService.getLayerGIS(null, filter), { defaultValue: undefined });
+    } */else {
+      return [];
+    }
+
+    return response[&#x27;content&#x27;];
+  }
+
+  private changeProgressStatus(status: string) {
+    this.step_description &#x3D; status;
+    if (status &#x3D;&#x3D;&#x3D; &#x27;error&#x27; || status &#x3D;&#x3D;&#x3D; &#x27;cancelling&#x27; || status &#x3D;&#x3D;&#x3D; &#x27;cancelled&#x27;) {
+      this.progressPercentage &#x3D; 100;
+      this.progressStatus &#x3D; &#x27;exception&#x27;;
+      this.sidebarService.sidebarEventEmitter.emit({
+        type: &quot;customRawUrlSelect&quot;,
+        value: &quot;/process/processesBrowseDone?status&#x3D;done&quot;
+      });
+    } else if (status &#x3D;&#x3D;&#x3D; &#x27;success&#x27;) {
+      this.progressPercentage &#x3D; 100;
+      this.progressStatus &#x3D; &#x27;success&#x27;;
+      this.sidebarService.sidebarEventEmitter.emit({
+        type: &quot;customRawUrlSelect&quot;,
+        value: &quot;/process/processesBrowseDone?status&#x3D;done&quot;
+      });
+    } else if (status &#x3D;&#x3D;&#x3D; &#x27;manage_error&#x27;) {
+      this.progressStatus &#x3D; &#x27;exception&#x27;;
+      this.sidebarService.sidebarEventEmitter.emit({
+        type: &quot;customRawUrlSelect&quot;,
+        value: &quot;/process/processesBrowseToDo?status&#x3D;todo&quot;
+      });
+    } else {
+      this.progressPercentage &#x3D; ((ProcessDetailComponent.STEPS.indexOf(status)) /
+        (ProcessDetailComponent.STEPS.length - 1)) * 100;
+      this.progressStatus &#x3D; &#x27;normal&#x27;;
+      this.sidebarService.sidebarEventEmitter.emit({
+        type: &quot;customRawUrlSelect&quot;,
+        value: &quot;/process/processesBrowseToDo?status&#x3D;todo&quot;
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    this.processStatusChangeSubscription.unsubscribe();
+  }
+
+  progressFormat(percent: number) {
+
+    if (percent &#x3D;&#x3D;&#x3D; 100) {
+      return &#x27;Finished&#x27;;
+    } else {
+      const step &#x3D; (percent / 100) * (ProcessDetailComponent.STEPS.length - 1);
+      return Math.round(step).toString() + &#x27; / &#x27; + (ProcessDetailComponent.STEPS.length - 1);
+    }
+  }
+
+  downloadFile(fileName: string) {
+    this.filesService.downloadJobResult(this.job.id, fileName);
+  }
+
+  viewFile(file: any) {
+    if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;alignments&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;fasta&#x27;) {
+      this.router.navigate([&#x27;nextgendemMsaBrowser&#x27;], {
+        queryParams: {
+          url: this.filesService.getFileFromJobRequestUrl(this.job.id, file[&#x27;file&#x27;]),
+          analysis_id: file[&#x27;analysis_id&#x27;],
+        }
+      });
+    }
+    if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;phylotrees&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;nexus&#x27;) {
+      this.router.navigate([&#x27;archaeopteryxBrowser&#x27;], {
+        queryParams: {
+          url: this.filesService.getFileFromJobRequestUrl(this.job.id, file[&#x27;file&#x27;])
+        }
+      });
+    } else if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;phylotrees&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;newick&#x27;) {
+      this.router.navigate([&#x27;archaeopteryxBrowser&#x27;], {
+        queryParams: {}
+      });
+    }
+
+    if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;blast&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;blast&#x27;) {
+      this.router.navigate([&#x27;blasterPage&#x27;], {
+        queryParams: {
+          requestUrl: this.filesService.getFileFromJobRequestUrl(this.job.id, file[&#x27;file&#x27;]),
+        }
+      });
+      return;
+    }
+
+    if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;mold&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;mold&#x27;) {
+      let alnUrl &#x3D; &#x27;&#x27;;
+      for (let subprocess of this.subprocesses) {
+        if (&#x27;MOLD&#x27; in subprocess.formlyModel) {
+          let aln &#x3D; subprocess.formlyModel[&#x27;MOLD&#x27;][&#x27;alignment_selector&#x27;][0][&#x27;object_type&#x27;];
+          if (&#x27;filesAPI&#x27; in aln) {
+            alnUrl &#x3D; this.filesService.getFileFromPathUrl(aln[&#x27;filesAPI&#x27;]);
+          }
+        }
+
+      }
+      this.router.navigate([&#x27;ngdBarconding&#x27;], {
+        queryParams: {
+          requestUrl: this.filesService.getFileFromJobRequestUrl(this.job.id, file[&#x27;file&#x27;]),
+          alnUrl: alnUrl
+        }
+      });
+      return;
+    }
+  }
+
+  canViewFile(file: any) {
+    let canView &#x3D; false;
+    if (&#x27;bos&#x27; in file[&#x27;object_type&#x27;]) {
+      if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;alignments&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;fasta&#x27;) {
+        canView &#x3D; true;
+      } else if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;phylotrees&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;nexus&#x27;) {
+        canView &#x3D; true;
+      } else if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;phylotrees&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;newick&#x27;) {
+         canView &#x3D; true;
+      } else if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;blast&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;blast&#x27;) {
+        canView &#x3D; true;
+      } else if (file[&#x27;object_type&#x27;][&#x27;bos&#x27;] &#x3D;&#x3D; &#x27;mold&#x27; &amp;&amp; file[&#x27;type&#x27;] &#x3D;&#x3D; &#x27;mold&#x27;) {
+        canView &#x3D; true;
+      }
+    }
+    return canView;
+  }
+
+  viewLog() {
+    console.log(&quot;ver log&quot;);
+  }
+
+  showImportModal(resultFile: {}) {
+    this.importFunction &#x3D; ($event) &#x3D;&gt; this.import(resultFile, $event);
+    this.isVisibleImportModal &#x3D; true;
+  }
+
+  import(resultFile: {}, importModalOutput: {}) {
+    this.isImporting &#x3D; resultFile[&#x27;file&#x27;];
+    resultFile[&#x27;bos_name&#x27;] &#x3D; importModalOutput[&#x27;name&#x27;] ?? &#x27;&#x27;;
+    this.filesService.importJobResult(this.job.id, resultFile).subscribe({
+      next:response &#x3D;&gt; {
+        this.isImporting &#x3D; undefined;
+        this.msg.info(&#x60;Importando ${resultFile[&#x27;file&#x27;]} como ${resultFile[&#x27;object_type&#x27;].toString()}&#x60;);
+      }, error: error &#x3D;&gt; {
+        this.isImporting &#x3D; undefined;
+        this.msg.error(error.error.message + &#x60;\nError al importar ${resultFile[&#x27;file&#x27;]} como ${resultFile[&#x27;object_type&#x27;].toString()}&#x60;);
+        this.notificationService.createNotificationWithType(TypeNotificationEnum.error, &#x27;Error&#x27;,
+          &#x60;${resultFile[&#x27;file&#x27;]} not imported correctly&#x60;, &#x27;bottomRight&#x27;);
+      }, complete: async () &#x3D;&gt; {
+        resultFile[&#x27;imported&#x27;] &#x3D; true;
+        const content &#x3D; await this.getImportedObjects(Object.values(resultFile[&#x27;object_type&#x27;])[0].toString(),
+          {sourceuri: &#x27;/jobs/&#x27; + this.job.id + &#x27;/&#x27; + resultFile[&#x27;file&#x27;]});
+        resultFile[&#x27;analysis_id&#x27;] &#x3D; content[0][&#x27;analysis_id&#x27;];
+        this.isImporting &#x3D; undefined;
+        this.msg.success(&#x60;${resultFile[&#x27;file&#x27;]} importado correctamente como ${resultFile[&#x27;object_type&#x27;].toString()}&#x60;);
+        await this.notificationService.createNotificationWithType(TypeNotificationEnum.success, &#x27;Success&#x27;,
+          &#x60;${resultFile[&#x27;file&#x27;]} imported correctly&#x60;, &#x27;bottomRight&#x27;);
+      }});
+  }
+
+  async onClickCancelProcess(): Promise&lt;void&gt; {
+    this.contentParamsCancelProcessModal.name &#x3D; this.job.id;
+    this.isVisibleCancelProcessModal &#x3D; true;
+  }
+
+  async cancelProcess(): Promise&lt;void&gt; {
+    this.isVisibleCancelProcessModal &#x3D; false;
+    try {
+      const response: any &#x3D; await lastValueFrom(this.backendService.putJob(this.job.id, { &quot;status&quot;: &quot;cancelling&quot; }), { defaultValue: undefined });
+      this.changeProgressStatus(&quot;cancelling&quot;);
+      if (response.issues) {
+        this.msg.addIssues(response.issues);
+      }
+      await this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.success,
+        &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCESS_NOTIFICATION_CORRECTLY.TITLE&quot;,
+        &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCESS_NOTIFICATION_CORRECTLY.CONTENT&quot;,
+        &quot;bottomRight&quot;
+      );
+    } catch (err) {
+      if (err.issues) {
+        this.msg.addIssues(err.issues);
+      }
+      await this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCESS_NOTIFICATION_ERROR.TITLE&quot;,
+        &quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCESS_NOTIFICATION_ERROR.CONTENT&quot;,
+        &quot;bottomRight&quot;
+      );
+    }
+  }
+
+  showCancelButton(): boolean {
+    return this.progressStatus !&#x3D;&#x3D; &#x27;success&#x27; &amp;&amp;
+      this.progressStatus !&#x3D;&#x3D; &#x27;exception&#x27;  &amp;&amp;
+      this.authService.havePermission(&#x27;gui-job-cancel&#x27;);
+  }
+
+  async goToDetail(resultFile: {}) {
+    await this.router.navigate([&#x27;alignmentDetail&#x27;, resultFile[&#x27;analysis_id&#x27;]]);
+  }
+
+  DEBUG_JSON_FORMLY_FIELDS: any &#x3D; null;
+
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-page-header&gt;
+  &lt;nz-page-header-title&gt;
+    &lt;app-back-button&gt;&lt;/app-back-button&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.TITLE&#x27; | translate}} {{job.id}} - {{process.name}}
+  &lt;/nz-page-header-title&gt;
+  &lt;nz-page-header-extra&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzSize&#x3D;&quot;large&quot; routerLink&#x3D;&quot;../../processSetup&quot;
+      [state]&#x3D;&quot;{ process: process.name, resource: resource, jobInputs: this.job.inputs}&quot;&gt;
+      &lt;i nz-icon nzType&#x3D;&quot;reload&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.RELAUNCH_BUTTON&#x27; | translate}}&lt;/button&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger nzSize&#x3D;&quot;large&quot; (click)&#x3D;&quot;onClickCancelProcess()&quot;
+      *ngIf&#x3D;&quot;showCancelButton()&quot;&gt;&lt;i nz-icon
+        nzType&#x3D;&quot;close-circle&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.CANCEL_BUTTON&#x27; | translate}}&lt;/button&gt;
+  &lt;/nz-page-header-extra&gt;
+&lt;/nz-page-header&gt;
+&lt;div style&#x3D;&quot;padding: 0px 24px 0px 24px&quot;&gt;
+  &lt;nz-card&gt;
+    &lt;div class&#x3D;&quot;section&quot;&gt;
+      &lt;div class&#x3D;&quot;label&quot;&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.RESOURCE&#x27; | translate}}: &lt;/div&gt;
+      &lt;p&gt;{{resource}}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;section&quot; *ngIf&#x3D;&quot;progressStatus &#x3D;&#x3D;&#x3D; &#x27;success&#x27;&quot;&gt;
+      &lt;div class&#x3D;&quot;label&quot;&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.FILES&#x27; | translate}}:&lt;/div&gt;
+      &lt;nz-collapse&gt;
+        &lt;nz-collapse-panel *ngFor&#x3D;&quot;let subprocess of subprocesses&quot; [nzHeader]&#x3D;&quot;subprocess.name&quot;&gt;
+          &lt;div *ngFor&#x3D;&quot;let result_file of subprocess.outputs&quot;&gt;
+            &lt;div class&#x3D;&quot;output-file&quot;&gt;
+              &lt;p class&#x3D;&quot;file-name&quot;&gt;{{result_file.file}}:&lt;/p&gt;
+              &lt;button class&#x3D;&quot;button&quot; nz-button nzType&#x3D;&quot;primary&quot; nzSize&#x3D;&quot;small&quot;
+                (click)&#x3D;&quot;downloadFile(result_file.file)&quot;&gt;&lt;i nz-icon nzType&#x3D;&quot;download&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.DOWNLOAD_BUTTON&#x27; | translate}}&lt;/button&gt;
+              &lt;button class&#x3D;&quot;button&quot; nz-button nzType&#x3D;&quot;primary&quot; *ngIf&#x3D;&quot;result_file[&#x27;imported&#x27;] !&#x3D; undefined &amp;&amp; !result_file[&#x27;imported&#x27;]&quot; nzSize&#x3D;&quot;small&quot; (click)&#x3D;&quot;showImportModal(result_file)&quot;
+                [nzLoading]&#x3D;&quot;isImporting&#x3D;&#x3D;&#x3D;result_file.file&quot;&gt;&lt;i nz-icon nzType&#x3D;&quot;upload&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.IMPORT_BUTTON&#x27; | translate}}&lt;/button&gt;
+              &lt;button class&#x3D;&quot;button&quot; nz-button nzType&#x3D;&quot;primary&quot; *ngIf&#x3D;&quot;result_file[&#x27;imported&#x27;] !&#x3D; undefined &amp;&amp; result_file[&#x27;imported&#x27;]&quot; nzSize&#x3D;&quot;small&quot; (click)&#x3D;&quot;goToDetail(result_file)&quot;&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;database&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.DETAIL_BUTTON&#x27; | translate}}&lt;/button&gt;
+              &lt;button class&#x3D;&quot;button&quot; nz-button nzType&#x3D;&quot;primary&quot; nzSize&#x3D;&quot;small&quot; (click)&#x3D;&quot;viewFile(result_file)&quot; *ngIf&#x3D;&quot;canViewFile(result_file)&quot;&gt;&lt;i
+                  nz-icon nzType&#x3D;&quot;eye&quot;&gt;&lt;/i&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.VISUALIZE_BUTTON&#x27; | translate}}&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/nz-collapse-panel&gt;
+      &lt;/nz-collapse&gt;
+    &lt;/div&gt;
+
+    &lt;app-process-log *ngIf&#x3D;&quot;progressStatus &#x3D;&#x3D;&#x3D; &#x27;success&#x27; || progressStatus &#x3D;&#x3D;&#x3D; &#x27;exception&#x27; &amp;&amp; this.job.status !&#x3D;&#x3D; &#x27;cancelled&#x27;&quot; [jobId]&#x3D;&quot;job.id&quot;&gt;
+    &lt;/app-process-log&gt;
+
+    &lt;div class&#x3D;&quot;section&quot;&gt;
+      &lt;div class&#x3D;&quot;label&quot;&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.SUBPROCESSES_PARAMETERS&#x27; | translate}}:&lt;/div&gt;
+      &lt;nz-collapse&gt;
+        &lt;nz-collapse-panel *ngFor&#x3D;&quot;let subprocess of subprocesses&quot; [nzHeader]&#x3D;&quot;subprocess.name&quot;&gt;
+          &lt;form [formGroup]&#x3D;&quot;form&quot;&gt;
+            &lt;formly-form [model]&#x3D;&quot;subprocess.formlyModel&quot; [fields]&#x3D;&quot;subprocess.schemaInputs&quot; [options]&#x3D;&quot;options&quot;&gt;&lt;/formly-form&gt;
+          &lt;/form&gt;
+        &lt;/nz-collapse-panel&gt;
+      &lt;/nz-collapse&gt;
+    &lt;/div&gt;
+    &lt;div class&#x3D;&quot;progress section&quot;&gt;
+      &lt;nz-progress [nzPercent]&#x3D;&quot;progressPercentage&quot; nzType&#x3D;&quot;circle&quot; [nzFormat]&#x3D;&quot;progressFormat&quot;
+        [nzStatus]&#x3D;&quot;progressStatus&quot;&gt;&lt;/nz-progress&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;div class&#x3D;&quot;label&quot;&gt;{{&#x27;PROCESSES.PROCESSES_DETAIL.INFO.STATUS&#x27; | translate}}: {{&quot;PROCESSES.PROCESSES_DETAIL.INFO.STEPS_DESC.&quot; + step_description | translate}}&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nz-card&gt;
+&lt;/div&gt;
+
+
+&lt;!-- Delete Item Modal --&gt;
+&lt;app-info-modal [(isVisible)]&#x3D;&quot;isVisibleCancelProcessModal&quot; typeIcon&#x3D;&quot;exclamation-circle&quot; themeIcon&#x3D;&quot;twotone&quot;
+                twotoneColorIcon&#x3D;&quot;#ff9800&quot; title&#x3D;&quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.TITLE&quot;
+                content&#x3D;&quot;PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.CONTENT&quot; [buttons]&#x3D;&quot;buttonsDeleteModal&quot;
+                [contentParams]&#x3D;&quot;contentParamsCancelProcessModal&quot;&gt;&lt;/app-info-modal&gt;
+
+&lt;app-dynamic-input-modal  #dynamicInputModalRef [title]&#x3D;&quot;&#x27;PROCESSES.PROCESSES_DETAIL.IMPORT_MODAL.TITLE&#x27; | translate&quot; [fields]&#x3D;&quot;importModalFields&quot; [(isVisible)]&#x3D;&quot;isVisibleImportModal&quot; (acceptInput)&#x3D;&quot;importFunction($event)&quot;&gt;&lt;/app-dynamic-input-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./process-detail.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.section
+  margin-bottom: 1em
+  .output-file
+    display: flex
+    .file-name
+      flex: 1
+      max-width: 400px
+    .button
+      margin-right: 0.5em
+      max-width: 150px
+      flex: 1
+
+.progress
+  display: flex
+  justify-content: center
+  margin-top: 2em
+  height: auto
+  background-color: transparent
+
+.label
+  font-weight: 500
+  font-size: 1.4rem
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-page-header>  <nz-page-header-title>    <app-back-button></app-back-button>{{\'PROCESSES.PROCESSES_DETAIL.TITLE\' | translate}} {{job.id}} - {{process.name}}  </nz-page-header-title>  <nz-page-header-extra>    <button nz-button nzType="primary" nzSize="large" routerLink="../../processSetup"      [state]="{ process: process.name, resource: resource, jobInputs: this.job.inputs}">      <i nz-icon nzType="reload"></i>{{\'PROCESSES.PROCESSES_DETAIL.RELAUNCH_BUTTON\' | translate}}</button>    <button nz-button nzType="primary" nzDanger nzSize="large" (click)="onClickCancelProcess()"      *ngIf="showCancelButton()"><i nz-icon        nzType="close-circle"></i>{{\'PROCESSES.PROCESSES_DETAIL.CANCEL_BUTTON\' | translate}}</button>  </nz-page-header-extra></nz-page-header><div style="padding: 0px 24px 0px 24px">  <nz-card>    <div class="section">      <div class="label">{{\'PROCESSES.PROCESSES_DETAIL.INFO.RESOURCE\' | translate}}: </div>      <p>{{resource}}</p>    </div>    <div class="section" *ngIf="progressStatus === \'success\'">      <div class="label">{{\'PROCESSES.PROCESSES_DETAIL.INFO.FILES\' | translate}}:</div>      <nz-collapse>        <nz-collapse-panel *ngFor="let subprocess of subprocesses" [nzHeader]="subprocess.name">          <div *ngFor="let result_file of subprocess.outputs">            <div class="output-file">              <p class="file-name">{{result_file.file}}:</p>              <button class="button" nz-button nzType="primary" nzSize="small"                (click)="downloadFile(result_file.file)"><i nz-icon nzType="download"></i>{{\'PROCESSES.PROCESSES_DETAIL.INFO.DOWNLOAD_BUTTON\' | translate}}</button>              <button class="button" nz-button nzType="primary" *ngIf="result_file[\'imported\'] != undefined && !result_file[\'imported\']" nzSize="small" (click)="showImportModal(result_file)"                [nzLoading]="isImporting===result_file.file"><i nz-icon nzType="upload"></i>{{\'PROCESSES.PROCESSES_DETAIL.INFO.IMPORT_BUTTON\' | translate}}</button>              <button class="button" nz-button nzType="primary" *ngIf="result_file[\'imported\'] != undefined && result_file[\'imported\']" nzSize="small" (click)="goToDetail(result_file)">                <i nz-icon nzType="database"></i>{{\'PROCESSES.PROCESSES_DETAIL.INFO.DETAIL_BUTTON\' | translate}}</button>              <button class="button" nz-button nzType="primary" nzSize="small" (click)="viewFile(result_file)" *ngIf="canViewFile(result_file)"><i                  nz-icon nzType="eye"></i>{{\'PROCESSES.PROCESSES_DETAIL.INFO.VISUALIZE_BUTTON\' | translate}}</button>            </div>          </div>        </nz-collapse-panel>      </nz-collapse>    </div>    <app-process-log *ngIf="progressStatus === \'success\' || progressStatus === \'exception\' && this.job.status !== \'cancelled\'" [jobId]="job.id">    </app-process-log>    <div class="section">      <div class="label">{{\'PROCESSES.PROCESSES_DETAIL.INFO.SUBPROCESSES_PARAMETERS\' | translate}}:</div>      <nz-collapse>        <nz-collapse-panel *ngFor="let subprocess of subprocesses" [nzHeader]="subprocess.name">          <form [formGroup]="form">            <formly-form [model]="subprocess.formlyModel" [fields]="subprocess.schemaInputs" [options]="options"></formly-form>          </form>        </nz-collapse-panel>      </nz-collapse>    </div>    <div class="progress section">      <nz-progress [nzPercent]="progressPercentage" nzType="circle" [nzFormat]="progressFormat"        [nzStatus]="progressStatus"></nz-progress>    </div>    <div>      <div class="label">{{\'PROCESSES.PROCESSES_DETAIL.INFO.STATUS\' | translate}}: {{"PROCESSES.PROCESSES_DETAIL.INFO.STEPS_DESC." + step_description | translate}}</div>    </div>  </nz-card></div><!-- Delete Item Modal --><app-info-modal [(isVisible)]="isVisibleCancelProcessModal" typeIcon="exclamation-circle" themeIcon="twotone"                twotoneColorIcon="#ff9800" title="PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.TITLE"                content="PROCESSES.PROCESSES_DETAIL.CANCEL_PROCCESS_MODAL.CONTENT" [buttons]="buttonsDeleteModal"                [contentParams]="contentParamsCancelProcessModal"></app-info-modal><app-dynamic-input-modal  #dynamicInputModalRef [title]="\'PROCESSES.PROCESSES_DETAIL.IMPORT_MODAL.TITLE\' | translate" [fields]="importModalFields" [(isVisible)]="isVisibleImportModal" (acceptInput)="importFunction($event)"></app-dynamic-input-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'ProcessDetailComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ProcessDetailComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

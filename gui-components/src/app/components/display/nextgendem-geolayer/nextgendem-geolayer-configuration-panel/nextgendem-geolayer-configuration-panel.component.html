@@ -1,0 +1,76 @@
+<div class="nextgendem-geolayer-configuration-panel-container">
+
+  <div style="display: flex; flex: 0 0 auto; align-items: center">
+    <input nz-input [(ngModel)]="nameMap" disabled [placeholder]="'DISPLAY.GIS.NAME_MAP_INPUT.PLACEHOLDER' | translate"/>
+    <span style="font-size: 1rem; margin-left: 5px; cursor: pointer" nz-icon nzType="save" nzTheme="outline" (click)="openCreateModalMap()" *ngIf="!singleMode"></span>
+    <span style="font-size: 1rem; margin-left: 5px; cursor: pointer" nz-icon nzType="setting" nzTheme="outline" (click)="openModalMapSettings.emit()"></span>
+  </div>
+
+  <div style="margin-top: 10px; display: flex; justify-content: space-between; flex: 0 0 auto">
+    <div style="font-size: 1.4rem; font-weight: 500">
+      {{ "DISPLAY.GIS.PROPERTIES" | translate }}
+    </div>
+    <div style="align-self: flex-end">
+      <button nz-button nzType="default" style="padding: 6px 10px" (click)="onAddAPropertyButtonClick()">
+        <span nz-icon nzType="plus"></span>
+      </button>
+    </div>
+  </div>
+
+  <div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 10px 5px" cdkDropList
+       (cdkDropListDropped)="dropAttribute($event)">
+    <ng-container *ngFor="let item of attributes">
+      <div
+        [ngClass]="{ 'nextgendem-geolayer-configuration-panel-attribute-box-shadow': (openSettingsPropertySelected === item.id || true) }"
+        style="padding: 5px 5px 5px 5px; margin-bottom: 10px">
+        <div class="nextgendem-geolayer-configuration-panel-attribute"
+             cdkDrag>
+          <div style="flex: 1 1 auto; padding-left: 8px; min-width: 0" cdkDragHandle
+               class="nextgendem-geolayer-configuration-panel-attribute-name">
+            {{ item.layerName }} - {{ item.name }}
+          </div>
+          <span nz-icon nzType="eye" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"
+                (click)="onCheckProperty(false, item)" *ngIf="item.checkbox"></span>
+          <span nz-icon nzType="eye-invisible" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"
+                (click)="onCheckProperty(true, item)" *ngIf="!item.checkbox"></span>
+          <span nz-icon nzType="profile" nzTheme="outline" style="margin-right: 5px; cursor: pointer;"
+                *ngIf="!item.legend" (click)="showLegend(item, true)"></span>
+          <span nz-icon nzType="profile" nzTheme="fill" style="margin-right: 5px; cursor: pointer;" *ngIf="item.legend"
+                (click)="showLegend(item, false)"></span>
+          <span nz-icon nzType="bg-colors" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"
+                (click)="openEditStyleProperty(item)"></span>
+          <span nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff0000'"
+                style="font-size: 1rem; cursor: pointer" (click)="removeAttribute(item)"></span>
+        </div>
+        <ng-container *ngIf="openSettingsPropertySelected === item.id || true">
+          <div style="margin-bottom: 5px; display: flex">
+            <nz-slider style="width: 50%" [nzTipFormatter]="null" [ngModel]="item.opacity"
+                       (nzOnAfterChange)="changeOpacity(item, $event)"
+                       [nzTipFormatter]="formatterOpacitySlider"></nz-slider>
+            <nz-select style="width: 50%" [ngModel]="item.filterSelected"
+                       (ngModelChange)="changeFilterSelected(item, $event)" nzAllowClear
+                       [nzPlaceHolder]="'DISPLAY.GIS.SELECT_FILTER' | translate">
+              <nz-option *ngFor="let filter of layersData[item.id.split('$')[0]]?.filters | keyvalue"
+                         [nzLabel]="filter.value.name" [nzValue]="filter.key"></nz-option>
+            </nz-select>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+
+
+  <div style="flex: 0 0 auto">
+    <app-nextgendem-geolayer-configuration-panel-window [layersData]="layersData"
+                                                        (filterChange)="filterCQLChange($event)"
+                                                        (removeFilterLayer)="removeFilterLayer($event)"
+                                                        (changeWhereClickMapInfo)="changeWhereClickMapInfoEmitter.emit($event)"
+    />
+  </div>
+
+
+</div>
+
+<app-nextgendem-geolayer-edit-style-modal (editStyleProperty)="editStyleProperty($event)"/>
+
+<app-nextgendem-geolayer-create-map (createMap)="createNewMap($event)" (overwrite)="overwriteMap()"/>

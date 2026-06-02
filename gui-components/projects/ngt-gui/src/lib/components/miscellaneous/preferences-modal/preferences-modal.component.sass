@@ -1,0 +1,100 @@
+$preferences-themes-item-active-border: 3px solid #215aff !important
+
+.preferences-body-container
+  display: flex
+  gap: 10px
+  height: 100%
+
+.preferences-menu
+  width: 198px
+
+.preferences-menu-item
+  padding: 4px 8px 4px 8px
+  cursor: pointer
+  border-radius: 5px
+  font-size: 16px
+  font-weight: 550
+  color: #3d3d3d
+  margin-bottom: 3px
+  display: flex
+  align-items: center
+
+.preferences-menu-item-icon
+  margin-right: 8px
+
+.preferences-menu-option-body
+  flex-grow: 1
+
+.preferences-themes-container
+  display: grid
+  column-gap: 12px
+  row-gap: 12px
+  grid-template-columns: repeat(3, 1fr)
+  width: 100%
+
+.preferences-themes-item
+  width: 100%
+  cursor: pointer
+
+.preferences-themes-item-active
+  box-shadow: rgba(33, 90, 255, 0.2) 0px 4px 16px, rgba(33, 90, 255, 0.2) 0px 8px 24px, rgba(33, 90, 255, 0.2) 0px 16px 56px
+
+.preferences-themes-item-color
+  height: 108px
+  width: 100%
+  border-top-left-radius: 5px
+  border-top-right-radius: 5px
+
+.preferences-themes-item-color-active
+  border-right: $preferences-themes-item-active-border
+  border-top: $preferences-themes-item-active-border
+  border-left: $preferences-themes-item-active-border
+
+.preferences-themes-item-footer
+  border-bottom: 1px solid #a2a2a2
+  border-right: 1px solid #a2a2a2
+  border-left: 1px solid #a2a2a2
+  border-bottom-left-radius: 5px
+  border-bottom-right-radius: 5px
+  width: 100%
+  padding: 16px
+  text-align: center
+
+.preferences-themes-item-footer-active
+  border-bottom: $preferences-themes-item-active-border
+  border-right: $preferences-themes-item-active-border
+  border-left: $preferences-themes-item-active-border
+
+.preferences-languages-title
+  font-size: 15px
+  font-weight: 700
+
+.preferences-languages-select
+  width: 100%
+
+.preferences-apikeys-container
+  display: flex
+  flex-direction: column
+  row-gap: 10px
+
+.preferences-apikeys-generate-button-container
+  display: flex
+  flex-direction: row-reverse
+
+.preferences-apikeys-items-container
+  flex: 1 0 auto
+  min-height: 0
+
+::ng-deep .spin-center > div > .ant-spin-spinning
+  max-height: none !important
+
+::ng-deep .select-error .ant-select-selector
+  border: 1px solid #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused .ant-select-selector
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3) !important
+
+.message-error
+  color: #ff0000
+  font-size: 12px
+  margin-top: 2px

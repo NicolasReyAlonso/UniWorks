@@ -1,0 +1,7 @@
+<div style="height: 100%; display: flex; justify-content: center; align-items: center; padding: 25%;">
+  <nz-result
+    nzStatus="success"
+    [nzTitle]="'HOME_PAGE.CORRECT_IDENTIFICATION' | translate"
+    *ngIf="authService.user">
+  </nz-result>
+</div>

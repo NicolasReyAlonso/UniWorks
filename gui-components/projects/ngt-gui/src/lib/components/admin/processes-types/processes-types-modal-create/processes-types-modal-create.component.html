@@ -1,0 +1,68 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+          [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+  <ng-template #modalTitle>
+    {{'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.TITLE' | translate}}
+  </ng-template>
+  <ng-template #modalContent>
+    <nz-spin [nzSpinning]="loading">
+      <form [formGroup]="formGroup" style="padding: 0px 10px 15px 5px; height: 300px; overflow: auto">
+
+        <div>
+          <nz-form-label
+            nzFor="name">{{'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.INPUTS.NAME.LABEL' | translate}}</nz-form-label>
+          <input nz-input formControlName="name" type="text"
+                 [placeholder]="'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.INPUTS.NAME.PLACEHOLDER' | translate"
+                 [ngClass]="{'input-error': getMessageNameError().length > 0}">
+          <div class="message-error-default" *ngFor="let message of getMessageNameError()">
+            {{message | translate}}
+          </div>
+        </div>
+
+        <div>
+          <nz-form-label nzFor="system">
+            {{'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.LABEL' | translate}}
+          </nz-form-label>
+          <nz-select formControlName="system">
+            <nz-option *ngFor="let item of systemOptions" [nzLabel]="item.label | translate" [nzValue]="item.value"></nz-option>
+          </nz-select>
+        </div>
+
+        <div *ngIf="formGroup && formGroup.get('system').value == systemValues.JUPYTER">
+          <nz-form-label nzFor="kernel">
+            {{'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.KERNEL.LABEL' | translate}}
+          </nz-form-label>
+          <nz-select formControlName="kernel">
+            <nz-option *ngFor="let item of kernelOptions" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+          </nz-select>
+        </div>
+
+        <div *ngIf="formGroup && formGroup.get('system').value == systemValues.GEOPROCESS">
+          <nz-form-label nzFor="geoprocess_type">
+            {{'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.GEOPROCESS_TYPE.LABEL' | translate}}
+          </nz-form-label>
+          <nz-select formControlName="geoprocess_type">
+            <nz-option *ngFor="let item of geoprocessTypeOptions" [nzLabel]="item.label" [nzValue]="item.value"></nz-option>
+          </nz-select>
+        </div>
+
+        <div>
+          <nz-form-label
+            nzFor="description">{{'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.INPUTS.DESCRIPTION.LABEL' | translate}}</nz-form-label>
+          <textarea nz-input formControlName="description" type="text" rows="4"
+                    [placeholder]="'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.INPUTS.DESCRIPTION.PLACEHOLDER' | translate"></textarea>
+        </div>
+
+
+      </form>
+    </nz-spin>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="primary" nzDanger
+            (click)="cancelModal()">
+      {{'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.CANCEL_BUTTON' | translate}}
+    </button>
+    <button nz-button nzType="primary" [disabled]="!formGroup.valid || loading" (click)="createItemModal()">
+      {{'PROCESSES_ADMIN.PROCESS_TYPES.CREATE_MODAL.CREATE_BUTTON' | translate}}
+    </button>
+  </ng-template>
+</nz-modal>

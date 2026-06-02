@@ -1,0 +1,13 @@
+<nz-collapse nzAccordion style="margin-bottom:20px;">
+  <nz-collapse-panel nzHeader="Sequences Selector" [(nzActive)]="collapsePanelActiveDynamicBrowser" [nzDisabled]="collapsePanelDisable">
+    <app-dynamic-browse [BrowserType]="'sequences'" (SetSelectedEvent)="receiveSequenceBrowse($event)"
+                        (UpdateDataEvent)="updateDataEventDynamicBrowser($event)"
+                        #sequencesDynamicBrowser></app-dynamic-browse>
+  </nz-collapse-panel>
+  <nz-collapse-panel [nzHeader]="this.uploaderHeader">
+    <app-upload-2-files-api  [extension]=this.type [fileExtensions]="this.props.fileExtensions" numFilesLimit=0
+                             (filesEvent)="receiveFiles($event)" [remoteName]="this.filename + '.' + this.type"
+                             [files]="Object.keys(this.preValue[1]).length > 0 ? [this.preValue[1]] : []"/>
+  </nz-collapse-panel>
+</nz-collapse>
+

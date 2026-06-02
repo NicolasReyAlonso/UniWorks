@@ -1,0 +1,12 @@
+<div *ngIf="props.label && props.hideLabel !== true" class="form-row__label">
+  <label  [for]="id">
+    <span class="asterisk" *ngIf="props.required && props.hideRequiredMarker !== true">* </span>
+    {{ props.label }}:
+    <div class="error_message" [hidden]="!showError">
+      {{props.label}} should be correctly filled.
+    </div>
+  </label>
+</div>
+<div [ngClass]="{ invalid: showError }">
+  <ng-container #fieldComponent></ng-container>
+</div>

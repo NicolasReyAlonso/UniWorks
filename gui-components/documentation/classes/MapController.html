@@ -1,0 +1,3145 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Classes</li>
+  <li class="breadcrumb-item" >MapController</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts</code>
+        </p>
+
+
+
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#activeLayers" >activeLayers</a>
+                            </li>
+                            <li>
+                                <a href="#baseLayer" >baseLayer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#coordinateRightClick" >coordinateRightClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isActiveShowInfoPointerStop" >isActiveShowInfoPointerStop</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#map" >map</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onClickMapListener" >onClickMapListener</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onPointerMoveMapListener" >onPointerMoveMapListener</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onRightClickMapListener" >onRightClickMapListener</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#overlayOpenLayerClick" >overlayOpenLayerClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#overlayOpenLayerRightClick" >overlayOpenLayerRightClick</a>
+                            </li>
+                            <li>
+                                <a href="#projectionView" >projectionView</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setTimeoutFuncPointerMove" >setTimeoutFuncPointerMove</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#activeOnClickMapEvent" >activeOnClickMapEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#activeOnPointerMoveMap" >activeOnPointerMoveMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#activeOnRightClickMapEvent" >activeOnRightClickMapEvent</a>
+                            </li>
+                            <li>
+                                <a href="#addLayerGeoserver" >addLayerGeoserver</a>
+                            </li>
+                            <li>
+                                <a href="#centerMap" >centerMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#changeBaseLayerOSM" >changeBaseLayerOSM</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#changeBaseLayerWMS" >changeBaseLayerWMS</a>
+                            </li>
+                            <li>
+                                <a href="#changeOpacityActiveMap" >changeOpacityActiveMap</a>
+                            </li>
+                            <li>
+                                <a href="#changeProjectionViewer" >changeProjectionViewer</a>
+                            </li>
+                            <li>
+                                <a href="#changeZIndexActiveMap" >changeZIndexActiveMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#desactiveOnClickMapEvent" >desactiveOnClickMapEvent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#desactiveOnPointerMoveMap" >desactiveOnPointerMoveMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#desactiveOnRightClickMapEvent" >desactiveOnRightClickMapEvent</a>
+                            </li>
+                            <li>
+                                <a href="#disableOverlaysMap" >disableOverlaysMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#getInfoByCoordinate" >getInfoByCoordinate</a>
+                            </li>
+                            <li>
+                                <a href="#getMap" >getMap</a>
+                            </li>
+                            <li>
+                                <a href="#getStateShowInfoPointerStop" >getStateShowInfoPointerStop</a>
+                            </li>
+                            <li>
+                                <a href="#getUrlLegendLayerImage" >getUrlLegendLayerImage</a>
+                            </li>
+                            <li>
+                                <a href="#incrementRotationMap" >incrementRotationMap</a>
+                            </li>
+                            <li>
+                                <a href="#incrementZoomMap" >incrementZoomMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initMap" >initMap</a>
+                            </li>
+                            <li>
+                                <a href="#initProjections" >initProjections</a>
+                            </li>
+                            <li>
+                                <a href="#isLayerActive" >isLayerActive</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#onClickMap" >onClickMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onMoveStartMap" >onMoveStartMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onPointerLeaveMap" >onPointerLeaveMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onPointerMoveMap" >onPointerMoveMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#onRightClickMap" >onRightClickMap</a>
+                            </li>
+                            <li>
+                                <a href="#removeLayerGeoserver" >removeLayerGeoserver</a>
+                            </li>
+                            <li>
+                                <a href="#rotationMap" >rotationMap</a>
+                            </li>
+                            <li>
+                                <a href="#setStateShowInfoPointerStop" >setStateShowInfoPointerStop</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#zoomToExtend" >zoomToExtend</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(geoViewerElementRef: ElementRef, overlayOpenLayerClickElement: ElementRef, overlayOpenLayerRightClickElement: ElementRef, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, mapControllerEvents: Subject<literal type>, globalVariablesServices: <a href="../injectables/GlobalService.html" target="_self">GlobalService</a>, projectionsMap)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:49</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>geoViewerElementRef</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>overlayOpenLayerClickElement</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>overlayOpenLayerRightClickElement</td>
+                                                  
+                                                        <td>
+                                                                    <code>ElementRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>mapControllerEvents</td>
+                                                  
+                                                        <td>
+                                                                    <code>Subject&lt;literal type&gt;</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>globalVariablesServices</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GlobalService.html" target="_self" >GlobalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>projectionsMap</td>
+                                                  
+                                                        <td>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeLayers"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>activeLayers</b></span>
+                        <a href="#activeLayers"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Map&lt;any, { layer: Layer&lt;any, any&gt;, data: any }&gt;()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:44</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="baseLayer"></a>
+                    <span class="name">
+                        <span ><b>baseLayer</b></span>
+                        <a href="#baseLayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>TileLayer&lt;TileWMS | OSM&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new TileLayer({
+    zIndex: 1,
+    source: new OSM(),
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="coordinateRightClick"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>coordinateRightClick</b></span>
+                        <a href="#coordinateRightClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Coordinate</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isActiveShowInfoPointerStop"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>isActiveShowInfoPointerStop</b></span>
+                        <a href="#isActiveShowInfoPointerStop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="map"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>map</b></span>
+                        <a href="#map"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>MapOpenLayer</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickMapListener"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onClickMapListener</b></span>
+                        <a href="#onClickMapListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ListenerFunction</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPointerMoveMapListener"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onPointerMoveMapListener</b></span>
+                        <a href="#onPointerMoveMapListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ListenerFunction</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRightClickMapListener"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onRightClickMapListener</b></span>
+                        <a href="#onRightClickMapListener"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ListenerFunction</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overlayOpenLayerClick"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>overlayOpenLayerClick</b></span>
+                        <a href="#overlayOpenLayerClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Overlay</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overlayOpenLayerRightClick"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>overlayOpenLayerRightClick</b></span>
+                        <a href="#overlayOpenLayerRightClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Overlay</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="projectionView"></a>
+                    <span class="name">
+                        <span ><b>projectionView</b></span>
+                        <a href="#projectionView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;EPSG:3857&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setTimeoutFuncPointerMove"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>setTimeoutFuncPointerMove</b></span>
+                        <a href="#setTimeoutFuncPointerMove"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeOnClickMapEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>activeOnClickMapEvent</b></span>
+                        <a href="#activeOnClickMapEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>activeOnClickMapEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeOnPointerMoveMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>activeOnPointerMoveMap</b></span>
+                        <a href="#activeOnPointerMoveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>activeOnPointerMoveMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="activeOnRightClickMapEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>activeOnRightClickMapEvent</b></span>
+                        <a href="#activeOnRightClickMapEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>activeOnRightClickMapEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="194"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:194</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addLayerGeoserver"></a>
+                    <span class="name">
+                        <span ><b>addLayerGeoserver</b></span>
+                        <a href="#addLayerGeoserver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addLayerGeoserver(layer, options?)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="260"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:260</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>layer</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>options</td>
+
+                                            <td>
+                                                    Yes
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="centerMap"></a>
+                    <span class="name">
+                        <span ><b>centerMap</b></span>
+                        <a href="#centerMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>centerMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="309"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:309</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeBaseLayerOSM"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>changeBaseLayerOSM</b></span>
+                        <a href="#changeBaseLayerOSM"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeBaseLayerOSM()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="436"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:436</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeBaseLayerWMS"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>changeBaseLayerWMS</b></span>
+                        <a href="#changeBaseLayerWMS"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>changeBaseLayerWMS(url: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="401"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:401</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>url</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeOpacityActiveMap"></a>
+                    <span class="name">
+                        <span ><b>changeOpacityActiveMap</b></span>
+                        <a href="#changeOpacityActiveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeOpacityActiveMap(key, opacity)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="298"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:298</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>opacity</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeProjectionViewer"></a>
+                    <span class="name">
+                        <span ><b>changeProjectionViewer</b></span>
+                        <a href="#changeProjectionViewer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeProjectionViewer(projection)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="446"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:446</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>projection</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeZIndexActiveMap"></a>
+                    <span class="name">
+                        <span ><b>changeZIndexActiveMap</b></span>
+                        <a href="#changeZIndexActiveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeZIndexActiveMap(key, ZIndex)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="292"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:292</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>ZIndex</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="desactiveOnClickMapEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>desactiveOnClickMapEvent</b></span>
+                        <a href="#desactiveOnClickMapEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>desactiveOnClickMapEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="128"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:128</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="desactiveOnPointerMoveMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>desactiveOnPointerMoveMap</b></span>
+                        <a href="#desactiveOnPointerMoveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>desactiveOnPointerMoveMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="214"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:214</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="desactiveOnRightClickMapEvent"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>desactiveOnRightClickMapEvent</b></span>
+                        <a href="#desactiveOnRightClickMapEvent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>desactiveOnRightClickMapEvent()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="disableOverlaysMap"></a>
+                    <span class="name">
+                        <span ><b>disableOverlaysMap</b></span>
+                        <a href="#disableOverlaysMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>disableOverlaysMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="304"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:304</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInfoByCoordinate"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>getInfoByCoordinate</b></span>
+                        <a href="#getInfoByCoordinate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getInfoByCoordinate(coordinate)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="133"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:133</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>coordinate</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMap"></a>
+                    <span class="name">
+                        <span ><b>getMap</b></span>
+                        <a href="#getMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="397"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:397</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>MapOpenLayer</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getStateShowInfoPointerStop"></a>
+                    <span class="name">
+                        <span ><b>getStateShowInfoPointerStop</b></span>
+                        <a href="#getStateShowInfoPointerStop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getStateShowInfoPointerStop()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="384"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:384</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUrlLegendLayerImage"></a>
+                    <span class="name">
+                        <span ><b>getUrlLegendLayerImage</b></span>
+                        <a href="#getUrlLegendLayerImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUrlLegendLayerImage(layerKey, style)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="251"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:251</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>layerKey</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>style</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incrementRotationMap"></a>
+                    <span class="name">
+                        <span ><b>incrementRotationMap</b></span>
+                        <a href="#incrementRotationMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>incrementRotationMap(rotationNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="377"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:377</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rotationNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="incrementZoomMap"></a>
+                    <span class="name">
+                        <span ><b>incrementZoomMap</b></span>
+                        <a href="#incrementZoomMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>incrementZoomMap(zoomNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="314"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:314</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>zoomNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>initMap</b></span>
+                        <a href="#initMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initMap(overlayOpenLayerClickElement: ElementRef, overlayOpenLayerRightClickElement: ElementRef<HTMLElement>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="77"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>overlayOpenLayerClickElement</td>
+                                            <td>
+                                                        <code>ElementRef</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>overlayOpenLayerRightClickElement</td>
+                                            <td>
+                                                        <code>ElementRef&lt;HTMLElement&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initProjections"></a>
+                    <span class="name">
+                        <span ><b>initProjections</b></span>
+                        <a href="#initProjections"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>initProjections()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isLayerActive"></a>
+                    <span class="name">
+                        <span ><b>isLayerActive</b></span>
+                        <a href="#isLayerActive"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isLayerActive(layerKey)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>layerKey</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onClickMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                            <span class="modifier">Async</span>
+                        <span ><b>onClickMap</b></span>
+                        <a href="#onClickMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onClickMap(event: MapBrowserEvent<any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="170"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:170</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MapBrowserEvent&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onMoveStartMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onMoveStartMap</b></span>
+                        <a href="#onMoveStartMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onMoveStartMap(event: MapEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MapEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPointerLeaveMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onPointerLeaveMap</b></span>
+                        <a href="#onPointerLeaveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onPointerLeaveMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="233"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:233</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPointerMoveMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onPointerMoveMap</b></span>
+                        <a href="#onPointerMoveMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onPointerMoveMap(event: MapBrowserEvent<any>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="244"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:244</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MapBrowserEvent&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRightClickMap"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>onRightClickMap</b></span>
+                        <a href="#onRightClickMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onRightClickMap(event: PointerEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="202"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:202</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>PointerEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeLayerGeoserver"></a>
+                    <span class="name">
+                        <span ><b>removeLayerGeoserver</b></span>
+                        <a href="#removeLayerGeoserver"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeLayerGeoserver(layer)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>layer</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rotationMap"></a>
+                    <span class="name">
+                        <span ><b>rotationMap</b></span>
+                        <a href="#rotationMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rotationMap(rotationNumber: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="370"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:370</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>rotationNumber</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setStateShowInfoPointerStop"></a>
+                    <span class="name">
+                        <span ><b>setStateShowInfoPointerStop</b></span>
+                        <a href="#setStateShowInfoPointerStop"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setStateShowInfoPointerStop(state: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="388"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:388</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>state</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zoomToExtend"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>zoomToExtend</b></span>
+                        <a href="#zoomToExtend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>zoomToExtend()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="321"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-map/map-controller.ts:321</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {v4 as uuidv4} from &#x27;uuid&#x27;;
+
+// OpenLayers
+import MapOpenLayer from &#x27;ol/Map&#x27;;
+import View from &#x27;ol/View&#x27;;
+import OSM from &#x27;ol/source/OSM&#x27;;
+import * as olProj from &#x27;ol/proj&#x27;;
+import TileLayer from &#x27;ol/layer/Tile&#x27;;
+import {Overlay, MapBrowserEvent, MapEvent,} from &#x27;ol&#x27;;
+import Layer from &#x27;ol/layer/Layer&#x27;;
+import {Coordinate} from &#x27;ol/coordinate&#x27;;
+import {defaults as defaultControls} from &#x27;ol/control&#x27;;
+import {defaults as defaultInterations} from &#x27;ol/interaction&#x27;;
+import {ListenerFunction} from &#x27;ol/events&#x27;;
+import {register as registerProj4} from &#x27;ol/proj/proj4&#x27;;
+import proj4 from &#x27;proj4&#x27;;
+import TileWMS from &#x27;ol/source/TileWMS&#x27;;
+import {WMSCapabilities} from &#x27;ol/format&#x27;;
+
+
+// Angular
+import {ElementRef} from &#x27;@angular/core&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {forkJoin, Subject} from &#x27;rxjs&#x27;;
+import {GlobalService} from &#x27;src/app/services/global.service&#x27;;
+
+export class MapController {
+
+  // Map
+  private map: MapOpenLayer;
+  baseLayer: TileLayer&lt;TileWMS | OSM&gt; &#x3D; new TileLayer({
+    zIndex: 1,
+    source: new OSM(),
+  });
+  projectionView &#x3D; &#x27;EPSG:3857&#x27;;
+  // Listener
+  private onClickMapListener: ListenerFunction;
+  private onRightClickMapListener: ListenerFunction;
+  private onPointerMoveMapListener: ListenerFunction;
+  private isActiveShowInfoPointerStop &#x3D; false;
+  private setTimeoutFuncPointerMove: any;
+
+  // Layers
+  public activeLayers &#x3D; new Map&lt;any, { layer: Layer&lt;any, any&gt;, data: any }&gt;();
+
+  // Overlays
+  public overlayOpenLayerClick: Overlay;
+  public overlayOpenLayerRightClick: Overlay;
+  private coordinateRightClick: Coordinate;
+
+  constructor(
+    private geoViewerElementRef: ElementRef,
+    private overlayOpenLayerClickElement: ElementRef,
+    private overlayOpenLayerRightClickElement: ElementRef,
+    private readonly backendService: BackendService,
+    private readonly mapControllerEvents: Subject&lt;{ type: string, value: any }&gt;,
+    private readonly globalVariablesServices: GlobalService,
+    private projectionsMap,
+  ) {
+    this.initProjections();
+    this.initMap(this.overlayOpenLayerClickElement, this.overlayOpenLayerRightClickElement);
+  }
+
+  initProjections() {
+    for (const projection of this.projectionsMap) {
+      if (!projection.attributes || !projection.attributes.code || !projection.attributes.proj4) {
+        continue;
+      }
+      proj4.defs(
+        projection.attributes.code,
+        projection.attributes.proj4,
+      );
+    }
+    registerProj4(proj4);
+  }
+
+  private initMap(overlayOpenLayerClickElement: ElementRef, overlayOpenLayerRightClickElement: ElementRef&lt;HTMLElement&gt;): void {
+    // Map
+    this.map &#x3D; new MapOpenLayer({
+      target: this.geoViewerElementRef.nativeElement,
+      layers: [
+        this.baseLayer,
+      ],
+      view: new View({
+        center: olProj.fromLonLat([-15.74779162, 28.33539902], this.projectionView),
+        zoom: 8,
+        projection: this.projectionView,
+        smoothExtentConstraint: false,
+      }),
+      controls: defaultControls({zoom: false, attribution: false, rotate: false}),
+      interactions: defaultInterations({doubleClickZoom: false}),
+    });
+
+    // Overlay
+    this.overlayOpenLayerClick &#x3D; new Overlay({
+      element: overlayOpenLayerClickElement.nativeElement,
+    });
+    this.overlayOpenLayerRightClick &#x3D; new Overlay({
+      element: overlayOpenLayerRightClickElement.nativeElement,
+    });
+    this.map.addOverlay(this.overlayOpenLayerClick);
+    this.map.addOverlay(this.overlayOpenLayerRightClick);
+    this.activeOnClickMapEvent();
+    this.activeOnRightClickMapEvent();
+    this.map.on(&#x27;movestart&#x27;, this.onMoveStartMap.bind(this));
+    this.map.getViewport().addEventListener(&#x27;pointerleave&#x27;, this.onPointerLeaveMap.bind(this));
+    const overlayOpenLayerClickPointerEnter &#x3D; () &#x3D;&gt; {
+      this.desactiveOnPointerMoveMap();
+    };
+    this.overlayOpenLayerClick.getElement().addEventListener(&#x27;pointerenter&#x27;, overlayOpenLayerClickPointerEnter.bind(this));
+    const overlayOpenLayerClickPointerLeave &#x3D; () &#x3D;&gt; {
+      this.activeOnPointerMoveMap();
+    };
+    this.overlayOpenLayerClick.getElement().addEventListener(&#x27;pointerleave&#x27;, overlayOpenLayerClickPointerLeave.bind(this));
+
+    this.activeOnPointerMoveMap();
+    this.map.updateSize();
+  }
+
+  private activeOnClickMapEvent(): void {
+    if (this.onClickMapListener) {
+      this.desactiveOnClickMapEvent();
+    }
+    const eventOnClickMap &#x3D; this.map.on(&#x27;click&#x27;, this.onClickMap.bind(this));
+    this.onClickMapListener &#x3D; eventOnClickMap.listener;
+  }
+
+  private desactiveOnClickMapEvent(): void {
+    this.map.un(&#x27;click&#x27;, this.onClickMapListener);
+    this.onClickMapListener &#x3D; null;
+  }
+
+  private async getInfoByCoordinate(coordinate) {
+    let info &#x3D; null;
+    const featureInfoUrls &#x3D; {};
+    for (const key of this.activeLayers.keys()) {
+      const layer &#x3D; this.activeLayers.get(key);
+      const view &#x3D; this.map.getView();
+      const source &#x3D; layer.layer.getSource();
+      if (source instanceof TileWMS) {
+        featureInfoUrls[key] &#x3D; source.getFeatureInfoUrl(coordinate, view.getResolution(), view.getProjection(), {
+          INFO_FORMAT: &#x27;application/json&#x27;,
+          FEATURE_COUNT: 500
+        });
+      }
+    }
+    if (Object.keys(featureInfoUrls).length !&#x3D;&#x3D; 0 &amp;&amp; featureInfoUrls.constructor &#x3D;&#x3D;&#x3D; Object) {
+      for (const key of Object.keys(featureInfoUrls)) {
+        featureInfoUrls[key] &#x3D; this.backendService.createHttpGet(featureInfoUrls[key]);
+      }
+      const resultForkJoin: any &#x3D; await forkJoin(featureInfoUrls).toPromise();
+      for (const key of Object.keys(resultForkJoin)) {
+        const featureCollections &#x3D; resultForkJoin[key];
+        let firstIteration &#x3D; true;
+        for (const feature of featureCollections.features) {
+          if (!info) {
+            info &#x3D; {};
+          }
+          if (firstIteration) {
+            info[key] &#x3D; [];
+            firstIteration &#x3D; false;
+          }
+          info[key].push(feature.properties);
+        }
+      }
+    }
+    return info;
+  }
+
+  private async onClickMap(event: MapBrowserEvent&lt;any&gt;): Promise&lt;void&gt; {
+    const coordinate &#x3D; event.coordinate;
+    this.mapControllerEvents.next({
+      type: &#x27;getInfoClickMap&#x27;,
+      value: {
+        status: &#x27;start&#x27;,
+        coordinate,
+      }
+    });
+    this.mapControllerEvents.next({
+      type: &#x27;getInfoClickMap&#x27;,
+      value: {
+        status: &#x27;end&#x27;,
+        coordinate,
+        info: await this.getInfoByCoordinate(coordinate),
+      }
+    });
+  }
+
+  private desactiveOnRightClickMapEvent(): void {
+    this.map.getViewport().removeEventListener(&#x27;contextmenu&#x27;, this.onRightClickMapListener);
+    this.onRightClickMapListener &#x3D; null;
+  }
+
+  private activeOnRightClickMapEvent(): void {
+    if (this.onClickMapListener) {
+      this.desactiveOnRightClickMapEvent();
+    }
+    this.onRightClickMapListener &#x3D; this.onRightClickMap.bind(this);
+    this.map.getViewport().addEventListener(&#x27;contextmenu&#x27;, this.onRightClickMapListener);
+  }
+
+  private onRightClickMap(event: PointerEvent): void {
+    event.preventDefault();
+    if (this.setTimeoutFuncPointerMove) {
+      clearTimeout(this.setTimeoutFuncPointerMove);
+    }
+    this.disableOverlaysMap();
+    this.overlayOpenLayerClick.setPosition(undefined);
+    this.coordinateRightClick &#x3D; this.map.getEventCoordinate(event);
+    this.overlayOpenLayerRightClick.setPosition(this.coordinateRightClick);
+    this.overlayOpenLayerRightClick.setOffset([5, 0]);
+  }
+
+  private desactiveOnPointerMoveMap(): void {
+    if (this.setTimeoutFuncPointerMove) {
+      clearTimeout(this.setTimeoutFuncPointerMove);
+      this.setTimeoutFuncPointerMove &#x3D; null;
+    }
+    if (this.onPointerMoveMapListener) {
+      this.map.un(&#x27;pointermove&#x27;, this.onPointerMoveMapListener);
+    }
+    this.onPointerMoveMapListener &#x3D; null;
+  }
+
+  private activeOnPointerMoveMap(): void {
+    if (this.onPointerMoveMapListener) {
+      this.desactiveOnPointerMoveMap();
+    }
+    this.onPointerMoveMapListener &#x3D; this.onPointerMoveMap.bind(this);
+    this.map.on(&#x27;pointermove&#x27;, this.onPointerMoveMapListener);
+  }
+
+  private onPointerLeaveMap() {
+    if (this.setTimeoutFuncPointerMove) {
+      clearTimeout(this.setTimeoutFuncPointerMove);
+      this.setTimeoutFuncPointerMove &#x3D; null;
+    }
+  }
+
+  private onMoveStartMap(event: MapEvent): void {
+
+  }
+
+  private onPointerMoveMap(event: MapBrowserEvent&lt;any&gt;): void {
+  }
+
+  isLayerActive(layerKey) {
+    return this.activeLayers.has(layerKey);
+  }
+
+  getUrlLegendLayerImage(layerKey, style) {
+    const layer &#x3D; this.activeLayers.get(layerKey);
+    if (layer) {
+      const resolution &#x3D; this.map.getView().getResolution();
+      const source &#x3D; layer.layer.getSource() as TileWMS;
+      return source.getLegendUrl(resolution, {STYLE: style, uuid: uuidv4()});
+    }
+  }
+
+  addLayerGeoserver(layer, options?) {
+    console.log(layer)
+    const tileLayer &#x3D; new TileLayer({
+      zIndex: layer.ZIndex,
+      opacity: layer.opacity / 100,
+      source: new TileWMS({
+        url: layer.wms_url,
+        params: {
+          LAYERS: &#x60;${layer.wks}:${layer.geoserver_name}&#x60;,
+          TILED: true,
+          FORMAT_OPTIONS: &#x27;antialias:off&#x27;,
+          STYLES: layer.style,
+          uuid: uuidv4(),
+          &#x27;CQL_FILTER&#x27;: layer.cql,
+        },
+        serverType: &#x27;geoserver&#x27;,
+        transition: 0,
+      }),
+    });
+    this.map.addLayer(tileLayer);
+    (tileLayer.getSource() as TileWMS).refresh();
+    this.activeLayers.set(layer.key, {layer: tileLayer, data: {layerName: layer.layerName}});
+  }
+
+  removeLayerGeoserver(layer): void {
+    const activeLayer &#x3D; this.activeLayers.get(layer.key)?.layer
+    if (activeLayer) {
+      this.map.removeLayer(activeLayer)
+      this.activeLayers.delete(layer.key)
+    }
+  }
+
+  changeZIndexActiveMap(key, ZIndex) {
+    if (this.activeLayers.has(key)) {
+      this.activeLayers.get(key).layer.setZIndex(ZIndex);
+    }
+  }
+
+  changeOpacityActiveMap(key, opacity) {
+    if (this.activeLayers.has(key)) {
+      this.activeLayers.get(key).layer.setOpacity(opacity / 100);
+    }
+  }
+
+  disableOverlaysMap(): void {
+    this.overlayOpenLayerRightClick.setPosition(undefined);
+    this.overlayOpenLayerClick.setPosition(undefined);
+  }
+
+  centerMap(): void {
+    this.map.getView().setCenter(this.coordinateRightClick);
+    this.map.render();
+  }
+
+  incrementZoomMap(zoomNumber: number): void {
+    this.map.getView().animate({
+      zoom: this.map.getView().getZoom() + zoomNumber,
+      duration: 250
+    });
+  }
+
+  async zoomToExtend(): Promise&lt;void&gt; {
+    const host &#x3D; this.globalVariablesServices.getParameter(&#x27;host&#x27;);
+    const response: any &#x3D; await this.backendService.createHttpGetResponseText(&#x60;${host}/pxy/geoserver/wms?SERVICE&#x3D;wms&amp;VERSION&#x3D;1.3.0&amp;REQUEST&#x3D;GetCapabilities&#x60;).toPromise();
+    const obj &#x3D; new WMSCapabilities().read(response);
+    const capability &#x3D; obj.Capability;
+    const objLayer &#x3D; capability.Layer;
+    const activeLayerName &#x3D; [];
+    const minimun: [number, number] &#x3D; [null, null];
+    const maximum: [number, number] &#x3D; [null, null];
+    let needZoomToExtend &#x3D; false;
+    for (const key of this.activeLayers.keys()) {
+      const active &#x3D; this.activeLayers.get(key);
+      const layerName &#x3D; (active.layer.getSource() as any).params_.LAYERS;
+      if (layerName) {
+        activeLayerName.push(layerName);
+      }
+    }
+    for (const layer of objLayer.Layer) {
+      if (activeLayerName.find((value) &#x3D;&gt; {
+        return value &#x3D;&#x3D;&#x3D; layer.Name;
+      })) {
+        const bb &#x3D; layer.BoundingBox[0];
+        const minimunCurrentLayer &#x3D; olProj.fromLonLat([bb.extent[0], bb.extent[1]], this.projectionView);
+        const maximumCurrentLayer &#x3D; olProj.fromLonLat([bb.extent[2], bb.extent[3]], this.projectionView);
+        if (!minimun[0] || minimunCurrentLayer[0] &lt; minimun[0]) {
+          minimun[0] &#x3D; minimunCurrentLayer[0];
+        }
+        if (!minimun[1] || minimunCurrentLayer[1] &lt; minimun[1]) {
+          minimun[1] &#x3D; minimunCurrentLayer[1];
+        }
+        if (!maximum[0] || maximumCurrentLayer[0] &gt; maximum[0]) {
+          maximum[0] &#x3D; maximumCurrentLayer[0];
+        }
+        if (!maximum[1] || maximumCurrentLayer[1] &gt; maximum[1]) {
+          maximum[1] &#x3D; maximumCurrentLayer[1];
+        }
+        needZoomToExtend &#x3D; true;
+      }
+    }
+    const marginX &#x3D; (maximum[0] - minimun[0]) / 20;
+    const marginY &#x3D; (maximum[1] - minimun[1]) / 20;
+    if (needZoomToExtend) {
+      this.map.getView().fit(
+        [minimun[0] - marginX, minimun[1] - marginY, maximum[0] + marginX, maximum[1] + marginY],
+        {size: this.map.getSize()}
+      );
+    }
+  }
+
+  rotationMap(rotationNumber: number): void {
+    this.map.getView().animate({
+      rotation: rotationNumber,
+      duration: 250
+    });
+  }
+
+  incrementRotationMap(rotationNumber: number): void {
+    this.map.getView().animate({
+      rotation: this.map.getView().getRotation() + rotationNumber,
+      duration: 250
+    });
+  }
+
+  getStateShowInfoPointerStop(): boolean {
+    return this.isActiveShowInfoPointerStop;
+  }
+
+  setStateShowInfoPointerStop(state: boolean): void {
+    if (!state) {
+      if (this.setTimeoutFuncPointerMove) {
+        clearTimeout(this.setTimeoutFuncPointerMove);
+      }
+    }
+    this.isActiveShowInfoPointerStop &#x3D; state;
+  }
+
+  getMap(): MapOpenLayer {
+    return this.map;
+  }
+
+  async changeBaseLayerWMS(url: string): Promise&lt;any&gt; {
+    const response: any &#x3D; await this.backendService.createHttpGetResponseTextWithoutAuthOptions(&#x60;${url}service&#x3D;wms&amp;request&#x3D;getcapabilities&#x60;).toPromise();
+    const capabilities &#x3D; new WMSCapabilities().read(response);
+    const obj &#x3D; {
+      FORMAT: capabilities.Capability.Request.GetMap.Format[0],
+      LAYERS: &#x27;&#x27;,
+    };
+    let firstLayer &#x3D; true;
+    for (const layer of capabilities.Capability.Layer.Layer) {
+      if (!firstLayer) {
+        obj.LAYERS &#x3D; &#x60;${obj.LAYERS},&#x60;;
+      }
+      obj.LAYERS &#x3D; &#x60;${obj.LAYERS}${layer.Name}&#x60;;
+      firstLayer &#x3D; false;
+    }
+    const tileLayer &#x3D; new TileLayer({
+      zIndex: 1,
+      opacity: 1,
+      source: new TileWMS({
+        url: url,
+        params: {
+          &quot;FORMAT&quot;: obj.FORMAT,
+          &quot;LAYERS&quot;: obj.LAYERS
+        },
+        transition: 0,
+      }),
+    });
+    this.map.removeLayer(this.baseLayer);
+    this.baseLayer &#x3D; tileLayer;
+    this.map.addLayer(tileLayer);
+    return {
+      serviceName: capabilities.Service.Title,
+    };
+  }
+
+  async changeBaseLayerOSM() {
+    const tileLayer &#x3D; new TileLayer({
+      zIndex: 1,
+      source: new OSM(),
+    });
+    this.map.removeLayer(this.baseLayer);
+    this.baseLayer &#x3D; tileLayer;
+    this.map.addLayer(tileLayer);
+  }
+
+  changeProjectionViewer(projection) {
+    let cantChangeProjection &#x3D; true;
+    if (projection !&#x3D;&#x3D; &#x27;EPSG:3857&#x27;) {
+      for (const projectionMap of this.projectionsMap) {
+        if (projectionMap.attributes &amp;&amp; projectionMap.attributes.code &#x3D;&#x3D;&#x3D; projection) {
+          cantChangeProjection &#x3D; false;
+          break;
+        }
+      }
+    } else {
+      cantChangeProjection &#x3D; false;
+    }
+    if (cantChangeProjection) return;
+    const center &#x3D; this.map.getView().getCenter();
+    const centerLonLat &#x3D; olProj.transform(center, this.projectionView, &#x27;EPSG:4326&#x27;);
+    this.projectionView &#x3D; projection;
+    const newView &#x3D; new View({
+      projection: this.projectionView,
+      center: olProj.fromLonLat([centerLonLat[0], centerLonLat[1]], this.projectionView),
+      smoothExtentConstraint: false,
+      zoom: this.map.getView().getZoom(),
+    });
+    this.map.setView(newView);
+  }
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'MapController.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

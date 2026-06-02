@@ -1,0 +1,22 @@
+<div [ngStyle]="props.style" [ngClass]="{'range-formly-filter-style': props.filterStyle}">
+  <div [ngStyle]="props.styleLabel" *ngIf="props.label && props.label != ''"
+       [ngClass]="{'range-formly-filter-labelStyle': props.filterStyle}">
+    {{props.label | translate}}
+  </div>
+  <div [ngStyle]="props.inputsStyle" [ngClass]="{'range-formly-filter-inputsStyle': props.filterStyle}">
+    <nz-input-number [nzDisabled]="props.disabled"
+                     [nzPlaceHolder]="placeholders[0] | translate"
+                     [nzStep]="props.step ?? 1" [ngModel]="value[INPUTS_TYPES.MINIMUM]"
+                     [nzPrecision]="props.precision ?? 0"
+                     (ngModelChange)="valueChangeEvent($event, INPUTS_TYPES.MINIMUM)"
+    />
+    <nz-input-number [nzDisabled]="props.disabled"
+                     [nzPlaceHolder]="placeholders[1] | translate"
+                     [nzStep]="props.step ?? 1" [ngModel]="value[INPUTS_TYPES.MAXIMUM]"
+                     [nzPrecision]="props.precision ?? 0"
+                     (ngModelChange)="valueChangeEvent($event, INPUTS_TYPES.MAXIMUM)"/>
+  </div>
+  <div *ngIf="checkIfExistErrorByKey(key)" class="message-error">
+    {{getErrorByKey(key)}}
+  </div>
+</div>

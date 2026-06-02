@@ -1,0 +1,1242 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  Annotation</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/data/annotations/annotations-form/annotations-form.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#annotation_type" 
+>
+                                            annotation_type
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#annotationFormItemId" 
+>
+                                            annotationFormItemId
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#formGroup" 
+>
+                                            formGroup
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#formlyEditMode" 
+>
+                                            formlyEditMode
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#formlyReadMode" 
+>
+                                            formlyReadMode
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#model" 
+>
+                                            model
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#templateName" 
+>
+                                            templateName
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="annotation_type"></a>
+                                        <span class="name "><b>annotation_type</b>
+                                            <a href="#annotation_type">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>annotation_type:     <code>&quot;richText&quot; | &quot;field&quot; | &quot;template&quot;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>&quot;richText&quot; | &quot;field&quot; | &quot;template&quot;</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="annotationFormItemId"></a>
+                                        <span class="name "><b>annotationFormItemId</b>
+                                            <a href="#annotationFormItemId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>annotationFormItemId:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="formGroup"></a>
+                                        <span class="name "><b>formGroup</b>
+                                            <a href="#formGroup">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>formGroup:     <code>UntypedFormGroup</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="formlyEditMode"></a>
+                                        <span class="name "><b>formlyEditMode</b>
+                                            <a href="#formlyEditMode">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>formlyEditMode:     <code>FormlyFieldConfig[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="formlyReadMode"></a>
+                                        <span class="name "><b>formlyReadMode</b>
+                                            <a href="#formlyReadMode">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>formlyReadMode:     <code>FormlyFieldConfig[]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="model"></a>
+                                        <span class="name "><b>model</b>
+                                            <a href="#model">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>model:         <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="templateName"></a>
+                                        <span class="name "><b>templateName</b>
+                                            <a href="#templateName">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>templateName:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from &#x27;@angular/core&#x27;;
+import CKEditorAnnotations from &#x27;src/app/components/data/annotations/ckeditor-annotations-form/build/ckeditor&#x27;;
+import {ChangeEvent} from &#x27;@ckeditor/ckeditor5-angular/ckeditor.component&#x27;;
+import {DragDropModule, moveItemInArray} from &#x27;@angular/cdk/drag-drop&#x27;;
+import {BackendService} from &#x27;src/app/services/backend.service&#x27;;
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors
+} from &#x27;@angular/forms&#x27;;
+import {FormlyFieldConfig, FormlyModule} from &#x27;@ngx-formly/core&#x27;;
+import {MessageLogService} from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {forkJoin} from &#x27;rxjs&#x27;;
+import {CommonModule} from &#x27;@angular/common&#x27;;
+import {CKEditorModule} from &quot;@ckeditor/ckeditor5-angular&quot;;
+import {SafeHtmlPipe} from &quot;../../../../pipes/safe-html.pipe&quot;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzModalModule} from &quot;ng-zorro-antd/modal&quot;;
+import {NzDropDownModule} from &quot;ng-zorro-antd/dropdown&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+
+interface Annotation {
+  id?: any;
+  annotation_type: &#x27;richText&#x27; | &#x27;field&#x27; | &#x27;template&#x27;;
+  model: any;
+  formlyReadMode?: FormlyFieldConfig[];
+  formlyEditMode?: FormlyFieldConfig[];
+  annotationFormItemId?: any;
+  formGroup?: UntypedFormGroup;
+  templateName?: string;
+}
+
+@Component({
+    selector: &#x27;app-annotations-form&#x27;,
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        NzSelectModule,
+        NzFormModule,
+        FormlyModule,
+        CKEditorModule,
+        SafeHtmlPipe,
+        NzModalModule,
+        NzDropDownModule,
+        NzSpinModule,
+        NzIconModule,
+        DragDropModule,
+        NzButtonModule,
+    ],
+    templateUrl: &#x27;./annotations-form.component.html&#x27;,
+    styleUrls: [&#x27;./annotations-form.component.sass&#x27;]
+})
+export class AnnotationsFormComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(&#x27;contentAnnotationsForm&#x27;, {static: false}) contentAnnotationsForm: ElementRef;
+
+  @Input() ContainerStyle;a
+  @Input() ObjectType: string;
+  object_uuid;
+  dataWhenEdit &#x3D; &quot;&quot;;
+
+  listAnnotations: Annotation[] &#x3D; [];
+  editModeAnnotation &#x3D; false;
+  idSelectedAnnotation &#x3D; null;
+  loading &#x3D; true;
+
+  fieldSelectorModalVisible &#x3D; false;
+  fieldSelectorOptions &#x3D; [];
+  formGroupFieldSelector &#x3D; this.fb.group({
+    fields: [[]],
+  }, {
+    validators: [
+      this.fieldSelectorValidator,
+    ],
+  });
+  templateSelectorModalVisible &#x3D; false;
+  templateSelectorOptions &#x3D; [];
+  formGroupTemplateSelector &#x3D; this.fb.group({
+    templates: [[]],
+  }, {
+    validators: [
+      this.templatesSelectorValidator,
+    ],
+  });
+
+  CKEditor &#x3D; CKEditorAnnotations;
+  CKEditorConfig &#x3D; {
+    toolbar: {
+      items: [
+        &#x27;fontFamily&#x27;,
+        &#x27;fontSize&#x27;,
+        &#x27;fontColor&#x27;,
+        &#x27;fontBackgroundColor&#x27;,
+        &#x27;bold&#x27;,
+        &#x27;italic&#x27;,
+        &#x27;blockQuote&#x27;,
+        &#x27;superscript&#x27;,
+        &#x27;subscript&#x27;,
+        &#x27;|&#x27;,
+        &#x27;outdent&#x27;,
+        &#x27;indent&#x27;,
+        &#x27;alignment&#x27;,
+        &#x27;|&#x27;,
+        &#x27;bulletedList&#x27;,
+        &#x27;numberedList&#x27;,
+        &#x27;|&#x27;,
+        &#x27;insertTable&#x27;,
+        &#x27;link&#x27;,
+        &#x27;|&#x27;,
+        &#x27;undo&#x27;,
+        &#x27;redo&#x27;
+      ]
+    },
+    language: &#x27;es&#x27;,
+    table: {
+      contentToolbar: [
+        &#x27;tableColumn&#x27;,
+        &#x27;tableRow&#x27;,
+        &#x27;mergeTableCells&#x27;,
+        &#x27;tableCellProperties&#x27;
+      ]
+    },
+  };
+
+  constructor(
+    private readonly backendService: BackendService,
+    private readonly fb: UntypedFormBuilder,
+    private readonly messageLogService: MessageLogService,
+    private readonly notificationService: NotificationService,
+    private readonly changeDetectorRef: ChangeDetectorRef,
+  ) {
+  }
+
+  async ngOnInit(): Promise&lt;void&gt; {
+    this.loading &#x3D; false;
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  loadTemplateAnnotation(template, fields: any[], id, model) {
+    const auxTemplate &#x3D; {...template};
+    auxTemplate.formlyEditMode &#x3D; [];
+    auxTemplate.formlyReadMode &#x3D; [];
+    if (!auxTemplate.annotation_form_fields || auxTemplate.annotation_form_fields.length &#x3D;&#x3D; 0) {
+      return;
+    }
+    for (const relationship of template.annotation_form_fields) {
+      const fieldId &#x3D; relationship.form_field_id;
+      const field &#x3D; fields.find((value) &#x3D;&gt; {
+        return value.id &#x3D;&#x3D; fieldId;
+      });
+      if (!field) {
+        continue;
+      }
+      const formlyRead &#x3D; {
+        key: String(field.id),
+        type: &#x60;${field.view_type}-read&#x60;,
+        props: {
+          label: field.name,
+          multiple: field.multiple,
+          range: field.range,
+        }
+      };
+      const formlyEdit &#x3D; {
+        key: String(field.id),
+        type: &#x60;${field.view_type}&#x60;,
+        props: {
+          label: field.name,
+          multiple: field.multiple,
+          range: field.range,
+          style: {
+            marginTop: &#x27;5px&#x27;,
+            marginBot: &#x27;5px&#x27;
+          },
+        }
+      };
+      if (model[formlyEdit.key]) {
+        auxTemplate.formlyReadMode.push(formlyRead);
+      }
+      auxTemplate.formlyEditMode.push(formlyEdit);
+    }
+
+    const instance: Annotation &#x3D; {
+      id,
+      annotation_type: &#x27;template&#x27;,
+      model,
+      annotationFormItemId: auxTemplate.id,
+      templateName: auxTemplate.name,
+      formGroup: new UntypedFormGroup({}),
+      formlyEditMode: auxTemplate.formlyEditMode,
+      formlyReadMode: auxTemplate.formlyReadMode,
+    };
+
+    this.listAnnotations.push(instance);
+  }
+
+  async loadAnnotations(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    try {
+      const response: any &#x3D; await forkJoin({
+        annotations: this.backendService.getAnnotationsByObjectUUID(this.object_uuid, {
+          fast_mode: false,
+          no_attach: true,
+        }),
+        fields: this.backendService.getAnnotationField(null, {
+          fast_mode: false,
+          no_attach: true,
+        }),
+        templates: this.backendService.getAnnotationsTemplates(null, {
+          fast_mode: false,
+          no_attach: true,
+        }),
+      }).toPromise();
+      this.messageLogService.addIssues(response.annotations.issues);
+      for (const annotation of response.annotations.content) {
+        switch (annotation.annotation_type) {
+          case &#x27;field&#x27;:
+            const field &#x3D; response.fields.content.find((value) &#x3D;&gt; {
+              return value.id &#x3D;&#x3D; annotation.form_field_id;
+            });
+            this.addFieldAnnotation(field, annotation.id, {value: annotation.value});
+            break;
+          case &#x27;template&#x27;:
+            const template &#x3D; response.templates.content.find((value) &#x3D;&gt; {
+              return value.id &#x3D;&#x3D; annotation.form_template_id;
+            });
+            this.loadTemplateAnnotation(template, response.fields.content, annotation.id, annotation.value);
+            break;
+          case &#x27;text&#x27;:
+            this.addRichTextAnnotation(annotation.id, annotation.value);
+        }
+      }
+    } catch (e) {
+      console.log(e);
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+    }
+    this.loading &#x3D; false;
+  }
+
+  async cancelChangesAnnotations(): Promise&lt;void&gt; {
+    this.listAnnotations &#x3D; [];
+    this.loadAnnotations();
+  }
+
+  removeAnnotation(index: number): void {
+    if (index &#x3D;&#x3D;&#x3D; this.idSelectedAnnotation) {
+      this.editModeAnnotation &#x3D; false;
+      this.idSelectedAnnotation &#x3D; null;
+    }
+    this.listAnnotations.splice(index, 1);
+  }
+
+  selectAnnotation(index: number): void {
+    if (index !&#x3D;&#x3D; this.idSelectedAnnotation) {
+      this.editModeAnnotation &#x3D; false;
+    }
+    this.idSelectedAnnotation &#x3D; index;
+  }
+
+  changeStateEditMode(state: boolean): void {
+    if (state) {
+      const annotation &#x3D; this.listAnnotations[this.idSelectedAnnotation];
+      this.dataWhenEdit &#x3D; annotation.model;
+    }
+    this.editModeAnnotation &#x3D; state;
+  }
+
+  annotationDragStart(event) {
+    document.body.classList.add(&#x27;body-grabbing&#x27;);
+  }
+
+  annotationDragEnd(event) {
+    document.body.classList.remove(&#x27;body-grabbing&#x27;);
+  }
+
+  annotationDrop(event) {
+    moveItemInArray(this.listAnnotations, event.previousIndex, event.currentIndex);
+    this.idSelectedAnnotation &#x3D; event.currentIndex;
+  }
+
+  contentAnnotationsFormScrollBottom() {
+    const div &#x3D; this.contentAnnotationsForm.nativeElement as HTMLDivElement;
+    this.changeDetectorRef.detectChanges();
+    if (div) {
+      div.scrollBy({
+        top: div.scrollHeight,
+        left: 0,
+        behavior: &#x27;smooth&#x27;,
+      })
+    }
+  }
+
+
+  addRichTextAnnotation(id?, model?): void {
+    const instance: Annotation &#x3D; {
+      annotation_type: &#x27;richText&#x27;,
+      model: model ? model : &#x27;&#x27;,
+    };
+    if (id) {
+      instance.id &#x3D; id;
+    }
+    this.listAnnotations.push(instance);
+    this.contentAnnotationsFormScrollBottom();
+  }
+
+  onChangeValueRichText({editor}: ChangeEvent, index): void {
+    const annotation &#x3D; this.listAnnotations[index];
+    annotation.model &#x3D; editor.getData();
+  }
+
+  addFieldAnnotation(field, id?, model?) {
+    const instance: Annotation &#x3D; {
+      annotation_type: &#x27;field&#x27;,
+      model: model ? model : {},
+      annotationFormItemId: field.id,
+      formGroup: new UntypedFormGroup({}),
+      formlyEditMode: [
+        {
+          key: &#x27;value&#x27;,
+          type: field.view_type,
+          props: {
+            label: field.name,
+            multiple: field.multiple,
+            range: field.range,
+          }
+        },
+      ],
+      formlyReadMode: [
+        {
+          key: &#x27;value&#x27;,
+          type: &#x60;${field.view_type}-read&#x60;,
+          props: {
+            label: field.name,
+            multiple: field.multiple,
+            range: field.range,
+          }
+        },
+      ]
+    };
+    if (id) {
+      instance.id &#x3D; id;
+    }
+    this.listAnnotations.push(instance);
+    this.contentAnnotationsFormScrollBottom();
+  }
+
+  async addTemplatesAnnotation(templates: any[]): Promise&lt;void&gt; {
+    // const fieldIdsFound &#x3D; [];
+    const auxTemplates &#x3D; [];
+    const fieldFormlyRead &#x3D; new Map&lt;any, any&gt;();
+    const fieldFormlyEdit &#x3D; new Map&lt;any, any&gt;();
+    // Get necessary fields
+    for (const template of templates) {
+      if (!template.annotation_form_fields || template.annotation_form_fields.length &#x3D;&#x3D;&#x3D; 0) {
+        continue;
+      }
+      auxTemplates.push(template);
+    }
+    const filter &#x3D; {
+      form_template_id: auxTemplates.map((item) &#x3D;&gt; {
+        return item.id
+      }),
+    }
+    const responseFieldsFound: any &#x3D; await this.backendService.getAnnotationField(null, {
+      filter: filter,
+    }).toPromise();
+    // Create formly for each field
+    for (const field of responseFieldsFound.content) {
+      const formlyRead &#x3D; {
+        key: String(field.id),
+        type: &#x60;${field.view_type}-read&#x60;,
+        props: {
+          label: field.name,
+          multiple: field.multiple,
+          range: field.range,
+        }
+      };
+      const formlyEdit &#x3D; {
+        key: String(field.id),
+        type: &#x60;${field.view_type}&#x60;,
+        props: {
+          label: field.name,
+          multiple: field.multiple,
+          range: field.range,
+          style: {
+            marginTop: &#x27;5px&#x27;,
+            marginBot: &#x27;5px&#x27;
+          },
+        }
+      };
+      fieldFormlyRead.set(field.id, formlyRead);
+      fieldFormlyEdit.set(field.id, formlyEdit);
+    }
+    // Add field formly to template
+    for (const template of auxTemplates) {
+      template.formlyEditMode &#x3D; [];
+      template.formlyReadMode &#x3D; [];
+      for (const relationship of template.annotation_form_fields) {
+        const cloneFormlyEdit &#x3D; {...fieldFormlyEdit.get(relationship.form_field_id)};
+        const cloneFormlyRead &#x3D; {...fieldFormlyRead.get(relationship.form_field_id)};
+        template.formlyEditMode.push(cloneFormlyEdit);
+        template.formlyReadMode.push(cloneFormlyRead);
+      }
+      const instance: Annotation &#x3D; {
+        annotation_type: &#x27;template&#x27;,
+        model: {},
+        annotationFormItemId: template.id,
+        templateName: template.name,
+        formGroup: new UntypedFormGroup({}),
+        formlyEditMode: template.formlyEditMode,
+        formlyReadMode: template.formlyReadMode,
+      };
+
+      this.listAnnotations.push(instance);
+      this.contentAnnotationsFormScrollBottom();
+    }
+  }
+
+  async openFieldSelectorModal(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    this.formGroupFieldSelector.get(&#x27;fields&#x27;).setValue([]);
+    try {
+      const response: any &#x3D; await this.backendService.getAnnotationField(null, {
+        filter: {
+          object_type: {
+            op: &#x27;in&#x27;,
+            unary: [this.ObjectType]
+          }
+        }
+      }).toPromise();
+      this.fieldSelectorOptions &#x3D; response.content;
+      this.fieldSelectorModalVisible &#x3D; true;
+    } catch (e) {
+
+    }
+    this.loading &#x3D; false;
+  }
+
+  closeFieldSelectorModal(): void {
+    this.formGroupFieldSelector.get(&#x27;fields&#x27;).setValue([]);
+    this.fieldSelectorModalVisible &#x3D; false;
+  }
+
+  async confirmFieldSelectorModal(): Promise&lt;void&gt; {
+    this.fieldSelectorModalVisible &#x3D; false;
+    const fields &#x3D; this.formGroupFieldSelector.get(&#x27;fields&#x27;).value;
+    for (const field of fields) {
+      this.addFieldAnnotation(field);
+    }
+  }
+
+  async openTemplateSelectorModal(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    this.formGroupTemplateSelector.get(&#x27;templates&#x27;).setValue([]);
+    try {
+      const response: any &#x3D; await this.backendService.getAnnotationsTemplates(null, {
+        filter: {
+          object_type: {
+            op: &#x27;in&#x27;,
+            unary: [this.ObjectType]
+          }
+        },
+        fast_mode: false,
+      }).toPromise();
+      this.templateSelectorOptions &#x3D; response.content;
+      this.templateSelectorModalVisible &#x3D; true;
+    } catch (e) {
+
+    }
+    this.loading &#x3D; false;
+  }
+
+  async closeTemplateSelectorModal(): Promise&lt;void&gt; {
+    this.formGroupTemplateSelector.get(&#x27;templates&#x27;).setValue([]);
+    this.templateSelectorModalVisible &#x3D; false;
+  }
+
+  async confirmTemplatesSelectorModal(): Promise&lt;void&gt; {
+    this.templateSelectorModalVisible &#x3D; false;
+    this.loading &#x3D; true;
+    const templates &#x3D; this.formGroupTemplateSelector.get(&#x27;templates&#x27;).value;
+    await this.addTemplatesAnnotation(templates);
+    this.loading &#x3D; false;
+  }
+
+  async convertFieldAnnotation2Instance(annotation): Promise&lt;any&gt; {
+    const instance: any &#x3D; {
+      value: annotation.model.value,
+      annotation_type: &#x27;field&#x27;,
+      form_field_id: annotation.annotationFormItemId,
+      name: &#x27;&#x27;,
+    };
+    if (annotation.id) {
+      instance.id &#x3D; annotation.id;
+    }
+    return instance;
+  }
+
+  async convertTemplateAnnotation2Instance(annotation): Promise&lt;any&gt; {
+    const instance: any &#x3D; {
+      value: annotation.model,
+      annotation_type: &#x27;template&#x27;,
+      form_template_id: annotation.annotationFormItemId,
+      name: &#x27;&#x27;,
+    };
+    if (annotation.id) {
+      instance.id &#x3D; annotation.id;
+    }
+    return instance;
+  }
+
+  async convertRichTextAnnotation2Instance(annotation): Promise&lt;any&gt; {
+    const instance: any &#x3D; {
+      value: annotation.model,
+      annotation_type: &#x27;text&#x27;,
+      name: &#x27;&#x27;,
+    };
+    if (annotation.id) {
+      instance.id &#x3D; annotation.id;
+    }
+    return instance;
+  }
+
+  async convertListAnnotation2Instances() {
+    const instances &#x3D; [];
+    for (const annotation of this.listAnnotations) {
+      switch (annotation.annotation_type) {
+        case &#x27;field&#x27;:
+          instances.push(await this.convertFieldAnnotation2Instance(annotation));
+          break;
+        case &#x27;template&#x27;:
+          instances.push(await this.convertTemplateAnnotation2Instance(annotation));
+          break;
+        case &#x27;richText&#x27;:
+          instances.push(await this.convertRichTextAnnotation2Instance(annotation));
+          break;
+      }
+    }
+    return instances;
+  }
+
+  async saveAnnotations(): Promise&lt;void&gt; {
+    const instances &#x3D; await this.convertListAnnotation2Instances();
+    this.loading &#x3D; true;
+    try {
+      const response: any &#x3D; await this.backendService.putAnnotationByObjectUUID(this.object_uuid, instances).toPromise();
+      this.messageLogService.addIssues(response.issues);
+      await this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.success,
+        &#x27;ANNOTATIONS.ANNOTATIONS_FORM.NOTIFICATIONS.SAVE_SUCCESS.TITLE&#x27;,
+        &#x27;ANNOTATIONS.ANNOTATIONS_FORM.NOTIFICATIONS.SAVE_SUCCESS.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      );
+    } catch (e) {
+      await this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;ANNOTATIONS.ANNOTATIONS_FORM.NOTIFICATIONS.SAVE_FAIL.TITLE&#x27;,
+        &#x27;ANNOTATIONS.ANNOTATIONS_FORM.NOTIFICATIONS.SAVE_FAIL.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      );
+      if (e.issues) {
+        this.messageLogService.addIssues(e.issues);
+      }
+    }
+    this.loading &#x3D; false;
+  }
+
+  // Validators
+
+  private fieldSelectorValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const field &#x3D; control.get(&#x27;fields&#x27;).value;
+    if (!field || field.length &lt; 1) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      fieldError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  getMessageFieldSelectorError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroupFieldSelector.errors || !this.formGroupFieldSelector.errors.fieldError) {
+      return null;
+    }
+    if (this.formGroupFieldSelector.errors.fieldError.empty) {
+      message.push(&#x27;ANNOTATIONS.ANNOTATIONS_FORM.FIELD_SELECTOR_MODAL.CONTENT.FIELDS_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+  private templatesSelectorValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const templates &#x3D; control.get(&#x27;templates&#x27;).value;
+    if (!templates || templates.length &lt; 1) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      templatesError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  getMessageTemplateSelectorError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroupTemplateSelector.errors || !this.formGroupTemplateSelector.errors.templatesError) {
+      return null;
+    }
+    if (this.formGroupTemplateSelector.errors.templatesError.empty) {
+      message.push(&#x27;ANNOTATIONS.ANNOTATIONS_FORM.TEMPLATE_SELECTOR_MODAL.CONTENT.TEMPLATES_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Annotation.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

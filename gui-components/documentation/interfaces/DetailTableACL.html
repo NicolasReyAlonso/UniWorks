@@ -1,0 +1,723 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  DetailTableACL</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/admin/acl/acl-modal/acl-modal.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#id" 
+>
+                                            id
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#identityId" 
+>
+                                            identityId
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#identityType" 
+>
+                                            identityType
+                                        </a>
+                                </li>
+                                <li>
+                                            <span class="modifier">Optional</span>
+                                        <a href="#permissionId" 
+>
+                                            permissionId
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="id"></a>
+                                        <span class="name "><b>id</b>
+                                            <a href="#id">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>id:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="identityId"></a>
+                                        <span class="name "><b>identityId</b>
+                                            <a href="#identityId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>identityId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="identityType"></a>
+                                        <span class="name "><b>identityType</b>
+                                            <a href="#identityType">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>identityType:         <code><a href="../miscellaneous/enumerations.html#IdentityType" target="_self" >IdentityType</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#IdentityType" target="_self" >IdentityType</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="permissionId"></a>
+                                        <span class="name "><b>permissionId</b>
+                                            <a href="#permissionId">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>permissionId:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Optional</i>
+                                        </td>
+                                    </tr>
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from &#x27;@angular/core&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { BackendService } from &#x27;src/app/services/backend.service&#x27;;
+import { MessageLogService } from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import {NzModalModule, NzModalService} from &quot;ng-zorro-antd/modal&quot;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../../shared-module/shared.module&quot;;
+import {AclRulesModalComponent} from &quot;../acl-rules-modal/acl-rules-modal.component&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+
+enum IdentityType {
+  IDENTITY &#x3D; 1,
+  ORGANIZATION &#x3D; 2,
+  GROUP &#x3D; 3,
+  ROLE &#x3D; 4,
+}
+
+interface DetailTableACL {
+  identityType?: IdentityType,
+  identityId?: number,
+  permissionId?: number,
+  id?: number,
+}
+@Component({
+    selector: &#x27;app-acl-modal&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzModalModule,
+        NzListModule,
+        NzSelectModule,
+        NzTableModule,
+        NzSpinModule,
+        NzButtonModule,
+        NzIconModule,
+        AclRulesModalComponent,
+    ],
+    templateUrl: &#x27;./acl-modal.component.html&#x27;,
+    styleUrls: [&#x27;./acl-modal.component.sass&#x27;]
+})
+export class AclModalComponent implements OnInit {
+
+  identityTypes &#x3D; new Map&lt;any, { name: string }&gt;([
+    [IdentityType.IDENTITY, { name: &quot;Usuario&quot; }],
+    [IdentityType.GROUP, { name: &quot;Grupo&quot; }],
+    [IdentityType.ORGANIZATION, { name: &quot;Organización&quot; }],
+    [IdentityType.ROLE, { name: &quot;Rol&quot; }],
+  ]);
+
+  permissionTypes &#x3D; new Map&lt;number, { name: string }&gt;();
+
+  detailsDataTable: Set&lt;DetailTableACL&gt; &#x3D; new Set();
+  isVisibleAclRulesModal &#x3D; false;
+  _isVisible: boolean;
+  @Output() isVisibleChange &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  set isVisible(val) {
+    if (val) {
+      this.initModal();
+    }
+    this._isVisible &#x3D; val;
+    this.isVisibleChange.emit(this._isVisible);
+  }
+
+  @Input()
+  get isVisible() {
+    return this._isVisible;
+  }
+
+  objectTypeName &#x3D; null;
+  objectUUID &#x3D; null;
+  featureId &#x3D; null;
+
+  private aclId &#x3D; null;
+  private objectType &#x3D; null;
+
+  loadingModal;
+  identityList: { [key: string]: any[] } &#x3D; {};
+
+  constructor(
+    private readonly backendService: BackendService,
+    private logService: MessageLogService,
+    private notificationServices: NotificationService,
+    private modalService: NzModalService,
+  ) { }
+
+  ngOnInit(): void {
+
+  }
+
+  initModal() {
+    if (!this.objectTypeName || !this.objectUUID) {
+      console.log(&quot;abort&quot;);
+      this.isVisible &#x3D; false;
+      return;
+    }
+    this.identityList[IdentityType.IDENTITY] &#x3D; [];
+    this.identityList[IdentityType.GROUP] &#x3D; [];
+    this.identityList[IdentityType.ORGANIZATION] &#x3D; [];
+    this.identityList[IdentityType.ROLE] &#x3D; [];
+    this.loadDataFromBackend();
+  }
+
+  private loadDataFromBackend(): void {
+    this.loadingModal &#x3D; true;
+    const paramsObjectType &#x3D; {
+      name: this.objectTypeName,
+    };
+    this.backendService.getObjectTypes(undefined, paramsObjectType).subscribe(response &#x3D;&gt; {
+      if (response[&quot;content&quot;].length &#x3D;&#x3D; 1) {
+        const objectType &#x3D; response[&quot;content&quot;][0];
+        this.objectType &#x3D; objectType;
+        this.permissionTypes.clear();
+        for (const permissionType of objectType.permission_types) {
+          this.permissionTypes.set(permissionType.id, { name: permissionType.name });
+        }
+        this.loadAclFromBackend();
+      } else {
+        this.isVisible &#x3D; false;
+      }
+    }, error &#x3D;&gt; {
+      console.log(error);
+      this.isVisible &#x3D; false;
+    });
+  }
+
+  private loadAclFromBackend(): void {
+    this.backendService.getACL(undefined, { object_uuid: this.objectUUID }).subscribe(response &#x3D;&gt; {
+      const content &#x3D; response[&quot;content&quot;];
+      this.formatToDetailsDataTable(content.details);
+      this.aclId &#x3D; content.id;
+      this.loadIdentitiesFromBackend();
+      this.logService.addIssues(response[&#x27;issues&#x27;]);
+    }, error &#x3D;&gt; {
+      if (error.status &#x3D;&#x3D; 404) {
+        this.aclId &#x3D; null;
+        this.formatToDetailsDataTable([]);
+        this.loadIdentitiesFromBackend();
+        return;
+      }
+      this.isVisible &#x3D; false;
+      this.logService.addIssues(error[&#x27;issues&#x27;]);
+      console.log(error);
+    });
+  }
+
+  private loadIdentitiesFromBackend(): void {
+    const identitiesObservable &#x3D; this.backendService.getIdentities();
+    const groupsObservable &#x3D; this.backendService.getGroups();
+    const organizationsObservable &#x3D; this.backendService.getOrganizations();
+    const rolesObservable &#x3D; this.backendService.getRoles();
+
+    forkJoin({
+      identities: identitiesObservable,
+      groups: groupsObservable,
+      organizations: organizationsObservable,
+      roles: rolesObservable,
+    }).subscribe((response) &#x3D;&gt; {
+      this.identityList[IdentityType.IDENTITY] &#x3D; response.identities[&quot;content&quot;];
+      this.identityList[IdentityType.GROUP] &#x3D; response.groups[&quot;content&quot;];
+      this.identityList[IdentityType.ORGANIZATION] &#x3D; response.organizations[&quot;content&quot;];
+      this.identityList[IdentityType.ROLE] &#x3D; response.roles[&quot;content&quot;];
+      this.loadingModal &#x3D; false;
+    });
+  }
+
+  private formatToDetailsDataTable(details) {
+    this.detailsDataTable.clear();
+    for (const detailGetACL of details) {
+      const detail: DetailTableACL &#x3D; {};
+      detail.identityType &#x3D; detailGetACL.authorizable.authorizable_type_id;
+      detail.permissionId &#x3D; detailGetACL.permission_id;
+      if (typeof detail.permissionId &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        detail.permissionId &#x3D; parseInt(detail.permissionId);
+      }
+      detail.identityId &#x3D; detailGetACL.authorizable.id;
+      detail.id &#x3D; detailGetACL.id;
+      this.detailsDataTable.add(detail);
+    }
+  }
+
+  private formatBody() {
+    const body &#x3D; {
+      object_type: this.objectType.id,
+      details: [],
+    };
+    for (const detailDataTable of this.detailsDataTable) {
+      const detail: any &#x3D; {
+        authorizable_id: detailDataTable.identityId,
+        permission_id: detailDataTable.permissionId,
+      };
+      if (detailDataTable.id) {
+        detail.id &#x3D; detailDataTable.id;
+      }
+      body.details.push(detail);
+    }
+    return body;
+  }
+
+  getArrayDetailsDataTable(): any[] {
+    if (this.detailsDataTable.size &#x3D;&#x3D; 0) {
+      return [&#x27;&#x27;];
+    }
+    return Array.from(this.detailsDataTable);
+  }
+
+  selectIdentityTypeChange(event, data) {
+    data.identityId &#x3D; null;
+  }
+
+  getSelectIdentitiestDisabled(data) {
+    if (Object.values(IdentityType).includes(data.identityType)) {
+      return false;
+    }
+    return true;
+  }
+
+  handleCancel(): void {
+    this.isVisible &#x3D; false;
+  }
+
+  handleConfirm(): void {
+    for (const detail of this.detailsDataTable) {
+      if (!detail.identityId || !detail.identityType || !detail.permissionId) {
+        this.notificationServices.createNotificationWithType(
+          TypeNotificationEnum.error,
+          &#x27;Error&#x27;,
+          &#x27;No se admiten campos vacíos en la tabla de permisos.&#x27;,
+          &#x27;bottomRight&#x27;,
+        )
+        return;
+      }
+    }
+    if (this.aclId) {
+
+      this.backendService.putACL(this.aclId, this.formatBody()).subscribe(response &#x3D;&gt; {
+        console.log(response);
+        this.isVisible &#x3D; false;
+        this.logService.addIssues(response[&#x27;issues&#x27;]);
+      }, error &#x3D;&gt; {
+        console.log(error);
+      });
+
+    } else {
+
+      if (this.detailsDataTable.size &gt; 0) {
+        const body &#x3D; this.formatBody();
+        body[&quot;object_uuid&quot;] &#x3D; this.objectUUID;
+        this.backendService.postACL(body).subscribe(response &#x3D;&gt; {
+          console.log(response);
+          this.isVisible &#x3D; false;
+          this.logService.addIssues(response[&#x27;issues&#x27;]);
+        }, error &#x3D;&gt; {
+          console.log(error);
+        });
+      } else {
+        this.isVisible &#x3D; false;
+      }
+
+    }
+  }
+
+  deleteAclDetail(event, data) {
+    this.detailsDataTable.delete(data);
+  }
+
+  addAclDetail(event) {
+    this.detailsDataTable.add({});
+    console.log(this.detailsDataTable);
+  }
+
+  showACLRulesModal() {
+
+  }
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'DetailTableACL.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

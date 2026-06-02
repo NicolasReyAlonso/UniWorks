@@ -1,0 +1,24 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/lib",
+    "rootDir": "./",
+    "target": "es2022",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": [],
+    "lib": ["dom", "es2022"],
+    "paths": {
+      "ngt-gui": ["src/public-api.ts"],
+      "ngt-gui/core": ["src/lib/core/public-api.ts"],
+      "ngt-gui/tokens": ["src/lib/tokens/public-api.ts"],
+      "ngt-gui/interfaces": ["src/lib/interfaces/public-api.ts"],
+      "ngt-gui/models": ["src/lib/models/public-api.ts"]
+    }
+  },
+  "exclude": [
+    "**/*.spec.ts",
+    "test.ts"
+  ]
+}

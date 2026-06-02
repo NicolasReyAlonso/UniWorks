@@ -1,0 +1,139 @@
+.content
+  height: 80%
+  display: flex
+  flex-direction: column
+  overflow-y: scroll
+.container-annotations-form
+  width: 100%
+  background-color: #ffffff
+  display: flex
+  flex-direction: column
+  height: 100% !important
+  min-height: 50em
+  max-height: 100%
+
+::ng-deep .nz-tabset 
+  height: 100%
+  display: flex
+  flex-direction: column
+
+
+::ng-deep .nz-tabset .ant-tabs-content 
+  flex: 1 1 auto
+  min-height: 0
+  height: 100% !important
+
+
+::ng-deep .nz-tabset .ant-tabs-tabpane 
+  height: 100% !important
+
+
+// Header
+.header-annotations-form
+  border: 1px solid #dadada
+  padding: 3px 0px 3px 4px
+  display: flex
+  flex: 0 0 auto
+
+.button-header-annotations-form
+  border: none
+  border-radius: 3px
+  padding: 4px
+  background-color: rgba(0, 0, 0, 0)
+  display: flex
+  align-items: center
+
+  &:hover
+    background-color: #e0e0e0
+
+::ng-deep .ant-dropdown-menu-item
+  &:hover
+    background-color: #e0e0e0
+
+.icon-button-header-annotations-form
+  margin-right: 4px
+  font-size: 12px
+
+// Content
+.content-annotations-form
+  border: 1px solid #dadada
+  border-top: none
+  padding: 15px 15px 15px 15px
+  height: 100%
+  overflow: auto
+  flex: 1 1 auto
+  min-height: 0
+
+.toolbar-annotation
+  position: absolute
+  display: flex
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
+  background-color: #ffffff
+  right: 8px
+  top: -14px
+  border-radius: 3px
+  padding: 2px 4px 2px 5px
+  z-index: 9999
+
+.icon-toolbar-annotation
+  cursor: pointer
+  margin-right: 1px
+  height: 18px
+  text-align: center
+  line-height: 18px
+  width: 25px
+  border-radius: 3px
+
+  &:hover
+    background-color: #e0e0e0
+
+.icon-toolbar-annotation-grab
+  cursor: grab
+
+.container-annotation
+  padding: 5px 5px 5px 5px
+  position: relative
+
+.container-annotation-selected
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4)
+  padding: 15px 5px 5px 5px
+
+::ng-deep .annotations-spin
+  height: 100%
+
+::ng-deep .annotations-spin > div
+  height: 100%
+  width: 100%
+  position: absolute
+
+::ng-deep .annotations-spin > div > .ant-spin
+  height: 100%
+  width: 100%
+  position: static
+
+::ng-deep .annotations-spin > .ant-spin-container
+  display: flex
+  flex-direction: column
+
+::ng-deep .input-error
+  border: 1px solid #ff4d4f
+
+  &:focus
+    box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2)
+    border-right-width: 1px !important
+    outline: 0
+    border: 1px solid #ff7875
+
+  &:hover
+    border: 1px solid #ff4d4f
+
+::ng-deep .select-error .ant-select-selector
+  border: 1px solid #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused .ant-select-selector
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3) !important
+
+.message-error
+  color: #ff0000
+  font-size: 12px
+  margin-top: 2px

@@ -1,0 +1,20 @@
+::ng-deep .input-error
+    border: 1px solid #ff4d4f
+    &:focus
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2)
+        border-right-width: 1px !important
+        outline: 0
+        border: 1px solid #ff7875
+    &:hover
+        border: 1px solid #ff4d4f
+
+::ng-deep .select-error .ant-select-selector
+    border: 1px solid #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused .ant-select-selector
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3) !important
+
+.message-error
+    color: #ff0000
+    font-size: 12px
+    margin-top: 2px

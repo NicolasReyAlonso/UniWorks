@@ -1,0 +1,76 @@
+<nz-spin [nzSpinning]="loading">
+  <div style="padding: 0px 30px 40px 30px;">
+
+    <div style="display: flex; justify-content: center; margin-top: 10px;">
+      <nz-avatar [nzSize]="120" nzIcon="user"></nz-avatar>
+    </div>
+
+    <form nz-form nzLayout="vertical" style="margin-top: 15px;" [formGroup]="loginFormGroup" (keydown.enter)="submitLogin()">
+      <nz-form-item>
+        <nz-form-label>Email</nz-form-label>
+        <nz-form-control>
+          <nz-input-group>
+            <input type="text" nz-input formControlName="email" placeholder="Email" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label>{{'LOGIN.INPUTS.PASSWORD.LABEL' | translate}}</nz-form-label>
+        <nz-form-control>
+          <nz-input-group>
+            <input type="password" nz-input formControlName="password" [placeholder]="'LOGIN.INPUTS.PASSWORD.LABEL' | translate" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+
+    <div style="margin-top: -13px; color: #717171;">{{'LOGIN.LINK_REGISTRATION.NORMAL_TEXT' | translate}} <a class="link-register" (click)="onClickLinkRegister()">
+      {{'LOGIN.LINK_REGISTRATION.TEXT_LINK' | translate}}
+    </a></div>
+
+    <button nz-button nzType="primary" style="width: 100%; margin-top: 15px;" (click)="submitLogin()" [disabled]="!this.loginFormGroup.valid">{{'LOGIN.LOGIN_BUTTON' | translate}}</button>
+    <div style="margin-top: 8px; display: flex; justify-content: center;"><a (click)="onClickForgetPassword()">{{'LOGIN.FORGOT_PASSWORD' | translate}}</a></div>
+
+    <div style="display: flex; justify-content: center; margin-top: 20px; font-weight: 350; color: #5f6368;">
+      {{'LOGIN.CAN_LOGIN_WITH' | translate}}
+    </div>
+    <div style="display: flex; justify-content: center; margin-top: 10px; gap: 10px;">
+
+      <button style="background-color: #fff; border: none; border-radius: 5px; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;" (click)="loginWithGoogle()">
+        <div style="display: flex; height: 100%; vertical-align: middle; padding: 5px 30px 5px 30px;">
+          <google-svg size="30px" style="height: 30px;"></google-svg>
+          <div style="text-align: center; line-height: 30px; margin-left: 5px; font-size: 500; font-weight: 650; color: #5f6368;">Google</div>
+        </div>
+      </button>
+
+      <button style="background-color: #000; border: none; border-radius: 5px; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;" (click)="loginAnonymous()">
+        <div style="display: flex; height: 100%; vertical-align: middle; padding: 5px 30px 5px 30px;">
+          <anonymous-svg size="30px" style="height: 30px;" color="#fff"></anonymous-svg>
+          <div style="text-align: center; line-height: 30px; margin-left: 5px; font-size: 500; font-weight: 650; color: #fff;">{{ 'LOGIN.GUEST' | translate }}</div>
+        </div>
+      </button>
+
+    </div>
+  </div>
+</nz-spin>
+
+<nz-modal [(nzVisible)]="isVisibleForgetPasswordModal" nzCentered nzTitle="Recuperar contraseña" (nzOnCancel)="closeForgetPasswordModal()" [nzMaskClosable]="false">
+  <ng-container *nzModalContent>
+    <form nz-form nzLayout="vertical" style="margin-top: 15px;" [formGroup]="forgetPasswordFormGroup" (keydown.enter)="sumbitForgetPassword()">
+      <nz-form-item>
+        <nz-form-label>Email</nz-form-label>
+        <nz-form-control>
+          <nz-input-group>
+            <input type="text" nz-input formControlName="email" placeholder="Email" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div style="margin-top: -13px; color: #717171; font-size: 12px;">Enviaremos un correo a tu email para que puedas recuperar tu contraseña.</div>
+    </form>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="primary" [disabled]="!this.forgetPasswordFormGroup.valid" (click)="sumbitForgetPassword()">Enviar</button>
+  </ng-container>
+</nz-modal>
+

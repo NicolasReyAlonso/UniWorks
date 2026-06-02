@@ -1,0 +1,2110 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GeolayerImportComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+                    <code><a href="../interfaces/IView.html" target="_self" >IView</a></code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-geolayer-import</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzUploadModule</code>
+                            <code>NzDatePickerModule</code>
+                            <code>NzSelectModule</code>
+                            <code>NzTagModule</code>
+                            <code>NzPageHeaderModule</code>
+                                <code><a href="../directives/DisableControlDirective.html" target="_self" >DisableControlDirective</a></code>
+                            <code>NzIconModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./geolayer-import.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./geolayer-import.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#beforeUpload" >beforeUpload</a>
+                            </li>
+                            <li>
+                                <a href="#BREADCRUMB_NAME" >BREADCRUMB_NAME</a>
+                            </li>
+                            <li>
+                                <a href="#caseStudies" >caseStudies</a>
+                            </li>
+                            <li>
+                                <a href="#crs" >crs</a>
+                            </li>
+                            <li>
+                                <a href="#dataForm" >dataForm</a>
+                            </li>
+                            <li>
+                                <a href="#fileList" >fileList</a>
+                            </li>
+                            <li>
+                                <a href="#firstSubmitDone" >firstSubmitDone</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#sources" >sources</a>
+                            </li>
+                            <li>
+                                <a href="#themes" >themes</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addTags" >addTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#fileValidator" >fileValidator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getAttributes" >getAttributes</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageFileError" >getMessageFileError</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageNameError" >getMessageNameError</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageTagsError" >getMessageTagsError</a>
+                            </li>
+                            <li>
+                                <a href="#importLayer" >importLayer</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#nameValidator" >nameValidator</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#removeFile" >removeFile</a>
+                            </li>
+                            <li>
+                                <a href="#removeTag" >removeTag</a>
+                            </li>
+                            <li>
+                                <a href="#showFileError" >showFileError</a>
+                            </li>
+                            <li>
+                                <a href="#showNameError" >showNameError</a>
+                            </li>
+                            <li>
+                                <a href="#showTagsError" >showTagsError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#tagsValidator" >tagsValidator</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#tags" >tags</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, fb: UntypedFormBuilder, activatedRouter: ActivatedRoute)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>activatedRouter</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addTags"></a>
+                    <span class="name">
+                        <span ><b>addTags</b></span>
+                        <a href="#addTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addTags(inputName: HTMLInputElement)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="219"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:219</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>inputName</td>
+                                            <td>
+                                                        <code>HTMLInputElement</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fileValidator</b></span>
+                        <a href="#fileValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fileValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="290"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:290</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAttributes"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getAttributes</b></span>
+                        <a href="#getAttributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAttributes()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>literal type</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageFileError"></a>
+                    <span class="name">
+                        <span ><b>getMessageFileError</b></span>
+                        <a href="#getMessageFileError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageFileError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="312"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:312</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageNameError"></a>
+                    <span class="name">
+                        <span ><b>getMessageNameError</b></span>
+                        <a href="#getMessageNameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageNameError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="205"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:205</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageTagsError"></a>
+                    <span class="name">
+                        <span ><b>getMessageTagsError</b></span>
+                        <a href="#getMessageTagsError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageTagsError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="importLayer"></a>
+                    <span class="name">
+                        <span ><b>importLayer</b></span>
+                        <a href="#importLayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>importLayer()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nameValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>nameValidator</b></span>
+                        <a href="#nameValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>nameValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="183"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:183</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="92"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFile"></a>
+                    <span class="name">
+                        <span ><b>removeFile</b></span>
+                        <a href="#removeFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFile(file: NzUploadFile)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>file</td>
+                                            <td>
+                                                        <code>NzUploadFile</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeTag"></a>
+                    <span class="name">
+                        <span ><b>removeTag</b></span>
+                        <a href="#removeTag"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeTag(event, i)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="231"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:231</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>i</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showFileError"></a>
+                    <span class="name">
+                        <span ><b>showFileError</b></span>
+                        <a href="#showFileError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showFileError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="305"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:305</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showNameError"></a>
+                    <span class="name">
+                        <span ><b>showNameError</b></span>
+                        <a href="#showNameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showNameError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="198"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:198</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showTagsError"></a>
+                    <span class="name">
+                        <span ><b>showTagsError</b></span>
+                        <a href="#showTagsError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showTagsError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="262"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:262</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tagsValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>tagsValidator</b></span>
+                        <a href="#tagsValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>tagsValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="237"
+                                    class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:237</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="beforeUpload"></a>
+                    <span class="name">
+                        <span ><b>beforeUpload</b></span>
+                        <a href="#beforeUpload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>() &#x3D;&gt; {...}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="282" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:282</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="BREADCRUMB_NAME"></a>
+                    <span class="name">
+                        <span ><b>BREADCRUMB_NAME</b></span>
+                        <a href="#BREADCRUMB_NAME"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.BREADCRUMB&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:51</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="caseStudies"></a>
+                    <span class="name">
+                        <span ><b>caseStudies</b></span>
+                        <a href="#caseStudies"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="crs"></a>
+                    <span class="name">
+                        <span ><b>crs</b></span>
+                        <a href="#crs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dataForm"></a>
+                    <span class="name">
+                        <span ><b>dataForm</b></span>
+                        <a href="#dataForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>this.fb.group({
+    name: this.fb.control(&quot;&quot;),
+    case_studies: this.fb.control([]),
+    tags: this.fb.array([]),
+    authors: this.fb.control(&quot;&quot;),
+    source: this.fb.control(null),
+    themes: this.fb.control([]),
+    crs: this.fb.control(null),
+    creation_date: this.fb.control(null),
+    file: this.fb.control(null),
+    fileName: this.fb.control(&quot;&quot;),
+  }, {
+    validators: [
+      this.nameValidator,
+      this.fileValidator,
+      this.tagsValidator,
+    ]
+  })</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fileList"></a>
+                    <span class="name">
+                        <span ><b>fileList</b></span>
+                        <a href="#fileList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:74</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="firstSubmitDone"></a>
+                    <span class="name">
+                        <span ><b>firstSubmitDone</b></span>
+                        <a href="#firstSubmitDone"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:71</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:72</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sources"></a>
+                    <span class="name">
+                        <span ><b>sources</b></span>
+                        <a href="#sources"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="themes"></a>
+                    <span class="name">
+                        <span ><b>themes</b></span>
+                        <a href="#themes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="tags"></a>
+                        <span class="name"><b>tags</b><a href="#tags"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>tags()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/pages/geolayer/geolayer-import/geolayer-import.component.ts:88</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, OnInit} from &#x27;@angular/core&#x27;;
+import {
+  AbstractControl,
+  UntypedFormArray,
+  UntypedFormBuilder,
+  ValidationErrors,
+  Validators,
+  FormsModule, ReactiveFormsModule
+} from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
+import IView from &#x27;@interfaces/view.interfaces&#x27;;
+import { BackendService } from &#x27;src/app/services/backend.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzUploadFile, NzUploadModule} from &quot;ng-zorro-antd/upload&quot;;
+import {NzDatePickerModule} from &quot;ng-zorro-antd/date-picker&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {DisableControlDirective} from &quot;../../../directives/disable-control.directive&quot;;
+import {NzTagModule} from &quot;ng-zorro-antd/tag&quot;;
+import {NzPageHeaderModule} from &quot;ng-zorro-antd/page-header&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {Observable} from &quot;rxjs&quot;;
+
+@Component({
+    selector: &#x27;app-geolayer-import&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzFormModule,
+        NzInputModule,
+        NzButtonModule,
+        NzUploadModule,
+        NzDatePickerModule,
+        NzSelectModule,
+        NzTagModule,
+        NzPageHeaderModule,
+        DisableControlDirective,
+        NzIconModule,
+    ],
+    templateUrl: &#x27;./geolayer-import.component.html&#x27;,
+    styleUrls: [&#x27;./geolayer-import.component.sass&#x27;]
+})
+export class GeolayerImportComponent implements OnInit, IView {
+
+  BREADCRUMB_NAME &#x3D; &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.BREADCRUMB&#x27;;
+
+  dataForm &#x3D; this.fb.group({
+    name: this.fb.control(&quot;&quot;),
+    case_studies: this.fb.control([]),
+    tags: this.fb.array([]),
+    authors: this.fb.control(&quot;&quot;),
+    source: this.fb.control(null),
+    themes: this.fb.control([]),
+    crs: this.fb.control(null),
+    creation_date: this.fb.control(null),
+    file: this.fb.control(null),
+    fileName: this.fb.control(&quot;&quot;),
+  }, {
+    validators: [
+      this.nameValidator,
+      this.fileValidator,
+      this.tagsValidator,
+    ]
+  });
+  firstSubmitDone &#x3D; false;
+  loading &#x3D; false;
+
+  fileList &#x3D; [];
+
+  sources;
+  themes;
+  crs;
+  caseStudies;
+
+  constructor(
+    private readonly notificationService: NotificationService,
+    private readonly backendService: BackendService,
+    private readonly fb: UntypedFormBuilder,
+    private readonly activatedRouter: ActivatedRoute,
+  ) { }
+
+  get tags() {
+    return this.dataForm.controls[&quot;tags&quot;] as UntypedFormArray;
+  }
+
+  ngOnInit(): void {
+    this.sources &#x3D; this.activatedRouter.snapshot.data.sources;
+    this.themes &#x3D; this.activatedRouter.snapshot.data.themes;
+    this.crs &#x3D; this.activatedRouter.snapshot.data.crs;
+    this.caseStudies &#x3D; this.activatedRouter.snapshot.data.caseStudies;
+    this.dataForm.get(&quot;file&quot;).setValue(this.fileList[0]);
+    this.dataForm.get(&#x27;tags&#x27;).setValue([]);
+  }
+
+  private getAttributes(): { tags: string[], [key: string]: any } {
+    const formatTags &#x3D; [];
+    for (const tag of this.tags.controls) {
+      formatTags.push(tag.value.name);
+    }
+    const attributes &#x3D; {
+      tags: formatTags,
+      authors: this.dataForm.get(&quot;authors&quot;).value,
+      source_id: this.dataForm.get(&quot;source&quot;).value,
+      themes_id: this.dataForm.get(&quot;themes&quot;).value,
+      crs_id: this.dataForm.get(&quot;crs&quot;).value,
+      creation_date: this.dataForm.get(&quot;creation_date&quot;).value,
+      file_name: this.dataForm.get(&quot;fileName&quot;).value,
+    };
+    return attributes;
+  }
+
+  importLayer(): void {
+    this.loading &#x3D; true;
+    this.firstSubmitDone &#x3D; true;
+    if (this.dataForm.errors) {
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &quot;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.FAIL_FORM.TITLE&quot;,
+        &quot;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.FAIL_FORM.CONTENT&quot;,
+        &quot;bottomRight&quot;
+      );
+      this.loading &#x3D; false;
+      return;
+    }
+
+    this.notificationService.createNotificationWithType(
+      TypeNotificationEnum.info,
+      &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.IMPORTING_LAYER.TITLE&#x27;,
+      &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.IMPORTING_LAYER.CONTENT&#x27;,
+      &#x27;bottomRight&#x27;
+    );
+
+    this.backendService.postLayerGIS(this.dataForm.get(&quot;file&quot;).value, {
+      name: this.dataForm.get(&quot;name&quot;).value,
+      wks: &quot;bcs&quot;,
+      attributes: this.getAttributes(),
+      case_studies: this.dataForm.get(&quot;case_studies&quot;).value,
+    }).subscribe({next:res &#x3D;&gt; {
+      this.fileList &#x3D; [];
+      this.tags.clear();
+      this.dataForm.get(&quot;name&quot;).setValue(&quot;&quot;);
+      this.dataForm.get(&quot;case_studies&quot;).setValue([]);
+      this.dataForm.get(&quot;authors&quot;).setValue(&quot;&quot;);
+      this.dataForm.get(&quot;source&quot;).setValue(null);
+      this.dataForm.get(&quot;themes&quot;).setValue([]);
+      this.dataForm.get(&quot;crs&quot;).setValue(null);
+      this.dataForm.get(&quot;creation_date&quot;).setValue(null);
+      this.dataForm.get(&quot;fileName&quot;).setValue(&quot;&quot;);
+      this.loading &#x3D; false;
+      this.firstSubmitDone &#x3D; false;
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.success,
+        &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.IMPORT_LAYER_SUCCESS.TITLE&#x27;,
+        &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.IMPORT_LAYER_SUCCESS.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      );
+      console.log(res);
+    }, error: error &#x3D;&gt; {
+      this.loading &#x3D; false;
+      this.notificationService.createNotificationWithType(
+        TypeNotificationEnum.error,
+        &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.FAIL_IMPORT_LAYER.TITLE&#x27;,
+        &#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.NOTIFICATION_SERVICE.FAIL_IMPORT_LAYER.CONTENT&#x27;,
+        &#x27;bottomRight&#x27;
+      );
+    }});
+  }
+
+  removeFile(file: NzUploadFile): boolean  {
+    this.fileList &#x3D; [];
+    this.dataForm.get(&quot;fileName&quot;).setValue(&#x27;&#x27;);
+    this.dataForm.get(&quot;file&quot;).setValue(null);
+    return true
+  }
+
+  // Name
+  private nameValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const name &#x3D; control.get(&#x27;name&#x27;).value;
+    if (!name || name &#x3D;&#x3D; &quot;&quot;) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      nameError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showNameError(): boolean {
+    if (!this.dataForm.errors || !this.dataForm.errors.nameError || !this.firstSubmitDone) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageNameError(): string {
+    let message &#x3D; &quot;&quot;;
+    if (!this.dataForm.errors || !this.dataForm.errors.nameError || !this.firstSubmitDone) {
+      return null;
+    }
+    if (this.dataForm.errors.nameError.empty) {
+      message +&#x3D; &quot;Introduzca un nombre de capa.&quot;;
+    }
+
+    return message;
+  }
+
+  // Tags
+
+  addTags(inputName: HTMLInputElement): void {
+    const name &#x3D; inputName.value;
+    if (!name || name &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      return;
+    }
+    const tag &#x3D; this.fb.group({
+      name: [name, Validators.required],
+    });
+    this.tags.push(tag);
+    inputName.value &#x3D; &#x27;&#x27;;
+  }
+
+  removeTag(event, i): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.tags.removeAt(i);
+  }
+
+  private tagsValidator(control: AbstractControl): ValidationErrors | null {
+    const tags: any[] &#x3D; control.get(&#x27;tags&#x27;).value;
+    let error &#x3D; false;
+    let duplicateError &#x3D; false;
+    if (!tags) {
+      return null;
+    }
+    for (let i &#x3D; 0; i &lt; tags.length; i++) {
+      if (duplicateError) break;
+      for (let z &#x3D; 0; z &lt; tags.length; z++) {
+        if (z &#x3D;&#x3D; i) continue;
+        if (tags[i].name.toLocaleLowerCase() &#x3D;&#x3D; tags[z].name.toLocaleLowerCase()) {
+          error &#x3D; true;
+          duplicateError &#x3D; true;
+          break;
+        }
+      }
+    }
+    return error ? {
+      tagsError: {
+        duplicateError: duplicateError,
+      }
+    } : null;
+  }
+
+  showTagsError(): boolean {
+    if (!this.dataForm.errors || !this.dataForm.errors.tagsError || !this.firstSubmitDone) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageTagsError(): string {
+    let message &#x3D; &quot;&quot;;
+    if (!this.dataForm.errors || !this.dataForm.errors.tagsError || !this.firstSubmitDone) {
+      return null;
+    }
+    if (this.dataForm.errors.tagsError.duplicateError) {
+      message +&#x3D; &quot;Hay más de un tag con el mismo nombre.&quot;;
+    }
+    return message;
+  }
+
+  // File
+
+  beforeUpload &#x3D; (file): boolean &#x3D;&gt; {
+    this.fileList &#x3D; [];
+    this.fileList &#x3D; this.fileList.concat(file);
+    this.dataForm.get(&quot;fileName&quot;).setValue(file.name);
+    this.dataForm.get(&quot;file&quot;).setValue(this.fileList[0]);
+    return false;
+  }
+
+  private fileValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const file &#x3D; control.get(&#x27;file&#x27;).value;
+    if (!file) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      fileError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showFileError(): boolean {
+    if (!this.dataForm.errors || !this.dataForm.errors.fileError || !this.firstSubmitDone) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageFileError(): string {
+    let message &#x3D; &quot;&quot;;
+    if (!this.dataForm.errors || !this.dataForm.errors.fileError || !this.firstSubmitDone) {
+      return null;
+    }
+    if (this.dataForm.errors.fileError.empty) {
+      message +&#x3D; &quot;Es necesario subir el fichero que contenga la capa.&quot;;
+    }
+
+    return message;
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;height: 100%;&quot; #containerPage&gt;
+  &lt;!-- Header --&gt;
+  &lt;nz-page-header&gt;
+    &lt;nz-page-header-title&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.TITLE&#x27; | translate}}&lt;/nz-page-header-title&gt;
+  &lt;/nz-page-header&gt;
+
+  &lt;!-- Content --&gt;
+  &lt;div style&#x3D;&quot;padding: 16px 24px;&quot;&gt;
+
+    &lt;form nz-form [formGroup]&#x3D;&quot;dataForm&quot; class&#x3D;&quot;margin-form-item&quot;&gt;
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.NAME.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot; [nzValidateStatus]&#x3D;&quot;showNameError()  ? &#x27;error&#x27; : null&quot;
+                         [nzErrorTip]&#x3D;&quot;getMessageNameError()&quot;&gt;
+          &lt;input nz-input [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.NAME.PLACEHOLDER&#x27; | translate&quot; formControlName&#x3D;&quot;name&quot; [disableControl]&#x3D;&quot;loading&quot;/&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CASES_STUDIES.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-select
+            [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CASES_STUDIES.PLACEHOLDER&#x27; | translate&quot;
+            nzMode&#x3D;&quot;multiple&quot;
+            nzAllowClear
+            formControlName&#x3D;&quot;case_studies&quot;
+            [nzDisabled]&#x3D;&quot;loading&quot;
+          &gt;
+            &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of caseStudies&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot; [nzValidateStatus]&#x3D;&quot;showTagsError()  ? &#x27;error&#x27; : null&quot;
+                         [nzErrorTip]&#x3D;&quot;getMessageTagsError()&quot;&gt;
+          &lt;div nz-row [nzGutter]&#x3D;&quot;16&quot;&gt;
+            &lt;div nz-col nzFlex&#x3D;&quot;auto&quot;&gt;
+              &lt;input nz-input [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.PLACEHOLDER&#x27; | translate&quot; [disabled]&#x3D;&quot;loading&quot; #inputTag
+                     (keyup.enter)&#x3D;&quot;addTags(inputTag)&quot; [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;: showTagsError()}&quot;/&gt;
+            &lt;/div&gt;
+            &lt;div nz-col nzFlex&#x3D;&quot;94px&quot;&gt;
+              &lt;button nz-button (click)&#x3D;&quot;addTags(inputTag)&quot;&gt;
+                &lt;i nz-icon nzType&#x3D;&quot;plus&quot;&gt;&lt;/i&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.BUTTONS.ADD_BUTTON&#x27; | translate}}
+              &lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div style&#x3D;&quot;margin-top: 6px;&quot;&gt;
+            &lt;nz-tag *ngFor&#x3D;&quot;let tag of tags.controls; let i &#x3D; index&quot; nzMode&#x3D;&quot;closeable&quot; [nzColor]&#x3D;&quot;&#x27;green&#x27;&quot;
+                    (nzOnClose)&#x3D;&quot;removeTag($event, i)&quot;&gt;
+              {{tag.value.name}}
+            &lt;/nz-tag&gt;
+          &lt;/div&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.AUTHOR.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;input nz-input [placeholder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.AUTHOR.PLACEHOLDER&#x27; | translate&quot; formControlName&#x3D;&quot;authors&quot; [disableControl]&#x3D;&quot;loading&quot;/&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SOURCE.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-select
+            [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SOURCE.PLACEHOLDER&#x27; | translate&quot;
+            nzAllowClear
+            formControlName&#x3D;&quot;source&quot;
+            [nzDisabled]&#x3D;&quot;loading&quot;
+            nzShowSearch
+          &gt;
+            &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of sources&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SUBJECTS.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-select
+            [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SUBJECTS.PLACEHOLDER&#x27; | translate&quot;
+            nzMode&#x3D;&quot;multiple&quot;
+            nzAllowClear
+            formControlName&#x3D;&quot;themes&quot;
+            [nzDisabled]&#x3D;&quot;loading&quot;
+          &gt;
+            &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of themes&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CRS.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-select
+            [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CRS.PLACEHOLDER&#x27; | translate&quot;
+            formControlName&#x3D;&quot;crs&quot;
+            [nzDisabled]&#x3D;&quot;loading&quot;
+          &gt;
+            &lt;nz-option [nzLabel]&#x3D;&quot;item.name&quot; [nzValue]&#x3D;&quot;item.id&quot; *ngFor&#x3D;&quot;let item of crs&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CREATION_DATE.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;nz-date-picker [nzPlaceHolder]&#x3D;&quot;&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CREATION_DATE.PLACEHOLDER&#x27; | translate&quot; [nzDisabled]&#x3D;&quot;loading&quot; formControlName&#x3D;&quot;creation_date&quot; style&#x3D;&quot;width: 100%&quot;&gt;&lt;/nz-date-picker&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-label [nzSpan]&#x3D;&quot;7&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.INPUTS_FILE.FILE.LABEL&#x27; | translate}}&lt;/nz-form-label&gt;
+        &lt;nz-form-control [nzSpan]&#x3D;&quot;12&quot; [nzValidateStatus]&#x3D;&quot;showFileError()  ? &#x27;error&#x27; : null&quot;
+                         [nzErrorTip]&#x3D;&quot;getMessageFileError()&quot;&gt;
+          &lt;nz-upload nzType&#x3D;&quot;drag&quot; [nzBeforeUpload]&#x3D;&quot;beforeUpload.bind(this)&quot; [nzLimit]&#x3D;&quot;1&quot;
+                     [(nzFileList)]&#x3D;&quot;fileList&quot; nzListType&#x3D;&quot;picture&quot; [ngClass]&#x3D;&quot;{&#x27;file-error&#x27;: showFileError() }&quot; [nzRemove]&#x3D;&quot;removeFile.bind(this)&quot;&gt;
+            &lt;p class&#x3D;&quot;ant-upload-drag-icon&quot;&gt;
+              &lt;i nz-icon nzType&#x3D;&quot;inbox&quot;&gt;&lt;/i&gt;
+            &lt;/p&gt;
+            &lt;p class&#x3D;&quot;ant-upload-text&quot;&gt;{{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.INPUTS_FILE.FILE.INPUT_TITLE&#x27; | translate}}&lt;/p&gt;
+          &lt;/nz-upload&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+      &lt;nz-form-item&gt;
+        &lt;nz-form-control [nzOffset]&#x3D;&quot;7&quot; [nzSpan]&#x3D;&quot;12&quot;&gt;
+          &lt;button nz-button nzType&#x3D;&quot;primary&quot; (click)&#x3D;&quot;importLayer()&quot;
+                  [disabled]&#x3D;&quot;loading || (dataForm.errors &amp;&amp; firstSubmitDone)&quot;
+                  style&#x3D;&quot;width: 100%; margin-top: 20px;&quot;&gt;
+            {{&#x27;GEOGRAPHICAL_DATA.LAYERS.IMPORT.BUTTONS.IMPORT_LAYER&#x27; | translate}}
+          &lt;/button&gt;
+        &lt;/nz-form-control&gt;
+      &lt;/nz-form-item&gt;
+
+    &lt;/form&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./geolayer-import.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .ant-upload-list-item
+    background: #fff !important
+    &amp;:hover
+       background: #fff !important
+
+::ng-deep .file-error &gt; .ant-upload
+    border: 1px dashed #ff0000
+    &amp;:hover
+        border-color: #ff0000 !important
+
+::ng-deep .input-error
+    border: 1px solid #ff4d4f
+    &amp;:focus
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2)
+        border-right-width: 1px !important
+        outline: 0
+        border: 1px solid #ff7875
+    &amp;:hover
+        border: 1px solid #ff4d4f
+
+::ng-deep .margin-form-item &gt; nz-form-item
+    margin-bottom: 12px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="height: 100%;" #containerPage>  <!-- Header -->  <nz-page-header>    <nz-page-header-title>{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.TITLE\' | translate}}</nz-page-header-title>  </nz-page-header>  <!-- Content -->  <div style="padding: 16px 24px;">    <form nz-form [formGroup]="dataForm" class="margin-form-item">      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.NAME.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12" [nzValidateStatus]="showNameError()  ? \'error\' : null"                         [nzErrorTip]="getMessageNameError()">          <input nz-input [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.NAME.PLACEHOLDER\' | translate" formControlName="name" [disableControl]="loading"/>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CASES_STUDIES.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-select            [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CASES_STUDIES.PLACEHOLDER\' | translate"            nzMode="multiple"            nzAllowClear            formControlName="case_studies"            [nzDisabled]="loading"          >            <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of caseStudies"></nz-option>          </nz-select>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12" [nzValidateStatus]="showTagsError()  ? \'error\' : null"                         [nzErrorTip]="getMessageTagsError()">          <div nz-row [nzGutter]="16">            <div nz-col nzFlex="auto">              <input nz-input [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.PLACEHOLDER\' | translate" [disabled]="loading" #inputTag                     (keyup.enter)="addTags(inputTag)" [ngClass]="{\'input-error\': showTagsError()}"/>            </div>            <div nz-col nzFlex="94px">              <button nz-button (click)="addTags(inputTag)">                <i nz-icon nzType="plus"></i>{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.TAGS.BUTTONS.ADD_BUTTON\' | translate}}              </button>            </div>          </div>          <div style="margin-top: 6px;">            <nz-tag *ngFor="let tag of tags.controls; let i = index" nzMode="closeable" [nzColor]="\'green\'"                    (nzOnClose)="removeTag($event, i)">              {{tag.value.name}}            </nz-tag>          </div>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.AUTHOR.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <input nz-input [placeholder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.AUTHOR.PLACEHOLDER\' | translate" formControlName="authors" [disableControl]="loading"/>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SOURCE.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-select            [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SOURCE.PLACEHOLDER\' | translate"            nzAllowClear            formControlName="source"            [nzDisabled]="loading"            nzShowSearch          >            <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of sources"></nz-option>          </nz-select>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SUBJECTS.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-select            [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.SUBJECTS.PLACEHOLDER\' | translate"            nzMode="multiple"            nzAllowClear            formControlName="themes"            [nzDisabled]="loading"          >            <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of themes"></nz-option>          </nz-select>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CRS.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-select            [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CRS.PLACEHOLDER\' | translate"            formControlName="crs"            [nzDisabled]="loading"          >            <nz-option [nzLabel]="item.name" [nzValue]="item.id" *ngFor="let item of crs"></nz-option>          </nz-select>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CREATION_DATE.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12">          <nz-date-picker [nzPlaceHolder]="\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.SELECT.CREATION_DATE.PLACEHOLDER\' | translate" [nzDisabled]="loading" formControlName="creation_date" style="width: 100%"></nz-date-picker>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-label [nzSpan]="7">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.INPUTS_FILE.FILE.LABEL\' | translate}}</nz-form-label>        <nz-form-control [nzSpan]="12" [nzValidateStatus]="showFileError()  ? \'error\' : null"                         [nzErrorTip]="getMessageFileError()">          <nz-upload nzType="drag" [nzBeforeUpload]="beforeUpload.bind(this)" [nzLimit]="1"                     [(nzFileList)]="fileList" nzListType="picture" [ngClass]="{\'file-error\': showFileError() }" [nzRemove]="removeFile.bind(this)">            <p class="ant-upload-drag-icon">              <i nz-icon nzType="inbox"></i>            </p>            <p class="ant-upload-text">{{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.INPUTS_FILE.FILE.INPUT_TITLE\' | translate}}</p>          </nz-upload>        </nz-form-control>      </nz-form-item>      <nz-form-item>        <nz-form-control [nzOffset]="7" [nzSpan]="12">          <button nz-button nzType="primary" (click)="importLayer()"                  [disabled]="loading || (dataForm.errors && firstSubmitDone)"                  style="width: 100%; margin-top: 20px;">            {{\'GEOGRAPHICAL_DATA.LAYERS.IMPORT.BUTTONS.IMPORT_LAYER\' | translate}}          </button>        </nz-form-control>      </nz-form-item>    </form>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'GeolayerImportComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GeolayerImportComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

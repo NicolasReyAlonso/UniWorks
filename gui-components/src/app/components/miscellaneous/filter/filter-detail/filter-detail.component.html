@@ -1,0 +1,55 @@
+<button nz-button nzShape="round" (click)="showDrawer()">
+  <i nz-icon nzType="filter" nzTheme="outline"></i>
+  <span>{{'FILTER.DETAIL.BUTTON' | translate}}</span>
+</button>
+<nz-drawer nzPlacement="right" [nzTitle]="drawerHeader" nzWidth="70vw"
+           [nzClosable]="false" [nzVisible]="showFilter"
+           (nzOnClose)="closeDrawer()">
+  <ng-template #drawerHeader>
+    <nz-page-header [nzTitle]="'FILTER.DETAIL.DRAWER.TITLE' | translate">
+      <nz-page-header-extra>
+        <button nz-button nzType="primary" form="form" type="submit"
+                style="margin: 5px;">{{'FILTER.DETAIL.DRAWER.BUTTONS.APPLY' | translate}}</button>
+        <button nz-button form="form" type="reset"
+                style="margin: 5px;">{{'FILTER.DETAIL.DRAWER.BUTTONS.RESTART' | translate}}</button>
+      </nz-page-header-extra>
+      <nz-page-header-content>
+        <form nz-form nzLayout="inline">
+          <nz-form-item style="width: 100%;">
+            <nz-select name="selectedFilter" nzAllowClear nzShowSearch
+                       [nzPlaceHolder]="'FILTER.DETAIL.DRAWER.SELECT.SELECTED_FILTER.PLACEHOLDER' | translate"
+                       [nzDropdownRender]="filterCreator" [(ngModel)]="selectedFilter"
+                       (ngModelChange)="selectedFilterEvent()">
+              <nz-option nzCustomContent *ngFor="let filter of filters;" [nzLabel]="filter.name" [nzValue]="filter.id">
+                {{filter.name}}<i nz-icon (click)="deleteFilter(filter.id)" nzType="delete" style="float: right"></i>
+              </nz-option>
+            </nz-select>
+            <ng-template #filterCreator>
+              <div style="display: flex;flex-wrap: nowrap;padding: 8px;">
+                <input type="text" nz-input #inputElement/>
+                <a nz-button nzType="link" (click)="newFilter(inputElement.value)" [disabled]="!inputElement.value">
+                  <i nz-icon
+                     nzType="plus"></i>{{'FILTER.DETAIL.DRAWER.SELECT.SELECTED_FILTER.BUTTONS.ADD_FILTER' | translate}}
+                </a>
+              </div>
+            </ng-template>
+            <nz-button-group>
+              <button nz-button [disabled]="!selectedFilter" (click)="overwriteFilter()"><i nz-icon nzType="save"></i>
+              </button>
+            </nz-button-group>
+          </nz-form-item>
+        </form>
+      </nz-page-header-content>
+    </nz-page-header>
+  </ng-template>
+  <ng-container *nzDrawerContent>
+    <form nz-form [nzLayout]="'vertical'" id="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <formly-form (modelChange)="modifiedFilterEvent()"
+                   [form]="form"
+                   [model]="filterState"
+                   [fields]="fields">
+      </formly-form>
+    </form>
+  </ng-container>
+</nz-drawer>
+

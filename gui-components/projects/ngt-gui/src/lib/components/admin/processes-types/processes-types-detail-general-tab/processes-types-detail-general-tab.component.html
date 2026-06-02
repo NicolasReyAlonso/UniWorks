@@ -1,0 +1,104 @@
+<nz-spin [nzSpinning]="loading$ | async" style="height: 100%">
+  <ng-container *ngIf="formGroup && (proccessOriginalData$ | async)">
+    <form [formGroup]="formGroup">
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="id">Id</nz-form-label>
+          <input nz-input formControlName="id" type="text" placeholder="Id">
+        </div>
+        <div class="default-column-input-form-detail">
+          <nz-form-label nzFor="uuid">UUID</nz-form-label>
+          <input nz-input formControlName="uuid" type="text" placeholder="UUID">
+        </div>
+      </div>
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label
+            nzFor="name">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.NAME.LABEL' | translate }}
+          </nz-form-label>
+          <input nz-input formControlName="name" type="text" [ngClass]="{'input-error': formGroup.errors?.nameError}"
+                 [placeholder]="'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.NAME.PLACEHOLDER' | translate">
+          <ng-container *ngIf="this.formGroup.get('name').errors?.nameError">
+            <div class="message-error-default" *ngFor="let message of this.formGroup.get('name').errors.nameError.errorMessages">
+              {{ message | translate }}
+            </div>
+          </ng-container>
+        </div>
+        <div class="default-column-input-form-detail" *ngIf="isReadOnly$ | async">
+          <nz-form-label
+            nzFor="resources">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.RESOURCES.LABEL' | translate }}
+          </nz-form-label>
+          <nz-select formControlName="resources" nzMode="multiple" nzAllowClear
+                     [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.RESOURCES.PLACEHOLDER' | translate">
+            <ng-container *ngIf="resourcesOriginalData$ | async">
+              <nz-option *ngFor="let option of (resourcesOriginalData$ | async).content" [nzValue]="option.id"
+                         [nzLabel]="option.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </div>
+
+        <div class="default-column-input-form-detail" *ngIf="!(isReadOnly$ | async)">
+          <nz-form-label
+            nzFor="resources">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.IMAGES.LABEL' | translate }}
+          </nz-form-label>
+          <nz-select formControlName="images" nzMode="multiple" nzAllowClear
+                     [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.IMAGES.PLACEHOLDER' | translate">
+            <ng-container *ngIf="imagesOriginalData$ | async">
+              <nz-option *ngFor="let option of ( imagesOriginalData$ | async)" [nzValue]="option.id"
+                         [nzLabel]="option.name"></nz-option>
+            </ng-container>
+          </nz-select>
+        </div>
+      </div>
+
+      <div class="default-row-form-detail" *ngIf="(proccessOriginalData$ | async).content.execution">
+        <div class="default-column-input-form-detail">
+          <nz-form-label
+            nzFor="system">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.LABEL' | translate }}
+          </nz-form-label>
+          <nz-select formControlName="system"
+                     [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.SYSTEM.PLACEHOLDER' | translate">
+            <nz-option *ngFor="let option of systemOptions" [nzValue]="option.value" [nzLabel]="option.label | translate"/>
+          </nz-select>
+        </div>
+
+        <div class="default-column-input-form-detail">
+
+          <ng-container *ngIf="formGroup.get('system').value == systemValues.GEOPROCESS">
+            <nz-form-label
+              nzFor="geoprocessType">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.GEOPROCESS_TYPE.LABEL' | translate }}
+            </nz-form-label>
+            <nz-select formControlName="geoprocessType"
+                       [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.GEOPROCESS_TYPE.PLACEHOLDER' | translate">
+              <nz-option *ngFor="let option of geoprocessTypeOptions" [nzValue]="option.value" [nzLabel]="option.label | translate"/>
+            </nz-select>
+          </ng-container>
+
+          <ng-container *ngIf="formGroup.get('system').value == systemValues.JUPYTER">
+            <nz-form-label
+              nzFor="kernel">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.KERNEL.LABEL' | translate }}
+            </nz-form-label>
+            <nz-select formControlName="kernel"
+                       [nzPlaceHolder]="'PROCESSES_ADMIN.PROCESS_TYPES.INPUTS.KERNEL.PLACEHOLDER' | translate">
+              <nz-option *ngFor="let option of kernelOptions" [nzValue]="option.value" [nzLabel]="option.label | translate"/>
+            </nz-select>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="default-row-form-detail">
+        <div class="default-column-input-form-detail">
+          <nz-form-label
+            nzFor="description">{{ 'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.DESCRIPTION.LABEL' | translate }}
+          </nz-form-label>
+          <textarea nz-input formControlName="description" type="text" rows="4"
+                    [placeholder]="'PROCESSES_ADMIN.PROCESS_TYPES.DETAIL.INPUTS.DESCRIPTION.PLACEHOLDER' | translate"></textarea>
+        </div>
+      </div>
+
+
+    </form>
+  </ng-container>
+</nz-spin>

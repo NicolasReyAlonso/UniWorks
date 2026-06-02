@@ -1,0 +1,26 @@
+<app-dynamic-browse [Loading]="loading" [BrowserTitle]="'MOLECULAR_DATA.SEQUENCES.BROWSER.TITLE'" [BrowserType]="'sequences'"
+                    (OpenItemEvent)="openItem($event)" [HiddenOpen]="!authService.havePermission('gui-seq-read')"
+                    (ImportEvent)="importItems()" [HiddenImport]="!authService.havePermission('gui-seq-import')"
+                    (ExportItemEvent)="exportItem($event, exportForm)" [HiddenExport]="!authService.havePermission('gui-seq-export')"
+                    (ExportSelectedEvent)="exportSelection($event, exportForm)"  [HiddenPaginationSwitch]="true"
+                    (DeleteItemEvent)="deleteItem($event)" [HiddenDelete]="!authService.havePermission('gui-seq-delete')"
+                    (DeleteSelectedEvent)="deleteSelection($event)" [CustomButtonsBrowser]="customButtonsBrowser"
+                    (PermissionItemEvent)="permissionItem($event)" [HiddenPermissions]="!authService.havePermission('gui-seq-acl')">
+
+</app-dynamic-browse>
+
+<ng-template #exportForm>
+  <nz-select nzShowSearch nzPlaceHolder="Seleccionar formato" [(ngModel)]="selectedFormat" name="selectedFormat">
+    <nz-option *ngFor="let format of formats" nzLabel="{{format}}" nzValue="{{format}}"></nz-option>
+  </nz-select>
+  <div style="margin-top: 10px; display: flex; align-items: center; column-gap: 5px">
+    <label>Header: </label>
+    <nz-select [(ngModel)]="headerSelected">
+      <nz-option *ngFor="let item of headersOptions" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+    </nz-select>
+  </div>
+</ng-template>
+
+<app-acl-modal  #modalAclRef [(isVisible)]="isVisibleAclModal"></app-acl-modal>
+<app-case-studies-add-items-modal></app-case-studies-add-items-modal>
+<app-collections-add-items-modal></app-collections-add-items-modal>

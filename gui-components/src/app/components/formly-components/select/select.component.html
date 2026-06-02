@@ -1,0 +1,12 @@
+<div [ngStyle]="props.style" [ngClass]="{'select-lazy-formly-filter-style': props.filterStyle}">
+    <div [ngStyle]="props.styleLabel" *ngIf="props.label && props.label != ''" [ngClass]="{'select-lazy-formly-filter-labelStyle': props.filterStyle}">
+      {{props.label | translate}}</div>
+    <nz-select [ngModel]="value" (ngModelChange)="changeValueEvent($event)" style="width: 100%;" [ngStyle]="props.styleSelect"
+        [ngClass]="{'select-error': checkIfExistErrorByKey(key)}" [nzAllowClear]="props.nzAllowClear ?? true"
+        [nzShowSearch]="props.nzShowSearch" [nzMode]="nzMode" [nzPlaceHolder]="props.placeholder | translate">
+        <nz-option [nzValue]="item.value" [nzLabel]="item.label | translate" *ngFor="let item of optionsSelect"></nz-option>
+    </nz-select>
+    <div *ngIf="checkIfExistErrorByKey(key)" class="message-error">
+        {{getErrorByKey(key)}}
+    </div>
+</div>

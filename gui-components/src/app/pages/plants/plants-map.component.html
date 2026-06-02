@@ -1,0 +1,65 @@
+<div class="plants-page">
+  <header class="plants-header">
+    <h2>🌿 Plantas en el mapa</h2>
+    <p>
+      Demo construida sobre el framework: lista y formulario salen del backend
+      (entidad <code>plants</code>); el mapa marca dónde está cada planta.
+      Pulsa en el mapa para fijar las coordenadas de una nueva planta.
+    </p>
+  </header>
+
+  <div class="plants-layout">
+    <!-- Columna izquierda: lista de plantas -->
+    <aside class="plants-list">
+      <div class="plants-list__top">
+        <strong>{{ plants.length }} plantas</strong>
+        <button nz-button nzType="primary" nzSize="small" (click)="newPlant()">+ Nueva</button>
+      </div>
+
+      <ul>
+        <li *ngFor="let p of plants; trackBy: trackById"
+            [class.is-selected]="selected?.id === p.id"
+            (click)="selectPlant(p)">
+          <span class="dot" [style.background]="healthColor(p.health)"></span>
+          <span class="info">
+            <span class="name">{{ p.name || '(sin nombre)' }}</span>
+            <span class="species">{{ p.species }}</span>
+          </span>
+          <button nz-button nzType="text" nzDanger nzSize="small"
+                  (click)="$event.stopPropagation(); remove(p)">🗑</button>
+        </li>
+      </ul>
+
+      <p *ngIf="!loading && !plants.length" class="empty">No hay plantas todavía.</p>
+    </aside>
+
+    <!-- Centro: mapa -->
+    <div class="plants-map">
+      <div #mapEl class="ol-map"></div>
+      <div class="legend">
+        <span><i style="background:#52c41a"></i> Sana</span>
+        <span><i style="background:#faad14"></i> Atención</span>
+        <span><i style="background:#fa541c"></i> Enferma</span>
+        <span><i style="background:#8c8c8c"></i> Muerta</span>
+      </div>
+    </div>
+
+    <!-- Derecha: formulario dinámico generado del schema -->
+    <aside class="plants-form">
+      <nz-card [nzTitle]="formMode === 'edit' ? 'Editar planta' : 'Nueva planta'">
+        <ngt-dynamic-form
+          entityPath="/plants"
+          [mode]="formMode"
+          [(model)]="model"
+          [issues]="issues"
+          submitButton="Guardar"
+          (submitted)="save($event)">
+        </ngt-dynamic-form>
+
+        <div class="form-actions" *ngIf="selected">
+          <button nz-button (click)="newPlant()">Cancelar edición</button>
+        </div>
+      </nz-card>
+    </aside>
+  </div>
+</div>

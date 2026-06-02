@@ -1,0 +1,50 @@
+:host ::ng-deep 
+  // El router-outlet no debe ocupar espacio
+  router-outlet 
+    display: none
+  
+  
+  // El componente renderizado debe ocupar todo el espacio del wrapper
+  .router-outlet-wrapper > *:not(router-outlet) 
+    display: flex
+    flex: 1 1 auto
+    height: 100%
+    width: 100%
+  
+
+html, body, app-root
+  height: 100%
+  margin: 0
+// tab-layout.component.sass
+
+.main-container
+  display: flex
+  flex-direction: column
+  height: 100%
+
+.header
+  flex: 0 0 auto  // ocupa solo su contenido
+
+.box 
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+    
+.body
+  flex: 1 1 auto
+  display: flex
+  flex-direction: row
+  min-height: 0
+
+.sidebarComponent
+  height: 100%
+  width: 100%
+  background-color: #fafafa
+  border-right: 1px solid #e0e0e0
+
+.contentArea
+  height: 100%
+  overflow: auto
+  padding: 16px
+

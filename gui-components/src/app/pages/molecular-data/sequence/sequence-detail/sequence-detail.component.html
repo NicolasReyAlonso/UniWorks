@@ -1,0 +1,248 @@
+<!--
+Apuntes RNebot
+  back arrow if it comes from the browser
+  time line for the different versions
+  tab for general details
+  tab for the sequence itself
+  list of annotations for regions
+  tab for JBrowse?
+-->
+<div style="display: flex; flex-direction: column; height: 100%;">
+  <nz-page-header [nzSubtitle]="'MOLECULAR_DATA.SEQUENCES.DETAIL.SUBTITLE' | translate">
+    <nz-page-header-title>
+      <app-back-button></app-back-button>
+      {{sequence.uniquename}}
+    </nz-page-header-title>
+    <nz-page-header-extra>
+      <button nz-button nzType="primary" nzShape="round" style="margin: 0 5px;" (click)="exportSequence(exportForm)"
+        *ngIf="this.authService.havePermission('gui-seq-export')">
+        {{'MOLECULAR_DATA.SEQUENCES.DETAIL.EXPORT_BUTTON' | translate}}
+      </button>
+    </nz-page-header-extra>
+  </nz-page-header>
+  <div style="padding: 0px 24px 0px 24px; flex-grow: 1;">
+    <nz-tabset [nzSelectedIndex]="0" style="width:100%; height: 100%;">
+      <nz-tab [nzTitle]="'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.TITLE' | translate">
+        <div style="height: 100%; overflow: auto">
+
+          <nz-spin [nzSpinning]="loadingGeneral" class="sequence-detail-general-spin">
+            <ng-container *ngIf="generalFormGroup">
+              <form [formGroup]="generalFormGroup">
+
+                <div class="row-form">
+
+                  <!-- Id -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="feature_id">Id</nz-form-label>
+                    <input nz-input formControlName="feature_id" type="text" placeholder="Id">
+                  </div>
+
+                  <!-- Ontology -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('ontology').value">
+                    <nz-form-label nzFor="ontology">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.ONTOLOGY_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <div style="display: flex; flex-direction: row; column-gap: 2px">
+                      <input nz-input type="text" [value]="generalFormGroup.get('ontology').value.name"
+                        [disabled]="true">
+                      <div>
+                        <button nz-button *ngIf="authService.havePermission('gui-ontology-read')"
+                          (click)="goOntologyDetail()">{{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.ONTOLOGY_INPUT.DETAIL_BUTTON'
+                          | translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row-form" style="margin-top: 10px">
+
+                  <!-- Uniquename -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="uniquename">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.UNIQUE_NAME_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <input nz-input formControlName="uniquename" type="text"
+                      [placeholder]="'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.UNIQUE_NAME_INPUT.PLACEHOLDER' | translate"
+                      [disabled]="true">
+                  </div>
+
+                  <!-- Name -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="name">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.NAME_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <input nz-input formControlName="name" type="text"
+                      [placeholder]="'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.NAME_INPUT.PLACEHOLDER' | translate"
+                      [disableControl]="isDisableEdit()">
+                  </div>
+                </div>
+
+                <div class="row-form" style="margin-top: 10px">
+
+                  <!-- Organism -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="organism_id">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.ORGANISM_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <div style="display: flex; flex-direction: row; column-gap: 2px">
+                      <div style="flex: 1 1 auto; min-width: 0">
+                        <app-select-lazy-loading [value]="this.generalFormGroup.get('organism_id').value"
+                          (valueChange)="organismValueChange($event)" variableGroup="genus" [customParams]="{order:[{field: 'genus',order:'descend'}]}"
+                          object_type="organisms" variableLabel="name" variableValue="organism_id"></app-select-lazy-loading>
+                      </div>
+                      <div>
+                        <button nz-button
+                          (click)="goOrganismDetail()">{{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.ORGANISM_INPUT.DETAIL_BUTTON'
+                          | translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Individual -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('individual').value">
+                    <nz-form-label nzFor="individual">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.INDIVIDUAL_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <div style="display: flex; flex-direction: row; column-gap: 2px">
+                      <input nz-input type="text" [value]="generalFormGroup.get('individual').value.uniquename"
+                        [disabled]="true">
+                      <div>
+                        <button nz-button *ngIf="authService.havePermission('gui-individual-read')"
+                          (click)="goIndividualDetail()">{{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.INDIVIDUAL_INPUT.DETAIL_BUTTON'
+                          | translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row-form" style="margin-top: 10px">
+
+                  <!-- Dimension -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="seqlen">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.DIMENSION_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <input nz-input formControlName="seqlen" type="text">
+                  </div>
+
+                  <!-- Source -->
+                  <div class="column-input-form" *ngIf="generalFormGroup.get('srcfeature').value">
+                    <nz-form-label nzFor="srcfeature">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.SRCFEATURE_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <div style="display: flex; flex-direction: row; column-gap: 2px">
+                      <input nz-input type="text" [value]="generalFormGroup.get('srcfeature').value.uniquename"
+                        [disabled]="true">
+                      <div>
+                        <button nz-button *ngIf="authService.havePermission('gui-seq-read')"
+                          (click)="goSequenceDetail(generalFormGroup.get('srcfeature').value.feature_id)">{{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.SRCFEATURE_INPUT.DETAIL_BUTTON'
+                          | translate}}</button>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="row-form" style="margin-top: 10px">
+
+                  <!-- Registration date -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="timeaccessioned">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.REGISTRATION_DATE_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <nz-date-picker formControlName="timeaccessioned" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss"
+                      style="width: 100%"></nz-date-picker>
+                  </div>
+
+                  <!-- Last modifcation date -->
+                  <div class="column-input-form">
+                    <nz-form-label nzFor="timelastmodified">
+                      {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.LAST_MODIFICATION_INPUT.LABEL' | translate}}
+                    </nz-form-label>
+                    <nz-date-picker formControlName="timelastmodified" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss"
+                      style="width: 100%"></nz-date-picker>
+                  </div>
+                </div>
+
+              </form>
+              <div style="flex: 1 1 auto; min-height: 0"></div>
+              <div style="display: flex; flex-direction: row-reverse; margin-top: 20px; column-gap: 5px">
+                <button nz-button nzShape="round" nzType="primary" *ngIf="!isDisableEdit()"
+                  [disabled]="!generalFormGroupChange" (click)="updateSequence()">
+                  {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.MODIFY_BUTTON' | translate}}
+                </button>
+                <button nz-button nzShape="round" nzDanger nzType="primary" *ngIf="!isDisableEdit()"
+                  [disabled]="!generalFormGroupChange" (click)="cancelModifySequence()">
+                  {{'MOLECULAR_DATA.SEQUENCES.DETAIL.GENERAL_TAB.CANCEL_BUTTON' | translate}}
+                </button>
+              </div>
+            </ng-container>
+          </nz-spin>
+
+        </div>
+      </nz-tab>
+
+      <nz-tab nzTitle="{{'MISC.TABS.SEQUENCES.TITLE' | translate}}" *ngIf="features.length > 0">
+        <nz-table #featuresTable [nzData]="features" [nzPageSize]="10">
+          <thead>
+            <tr>
+              <th>{{'MISC.TABS.SEQUENCES.NAME_TH' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let feature of featuresTable.data">
+              <td style="cursor: pointer" (click)="goSequenceDetail(feature.feature_id)">{{feature.uniquename}}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab nzTitle="{{'MISC.TABS.ANALYSES.TITLE' | translate}}" *ngIf="analyses.length > 0">
+        <nz-table #analysesTable [nzData]="analyses" [nzShowPagination]="true" [nzPageSize]="10" nzBordered>
+          <thead>
+            <tr>
+              <th>{{'MISC.TABS.ANALYSES.TABLES.TH_NAME' | translate}}</th>
+              <th>{{'MISC.TABS.ANALYSES.TABLES.TH_OBJECT_TYPE' | translate}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let analysis of analysesTable.data; let i = index">
+              <td (click)="goAnalysisDetail(analysis)"
+                [ngStyle]="{ cursor: authService.havePermission('gui-analysis-read') ? 'pointer' : 'default' }">
+                {{ analysis.name }}
+              </td>
+              <td (click)="goAnalysisDetail(analysis)"
+                [ngStyle]="{ cursor: authService.havePermission('gui-analysis-read') ? 'pointer' : 'default' }">
+                {{ analysis.object_type }}
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-tab>
+
+      <nz-tab *ngIf="false" nzTitle="{{'MISC.TABS.PROCESSES.TITLE' | translate}}">
+        <app-bo-card *ngFor="let process of processes" [data]="process" type="process"></app-bo-card>
+      </nz-tab>
+
+      <nz-tab nzTitle="{{'MISC.ANNOTATIONS.ANNOTATION_TAB' | translate}}" nzForceRender>
+        <app-annotations-form [CKEditor]="CkEditor" ObjectType="sequence" #annotationsForm></app-annotations-form>
+      </nz-tab>
+
+      <nz-tab nzTitle="MSA" nzForceRender>
+        <nz-card>
+          <app-msa-browser [Url]="urlMSA"></app-msa-browser>
+        </nz-card>
+      </nz-tab>
+    </nz-tabset>
+
+  </div>
+</div>
+
+<ng-template #exportForm>
+  <nz-select nzShowSearch nzPlaceHolder="Seleccionar formato" [(ngModel)]="selectedFormat" name="selectedFormat"
+    style="width: 100%">
+    <nz-option *ngFor="let format of sequence.formats" nzLabel="{{format}}" nzValue="{{format}}"></nz-option>
+  </nz-select>
+</ng-template>

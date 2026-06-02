@@ -1,0 +1,106 @@
+<div class="nextgendem-geolayer-map-container">
+  <div #geoViewer style="flex: 1 1 auto; position: relative">
+
+    <!-- Legends -->
+    <div class="legends-container">
+
+      <div class="legend-image-container" *ngFor="let item of legends | keyvalue">
+        <div class="legend-image-title">
+          {{ item.value.property?.layer?.name }}
+        </div>
+        <div class="legend-image-attribute">
+          <div>
+            {{ item.value.property?.name }}
+          </div>
+          <ng-container *ngIf="item.value.property?.unit">
+            <div>
+              [{{ item.value.property?.unit }}]
+            </div>
+          </ng-container>
+        </div>
+        <img [src]="item.value.url"/>
+      </div>
+
+    </div>
+
+    <!-- Buttons on the left -->
+    <div style="position: absolute; z-index: 99; left: 40px; top: 20px;">
+      <button class="buttons-control-map" nz-button (click)="zoomInClickButton($event)" style="margin-top: 5px;">
+        <i nz-icon nzType="zoom-in"></i>
+      </button>
+      <button class="buttons-control-map" nz-button (click)="zoomOutClickButton($event)">
+        <i nz-icon nzType="zoom-out"></i>
+      </button>
+      <button class="buttons-control-map" style="padding: 0; width: 100%;" nz-button (click)="zoomToExtend($event)">
+        <img ngSrc="./assets/images/center_focus_strong_black_24dp.svg" width="20" height="20"/>
+      </button>
+      <button class="buttons-control-map" style="margin-top: 5px; padding: 0; width: 100%;" nz-button
+              (click)="rotateNorthClickButton($event)">
+        N
+      </button>
+      <button class="buttons-control-map" nz-button (click)="rotateRightClickButton($event)">
+        <i nz-icon nzType="rotate-right"></i>
+      </button>
+      <button class="buttons-control-map" nz-button (click)="rotateLeftClickButton($event)">
+        <i nz-icon nzType="rotate-left"></i>
+      </button>
+      <button class="buttons-control-map" nz-button style="margin-top: 5px;"
+              (click)="fullScreenClickButton($event)">
+        <i *ngIf="!isActiveFullScreen()" nz-icon nzType="fullscreen"></i>
+        <i *ngIf="isActiveFullScreen()" nz-icon nzType="fullscreen-exit"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div #overlayOpenLayerClick>
+  <div class="nextgendem-geolayer-map-overlay-click-container">
+    <div class="nextgendem-geolayer-map-overlay-click-header">
+      Info
+      <div class="nextgendem-geolayer-map-overlay-click-top-buttons overlay-click-top-buttons-close">
+        <i nz-icon nzType="close" nzTheme="outline" (click)="closeOverlayOpenLayerClick()"></i>
+      </div>
+            <div class="nextgendem-geolayer-map-overlay-click-top-buttons overlay-click-top-buttons-vertical-left">
+              <i nz-icon nzType="vertical-left" nzTheme="outline" (click)="changeWhereClickMapInfoEmitter.emit('window')"></i>
+            </div>
+    </div>
+    <div class="nextgendem-geolayer-map-overlay-click-body"
+         [ngStyle]="{'height': (heightBodyOverlayOpenLayerClick) + 'px'}">
+      <nz-spin [nzSpinning]="loadigClickInfoMap">
+        <div style="padding: 5px 6px 3px 6px; height: 100%; width: 100%; overflow-y: auto; overflow-x: auto;">
+          <ng-container *ngIf="!clickInfoMap && !loadigClickInfoMap">
+            No se ha encontrado información
+          </ng-container>
+          <ng-container *ngIf="clickInfoMap && !loadigClickInfoMap">
+            <ng-container *ngFor="let layer of clickInfoMap">
+              <div style="font-weight: bold;">{{layer.layerName}}:</div>
+              <ng-container *ngFor="let feature of layer.data">
+                <div style="margin-bottom: 20px; margin-left: 30px;">
+                  <ng-container *ngFor="let attribute of feature | keyvalue">
+                    <div>
+                      <div style="font-weight: bold; display: inline;">
+                        {{attribute.key}}:
+                      </div>
+                      {{attribute.value}}
+                    </div>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </div>
+      </nz-spin>
+    </div>
+  </div>
+  <div style="filter: drop-shadow(-1px 6px 3px rgba(0, 0, 0, 0.35));">
+    <div class="nextgendem-geolayer-map-overlay-click-pointer"></div>
+  </div>
+</div>
+
+<div #overlayOpenLayerRightClick>
+  <div style="background-color: white; width: 250px; border: 1px outset; border-radius: 10px;">
+    <button (click)="centerMapContextMenu($event)" nz-button nzType="text" nzBlock>Centrar Mapa</button>
+  </div>
+</div>
+

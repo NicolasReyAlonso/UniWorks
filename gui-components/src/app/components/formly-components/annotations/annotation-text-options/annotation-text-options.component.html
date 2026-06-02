@@ -1,0 +1,10 @@
+<div [ngStyle]="props.style">
+    <div style="display: flex; align-items: center; column-gap: 4px">
+      <div style="font-weight: bold">{{props.label}}:</div>
+      <nz-select [formControl]="formControl" nzAllowClear [nzMode]="props.range.multiple ? 'multiple' : 'default'" style="width: 100%;">
+          <nz-option [nzValue]="item" [nzLabel]="item" *ngFor="let item of props.range.options"></nz-option>
+      </nz-select>
+
+    </div>
+  </div>
+

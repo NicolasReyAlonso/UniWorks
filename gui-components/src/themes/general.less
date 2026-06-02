@@ -1,0 +1,31 @@
+@import "../../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+@menu-item-vertical-margin: 0px;
+@menu-item-boundary-margin: 0px;
+@border-color-split: hsl(210,8%,85%);
+@divider-color: hsl(210,8%,85%);
+
+/* Permite saltos de línea y que el item crezca en altura */
+.ant-menu-item, .ant-menu-submenu-title {
+  white-space: normal !important;     /* permite multilinea */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  height: auto !important;            /* deja que el item crezca según el texto */
+  line-height: 1.3 !important;        /* más cómodo para varias líneas */
+  padding-top: 1em !important;        /* ajusta el espaciado vertical */
+  padding-bottom: 1em !important;
+  align-items: flex-start !important; /* alinea texto arriba si hay íconos */
+}
+
+/* Ajuste opcional para los íconos */
+.ant-menu-item .anticon, .ant-menu-submenu-title .anticon {
+  align-self: flex-start; /* ícono alinea con la primera línea del texto */
+  margin-top: 2px;
+}
+
+/* Asegura que el texto interno se comporte bien en bloque */
+.ant-menu-item > span, .ant-menu-submenu-title > span {
+  display: inline-block;
+  white-space: normal;
+  word-break: break-word;
+}

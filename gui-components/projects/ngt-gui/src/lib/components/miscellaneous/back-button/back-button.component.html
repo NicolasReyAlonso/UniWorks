@@ -1,0 +1,5 @@
+<div style="display: flex; align-items: center">
+  <i nz-icon nzType="arrow-left" nzTheme="outline" style="cursor: pointer;" [ngStyle]="style ? style : {'margin-right': '20px'}"
+    *ngIf="routePath.getPreviousPath()" (click)="backPage()"></i>
+</div>
+

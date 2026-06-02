@@ -1,0 +1,44 @@
+<nz-card [nzTitle]="type ? data.name : undefined" [nzExtra]="type ? detailsLink : undefined">
+  <ng-template #detailsLink>
+    <a nzButton [routerLink]="getDetailsRoute()" nzType="link">Detalles</a>
+  </ng-template>
+
+  <nz-descriptions *ngIf="!type" [nzColumn]="1" nzBordered>
+    <nz-descriptions-item *ngFor="let entry of data | keyvalue" nzTitle="{{entry.key}}">
+      <div style="max-width:65vw;white-space:pre;overflow:auto;font-family:'Courier New',monospace;">{{entry.value}}</div>
+    </nz-descriptions-item>
+  </nz-descriptions>
+
+  <nz-descriptions *ngIf="type">
+    <!--    Sequences-->
+    <ng-container *ngIf="type=='sequence'">
+      <nz-descriptions-item nzTitle="Nombre único">{{data.uniquename}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Dimensión">{{data.seqlen}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Insertada">{{data.timeaccessioned}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Modificada">{{data.timelastmodified}}</nz-descriptions-item>
+    </ng-container>
+    <!--    Alignments or Analysis-->
+    <ng-container *ngIf="type=='analysis'||type=='alignment'">
+      <nz-descriptions-item nzTitle="Programa">{{data.program}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Versión">{{data.programversion}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Algoritmo">{{data.algorithm}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="Ejecutado/Insertado">{{data.timeexecuted}}</nz-descriptions-item>
+    </ng-container>
+    <!--    Phylogenetic trees or Taxonomies-->
+    <nz-descriptions-item *ngIf="type=='phylotree'||type=='taxonomy'" nzTitle="Comentario">{{data.comment}}</nz-descriptions-item>
+    <!--    Organisms-->
+    <nz-descriptions-item *ngIf="type=='organism'" nzTitle="Género">{{data.genus}}</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="type=='organism'" nzTitle="Especie">{{data.species}}</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="type=='organism'" nzTitle="Nombre común">{{data.common_name}}</nz-descriptions-item>
+    <!--    Ontologies-->
+    <nz-descriptions-item *ngIf="type=='ontology'" nzTitle="Definición">{{data.definition}}</nz-descriptions-item>
+    <!--    Cvterm-->
+    <nz-descriptions-item *ngIf="type=='cvterm'" nzTitle="Definición">{{data.definition}}</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="type=='cvterm'" nzTitle="Relación">{{data.is_relationshiptype ? 'true' : 'false'}}</nz-descriptions-item>
+    <!--    Db-->
+    <nz-descriptions-item *ngIf="type=='db'" nzTitle="Descripción">{{data.description}}</nz-descriptions-item>
+    <!--    Dbxref-->
+    <nz-descriptions-item *ngIf="type=='dbxref'" nzTitle="Entrada">{{data.accession}}</nz-descriptions-item>
+    <nz-descriptions-item *ngIf="type=='dbxref'" nzTitle="Descripción">{{data.description}}</nz-descriptions-item>
+  </nz-descriptions>
+</nz-card>

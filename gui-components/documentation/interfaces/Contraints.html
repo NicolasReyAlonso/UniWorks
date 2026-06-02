@@ -1,0 +1,975 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Interfaces</li>
+  <li class="breadcrumb-item"
+  >
+  Contraints</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/components/formly-components/taxset/taxset.component.ts</code>
+        </p>
+
+
+
+
+        <section data-compodoc="block-index">
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#converse" 
+>
+                                            converse
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#key" 
+>
+                                            key
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#taxons" 
+>
+                                            taxons
+                                        </a>
+                                </li>
+                                <li>
+                                        <a href="#type" 
+>
+                                            type
+                                        </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section data-compodoc="block-properties">
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="converse"></a>
+                                        <span class="name "><b>converse</b>
+                                            <a href="#converse">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>converse:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="key"></a>
+                                        <span class="name "><b>key</b>
+                                            <a href="#key">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>key:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="taxons"></a>
+                                        <span class="name "><b>taxons</b>
+                                            <a href="#taxons">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>taxons:     <code>any[][]</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>any[][]</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="type"></a>
+                                        <span class="name "><b>type</b>
+                                            <a href="#type">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>type:     <code>&quot;monophyly&quot; | &quot;backbone&quot;</code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>    <code>&quot;monophyly&quot; | &quot;backbone&quot;</code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { CdkDragDrop, moveItemInArray } from &#x27;@angular/cdk/drag-drop&#x27;;
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output} from &#x27;@angular/core&#x27;;
+import {CommonModule} from &quot;@angular/common&quot;;
+import {SharedModule} from &quot;../../../shared-module/shared.module&quot;;
+import {NzListModule} from &quot;ng-zorro-antd/list&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {FormsModule, ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import {NzTableModule} from &quot;ng-zorro-antd/table&quot;;
+import {NzIconModule} from &quot;ng-zorro-antd/icon&quot;;
+import {NzCardModule} from &quot;ng-zorro-antd/card&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+
+interface Taxset {
+  name: string;
+  taxons: any[];
+  type: &#x27;outgroup&#x27; | &#x27;delete&#x27; | &#x27;constraints&#x27;;
+}
+
+interface Contraints {
+  key: string;
+  taxons: any[][];
+  converse: boolean;
+  type: &#x27;monophyly&#x27; | &#x27;backbone&#x27; ;
+}
+
+interface StringResult {
+  sets: string;
+  paup: string;
+  enforce_converse: string;
+}
+
+@Component({
+    imports: [
+        CommonModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzListModule,
+        NzSelectModule,
+        NzTableModule,
+        NzIconModule,
+        NzCardModule,
+        NzButtonModule
+    ],
+    selector: &#x27;taxset-component&#x27;,
+    templateUrl: &#x27;./taxset.component.html&#x27;,
+    styleUrls: [&#x27;./taxset.component.sass&#x27;]
+})
+export class TaxsetComponent implements OnDestroy {
+
+  valueValidateResult &#x3D; false;
+
+  // Taxset
+  @Input()
+  dataTableTaxset: Map&lt;number, Taxset&gt;;
+  nextIdTaxset &#x3D; 1;
+  idEditTaxset &#x3D; null;
+
+  // Constraints
+  @Input()
+  dataTableConstraints: [Contraints];
+  nextIdConstraints &#x3D; 1;
+  valueEditConstraints &#x3D; false;
+
+
+  @Input(&#x27;taxons&#x27;) taxons: {label: string, value: string}[];
+
+  @Output() ValueChangeEvent &#x3D; new EventEmitter&lt;{taxsets: any, constraints: any}&gt;();
+  @Output() ValidateChangeEvent &#x3D; new EventEmitter&lt;boolean&gt;();
+
+  constructor() { }
+
+  ngOnDestroy(): void {
+    this.ValueChangeEvent.unsubscribe();
+  }
+
+  private initValidateEvent(): void {
+    this.ValueChangeEvent.subscribe(event &#x3D;&gt; {
+
+      if (this.validateResult()) {
+        if (!this.valueValidateResult) {
+          this.ValidateChangeEvent.emit(true);
+          this.valueValidateResult &#x3D; true;
+        }
+      } else {
+        if (this.valueValidateResult) {
+          this.ValidateChangeEvent.emit(false);
+          this.valueValidateResult &#x3D; false;
+        }
+      }
+
+    });
+  }
+
+  private validateResult(): boolean {
+    for (const key of this.dataTableTaxset.keys()) {
+      if (!this.validateTaxset(key)) {
+        return false;
+      }
+    }
+    if (!this.validateContraints()) {
+      return false;
+    }
+    return true;
+  }
+
+  activeValueChangeEvent() {
+    const taxsets &#x3D; {};
+    for (const key of this.dataTableTaxset.keys()) {//change from Map to {}
+      taxsets[key] &#x3D; this.dataTableTaxset.get(key);
+    }
+    this.ValueChangeEvent.emit({taxsets: taxsets, constraints: this.dataTableConstraints});
+  }
+
+  private convert2StringResult(): StringResult {
+    const outputString: StringResult &#x3D; {
+      sets: &quot;&quot;,
+      paup: &quot;&quot;,
+      enforce_converse: &quot;&quot;
+    };
+    this.convert2StringSets(outputString);
+    this.convert2StringPaup(outputString);
+    return outputString;
+  }
+
+  private convert2StringSets(outputString: StringResult): void {
+    for (const key of this.dataTableTaxset.keys()) {
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      outputString.sets +&#x3D; &#x60;\ttaxset ${taxset.name} &#x3D;&#x60;;
+      for (const taxon of taxset.taxons) {
+        outputString.sets +&#x3D; &#x60; ${taxon}&#x60;;
+      }
+      outputString.sets +&#x3D; &#x27;;\n&#x27;;
+    }
+  }
+
+  private convert2StringPaup(outputString: StringResult): void {
+    const indexTaxsetsDelete &#x3D; [];
+    const indexTaxsetsOutgroup &#x3D; [];
+
+    for (const key of this.dataTableTaxset.keys()) {
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      switch (taxset.type) {
+        case &#x27;delete&#x27;:
+          indexTaxsetsDelete.push(key);
+          break;
+        case &#x27;outgroup&#x27;:
+          indexTaxsetsOutgroup.push(key);
+          break;
+      }
+    }
+
+    if (indexTaxsetsDelete.length &gt; 0) {
+      outputString.paup +&#x3D; &#x27;\tdelete&#x27;;
+      for (const index of indexTaxsetsDelete) {
+        const taxset &#x3D; this.dataTableTaxset.get(index);
+        outputString.paup +&#x3D; &#x60; ${taxset.name}&#x60;;
+      }
+      outputString.paup +&#x3D; &#x27;;\n&#x27;;
+    }
+
+    if (indexTaxsetsOutgroup.length &gt; 0) {
+      outputString.paup +&#x3D; &#x27;\toutgroup&#x27;;
+      for (const index of indexTaxsetsOutgroup) {
+        const taxset &#x3D; this.dataTableTaxset.get(index);
+        outputString.paup +&#x3D; &#x60; ${taxset.name}&#x60;;
+      }
+      outputString.paup +&#x3D; &#x27;;\n&#x27;;
+    }
+
+    const constraint &#x3D; this.dataTableConstraints[0];
+    if (constraint.taxons.length &gt; 0) {
+      outputString.paup +&#x3D; &#x60;\tconstraints ${constraint.key} ${constraint.type &#x3D;&#x3D; &quot;monophyly&quot; ? &quot;&quot; : constraint.type} &#x3D; &#x60;;
+      this.convert2StringTaxonsGroupsContraint(outputString);
+      outputString.enforce_converse +&#x3D; &quot;enforce&#x3D;yes &quot;
+      outputString.enforce_converse +&#x3D; &quot;converse&#x3D;&quot;
+      outputString.enforce_converse +&#x3D; this.dataTableConstraints[0].converse ? &quot;yes&quot; : &quot;no&quot;;
+    }
+  }
+
+  private convert2StringTaxonsGroupsContraint(outputString: StringResult) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    outputString.paup +&#x3D; &quot;(&quot;;
+    for (let i &#x3D; 0; i &lt; constraint.taxons.length; i++) {
+      outputString.paup +&#x3D; &quot;(&quot;;
+    }
+    let firstIteration &#x3D; true;
+    for (const taxonGroup of constraint.taxons.reverse()) {
+      if (!firstIteration) {
+        outputString.paup +&#x3D; &#x27;), &#x27;;
+      } else {
+        firstIteration &#x3D; false;
+      }
+      let firstIterationInGroup &#x3D; true;
+      for (const taxon of taxonGroup) {
+        if (!firstIterationInGroup) {
+          outputString.paup +&#x3D; &#x27;, &#x27;;
+        } else {
+          firstIterationInGroup &#x3D; false;
+        }
+        outputString.paup +&#x3D; taxon;
+        /* No numbers in contraints groups or taxsets
+        switch (typeof taxon) {
+          case &#x27;string&#x27;:
+            outputString.paup +&#x3D; taxon;
+            break;
+          case &#x27;number&#x27;:
+            outputString.paup +&#x3D; this.dataTableTaxset.get(taxon).name;
+            break;
+        }
+         */
+      }
+    }
+    outputString.paup +&#x3D; &quot;));\n&quot;;
+  }
+
+  // Functions Taxset
+  getArrayDataTableTaxset() {
+    return Array.from(this.dataTableTaxset);
+  }
+
+  getTaxonOptionTaxset(id: number): { label: string, value: string }[] {
+    const taxonOptions &#x3D; [...this.taxons];
+    for (const key of this.dataTableTaxset.keys()) {
+      if (id &#x3D;&#x3D;&#x3D; key) {
+        continue;
+      }
+      const taxset &#x3D; this.dataTableTaxset.get(key);
+      for (const taxon of taxset.taxons) {
+        let index &#x3D; -1;
+        taxonOptions.find((element, i) &#x3D;&gt; {
+          if (taxon.value &#x3D;&#x3D;&#x3D; element.value) {
+            index &#x3D; i;
+            return true;
+          }
+          return false;
+        });
+        if (index &gt; -1) {
+          taxonOptions.splice(index, 1);
+        }
+      }
+    }
+    return taxonOptions;
+  }
+
+  addTaxset(stateEdit: boolean): void {
+    this.dataTableTaxset.set(this.nextIdTaxset, {
+      name: this.nextIdTaxset &gt; 1 ? &#x60;key_${this.nextIdTaxset}&#x60; : &#x27;myOutgroup&#x27;,
+      taxons: [],
+      type: this.nextIdTaxset &gt; 1 ? &#x27;delete&#x27; : &#x27;outgroup&#x27;,
+    });
+    if (stateEdit) {
+      this.idEditTaxset &#x3D; this.nextIdTaxset;
+    }
+    this.nextIdTaxset++;
+    this.activeValueChangeEvent();
+  }
+
+  onEditTaxset(id: number): void {
+    if (this.valueEditConstraints || this.idEditTaxset) {
+      return;
+    }
+    this.idEditTaxset &#x3D; id;
+  }
+
+  onEndEditTaxset(): void {
+    this.idEditTaxset &#x3D; null;
+  }
+
+  removeTaxset(id: number): void {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    for (const taxons of constraint.taxons) {
+      for (let i &#x3D; 0; i &lt; taxons.length; i++) {
+        if (id &#x3D;&#x3D;&#x3D; taxons[i]) {
+          taxons.splice(i, 1);
+        }
+      }
+    }
+    if (this.idEditTaxset &#x3D;&#x3D; id) {
+      this.idEditTaxset &#x3D; null;
+    }
+    this.dataTableTaxset.delete(id);
+    this.activeValueChangeEvent();
+  }
+
+  getTaxonLabel(taxonValue: string) {
+    for (const t of this.taxons) {
+      if (taxonValue &#x3D;&#x3D;&#x3D; t.value) {
+        return t.label;
+      }
+    }
+    return &#x27;&#x27;;
+  }
+
+  formatTaxonsInfo(id: number) {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const taxons &#x3D; taxset.taxons;
+    let formatTaxons &#x3D; &quot;&quot;;
+    let firstIteration &#x3D; true;
+    for (const taxon of taxons) {
+      if (firstIteration) {
+        formatTaxons +&#x3D; this.getTaxonLabel(taxon);
+        firstIteration &#x3D; false;
+      } else {
+        formatTaxons +&#x3D; &#x60;, ${this.getTaxonLabel(taxon)}&#x60;;
+      }
+    }
+    return formatTaxons;
+  }
+
+  onChangeTypeTaxset(id: number, type: &#x27;delete&#x27; | &#x27;outgroup&#x27; /*| &#x27;constraints&#x27;*/) {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    /*if (type !&#x3D; &#x27;constraints&#x27;) {
+      const constraint &#x3D; this.dataTableConstraints[0];
+      for (const taxonGroup of constraint.taxons) {
+
+        const index &#x3D; taxonGroup.indexOf(id, 0);
+        if (index &gt; -1) {
+          taxonGroup.splice(index, 1);
+        }
+
+      }
+    }*/
+    if (type &#x3D;&#x3D;&#x3D; &#x27;outgroup&#x27;) {
+      taxset.name &#x3D; &#x27;myOutgroup&#x27;;
+    }
+  }
+
+  // Validations Taxset
+  validateName(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const name &#x3D; taxset.name;
+    if (!name || name &#x3D;&#x3D; &#x27;&#x27;) {
+      return false;
+    }
+    if (name.includes(&#x27; &#x27;)) {
+      return false;
+    }
+    for (const key of this.dataTableTaxset.keys()) {
+      if (key &#x3D;&#x3D; id) {
+        continue;
+      }
+      const taxsetIteration &#x3D; this.dataTableTaxset.get(key);
+      if (name &#x3D;&#x3D; taxsetIteration.name) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validateTaxons(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const taxons &#x3D; taxset.taxons;
+    if (taxons.length &lt; 1) {
+      return false;
+    }
+    return true;
+  }
+
+  validateType(id: number): boolean {
+    const taxset &#x3D; this.dataTableTaxset.get(id);
+    const type &#x3D; taxset.type;
+    if (type &#x3D;&#x3D; &#x27;outgroup&#x27;) {
+      for (let key of this.dataTableTaxset.keys()) {
+        if (key &#x3D;&#x3D; id) {
+          continue;
+        }
+        const taxsetIterate &#x3D; this.dataTableTaxset.get(key);
+        if (taxsetIterate.type &#x3D;&#x3D; &#x27;outgroup&#x27;) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  validateTaxset(id: number): boolean {
+    if (!this.validateName(id) || !this.validateTaxons(id) || !this.validateType(id)) {
+      return false;
+    }
+    return true;
+  }
+
+  // Constraints
+
+  onEditConstraints(): void {
+    if (this.idEditTaxset || this.valueEditConstraints) {
+      return;
+    }
+    this.valueEditConstraints &#x3D; true;
+  }
+
+  onEndEditConstraints(): void {
+    this.valueEditConstraints &#x3D; false;
+  }
+
+  addTaxonContraints(): void {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    constraint.taxons &#x3D; [...constraint.taxons, []];
+    this.activeValueChangeEvent();
+  }
+
+  removeTaxonConstraints(indexTaxon: number): void {
+    this.dataTableConstraints[0].taxons.splice(indexTaxon, 1);
+    this.activeValueChangeEvent();
+  }
+
+  dropTaxonsConstraints(event: CdkDragDrop&lt;any&gt;): void {
+    if (event.previousIndex &#x3D;&#x3D; event.currentIndex) {
+      return;
+    }
+    moveItemInArray(this.dataTableConstraints[0].taxons, event.previousIndex, event.currentIndex);
+    this.activeValueChangeEvent();
+  }
+
+  getInfoTaxonsConstraints(indexTaxon) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    let formatInfo &#x3D; &quot;&quot;;
+    let firstIteration &#x3D; true;
+    for (const taxon of constraint.taxons[indexTaxon]) {
+      if (!firstIteration) {
+        formatInfo +&#x3D; &#x27;, &#x27;;
+      }
+
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        formatInfo +&#x3D; this.getTaxonLabel(taxon);
+      }
+      /* No numbers in contraints groups or taxsets
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+        formatInfo +&#x3D; this.dataTableTaxset.get(taxon).name;
+      }*/
+
+      firstIteration &#x3D; false;
+    }
+    return formatInfo;
+  }
+
+  // Validate
+  validateKeyConstraints(): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const key &#x3D; constraint.key;
+    if (!key || key &#x3D;&#x3D; &#x27;&#x27;) {
+      return false;
+    }
+    if (key.includes(&#x27; &#x27;)) {
+      return false;
+    }
+    return true;
+  }
+
+  validateTaxonsConstraints(): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      if (!this.validateTaxonGroupConstraints(i)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validateTaxonGroupConstraints(indexGroup: number): boolean {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    if (taxonsConstraint[indexGroup].length &lt; 1) {
+      return false;
+    }
+    for (const taxon of taxonsConstraint[indexGroup]) {
+
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+        if (this.checkTaxonExistInConstraints(taxon, indexGroup)) {
+          return false;
+        }
+      }
+      /* No numbers in contraints groups or taxsets
+      if (typeof taxon &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+        if (this.checkTaxsetConflictInConstraints(taxon, indexGroup)) {
+          return false;
+        }
+      }*/
+
+    }
+    return true;
+  }
+
+  private checkTaxonExistInConstraints(taxon: string, excludeGroup: number) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      for (const taxonIteration of taxonsConstraint[i]) {
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+          if (excludeGroup &#x3D;&#x3D; i) {
+            continue;
+          }
+          if (taxonIteration &#x3D;&#x3D; taxon) {
+            return true;
+          }
+        }
+
+        /* No numbers in contraints groups or taxsets
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+          const taxset &#x3D; this.dataTableTaxset.get(taxonIteration);
+          for (const taxonIterationTaxset of taxset.taxons) {
+            if (taxonIterationTaxset &#x3D;&#x3D; taxon) {
+              return true;
+            }
+          }
+        }*/
+      }
+    }
+    return false;
+  }
+
+  private checkTaxsetConflictInConstraints(taxsetId: number, excludeGroup: number) {
+    const constraint &#x3D; this.dataTableConstraints[0];
+    const taxonsConstraint &#x3D; constraint.taxons;
+    const taxset &#x3D; this.dataTableTaxset.get(taxsetId);
+    for (let i &#x3D; 0; i &lt; taxonsConstraint.length; i++) {
+      for (const taxonIteration of taxonsConstraint[i]) {
+
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+          for (const taxon of taxset.taxons) {
+            if (taxonIteration &#x3D;&#x3D; taxon) {
+              return true;
+            }
+          }
+        }
+
+        /* No numbers in contraints groups or taxsets
+        if (typeof taxonIteration &#x3D;&#x3D;&#x3D; &#x27;number&#x27;) {
+          if (taxsetId &#x3D;&#x3D; taxonIteration) {
+            if (excludeGroup &#x3D;&#x3D; i) {
+              continue;
+            } else {
+              return true;
+            }
+          }
+          const taxsetIteration &#x3D; this.dataTableTaxset.get(taxonIteration);
+          for (const taxon of taxset.taxons) {
+            for (const taxonTaxsetIteration of taxsetIteration.taxons) {
+              if (taxon &#x3D;&#x3D; taxonTaxsetIteration) {
+                return true;
+              }
+            }
+          }
+        }*/
+
+      }
+    }
+    return false;
+  }
+
+  validateContraints(): boolean {
+    if (!this.validateKeyConstraints() || !this.validateTaxonsConstraints()) {
+      return false;
+    }
+    return true;
+  }
+
+}
+
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'Contraints.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

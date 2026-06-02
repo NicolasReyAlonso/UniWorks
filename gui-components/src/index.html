@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NGDGUILIB-Demo</title>
+  <base href="./">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Start MSABrowser -->
+  <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thekaplanlab/msabrowser/css/style.css" media="screen" />
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script><!-- This should be also in Archaeopteryx -->
+  <script src="https://cdn.jsdelivr.net/gh/thekaplanlab/msabrowser/javascript/msabrowser.js"></script>
+  <script>
+<!--    Avoiding conflict with 'file-saver' (Node module) -->
+    saveAs_msa = saveAs;
+    saveAs = null;
+  </script>
+  <!-- Finish MSABrowser -->
+
+  <!-- Start Archaeopteryx -->
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+  <!-- SAX XML parser:-->
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/sax.js"></script>
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/phyloxml_0_912.js"></script>
+
+  <!-- The following five libraries are needed for download/export of images and files:-->
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/rgbcolor.js"></script>
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/Blob.js"></script>
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/canvas-toBlob.js"></script>
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/canvg.js"></script>
+  <script type="text/javascript" src="./assets/archaeopteryx_dependencies/FileSaver.js"></script>
+
+  <!-- CSS for Archaeopteryx: -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <!-- Finish Archaeopteryx -->
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+
+  <meta name="theme-color" content="#1976d2">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <app-root>
+    <div style="height: 100vh; width: 100vw; display: flex; align-items: center; justify-content: center; background-color: #f0f2f5">
+      <div style="color: #000000">
+        <div style="font-family: Courier New, Courier, monospace; font-size: 60px; font-weight: 600; text-align: center">
+          NEXTGENDEMGUIDEMO
+        </div>
+        <div style="display: flex; justify-content: center">
+          <img src="./assets/images/icon_working.png" style="width: 214px; height: auto">
+        </div>
+      </div>
+    </div>
+  </app-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+</html>

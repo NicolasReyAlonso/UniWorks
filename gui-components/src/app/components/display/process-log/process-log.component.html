@@ -1,0 +1,20 @@
+<div class="section">
+  <div class="label">Log:</div>
+  <nz-collapse>
+    <nz-collapse-panel [nzHeader]="headerCollapsePanel" class="collapse-panel-process-log">
+      <div [innerHTML]="this.textFormatted"></div>
+    </nz-collapse-panel>
+  </nz-collapse>
+</div>
+
+<ng-template #headerCollapsePanel>
+  <div style="width: 100%; display: flex; align-items: center">
+    <div>
+      Log
+    </div>
+    <div style="min-width: 0; flex: 1 1 auto"></div>
+    <button nz-button nzType="primary" (click)="downloadFile($event)">
+      <i nz-icon nzType="download"></i>{{'PROCESSES.PROCESSES_DETAIL.INFO.DOWNLOAD_BUTTON' | translate}}
+    </button>
+  </div>
+</ng-template>

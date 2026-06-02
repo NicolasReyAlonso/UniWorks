@@ -1,0 +1,80 @@
+<div>
+
+    <!-- Taxset Table -->
+    <nz-card [nzTitle]="titleTaxset" [nzExtra]="extraTaxset" >
+        <nz-table nzBordered [nzScroll]="{ x: '500px' }" [nzShowPagination]="false">
+            <thead>
+                <tr>
+                    <th nzAlign="center" nzWidth="200px">Key</th>
+                    <th nzAlign="center">Taxons</th>
+                    <th nzRight nzAlign="center" nzWidth="120px">Not In</th>
+                    <th nzRight nzAlign="center" nzWidth="120px">Validation</th>
+                    <th nzRight nzWidth="100px" nzAlign="center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <ng-container *ngFor="let data of dataTableTaxset | keyvalue">
+                    <tr>
+
+                        <ng-container>
+                            <td>
+                                <input nz-input placeholder="Nombre" [(ngModel)]="data.key"
+                                    [ngClass]="{'input-error': !validateName(data.key)}"
+                                    (ngModelChange)="activeValueChangeEvent()"/>
+                            </td>
+                            <td>
+                                <nz-select nzMode="multiple" nzPlaceHolder="Taxones" [(ngModel)]="dataTableTaxset[data.key]['taxons']"
+                                    style="width: 100%;" (ngModelChange)="activeValueChangeEvent()"
+                                    [ngClass]="{'select-error': !validateTaxons(dataTableTaxset[data.key]['taxons'])}">
+                                    <nz-option *ngFor="let option of this.props.taxons" [nzLabel]="option.label" [nzValue]="option.value">
+                                    </nz-option>
+                                </nz-select>
+                            </td>
+                        </ng-container>
+
+                      <!-- Not In -->
+                       <td nzRight nzAlign="center">
+                            <label nz-checkbox [(ngModel)]="dataTableTaxset[data.key]['notIn']" (ngModelChange)="activeValueChangeEvent()"></label>
+                        </td>
+
+                        <!-- Validate -->
+                        <td nzRight nzAlign="center">
+                            <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"
+                                style="font-size: 20px;" *ngIf="validateTaxset(data.key)"></i>
+                            <i nz-icon [nzType]="'close-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff0000'"
+                                style="font-size: 20px;" *ngIf="!validateTaxset(data.key)"></i>
+                        </td>
+
+                        <!-- Actions -->
+                        <td nzRight nzAlign="center">
+                            <ul nz-list-item-actions style="margin-left: 6px;">
+                                <nz-list-item-action>
+                                    <i nz-icon nzType="delete" nzTheme="outline" style="cursor: pointer;"
+                                        (click)="removeTaxset(data.key)"></i>
+                                </nz-list-item-action>
+                            </ul>
+                        </td>
+
+                    </tr>
+                </ng-container>
+            </tbody>
+
+        </nz-table>
+
+    </nz-card>
+
+</div>
+
+
+<!-- Title Taxset -->
+<ng-template #titleTaxset>
+    <div style="font-size: 1.2em;">Monophyly</div>
+</ng-template>
+
+<!-- Extra Header Taxset -->
+<ng-template #extraTaxset>
+    <button nz-button nzType="primary" nzShape="round" type="button" (click)="addTaxset()">
+        <i nz-icon nzType="plus"></i>Add</button>
+</ng-template>
+

@@ -1,0 +1,3008 @@
+{
+  "ANNOTATIONS": {
+    "ANNOTATIONS_FORM": {
+      "CONTENT": {
+        "EMPTY_FIELD": "Empty field"
+      },
+      "FIELD_SELECTOR_MODAL": {
+        "ADD_BUTTON": "Add",
+        "CANCEL_BUTTON": "Cancel",
+        "CONTENT": {
+          "FIELDS_INPUT": {
+            "ERROR_EMPTY": "At least one field must be chosen.",
+            "LABEL": "Fields",
+            "PLACEHOLDER": "Fields"
+          }
+        },
+        "TITLE": "Add fields"
+      },
+      "HEADER": {
+        "CANCEL_BUTTON": "Cancel",
+        "SAVE_BUTTON": "Save"
+      },
+      "NOTIFICATIONS": {
+        "LOAD_FAIL": {
+          "CONTENT": "An error occurred while trying to load the annotations.",
+          "TITLE": "Error"
+        },
+        "SAVE_FAIL": {
+          "CONTENT": "An error occurred while trying to save the annotations.",
+          "TITLE": "Error"
+        },
+        "SAVE_SUCCESS": {
+          "CONTENT": "The annotations have been saved successfully.",
+          "TITLE": "Annotations saved"
+        }
+      },
+      "TEMPLATE_SELECTOR_MODAL": {
+        "ADD_BUTTON": "Add",
+        "CANCEL_BUTTON": "Cancel",
+        "CONTENT": {
+          "TEMPLATES_INPUT": {
+            "ERROR_EMPTY": "You must choose at least one template.",
+            "LABEL": "Templates",
+            "PLACEHOLDER": "Templates"
+          }
+        },
+        "TITLE": "Add templates"
+      }
+    },
+    "FIELDS": {
+      "BROWSE": {
+        "BREADCRUMB": "Fields",
+        "ERROR_REMOVE": {
+          "CONTENT": "An error occurred while trying to delete the field",
+          "TITLE": "Error"
+        },
+        "REMOVE_MODAL": {
+          "CONTENT": "Field",
+          "TITLE": "Are you sure you want to delete this field and associated data?"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "The field has been deleted successfully",
+          "TITLE": "Field removed"
+        },
+        "TITLE": "Fields"
+      },
+      "CREATE_MODAL": {
+        "CANCEL_BUTTON": "Cancel",
+        "CREATE_BUTTON": "Create",
+        "ERROR_UNKNOWN_ERROR": {
+          "CONTENT": "An error occurred while trying to upload the field.",
+          "TITLE": "Error"
+        },
+        "MULTIPLE_INPUT": {
+          "LABEL": "Multiple",
+          "OPTIONS": {
+            "NO": "No",
+            "YES": "Yes"
+          },
+          "PLACEHOLDER": "Multiple"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Enter a name for field",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "OBJECT_TYPE_INPUT": {
+          "ERROR_EMPTY": "Select object type",
+          "LABEL": "Object types",
+          "PLACEHOLDER": "Object types"
+        },
+        "RANGE_INPUT": {
+          "TEXT_OPTIONS": {
+            "ERROR_EMPTY": "You must choose at least one option",
+            "LABEL": "Options",
+            "PLACEHOLDER": "Enter the value and press the ENTER key to add it as an option"
+          }
+        },
+        "STANDARD_INPUT": {
+          "LABEL": "Standard",
+          "PLACEHOLDER": "Standard"
+        },
+        "TEMPLATE_INPUT": {
+          "LABEL": "Template",
+          "PLACEHOLDER": "Template"
+        },
+        "TITLE": "Create field",
+        "UNIQUE_INPUT": {
+          "LABEL": "Unique",
+          "OPTIONS": {
+            "NO": "No",
+            "YES": "Yes"
+          },
+          "PLACEHOLDER": "Unique"
+        },
+        "VIEW_TYPE_INPUT": {
+          "ERROR_EMPTY": "Select the field type.",
+          "LABEL": "Field type",
+          "OPTIONS": {
+            "STRING": "Text field"
+          },
+          "PLACEHOLDER": "Input type"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Field - {{params.name}}",
+        "CANCEL_BUTTON": "Cancel",
+        "INPUTS": {
+          "DESCRIPTION": {
+            "LABEL": "Description",
+            "PLACEHOLDER": "Description"
+          },
+          "MULTIPLE": {
+            "LABEL": "Multiple",
+            "NO": "No",
+            "YES": "Yes"
+          },
+          "NAME": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "OBJECT_TYPES": {
+            "ADD_BUTTON": "Add",
+            "LABEL": "Object types",
+            "TABLE_TH": {
+              "ACTIONS": "Actions",
+              "NAME": "Name"
+            }
+          },
+          "STANDARD": {
+            "LABEL": "Standard",
+            "PLACEHOLDER": "Standard"
+          },
+          "TEMPLATES": {
+            "ADD_BUTTON": "Add",
+            "LABEL": "Template",
+            "TABLE_TH": {
+              "ACTIONS": "Actions",
+              "NAME": "Name"
+            }
+          },
+          "UNIQUE": {
+            "LABEL": "Unique",
+            "OPTIONS": {
+              "NO": "No",
+              "YES": "Yes"
+            }
+          },
+          "VIEW_TYPE": {
+            "LABEL": "Field type"
+          }
+        },
+        "MODAL_ADD_OBJECT_TYPES": {
+          "ADD_BUTTON": "Add",
+          "CANCEL_BUTTON": "Cancel",
+          "INPUTS": {
+            "OBJECT_TYPES": {
+              "LABEL": "Object types",
+              "PLACEHOLDER": "Object types"
+            }
+          },
+          "TITLE": "Add object types"
+        },
+        "MODAL_ADD_TEMPLATES": {
+          "ADD_BUTTON": "Add",
+          "CANCEL_BUTTON": "Cancel",
+          "INPUTS": {
+            "TEMPLATES": {
+              "LABEL": "Templates",
+              "PLACEHOLDER": "Templates"
+            }
+          },
+          "TITLE": "Add templates"
+        },
+        "MODIFY_BUTTON": "Modify",
+        "NOTIFICATION_FAIL_MODIFY": {
+          "CONTENT": "An error occurred while trying to modify the template.",
+          "TITLE": "Error"
+        },
+        "TITLE": "Field"
+      },
+      "VIEW_TYPES": {
+        "TEXT": {
+          "LABEL": "Text field"
+        },
+        "TEXT_OPTIONS": {
+          "LABEL": "Option selector (text)"
+        }
+      }
+    },
+    "TEMPLATES": {
+      "BROWSE": {
+        "BREADCRUMB": "Templates",
+        "ERROR_REMOVE": {
+          "CONTENT": "An error has occurred while trying to delete a template",
+          "TITLE": "Error"
+        },
+        "REMOVE_MODAL": {
+          "CONTENT": "Template",
+          "TITLE": "Are you sure you want to delete this template and associated data?"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "The template has been deleted successfully",
+          "TITLE": "Template removed"
+        },
+        "TITLE": "Templates"
+      },
+      "CREATE_MODAL": {
+        "CANCEL_BUTTON": "Cancel",
+        "CREATE_BUTTON": "Create",
+        "ERROR_UNKNOWN_ERROR": {
+          "CONTENT": "An error occurred while trying to create the template",
+          "TITLE": "Error"
+        },
+        "FIELD_INPUT": {
+          "LABEL": "Fields",
+          "PLACEHOLDER": "Fields"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Enter the name for the template",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "OBJECT_TYPE_INPUT": {
+          "ERROR_EMPTY": "Select object type",
+          "LABEL": "Object type",
+          "PLACEHOLDER": "Object type"
+        },
+        "STANDARD_INPUT": {
+          "LABEL": "Standard",
+          "PLACEHOLDER": "Standard"
+        },
+        "TITLE": "Create Template",
+        "UNIQUE_INPUT": {
+          "LABEL": "Unique",
+          "OPTIONS": {
+            "NO": "No",
+            "YES": "Yes"
+          },
+          "PLACEHOLDER": "Unique"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Template - {{params.name}}",
+        "CANCEL_BUTTON": "Cancel",
+        "INPUTS": {
+          "DESCRIPTION": {
+            "LABEL": "Description",
+            "PLACEHOLDER": "Description"
+          },
+          "FIELD": {
+            "ADD_BUTTON": "Add",
+            "LABEL": "Fields",
+            "TABLE_TH": {
+              "ACTIONS": "Actions",
+              "NAME": "Name"
+            }
+          },
+          "NAME": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "OBJECT_TYPES": {
+            "ADD_BUTTON": "Add",
+            "LABEL": "Object types",
+            "TABLE_TH": {
+              "ACTIONS": "Actions",
+              "NAME": "Name"
+            }
+          },
+          "STANDARD": {
+            "LABEL": "Standard",
+            "PLACEHOLDER": "Standard"
+          },
+          "UNIQUE": {
+            "LABEL": "Unique",
+            "OPTIONS": {
+              "NO": "No",
+              "YES": "Yes"
+            }
+          }
+        },
+        "MODAL_ADD_FIELD": {
+          "ADD_BUTTON": "Add",
+          "CANCEL_BUTTON": "Cancel",
+          "INPUTS": {
+            "FIELD": {
+              "LABEL": "Fields",
+              "PLACEHOLDER": "Fields"
+            }
+          },
+          "TITLE": "Add fields"
+        },
+        "MODAL_ADD_OBJECT_TYPES": {
+          "ADD_BUTTON": "Add",
+          "CANCEL_BUTTON": "Cancel",
+          "INPUTS": {
+            "OBJECT_TYPES": {
+              "LABEL": "Object types",
+              "PLACEHOLDER": "Object types"
+            }
+          },
+          "TITLE": "Add object types"
+        },
+        "MODIFY_BUTTON": "Modify",
+        "NOTIFICATION_FAIL_MODIFY": {
+          "CONTENT": "An error occurred while trying to modify the template.",
+          "TITLE": "Error"
+        },
+        "TITLE": "Template"
+      }
+    }
+  },
+  "AUTH_MODAL": {
+    "INPUTS": {
+      "LANGUAGE": {
+        "TYPES": {
+          "private-en": "English",
+          "private-es": "Español",
+          "private-fr": "Français",
+          "private-pt": "Português"
+        }
+      }
+    },
+    "LOGIN_TITLE": "Log in",
+    "REGISTER_TITLE": "Sign in"
+  },
+  "DISPLAY": {
+    "GIS": {
+      "BREADCRUMB": "GIS",
+      "GENERATE_VIEW_ERROR_MODAL": {
+        "CONTENT": "An error occurred while trying to create the layer.",
+        "TITLE": "Error"
+      },
+      "GENERATE_VIEW_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "ERROR_VALIDATE_GENERATE_VIEW_MODAL": {
+          "ERROR_JOIN": "All the selected layers must be involved in the union.",
+          "NUMBERS_LAYERS": "You must choose more than one layer.",
+          "VALIDATE_FORM": "Validation failed. Check for errors in the form"
+        },
+        "TABS": {
+          "FIELDS_TO_DISPLAY": {
+            "LAYER_TH": "Layer",
+            "NAME_TH": "Name",
+            "TITLE": "Fields to show",
+            "TYPE_TH": "Type"
+          },
+          "FILTER": {
+            "TITLE": "Filters"
+          },
+          "JOIN": {
+            "TITLE": "Join"
+          },
+          "LAYERS": {
+            "NAME_TH": "Name",
+            "TITLE": "Layers",
+            "WARNING_UNCHECKED": "* When deselecting any layer, the following steps will be restarted."
+          }
+        },
+        "TITLE": {
+          "GENERATE_LAYER": "Generate layer",
+          "GENERATE_VIEW": "Generate view"
+        },
+        "ERROR_WHEN_OPEN": {
+          "CONTENT": "An error has occurred while loading the data to build the new layer."
+        }
+      },
+      "LAYERS_EMPTY_OPEN_GENERATE_VIEW_MODAL_ERROR": {
+        "CONTENT": "You must have at least one layer selected.",
+        "TITLE": "Warning"
+      },
+      "OVERWRITE_MAP_MODAL": {
+        "CANCEL_BUTTON": "Cancel",
+        "CONTENT": "Do you want to overwrite map \"{{name}}\" or create a new map?",
+        "CREATE_BUTTON": "Create",
+        "NOTIFICATION_OVERWRITE_MAP_CORRECTLY": {
+          "CONTENT": "The map has been modified successfully",
+          "TITLE": "Map modified"
+        },
+        "NOTIFICATION_OVERWRITE_MAP_ERROR": {
+          "CONTENT": "An error occurred while trying to modify the map",
+          "TITLE": "Erro"
+        },
+        "OVERWRITE_BUTTON": "Overwrite",
+        "TITLE": "Save map"
+      },
+      "SAVE_MAP_MODAL": {
+        "CANCEL_BUTTON": "Cancel",
+        "NAME_EMPTY_ERROR": "The name cannot be empty.",
+        "NAME_INPUT": {
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "NOTIFICATION_CREATE_MAP_CORRECTLY": {
+          "CONTENT": "The map has been created successfully.",
+          "TITLE": "Map created"
+        },
+        "NOTIFICATION_CREATE_MAP_ERROR": {
+          "CONTENT": "An error occurred while trying to create the map",
+          "TITLE": "Error"
+        },
+        "SAVE_BUTTON": "Save",
+        "TITLE": "Save map"
+      },
+      "TOOLBAR_GEOVIEWER": {
+        "CREATE_LAYER_BUTTON": "Create Layer",
+        "CREATE_VIEW_BUTTON": "Create view",
+        "EXPORT_MAP": "Export Map",
+        "SAVE_BUTTON": "Save map",
+        "TITLE": "Geographical Data Viewer"
+      },
+      "OPACITY": "Opacity:",
+      "EDIT_STYLE_BUTTON": "Edit style",
+      "SHOW_LEGEND": "Show legend",
+      "SETTINGS_BUTTON": "Settings",
+      "SELECT_FILTER": "Select filter",
+      "CREATE_FILTER": "Create filter",
+      "PROPERTIES": "Properties",
+      "CONFIGURATION_PANEL_WINDOW": {
+        "FILTERS": {
+          "LAYER": "Layer:",
+          "FILTER": "Filter:",
+          "CQL": "CQL:"
+        }
+      },
+      "EDIT_STYLE_MODAL": {
+        "TITLE": "Edit styles",
+        "ACCEPT_BUTTON": "OK",
+        "CANCEL_BUTTON": "Cancel",
+        "COLORMAP": {
+          "LABEL": "Color palette:",
+          "PLACEHOLDER": "Color palette"
+        }
+      },
+      "ADD_ATTRIBUTE_MODAL": {
+        "TITLE": "Add new attributes",
+        "LOAD_LAYERS_ERROR": "An error occurred while loading the layers",
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "SEARCH_BUTTON": "Search",
+        "LAYERS": "Layers",
+        "PROPERTIES": "Properties",
+        "NOT_ELEMENTS_FOUND": "0 elements found"
+      },
+      "FILTER_LAYERS": "Layer filtering",
+      "NAME_MAP_INPUT": {
+        "PLACEHOLDER": "Map"
+      }
+    },
+    "PHYLOTREES": {
+      "BREADCRUMB": "Phylogenetic Tree Viewer",
+      "PAGE": {
+        "REMOVE_COLOR": "Remove Color",
+        "SAVED_COLORS": "Saved Colors",
+        "SAVE_COLOR": "Save Color",
+        "SAVE_PROGRESS": "Save Progress"
+      },
+      "LOG": {
+        "NO_TREE": "Tree does not exist in the system",
+        "ERROR_PARSING": "Error reading the tree:"
+      },
+      "MODAL": {
+        "NAME": "Name",
+        "SAVE_VIEW": "Save View"
+      },
+      "SAVE_MODAL": {
+        "SAVE_VIEW": "Save View",
+        "NAME": "Name"
+      },
+      "OVERRIDE_TEXT": {
+        "TITLE": "Overwrite text",
+        "NEW_TEXT": "New text"
+      }
+    },
+    "VIEWERS": {
+      "BROWSE": {
+        "BREADCRUMB": "Viewers",
+        "CUSTOM_BUTTONS": {
+          "CLONE": {
+            "TITLE": "Clone view"
+          }
+        },
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "CONTENT": "Are you sure to delete view \"{{name}}\"?",
+          "TITLE": "Delete view"
+        },
+        "NOTIFICATION_DELETE_VIEW_ERROR": {
+          "CONTENT": "An error occurred while trying to delete the view.",
+          "TITLE": "Error"
+        },
+        "TITLE": "Viewers",
+        "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "An error occurred while trying to delete the views.",
+        "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "The views have been deleted successfully."
+      },
+      "DELETE_SELECTED_MODAL": {
+        "ACCEPT_BUTTON": "Ok",
+        "CANCEL_BUTTON": "Cancel",
+        "CONTENT": "Are you sure you want to delete the views?",
+        "TITLE": "Delete views"
+      }
+    }
+  },
+  "DYNAMIC_BROWSER": {
+    "BUTTONS": {
+      "CONFIRM_SELECTED": "Confirm selected",
+      "CREATE": "Create",
+      "DELETE_SELECTED": "Remove selected",
+      "EXPORT_SELECTED": "Export selected",
+      "IMPORT": "Import"
+    },
+    "SEARCH": {
+      "PLACEHOLDER": "Enter your search terms."
+    }
+  },
+  "DYNAMIC_TABLE": {
+    "RESULT": "RESULT:",
+    "ELEMENTS_FOUND": "elements found",
+    "SELECTION": "SELECTION:",
+    "ELEMENTS_SELECTED": "elements selected",
+    "SHOW_SELECTED": "Show selected:",
+    "TH": {
+      "ACTIONS": "Actions"
+    },
+    "RESET_SELECTED": "Reset selected"
+  },
+  "FILTER": {
+    "DETAIL": {
+      "BUTTON": "Filter",
+      "DRAWER": {
+        "BUTTONS": {
+          "APPLY": "Apply",
+          "RESTART": "Restart"
+        },
+        "SELECT": {
+          "SELECTED_FILTER": {
+            "BUTTONS": {
+              "ADD_FILTER": "Add filter"
+            },
+            "PLACEHOLDER": "Saving filters"
+          }
+        },
+        "TITLE": "Filtering"
+      }
+    },
+    "FORM": {
+      "DATETIME_LABEL": {
+        "ADDED_FROM": {
+          "LABEL": "Added after",
+          "PLACEHOLDER": "Select date"
+        },
+        "ADDED_TO": {
+          "LABEL": "Added before",
+          "PLACEHOLDER": "Select date"
+        },
+        "MODIFIED_FROM": {
+          "LABEL": "Modified after",
+          "PLACEHOLDER": "Select date"
+        },
+        "MODIFIED_TO": {
+          "LABEL": "Modified before",
+          "PLACEHOLDER": "Select date"
+        }
+      },
+      "CASE_STUDIES": {
+        "LABEL": "Case studies",
+        "PLACEHOLDER": "Case studies of interest"
+      },
+      "COLLECTIONS": {
+        "LABEL": "Collections",
+        "PLACEHOLDER": "Collections of interest"
+      },
+      "IS_ANALYSIS": {
+        "LABEL": "Sequences",
+        "PLACEHOLDER": "Sequences to show",
+        "TRUE": "Processed",
+        "FALSE": "Unprocessed"
+      },
+      "TYPES": {
+        "LABEL": "Type",
+        "PLACEHOLDER": "Types of element"
+      },
+      "STANDARDS": {
+        "LABEL": "Standards",
+        "PLACEHOLDER": "Associated standards"
+      },
+      "ANNOTATION_FORM_TEMPLATES": {
+        "LABEL": "Templates",
+        "PLACEHOLDER": "Associated templates"
+      },
+      "ANNOTATION_FORM_FIELDS": {
+        "LABEL": "Fields",
+        "PLACEHOLDER": "Associated fields"
+      },
+      "ANNOTATION_FIELDS": {
+        "LABEL": "Properties",
+        "PLACEHOLDER": "Associated properties"
+      },
+      "DBXREFS": {
+        "LABEL": "References",
+        "PLACEHOLDER": "External references"
+      },
+      "ORGANISMS": {
+        "LABEL": "Organisms",
+        "PLACEHOLDER": "Organisms of interest"
+      },
+      "TAX_NODES": {
+        "LABEL": "Taxa",
+        "PLACEHOLDER": "Taxa of interest"
+      },
+      "GENUS": {
+        "LABEL": "Genre",
+        "PLACEHOLDER": "Genres of interest"
+      },
+      "ANALYSES": {
+        "LABEL": "Analysis",
+        "PLACEHOLDER": "Analysis of interest"
+      },
+      "PROGRAMS": {
+        "LABEL": "Program",
+        "PLACEHOLDER": "Program of interest"
+      },
+      "PROGRAMVERSIONS": {
+        "LABEL": "Program version",
+        "PLACEHOLDER": "Versions of interest"
+      },
+      "ALGORITHMS": {
+        "LABEL": "Algorithm",
+        "PLACEHOLDER": "Algorithm of interest"
+      },
+      "SEQLEN": {
+        "LABEL": "Sequence size",
+        "PLACEHOLDER_MIN": "Minimum",
+        "PLACEHOLDER_MAX": "Maximum"
+      },
+      "SEQNUM": {
+        "LABEL": "Number of sequences",
+        "PLACEHOLDER_MIN": "Minimum",
+        "PLACEHOLDER_MAX": "Maximum"
+      },
+      "PHYLEN": {
+        "LABEL": "Number of sequences",
+        "PLACEHOLDER_MIN": "Minimum",
+        "PLACEHOLDER_MAX": "Maximum"
+      },
+      "PHYNUM": {
+        "LABEL": "Number of trees",
+        "PLACEHOLDER_MIN": "Minimum",
+        "PLACEHOLDER_MAX": "Maximum"
+      }
+    }
+  },
+  "GEOGRAPHICAL_DATA": {
+    "LAYERS": {
+      "BROWSER": {
+        "BREADCRUMB": "Layers",
+        "CUSTOM_BUTTONS": {
+          "CASES_STUDIES": {
+            "TITLE": "Create case study"
+          },
+          "CREATE_LAYER": {
+            "TITLE": "Create Layer"
+          },
+          "EXPORT_LAYERS": {
+            "TITLE": "Export layers"
+          },
+          "OPEN_IN_GIS": {
+            "TITLE": "Open in GIS"
+          }
+        },
+        "TITLE": "Layers"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Layer - {{params.name}}",
+        "EXPORT_BUTTON": "Export",
+        "TABS": {
+          "ADVANCED": {
+            "INPUTS": {
+              "NAME_IN_GEOSERVER": "Name in Geoserver",
+              "PROPERTIES": {
+                "LABEL": "Properties",
+                "TD": {
+                  "NO": "No",
+                  "YES": "Yes"
+                },
+                "TH": {
+                  "ACTIONS": "Actions",
+                  "CAT_TYPE": "Category type",
+                  "MAX_VALUE": "Maximum Value",
+                  "MIN_VALUE": "Minimum value",
+                  "NAME": "Name",
+                  "RESPRESENTABLE": "Representable",
+                  "TYPE": "Type"
+                }
+              },
+              "TYPE_OF_LAYER": "Type of layer",
+              "WORKSPACE": "Workspace"
+            },
+            "TITLE": "Advanced"
+          },
+          "DETAIL": {
+            "CANCEL_BUTTON": "Cancel",
+            "INPUTS": {
+              "AUTHORSHIP": {
+                "LABEL": "Authorship",
+                "PLACEHOLDER": "Authorship"
+              },
+              "CASES_STUDIES": {
+                "ADD_BUTTON": "Add",
+                "LABEL": "Cases studies",
+                "TABLE_TH": {
+                  "ACTIONS": "Actions",
+                  "NAME": "Name"
+                }
+              },
+              "CREATION_DATE": {
+                "LABEL": "Creation date",
+                "PLACEHOLDER": "Select date"
+              },
+              "INSTANCE_ID": {
+                "LABEL": "Instance ID",
+                "PLACEHOLDER": "Instance id"
+              },
+              "NAME": {
+                "LABEL": "Name",
+                "PLACEHOLDER": "Name"
+              },
+              "SOURCE": {
+                "LABEL": "Source",
+                "PLACEHOLDER": "Source"
+              },
+              "SOURCE_FILE_NAME": {
+                "LABEL": "Source file name",
+                "PLACEHOLDER": "Source file"
+              },
+              "SUBJECTS": {
+                "LABEL": "Subjects",
+                "PLACEHOLDER": "Subjects"
+              },
+              "TAGS": {
+                "ADD_BUTTON": "Add",
+                "PLACEHOLDER": "Tags"
+              }
+            },
+            "MODAL_ADD_CASE_STUDIES": {
+              "ADD_BUTTON": "Add",
+              "CANCEL_BUTTON": "Cancel",
+              "INPUTS": {
+                "CASES_STUDIES": {
+                  "LABEL": "Cases studies"
+                }
+              }
+            },
+            "MODIFY_BUTTON": "Modify",
+            "TITLE": "Detail"
+          },
+          "PREVIEW": {
+            "TITLE": "Preview",
+            "TOOLBAR_TITLE": "Preview"
+          }
+        },
+        "TITLE": "Layer"
+      },
+      "EXPORT_MODAL": {
+        "BUTTONS": {
+          "CANCEL": "Cancel",
+          "EXPORT": "Export"
+        },
+        "SELECT": {
+          "FORMAT_TYPE": {
+            "LABEL": "Format types:",
+            "PLACEHOLDER": "Format types"
+          }
+        },
+        "TITLE": "Export layers"
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Import layer",
+        "BUTTONS": {
+          "IMPORT_LAYER": "Import layer"
+        },
+        "INPUTS_FILE": {
+          "FILE": {
+            "INPUT_TITLE": "Click or drag file to this area",
+            "LABEL": "File"
+          }
+        },
+        "NOTIFICATION_SERVICE": {
+          "FAIL_FORM": {
+            "CONTENT": "There are errors in the forms. Please correct them before continuing.",
+            "TITLE": "Error"
+          },
+          "FAIL_IMPORT_LAYER": {
+            "CONTENT": "Failed to import layer.",
+            "TITLE": "Error"
+          },
+          "IMPORTING_LAYER": {
+            "CONTENT": "Importing layer, this may take a while.",
+            "TITLE": "Info"
+          },
+          "IMPORT_LAYER_SUCCESS": {
+            "CONTENT": "The layer has been imported successfully.",
+            "TITLE": "Imported Layer"
+          }
+        },
+        "SELECT": {
+          "AUTHOR": {
+            "LABEL": "Authorship",
+            "PLACEHOLDER": "Authorship"
+          },
+          "CASES_STUDIES": {
+            "LABEL": "Cases studies",
+            "PLACEHOLDER": "Cases studies"
+          },
+          "CREATION_DATE": {
+            "LABEL": "Creation date",
+            "PLACEHOLDER": "Select date"
+          },
+          "CRS": {
+            "LABEL": "CRS",
+            "PLACEHOLDER": "CRS"
+          },
+          "NAME": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "SOURCE": {
+            "LABEL": "Source",
+            "PLACEHOLDER": "Source"
+          },
+          "SUBJECTS": {
+            "LABEL": "Subjects",
+            "PLACEHOLDER": "Subjects"
+          },
+          "TAGS": {
+            "BUTTONS": {
+              "ADD_BUTTON": "Add"
+            },
+            "LABEL": "Tags",
+            "PLACEHOLDER": "Tags"
+          }
+        },
+        "TITLE": "Import layer"
+      },
+      "PROPERTY_EDIT_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "ERROR_MODAL": {
+          "CONTENT": "An error occurred while trying to update the property.",
+          "TITLE": "Error"
+        },
+        "INPUTS": {
+          "AUTODETECT_CATEGORIES": {
+            "LABEL": "Auto detect categories:",
+            "PLACEHOLDER": "Auto detect categories"
+          },
+          "CATEGORIES": {
+            "EMPTY_ERROR": "You must enter at least one category.",
+            "LABEL": "Categories:",
+            "PLACEHOLDER": "Categories"
+          },
+          "CAT_TYPE": {
+            "LABEL": "Category types:",
+            "PLACEHOLDER": "Category types"
+          },
+          "COL_TYPE": {
+            "LABEL": "COL_TYPE:",
+            "PLACEHOLDER": "COL_TYPE:"
+          },
+          "DATA_TYPE": {
+            "LABEL": "Type:",
+            "PLACEHOLDER": "Type"
+          },
+          "MAX": {
+            "BAD_FORMAT_ERROR": "The format is not correct.",
+            "LABEL": "Maximum:",
+            "MAX_VALUE_LESS_ERROR": "The maximum value cannot be less than the minimum.",
+            "PLACEHOLDER": "Maximum"
+          },
+          "MIN": {
+            "BAD_FORMAT_ERROR": "The format is not correct.",
+            "EMPTY_ERROR": "You must enter at least one category.",
+            "LABEL": "Minimum:",
+            "MIN_VALUE_GREATER_ERROR": "The minimum value cannot be greater than the maximum.",
+            "PLACEHOLDER": "Minimum"
+          },
+          "NATURE": {
+            "LABEL": "Nature:",
+            "PLACEHOLDER": "Nature"
+          },
+          "REPRESENTABLE": {
+            "LABEL": "Representable:",
+            "PLACEHOLDER": "Representable"
+          },
+          "UNIT": {
+            "LABEL": "Units:",
+            "PLACEHOLDER": "Units"
+          }
+        }
+      }
+    }
+  },
+  "GEO_VIEWER": {
+    "INFO": {
+      "ATTRIBUTE": {
+        "NAME": "Name",
+        "STYLE": "Style",
+        "TITLE": "Attribute"
+      },
+      "ATTRIBUTES_TYPES": {
+        "CATEGORY": "Category",
+        "EMPTY": "Empty",
+        "GEOMETRY": "Geometry",
+        "INT": "Integer",
+        "NUMERIC": "Numeric",
+        "STRING": "Character string"
+      },
+      "FILTERS": {
+        "APPLY_BUTTON": "Apply",
+        "FILTERS": {
+          "ADD_FILTER": "Add",
+          "LABEL": "Filters:"
+        },
+        "LAYER": {
+          "LABEL": "Layer:"
+        },
+        "MODAL_GENERATE_CQL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "ERROR": {
+            "VALIDATION": {
+              "CONTENT": "Error validating the filter. Check the errors.",
+              "TITLE": "Error"
+            }
+          },
+          "TITLE": "Generate CQL"
+        },
+        "TITLE": "Filters",
+        "GENERATE_LAYER": "Export layer"
+      },
+      "INFORMATION": {
+        "NOT_FOUND_INFO": "No information found",
+        "TITLE": "Information"
+      },
+      "LAYER": {
+        "ATTRIBUTES": "Attributes",
+        "LEGEND": {
+          "CHECKBOX": "Show legend",
+          "TITLE": "Legend"
+        },
+        "NAME": "Name",
+        "OPACITY": "Opacity",
+        "TITLE": "Layer"
+      }
+    },
+    "OVERLAY_CLICK_MAP": {
+      "NOT_FOUND_INFO": "No information found",
+      "TOOLBAR": {
+        "TITLE": "Info"
+      }
+    },
+    "TABS": {
+      "LAYER": {
+        "CONTENT": {
+          "INPUTS": {
+            "SEARCH": {
+              "PLACEHOLDER": "Search"
+            }
+          },
+          "TITLE": "Layers"
+        },
+        "TITLE": "Layers"
+      },
+      "MAP": {
+        "MODAL_SETTNGS": {
+          "CONTENT": {
+            "BASE_LAYER_INPUT": {
+              "LABEL": "Base layer:",
+              "PLACEHOLDER": "Base Layer",
+              "TYPE": {
+                "CUSTOM": "Personalized",
+                "DEFAULT": "Predetermined"
+              }
+            },
+            "PROJECTION_INPUT": {
+              "LABEL": "Projection:",
+              "PLACEHOLDER": "Projection"
+            }
+          },
+          "ERROR_CHANGE_BASE_LAYER_NOTIFICATION": {
+            "CONTENT": "An error occurred while trying to change the base layer.",
+            "TITLE": "Error"
+          },
+          "FOOTER": {
+            "ACCEPT_BUTTON": "Accept",
+            "CANCEL_BUTTON": "Cancel"
+          },
+          "TITLE": "Map settings"
+        },
+        "TITLE": "Map"
+      }
+    }
+  },
+  "LOGIN": {
+    "CAN_LOGIN_WITH": "Or you can login using",
+    "FORGOT_PASSWORD": "Forgot your password? ",
+    "GUEST": "Guest",
+    "INPUTS": {
+      "PASSWORD": {
+        "LABEL": "Password"
+      }
+    },
+    "LINK_REGISTRATION": {
+      "NORMAL_TEXT": "Do not have an account?",
+      "TEXT_LINK": "You can create one."
+    },
+    "LOGIN_BUTTON": "Log in"
+  },
+  "METADATA": {
+    "ANALYSIS": {
+      "BROWSER": {
+        "BREADCRUMB": "Analysis",
+        "CREATE_MODAL": {
+          "INPUTS": {
+            "ALGORITHM": {
+              "LABEL": "Algorithm"
+            },
+            "DESCRIPTION": {
+              "LABEL": "Description"
+            },
+            "NAME": {
+              "LABEL": "Name"
+            },
+            "PROGRAM": {
+              "LABEL": "Program"
+            },
+            "VERSION": {
+              "LABEL": "Version"
+            }
+          },
+          "TITLE": "Analysis data"
+        },
+        "DELETE_MODAL_ITEM": {
+          "TITLE": "Are you sure you want to delete this analysis and associated data? "
+        },
+        "DELETE_MODAL_SELECTION": {
+          "CONTENT": "Number of selected analyzes:",
+          "TITLE": "Are you sure you want to delete the selected analyses and associated data? "
+        },
+        "TITLE": "Analysis"
+      },
+      "DETAIL": {
+        "EDIT_BUTTON": "Edit detail",
+        "SAVE_BUTTON": "Save changes",
+        "TABS": {
+          "CHRONOLOGY": {
+            "TITLE": "Chronology"
+          },
+          "GENERAL": {
+            "TITLE": "General"
+          },
+          "PHYLOGENIES": {
+            "TITLE": "Phylogenies"
+          },
+          "PROCESSES": {
+            "TITLE": "Processes"
+          },
+          "SEQUENCES": {
+            "TITLE": "Sequences"
+          }
+        },
+        "TITLE": "Analysis"
+      }
+    },
+    "CRS": {
+      "BROWSER": {
+        "BREADCRUMB": "CRS",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "CONTENT": "Are you sure to delete the CRS \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "An error occurred while trying to delete the CRS.",
+            "TITLE": "Error"
+          },
+          "TITLE": "Delete CRS"
+        },
+        "TITLE": "CRS"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "CODE_INPUT": {
+          "ERROR_EMPTY": "You must enter the code.",
+          "LABEL": "Code",
+          "PLACEHOLDER": "Code"
+        },
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "An error occurred while trying to create a CRS.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Error"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "You must enter the name.",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "PROJ4_INPUT": {
+          "ERROR_EMPTY": "You must enter the Proj4 code.",
+          "ERROR_FORMAT": "It is not in the correct format.",
+          "LABEL": "Proj4",
+          "PLACEHOLDER": "Proj4"
+        },
+        "TITLE": "Create CRS"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "CRS - {{params.name}}",
+        "CANCEL_BUTTON": "Cancel",
+        "CODE_INPUT": {
+          "ERROR_EMPTY": "You must enter the code.",
+          "LABEL": "Code",
+          "PLACEHOLDER": "Code"
+        },
+        "ID_INPUT": {
+          "LABEL": "Id"
+        },
+        "MODIFY_BUTTON": "Modify",
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "You must enter the name.",
+          "ERROR_FORMAT": "It is not in the correct format.",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "PROJ4_INPUT": {
+          "ERROR_EMPTY": "You must enter the Proj4 code.",
+          "LABEL": "Proj4",
+          "PLACEHOLDER": "Proj4"
+        },
+        "TITLE": "CRS",
+        "UPDATE_ERROR_MODAL": {
+          "CONTENT": "An error occurred while trying to update the CRS.",
+          "TITLE": "Error"
+        }
+      }
+    },
+    "INDIVIDUALS": {
+      "BROWSER": {
+        "BREADCRUMB": "Individuals",
+        "TITLE": "Individuals"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Individual - {{name}}",
+        "CANCEL_BUTTON": "Cancel",
+        "DESCRIPTION_INPUT": {
+          "LABEL": "Description",
+          "PLACEHOLDER": "Description"
+        },
+        "ID_INPUT": {
+          "LABEL": "Id"
+        },
+        "MODIFY_BUTTON": "Modify",
+        "NAME_INPUT": {
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "TITLE": "Individual - {{name}}",
+        "UNIQUENAME_INPUT": {
+          "ERROR_EMPTY": "You must enter the unique name.",
+          "LABEL": "Unique name",
+          "PLACEHOLDER": "Unique name"
+        },
+        "UPDATE_ERROR_MODAL": {
+          "CONTENT": "An error occurred while trying to update the individual.",
+          "TITLE": "Error"
+        },
+        "GENERAL_TAB": {
+          "TITLE": "General",
+          "ORGANISM_INPUT": {
+            "DETAIL_BUTTON": "See details",
+            "LABEL": "Organism"
+          },
+          "ONTOLOGY_INPUT": {
+            "DETAIL_BUTTON": "See details",
+            "LABEL": "Term"
+          }
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Sequences"
+        }
+      }
+    },
+    "ONTOLOGIES": {
+      "BROWSER": {
+        "TITLE": "Ontologies"
+      },
+      "DETAIL": {
+        "TABS": {
+          "GENERAL": {
+            "TITLE": "General"
+          },
+          "TERMS": {
+            "TITLE": "Terms"
+          }
+        },
+        "TITLE": "Ontology"
+      },
+      "IMPORT": {
+        "LOAD_BUTTON": "Loading",
+        "SUBTITLE": "(from OBO files)",
+        "TITLE": "Import ontology",
+        "UPLOAD_BUTTON": "Start upload"
+      }
+    },
+    "ORGANISMS": {
+      "BROWSER": {
+        "BREADCRUMB": "Organisms",
+        "CREATE_MODAL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "INPUTS": {
+            "ABRIDGING": {
+              "LABEL": "Abbreviation"
+            },
+            "COMMENTARY": {
+              "LABEL": "Comment"
+            },
+            "COMMON_NAME": {
+              "LABEL": "Common name"
+            },
+            "GENUS": {
+              "LABEL": "Genus"
+            },
+            "SPECIES": {
+              "LABEL": "Species"
+            }
+          },
+          "TITLE": "Organism data"
+        },
+        "DELETE_ITEM_MODAL": {
+          "TITLE": "Are you sure you want to delete this organism and associated data?"
+        },
+        "DELETE_SELECTION_MODAL": {
+          "CONTENT": "Number of selected organisms:",
+          "TITLE": "Are you sure you want to delete the selected organisms and associated data? "
+        },
+        "TITLE": "Organisms"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Organism - {{params.name}}",
+        "CANCEL_CHANGES": "Cancel changes",
+        "MODIFY": "Modify",
+        "NOTIFICATION_ERROR_LOAD_DATA": {
+          "CONTENT": "An error occurred while trying to load data from the server.",
+          "TITLE": "Error"
+        },
+        "NOTIFICATION_ERROR_SAVE_CHANGES": {
+          "CONTENT": "An error occurred while trying to modify the organism.",
+          "TITLE": "Error"
+        },
+        "TABS": {
+          "GENERAL": {
+            "ABBREVIATION_INPUT": {
+              "LABEL": "Abbreviation",
+              "PLACEHOLDER": "Abbreviation"
+            },
+            "COMMON_NAME_INPUT": {
+              "LABEL": "Common name",
+              "PLACEHOLDER": "Common name"
+            },
+            "GENUS_INPUT": {
+              "LABEL": "Genus",
+              "PLACEHOLDER": "Genus"
+            },
+            "NAME_INPUT": {
+              "LABEL": "Name",
+              "PLACEHOLDER": "Name"
+            },
+            "SPECIES_INPUT": {
+              "LABEL": "Species",
+              "PLACEHOLDER": "Species"
+            },
+            "TITLE": "General",
+            "INFRASPEC_INPUT": {
+              "LABEL": "Specification",
+              "PLACEHOLDER": "Specification"
+            },
+            "TYPE": {
+              "LABEL": "Term",
+              "DETAIL_BUTTON": "See details"
+            }
+          },
+          "SAMPLES": {
+            "NAME_TH": "Name",
+            "TITLE": "Samples"
+          },
+          "INDIVIDUALS": {
+            "NAME_TH": "Name",
+            "TITLE": "Individuals"
+          }
+        },
+        "TITLE": "Organism",
+        "SUBTITLE": "Detailed information"
+      }
+    },
+    "SOURCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Sources",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "CONTENT": "Are you sure you want to delete the source \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "An error occurred while trying to delete the source.",
+            "TITLE": "Error"
+          },
+          "TITLE": "Delete source"
+        },
+        "TITLE": "Sources"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "An error occurred while trying to create the source.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Error"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Please enter the name.",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "TITLE": "Create source"
+      },
+      "TITLE": "Sources"
+    },
+    "SUBJECTS": {
+      "BROWSER": {
+        "BREADCRUMB": "Subjects",
+        "DELETE_ITEM_MODAL": {
+          "ACCEPT_BUTTON": "Accept",
+          "CANCEL_BUTTON": "Cancel",
+          "CONTENT": "Are you sure you want to delete the subject \"{{name}}\"?",
+          "NOTIFICATION_ERROR": {
+            "CONTENT": "An error occurred while trying to delete the subject.",
+            "TITLE": "Error"
+          },
+          "TITLE": "Delete subject"
+        },
+        "TITLE": "Subjects"
+      },
+      "CREATE_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "ERROR_CREATE_THEME": {
+          "CONTENT": "An error occurred while trying to create a subject.",
+          "OK_BUTTON": "OK",
+          "TITLE": "Error"
+        },
+        "NAME_INPUT": {
+          "ERROR_EMPTY": "Please enter the name.",
+          "LABEL": "Name",
+          "PLACEHOLDER": "Name"
+        },
+        "TITLE": "Create subject"
+      },
+      "TITLE": "Subjects"
+    },
+    "TERMS": {
+      "BROWSE": {
+        "TITLE": "Terms"
+      },
+      "DETAIL": {
+        "GENERAL_TAB": {
+          "DEFINITION_INPUT": {
+            "LABEL": "Definition",
+            "PLACEHOLDER": "Definition"
+          },
+          "NAME_INPUT": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "TITLE": "General"
+        },
+        "TITLE": "Term"
+      }
+    },
+    "TAXONOMIES": {
+      "BROWSER": {
+        "TITLE": "Taxonomies"
+      },
+      "DETAIL": {
+        "TABS": {
+          "GENERAL": {
+            "TITLE": "General"
+          },
+          "TERMS": {
+            "TITLE": "Terms"
+          }
+        },
+        "TITLE": "Taxonomy"
+      },
+      "IMPORT": {
+        "LOAD_BUTTON": "Loading",
+        "SUBTITLE": "(from XLS files)",
+        "TITLE": "Import taxonomy",
+        "UPLOAD_BUTTON": "Start upload"
+      }
+    }
+  },
+  "MISC": {
+    "ANALYSIS_TAB": "Analysis",
+    "ANNOTATIONS": {
+      "ANNOTATION_TAB": "Annotations",
+      "FORM": "Form",
+      "FREE_FIELD": "Free field",
+      "RICH_TEXT_FIELD": "Rich Text",
+      "TEMPLATE": "Template"
+    },
+    "BREADCRUMB": {
+      "CASE_STUDIES": "Case study"
+    },
+    "BROWSER": {
+      "ITEMS_PER_PAGE": {
+        "PAGE": "page"
+      }
+    },
+    "PHYLOGENIES_TAB": "Phylogenies",
+    "PROCESSES_TAB": "Processes",
+    "PROFILE": {
+      "CLOSE_SESSION": "Sign out",
+      "PREFERENCES": "Preferences"
+    },
+    "IMPORTS": {
+      "LOADING_LABEL": "Loading",
+      "START_LABEL": "Start upload",
+      "TEXT_LABEL": "Click or drag files to this area",
+      "HINT_LABEL": "The files will be added to a list. When everything is ready, click the 'Start upload' button."
+    },
+    "TABS": {
+      "SEQUENCES": {
+        "TITLE": "Sequences",
+        "NAME_TH": "Names"
+      },
+      "SPECIES": {
+        "TITLE": "Taxa",
+        "NAME_TH": "Names"
+      },
+      "INDIVIDUALS": {
+        "TITLE": "Individuals",
+        "NAME_TH": "Names"
+      },
+      "ANALYSES": {
+        "TITLE": "Analysis",
+        "NAME_TH": "Names",
+        "TABLES": {
+          "ACTIONS": "Actions",
+          "FROM_TITLE": "Derives from",
+          "INTO_TITLE": "Derives into",
+          "TH_NAME": "Name",
+          "TH_OBJECT_TYPE": "Type"
+        }
+      },
+      "PHYLOGENIES": {
+        "TITLE": "Phylogenies",
+        "NAME_TH": "Names"
+      },
+      "JOBS": {
+        "TITLE": "Processes",
+        "NAME_TH": "Names"
+      },
+      "PROCESSES": {
+        "TITLE": "Processes",
+        "NAME_TH": "Names"
+      }
+    }
+  },
+  "MOLECULAR_DATA": {
+    "BLAST": {
+      "BROWSER": {
+        "BREADCRUMB": "BLAST",
+        "TITLE": "BLAST"
+      }
+    },
+    "COLLECTIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "Collections",
+        "TITLE": "Collections",
+        "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "The selected collections have been successfully deleted.",
+        "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "An error occurred while trying to delete the collections.",
+        "NOTIFICATION_DELETE_ITEM_SUCCESS_CONTENT": "The collection was successfully deleted.",
+        "NOTIFICATION_DELETE_ITEM_ERROR_CONTENT": "An error occurred while trying to delete the collection."
+      },
+      "DETAIL": {
+        "GENERAL_TITLE": "General",
+        "ANNOTATIONS_TITLE": "Annotations",
+        "CANCEL_BUTTON": "Cancel",
+        "MODIFY_BUTTON": "Modify",
+        "BREADCRUMB": "Collection - {{params.name}}",
+        "TITLE": "Collection",
+        "INPUTS": {
+          "ENTITIES": {
+            "LABEL": "Entities",
+            "TH": {
+              "ACTIONS": "Actions",
+              "NAME": "Name",
+              "TYPE": "Type"
+            }
+          },
+          "NAME": {
+            "LABEL": "Name"
+          }
+        },
+        "NOTIFICATION_ERROR_LOAD_ENTITIES": {
+          "CONTENT": "An error occurred while trying to load the entities"
+        }
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Create collection",
+        "CREATE_BUTTON": "Create",
+        "CANCEL_BUTTON": "Cancel",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Name"
+          }
+        }
+      },
+      "ADD_ITEMS_MODAL": {
+        "TITLE": "Add to collection",
+        "CANCEL_BUTTON": "Cancel",
+        "ACCEPT_BUTTON": "Accept",
+        "INPUTS": {
+          "COLLECTIONS": {
+            "LABEL": "Collections",
+            "ERROR_EMPTY": "Select a collection"
+          }
+        }
+      },
+      "ADD_BUTTON_ITEM": "Add to collection"
+    },
+    "DISCRIMINANT_MATRIX": {
+      "BROWSER": {
+        "BREADCRUMB": "Discriminant matrices",
+        "TITLE": "Discriminant matrices"
+      }
+    },
+    "MULTIPLE_ALIGNMENTS": {
+      "NUCLEOTIDE_EDITOR": {
+        "BREADCRUMB": "Nextgendem MSA Editor",
+        "HEADER_STRINGS": {
+          "SAVE": "Save",
+          "SAVE_NAME": "Name without extension",
+          "SEQUENCE_KEY": "Sequence key",
+          "MOTIF": "Motif",
+          "POSITION": "Position",
+          "COMPLEMENT": "Complement",
+          "INVERSE": "Reverse",
+          "NEXT": "Next",
+          "GO": "Go",
+          "CURSOR_KEY": "Cursor key",
+          "CURSOR_POS": "Cursor position",
+          "N_NUCLEOTIDES_ARROWS": "Number of nucleotides to move with the arrows"
+        },
+        "LOG": {
+          "DUPLICATED_SEQUENCES": "The {{sequences}} sequences are repeated"
+        },
+        "SAVE_MODAL": {
+          "NAME": "Name",
+          "DOWNLOAD_SVG": "Download SVG image",
+          "DOWNLOAD_FASTA": "Download FASTA alignment",
+          "IMPORT_VIEW": "Import View",
+          "IMPORT_NEW_ALIGNMENT": "Import new alignment"
+        },
+        "SAVE_OPTIONS": {
+          "SVG_IMAGE": "SVG image",
+          "FASTA": "FASTA file",
+          "VIEW": "Save View",
+          "ALN": "Import Alignment",
+          "VERSION": "Save Version"
+        },
+        "SAVE_VIEW": {
+          "NOTIFICATION_CREATE_VIEW_CORRECTLY": {
+            "CONTENT": "The view has been saved correctly.",
+            "TITLE": "View saved"
+          },
+          "NOTIFICATION_CREATE_VIEW_ERROR": {
+            "CONTENT": "An error occurred while trying to save the view",
+            "TITLE": "Error"
+          }
+        },
+        "IMPORT_ALN": {
+          "NOTIFICATION_IMPORT_ALN_CORRECTLY": {
+            "CONTENT": "The alignment has been successfully imported.",
+            "TITLE": "Alignment Imported"
+          },
+          "NOTIFICATION_IMPORT_ALN_ERROR": {
+            "CONTENT": "An error occurred while trying to import the alignment",
+            "TITLE": "Error"
+          }
+        },
+        "IMPORT_VERSION": {
+          "NOTIFICATION_IMPORT_VERSION_CORRECTLY": {
+            "CONTENT": "A new version of the alignment has been imported.",
+            "TITLE": "New Version Imported"
+          },
+          "NOTIFICATION_IMPORT_VERSION_ERROR": {
+            "CONTENT": "An error occurred while trying to import the new version of the alignment",
+            "TITLE": "Error"
+          }
+        }
+      },
+      "BROWSER": {
+        "BREADCRUMB": "Multiple alignments",
+        "TITLE": "Multiple Alignments",
+        "CONCAT_BUTTON": "Concatenate",
+        "CUSTOM_ACTIONS_BUTTONS": {
+          "NEXTGENDEM_MISSING_EDITOR": "Nextgendem missing editor",
+          "NEXTGENDEM_MSA": "Nextgendem MSA"
+        }
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Multiple Alignments - {{params.name}}",
+        "GENERAL_TAB": {
+          "CANCEL_BUTTON": "Cancel",
+          "DESCRIPTION_INPUT": {
+            "LABEL": "Description",
+            "PLACEHOLDER": "Description"
+          },
+          "ERROR_UPDATE_NOTIFICATION": {
+            "CONTENT": "An error occurred while trying to update the multiple alignment.",
+            "TITLE": "Error"
+          },
+          "MODIFY_BUTTON": "Modify",
+          "NAME_INPUT": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "PROGRAMVERSION_INPUT": {
+            "LABEL": "Program version",
+            "PLACEHOLDER": "Program version"
+          },
+          "PROGRAM_INPUT": {
+            "LABEL": "Program",
+            "PLACEHOLDER": "Program"
+          },
+          "SEQLEN_INPUT": {
+            "LABEL": "Sequence length",
+            "PLACEHOLDER": "Sequence length"
+          },
+          "SEQNUM_INPUT": {
+            "LABEL": "Sequence Number",
+            "PLACEHOLDER": "Sequence Number"
+          },
+          "SOURCENAME_INPUT": {
+            "LABEL": "Source name",
+            "PLACEHOLDER": "Source name"
+          },
+          "SOURCEVERSION_INPUT": {
+            "LABEL": "Source version",
+            "PLACEHOLDER": "Source version"
+          },
+          "SOURCE_URI_INPUT": {
+            "LABEL": "Source URI",
+            "PLACEHOLDER": "Source URI"
+          },
+          "TIMEEXECUTED_INPUT": {
+            "LABEL": "Execution date",
+            "PLACEHOLDER": "Name"
+          },
+          "TITLE": "General",
+          "ALGORITHM_INPUT": {
+            "LABEL": "Algorithm",
+            "PLACEHOLDER": "Analysis algorithm"
+          }
+        },
+        "PHYLOTREE_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Phylogenetic trees"
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Sequences"
+        },
+        "SPECIES_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Species"
+        },
+        "TABS": {
+          "ANALYSES": {
+            "FROM_NAME_TH": "Derived from",
+            "INTO_NAME_TH": "Source of",
+            "TITLE": "Analysis"
+          },
+          "SEQUENCES": {
+            "NAME_TH": "Name",
+            "TITLE": "Sequences"
+          },
+          "SPECIES": {
+            "NAME_TH": "Name",
+            "TITLE": "Species"
+          }
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Import multiple alignments"
+      },
+      "NEXTGENDEM_MISSING_VALUES": {
+        "BREADCRUMB": "Nextgendem Missing Values - {{params.name}}",
+        "BREADCRUMB_NOT_ID": "Nextgendem Missing Values"
+      }
+    },
+    "PHYLOTREES": {
+      "BROWSER": {
+        "BREADCRUMB": "Phylogenetic trees",
+        "TITLE": "Phylogenetic trees"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Phylogenetic tree - {{params.name}}",
+        "EXPORT_BUTTON": "Export",
+        "EXPORT_MODAL_CONTENT": "In what format do you want to download?",
+        "GENERAL_TAB": {
+          "ALIGNMENT_INPUT": {
+            "DETAIL_BUTTON": "Details",
+            "LABEL": "Phylogenetic alignment",
+            "PLACEHOLDER": "Phylogenetic alignment"
+          },
+          "CANCEL_BUTTON": "Cancel",
+          "COMMENT_INPUT": {
+            "LABEL": "Comment",
+            "PLACEHOLDER": "Comment"
+          },
+          "MODIFY_BUTTON": "Modify",
+          "NAME_INPUT": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "TERMS_INPUT": {
+            "DETAIL_BUTTON": "Details",
+            "LABEL": "Term",
+            "PLACEHOLDER": "Term"
+          },
+          "TITLE": "General",
+          "UPDATE_ERROR_NOTIFICATION": {
+            "CONTENT": "An error occurred while trying to update the phylogenetic tree.",
+            "TITLE": "Error"
+          }
+        },
+        "SEQUENCES_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Sequences"
+        },
+        "PHYLOTREES_TAB": {
+          "NAME_TH": "Name",
+          "TITLE": "Phylogenetic Trees"
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Import phylogenetic tree"
+      },
+      "ARCHAEOPTERYX": {
+        "BREADCRUMB": "Archaeopteryx",
+        "NOTIFICATION_CREATE_VIEW_ERROR": {
+          "CONTENT": "An error occurred while trying to save the view",
+          "TITLE": "Error"
+        },
+        "NOTIFICATION_CREATE_VIEW_CORRECTLY": {
+          "CONTENT": "The view has been saved correctly.",
+          "TITLE": "View Saved"
+        }
+      }
+    },
+    "SEQUENCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Genetic sequences",
+        "TITLE": "Genetic sequences"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Sequence - {{params.name}}",
+        "EXPORT_BUTTON": "Export",
+        "GENERAL_TAB": {
+          "CANCEL_BUTTON": "Cancel",
+          "DIMENSION_INPUT": {
+            "LABEL": "Dimension"
+          },
+          "INDIVIDUAL_INPUT": {
+            "DETAIL_BUTTON": "See detail",
+            "LABEL": "Individual"
+          },
+          "LAST_MODIFICATION_INPUT": {
+            "LABEL": "Last modification"
+          },
+          "MODIFY_BUTTON": "Modify",
+          "NAME_INPUT": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "ONTOLOGY_INPUT": {
+            "DETAIL_BUTTON": "See detail",
+            "LABEL": "Term"
+          },
+          "ORGANISM_INPUT": {
+            "DETAIL_BUTTON": "See detail",
+            "LABEL": "Organism"
+          },
+          "REGISTRATION_DATE_INPUT": {
+            "LABEL": "Registration date"
+          },
+          "TITLE": "General",
+          "UNIQUE_NAME_INPUT": {
+            "LABEL": "Unique name",
+            "PLACEHOLDER": "Unique name"
+          },
+          "UPDATE_ERROR_NOTIFICATION": {
+            "CONTENT": "An error occurred while trying to update the sequence.",
+            "TITLE": "Error"
+          },
+          "SRCFEATURE_INPUT": {
+            "DETAIL_BUTTON": "See detail",
+            "LABEL": "Source sequence"
+          }
+        },
+        "SUBTITLE": "Detailed information",
+        "FROM_SEQUENCE_TAB": {
+          "LABEL": "Sequences",
+          "NAME_TH": "Variants"
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Import Sequences",
+        "TITLE": "Import Sequences",
+        "FORMS": {
+          "INFO_TITLE": "Additional Information",
+          "CONF_TITLE": "Procedure",
+          "BIODATA_COLLAPSE": "Advanced Data",
+          "DATA_COLLAPSE": "General Data",
+          "FILES_TITLE": "Files",
+          "INPUTS": {
+            "ORG": {
+              "LABEL": "Organism",
+              "PLACEHOLDER": "Assign Taxon"
+            },
+            "STUDY_CASES": {
+              "LABEL": "Case studies",
+              "PLACEHOLDER": "Include in case studies"
+            },
+            "COLLECTIONS": {
+              "LABEL": "Collections",
+              "PLACEHOLDER": "Include in collections"
+            },
+            "GENE": {
+              "LABEL": "Gene",
+              "PLACEHOLDER": "Assign DNA region"
+            },
+            "GENES": {
+              "LABEL": "Interesting genes",
+              "PLACEHOLDER": "Select genes to split and extract"
+            },
+            "DUPLICATES": {
+              "LABEL": "Duplication",
+              "DEFAULT": "No duplicates",
+              "IGNORE": "Ignore",
+              "UPDATE": "Overwrite"
+            },
+            "ONLY_RESIDUES": {
+              "LABEL": "No annotations"
+            }
+          }
+        }
+      }
+    },
+    "SUPERMATRIX": {
+      "BROWSER": {
+        "BREADCRUMB": "Super matrices",
+        "TITLE": "Super matrices"
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Supermatrices",
+        "TITLE": "Supermatrices"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Supermatrix - {{ params.name }}"
+      }
+    },
+    "ANALYSES": {
+      "DETAIL": {
+        "BREADCRUMB": "Analysis - {{params.name}}",
+        "SUBTITLE": "Detailed information",
+        "EXPORT_BUTTON": "Export",
+        "TABS": {
+          "GENERAL": {
+            "CANCEL_BUTTON": "Cancel",
+            "DESCRIPTION_INPUT": {
+              "LABEL": "Description",
+              "PLACEHOLDER": "Description"
+            },
+            "ERROR_UPDATE_NOTIFICATION": {
+              "CONTENT": "An error occurred while trying to update the multiple alignment.",
+              "TITLE": "Error"
+            },
+            "MODIFY_BUTTON": "Modify",
+            "NAME_INPUT": {
+              "LABEL": "Name",
+              "PLACEHOLDER": "Name"
+            },
+            "PROGRAMVERSION_INPUT": {
+              "LABEL": "Program version",
+              "PLACEHOLDER": "Program version"
+            },
+            "PROGRAM_INPUT": {
+              "LABEL": "Program",
+              "PLACEHOLDER": "Program"
+            },
+            "SEQLEN_INPUT": {
+              "LABEL": "Sequence length",
+              "PLACEHOLDER": "Sequence length"
+            },
+            "SEQNUM_INPUT": {
+              "LABEL": "Sequence number",
+              "PLACEHOLDER": "Sequence number"
+            },
+            "SOURCENAME_INPUT": {
+              "LABEL": "Source",
+              "PLACEHOLDER": "Source name"
+            },
+            "ALGORITHM_INPUT": {
+              "LABEL": "Algorithm",
+              "PLACEHOLDER": "Analysis algorithm"
+            },
+            "SOURCEVERSION_INPUT": {
+              "LABEL": "Source version",
+              "PLACEHOLDER": "Source version"
+            },
+            "SOURCE_URI_INPUT": {
+              "LABEL": "Source URI",
+              "PLACEHOLDER": "Source URI"
+            },
+            "TIMEEXECUTED_INPUT": {
+              "LABEL": "Execution date",
+              "PLACEHOLDER": "Name"
+            },
+            "TITLE": "General"
+          },
+          "CASES_STUDY": {
+            "TITLE": "Case studies"
+          },
+          "COLLECTIONS": {
+            "TITLE": "Collections"
+          }
+        }
+      },
+      "IMPORT": {
+        "BREADCRUMB": "Import computational analysis",
+        "TITLE": "Import computational analysis",
+        "FORMS": {
+          "INFO_TITLE": "Additional information",
+          "CONF_TITLE": "Procedure",
+          "BIODATA_COLLAPSE": "Advanced data",
+          "DATA_COLLAPSE": "General data",
+          "FILES_TITLE": "Files",
+          "INPUTS": {
+            "PROGRAM": {
+              "LABEL": "Program"
+            },
+            "PROGRAMVERSION": {
+              "LABEL": "Version",
+              "PLACEHOLDER": "Imported file"
+            },
+            "NAME": {
+              "LABEL": "Name"
+            },
+            "ALGORITHM": {
+              "LABEL": "Algorithm"
+            },
+            "DESCRIPTION": {
+              "LABEL": "Description"
+            },
+            "ORG": {
+              "LABEL": "Organism",
+              "PLACEHOLDER": "Assign taxon"
+            },
+            "SOURCE": {
+              "LABEL": "Derive from",
+              "PLACEHOLDER": "Select provenance analysis"
+            },
+            "STUDY_CASES": {
+              "LABEL": "Case studies",
+              "PLACEHOLDER": "Include in case studies"
+            },
+            "COLLECTIONS": {
+              "LABEL": "Collections",
+              "PLACEHOLDER": "Include in collections"
+            },
+            "GENE": {
+              "LABEL": "Gene",
+              "PLACEHOLDER": "Assign DNA region"
+            },
+            "GENES": {
+              "LABEL": "Genes under study",
+              "PLACEHOLDER": "Select genes to split and extract"
+            },
+            "DUPLICATES": {
+              "LABEL": "Duplicity",
+              "DEFAULT": "No duplicates",
+              "IGNORE": "Ignore",
+              "UPDATE": "Overwrite"
+            },
+            "OVERWRITE": {
+              "LABEL": "Overwrite",
+              "PLACEHOLDER": "Select existing analysis"
+            },
+            "ONLY_RESIDUES": {
+              "LABEL": "No annotations"
+            }
+          }
+        }
+      }
+    },
+    "IMPORT": {
+      "FORMS": {
+        "INFO_TITLE": "Additional information",
+        "CONF_TITLE": "Procedure",
+        "BIODATA_COLLAPSE": "Advanced data",
+        "DATA_COLLAPSE": "General data",
+        "FILES_TITLE": "Files",
+        "INPUTS": {
+          "SUGGEST_OPTION": "Add option",
+          "STUDY_CASES": {
+            "LABEL": "Case studies",
+            "PLACEHOLDER": "Include in case studies"
+          },
+          "COLLECTIONS": {
+            "LABEL": "Collections",
+            "PLACEHOLDER": "Include in collections"
+          },
+          "SOURCE": {
+            "LABEL": "Derives from",
+            "PLACEHOLDER": "Select origin analysis"
+          },
+          "ORG": {
+            "LABEL": "Organism",
+            "PLACEHOLDER": "Assign taxon"
+          },
+          "GENE_TAGS": {
+            "LABEL": "Genes",
+            "PLACEHOLDER": "Assign DNA region"
+          },
+          "TARGET_GENES": {
+            "LABEL": "Genes of interest",
+            "PLACEHOLDER": "Select genes to split and extract"
+          },
+          "DUPLICATES": {
+            "LABEL": "Duplicity",
+            "DEFAULT": "No duplicates",
+            "IGNORE": "Ignore",
+            "UPDATE": "Overwrite"
+          },
+          "OVERWRITE": {
+            "LABEL": "Overwrite",
+            "PLACEHOLDER": "Select existing analysis"
+          },
+          "MORE_OPTIONS": {
+            "LABEL": "Additional options",
+            "ONLY_RESIDUES": "Without annotations",
+            "REMOVE_GAPS": "Without gaps",
+            "SPLIT_GENES": "Split all genes",
+            "ONLY_INDIVIDUALS": "Only individuals"
+          },
+          "MISSING_VALUE": {
+            "LABEL": "Representation of missing data",
+            "PLACEHOLDER": "?",
+            "EMPTY_ERROR": "This field is required."
+          },
+          "PROGRAM": {
+            "LABEL": "Program"
+          },
+          "PROGRAMVERSION": {
+            "LABEL": "Version",
+            "PLACEHOLDER": "(Imported file)"
+          },
+          "NAME": {
+            "LABEL": "Name"
+          },
+          "ALGORITHM": {
+            "LABEL": "Algorithm"
+          },
+          "DESCRIPTION": {
+            "LABEL": "Description"
+          }
+        },
+        "BUTTONS": {
+          "LOADING": "Loading",
+          "START_UPLOAD": "Start upload"
+        }
+      }
+    }
+  },
+  "PREFERENCES_MODAL": {
+    "API_KEYS": {
+      "DELETE_NOTIFICATION_ERROR": {
+        "CONTENT": "An unexpected error occurred while trying to delete an API Key.",
+        "TITLE": "Error"
+      },
+      "GENERATE_BUTTON": "Generate",
+      "GENERATE_MODAL": {
+        "CONTENT": {
+          "ROLE_INPUT": {
+            "ERROR_EMPTY": "There must be at least one role selected.",
+            "LABEL": "Roles",
+            "PLACEHOLDER": "Roles"
+          }
+        },
+        "FOOTER": {
+          "CANCEL_BUTTON": "Cancel",
+          "GENERATE_BUTTON": "Generate"
+        },
+        "TITLE": "Generate API key"
+      },
+      "GET_NOTIFICATION_ERROR": {
+        "CONTENT": "An unexpected error occurred while trying to load the API Keys.",
+        "TITLE": "Error"
+      },
+      "POST_NOTIFICATION_ERROR": {
+        "CONTENT": "An unexpected error occurred while trying to create an API Key.",
+        "TITLE": "Error"
+      },
+      "TABLE": {
+        "ACTIONS_TH": "Actions",
+        "ID_TH": "ID",
+        "ROLES_TH": "Roles",
+        "VALID_FROM_TH": "Valid from"
+      },
+      "TITLE": "API Keys"
+    },
+    "BUTTONS": {
+      "CONFIRM_CHANGES": "Confirm changes"
+    },
+    "LANGUAGES": {
+      "LANGUAGE_DESCRIPTION": "Choose the language in which you want to use the NEXTGENDEM system.",
+      "LANGUAGE_LABEL": "Language",
+      "LANGUAGE_TYPES": {
+        "private-en": "English",
+        "private-es": "Spanish",
+        "private-fr": "French",
+        "private-pt": "Portuguese"
+      },
+      "TITLE": "Languages"
+    },
+    "MODAL_CANCEL_OR_CONFIRM": {
+      "BODY": "Do you want to save the changes?",
+      "BUTTONS": {
+        "CANCEL": "Cancel",
+        "DISCARD": "Discard",
+        "SAVE": "Save"
+      },
+      "TITLE": "Warning"
+    },
+    "PROFILE": {
+      "TITLE": "Profile"
+    },
+    "THEMES": {
+      "TITLE": "Themes",
+      "TYPES": {
+        "CYAN_1": "Cyan #1",
+        "CYAN_2": "Cyan #2",
+        "GOLD": "Gold",
+        "GRASS_GREEN": "Grass green",
+        "GRAY": "Gray",
+        "GREEN_NEXTGENDEM": "Green NEXTGENDEM",
+        "BLUE_NEXTGENDEM": "Blue NEXTGENDEM"
+      }
+    },
+    "TITLE": "Preferences"
+  },
+  "PROCESSES": {
+    "BROWSER": {
+      "BREADCRUMB": {
+        "DONE": "Completed Processes",
+        "TO_DO": "Pending Processes"
+      },
+      "TITLE": {
+        "DONE": "Completed Processes",
+        "TO_DO": "Pending Processes"
+      },
+      "NAME_TH": "Name",
+      "STATE_TH": "State",
+      "PROCESSES_TH": "Processes",
+      "SERVER_TH": "Server",
+      "ACTIONS_TH": "Actions"
+    },
+    "PROCESSES_DETAIL": {
+      "BREADCRUMB": "Process {{params.name}}",
+      "CANCEL_BUTTON": "Cancel",
+      "CANCEL_PROCCESS_MODAL": {
+        "ACCEPT_BUTTON": "Accept",
+        "CLOSE_BUTTON": "Close",
+        "CONTENT": "Are you sure to abort process {{name}}?",
+        "TITLE": "Cancel process"
+      },
+      "CANCEL_PROCESS_NOTIFICATION_CORRECTLY": {
+        "CONTENT": "It has been successfully cancelled.",
+        "TITLE": "Process canceled"
+      },
+      "CANCEL_PROCESS_NOTIFICATION_ERROR": {
+        "CONTENT": "A problem occurred while trying to cancel the process.",
+        "TITLE": "Error"
+      },
+      "INFO": {
+        "DOWNLOAD_BUTTON": "Download",
+        "FILES": "Files",
+        "IMPORT_BUTTON": "Import",
+        "DETAIL_BUTTON": "Details",
+        "RESOURCE": "Resource",
+        "RESOURCE_TYPE": "Resource type",
+        "STATUS": "Status",
+        "STEPS_DESC": {
+          "cancelled": "Process cancelled",
+          "cancelling": "Cancelling process",
+          "manage_error": "Managing an error",
+          "cleanup": "Cleaning up the remote server workspace",
+          "created": "Process submitted.",
+          "error": "Error",
+          "export": "Exporting the input data from the database",
+          "preparing_workspace": "Preparing the workspace on the remote server",
+          "store_result_in_backend": "Saving results in the database",
+          "submit": "Sending the process to the remote server",
+          "success": "Completed",
+          "transfer_data_from_resource": "Getting process results from remote server",
+          "transfer_data_to_resource": "Transferring data to remote server",
+          "wait_for_execution_end": "Waiting for the server to finish executing the sent process",
+          "wait_until_execution_starts": "Waiting for the server to execute the submitted process"
+        },
+        "SUBPROCESSES_PARAMETERS": "Subprocesses Parameters",
+        "VISUALIZE_BUTTON": "Visualize"
+      },
+      "RELAUNCH_BUTTON": "Relaunch",
+      "TITLE": "Process",
+      "IMPORT_MODAL": {
+        "NAME": "Name",
+        "TITLE": "Import result"
+      }
+    },
+    "PROCESSES_SETUP": {
+      "BREADCRUMB": "Submit Process",
+      "STEPS": {
+        "PROGRAM": {
+          "COMPUTING_RESOURCE_INPUT": {
+            "LABEL": "Computing resource",
+            "PLACEHOLDER": "Select computing resource"
+          },
+          "N_CPU_PER_PROCESSES_INPUT": {
+            "LABEL": "# of Threads"
+          },
+          "N_NODES_INPUT": {
+            "LABEL": "# of Nodes"
+          },
+          "N_PROCESSES_INPUT": {
+            "LABEL": "# of Processes"
+          },
+          "PROGRAM_INPUT": {
+            "LABEL": "Program",
+            "PLACEHOLDER": "Select program"
+          },
+          "TIME_IN_HOURS_INPUT": {
+            "LABEL": "Time in hours"
+          },
+          "TITLE": "Program"
+        },
+        "SETTING": {
+          "TITLE": "Configuration"
+        },
+        "SUMMARY": {
+          "LAUNCH_TASK": "Launch task",
+          "LOADING": "Loading",
+          "PLACE_OF_EXECUTION_TD": "Place of execution",
+          "PROGRAM_TD": "Program",
+          "PROGRAM_VERSION_TD": "Program version",
+          "SELECTED_FILES_TD": "Selected files",
+          "SELECTED_SEQUENCES_TD": "Selected sequences",
+          "SETTINGS_TH": "Settings",
+          "TASK_PRIORITY_TD": "Task priority",
+          "TITLE": "Summary"
+        },
+        "EXECUTE_JOB_MODAL": {
+          "BODY": "Are you sure you want to run this process?"
+        }
+      },
+      "INFO_BUTTON": "Info",
+      "NEXT_BUTTON": "Next",
+      "PREVIOUS_BUTTON": "Previous",
+      "OPEN_IN_NEW_TAB_BUTTON": "Open in new tab",
+      "EXECUTE_JOB_MODAL": {
+        "BODY": "Are you sure you want to run this process?"
+      },
+      "LAUNCH_TASK_BUTTON": "Launch task"
+    },
+    "BLAST": {
+      "RESOURCES_WARNING": "The number of threads will be automatically set according to the number of sequences in the query."
+    },
+    "MAFFT": {
+      "RESOURCES_WARNING": "The number of threads will match the number of possible pairings of the n input sequences; number of pairings = n (n - 1) / 2."
+    },
+    "BEAST": {
+      "RESOURCES_TIP": "Number of Markov Chains. This are the number of simultaneous solutions of phylogenetic trees that will be calculated sharing information among each other."
+    },
+    "MR_BAYES": {
+      "RESOURCES_TIP": "Number of Markov Chains. This are the number of simultaneous solutions of phylogenetic trees that will be calculated sharing information among each other."
+    },
+    "NGDTRIMMER": {
+      "RESOURCES_TIP": "Accepts values from 1 to 20, the bigger it is the faster it will execute. Try with 2 to start and if it runs too slow increase it next time."
+    }
+  },
+  "PROCESSES_ADMIN": {
+    "COMPUTE_RESOURCES": {
+      "BROWSER": {
+        "BREADCRUMB": "Computing resources",
+        "TITLE": "Computing resources"
+      },
+      "DETAIL": {
+        "TITLE": "Computing resource",
+        "BREADCRUMB": "Computing resource - {{ params.name }}",
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name"
+          },
+          "LAUNCHABLE_PROCESSES": {
+            "LABEL": "Launchable processes",
+            "PLACEHOLDER": "Launchable processes"
+          },
+          "JM_TYPE": {
+            "LABEL": "Computation resource type",
+            "PLACEHOLDER": "Computation resource type",
+            "EMPTY_ERROR": "You must enter the computation resource type"
+          },
+          "LOCATION": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "CREDENTIALS": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "PARAMS": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "AGREEMENT": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          }
+        },
+        "NOTIFICATION_LOAD_DATA_ERROR": {
+          "TITLE": "Error",
+          "CONTENT": "An error occurred while trying to load the data"
+        },
+        "NOTIFICATION_UPDATE_ERROR": {
+          "TITLE": "Error",
+          "CONTENT": "An error occurred while trying to update"
+        }
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Create computation resource",
+        "CREATE_BUTTON": "Create",
+        "CANCEL_BUTTON": "Cancel",
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Name",
+            "PLACEHOLDER": "Name",
+            "EMPTY_ERROR": "Please enter the name"
+          },
+          "JM_TYPE": {
+            "LABEL": "Computing resource type",
+            "PLACEHOLDER": "Computing resource type",
+            "EMPTY_ERROR": "Please enter the computing resource type"
+          },
+          "LOCATION": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "CREDENTIALS": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "PARAMS": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          },
+          "AGREEMENT": {
+            "JSON_ERROR": "The field must have a JSON type structure"
+          }
+        }
+      },
+      "REMOVE_MODAL": {
+        "TITLE": "Are you sure you want to delete this element?",
+        "CONTENT": "Computing resource: {{name}}",
+        "ACCEPT_BUTTON": "Accept",
+        "CANCEL_BUTTON": "Cancel",
+        "NOTIFICATION_ERROR": {
+          "TITLE": "Error",
+          "CONTENT": "An error occurred while trying to delete the computing resource"
+        }
+      }
+    },
+    "PROCESS_TYPES": {
+      "BROWSER": {
+        "TITLE": "Process Types",
+        "BREADCRUMB": "Process Types"
+      },
+      "DETAIL": {
+        "TITLE": "Process type - {{name}}",
+        "BREADCRUMB": "Process type - {{params.name}}",
+        "ACCEPT_BUTTON": "Ok",
+        "CANCEL_BUTTON": "Cancel",
+        "NOTIFICATION_UPDATE_ERROR": {
+          "TITLE": "Error",
+          "CONTENT": "An error occurred while trying to update the process type."
+        },
+        "INPUTS": {
+          "NAME": {
+            "LABEL": "Name"
+          },
+          "DESCRIPTION": {
+            "LABEL": "Description"
+          },
+          "RESOURCES": {
+            "LABEL": "Computing resources that are available",
+            "PLACEHOLDER": "Computing resources that are available"
+          }
+        }
+      }
+    }
+  },
+  "SECURITY_ADMIN": {
+    "IDENTITIES": {
+      "BROWSER": {
+        "BREADCRUMB": "Users",
+        "TITLE": "Users",
+        "ENABLE_BUTTON": "Enable",
+        "DISABLE_BUTTON": "Disable"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "User detail - {{params.name}}",
+        "EDIT_BUTTON": "Edit",
+        "SUBTITLE": "Information",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "ENABLE": "Enabled",
+        "DEACTIVATION_DATE": "Deactivation date",
+        "CREATION_DATE": "Creation date",
+        "ORGANIZATIONS": "Organizations",
+        "ROLES": "Roles"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Edit user - {{params.name}}",
+        "SUBTITLE": "Information"
+      },
+      "IDENTITY_FORM": {
+        "MODIFY_BUTTON": "Modify",
+        "CANCEL_BUTTON": "Cancel",
+        "CREATE_BUTTON": "Create",
+        "DELETE_BUTTON": "Delete",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "ENABLE": "Enabled",
+        "DEACTIVATION_DATE": "Deactivation date",
+        "CREATION_DATE": "Creation date",
+        "ORGANIZATIONS": "Organizations",
+        "ROLES": "Roles",
+        "YES_OPTION": "Yes",
+        "NO_OPTION": "No"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Create user",
+        "CANCEL_BUTTON": "Cancel",
+        "ACCEPT_BUTTON": "Accept"
+      }
+    },
+    "ORGANIZATIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "Organizations",
+        "TITLE": "Organizations"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Organization detail - {{params.name}}",
+        "SUBTITLE": "Information",
+        "EDIT_BUTTON": "Edit",
+        "NAME": "Name",
+        "USERS": "Users"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Edit organization - {{params.name}}",
+        "SUBTITLE": "Edit"
+      },
+      "ORGANIZATION_FORM": {
+        "NAME": "Name",
+        "USERS": "Users",
+        "MODIFY_USER": "Modify user",
+        "MODIFY_BUTTON": "Modify",
+        "CANCEL_BUTTON": "Cancel",
+        "CREATE_BUTTON": "Create",
+        "DELETE_BUTTON": "Delete"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Create organization",
+        "CANCEL_BUTTON": "Cancel",
+        "ACCEPT_BUTTON": "Accept"
+      }
+    },
+    "REFERENCES_ACL": {
+      "BROWSER": {
+        "BREADCRUMB": "ACL references",
+        "TITLE": "ACL references"
+      }
+    },
+    "ROLES": {
+      "BROWSER": {
+        "BREADCRUMB": "Roles",
+        "TITLE": "Roles"
+      },
+      "DETAIL": {
+        "BREADCRUMB": "Role detail - {{params.name}}",
+        "SUBTITLE": "Information",
+        "EDIT_BUTTON": "Edit",
+        "NAME": "Name",
+        "USERS": "Users"
+      },
+      "MODIFY": {
+        "BREADCRUMB": "Edit role - {{params.name}}",
+        "SUBTITLE": "Edit"
+      },
+      "ROLE_FORM": {
+        "NAME": "Name:",
+        "USERS": "Users:",
+        "MODIFY_USER": "Modify user",
+        "CREATE_BUTTON": "Create",
+        "DELETE_BUTTON": "Delete",
+        "CANCEL_BUTTON": "Cancel",
+        "MODIFY_BUTTON": "Modify"
+      },
+      "CREATE_MODAL": {
+        "TITLE": "Create role",
+        "CANCEL_BUTTON": "Cancel",
+        "ACCEPT_BUTTON": "Accept"
+      }
+    },
+    "SYSTEM_FUNCTIONS": {
+      "BROWSER": {
+        "BREADCRUMB": "System Functions",
+        "TITLE": "System Functions",
+        "SAVE": "Save"
+      }
+    },
+    "STATUS_CHECKERS": {
+      "DETAIL": {
+        "STATUS_SERVICES": {
+          "TITLE": "Service Status",
+          "BREADCRUMB": "Services status"
+        }
+      }
+    }
+  },
+  "SIDEBAR": {
+    "sub1": {
+      "routes": {
+        "blast": {
+          "title": "BLAST"
+        },
+        "collections": {
+          "title": "Collections"
+        },
+        "discriminant_matrix": {
+          "title": "Discriminant matrix"
+        },
+        "multiple_alignments": {
+          "title": "Multiple alignments"
+        },
+        "phylogenetic_trees": {
+          "title": "Phylogenetic trees"
+        },
+        "sequences": {
+          "title": "Sequences"
+        },
+        "supermatrices": {
+          "title": "Super matrices"
+        }
+      },
+      "title": "Molecular Data"
+    },
+    "sub2": {
+      "routes": {
+        "layers": {
+          "title": "Layers"
+        },
+        "pda": {
+          "title": "PDA"
+        },
+        "regions": {
+          "title": "Regions"
+        }
+      },
+      "title": "Geographical data"
+    },
+    "sub3": {
+      "routes": {
+        "completed": {
+          "title": "Completed Processes"
+        },
+        "launch": {
+          "title": "Launch Process"
+        },
+        "pending": {
+          "title": "Pending Processes"
+        }
+      },
+      "title": "Processes"
+    },
+    "sub4": {
+      "routes": {
+        "gis": {
+          "title": "GIS"
+        },
+        "sequences": {
+          "title": "Sequences"
+        },
+        "viewers": {
+          "title": "Views"
+        }
+      },
+      "title": "Visualization"
+    },
+    "sub5": {
+      "routes": {
+        "list": {
+          "title": "List"
+        }
+      },
+      "title": "Case studies"
+    },
+    "sub6": {
+      "routes": {
+        "analysis": {
+          "title": "Analysis"
+        },
+        "crs": {
+          "title": "CRS"
+        },
+        "individuals": {
+          "title": "Individuals"
+        },
+        "ontologies": {
+          "title": "Ontologies"
+        },
+        "organisms": {
+          "title": "Organisms"
+        },
+        "publications": {
+          "title": "Publications"
+        },
+        "sources": {
+          "title": "Sources"
+        },
+        "subject": {
+          "title": "Subject"
+        },
+        "taxonomies": {
+          "title": "Taxonomies"
+        },
+        "terms": {
+          "title": "Terms"
+        }
+      },
+      "title": "Metadata"
+    },
+    "sub7": {
+      "routes": {
+        "computing_resources": {
+          "title": "Computing resources"
+        },
+        "process_types": {
+          "title": "Process types"
+        },
+        "processes": {
+          "title": "Processes"
+        }
+      },
+      "title": "Process Admin"
+    },
+    "sub8": {
+      "routes": {
+        "acl": {
+          "title": "ACLs"
+        },
+        "authenticators": {
+          "title": "Authenticators"
+        },
+        "groups": {
+          "title": "Groups"
+        },
+        "organizations": {
+          "title": "Organizations"
+        },
+        "permission_types": {
+          "title": "Permission Types"
+        },
+        "references_acl": {
+          "title": "ACL references"
+        },
+        "roles": {
+          "title": "Roles"
+        },
+        "system_functions": {
+          "title": "System Functions"
+        },
+        "users": {
+          "title": "Users"
+        },
+        "status_checkers": {
+          "title": "Service Status"
+        }
+      },
+      "title": "Security Admin"
+    },
+    "sub9": {
+      "routes": {
+        "fields": {
+          "title": "Fields"
+        },
+        "templates": {
+          "title": "Templates"
+        }
+      },
+      "title": "Annotations"
+    }
+  },
+  "SIGNIN_MODAL": {
+    "INPUTS": {
+      "PASSWORD": {
+        "LABEL": "Password"
+      }
+    },
+    "LINK_LOGIN": {
+      "NORMAL_TEXT": "Already have an account?",
+      "TEXT_LINK": "Access it"
+    },
+    "SIGNIN_BUTTON": "Sign in"
+  },
+  "STUDY_CASES": {
+    "CREATE_MODAL": {
+      "CANCEL_BUTTON": "Cancel",
+      "CREATE_BUTTON": "Create",
+      "INPUTS": {
+        "LAYERS": {
+          "LABEL": "Layers"
+        },
+        "NAME": {
+          "ERROR_MESSAGE_EMPTY": "Enter a name for the case study.",
+          "LABEL": "Name"
+        },
+        "ENTITIES": {
+          "LABEL": "Entities"
+        }
+      },
+      "TITLE": "Create case study"
+    },
+    "DETAIL": {
+      "ANNOTATIONS_TITLE": "Annotations",
+      "BREADCRUMB": "Case study - {{params.name}}",
+      "CANCEL_BUTTON": "Cancel",
+      "GENERAL_TITLE": "General",
+      "INPUTS": {
+        "LAYERS": {
+          "ADD_BUTTON": "Add",
+          "ADD_LAYERS_MODAL": {
+            "ADD_BUTTON": "Add",
+            "CANCEL_BUTTON": "Cancel",
+            "INPUTS": {
+              "LAYERS": {
+                "LABEL": "Layers"
+              }
+            },
+            "TITLE": "Add Layer"
+          },
+          "LABEL": "Layers",
+          "TH": {
+            "ACTIONS": "Actions",
+            "NAME": "Name"
+          }
+        },
+        "NAME": {
+          "LABEL": "Name"
+        },
+        "ENTITIES": {
+          "LABEL": "Entities",
+          "TH": {
+            "ACTIONS": "Actions",
+            "NAME": "Name",
+            "TYPE": "Type"
+          }
+        }
+      },
+      "MODIFY_BUTTON": "Modify",
+      "TITLE": "Case study"
+    },
+    "LIST": {
+      "BREADCRUMB": "Case studies",
+      "NOTIFICATIONS": {
+        "ERROR_REMOVE": {
+          "CONTENT": "Failed to delete the case study.",
+          "TITLE": "Error"
+        },
+        "SUCCESS_REMOVE": {
+          "CONTENT": "The case study has been successfully removed.",
+          "TITLE": "Removed Case Study "
+        }
+      },
+      "REMOVE_MODAL": {
+        "STUDY_CASE": "Case Study",
+        "TITLE": "Are you sure you want to delete this item? "
+      },
+      "TITLE": "Cases Studies"
+    },
+    "ADD_ITEMS_MODAL": {
+      "TITLE": "Add Entities to Case Study",
+      "ACCEPT_BUTTON": "Accept",
+      "CANCEL_BUTTON": "Cancel",
+      "INPUTS": {
+        "CASE_STUDIES": {
+          "LABEL": "Case Studies",
+          "ERROR_EMPTY": "Select a Case Study"
+        }
+      }
+    },
+    "ADD_ITEM_CUSTOM_BUTTON_BROWSERS": {
+      "TEXT": "Add to Case Study"
+    },
+    "DELETE_SELECTED_MODAL": {
+      "ACCEPT_BUTTON": "Ok",
+      "CANCEL_BUTTON": "Cancel",
+      "CONTENT": "Are you sure you want to delete the case studies?",
+      "TITLE": "Delete case studies"
+    },
+    "NOTIFICATION_DELETE_SELECTED_SUCCESS_CONTENT": "The case studies have been deleted successfully.",
+    "NOTIFICATION_DELETE_SELECTED_ERROR_CONTENT": "An error occurred while trying to delete the case studies."
+  },
+  "USER_AVATAR": {
+    "PREFERENCES": "Preferences",
+    "SIGN_OUT": "Sign off"
+  },
+  "ACL_MODAL": {
+    "TITLE": "Permissions",
+    "HEADER": {
+      "IDENTITY_TYPE": "Identity type",
+      "IDENTITY_NAME": "Identity name",
+      "PERMISSION_TYPE": "Permission type",
+      "ACTIONS": "Actions"
+    },
+    "NEW_PERMISSION": "Add new permission",
+    "FOOTER": {
+      "CONFIRM": "Confirm",
+      "CANCEL": "Cancel",
+      "RULES": "View Rules"
+    },
+    "RULES_MODAL": {
+      "TITLE": "Rules",
+      "SUBTITLES": {
+        "EXPLANATIONS": "Explanations",
+        "RULES_TABLE": "Rules Table"
+      },
+      "FOOTER": {
+        "ACCEPT": "Accept"
+      }
+    }
+  },
+  "MODAL_INFO": {
+    "DEFAULT_ERROR": {
+      "TITLE": "Error"
+    }
+  },
+  "NEXTGENDEM_MISSING_EDITOR": {
+    "CHANGE_BUTTON": "Change",
+    "DELETE_BUTTON": "Delete",
+    "EXPORT_BUTTON": {
+      "TEXT": "Export",
+      "PNG": "PNG",
+      "FASTA": "FASTA"
+    },
+    "IMPORT_BUTTON": {
+      "TEXT": "Import",
+      "ALIGNMENT": "Alignment",
+      "NEW_VERSION": "New version"
+    },
+    "TOOLBAR": {
+      "TITLE": "Nextgendem missing editor"
+    },
+    "INPUTS": {
+      "NUMBER_NUCLEOTIDES_PER_GROUP": {
+        "LABEL": "Number of nucleotides per group:",
+        "NOT_NUMBER_ERROR": "Please enter a positive number.",
+        "LESS_THAN_MINIMUM_ERROR": "Please enter a number greater than {{number}}."
+      },
+      "DELETE_NUCLEOTIDES_PER_GROUP": {
+        "LABEL": "Exclude by group (Range):",
+        "NOT_NUMBER_ERROR": "Please enter positive numbers.",
+        "INITIAL_GREATER_THAN_FINAL": "The initial value must be less than the final one."
+      },
+      "COUNT_TYPE": {
+        "LABEL": "Account type:"
+      },
+      "DELETE_SEQUENCES": {
+        "LABEL": "Exclude sequences:"
+      }
+    },
+    "TABS": {
+      "OPTIONS": {
+        "TITLE": "Options"
+      },
+      "HISTORY": {
+        "TITLE": "History",
+        "TYPES": {
+          "REMOVE_BY_GROUPS": "Nucleotides excluded from position {{startIndex}} to {{endIndex}}.",
+          "DELETE_SEQUENCE": "Sequence exclusion."
+        }
+      }
+    },
+    "NEW_ALIGNMENT_MODAL": {
+      "TITLE": "New alignment"
+    }
+  },
+  "IMPORT_BUTTON": {
+    "START_UPLOADING": "Start upload",
+    "LOADING": "Loading"
+  },
+  "NEXTGENDEM_BARCODING": {
+    "DATA_TABLE": {
+      "TAXON_TH": "Taxon",
+      "RESULT_TH": "Result",
+      "POSITION_TH": "Position",
+      "NUCLEOTIDE_TH": "Nucleotide",
+      "NUMBERS_SEQUENCES_TH": "Number of sequences",
+      "STATE": {
+        "not_robust": "Not robust",
+        "not_possible": "Impossible",
+        "success": "Success"
+      },
+      "GROUPS_TH": "Diagnostic Positions",
+      "GROUP": "DNC {{ number }}",
+      "GROUP_TH": "Group",
+      "SEQUENCES_TH": "Sequences",
+      "COMBINATION_TH": "Combination"
+    },
+    "POSITIONS_TAB": "Positions",
+    "GROUPS_TAB": "Groups",
+    "PURES_TAB": "Pure Positions",
+    "COMBINATIONS_TAB": "Combined Positions"
+  },
+  "HOME_PAGE": {
+    "CORRECT_IDENTIFICATION": "Correct identification"
+  },
+  "NOTIFICATION": {
+    "DELETE_SUCCESS": "Deletion completed",
+    "ERROR_TITLE": "Error"
+  },
+  "ENTITIES_TABLE": {
+    "ACTIONS": "Actions",
+    "TYPE": "Type"
+  },
+  "OBJECT_TYPES": {
+    "SEQUENCE": "Sequence",
+    "MULTIPLE_SEQUENCE_ALIGNMENT": "Multiple alignment",
+    "PHYLOGENETIC_TREE": "Phylogenetic tree",
+    "BLAST": "BLAST",
+    "DISCRIMINANT_MATRIX": "Discriminant matrix",
+    "SUPERMATRIX": "Supermatrix",
+    "GEOLAYER": "Layer",
+    "CASE_STUDIES": "Case studies"
+  },
+  "DYNAMIC_TABLE_OBJECTS": {
+    "NAME_TH": "Name",
+    "ERROR_LOAD_DATA": "An error occurred while loading the data of {{ object_type }}."
+  },
+  "FORMLY": {
+    "RANGE": {
+      "DEFAULT_PLACEHOLDERS": {
+        "MINIMUM": "Minimum",
+        "MAXIMUM": "Maximum"
+      }
+    }
+  }
+}

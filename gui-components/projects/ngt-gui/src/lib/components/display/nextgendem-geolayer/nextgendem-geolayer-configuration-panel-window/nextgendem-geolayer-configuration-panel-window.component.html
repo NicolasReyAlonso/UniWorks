@@ -1,0 +1,123 @@
+<div class="nextgendem-geolayer-configuration-panel-window-info-container theme-header-background-color">
+  <div class="nextgendem-geolayer-configuration-panel-window-info-tabset">
+    <nz-tabset nzType="card" [(nzSelectedIndex)]="selectedIndex">
+
+
+      <!-- Filter -->
+      <nz-tab [nzTitle]="'GEO_VIEWER.INFO.FILTERS.TITLE' | translate">
+        <div style="height: 100%; display: flex; flex-direction: column;">
+          <div style="overflow: auto; padding-right: 10px">
+            <div class="nextgendem-geolayer-configuration-panel-window-input-label">
+              {{ 'DISPLAY.GIS.CONFIGURATION_PANEL_WINDOW.FILTERS.LAYER' | translate }}
+            </div>
+            <div style="margin-top: 3px">
+              <nz-select [(ngModel)]="layerSelectedFilter"
+                         (ngModelChange)="filterSelected = null; inputElementCQLFilter = ''">
+                <nz-option *ngFor="let item of layersData | keyvalue" [nzValue]="item.key"
+                           [nzLabel]="item.value.layer.name"></nz-option>
+              </nz-select>
+            </div>
+            <div class="nextgendem-geolayer-configuration-panel-window-input-label" style="margin-top: 10px">
+              {{ 'DISPLAY.GIS.CONFIGURATION_PANEL_WINDOW.FILTERS.FILTER' | translate }}
+            </div>
+            <div>
+              <nz-select [(ngModel)]="filterSelected" nzAllowClear [nzDropdownRender]="filterCreator"
+                         style="width: 100%;"
+                         [nzDisabled]="!layerSelectedFilter" (ngModelChange)="filterSelectedChange($event)">
+                <ng-container *ngIf="layersData[layerSelectedFilter]">
+                  <nz-option *ngFor="let item of layersData[layerSelectedFilter].filters | keyvalue"
+                             [nzLabel]="item.value.name"
+                             [nzValue]="item.key" nzCustomContent>
+                    {{ item.value.name }}<i nz-icon nzType="delete" style="float: right"
+                                            (click)="removeFilterLayer($event, item.key)"></i>
+                  </nz-option>
+                </ng-container>
+              </nz-select>
+              <ng-template #filterCreator>
+                <div style="display: flex; flex-wrap: nowrap; padding: 8px;">
+                  <input type="text" nz-input #inputFilterName  [(ngModel)]="inputFilterNameValue" [ngClass]="{'input-error': !inputFilterNameValue || inputFilterNameValue == ''}"/>
+                  <a nz-button nzType="link" (click)="newFilter(inputFilterName)">
+                    <i nz-icon
+                       nzType="plus"></i>{{ 'GEO_VIEWER.INFO.FILTERS.FILTERS.ADD_FILTER' | translate }}
+                  </a>
+                </div>
+              </ng-template>
+            </div>
+            <ng-container *ngIf="filterSelected">
+              <div class="nextgendem-geolayer-configuration-panel-window-input-label" style="margin-top: 10px">
+                {{ 'DISPLAY.GIS.CONFIGURATION_PANEL_WINDOW.FILTERS.CQL' | translate }}
+              </div>
+              <div style="display: flex; column-gap: 5px">
+                <input nz-input [disabled]="true" [(ngModel)]="inputElementCQLFilter" style="flex: 1 1 auto"/>
+                <button nz-button (click)="openGenerateCQLByFilterModal()">...</button>
+              </div>
+            </ng-container>
+            <formly-form *ngIf="filterSelected" [form]="formGroupParamsFilterLayer" [fields]="fieldsParamsFilterLayer"
+                         [model]="modelParamsFilterLayer"></formly-form>
+          </div>
+          <div style="flex: 1 1 auto; min-height: 0"></div>
+          <div style="display: flex; flex-direction: row-reverse; column-gap: 5px; margin-top: 10px; flex: 0 0 auto"
+               *ngIf="filterSelected">
+            <button nz-button nzType="primary"
+                    (click)="applyFilterLayer()">{{'GEO_VIEWER.INFO.FILTERS.APPLY_BUTTON' | translate}}</button>
+            <button nz-button nzType="default"
+                    (click)="generateLayerByFilter()">{{'GEO_VIEWER.INFO.FILTERS.GENERATE_LAYER' | translate}}</button>
+          </div>
+        </div>
+
+      </nz-tab>
+
+      <!--  Info Map  -->
+      <nz-tab *ngIf="isVisibleInfoTab" [nzTitle]="'GEO_VIEWER.INFO.INFORMATION.TITLE' | translate">
+        <nz-spin [nzSpinning]="loadigClickInfoMap" style="height: 100%">
+
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 5px;">
+            <button nz-button nzType="primary" nzShape="circle"
+                    (click)="changeWhereClickMapInfo('overlay')">
+              <i nz-icon nzType="vertical-right"></i>
+            </button>
+          </div>
+
+          <ng-container *ngIf="!loadigClickInfoMap && !clickInfoMap">
+            <div>
+              {{'GEO_VIEWER.INFO.INFORMATION.NOT_FOUND_INFO' | translate}}
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="!loadigClickInfoMap && clickInfoMap">
+            <div
+              style="display: flex; height: calc(100% - 32px); gap: 12px; padding-right: 8px; flex-direction: column">
+              <nz-select style="width: 100%; flex: 0 0 auto" [(ngModel)]="selectedLayerClickMapInfo"
+                         (ngModelChange)="selectedLayerClickMapInfoChange($event)">
+                <nz-option *ngFor="let layer of clickInfoMap" [nzValue]="layer.layerId"
+                           [nzLabel]="layer.layerName"></nz-option>
+              </nz-select>
+              <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto;" *ngIf="selectedLayerClickMapInfoObject">
+                <ng-container *ngFor="let feature of selectedLayerClickMapInfoObject.data">
+                  <div style="margin-bottom: 20px;">
+                    <ng-container *ngFor="let attribute of feature | keyvalue">
+                      <div>
+                        <div style="font-weight: bold; display: inline;">
+                          {{attribute.key}}:
+                        </div>
+                        {{attribute.value}}
+                      </div>
+                    </ng-container>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+
+        </nz-spin>
+      </nz-tab>
+
+
+    </nz-tabset>
+  </div>
+</div>
+
+<app-nextgendem-geolayer-modal-cql-generate-by-filter [(isVisible)]="isVisibleCQLGenerateModalFilter"
+                                                      (acceptEvent)="acceptEventCQLGenerateModalFilter($event)"/>
+
+<app-geolayer-export-modal/>

@@ -1,0 +1,155 @@
+<div style="display: flex; height: 100%; flex-direction: column">
+  <div class="theme-header-background-color toolbar" style="flex: 0 0 auto; display: flex">
+    <div>
+      {{ 'NEXTGENDEM_MISSING_EDITOR.TOOLBAR.TITLE' | translate }}
+    </div>
+    <div style="flex: 1 1 auto; min-width: 0"></div>
+    <nz-select *ngIf="seqLen.length > 0" [ngModel]="seqLenSelected" style="width: 200px" (ngModelChange)="seqLenSelectedChange($event)">
+      <nz-option *ngFor="let item of seqLen; let i = index" [nzValue]="i" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+    <button nz-button nz-dropdown [nzDropdownMenu]="importMenu" [disabled]="loading">
+      {{ 'NEXTGENDEM_MISSING_EDITOR.IMPORT_BUTTON.TEXT' | translate }}
+      <span nz-icon nzType="down"></span>
+    </button>
+    <nz-dropdown-menu #importMenu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item *ngIf="analysisId" (click)="importNewVersion()">
+          {{ 'NEXTGENDEM_MISSING_EDITOR.IMPORT_BUTTON.NEW_VERSION' | translate }}
+        </li>
+        <li nz-menu-item (click)="importNewAlignment()">
+          {{ 'NEXTGENDEM_MISSING_EDITOR.IMPORT_BUTTON.ALIGNMENT' | translate }}
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+    <button nz-button nz-dropdown [nzDropdownMenu]="exportMenu" [disabled]="loading">
+      {{ 'NEXTGENDEM_MISSING_EDITOR.EXPORT_BUTTON.TEXT' | translate }}
+      <span nz-icon nzType="down"></span>
+    </button>
+    <nz-dropdown-menu #exportMenu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item (click)="exportImage()">
+          {{ 'NEXTGENDEM_MISSING_EDITOR.EXPORT_BUTTON.PNG' | translate }}
+        </li>
+        <li nz-menu-item (click)="exportFasta()">
+          {{ 'NEXTGENDEM_MISSING_EDITOR.EXPORT_BUTTON.FASTA' | translate }}
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+  <div style="display: flex; background-color: #ffffff; flex: 1 1 auto; min-height: 0; column-gap: 1px">
+    <nz-spin [nzSpinning]="loading" style="height: 100%; width: 100%" class="heatmap-container-spin">
+      <div [id]="id" class="plotly-heatmap-container">
+
+      </div>
+      <div style="width: 300px; flex: 0 0 auto; border-left: 1px solid #dadada">
+        <nz-tabset [nzSelectedIndex]="0" class="nextgendem-missing-editor-tabset">
+
+          <nz-tab [nzTitle]="'NEXTGENDEM_MISSING_EDITOR.TABS.OPTIONS.TITLE' | translate">
+            <div class="tab option-tab">
+              <div class="input-container">
+                <div>
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.INPUTS.NUMBER_NUCLEOTIDES_PER_GROUP.LABEL' | translate }}
+                </div>
+                <div>
+                  <div style="display: flex; column-gap: 3px">
+                    <input nz-input [ngModel]="rangeNucleotidesGroups" style="flex: 1 1 auto; min-width: 0"
+                           #changeNucleotideInput
+                           [ngClass]="{'input-error': numberOfNucleotidesStatus === 'error'}"
+                           (focusout)="focusOutChangeRangeNucleotidesGroups($event.target)"/>
+                    <div style="flex: 0 0 auto">
+                      <button nz-button nzType="default"
+                              (click)="changeRangeNucleotidesGroupsOnClick(changeNucleotideInput)">
+                        {{ 'NEXTGENDEM_MISSING_EDITOR.CHANGE_BUTTON' | translate }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="message-error-default" *ngIf="numberOfNucleotidesTypeError">
+                    {{ numberOfNucleotidesTypeError.message | translate:numberOfNucleotidesTypeError.params }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-container">
+                <div>
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.INPUTS.DELETE_NUCLEOTIDES_PER_GROUP.LABEL' | translate }}
+                </div>
+                <div>
+                  <div style="display: flex; column-gap: 3px">
+                    <input nz-input [ngModel]="removeNucleotidesInitialIndex" style="flex: 1 1 auto; min-width: 0"
+                           #removeNucleotidesInitialIndexInput
+                           (keyup)="removeNucleotidesTypeError = null; this.removeNucleotidesInputStatus = ''"
+                           [ngClass]="{'input-error': removeNucleotidesInputStatus === 'error'}"/>
+                    <input nz-input [ngModel]="removeNucleotidesFinalIndex" style="flex: 1 1 auto; min-width: 0"
+                           #removeNucleotidesFinalIndexInput
+                           (keyup)="removeNucleotidesTypeError = null; this.removeNucleotidesInputStatus = ''"
+                           [ngClass]="{'input-error': removeNucleotidesInputStatus === 'error'}"/>
+                    <div style="flex: 0 0 auto">
+                      <button nz-button nzType="default"
+                              (click)="removeNucleotidesOnClick(removeNucleotidesInitialIndexInput, removeNucleotidesFinalIndexInput)">
+                        {{ 'NEXTGENDEM_MISSING_EDITOR.DELETE_BUTTON' | translate }}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="message-error-default" *ngIf="removeNucleotidesTypeError">
+                    {{ removeNucleotidesTypeError.message | translate:removeNucleotidesTypeError.params }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-container">
+                <div>
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.INPUTS.COUNT_TYPE.LABEL' | translate }}
+                </div>
+                <nz-radio-group [(ngModel)]="countType" (ngModelChange)="countTypeChange()">
+                  <label nz-radio nzValue="-">-</label>
+                  <label nz-radio nzValue="?">?</label>
+                  <label nz-radio nzValue="-?">- AND ?</label>
+                </nz-radio-group>
+              </div>
+
+              <div>
+                <div>
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.INPUTS.DELETE_SEQUENCES.LABEL' | translate }}
+                </div>
+                <div style="display: flex">
+                  <nz-select style="flex: 1 1 auto; min-width: 0" nzMode="multiple" nzAllowClear
+                             [(ngModel)]="selectedSequencesDelete">
+                    <nz-option *ngFor="let item of getArraySequencesNames(); let i = index" [nzLabel]="item"
+                               [nzValue]="i"></nz-option>
+                  </nz-select>
+                  <button nz-button nzType="default" style="flex: 0 0 auto"
+                          [disabled]="selectedSequencesDelete.length === 0" (click)="sequencesDeleteClick()">
+                    {{ 'NEXTGENDEM_MISSING_EDITOR.DELETE_BUTTON' | translate }}
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </nz-tab>
+
+          <nz-tab [nzTitle]="'NEXTGENDEM_MISSING_EDITOR.TABS.HISTORY.TITLE' | translate">
+            <div>
+              <div *ngFor="let item of history; let i = index" class="history-item-container">
+              <span nz-icon nzType="undo" nzTheme="outline" class="history-item-undo-icon"
+                    (click)="undoHistoryClick(i)"></span>
+                <div *ngIf="item.type === 'removeNucleotides'">
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.TABS.HISTORY.TYPES.REMOVE_BY_GROUPS' | translate:{
+                  startIndex: item.data.startIndex + 1,
+                  endIndex: item.data.endIndex + 1
+                } }}
+                </div>
+                <div *ngIf="item.type === 'removeSequences'">
+                  {{ 'NEXTGENDEM_MISSING_EDITOR.TABS.HISTORY.TYPES.DELETE_SEQUENCE' | translate}}
+                </div>
+              </div>
+            </div>
+          </nz-tab>
+        </nz-tabset>
+      </div>
+    </nz-spin>
+  </div>
+</div>
+
+<app-dynamic-input-modal [title]="modalTitle" [fields]="modalFields" [(isVisible)]="isVisibleModal" (acceptInput)="saveModal($event)"></app-dynamic-input-modal>
+
+

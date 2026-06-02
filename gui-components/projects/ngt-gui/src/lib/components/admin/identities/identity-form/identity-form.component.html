@@ -1,0 +1,131 @@
+<form nz-form nzLayout="vertical" [formGroup]="formGroup" #formIdentityDetails>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label nzFor="name">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.NAME' | translate }}</nz-form-label>
+        <nz-form-control [nzValidateStatus]="getStatusInput('name') == 'INVALID' ? 'error' : ''"
+                         nzErrorTip="Campo requerido.">
+          <input nz-input formControlName="name" autocomplete="off"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label nzFor="email">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.EMAIL' | translate }}</nz-form-label>
+        <nz-form-control [nzValidateStatus]="getStatusInput('email') == 'INVALID' ? 'error' : ''"
+                         nzErrorTip="Email no válido.">
+          <input nz-input formControlName="email" type="email" autocomplete="off"/>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label
+          nzFor="creationTime">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.CREATION_DATE' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-date-picker formControlName="creationTime" nzFormat="yyyy-MM-dd HH:mm:ss"
+                          [nzPlaceHolder]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.CREATION_DATE' | translate"
+                          [nzShowTime]="true" style="width: 100%;">
+          </nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label
+          nzFor="deactivationTime">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.DEACTIVATION_DATE' | translate }}</nz-form-label>
+        <nz-form-control [nzValidateStatus]="getStatusInput('deactivationTime') == 'INVALID' ? 'error' : ''"
+                         nzErrorTip="La fecha no puede ser menor al de la fecha creación.">
+          <nz-date-picker [nzShowNow]="false" formControlName="deactivationTime"
+                          nzFormat="yyyy-MM-dd HH:mm:ss"
+                          [nzPlaceHolder]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.DEACTIVATION_DATE' | translate"
+                          [nzShowTime]="true"
+                          style="width: 100%;">
+          </nz-date-picker>
+          <ng-template #deactivationIcon>
+            <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label nzFor="organizations">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ORGANIZATIONS' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="organizations" nzMode="multiple" [nzPlaceHolder]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ORGANIZATIONS' | translate"
+                     nzShowSearch>
+            <nz-option *ngIf="loadingOrganizationsSelect" nzDisabled nzCustomContent>
+              <i nz-icon nzType="loading" class="loading-icon"></i> Cargando Datos
+            </nz-option>
+            <nz-option *ngFor="let item of organizationsList" [nzValue]="item.id" [nzLabel]="item.name">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label nzFor="roles">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ROLES' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="roles" nzMode="multiple" [nzPlaceHolder]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ROLES' | translate" nzShowSearch>
+            <nz-option *ngIf="loadingRolesSelect" nzDisabled nzCustomContent>
+              <i nz-icon nzType="loading" class="loading-icon"></i> Cargando Datos
+            </nz-option>
+            <nz-option *ngFor="let item of rolesList" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row [nzGutter]="16">
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <nz-form-item>
+        <nz-form-label
+          nzFor="can_login">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ENABLE' | translate }}</nz-form-label>
+        <nz-form-control>
+          <nz-select formControlName="can_login" nzMode="default"
+                     [nzPlaceHolder]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.ENABLE' | translate" nzShowSearch
+                     [nzDisabled]="!authService.havePermission('gui-users-authorize')">
+            <nz-option [nzValue]="true" [nzLabel]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.YES_OPTION' | translate"></nz-option>
+            <nz-option [nzValue]="false" [nzLabel]="'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.NO_OPTION' | translate"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="getGrid(GRID_COLUMNS.TWO_COLUMNS, formIdentityElementRef)">
+      <!--            <nz-form-item>-->
+      <!--                <nz-form-label nzFor="groups">Grupos:</nz-form-label>-->
+      <!--                <nz-form-control>-->
+      <!--                    <nz-select formControlName="groups" nzMode="multiple" nzPlaceHolder="Grupos" nzShowSearch>-->
+      <!--                        <nz-option *ngIf="loadingGroupsSelect" nzDisabled nzCustomContent>-->
+      <!--                            <i nz-icon nzType="loading" class="loading-icon"></i> Cargando Datos-->
+      <!--                        </nz-option>-->
+      <!--                        <nz-option *ngFor="let item of groupList" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>-->
+      <!--                    </nz-select>-->
+      <!--                </nz-form-control>-->
+      <!--            </nz-form-item>-->
+    </div>
+  </div>
+  <nz-form-control style="width: 100%">
+    <div style="width: 100%; display: flex; justify-content: flex-end">
+      <button nz-button (click)="test()" *ngIf="showTestButton">Test</button>
+      <button class="buttons-forms-identity-details" nz-button nzType="primary" nzShape="round" nzDanger
+              *ngIf="cancelEventEmiter.observers.length > 0"
+              (click)="onClickCancelButton()">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.CANCEL_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-identity-details" nz-button nzType="primary" nzShape="round" *ngIf="showCreateButton"
+              [disabled]="disableEdit">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.CREATE_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-identity-details" nz-button nzType="primary" nzShape="round" *ngIf="showEditButton"
+              [disabled]="disableEdit || !formGroup.valid" (click)="modifyIdentity()">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.MODIFY_BUTTON' | translate }}
+      </button>
+      <button class="buttons-forms-identity-details" nz-button nzType="primary" nzShape="round" *ngIf="showDeleteButton"
+              [disabled]="disableEdit">{{ 'SECURITY_ADMIN.IDENTITIES.IDENTITY_FORM.DELETE_BUTTON' | translate }}
+      </button>
+    </div>
+  </nz-form-control>
+</form>

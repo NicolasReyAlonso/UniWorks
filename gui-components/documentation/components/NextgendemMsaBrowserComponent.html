@@ -1,0 +1,3971 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NextgendemMsaBrowserComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>AfterViewInit</code>
+                <code>OnDestroy</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+            <tr>
+                <td class="col-md-3">encapsulation</td>
+                <td class="col-md-9"><code>ViewEncapsulation.None</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-nextgendem-msa-browser</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../components/DynamicInputModalComponent.html" target="_self" >DynamicInputModalComponent</a></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./nextgendem-msa-browser.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./nextgendem-msa-browser.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#barcodingColumns" >barcodingColumns</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#barcodingGroups" >barcodingGroups</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#canvasBlob" >canvasBlob</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getState" >getState</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#initLoading" >initLoading</a>
+                            </li>
+                            <li>
+                                <a href="#isVisibleModal" >isVisibleModal</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#modalFields" >modalFields</a>
+                            </li>
+                            <li>
+                                <a href="#modalTitle" >modalTitle</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#new_data" >new_data</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#preventKeydown" >preventKeydown</a>
+                            </li>
+                            <li>
+                                <a href="#saveFunction" >saveFunction</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#updating" >updating</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#view" >view</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ab2str" >ab2str</a>
+                            </li>
+                            <li>
+                                <a href="#dump_fasta" >dump_fasta</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#ngAfterViewInit" >ngAfterViewInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#str2ab" >str2ab</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#analysis_id" >analysis_id</a>
+                            </li>
+                            <li>
+                                <a href="#barcoding_groups" >barcoding_groups</a>
+                            </li>
+                            <li>
+                                <a href="#barcoding_positions" >barcoding_positions</a>
+                            </li>
+                            <li>
+                                <a href="#Url" >Url</a>
+                            </li>
+                            <li>
+                                <a href="#view_id" >view_id</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:beforeunload" >window:beforeunload</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: ActivatedRoute, msg: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, http: HttpClient, globalVariablesServices: <a href="../injectables/GlobalService.html" target="_self">GlobalService</a>, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, fileService: <a href="../injectables/FilesService.html" target="_self">FilesService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>, internationalizationService: <a href="../injectables/InternationalizationService.html" target="_self">InternationalizationService</a>, location: Location, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:92</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>msg</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>http</td>
+                                                  
+                                                        <td>
+                                                                    <code>HttpClient</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>globalVariablesServices</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GlobalService.html" target="_self" >GlobalService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>fileService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/FilesService.html" target="_self" >FilesService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>internationalizationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InternationalizationService.html" target="_self" >InternationalizationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>location</td>
+                                                  
+                                                        <td>
+                                                                    <code>Location</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="analysis_id"></a>
+                        <b>analysis_id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="72" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:72</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="barcoding_groups"></a>
+                        <b>barcoding_groups</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>{}</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:75</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="barcoding_positions"></a>
+                        <b>barcoding_positions</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>{}</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:74</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="Url"></a>
+                        <b>Url</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:71</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="view_id"></a>
+                        <b>view_id</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:73</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:beforeunload"></a>
+                    <span class="name">
+                        <span ><b>window:beforeunload</b></span>
+                        <a href="#window:beforeunload"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:beforeunload()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ab2str"></a>
+                    <span class="name">
+                        <span ><b>ab2str</b></span>
+                        <a href="#ab2str"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ab2str(buf)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="110"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>buf</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dump_fasta"></a>
+                    <span class="name">
+                        <span ><b>dump_fasta</b></span>
+                        <a href="#dump_fasta"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dump_fasta(parsed_fasta: literal type[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>parsed_fasta</td>
+                                            <td>
+                                                        <code>literal type[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngAfterViewInit"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>ngAfterViewInit</b></span>
+                        <a href="#ngAfterViewInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngAfterViewInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="164"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:164</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>ngOnDestroy</b></span>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;window:beforeunload&#x27;)<br /></code>
+                </td>
+            </tr>
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="127"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:127</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="str2ab"></a>
+                    <span class="name">
+                        <span ><b>str2ab</b></span>
+                        <a href="#str2ab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>str2ab(str)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="118"
+                                    class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:118</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>str</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="barcodingColumns"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>barcodingColumns</b></span>
+                        <a href="#barcodingColumns"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:76</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="barcodingGroups"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>barcodingGroups</b></span>
+                        <a href="#barcodingGroups"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="77" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:77</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="canvasBlob"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>canvasBlob</b></span>
+                        <a href="#canvasBlob"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Blob</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:85</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getState"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>getState</b></span>
+                        <a href="#getState"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:84</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initLoading"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>initLoading</b></span>
+                        <a href="#initLoading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:79</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isVisibleModal"></a>
+                    <span class="name">
+                        <span ><b>isVisibleModal</b></span>
+                        <a href="#isVisibleModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:89</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:78</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalFields"></a>
+                    <span class="name">
+                        <span ><b>modalFields</b></span>
+                        <a href="#modalFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>FormlyFieldConfig[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:91</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="modalTitle"></a>
+                    <span class="name">
+                        <span ><b>modalTitle</b></span>
+                        <a href="#modalTitle"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:90</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="new_data"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>new_data</b></span>
+                        <a href="#new_data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="preventKeydown"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>preventKeydown</b></span>
+                        <a href="#preventKeydown"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:82</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="saveFunction"></a>
+                    <span class="name">
+                        <span ><b>saveFunction</b></span>
+                        <a href="#saveFunction"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function" target="_blank" >Function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:92</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updating"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>updating</b></span>
+                        <a href="#updating"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:80</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="view"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>view</b></span>
+                        <a href="#view"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/components/display/nextgendem-msa-browser/nextgendem-msa-browser.component.ts:83</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {AfterViewInit, Component, HostListener, Input, OnDestroy, ViewEncapsulation} from &#x27;@angular/core&#x27;;
+import {ActivatedRoute} from &#x27;@angular/router&#x27;;
+import * as d3 from &#x27;d3&#x27;;
+import {FilesService} from &quot;src/app/services/files.service&quot;;
+import {MessageLogService} from &quot;src/app/services/message-log.service&quot;;
+import { HttpClient } from &quot;@angular/common/http&quot;;
+import {GlobalService} from &#x27;src/app/services/global.service&#x27;;
+import {saveAs} from &quot;file-saver&quot;;
+import {BackendService} from &quot;src/app/services/backend.service&quot;;
+import {v4 as uuid} from &#x27;uuid&#x27;;
+import {NotificationService} from &quot;src/app/services/notification.service&quot;;
+import {CommonModule, Location} from &quot;@angular/common&quot;;
+import {InternationalizationService} from "ngt-gui";import {FormlyFieldConfig} from &quot;@ngx-formly/core&quot;;
+import {StateService} from &quot;src/app/services/state.service&quot;;
+import {
+  DynamicInputModalComponent
+} from &quot;../../dynamics/dynamic-input-modal/dynamic-input-modal.component&quot;;
+
+const DEFAULT_MSA_VIEWER_HEIGHT &#x3D; 1145;
+const DEFAULT_MSA_VIEWER_WIDTH &#x3D; 1848;
+
+const IUPAC_CODES &#x3D; {
+  &#x27;R&#x27;: &#x27;AG&#x27;,
+  &#x27;Y&#x27;: &#x27;CT&#x27;,
+  &#x27;S&#x27;: &#x27;CG&#x27;,
+  &#x27;W&#x27;: &#x27;AT&#x27;,
+  &#x27;K&#x27;: &#x27;GT&#x27;,
+  &#x27;M&#x27;: &#x27;AC&#x27;,
+  &#x27;B&#x27;: &#x27;CGT&#x27;,
+  &#x27;D&#x27;: &#x27;AGT&#x27;,
+  &#x27;H&#x27;: &#x27;ACT&#x27;,
+  &#x27;V&#x27;: &#x27;ACG&#x27;,
+  &#x27;N&#x27;: &#x27;ACGT&#x27;
+}
+
+const COLORS &#x3D; [
+  &#x27;#FF6384&#x27;, // Pinkish Red
+  &#x27;#36A2EB&#x27;, // Sky Blue
+  &#x27;#FFCE56&#x27;, // Yellow
+  &#x27;#4BC0C0&#x27;, // Turquoise
+  &#x27;#9966FF&#x27;, // Soft Purple
+  &#x27;#FF9F40&#x27;, // Orange
+  &#x27;#FFCD56&#x27;, // Gold
+  &#x27;#4DBEA9&#x27;, // Sea Green
+  &#x27;#605ca8&#x27;, // Indigo
+  &#x27;#d81b60&#x27;, // Crimson
+  &#x27;#00d2d3&#x27;, // Bright Turquoise
+  &#x27;#f012be&#x27;, // Magenta
+  &#x27;#6f42c1&#x27;, // Lavender
+  &#x27;#01FF70&#x27;, // Neon Green
+  &#x27;#39CCCC&#x27;, // Teal
+  &#x27;#85144b&#x27;, // Maroon
+  &#x27;#3D9970&#x27;, // Olive
+  &#x27;#FF851B&#x27;, // Tangerine
+  &#x27;#B10DC9&#x27;, // Purple
+  &#x27;#000000&#x27;  // Black
+]
+@Component({
+    selector: &#x27;app-nextgendem-msa-browser&#x27;,
+    imports: [
+        CommonModule,
+        DynamicInputModalComponent,
+    ],
+    templateUrl: &#x27;./nextgendem-msa-browser.component.html&#x27;,
+    styleUrls: [&#x27;./nextgendem-msa-browser.component.sass&#x27;],
+    encapsulation: ViewEncapsulation.None
+})
+export class NextgendemMsaBrowserComponent implements AfterViewInit, OnDestroy {
+
+  @Input(&#x27;Url&#x27;) Url: string;
+  @Input(&#x27;analysis_id&#x27;) analysis_id: number;
+  @Input(&#x27;view_id&#x27;) idView: number;
+  @Input(&#x27;barcoding_positions&#x27;) barcodingPositions &#x3D; {};
+  @Input(&#x27;barcoding_groups&#x27;) private seqs_groups &#x3D; {};
+  private barcodingColumns: number[] &#x3D; [];
+  private barcodingGroups: string[] &#x3D; [];
+  public loading: boolean;
+  public initLoading: boolean;
+  public updating: boolean;
+  private new_data: {}[];
+  private preventKeydown &#x3D; false;
+  private view: {};
+  private getState;
+  private canvasBlob: Blob;
+
+
+  //MODAL
+  isVisibleModal &#x3D; false;
+  modalTitle &#x3D; &#x27;&#x27;
+  modalFields: FormlyFieldConfig[];
+  saveFunction: Function;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly msg: MessageLogService,
+    private readonly http: HttpClient,
+    private readonly globalVariablesServices: GlobalService,
+    private readonly backendService: BackendService,
+    private readonly fileService: FilesService,
+    private readonly notificationService: NotificationService,
+    private readonly internationalizationService: InternationalizationService,
+    private location: Location,
+    private readonly stateService: StateService,
+  ) {
+    this.initLoading &#x3D; true;
+    this.updating &#x3D; false;
+  }
+
+  ab2str(buf) {
+    let str &#x3D; &quot;&quot;;
+    for (let i &#x3D; 0; i &lt; buf.length; i++) {
+      str +&#x3D; buf[i];
+    }
+    return str;
+  }
+
+  str2ab(str) {
+    var buf &#x3D; new ArrayBuffer(str.length * 2); // 2 bytes for each char
+    var bufView &#x3D; new Uint16Array(buf);
+    for (var i &#x3D; 0, strLen &#x3D; str.length; i &lt; strLen; i++) {
+      bufView[i] &#x3D; str.charCodeAt(i);
+    }
+    return buf;
+  }
+  @HostListener(&#x27;window:beforeunload&#x27;)
+  ngOnDestroy(): void {
+    //Avoid body listeners
+    d3.select(&quot;body&quot;)
+          .on(&quot;keydown&quot;, () &#x3D;&gt; {})
+          .on(&quot;click&quot;, () &#x3D;&gt; {});
+
+    //Save state
+    const fasta_str &#x3D; this.dump_fasta(this.new_data);
+    const filename &#x3D; uuid() + &quot;.fasta&quot;;
+    const contentType &#x3D; &quot;text/x-fasta&quot;
+    d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+    if (this.analysis_id) {
+      this.getState.analysis[this.analysis_id] &#x3D; {
+        view: this.view,
+        fasta: filename,
+        analysis_id: this.analysis_id
+      }
+    } else if (this.idView) {
+      this.getState.views[this.idView] &#x3D; {
+        view: this.view,
+        fasta: filename,
+        analysis_id: this.analysis_id
+      }
+    }
+    this.stateService.setStateCurrentView(this.getState);
+    this.fileService.postString2FileApi(&#x27;msa_editor&#x27;, filename, fasta_str, contentType).subscribe();
+  }
+
+  dump_fasta(parsed_fasta: {}[]): string {
+      var fasta &#x3D; &quot;&quot;;
+      for(var f of parsed_fasta) {
+        fasta +&#x3D; &quot;&gt;&quot; + f[&#x27;key&#x27;] + &quot;\n&quot;;
+        fasta +&#x3D; f[&#x27;value&#x27;].join(&quot;&quot;) + &quot;\n&quot;;
+      }
+      return fasta.slice(0,-1);
+    }
+
+  async ngAfterViewInit() {
+    const fileService &#x3D; this.fileService;
+    this.modalFields &#x3D; [
+      {
+        key: &#x27;name&#x27;,
+        type: &#x27;input&#x27;,
+        props: {
+          required: true,
+          label: await this.internationalizationService.translate(&quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_MODAL.NAME&quot;),
+        }
+      }
+    ];
+    this.getState &#x3D; await this.stateService.getStateCurrenView();
+    if (this.getState &amp;&amp;
+      (this.getState.analysis &amp;&amp; this.analysis_id ||
+        this.getState.views &amp;&amp; this.idView)) {
+      let state;
+      if (this.analysis_id) {
+        state &#x3D; this.getState.analysis[this.analysis_id];
+      } else {
+        state &#x3D; this.getState.views[this.idView];
+      }
+      //TODO: if false
+      if (false &amp;&amp; state) {
+        this.view &#x3D; state.view;
+        this.Url &#x3D; &#x60;${this.fileService.baseUrl}/files/msa_editor/${state.fasta}.content&#x60;;
+        this.analysis_id &#x3D; state.analysis_id;
+      }
+    } else if (this.idView) {
+      const response &#x3D; await this.backendService.getViewers(this.idView).toPromise();
+      if (response[&#x27;issues&#x27;].length !&#x3D;&#x3D; 0) {
+        this.msg.addIssues(response[&#x27;issues&#x27;]);
+      }
+      this.view &#x3D; response[&#x27;content&#x27;];
+      this.Url &#x3D; &#x60;${this.fileService.baseUrl}/files/msa_editor/${this.view[&#x27;data&#x27;][&#x27;fasta&#x27;]}.content&#x60;;
+      this.analysis_id &#x3D; this.view[&#x27;data&#x27;][&#x27;analysis_id&#x27;];
+      this.getState &#x3D; {
+        analysis: {},
+        views: {},
+      };
+    } else {
+      this.getState &#x3D; {
+        analysis: {},
+        views: {},
+      };
+    }
+
+    ///////////////////////////////////////////
+    // UTILITY FUNCTIONS
+
+    let calculate_iupac_code &#x3D; function(nucl1: string, nucl2: string) {
+      const nucls: Set&lt;string&gt; &#x3D; new Set();
+      for (let nucl of [nucl1, nucl2]) {
+        if (Object.keys(IUPAC_CODES).includes(nucl)) {
+          IUPAC_CODES[nucl].split(&#x27;&#x27;).forEach((v: string) &#x3D;&gt; {
+            nucls.add(v)
+          });
+        } else {
+          nucls.add(nucl)
+        }
+      }
+
+      const nucleotides &#x3D; [...nucls].sort().join(&#x27;&#x27;);
+      let new_iupac &#x3D; &#x27;&#x27;
+      if (nucleotides.length &#x3D;&#x3D;&#x3D; 1) {
+        new_iupac &#x3D; nucleotides;
+      }
+      else {
+        Object.keys(IUPAC_CODES).forEach((k) &#x3D;&gt; {
+          if (IUPAC_CODES[k] &#x3D;&#x3D;&#x3D; nucleotides) {
+            new_iupac &#x3D; k;
+          }
+        });
+      }
+      return new_iupac;
+    }
+
+    function isArrayInArray(arrays: any[][], target: any[]): boolean {
+      return arrays.some(subArray &#x3D;&gt;
+          subArray.length &#x3D;&#x3D;&#x3D; target.length &amp;&amp;
+          subArray.every((element, index) &#x3D;&gt; element &#x3D;&#x3D;&#x3D; target[index])
+      );
+  }
+
+    // Shuffles the input array.
+    let parse_fasta &#x3D; function (s: string): {}[] {
+      var lines &#x3D; s.split(&#x27;\n&#x27;);
+      var parsed_fasta: {}[] &#x3D; []
+      let index &#x3D; 0;
+      let group_keys &#x3D; [];
+      let current_groups &#x3D; [];
+      let line &#x3D; &#x27;&#x27;;
+      for (var i &#x3D; 0; i &lt; lines.length; i++) {
+        line &#x3D; lines[i].trim();
+        if (line.startsWith(&#x27;&gt;&#x27;) &amp;&amp; !this.barcodingColumns.length) {
+          parsed_fasta.push({key: line.substring(1), value: []/*[lines[i].substring(1)]*/});
+          index &#x3D; 0;
+        }
+        else if (line.startsWith(&#x27;&gt;&#x27;) &amp;&amp; this.barcodingColumns.length) {
+          index &#x3D; 0;
+          let seq_key &#x3D; line.substring(1);
+          if (seq_key.includes(&#x27;|&#x27;)) {
+            seq_key &#x3D; seq_key.split(&#x27;|&#x27;)[0]
+          }
+          current_groups &#x3D; [];
+          Object.keys(this.seqs_groups).forEach((k) &#x3D;&gt; {
+            if (this.seqs_groups[k].includes(seq_key)) {
+              current_groups.push(k);
+              if (!group_keys.includes(k)) {
+                group_keys.push(k);
+                parsed_fasta.push({key: k, value: []});
+              }
+            }
+          });
+          if (!isArrayInArray(this.barcodingGroups, current_groups)) {
+            this.barcodingGroups.push(current_groups);
+          }
+        }
+        else if (line &amp;&amp; this.barcodingColumns.length &gt; 0) {
+          for (let current_group of current_groups) {
+            let nucls &#x3D; [];
+            let group_index &#x3D; group_keys.indexOf(current_group);
+            let j &#x3D; 0;
+            for (let col of this.barcodingColumns) {
+              if (col - 1 &gt;&#x3D; index &amp;&amp; col &lt;&#x3D; index + line.length) {
+                if (parsed_fasta[group_index][&#x27;value&#x27;].length &lt; this.barcodingColumns.length) {
+                  nucls.push(line.charAt(col - index - 1).toUpperCase());
+                } else {
+                  let new_iupac &#x3D; calculate_iupac_code(
+                    line.charAt(col - index - 1).toUpperCase(),
+                    parsed_fasta[group_index][&#x27;value&#x27;][j]);
+                  parsed_fasta[group_index][&#x27;value&#x27;][j] &#x3D; new_iupac;
+                }
+              }
+              j++;
+            }
+            if (parsed_fasta[group_index][&#x27;value&#x27;].length &lt; this.barcodingColumns.length)
+              parsed_fasta[group_index][&#x27;value&#x27;] &#x3D; parsed_fasta[group_index][&#x27;value&#x27;].concat(nucls);
+          }
+          index +&#x3D; line.length;
+        }
+        else if (line) {
+          parsed_fasta[parsed_fasta.length - 1][&#x27;value&#x27;] &#x3D; parsed_fasta[parsed_fasta.length - 1][&#x27;value&#x27;].concat(line.split(&#x27;&#x27;).map(function(x) { return x.toUpperCase(); }));
+        }
+      }
+      return parsed_fasta;
+    }
+
+    parse_fasta &#x3D; parse_fasta.bind(this);
+
+
+
+    function put_gap(parsed_aln: {}[], index: number, key: string): {}[] {
+      for (var i &#x3D; 0; i &lt; parsed_aln.length; i++) {
+        if (parsed_aln[i][&#x27;key&#x27;] &#x3D;&#x3D; key) {
+          parsed_aln[i][&#x27;value&#x27;].splice(index, 0, &quot;-&quot;);
+          return parsed_aln;
+        }
+      }
+      return [];
+    }
+
+    function delete_pos(parsed_aln: {}[], index: number, key: string): {}[] {
+      for (var i &#x3D; 0; i &lt; parsed_aln.length; i++) {
+        if (parsed_aln[i][&#x27;key&#x27;] &#x3D;&#x3D; key) {
+          parsed_aln[i][&#x27;value&#x27;].splice(index, 1);
+          return parsed_aln;
+        }
+      }
+      return [];
+    }
+
+    function delete_column(parsed_aln: {}[], index: number): {}[] {
+      if (index &gt;&#x3D; 0) {
+        for (var i &#x3D; 0; i &lt; parsed_aln.length; i++) {
+          if (parsed_aln[i][&#x27;value&#x27;].length &gt; index)
+            parsed_aln[i][&#x27;value&#x27;].splice(index, 1);
+        }
+      }
+      return parsed_aln;
+    }
+
+    function delete_gappy_columns(parsed_aln: {}[], aln_length: number) {
+      let allGaps: boolean;
+      for (let i &#x3D; aln_length - 1; i &gt; 0; i--) {
+        allGaps &#x3D; true;
+        for (let seq of parsed_aln) {
+          if (seq[&#x27;value&#x27;].length &gt; i) {
+            allGaps &#x3D; allGaps &amp;&amp; seq[&#x27;value&#x27;][i] &#x3D;&#x3D;&#x3D; &#x27;-&#x27;;
+            if (!allGaps) { break; }
+          }
+        }
+        if (allGaps) {
+          parsed_aln &#x3D; delete_column(parsed_aln, i);
+        }
+      }
+      return parsed_aln;
+    }
+
+    function delete_taxon(parsed_aln: {}[], taxon: string) {
+      for (const [i, seq] of parsed_aln.entries()) {
+        if (seq[&#x27;key&#x27;] &#x3D;&#x3D; taxon) {
+          parsed_aln.splice(i, 1);
+          break;
+        }
+      }
+      return parsed_aln;
+    }
+
+    function change_cell_content(parsed_aln: {}[], index: number, key: string, new_char: string): {}[] {
+      for (var i &#x3D; 0; i &lt; parsed_aln.length; i++) {
+        if (parsed_aln[i][&#x27;key&#x27;] &#x3D;&#x3D; key) {
+          parsed_aln[i][&#x27;value&#x27;][index] &#x3D; new_char;
+          return parsed_aln;
+        }
+      }
+      return [];
+    }
+
+    var post_states: string[] &#x3D; [];
+    var prev_states: string[] &#x3D; [];
+    function insert_state(parsed_aln_str: string, states: string[]) {
+      if (states.length &gt; 5) {
+        states.splice(0, 1);
+      }
+      states.push(parsed_aln_str);
+    }
+
+    const complement_map &#x3D; {
+      &quot;A&quot;: &quot;T&quot;,
+      &quot;G&quot;: &quot;C&quot;,
+      &quot;C&quot;: &quot;G&quot;,
+      &quot;T&quot;: &quot;A&quot;,
+      &quot;R&quot;: &quot;Y&quot;,
+      &quot;Y&quot;: &quot;R&quot;,
+      &quot;S&quot;: &quot;W&quot;,
+      &quot;W&quot;: &quot;S&quot;,
+      &quot;K&quot;: &quot;M&quot;,
+      &quot;M&quot;: &quot;K&quot;,
+      &quot;B&quot;: &quot;V&quot;,
+      &quot;V&quot;: &quot;B&quot;,
+      &quot;H&quot;: &quot;D&quot;,
+      &quot;D&quot;: &quot;H&quot;
+    };
+
+    var complement &#x3D; function(seq: string[]) {
+      for (var i &#x3D; 0; i &lt; seq.length; i++) {
+        if (seq[i] in complement_map)
+          seq[i] &#x3D; complement_map[seq[i]]
+      }
+      return seq;
+    }
+
+    /////////////////////////////////////////////
+    // DEFINE HELPER FUNCTIONS
+    // Extract key from key-value object.
+    var get_key &#x3D; function(d) {
+      return d &amp;&amp; d.key;
+    };
+
+    // Extract data from a key-value object.
+    // Prepend the key so it is the first item in the values array.
+    var extract_row_data &#x3D; function(d) {
+      var row_data: {}[] &#x3D; [];
+      var values &#x3D; d.value.slice();
+      for (var i &#x3D; 0; i &lt; values.length; i++) {
+        row_data.push({key: d.key, nucl: values[i], pos: (i+1).toString()})
+      }
+      return row_data;
+
+    };
+
+    function get_intermediate_nucls(new_data, new_select, nearest_selected) {
+      var bigger_idx &#x3D; +new_select[&#x27;idx&#x27;] &gt; +nearest_selected[&#x27;idx&#x27;] ? +new_select[&#x27;idx&#x27;] : +nearest_selected[&#x27;idx&#x27;]
+      var bigger_pos &#x3D; +new_select[&#x27;pos&#x27;] &gt; +nearest_selected[&#x27;pos&#x27;] ? +new_select[&#x27;pos&#x27;] : +nearest_selected[&#x27;pos&#x27;]
+      var smaller_idx &#x3D; +new_select[&#x27;idx&#x27;] &lt; +nearest_selected[&#x27;idx&#x27;] ? +new_select[&#x27;idx&#x27;] : +nearest_selected[&#x27;idx&#x27;]
+      var smaller_pos &#x3D; +new_select[&#x27;pos&#x27;] &lt; +nearest_selected[&#x27;pos&#x27;] ? +new_select[&#x27;pos&#x27;] : +nearest_selected[&#x27;pos&#x27;]
+
+      delete new_select[&#x27;idx&#x27;]
+      delete nearest_selected[&#x27;idx&#x27;]
+
+      var new_selected_block: {}[] &#x3D; [];
+      var nucl &#x3D; {};
+      for (var i &#x3D; smaller_idx; i &lt;&#x3D; bigger_idx; i++) {
+        for (var j &#x3D; smaller_pos; j &lt;&#x3D; bigger_pos; j++) {
+          nucl &#x3D; {
+            &#x27;key&#x27;: new_data[i][&#x27;key&#x27;],
+            &#x27;nucl&#x27;: new_data[i][&#x27;value&#x27;][j - 1],
+            &#x27;pos&#x27;: j.toString()
+          }
+          if (JSON.stringify(nucl) !&#x3D;&#x3D; JSON.stringify(new_select) &amp;&amp; JSON.stringify(nucl) !&#x3D;&#x3D; JSON.stringify(nearest_selected)) {
+            new_selected_block.push(nucl);
+          }
+        }
+      }
+      return new_selected_block;
+    }
+
+    function shift_clicked_nucls(new_data: [], selected_nucls: {}[], new_select: {}) {
+      var shift_clicked:  {}[] &#x3D; [];
+      if (selected_nucls.length &gt; 0) {
+        for (var i &#x3D; 0; i &lt; selected_nucls.length; i++) {
+          for (var j &#x3D; 0; j &lt; new_data.length; j++) {
+            if(new_select[&#x27;key&#x27;] &#x3D;&#x3D; new_data[j][&#x27;key&#x27;]) {
+              new_select[&#x27;idx&#x27;] &#x3D; j;
+            }
+            if (selected_nucls[i][&#x27;key&#x27;] &#x3D;&#x3D; new_data[j][&#x27;key&#x27;]) {
+              selected_nucls[i][&#x27;idx&#x27;] &#x3D; j;
+              if (Object.keys(new_select).includes(&#x27;idx&#x27;))
+                break;
+            }
+          }
+        }
+
+        var nearest_selected &#x3D; selected_nucls[0]
+        for (var i &#x3D; 1; i &lt; selected_nucls.length; i++) {
+          if (Math.abs(nearest_selected[&#x27;idx&#x27;] - new_select[&#x27;idx&#x27;]) &gt;&#x3D; (Math.abs(selected_nucls[i][&#x27;idx&#x27;] - new_select[&#x27;idx&#x27;]))) {
+            if (Math.abs(+nearest_selected[&#x27;pos&#x27;] - +new_select[&#x27;pos&#x27;]) &gt; (Math.abs(+selected_nucls[i][&#x27;pos&#x27;] - +new_select[&#x27;pos&#x27;]))) {
+              nearest_selected &#x3D; selected_nucls[i]
+            }
+          }
+        }
+        shift_last_clicked &#x3D; true;
+        shift_clicked &#x3D; get_intermediate_nucls(new_data, new_select, nearest_selected).concat([nearest_selected]);
+      }
+      return shift_clicked;
+    }
+
+    /////////////////////////////////////////////
+    // UPDATE THE TABLE
+
+    // Select the table element
+    var x_bar_pos &#x3D; -1;
+    var x_start_pos &#x3D; -1;
+    var y_bar_pos &#x3D; -1;
+    var y_start_pos &#x3D; -1;
+    var dragged_key &#x3D; &quot;&quot;;
+    var cursor_pos &#x3D; &quot;&quot;;
+    var cursor_key &#x3D; &quot;&quot;;
+    var edit_keys: {}[] &#x3D; [];
+    var i_search &#x3D; 0;
+    var found_searches: {}[] &#x3D; [];
+    var search_params: string[] &#x3D; [];
+    var shift_last_clicked &#x3D; false;
+    var aln_length &#x3D; 0;
+    var overview_bar_x &#x3D; 0;
+    var overview_bar_y &#x3D; 0;
+    var overview_x_start &#x3D; 0;
+    var overview_y_start &#x3D; 0;
+    var fix_overview &#x3D; false;
+    var no_move &#x3D; false;
+    var force_update_bar &#x3D; false;
+
+    var margin &#x3D; {top: 75, right: 20, bottom: 117.5, left: 200};
+
+    // Put forms
+    var schema &#x3D; {
+      go_to_form: [
+          {name: &#x27;seq_key&#x27;, type: &#x27;select&#x27;, placeholder: &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.SEQUENCE_KEY&#x27;},
+          {name: &#x27;seq_pos&#x27;, type: &#x27;number&#x27;, placeholder: &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.POSITION&#x27;}
+      ],
+      motif_form: [
+        {name: &#x27;motif&#x27;, type: &#x27;text&#x27;, placeholder: &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.MOTIF&#x27;},
+        {name: &#x27;motif&#x27;, type: &#x27;checkbox&#x27;, placeholder: &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.COMPLEMENT&#x27;},
+        {name: &#x27;motif&#x27;, type: &#x27;checkbox&#x27;, placeholder: &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.INVERSE&#x27;},
+      ]
+    };
+
+    var get_type &#x3D; (d) &#x3D;&gt; d[&#x27;type&#x27;];
+    var get_placeholder &#x3D; async (d) &#x3D;&gt; await this.internationalizationService.translate(d[&#x27;placeholder&#x27;]);
+    get_placeholder &#x3D; get_placeholder.bind(this)
+
+    d3.select(&quot;#browser&quot;)
+      .append(&quot;text&quot;)
+      .attr(&quot;id&quot;, &quot;title&quot;)
+      .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+      .style(&quot;margin-left&quot;, &quot;10px&quot;)
+      .style(&quot;font-size&quot;, &quot;40px&quot;)
+      .text(&quot;NEXTGENDEM MSA EDITOR&quot;);
+
+    var select &#x3D; d3.select(&quot;#browser&quot;)
+      .append(&quot;select&quot;)
+      .attr(&quot;id&quot;, &quot;saveSelect&quot;)
+      .style(&quot;position&quot;, &quot;absolute&quot;)
+      .style(&quot;top&quot;, &quot;70px&quot;)
+      .style(&quot;left&quot;, &quot;5px&quot;)
+      .style(&quot;width&quot;, &quot;178px&quot;)
+      .style(&quot;padding&quot;, &quot;1px 2px&quot;)
+      .style(&quot;font-size&quot;, &quot;20px&quot;)
+
+    var save_options &#x3D; [
+      {&quot;value&quot;: &quot;svg&quot;, &quot;text&quot;: &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_OPTIONS.SVG_IMAGE&quot;},
+    ]
+    console.log(Object.keys(this.barcodingPositions).length)
+    if (Object.keys(this.barcodingPositions).length &#x3D;&#x3D;&#x3D; 0) {
+      save_options &#x3D; save_options.concat([
+        {&quot;value&quot;: &quot;fasta&quot;, &quot;text&quot;: &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_OPTIONS.FASTA&quot;},
+        {&quot;value&quot;: &quot;view&quot;, &quot;text&quot;: &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_OPTIONS.VIEW&quot;},
+        {&quot;value&quot;: &quot;alignment&quot;, &quot;text&quot;: &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_OPTIONS.ALN&quot;},
+        {&quot;value&quot;: &quot;overview&quot;, &quot;text&quot;: &quot;Overview PNG&quot;}
+      ]);
+    }
+
+    if (this.analysis_id &gt;&#x3D; 0 &amp;&amp; Object.keys(this.barcodingPositions).length &#x3D;&#x3D;&#x3D; 0) {
+      save_options.push({&quot;value&quot;: &quot;version&quot;, &quot;text&quot;: &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_OPTIONS.VERSION&quot;})
+    }
+
+    for (var o of save_options) {
+      select.append(&quot;option&quot;)
+          .attr(&quot;value&quot;, o[&quot;value&quot;])
+          .text(await this.internationalizationService.translate(o[&quot;text&quot;]))
+    }
+
+    d3.select(&quot;#browser&quot;)
+      .append(&quot;button&quot;)
+      .attr(&quot;id&quot;, &quot;saveButton&quot;)
+      .style(&quot;position&quot;, &quot;absolute&quot;)
+      .style(&quot;top&quot;, &quot;105px&quot;)
+      .style(&quot;left&quot;, &quot;43px&quot;)
+      .style(&quot;font-size&quot;, &quot;16px&quot;)
+      .style(&quot;padding&quot;, &quot;0px 30px&quot;)
+      .text(await this.internationalizationService.translate(&#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.SAVE&#x27;));
+
+    if (Object.keys(this.barcodingPositions).length &#x3D;&#x3D;&#x3D; 0) {
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;vl&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;left&quot;, (margin.left - 5) + &quot;px&quot;)
+        .style(&quot;top&quot;, margin.top + &quot;px&quot;)
+        .style(&quot;height&quot;, (margin.top * 2 - 30) + &quot;px&quot;)
+        .style(&quot;border-left&quot;, &quot;1px solid grey&quot;)
+
+
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;div&quot;)
+        .attr(&quot;title&quot;, await this.internationalizationService.translate(&quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.N_NUCLEOTIDES_ARROWS&quot;))
+        .append(&quot;input&quot;)
+        .attr(&quot;id&quot;, &quot;scroll_num&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;top&quot;, &quot;-15px&quot;)
+        .style(&quot;font-size&quot;, &quot;20px&quot;)
+        .attr(&quot;type&quot;, &quot;number&quot;)
+        .style(&quot;text-align&quot;, &quot;left&quot;)
+        .style(&quot;width&quot;, &quot;70px&quot;)
+        .attr(&quot;value&quot;, 50);
+
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;i&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;left&quot;, &quot;688px&quot;)
+        .style(&quot;cursor&quot;, &quot;pointer&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa arrow left&quot;)
+        .attr(&quot;value&quot;, 1);
+
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;i&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;cursor&quot;, &quot;pointer&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa arrow right&quot;)
+        .attr(&quot;value&quot;, 1);
+
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;i&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;top&quot;, &quot;5px&quot;)
+        .style(&quot;cursor&quot;, &quot;pointer&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa arrow up&quot;)
+        .attr(&quot;value&quot;, 1);
+
+      d3.select(&quot;#browser&quot;)
+        .append(&quot;i&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;cursor&quot;, &quot;pointer&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa arrow down&quot;)
+        .attr(&quot;value&quot;, 1);
+
+      var header_div &#x3D; d3.select(&quot;#browser&quot;)
+        .append(&quot;div&quot;)
+        .attr(&quot;id&quot;, &quot;header&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+        .style(&quot;margin-left&quot;, margin.left + &quot;px&quot;)
+        .style(&quot;position&quot;, &quot;absolute&quot;)
+        .style(&quot;top&quot;, &quot;50px&quot;)
+        .style(&quot;left&quot;, &quot;7px&quot;);
+
+      var forms_div &#x3D; header_div
+        .append(&quot;div&quot;)
+        .attr(&quot;id&quot;, &quot;forms&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;);
+
+      var form &#x3D; forms_div.append(&quot;form&quot;).attr(&quot;id&quot;, &quot;go_to&quot;);
+
+      var p &#x3D; form.selectAll(&quot;p&quot;)
+        .data(schema.go_to_form)
+        .enter()
+        .each(async function (d) {
+          var self &#x3D; d3.select(this);
+          var placeholder &#x3D; await get_placeholder(d)
+          var input &#x3D; self.append(&quot;input&quot;)
+            .attr(&quot;type&quot;, d &#x3D;&gt; get_type(d))
+            .attr(&quot;placeholder&quot;, placeholder);
+
+          if (get_type(d) &#x3D;&#x3D; &#x27;number&#x27;) {
+            input.attr(&quot;id&quot;, &quot;go_to_pos&quot;);
+          } else if (get_type(d) &#x3D;&#x3D; &#x27;select&#x27;) {
+            input.attr(&quot;list&quot;, &quot;go_to_key&quot;)
+              .attr(&quot;autocomplete&quot;, &quot;off&quot;)
+              .attr(&quot;id&quot;, &quot;go_to_id&quot;);
+          }
+        });
+
+      setTimeout(async () &#x3D;&gt; {
+        form.append(&quot;button&quot;)
+          .attr(&#x27;type&#x27;, &#x27;submit&#x27;)
+          .text(await this.internationalizationService.translate(&#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.GO&#x27;));
+      }, 50)
+
+      setTimeout(async () &#x3D;&gt; {
+        var form &#x3D; forms_div
+          .append(&quot;form&quot;)
+          .attr(&quot;id&quot;, &quot;motif&quot;);
+
+        var p &#x3D; form.selectAll(&quot;p&quot;)
+          .data(schema.motif_form)
+          .enter()
+          .each(async function (d) {
+            var self &#x3D; d3.select(this);
+            var placeholder &#x3D; await get_placeholder(d);
+            if (get_type(d) &#x3D;&#x3D; &#x27;checkbox&#x27;) {
+              self.append(&quot;label&quot;)
+                .text(placeholder)
+                .style(&quot;display&quot;, &quot;inline-block&quot;);
+            }
+            self.append(&quot;input&quot;)
+              .attr(&quot;type&quot;, d &#x3D;&gt; get_type(d))
+              .attr(&quot;id&quot;, d.type)
+              .attr(&quot;placeholder&quot;, placeholder);
+          });
+        setTimeout(async () &#x3D;&gt; {
+          form.append(&quot;button&quot;).attr(&#x27;type&#x27;, &#x27;submit&#x27;)
+            .text(await this.internationalizationService.translate(&#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.NEXT&#x27;));
+        }, 50)
+      }, 50);
+
+
+      var info_div &#x3D; d3.select(&#x27;#browser&#x27;)
+        .append(&quot;div&quot;)
+        .attr(&quot;id&quot;, &quot;info&quot;)
+        .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;);
+
+      var cursor_key_label &#x3D; await this.internationalizationService.translate(&#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.CURSOR_KEY&#x27;);
+      var cursor_pos_label &#x3D; await this.internationalizationService.translate(&#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.HEADER_STRINGS.CURSOR_POS&#x27;);
+      info_div
+        .append(&quot;label&quot;)
+        .attr(&quot;id&quot;, &quot;cursor_key&quot;)
+        .style(&quot;font-size&quot;, &quot;12px&quot;)
+        .text(&#x60;${cursor_key_label}: ${cursor_key}&#x60;);
+
+      info_div
+        .append(&quot;label&quot;)
+        .attr(&quot;id&quot;, &quot;cursor_pos&quot;)
+        .style(&quot;font-size&quot;, &quot;12px&quot;)
+        .text(&#x60;${cursor_pos_label}: ${cursor_pos}&#x60;);
+    }
+
+
+    // Define function to update data
+    var update &#x3D; function() {
+      // HELPER FUNCTIONS
+      if (!this.updating) {
+        this.updating &#x3D; true;
+        if (!this.initLoading)
+          d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+        d3.select(&#x27;body&#x27;).style(&#x27;cursor&#x27;, &#x27;inherit !important&#x27;);//Disables all cursor overrides when body has this class.
+
+        var x_pos &#x3D; function (d, x) {
+          return x(d.pos);
+        }
+
+        var y_pos &#x3D; function (d, y) {
+          return y(d.key);
+        }
+
+        var cell_color &#x3D; function (d, c) {
+          return c(d.nucl);
+        }
+
+        var cell_text &#x3D; function (d) {
+          return d.nucl;
+        }
+
+        var cell_key &#x3D; function (d) {
+          return d.key;
+        }
+
+        var parse_key &#x3D; function (s) {
+          return s.replaceAll(&quot;[&quot;, &quot;{&quot;).replaceAll(&quot;]&quot;, &quot;}&quot;).replaceAll(&quot;&#x27;&quot;, &quot;&quot;).replaceAll(&#x27;&quot;&#x27;, &#x27;&#x27;);
+        }
+
+        var parsed_cell_key &#x3D; function (d) {
+          return parse_key(d.key);
+        }
+
+        var cell_index &#x3D; function (d) {
+          return d.pos;
+        }
+
+        //Download fasta button
+
+        const download &#x3D; (modalOutput: any[]) &#x3D;&gt; {
+          fileService.convertStringToDownloadFile(&#x60;${modalOutput[&#x27;name&#x27;]}.fasta&#x60;, this.dump_fasta(this.new_data), &#x27;text/x-fasta&#x27;);
+        }
+
+        async function import_view(modalOutput: any[]) {
+          let view_name &#x3D; modalOutput[&#x27;name&#x27;]
+          const fasta_str &#x3D; this.dump_fasta(this.new_data);
+          const filename &#x3D; uuid() + &quot;.fasta&quot;;
+          const contentType &#x3D; &quot;text/x-fasta&quot;
+          d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+          await fileService.postString2FileApi(&#x27;msa_editor&#x27;, filename, fasta_str, contentType).subscribe(
+            response &#x3D;&gt; {
+            }, async error &#x3D;&gt; {
+              await this.notificationService.createNotificationWithType(
+                &#x27;error&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_ERROR.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_ERROR.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            }, async () &#x3D;&gt; {
+              if (this.view) {
+                await this.notificationService.createNotificationWithType(
+                  &#x27;success&#x27;,
+                  &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_CORRECTLY.TITLE&#x27;,
+                  &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_CORRECTLY.CONTENT&#x27;,
+                  &#x27;bottomRight&#x27;
+                ).then();
+                d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+              }
+            });
+          if (!this.view) {
+            try {
+              this.view &#x3D; {
+                name: view_name,
+                type: &#x27;msa-editor&#x27;,
+                data: {fasta: filename, analysis_id: this.analysis_id}
+              };
+              const response: any &#x3D; await this.backendService.postView(this.view).toPromise();
+              if (response.content &amp;&amp; response.content.id) {
+                this.idView &#x3D; response.content.id;
+                this.location.replaceState(&#x60;/nextgendemMsaBrowser?view_id&#x3D;${this.idView}&#x60;);
+              }
+              if (response.issues) {
+                this.msg.addIssues(response.issues);
+              }
+              await this.notificationService.createNotificationWithType(
+                &#x27;success&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_CORRECTLY.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_CORRECTLY.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            } catch (e) {
+              if (e.issues) {
+                this.msg.addIssues(e.issues);
+              }
+              await this.notificationService.createNotificationWithType(
+                &#x27;error&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_ERROR.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.SAVE_VIEW.NOTIFICATION_CREATE_VIEW_ERROR.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            }
+          }
+        }
+
+        function download_svg(modalOutput: any[]) {
+          const filename &#x3D; modalOutput[&#x27;name&#x27;] + &#x27;.svg&#x27;;
+          let svg_select &#x3D; document.getElementById(&quot;alignment_view&quot;)!;
+          let svgAlignment &#x3D; &quot;&quot;;
+          if (typeof window.XMLSerializer !&#x3D;&#x3D; &#x27;undefined&#x27;) {
+            svgAlignment &#x3D; (new XMLSerializer()).serializeToString(svg_select);
+          }
+          saveAs(new Blob([decodeURIComponent(encodeURIComponent(svgAlignment))], {type: &quot;application/svg+xml&quot;}), filename);
+        }
+
+        function download_overview_png(modalOutput: any[]) {
+          if (this.canvasBlob)
+            saveAs(this.canvasBlob, modalOutput[&#x27;name&#x27;] + &#x27;.png&#x27;);
+        }
+
+        async function new_version() {
+          d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+          const blob &#x3D; new Blob([this.dump_fasta(this.new_data)], {type: &#x27;text/plain&#x27;});
+          const file &#x3D; new File([blob], &#x27;msa-editor&#x27;, {type: &quot;text/plain&quot;});
+          const params &#x3D; {
+            program: &#x27;Nextgendem MSA&#x27;,
+            programversion: &#x27;1.0&#x27;
+          }
+          this.backendService.putAlignments(this.analysis_id, file, params).subscribe(
+            response &#x3D;&gt; {
+              this.analysis_id &#x3D; response[&#x27;content&#x27;][0][&#x27;analysis_id&#x27;];
+              this.msg.addIssues(response[&#x27;issues&#x27;]);
+            }, error &#x3D;&gt; {
+              this.msg.addIssues(error[&#x27;issues&#x27;]);
+              this.notificationService.createNotificationWithType(
+                &#x27;error&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_VERSION.NOTIFICATION_IMPORT_VERSION_ERROR.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_VERSION.NOTIFICATION_IMPORT_VERSION_ERROR.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            }, () &#x3D;&gt; {
+              this.notificationService.createNotificationWithType(
+                &#x27;success&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_VERSION.NOTIFICATION_IMPORT_VERSION_CORRECTLY.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_VERSION.NOTIFICATION_IMPORT_VERSION_CORRECTLY.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            });
+        }
+
+        function new_alignment(modalOutput: any[]) {
+          d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;visible&#x27;);
+          const blob &#x3D; new Blob([this.dump_fasta(this.new_data)], {type: &#x27;text/plain&#x27;});
+          const file &#x3D; new File([blob], &#x27;msa-editor&#x27;, {type: &quot;text/plain&quot;});
+          let name &#x3D; modalOutput[&#x27;name&#x27;]//saveName.property(&quot;value&quot;)
+          const params &#x3D; {
+            program: &#x27;Nextgendem MSA&#x27;,
+            programversion: &#x27;1.0&#x27;,
+            name: name,
+            algorithm: null,
+            description: null
+          };
+          this.backendService.importAlignments([file], params).subscribe(
+            response &#x3D;&gt; {
+              this.analysis_id &#x3D; response[&#x27;content&#x27;][0][&#x27;analysis_id&#x27;];
+              this.msg.addIssues(response[&#x27;issues&#x27;]);
+            }, error &#x3D;&gt; {
+              this.msg.addIssues(error[&#x27;issues&#x27;]);
+              this.notificationService.createNotificationWithType(
+                &#x27;error&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_ALN.NOTIFICATION_IMPORT_ALN_ERROR.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_ALN.NOTIFICATION_IMPORT_ALN_ERROR.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            }, () &#x3D;&gt; {
+              let select &#x3D; d3.select(&#x27;#saveSelect&#x27;);
+              if (select[&#x27;_groups&#x27;][0][0].length &lt; 5) {
+                select.append(&quot;option&quot;).attr(&quot;value&quot;, &quot;version&quot;).text(&quot;Import Version&quot;)
+              }
+              this.notificationService.createNotificationWithType(
+                &#x27;success&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_ALN.NOTIFICATION_IMPORT_ALN_CORRECTLY.TITLE&#x27;,
+                &#x27;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.IMPORT_ALN.NOTIFICATION_IMPORT_ALN_CORRECTLY.CONTENT&#x27;,
+                &#x27;bottomRight&#x27;
+              ).then();
+              d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+            });
+        }
+
+        var save_select_click &#x3D; async function () {
+          const selectValue &#x3D; d3.select(&quot;#saveSelect&quot;).property(&quot;value&quot;)
+          if (selectValue &#x3D;&#x3D; &quot;svg&quot;) {
+            this.saveFunction &#x3D; download_svg;
+            this.isVisibleModal &#x3D; true;
+            this.modalTitle &#x3D; await this.internationalizationService.translate(&quot;DOWNLOAD_SVG&quot;);
+
+          } else if (selectValue &#x3D;&#x3D; &quot;fasta&quot;) {
+            this.saveFunction &#x3D; download;
+            this.isVisibleModal &#x3D; true;
+            this.modalTitle &#x3D; await this.internationalizationService.translate(&quot;DOWNLOAD_FASTA&quot;);
+          } else if (selectValue &#x3D;&#x3D; &quot;view&quot;) {
+            if (this.view) {
+              import_view.call(this, [this.view.name]);
+            } else {
+              this.modalTitle &#x3D; await this.internationalizationService.translate(&quot;IMPORT_VIEW&quot;);
+              this.saveFunction &#x3D; import_view.bind(this);
+              this.isVisibleModal &#x3D; true;
+            }
+          } else if (selectValue &#x3D;&#x3D; &quot;version&quot;) {
+            new_version.call(this);
+          } else if (selectValue &#x3D;&#x3D; &quot;alignment&quot;) {
+            this.modalTitle &#x3D; await this.internationalizationService.translate(&quot;IMPORT_NEW_ALIGNMENT&quot;);
+            this.saveFunction &#x3D; new_alignment.bind(this);
+            this.isVisibleModal &#x3D; true;
+          } else if (selectValue &#x3D;&#x3D; &quot;overview&quot;) {
+            this.modalTitle &#x3D; &quot;Overview PNG&quot;;
+            this.saveFunction &#x3D; download_overview_png.bind(this);
+            this.isVisibleModal &#x3D; true;
+          }
+        }
+
+        d3.select(&quot;#saveButton&quot;).on(&quot;click&quot;, save_select_click.bind(this));
+
+        //Initialize list of go to form and sizes
+        var go_to_list &#x3D; d3.select(&quot;#go_to&quot;)
+          .append(&quot;datalist&quot;)
+          .attr(&quot;id&quot;, &quot;go_to_key&quot;)
+
+
+        var n &#x3D; this.new_data.length;
+        var new_aln_length &#x3D; 0;
+        var length_difference &#x3D; 0;
+
+        for (var s of this.new_data) {
+          if (s[&#x27;value&#x27;].length &gt; new_aln_length) {
+            new_aln_length &#x3D; s[&#x27;value&#x27;].length;
+          }
+          go_to_list.append(&quot;option&quot;)
+            .attr(&quot;value&quot;, s[&#x27;key&#x27;]);
+        }
+
+        if (aln_length &gt; 0 &amp;&amp; x_bar_pos &gt; margin.left) {
+          length_difference &#x3D; aln_length - new_aln_length;
+        }
+
+        aln_length &#x3D; new_aln_length;
+        d3.select(&quot;input.input_number&quot;).attr(&quot;min&quot;, 1).attr(&quot;max&quot;, aln_length)
+
+        var height_proportion &#x3D; innerHeight / DEFAULT_MSA_VIEWER_HEIGHT;
+        var width_proportion &#x3D; innerWidth / DEFAULT_MSA_VIEWER_WIDTH;
+
+        var side_proportion &#x3D; Math.min(width_proportion, height_proportion)
+        var square_side_length &#x3D; Math.round(23 * side_proportion);
+        var square_margin &#x3D; 1;
+
+        var width &#x3D; square_margin * 2 * (aln_length -1 ) + square_side_length *  aln_length,
+          height &#x3D; square_margin * 2 * (n - 1) + square_side_length * n;
+
+        var max_x_start_pos &#x3D; width - width_proportion;
+        var max_y_start_pos &#x3D; height - height_proportion;
+
+        if (x_start_pos &gt; max_x_start_pos)
+          x_start_pos &#x3D; max_x_start_pos;
+
+        if (y_start_pos &gt; max_y_start_pos)
+          y_start_pos &#x3D; max_y_start_pos;
+
+        var position_size &#x3D; square_margin * 2 + square_side_length;
+        var max_svg_width &#x3D; 1750 * width_proportion;
+        var svg_width &#x3D; margin.left * 2 + margin.right;
+        while (svg_width + position_size &lt; max_svg_width) {
+          svg_width +&#x3D; position_size;
+        }
+        var max_svg_height &#x3D; 1006 * height_proportion;
+        var svg_height &#x3D; margin.top * 2 + margin.bottom;
+        while (svg_height + position_size &lt; max_svg_height) {
+          svg_height +&#x3D; position_size;
+        }
+
+        var update_bar &#x3D; length_difference !&#x3D; 0 || force_update_bar;
+        force_update_bar &#x3D; false;
+        var dragging &#x3D; {};
+
+        // SCALES
+        var keys &#x3D; this.new_data.map(d &#x3D;&gt; get_key(d));
+        var y &#x3D; d3.scaleBand()
+          .domain(keys)
+          .range([margin.top, height + margin.top]);
+
+        var x &#x3D; d3
+          .scaleLinear()
+          .domain([0, aln_length])
+          .range([margin.left, width + margin.left]);
+
+        var c &#x3D; d3
+          .scaleOrdinal([&#x27;#009f3d&#x27;, &#x27;#000000&#x27;, &#x27;#0085c7&#x27;, &#x27;#df0024&#x27;, &quot;#B4AABC&quot;, &quot;#B4AABC&quot;])
+          .domain([&#x27;A&#x27;, &#x27;G&#x27;, &#x27;C&#x27;, &#x27;T&#x27;, &quot;-&quot;, &quot;D&quot;])
+          .unknown(&quot;#FFFFFF&quot;);
+
+        var selected_c &#x3D; d3
+          .scaleOrdinal([&#x27;#33D270&#x27;, &#x27;#444444&#x27;, &#x27;#33B8FA&#x27;, &#x27;#ff5579&#x27;, &quot;#dddddd&quot;])
+          .domain([&#x27;A&#x27;, &#x27;G&#x27;, &#x27;C&#x27;, &#x27;T&#x27;, &quot;-&quot;])
+          .unknown(&quot;#DDDDDD&quot;);
+
+        var motif_color &#x3D; &quot;#EAAA00&quot;;
+        var sel_motif_color &#x3D; &quot;#FFCC22&quot;;
+
+        var alignment_width &#x3D; svg_width - margin.left * 2 - margin.right;
+        var alignment_height &#x3D; svg_height - margin.top * 2 - margin.bottom
+        /*if (y(this.new_data[this.new_data.length - 1][&#x27;key&#x27;])! &lt; svg_height)
+          alignment_height &#x3D; this.new_data.length * y.bandwidth() - margin.top * 2 - margin.bottom;*/
+        var grid_right_border_pos &#x3D; alignment_width - alignment_width / width * alignment_width;
+
+        if (!no_move) {
+
+          if (y_bar_pos &lt; 0)
+            y_bar_pos &#x3D; margin.top
+
+          if (!update_bar) {
+            var y_bar_height &#x3D;  alignment_height - (alignment_height / height * alignment_height)
+            y_start_pos &#x3D; (y_bar_pos - margin.top) * (height + margin.top - alignment_height) / y_bar_height
+          }
+
+
+          if (x_bar_pos &lt; 0)
+            x_bar_pos &#x3D; x(0)
+
+          if (!update_bar) {
+            var x_bar_width &#x3D; alignment_width - (alignment_width / width * alignment_width)
+            x_start_pos &#x3D; (x_bar_pos - margin.left) * (width + margin.left + margin.right - alignment_width) / x_bar_width;
+          }
+
+
+        }
+        no_move &#x3D; false;
+
+        // Add listeners to forms
+        var update_bar_pos &#x3D; function (x_start_pos, y_start_pos) {
+          var bar_width &#x3D; alignment_width - (alignment_width / width * alignment_width)
+          var bar_height &#x3D;  alignment_height - (alignment_height / height * alignment_height)
+          y_bar_pos &#x3D; Math.max(margin.top, Math.min(y_start_pos * bar_height / (height + margin.top - alignment_height) + margin.top, bar_height + margin.top));
+          //x_bar_pos &#x3D; Math.max(x(0), Math.min(bar_width * x_start_pos / (width + x(0) - alignment_width) + x(0), bar_width + x(0)));
+          x_bar_pos &#x3D; bar_width * x_start_pos / (width + x(0) - alignment_width ) + x(0);
+        }
+
+        if (update_bar) {
+          update_bar_pos(x_start_pos, y_start_pos);
+        }
+
+        var go_to_submit &#x3D; function (event, d) {
+          event.preventDefault();
+          var values: string[] &#x3D; [];
+          d3.select(&quot;form#go_to&quot;)
+            .selectAll(&quot;input&quot;)
+            .each(function () {
+              values.push(d3.select(this).property(&quot;value&quot;))
+            })
+          if (values[0] &amp;&amp; values[1]) {
+            x_start_pos &#x3D; x(+values[1]);
+            y_start_pos &#x3D; y(values[0])!;
+          } else if (values[0]) {
+            y_start_pos &#x3D; y(values[0])!;
+          } else if (values[1]) {
+            x_start_pos &#x3D; x(+values[1])
+          }
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; []
+          svg.remove();
+          force_update_bar &#x3D; true;
+          update.call(this);
+          var transition_select;
+          if (values[0] &amp;&amp; values[1]) {
+            transition_select &#x3D; d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(values[0]) + &quot;&#x27;].column.p&quot; + (+values[1] - 1))
+          } else if (values[0]) {
+            transition_select &#x3D; d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parse_key(values[0]) + &quot;&#x27;].column&quot;);
+          } else if (values[1]) {
+            transition_select &#x3D; d3.selectAll(&quot;.column.p&quot; + (+values[1] - 1));
+          }
+          transition_select.transition()
+            .duration(0)
+            .style(&quot;filter&quot;, &quot;brightness(70%)&quot;)
+            .transition().duration(2500)
+            .style(&quot;filter&quot;, &quot;brightness(100%)&quot;);
+        }
+
+        d3.select(&quot;form#go_to&quot;)
+          .on(&quot;submit&quot;, go_to_submit.bind(this));
+        var motif_on_submit &#x3D; function (event, d) {
+          event.preventDefault();
+          var values: string[] &#x3D; [];
+          d3.select(&quot;form#motif&quot;)
+            .selectAll(&quot;input#text&quot;)
+            .each(function () {
+              values.push(d3.select(this).property(&quot;value&quot;).toUpperCase())
+            })
+          d3.select(&quot;form#motif&quot;)
+            .selectAll(&quot;input#checkbox&quot;)
+            .each(function () {
+              values.push(d3.select(this).property(&quot;checked&quot;))
+            })
+          var i &#x3D; 0
+          var seq, seq_str, pos;
+
+          if (search_params.join() !&#x3D; values.join()) {
+            search_params &#x3D; values;
+            i_search &#x3D; 0
+            var new_search &#x3D; true;
+            found_searches &#x3D; [];
+          } else {
+            new_search &#x3D; false;
+          }
+
+          while (i &lt; this.new_data.length &amp;&amp; new_search) {
+            seq &#x3D; this.new_data[i][&quot;value&quot;];
+            if (values[1])
+              seq &#x3D; complement([...seq]);
+            if (values[2])
+              seq &#x3D; [...seq].reverse();
+            seq_str &#x3D; seq.join(&quot;&quot;);
+            pos &#x3D; seq_str.indexOf(values[0]);
+            if (pos !&#x3D;&#x3D; -1) {
+              if (values[2])
+                pos &#x3D; this.new_data[i][&quot;value&quot;].length - pos - values[0].length;
+              found_searches.push({&quot;idx&quot;: i, &quot;pos&quot;: pos, &quot;key&quot;: this.new_data[i][&#x27;key&#x27;]});
+            }
+            i++;
+          }
+          if (found_searches.length &gt; 0) {
+            pos &#x3D; found_searches[i_search][&quot;pos&quot;];
+            var key &#x3D; this.new_data[found_searches[i_search][&quot;idx&quot;]][&quot;key&quot;];
+            x_start_pos &#x3D; x(pos + 1);
+            y_start_pos &#x3D; y(key)!;
+            force_update_bar &#x3D; true;
+            i_search &#x3D; (i_search + 1) % found_searches.length;
+            d3.select(&quot;#overview&quot;).remove();
+            edit_keys &#x3D; []
+            svg.remove();
+            update.call(this);
+          }
+        }
+
+        d3.select(&quot;form#motif&quot;)
+          .on(&quot;submit&quot;, motif_on_submit.bind(this))
+
+        //START SVG
+
+        var svg &#x3D; d3.select(&quot;#browser&quot;)
+          .append(&quot;svg&quot;)
+          .attr(&quot;id&quot;, &quot;total_viewer&quot;)
+          .attr(&quot;width&quot;, svg_width - margin.left)
+          .attr(&quot;height&quot;, svg_height - margin.top)
+          .style(&quot;position&quot;, &quot;absolute&quot;)
+          .style(&quot;top&quot;, margin.top + 110 + &quot;px&quot;)
+          .style(&quot;left&quot;, &quot;0px&quot;);
+
+        var first_row_key &#x3D; &quot;&quot;;
+        var first_row_pos &#x3D; Number.POSITIVE_INFINITY;
+
+        var rows &#x3D; svg
+          .append(&quot;foreignObject&quot;)
+          .attr(&quot;width&quot;, svg_width - margin.left - margin.right)
+          .attr(&quot;height&quot;, svg_height - margin.top - margin.bottom)
+          .append(&quot;svg&quot;)
+          .attr(&quot;id&quot;, &quot;alignment_view&quot;)
+          .attr(&quot;width&quot;, svg_width - margin.left - margin.right)
+          .attr(&quot;height&quot;, svg_height - margin.top - margin.bottom)
+          .selectAll(&quot;.row&quot;)
+          .data(this.new_data)
+          .enter()
+          .filter(function (d) {
+            if (y_pos(d, y) &gt;&#x3D; y_start_pos &amp;&amp; y_pos(d, y) &lt; first_row_pos) {
+              first_row_pos &#x3D; y_pos(d, y);
+              first_row_key &#x3D; parsed_cell_key(d);
+            }
+            return y_pos(d, y) &gt;&#x3D; y_start_pos &amp;&amp; y_pos(d, y) &lt;&#x3D; y_start_pos + (alignment_height + margin.top );//45 is the height of the rows of numbers
+          })
+          .append(&quot;g&quot;)
+          .attr(&quot;class&quot;, &quot;nextgendem-msa row&quot;);
+
+        var y_pos_scroll &#x3D; function (y_pos) {
+          var margin_correction &#x3D; first_row_pos - y_start_pos;
+          return y_pos - y_start_pos + margin.top - margin_correction;
+        }
+
+        var text_cell_y_pos &#x3D; function (text, y_pos) {
+          if (text &#x3D;&#x3D; &#x27;-&#x27;)
+            return y_pos_scroll(y_pos) + (y.bandwidth() - square_margin) / (1.50 * (Math.abs(height_proportion - side_proportion) + 1))
+          else if (text &#x3D;&#x3D; &#x27;.&#x27;)
+            return y_pos_scroll(y_pos) + (y.bandwidth() - square_margin) / (1.75 * (Math.abs(height_proportion - side_proportion) + 1))
+          else
+            return y_pos_scroll(y_pos) + (y.bandwidth() - square_margin) / (1.40 * (Math.abs(height_proportion - side_proportion) + 1))
+        }
+
+        var drag_text_cell_y_pos &#x3D; function (text, y_pos) {
+          if (text &#x3D;&#x3D; &#x27;-&#x27;)
+            return (y_pos + y.bandwidth() / 5 - square_margin) / (1.50 * (Math.abs(height_proportion - side_proportion) + 1))
+          else if (text &#x3D;&#x3D; &#x27;.&#x27;)
+            return y_pos + (y.bandwidth() / 5 - square_margin) / (1.75 * (Math.abs(height_proportion - side_proportion) + 1))
+          else
+            return y_pos + (y.bandwidth() / 5 - square_margin) / (1.45 * (Math.abs(height_proportion - side_proportion) + 1))
+        }
+
+        var on_label_drag_end &#x3D; function (event, d) {
+          var el &#x3D; d3.select(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(d) + &quot;&#x27;].label&quot;);
+          dragged_key &#x3D; event[&#x27;subject&#x27;][&#x27;key&#x27;];
+          var y_el &#x3D; parseFloat(el.attr(&quot;y&quot;));
+          var new_y &#x3D; y_el + event.dy;
+          var next_data: {}[] &#x3D; [];
+          var moved_row_index &#x3D; -1;
+          var row_data &#x3D; {};
+          var row_y;
+          var inserted &#x3D; false;
+          for (var i &#x3D; 0; i &lt; this.new_data.length; i++) {
+            if (d3.select(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(this.new_data[i]) + &quot;&#x27;].label&quot;).size() &gt; 0) {
+              if (parsed_cell_key(this.new_data[i]) !&#x3D; el.attr(&quot;id&quot;)) {
+                row_y &#x3D; parseFloat(d3.select(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(this.new_data[i]) + &quot;&#x27;].label&quot;).attr(&quot;y&quot;));
+                next_data.push(this.new_data[i]);
+                if (row_y - y.bandwidth() / 2 &lt;&#x3D; y_el &amp;&amp; row_y + y.bandwidth() / 2 &gt; y_el &amp;&amp; !inserted) {
+                  moved_row_index &#x3D; i + 1;
+                  next_data.push(row_data);
+                }
+              } else {
+                row_data &#x3D; this.new_data[i];
+                row_y &#x3D; y_pos_scroll(y(dragged_key));
+                if (new_y &lt;&#x3D; row_y + y.bandwidth() &amp;&amp; new_y &gt; row_y) {
+                  next_data.push(row_data);
+                  inserted &#x3D; true;
+                } else if (moved_row_index &gt;&#x3D; 0) {
+                  next_data[moved_row_index] &#x3D; this.new_data[i];
+                }
+              }
+            } else {
+              next_data.push(this.new_data[i]);
+            }
+          }
+
+          d3.select(&quot;#overview&quot;).remove();
+          svg.remove();
+          this.new_data &#x3D; next_data;
+          update.call(this);
+        }
+
+        rows.append(&quot;text&quot;)
+          .attr(&quot;class&quot;, &quot;nextgendem-msa label&quot;)
+          .attr(&quot;id&quot;, (d) &#x3D;&gt; parsed_cell_key(d))
+          .attr(&quot;x&quot;, 10)
+          .attr(&quot;y&quot;, function (d) {
+            return y_pos_scroll(y_pos(d, y)) + y.bandwidth() / 1.7
+          })
+          .attr(&quot;text-anchor&quot;, &quot;start&quot;)
+          .style(&quot;font-size&quot;, &quot;12px&quot;)
+          .style(&quot;font-style&quot;, &quot;italic&quot;)
+          .style(&quot;cursor&quot;, &quot;move&quot;)
+          .attr(&#x27;fill&#x27;, function (d) {
+            if (this.barcodingGroups.length &gt; 0) {
+              let i &#x3D; 0;
+              for (let g of this.barcodingGroups) {
+                if (g.includes(cell_key(d))) {
+                  return COLORS[i];
+                }
+                i++;
+              }
+            }
+            return &#x27;#000000&#x27;;
+          }.bind(this))
+          .text(function (d) {
+            var key &#x3D; cell_key(d);
+            if (key.length &gt; 25)
+              return key.substring(0, 25) + &#x27;...&#x27;;
+            else
+              return key;
+          })
+          .on(&quot;contextmenu&quot;, function (e) {
+            e.preventDefault();
+            var seq &#x3D; {};
+            for (var s of keys) {
+              if (parsed_cell_key(s) &#x3D;&#x3D; this.id) {
+                seq &#x3D; s;
+              }
+            }
+            d3.selectAll(&quot;rect:not([id&#x3D;&#x27;&quot; + parsed_cell_key(seq) + &quot;&#x27;]).column&quot;)
+              .style(&quot;fill&quot;, function (d) {
+                if (d3.select(this).classed(&quot;motif&quot;))
+                  return motif_color;
+                return c(cell_text(d))
+              });
+            d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(seq) + &quot;&#x27;].column&quot;).style(&quot;fill&quot;, function (d) {
+
+              if (d3.select(this).classed(&quot;motif&quot;))
+                return sel_motif_color;
+              return selected_c(cell_text(d))
+            });
+
+            edit_keys &#x3D; []
+            var i &#x3D; 0
+            for (var i &#x3D; 0; i &lt; seq[&quot;value&quot;].length; i++) {
+              edit_keys.push({&#x27;key&#x27;: seq[&#x27;key&#x27;], &#x27;pos&#x27;: i, &#x27;nucl&#x27;: seq[&#x27;value&#x27;][i]});
+            }
+          })
+          .call(d3.drag&lt;SVGTextElement, {}, SVGSVGElement&gt;()
+            .on(&quot;start&quot;, function (d) {
+              var el &#x3D; d3.select(this);
+              d3.select(this.parentElement).raise();
+              el.attr(&quot;opacity&quot;, &quot;0.7&quot;)
+              d3.selectAll(&quot;.label:not([id&#x3D;&#x27;&quot; + el.attr(&quot;id&quot;) + &quot;&#x27;])&quot;).attr(&quot;opacity&quot;, &quot;0.3&quot;);
+              d3.selectAll(&quot;rect.column:not([id&#x3D;&#x27;&quot; + el.attr(&quot;id&quot;) + &quot;&#x27;])&quot;).attr(&quot;opacity&quot;, &quot;0.3&quot;);
+              d3.selectAll(&quot;.nucl:not([id&#x3D;&#x27;&quot; + el.attr(&quot;id&quot;) + &quot;&#x27;])&quot;).attr(&quot;opacity&quot;, &quot;0.3&quot;);
+            })
+            .on(&quot;drag&quot;, function (d) {
+              var el &#x3D; d3.select(this);
+              var new_y &#x3D; parseFloat(el.attr(&quot;y&quot;)) + d.dy;
+              el.attr(&quot;y&quot;, new_y);
+              var cols &#x3D; d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + el.attr(&quot;id&quot;) + &quot;&#x27;].column&quot;);
+              cols.attr(&quot;y&quot;, new_y - y.bandwidth() / 1.75);
+              var nucl &#x3D; d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + el.attr(&quot;id&quot;) + &quot;&#x27;].nucl&quot;);
+              var new_nucl_y &#x3D; drag_text_cell_y_pos(nucl.text(), new_y)
+              nucl.attr(&quot;y&quot;, new_nucl_y);
+              var el &#x3D; d3.select(this);
+              var y_el &#x3D; parseFloat(el.attr(&quot;y&quot;));
+              var row_y;
+              for (var i &#x3D; 0; i &lt; keys.length; i++) {
+                if (d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].label&quot;).size() &gt; 0) {
+                  if (parse_key(keys[i]) !&#x3D; el.attr(&quot;id&quot;)) {
+                    row_y &#x3D; parseFloat(d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].label&quot;).attr(&quot;y&quot;));
+                    if (row_y - y.bandwidth() / 2 &lt;&#x3D; y_el &amp;&amp; row_y + y.bandwidth() / 2 &gt; y_el) {
+                      d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].column&quot;)
+                        .style(&quot;filter&quot;, &quot;brightness(25%)&quot;)
+                        .attr(&quot;opacity&quot;, &quot;0.8&quot;);
+
+                      d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].label&quot;)
+                        .style(&quot;fill&quot;, &quot;#01b4bb&quot;)
+                        .attr(&quot;opacity&quot;, &quot;0.8&quot;);
+                    } else {
+                      d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].column&quot;)
+                        .style(&quot;filter&quot;, &quot;brightness(100%)&quot;)
+                        .attr(&quot;opacity&quot;, &quot;0.3&quot;);
+
+                      d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[i]) + &quot;&#x27;].label&quot;)
+                        .style(&quot;fill&quot;, &#x27;#000000&#x27;)
+                        .attr(&quot;opacity&quot;, &quot;0.3&quot;);
+                    }
+                  }
+                }
+              }
+            })
+            .on(&quot;end&quot;, on_label_drag_end.bind(this)));
+
+        var first_column_pos &#x3D; Number.POSITIVE_INFINITY;
+
+
+
+        var column &#x3D; rows
+          .append(&quot;g&quot;)
+          .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+          .attr(&quot;id&quot;, &quot;scrollgroup&quot;)
+          .attr(&quot;x&quot;, x(0))
+          .attr(&quot;y&quot;, y_pos(this.new_data[0], y) - y.bandwidth() * 2)
+          .attr(&quot;width&quot;, &quot;inherit&quot;)
+          .attr(&quot;height&quot;, &quot;inherit&quot;)
+          .selectAll(&quot;.column&quot;)
+          .data(extract_row_data)
+          .enter()
+          .filter(function (d) {
+              if (x_pos(d, x) &gt;&#x3D; x_start_pos &amp;&amp; x_pos(d, x) &lt; first_column_pos) {
+                first_column_pos &#x3D; x_pos(d, x);
+              }
+              return x_pos(d, x) &gt;&#x3D; x_start_pos &amp;&amp; x_pos(d, x) &lt;&#x3D; x_start_pos + (svg_width - margin.left - margin.right * 2);
+            });
+
+        var x_pos_scroll &#x3D; function (x_pos) {
+          if (x_bar_pos &gt;&#x3D; margin.left) {
+            var margin_correction &#x3D; first_column_pos - x_start_pos;
+            return x_pos - x_start_pos + margin.left - margin_correction;
+          } else
+            return x_pos - x_start_pos;
+        }
+
+        var transform_column &#x3D; function (d) {
+          var i &#x3D; cell_index(d);
+          if (i % 5 &#x3D;&#x3D; 0 || i &#x3D;&#x3D; 1 || this.barcodingColumns.length !&#x3D; 0) {
+            return &quot;translate(&quot; + (x_pos_scroll(x_pos(d, x)) + (x(1) - x(0) + square_margin) / 3) + &quot;px, &quot; + (margin.top - 10) + &quot;px) rotate(-45deg)&quot;;
+          } else
+            return &quot;translate(&quot; + ((x_pos_scroll(x_pos(d, x))) + (x(1) - x(0) + square_margin) / 4.5) + &quot;px, &quot; + (margin.top - 10) + &quot;px)&quot;;
+        }
+
+        var column_text &#x3D; function (d) {
+          var i &#x3D; cell_index(d);
+          if (this.barcodingColumns.length !&#x3D; 0) {
+            return this.barcodingColumns[+i - 1];
+          }
+          if (i % 5 &#x3D;&#x3D; 0 || i &#x3D;&#x3D; 1)
+            return +i;
+          else
+            return &quot;• &quot;;
+        }
+
+
+
+        column.filter(function (d, i) {
+          return parsed_cell_key(d) &#x3D;&#x3D; first_row_key
+        })
+          .append(&quot;text&quot;)
+          .attr(&quot;class&quot;, &quot;nextgendem-msa label&quot;)
+          .style(&quot;font-size&quot;, &quot;15px&quot;)
+          .style(&quot;transform&quot;, transform_column.bind(this))
+          .text(column_text.bind(this));
+
+
+        var on_column_click &#x3D; function (event, data) {
+          const id &#x3D; parsed_cell_key(data);
+          shift_last_clicked &#x3D; false;
+          if (edit_keys.includes(data)) {
+            d3.select(&quot;[id&#x3D;&#x27;&quot; + id + &quot;&#x27;].column.p&quot; + (cell_index(data) - 1)).style(&quot;fill&quot;, function (d) {
+              if (d3.select(this).classed(&quot;motif&quot;))
+                return motif_color;
+              return c(cell_text(d))
+            });
+            edit_keys &#x3D; edit_keys.filter(el &#x3D;&gt; el !&#x3D; data);
+          } else if (event.shiftKey) {
+            d3.select(&quot;[id&#x3D;&#x27;&quot; + id + &quot;&#x27;].column.p&quot; + (cell_index(data) - 1)).style(&quot;fill&quot;, function (d) {
+              if (d3.select(this).classed(&quot;motif&quot;))
+                return motif_color;
+              return c(cell_text(d))
+            });
+            var new_selected &#x3D; [data].concat(shift_clicked_nucls(this.new_data, edit_keys, data));
+            for (s of edit_keys) {
+              d3.select(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(s) + &quot;&#x27;].column.p&quot; + (cell_index(s) - 1)).style(&quot;fill&quot;, function (d) {
+                if (d3.select(this).classed(&quot;motif&quot;))
+                  return motif_color;
+                return c(cell_text(d))
+              });
+            }
+            for (var s of new_selected) {
+              d3.select(&quot;[id&#x3D;&#x27;&quot; + parsed_cell_key(s) + &quot;&#x27;].column.p&quot; + (cell_index(s) - 1)).style(&quot;fill&quot;, function (d) {
+                if (d3.select(this).classed(&quot;motif&quot;))
+                  return sel_motif_color;
+                return selected_c(cell_text(d))
+              });
+            }
+
+            edit_keys &#x3D; new_selected;
+          } else {
+            d3.select(&quot;[id&#x3D;&#x27;&quot; + id + &quot;&#x27;].column.p&quot; + (cell_index(data) - 1)).style(&quot;fill&quot;, function (d) {
+              if (d3.select(this).classed(&quot;motif&quot;))
+                return sel_motif_color;
+              return selected_c(cell_text(d))
+            });
+            if (event.ctrlKey || event.metaKey) {
+              edit_keys.push(data);
+            } else {
+              d3.selectAll(&quot;rect:not([id&#x3D;&#x27;&quot; + id + &quot;&#x27;].column.p&quot; + (cell_index(data) - 1) + &quot;).column&quot;)
+                .style(&quot;fill&quot;, function (d) {
+                  if (d3.select(this).classed(&quot;motif&quot;))
+                    return motif_color;
+                  return c(cell_text(d))
+                });
+              edit_keys &#x3D; [data]
+            }
+          }
+        }
+
+        on_column_click &#x3D; on_column_click.bind(this);
+        var last_mouseover &#x3D; {};
+        var context_menu_box &#x3D; function (e, d) {
+          e.preventDefault();
+          var contextElement &#x3D; d3.selectAll(&quot;#context-menu&quot;);
+          contextElement.attr(&quot;visibility&quot;, &quot;visible&quot;);
+          contextElement.attr(&quot;x&quot;, e.offsetX);
+          contextElement.attr(&quot;y&quot;, function () {
+            return +d3.select(this).attr(&quot;y&quot;) + e.offsetY;
+          });
+
+          var contextElement &#x3D; d3.selectAll(&quot;rect#context-menu&quot;);
+          contextElement.attr(&quot;visibility&quot;, &quot;visible&quot;);
+          contextElement.attr(&quot;x&quot;, e.offsetX);
+          contextElement.attr(&quot;y&quot;, function (this, d, i) {
+            return +d3.select(this).attr(&quot;height&quot;).substring(0, 2) * i + e.offsetY;
+          });
+        }
+
+        let column_rects &#x3D; column.append(&quot;rect&quot;)
+          .attr(&quot;class&quot;, (d) &#x3D;&gt; &quot;nextgendem-msa column p&quot; + (cell_index(d) - 1))
+          .attr(&quot;id&quot;, function (d) {
+            return parsed_cell_key(d)
+          })
+          .attr(&quot;x&quot;, function (d) {
+            return x_pos_scroll(x_pos(d, x))
+          })
+          .attr(&quot;y&quot;, function (d) {
+            return y_pos_scroll(y_pos(d, y))
+          })
+          .attr(&quot;width&quot;, function (d) {
+            return x(1) - x(0) - square_margin;
+          })
+          .attr(&quot;height&quot;, function (d) {
+            return y.bandwidth() - square_margin;
+          })
+          .style(&quot;fill&quot;, function (d) {
+            let color &#x3D; cell_color(d, c);
+            let key &#x3D; cell_key(d)
+            if (Object.keys(this.seqs_groups).length &gt; 0) {
+              if (!(key in this.barcodingPositions) || !this.barcodingPositions[key].includes(this.barcodingColumns[parseInt(d.pos) - 1])) {
+                color &#x3D; &#x27;#777777&#x27;
+              }
+            }
+            return color;
+          }.bind(this))
+          .style(&quot;stroke-width&quot;, &quot;0&quot;)
+          .style(&quot;cursor&quot;, &quot;pointer&quot;)
+
+          if (Object.keys(this.seqs_groups).length &#x3D;&#x3D;&#x3D; 0) {
+            column_rects.on(&quot;mousemove&quot;, function (event, data) {
+              if (this.classList.contains(&quot;column&quot;)) {
+                cursor_key &#x3D; cell_key(data);
+                cursor_pos &#x3D; (+cell_index(data)).toString();
+                d3.select(&quot;#cursor_key&quot;).text(&#x60;${cursor_key_label}:  ${cursor_key}&#x60;);
+                d3.select(&quot;#cursor_pos&quot;).text(&#x60;${cursor_pos_label}:  ${cursor_pos}&#x60;);
+                if (event.buttons &#x3D;&#x3D; 1 &amp;&amp; event.ctrlKey) {
+                  if (last_mouseover !&#x3D; data) {
+                    last_mouseover &#x3D; data;
+                    on_column_click(event, data);
+                  }
+                } else {
+                  last_mouseover &#x3D; {};
+                }
+              }
+            })
+              .on(&quot;click&quot;, function (ev, d) {
+                on_column_click(ev, d)
+              })
+              .on(&quot;contextmenu&quot;, context_menu_box);
+          }
+
+        let column_texts &#x3D; column.append(&quot;text&quot;)
+          .text(cell_text)
+          .style(&quot;fill&quot;, function (d) {
+             if (Object.keys(this.seqs_groups).length &gt; 0) {
+              if (!(key in this.barcodingPositions) || !this.barcodingPositions[key].includes(this.barcodingColumns[parseInt(d.pos) - 1])) {
+                return &#x27;#FFFFFF&#x27;
+              }
+            }
+            else if (&quot;ACGT&quot;.includes(cell_text(d)))
+              return &quot;#FFFFFF&quot;
+            return &quot;black&quot;
+          }.bind(this))
+          .attr(&quot;id&quot;, function (d) {
+            return parsed_cell_key(d)
+          })
+          .attr(&quot;class&quot;, &quot;nextgendem-msa nucl&quot;)
+          .style(&quot;font-family&quot;, &quot;sans-serif&quot;)
+          //.style(&quot;font-weight&quot;, &quot;bold&quot;)
+          .attr(&quot;x&quot;, function (d) {
+            if (cell_text(d) &#x3D;&#x3D; &#x27;-&#x27;)
+              return (x_pos_scroll(x_pos(d, x))) + (x(1) - x(0) - square_margin) / (2.6 * (Math.abs(width_proportion - side_proportion) + 1))
+            else if ((cell_text(d) &#x3D;&#x3D; &#x27;.&#x27;))
+              return (x_pos_scroll(x_pos(d, x))) + (x(1) - x(0) - square_margin) / (2.5 * (Math.abs(width_proportion - side_proportion) + 1))
+            else
+              return (x_pos_scroll(x_pos(d, x))) + (x(1) - x(0) - square_margin) / (3.3 * (Math.abs(width_proportion - side_proportion) + 1))
+          })
+          .attr(&quot;y&quot;, function (d) {
+            return text_cell_y_pos(cell_text(d), y_pos(d, y))
+          })
+          .style(&quot;font-size&quot;, &quot;14px&quot;)
+          .style(&quot;cursor&quot;, &quot;pointer&quot;)
+
+          if (Object.keys(this.seqs_groups).length &#x3D;&#x3D;&#x3D; 0) {
+            column_texts.on(&quot;click&quot;, function (ev, d) {
+              on_column_click(ev, d)
+            })
+            .on(&quot;contextmenu&quot;, context_menu_box);
+          }
+
+
+
+        var scrollBarSize &#x3D; 8;
+
+        if (width &gt; svg_width - margin.left - margin.right) {
+
+          var x_bar &#x3D; svg
+            .append(&#x27;rect&#x27;)
+            .attr(&quot;x&quot;, x(0))
+            .attr(&quot;y&quot;, alignment_height + margin.top + 10)
+            .attr(&quot;width&quot;, alignment_width)
+            .attr(&quot;height&quot;, scrollBarSize)
+            .style(&quot;fill&quot;, &quot;#cccccc&quot;);
+
+          var x_miniBar &#x3D; svg
+            .append(&quot;rect&quot;)
+            .attr(&quot;class&quot;, &quot;miniBar&quot;)
+            .attr(&quot;x&quot;, x_bar_pos)
+            .attr(&quot;y&quot;, alignment_height + margin.top + 10)
+            .attr(&quot;width&quot;, alignment_width / width * alignment_width)
+            .attr(&quot;height&quot;, scrollBarSize)
+            .style(&quot;fill&quot;, &quot;#666666&quot;);
+
+          var drag_x_end &#x3D; function (d, n) {
+            d3.select(&quot;#overview&quot;).remove();
+            svg.remove();
+            update.call(this);
+            x_miniBar.style(&quot;fill&quot;, &quot;#666666&quot;);
+          }
+
+          var dragXInteraction &#x3D; d3.drag&lt;SVGRectElement, unknown, HTMLElement&gt;()
+            .on(&quot;start&quot;, function (d, n) {
+              x_miniBar
+                .style(&quot;fill&quot;, &quot;#999999&quot;);
+            })
+            .on(&quot;drag&quot;, function (d, n) {
+              x_bar_pos &#x3D; Math.max(x(0), Math.min(d.x, svg_width - margin.left - margin.right - parseFloat(x_miniBar.attr(&quot;width&quot;))));
+              x_miniBar.attr(&quot;x&quot;, x_bar_pos);
+            }).on(&quot;end&quot;, drag_x_end.bind(this));
+
+          x_miniBar.call(dragXInteraction);
+        }
+
+        var on_body_keydown &#x3D; function (this, event, data) {
+          if (event.isComposing || event.keyCode &#x3D;&#x3D;&#x3D; 229 || this.isVisibleModal || this.preventKeydown) {
+            return;
+          }
+          var next_data: {}[] &#x3D; [];
+          var new_data_str &#x3D; &quot;&quot;;
+          if (event.code &#x3D;&#x3D; &quot;Space&quot;) {
+            event.preventDefault();
+            var key_pos_inserted &#x3D; {}
+            new_data_str &#x3D; JSON.stringify(this.new_data);
+            if (!shift_last_clicked) {
+              for (var el of edit_keys) {
+                var n &#x3D; 0;
+                if (key_pos_inserted[el[&#x27;key&#x27;]] !&#x3D;&#x3D; undefined) {
+                  n &#x3D; key_pos_inserted[el[&#x27;key&#x27;]].filter((x: number) &#x3D;&gt; x &lt; el[&#x27;pos&#x27;] - 1).length;
+                  key_pos_inserted[el[&#x27;key&#x27;]].push(+el[&#x27;pos&#x27;] - 1);
+                } else {
+                  key_pos_inserted[el[&#x27;key&#x27;]] &#x3D; [+el[&#x27;pos&#x27;] - 1];
+                }
+                next_data &#x3D; put_gap(this.new_data, +el[&#x27;pos&#x27;] - 1 + n, el[&#x27;key&#x27;]);
+                post_states &#x3D; [];
+              }
+            } else {
+              for (var el of edit_keys) {
+                if (key_pos_inserted[el[&#x27;key&#x27;]] !&#x3D;&#x3D; undefined) {
+                  n &#x3D; key_pos_inserted[el[&#x27;key&#x27;]].filter((x: number) &#x3D;&gt; x &lt; el[&#x27;pos&#x27;] - 1).length;
+                  key_pos_inserted[el[&#x27;key&#x27;]].push(+el[&#x27;pos&#x27;] - 1);
+                } else {
+                  key_pos_inserted[el[&#x27;key&#x27;]] &#x3D; [+el[&#x27;pos&#x27;] - 1];
+                }
+
+                post_states &#x3D; [];
+              }
+
+              for (var k of Object.keys(key_pos_inserted)) {
+                for (var i &#x3D; 0; i &lt; key_pos_inserted[k].length; i++) {
+                  next_data &#x3D; put_gap(this.new_data, Math.min(...key_pos_inserted[k]), k);
+                }
+              }
+            }
+
+          } else if (event.code &#x3D;&#x3D; &quot;Backspace&quot;) {
+            var key_pos_deleted &#x3D; {}
+            if (edit_keys.length &gt; 0) {
+              new_data_str &#x3D; JSON.stringify(this.new_data);
+              for (var el of edit_keys) {
+                var n &#x3D; 0;
+                if (key_pos_deleted[el[&#x27;key&#x27;]] !&#x3D;&#x3D; undefined) {
+                  n &#x3D; key_pos_deleted[el[&#x27;key&#x27;]].filter((x: number) &#x3D;&gt; x &lt; el[&#x27;pos&#x27;] - 1).length;
+                  key_pos_deleted[el[&#x27;key&#x27;]].push(+el[&#x27;pos&#x27;] - 1);
+                } else {
+                  key_pos_deleted[el[&#x27;key&#x27;]] &#x3D; [+el[&#x27;pos&#x27;] - 1];
+                }
+                next_data &#x3D; delete_pos(this.new_data, +el[&#x27;pos&#x27;] - 1 - n, el[&#x27;key&#x27;]);
+                post_states &#x3D; [];
+              }
+            }
+          } else if (event.key !&#x3D; undefined &amp;&amp; &quot;AGCTRYSWKMBVHDN.-?&quot;.includes(event.key.toUpperCase())) {
+            if (edit_keys.length &gt; 0) {
+              new_data_str &#x3D; JSON.stringify(this.new_data);
+              for (var el of edit_keys) {
+                next_data &#x3D; change_cell_content(this.new_data, +el[&#x27;pos&#x27;] - 1, el[&#x27;key&#x27;], event.key.toUpperCase());
+                post_states &#x3D; [];
+              }
+            }
+          } else if (event.key !&#x3D; undefined &amp;&amp; event.key.toUpperCase() &#x3D;&#x3D; &quot;Z&quot;) {
+            if (event.ctrlKey || event.metaKey) {
+              if (event.shiftKey &amp;&amp; post_states.length &gt; 0) {
+                new_data_str &#x3D; JSON.stringify(this.new_data);
+                next_data &#x3D; JSON.parse(post_states.pop()!);
+              } else if (!event.shiftKey &amp;&amp; prev_states.length &gt; 0) {
+                next_data &#x3D; JSON.parse(prev_states.pop()!);
+                insert_state(JSON.stringify(this.new_data), post_states);
+
+              }
+            }
+          }
+
+          if (next_data.length &gt; 0) {
+            if (new_data_str !&#x3D; &quot;&quot;) insert_state(new_data_str, prev_states);
+            search_params &#x3D; [&quot;&quot;, &quot;false&quot;, &quot;false&quot;];
+            d3.select(&quot;#overview&quot;).remove();
+            fix_overview &#x3D; true;
+            no_move &#x3D; true;
+            edit_keys &#x3D; [];
+            svg.remove();
+            this.new_data &#x3D; next_data;
+            update.call(this);
+          }
+        }
+
+        d3.select(&quot;body&quot;)
+          .on(&quot;keydown&quot;, on_body_keydown.bind(this))
+          .on(&quot;click&quot;, function (e) {
+            d3.selectAll(&quot;#context-menu&quot;)
+              .attr(&quot;visibility&quot;, &quot;hidden&quot;)
+              .attr(&quot;x&quot;, 0)
+              .attr(&quot;y&quot;, 0);
+          });
+        //starts overview
+        if (Object.keys(this.barcodingPositions).length &#x3D;&#x3D;&#x3D; 0) {
+          var first_column: any &#x3D; d3.select(&quot;.column&quot;).data()[0]!;
+          var first_column_key_idx &#x3D; Math.round((y(first_column[&#x27;key&#x27;])! - margin.top) / y.bandwidth());
+          var overview_height &#x3D; Math.round(150 * height_proportion);
+          var overview_width &#x3D; Math.round(800 * width_proportion - (700 + 96) * (1 - width_proportion));//700 is the position of the overview and 24*4 the padding of the page
+
+          d3.select(&quot;#browser&quot;)
+            .select(&quot;div&quot;)
+            .select(&quot;input&quot;)
+            .style(&quot;left&quot;, 700 + overview_width - 70 + &quot;px&quot;);//24 is the padding of the page
+
+          d3.select(&quot;#browser&quot;).select(&quot;i.arrow.left&quot;)
+            .style(&quot;top&quot;, height_proportion * 90 + &quot;px&quot;);
+
+          d3.select(&quot;#browser&quot;).select(&quot;i.arrow.right&quot;)
+            .style(&quot;top&quot;, height_proportion * 90 + &quot;px&quot;)
+            .style(&quot;left&quot;, 700 + overview_width + 3 + &quot;px&quot;);
+
+          d3.select(&quot;#browser&quot;).select(&quot;i.arrow.up&quot;)
+            .style(&quot;left&quot;, 700 + overview_width / 2 + 5.75 + &quot;px&quot;);
+
+          d3.select(&quot;#browser&quot;).select(&quot;i.arrow.down&quot;)
+            .style(&quot;top&quot;, height_proportion * 175 + &quot;px&quot;)
+            .style(&quot;left&quot;, 700 + overview_width / 2 + 5.75 + &quot;px&quot;);
+        }
+
+          if (height &gt; svg_height - margin.top - margin.bottom) {
+            var y_bar &#x3D; svg
+              .append(&#x27;rect&#x27;)
+              .attr(&quot;x&quot;, svg_width - margin.left - margin.right + 10)
+              .attr(&quot;y&quot;, margin.top)
+              .attr(&quot;width&quot;, scrollBarSize)
+              .attr(&quot;height&quot;, svg_height - margin.top * 2 - margin.bottom)
+              .style(&quot;fill&quot;, &quot;#cccccc&quot;);
+
+            var y_miniBar &#x3D; svg
+              .append(&quot;rect&quot;)
+              .attr(&quot;class&quot;, &quot;miniBar&quot;)
+              .attr(&quot;x&quot;, (svg_width - margin.left - margin.right + 10))
+              .attr(&quot;y&quot;, y_bar_pos)
+              .attr(&quot;width&quot;, scrollBarSize)
+              .attr(&quot;height&quot;, alignment_height / height * alignment_height)
+              .style(&quot;fill&quot;, &quot;#666666&quot;);
+
+            var drag_y_end &#x3D; function (d, n) {
+              d3.select(&quot;#overview&quot;).remove();
+              svg.remove();
+              update.call(this);
+              y_miniBar.style(&quot;fill&quot;, &quot;#666666&quot;);
+            }
+
+            var dragYInteraction &#x3D; d3.drag&lt;SVGRectElement, unknown, HTMLElement&gt;().on(&quot;start&quot;, function (d, n) {
+              y_miniBar
+                .style(&quot;fill&quot;, &quot;#999999&quot;);
+            })
+              .on(&quot;drag&quot;, function (d, n) {
+                y_bar_pos &#x3D; Math.max(margin.top, Math.min(d.y, svg_height - y(keys[0]) - margin.bottom - parseFloat(y_miniBar.attr(&quot;height&quot;))));
+                y_miniBar.attr(&quot;y&quot;, y_bar_pos);
+              }).on(&quot;end&quot;, drag_y_end.bind(this));
+
+            y_miniBar.call(dragYInteraction);
+          }
+          // Transitions
+          if (dragged_key !&#x3D; &quot;&quot;) {
+            d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parse_key(dragged_key) + &quot;&#x27;].label&quot;)
+              .transition().duration(0)
+              .style(&quot;fill&quot;, &quot;#01b4bb&quot;)
+              .transition().duration(2500)
+              .style(&quot;fill&quot;, function (d) {
+                 if (this.barcodingGroups.length &gt; 0) {
+                  let i &#x3D; 0;
+                  for (let g of this.barcodingGroups) {
+                    if (g.includes(cell_key(d))) {
+                      return COLORS[i];
+                    }
+                    i++;
+                  }
+                }
+                return &#x27;#000000&#x27;;
+              }.bind(this));
+
+            d3.selectAll(&quot;[id&#x3D;&#x27;&quot; + parse_key(dragged_key) + &quot;&#x27;].column&quot;)
+              .transition().duration(0)
+              .style(&quot;filter&quot;, &quot;brightness(70%)&quot;)
+              .transition().duration(3500)
+              .style(&quot;filter&quot;, &quot;brightness(100%)&quot;);
+
+            dragged_key &#x3D; &quot;&quot;;
+        }
+
+        //Context Menu
+
+        var delete_columns_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          var columns: number[] &#x3D; [];
+          for (var el of edit_keys) {
+            columns.push(el[&#x27;pos&#x27;] - 1);
+          }
+          columns.sort(function (a, b) {
+            return b - a;
+          });
+          columns &#x3D; [...new Set(columns)];
+          for (var c of columns) {
+            this.new_data &#x3D; delete_column(this.new_data, c);
+          }
+
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; [];
+          svg.remove();
+          no_move &#x3D; true;
+          update.call(this);
+        }
+
+        var delete_rows_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          var next_data: {}[] &#x3D; []
+          var rows: string[] &#x3D; [];
+          for (var el of edit_keys) {
+            rows.push(el[&#x27;key&#x27;]);
+          }
+          rows &#x3D; [...new Set(rows)];
+          for (var r of rows) {
+            next_data &#x3D; delete_taxon(this.new_data, r);
+          }
+
+          let next_aln_length &#x3D; 0;
+          for (const s of next_data) {
+            if (s[&#x27;value&#x27;].length &gt; next_aln_length) {
+              next_aln_length &#x3D; s[&#x27;value&#x27;].length;
+            }
+          }
+
+          next_data &#x3D; delete_gappy_columns(next_data, next_aln_length);
+
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; [];
+          svg.remove();
+          no_move &#x3D; true;
+          this.new_data &#x3D; next_data;
+          update.call(this);
+        }
+
+        var delete_gappy_columns_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          this.new_data &#x3D; delete_gappy_columns(this.new_data, aln_length);
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; [];
+          svg.remove();
+          no_move &#x3D; true;
+          update.call(this);
+        }
+
+        var complement_positions &#x3D; function () {
+          var key_idx &#x3D; -1;
+          for (var ek of edit_keys) {
+            key_idx &#x3D; Math.round((y(ek[&#x27;key&#x27;])! - margin.top) / y.bandwidth());
+            if (Object.keys(complement_map).includes(this.new_data[key_idx][&#x27;value&#x27;][ek[&#x27;pos&#x27;]]))
+              this.new_data[key_idx][&#x27;value&#x27;][ek[&#x27;pos&#x27;] - 1] &#x3D; complement_map[ek[&#x27;nucl&#x27;]];
+          }
+        }
+
+        var complement_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          complement_positions.call(this);
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; []
+          svg.remove();
+          no_move &#x3D; true;
+          update.call(this);
+        }
+
+        var reverse_subarray &#x3D; function (arr: [], start: number, end: number) {
+          var d &#x3D; (end - start + 1) / 2;
+          for (var i &#x3D; 0; i &lt; d; i++) {
+            var t &#x3D; arr[start + i];
+            arr[start + i] &#x3D; arr[end - i];
+            arr[end - i] &#x3D; t;
+          }
+          return arr
+        }
+
+        var reverse &#x3D; function () {
+          var key_idx &#x3D; -1;
+          var key_positions: {} &#x3D; {}
+          for (var ek of edit_keys) {
+            if (!Object.keys(key_positions).includes(ek[&quot;key&quot;])) {
+              key_positions[ek[&#x27;key&#x27;]] &#x3D; [];
+            }
+            key_positions[ek[&#x27;key&#x27;]].push(+ek[&#x27;pos&#x27;] - 1);
+          }
+          var key_start_end &#x3D; {}
+          var sorted_positions: [];
+          var positions: number[];
+          for (var key of Object.keys(key_positions)) {
+            key_start_end[key] &#x3D; [];
+            key_positions[key].sort(function (a, b) {
+              return a - b;
+            });
+            positions &#x3D; [];
+            for (var p of key_positions[key]) {
+              if (positions.length &#x3D;&#x3D; 0 || positions[positions.length - 1] + 1 &#x3D;&#x3D; p) {
+                positions.push(JSON.parse(JSON.stringify(p)));
+              } else {
+                if (positions.length &gt; 1) {
+                  var hard_copy_of_positions &#x3D; JSON.parse(JSON.stringify(positions))
+                  key_start_end[key].push([Math.min(...hard_copy_of_positions), Math.max(...hard_copy_of_positions)])
+                }
+                positions &#x3D; [];
+              }
+            }
+            if (positions.length &gt; 1) {
+              key_start_end[key].push([Math.min(...positions), Math.max(...positions)])
+            }
+          }
+
+          var key_idx &#x3D; -1;
+          var delete_gaps_key_idx: number[] &#x3D; []; // only used in reverse complement
+          for (var key of Object.keys(key_start_end)) {
+            key_idx &#x3D; Math.round((y(key)! - margin.top) / y.bandwidth());
+            for (var start_end of key_start_end[key]) {
+              if (start_end[0] &#x3D;&#x3D; 0 &amp;&amp; start_end[1] - start_end[0] + 1 &#x3D;&#x3D; this.new_data[key_idx][&quot;value&quot;].length) {
+                delete_gaps_key_idx.push(key_idx);
+              }
+              this.new_data[key_idx][&quot;value&quot;] &#x3D; reverse_subarray(this.new_data[key_idx][&quot;value&quot;], start_end[0], start_end[1])
+            }
+          }
+          return delete_gaps_key_idx;
+        }
+
+        var reverse_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          reverse.call(this);
+          d3.select(&quot;#overview&quot;).remove();
+          edit_keys &#x3D; []
+          svg.remove();
+          update.call(this);
+        }
+
+        var reverse_complement_click &#x3D; function () {
+          insert_state(JSON.stringify(this.new_data), prev_states);
+          complement_positions.call(this);
+          var delete_gaps_key_idx &#x3D; reverse.call(this);
+          var seq_without_gaps: string[] &#x3D; []
+          for (var key_idx of delete_gaps_key_idx) {
+            for (var i &#x3D; 0; i &lt; this.new_data[key_idx][&#x27;value&#x27;].length; i++) {
+              if (this.new_data[key_idx][&#x27;value&#x27;][i] !&#x3D; &quot;-&quot;) {
+                seq_without_gaps.push(this.new_data[key_idx][&#x27;value&#x27;][i]);
+              }
+            }
+            this.new_data[key_idx][&#x27;value&#x27;] &#x3D; seq_without_gaps;
+          }
+          edit_keys &#x3D; []
+          d3.select(&quot;#overview&quot;).remove();
+          svg.remove();
+          no_move &#x3D; true;
+          update.call(this);
+        }
+
+
+        var contextElement &#x3D; svg
+          .append(&quot;g&quot;)
+          .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+          .attr(&quot;x&quot;, 0)
+          .attr(&quot;y&quot;, svg_height - margin.bottom)
+          .attr(&#x27;pointer-events&#x27;, &#x27;visible&#x27;)
+          .attr(&quot;id&quot;, &quot;context-menu&quot;)
+          .style(&quot;height&quot;, &quot;140px&quot;)
+          .style(&quot;width&quot;, &quot;200px&quot;)
+          .attr(&quot;visibility&quot;, &quot;hidden&quot;);
+
+        var context_options &#x3D; [
+          {&quot;text&quot;: &quot;Delete Columns&quot;, &quot;listener&quot;: delete_columns_click.bind(this), &quot;class&quot;: &quot;delete_columns&quot;},
+          {&quot;text&quot;: &quot;Delete Rows&quot;, &quot;listener&quot;: delete_rows_click.bind(this), &quot;class&quot;: &quot;delete_columns&quot;},
+          {
+            &quot;text&quot;: &quot;Delete Gappy Columns&quot;,
+            &quot;listener&quot;: delete_gappy_columns_click.bind(this),
+            &quot;class&quot;: &quot;delete_columns&quot;
+          },
+          {&quot;text&quot;: &quot;Reverse&quot;, &quot;listener&quot;: reverse_click.bind(this), &quot;class&quot;: &quot;reverse&quot;},
+          {&quot;text&quot;: &quot;Complement&quot;, &quot;listener&quot;: complement_click.bind(this), &quot;class&quot;: &quot;complement&quot;},
+          {
+            &quot;text&quot;: &quot;Reverse Complement&quot;,
+            &quot;listener&quot;: reverse_complement_click.bind(this),
+            &quot;class&quot;: &quot;reverse_complement&quot;
+          }]
+
+        for (var i &#x3D; 0; i &lt; context_options.length; i++) {
+          var rect &#x3D; contextElement.append(&quot;rect&quot;)
+            .attr(&quot;id&quot;, &quot;context-menu&quot;)
+            .style(&quot;fill&quot;, &quot;#1b1a1a&quot;)
+            .attr(&quot;class&quot;, context_options[i][&quot;text&quot;])
+            .attr(&quot;y&quot;, i * 35)
+            .attr(&quot;width&quot;, &quot;200px&quot;)
+            .attr(&quot;height&quot;, &quot;35px&quot;)
+            .attr(&#x27;stroke&#x27;, &#x27;white&#x27;)
+            .attr(&#x27;stroke-width&#x27;, &#x27;0.5&#x27;)
+            .on(&#x27;mouseover&#x27;, function (e) {
+              d3.select(this)
+                .style(&quot;filter&quot;, &quot;brightness(250%)&quot;);
+            })
+            .on(&#x27;mouseout&#x27;, function (e) {
+              var el &#x3D; d3.select(this);
+              if (+el.attr(&quot;y&quot;) &gt;&#x3D; e.offsetY || +el.attr(&quot;y&quot;) + +el.attr(&quot;height&quot;).slice(0, -2) &lt;&#x3D; e.offsetY ||
+                +el.attr(&quot;x&quot;) &gt;&#x3D; e.offsetX || +el.attr(&quot;x&quot;) + +el.attr(&quot;width&quot;).slice(0, -2) &lt;&#x3D; e.offsetX)
+                el.style(&quot;filter&quot;, &quot;brightness(100%)&quot;);
+            })
+            .on(&quot;click&quot;, context_options[i][&quot;listener&quot;]);
+
+          contextElement.append(&quot;text&quot;)
+            .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+            .attr(&quot;id&quot;, &quot;context-menu&quot;)
+            .attr(&quot;dy&quot;, +rect.attr(&quot;y&quot;) + 21)
+            .attr(&quot;dx&quot;, 15)
+            .style(&quot;fill&quot;, &quot;#eee&quot;)
+            .text(context_options[i][&quot;text&quot;])
+            .on(&quot;click&quot;, context_options[i][&quot;listener&quot;]);
+        }
+
+        //Overview
+        if (Object.keys(this.barcodingPositions).length &#x3D;&#x3D;&#x3D; 0) {
+          if (d3.select(&quot;#overview&quot;).size() &#x3D;&#x3D; 0) {
+
+            var taxons_in_viewer &#x3D; Math.ceil(alignment_height / y.bandwidth());
+            var aln_length_in_viewer &#x3D; Math.ceil((alignment_width - x(0)) / (x(1) - x(0) + square_margin));
+            var key: string;
+            var seq: string[];
+            var n_overview_taxons &#x3D; Math.min(overview_height, keys.length);
+            var n_overview_aln_length &#x3D; Math.min(overview_width, aln_length);
+
+            if (!fix_overview) {
+              overview_x_start &#x3D; Math.max(0, Math.min(Math.floor(+first_column[&#x27;pos&#x27;]! + aln_length_in_viewer / 2 - n_overview_aln_length / 2), aln_length - n_overview_aln_length));
+              overview_y_start &#x3D; Math.max(0, Math.min(Math.floor(first_column_key_idx + taxons_in_viewer / 2 - n_overview_taxons / 2), keys.length - n_overview_taxons));
+            }
+
+
+            d3.selectAll(&quot;#position_rect&quot;).remove();
+
+            var overview &#x3D; d3.select(&quot;#browser&quot;)
+              .append(&quot;div&quot;)
+              .style(&quot;position&quot;, &quot;absolute&quot;)
+              .style(&quot;top&quot;, &quot;20px&quot;)
+              .style(&quot;left&quot;, &quot;700px&quot;)
+              .style(&quot;height&quot;, overview_height + &quot;px&quot;)
+              .style(&quot;width&quot;, overview_width + &quot;px&quot;)
+              .attr(&quot;id&quot;, &quot;overview&quot;)
+              .append(&quot;canvas&quot;)
+              .attr(&quot;id&quot;, &quot;overview_canvas&quot;)
+              .attr(&quot;height&quot;, overview_height)
+              .attr(&quot;width&quot;, overview_width)
+              .style(&quot;border&quot;, &quot;1px&quot;)
+              .style(&quot;border-collapse&quot;, &quot;collapse&quot;)
+              .style(&quot;padding&quot;, &quot;0px&quot;)
+              .style(&quot;height&quot;, overview_height + &quot;px&quot;)
+              .style(&quot;width&quot;, overview_width + &quot;px&quot;);
+
+
+            const canvas &#x3D; overview.node();
+            const getCanvasBlob &#x3D; (blob: Blob) &#x3D;&gt; {
+              this.canvasBlob &#x3D; blob;
+            }
+
+            const overview_context &#x3D; canvas.getContext(&#x27;webgl2&#x27;);
+
+            const program &#x3D; overview_context.createProgram();
+
+            const vertexShader &#x3D; overview_context.createShader(overview_context.VERTEX_SHADER);
+            const vertexShaderSource &#x3D; &#x60;#version 300 es
+                                      // an attribute is an input (in) to a vertex shader.
+                                      // It will receive data from a buffer
+                                      layout(location &#x3D; 0) in vec2 a_position;
+                                      layout(location &#x3D; 1) in vec3 aColor;
+
+                                      out vec3 vColor;
+                                      // all shaders have a main function
+                                      void main() {
+                                        vec2 resolution &#x3D; vec2(${overview_width}, ${overview_height});
+                                        //convert the position from pixels to 0.0 to 1.0
+                                        vec2 zeroToOne &#x3D; a_position / resolution;
+                                        //convert from 0-&gt;1 to 0-&gt;2
+                                        vec2 zeroToTwo &#x3D; zeroToOne * 2.0;
+                                        //convert from 0-&gt;2 to -1-&gt;+1 (clipspace)
+                                        vec2 clipSpace &#x3D; zeroToTwo - 1.0;
+                                        gl_Position &#x3D; vec4(clipSpace * vec2(1, -1), 0, 1);
+                                        vColor &#x3D; aColor;
+                                      }
+          &#x60;;
+            overview_context.shaderSource(vertexShader, vertexShaderSource);
+            overview_context.compileShader(vertexShader);
+            overview_context.attachShader(program, vertexShader);
+
+            const fragmentShader &#x3D; overview_context.createShader(overview_context.FRAGMENT_SHADER);
+            const fragmentShaderSource &#x3D; &#x60;#version 300 es
+
+                                        precision highp float;
+
+                                        in vec3 vColor;
+
+                                        out vec4 fragColor;
+
+                                        void main()
+                                        {
+                                            fragColor &#x3D; vec4(vColor, 1.0);
+                                        }
+          &#x60;;
+            overview_context.shaderSource(fragmentShader, fragmentShaderSource);
+            overview_context.compileShader(fragmentShader);
+            overview_context.attachShader(program, fragmentShader);
+
+            overview_context.linkProgram(program);
+
+            if (!overview_context.getProgramParameter(program, overview_context.LINK_STATUS)) {
+              console.log(&#x27;WebGL error:&#x27;);
+              console.log(overview_context.getShaderInfoLog(vertexShader));
+              console.log(overview_context.getShaderInfoLog(fragmentShader));
+            }
+
+            overview_context.useProgram(program);
+
+            const aPositionLoc &#x3D; 0;
+            const aColorLoc &#x3D; 1;
+
+            var overview_cell_width &#x3D; overview_width / n_overview_aln_length;
+            var overview_cell_height &#x3D; overview_height / n_overview_taxons;
+
+
+            var get_webgl_rectangle &#x3D; function (x, y, height, width, color) {
+              var x1 &#x3D; x;
+              var x2 &#x3D; x + width;
+              var y1 &#x3D; y;
+              var y2 &#x3D; y + height;
+              return [
+                x1, y1, ...color,
+                x2, y1, ...color,
+                x1, y2, ...color,
+                x2, y2, ...color,
+              ];
+            }
+
+            let rectangle;
+            let rectangle_color;
+            let hexColor: string;
+            let rgb: RegExpExecArray;
+            let vertices_arrays &#x3D; [];
+            for (let z &#x3D; 0; z &lt; n_overview_taxons; z++) {
+              key &#x3D; this.new_data[z + overview_y_start][&#x27;key&#x27;];
+              seq &#x3D; this.new_data[z + overview_y_start][&#x27;value&#x27;];
+              for (let w &#x3D; 0; w &lt; n_overview_aln_length; w++) {
+                if (key &#x3D;&#x3D;&#x3D; first_column[&#x27;key&#x27;] &amp;&amp; w + overview_x_start &#x3D;&#x3D;&#x3D; +first_column[&#x27;pos&#x27;] &amp;&amp; !fix_overview) {
+                  overview_bar_x &#x3D; w * overview_cell_width;
+                  overview_bar_y &#x3D; z * overview_cell_height;
+                }
+                rectangle &#x3D; [w * overview_cell_width, z * overview_cell_height, overview_cell_height, overview_cell_width];
+                hexColor &#x3D; c(seq[w + overview_x_start]);
+                rgb &#x3D; /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hexColor);
+                rectangle_color &#x3D; [parseInt(rgb[1], 16) / 255, parseInt(rgb[2], 16) / 255, parseInt(rgb[3], 16) / 255];
+                /**** No reemplazar el push por el concat, el concat va muchisimo mas lento ****/
+                vertices_arrays.push(get_webgl_rectangle(rectangle[0], rectangle[1], rectangle[2], rectangle[3], rectangle_color))
+                /**** se termina el push conflictivo ****/
+              }
+            }
+
+            overview_context.viewport(0, 0, overview_width, overview_height);
+            overview_context.clearColor(0, 0, 0, 0);
+            overview_context.clear(overview_context.COLOR_BUFFER_BIT | overview_context.DEPTH_BUFFER_BIT);
+            /**** I need to make the concatanation divided in three times because if not I get a call function stack overflow ****/
+            let vertices &#x3D; Array.prototype.concat.apply([], vertices_arrays.slice(0, vertices_arrays.length / 3))
+            vertices &#x3D; vertices.concat(Array.prototype.concat.apply([], vertices_arrays.slice(vertices_arrays.length / 3 + 1, 2 * vertices_arrays.length / 3 + 1)));
+            vertices &#x3D; vertices.concat(Array.prototype.concat.apply([], vertices_arrays.slice(2 * vertices_arrays.length / 3 + 1)));
+            vertices_arrays.length &#x3D; 0;
+            /**** Finish concatenation ****/
+            const verticesBuffer &#x3D; overview_context.createBuffer();
+            overview_context.bindBuffer(overview_context.ARRAY_BUFFER, verticesBuffer);
+            overview_context.bufferData(overview_context.ARRAY_BUFFER, new Float32Array(vertices), overview_context.STATIC_DRAW);
+            const ver_len &#x3D; vertices.length;
+            vertices &#x3D; null;
+            overview_context.vertexAttribPointer(aPositionLoc, 2, overview_context.FLOAT, false, 2 * 4 + 3 * 4, 0);
+            overview_context.vertexAttribPointer(aColorLoc, 3, overview_context.FLOAT, false, 2 * 4 + 3 * 4, 2 * 4);
+            overview_context.enableVertexAttribArray(aPositionLoc);
+            overview_context.enableVertexAttribArray(aColorLoc);
+            overview_context.drawArrays(overview_context.TRIANGLE_STRIP, 0, ver_len / 5);
+
+            canvas.toBlob(getCanvasBlob.bind(this), &#x27;image/png&#x27;);
+
+            var overview_bar_height &#x3D; Math.min((alignment_height - y.bandwidth())/ (n_overview_taxons * (y.bandwidth())) * overview_height, overview_height)
+            var overview_bar_width &#x3D; Math.min((alignment_width - (x(1) - x(0)) - margin.right)  / (n_overview_aln_length * (x(1) - x(0))) * overview_width, overview_width)
+
+            var overview_bar &#x3D; d3.select(&quot;#browser&quot;)
+              .append(&quot;div&quot;)
+              .attr(&quot;id&quot;, &quot;position_rect&quot;)
+              .style(&quot;position&quot;, &quot;absolute&quot;)
+              .style(&quot;top&quot;, &quot;20px&quot;)
+              .style(&quot;left&quot;, &quot;700px&quot;)
+              .append(&quot;svg&quot;)
+              .attr(&quot;height&quot;, overview_height)
+              .attr(&quot;width&quot;, overview_width)
+              .style(&quot;pointer-events&quot;, &quot;painted&quot;)
+              .style(&quot;fill&quot;, &quot;none&quot;)
+              .append(&quot;rect&quot;)
+              .attr(&quot;x&quot;, overview_bar_x)
+              .attr(&quot;y&quot;, overview_bar_y)
+              .attr(&quot;width&quot;, overview_bar_width)
+              .attr(&quot;height&quot;, overview_bar_height)
+              .style(&quot;fill&quot;, &quot;white&quot;)
+              .style(&quot;fill-opacity&quot;, 0.6)
+              .attr(&quot;stroke-width&quot;, &quot;1&quot;)
+              .attr(&quot;stroke&quot;, &quot;black&quot;);
+
+            var on_overview_drag &#x3D; function (d, n) {
+              var x_table_nucl_pos &#x3D; Math.max(0, Math.floor(overview_bar_x / overview_cell_width));
+              var y_table_nucl_pos &#x3D; Math.floor(overview_bar_y / overview_cell_height);
+              var key &#x3D; keys[y_table_nucl_pos + overview_y_start];
+              var pos &#x3D; x_table_nucl_pos + overview_x_start;
+              y_start_pos &#x3D; y(key)!;
+              x_start_pos &#x3D; x(pos);
+              force_update_bar &#x3D; true;
+              d3.select(&quot;#total_viewer&quot;).remove();
+              update.call(this);
+              overview_bar.style(&quot;filter&quot;, &quot;brightness(100%)&quot;);
+            }
+
+            var overviewDrag &#x3D; d3.drag&lt;SVGRectElement, unknown, HTMLElement&gt;()
+              .on(&quot;start&quot;, function (d, n) {
+                d3.select(this).style(&quot;filter&quot;, &quot;brightness(80%)&quot;);
+              })
+              .on(&quot;drag&quot;, function (d, n) {
+                overview_bar_x &#x3D; Math.max(0, Math.min(d.x, overview_width - Math.min(overview_bar_width, overview_width)));
+                overview_bar_y &#x3D; Math.max(0, Math.min(d.y, overview_height - Math.min(overview_bar_height, overview_height)));
+                d3.select(this).attr(&quot;x&quot;, overview_bar_x);
+                d3.select(this).attr(&quot;y&quot;, overview_bar_y);
+              }).on(&quot;end&quot;, on_overview_drag.bind(this));
+
+            overview_bar.call(overviewDrag);
+          }
+          fix_overview &#x3D; false;
+        }
+
+        //Found searches
+        var pos;
+        for (var z &#x3D; 0; z &lt; found_searches.length; z++) {
+          pos &#x3D; found_searches[z][&#x27;pos&#x27;]
+          for (var w &#x3D; 0; w &lt; search_params[0].length; w++) {
+            d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[found_searches[z][&#x27;idx&#x27;]]) + &quot;&#x27;].column.p&quot; + (pos + w))
+              .attr(&quot;class&quot;, function () {
+                return d3.select(this).attr(&quot;class&quot;) + &quot; motif&quot;
+              })
+              .style(&quot;fill&quot;, motif_color);
+            d3.select(&quot;[id&#x3D;&#x27;&quot; + parse_key(keys[found_searches[z][&#x27;idx&#x27;]]) + &quot;$&quot; + (pos + w) + &quot;&#x27;]&quot;)
+              .style(&quot;background-color&quot;, motif_color);
+          }
+        }
+
+        //Arrows click
+        var on_arrow_click &#x3D; function (arrow_direction, e) {
+          e.preventDefault();
+          var pos_num &#x3D; +d3.select(&quot;#scroll_num&quot;).property(&quot;value&quot;);
+          if (arrow_direction &#x3D;&#x3D;&#x3D; &quot;left&quot;) {
+            x_start_pos &#x3D; x(Math.max(0, +first_column[&#x27;pos&#x27;] - pos_num));
+          } else if (arrow_direction &#x3D;&#x3D;&#x3D; &quot;right&quot;) {
+            x_start_pos &#x3D; x(Math.max(0, Math.min(aln_length - overview_width / 2, +first_column[&#x27;pos&#x27;] + pos_num)));
+          } else if (arrow_direction &#x3D;&#x3D;&#x3D; &quot;down&quot;) {
+            y_start_pos &#x3D; y(keys[Math.max(0, Math.min(first_column_key_idx + pos_num, keys.length - overview_height / 2))])!;
+          } else if (arrow_direction &#x3D;&#x3D;&#x3D; &quot;up&quot;) {
+            y_start_pos &#x3D; y(keys[Math.max(first_column_key_idx - pos_num, 0)])!;
+          }
+          force_update_bar &#x3D; true;
+          d3.select(&quot;#overview&quot;).remove();
+          svg.remove()
+          update.call(this);
+        }
+        d3.selectAll(&quot;i.arrow.left&quot;).on(&quot;click&quot;, on_arrow_click.bind(this, &#x27;left&#x27;));
+        d3.selectAll(&quot;i.arrow.right&quot;).on(&quot;click&quot;, on_arrow_click.bind(this, &#x27;right&#x27;));
+        d3.selectAll(&quot;i.arrow.up&quot;).on(&quot;click&quot;, on_arrow_click.bind(this, &#x27;up&#x27;));
+        d3.selectAll(&quot;i.arrow.down&quot;).on(&quot;click&quot;, on_arrow_click.bind(this, &#x27;down&#x27;));
+
+        var prevent_keydown &#x3D; function () {
+          this.preventKeydown &#x3D; true;
+        }
+        var activate_keydown &#x3D; function () {
+          this.preventKeydown &#x3D; false;
+        }
+        prevent_keydown &#x3D; prevent_keydown.bind(this);
+        activate_keydown &#x3D; activate_keydown.bind(this);
+
+        d3.selectAll(&quot;select&quot;).on(&#x27;focus&#x27;, prevent_keydown).on(&#x27;blur&#x27;, activate_keydown);
+        d3.selectAll(&quot;input&quot;).on(&#x27;focus&#x27;, prevent_keydown).on(&#x27;blur&#x27;, activate_keydown);
+
+        d3.select(&#x27;.loader&#x27;).style(&#x27;visibility&#x27;, &#x27;hidden&#x27;);
+        this.initLoading &#x3D; false;
+
+        var resize_update &#x3D; update.bind(this);
+        window.addEventListener(&quot;resize&quot;, (e) &#x3D;&gt; {
+          d3.select(&quot;#overview&quot;).remove();
+          svg.remove();
+          resize_update();
+        }, {once: true});
+        this.updating &#x3D; false;
+      }
+    }
+
+    var check_repeated_keys &#x3D; function(parsed_fasta: {}[]) {
+      var keys: string[] &#x3D; [];
+      var repeated_keys: Set&lt;string&gt; &#x3D; new Set([]);
+      for (var l of parsed_fasta) {
+        if (!keys.includes(l[&#x27;key&#x27;]))
+          keys.push(l[&#x27;key&#x27;]);
+        else
+          repeated_keys.add(l[&#x27;key&#x27;]);
+      }
+      return repeated_keys;
+    }
+
+    const textOption &#x3D; { responseType: &#x27;text&#x27; };
+    const options &#x3D; { ...this.globalVariablesServices.authOptions, ...textOption };
+    console.log(this.Url)
+    this.http.get(this.Url, options).subscribe({
+       next: async fasta &#x3D;&gt; {
+         Object.values(this.barcodingPositions).forEach((v: number[]) &#x3D;&gt; {
+          this.barcodingColumns &#x3D; this.barcodingColumns.concat(v);
+         });
+        this.barcodingColumns &#x3D; [...new Set(this.barcodingColumns)].sort((a, b) &#x3D;&gt; a - b);
+        var fastaString &#x3D; this.ab2str(fasta);
+        var parsed_fasta &#x3D; parse_fasta(fastaString);
+        var repeated_keys &#x3D; check_repeated_keys(parsed_fasta);
+        this.new_data &#x3D; parsed_fasta;
+        if (repeated_keys.size &#x3D;&#x3D; 0)
+          update.call(this)
+        else {
+          var message &#x3D; await this.internationalizationService.translate(
+            &quot;MOLECULAR_DATA.MULTIPLE_ALIGNMENTS.NUCLEOTIDE_EDITOR.LOG.DUPLICATED_SEQUENCES&quot;,
+            {sequences: Array.from((repeated_keys)).join(&#x27;,&#x27;)});
+          d3.select(&quot;#browser&quot;)
+          .append(&quot;text&quot;)
+           .attr(&quot;class&quot;, &quot;nextgendem-msa&quot;)
+          .style(&quot;position&quot;, &quot;fixed&quot;)
+          .style(&quot;top&quot;, &quot;30%&quot;)
+          .style(&quot;left&quot;, &quot;10%&quot;)
+          .style(&quot;font-size&quot;, &quot;36px&quot;)
+          .text(message)
+          .style(&quot;color&quot;, &quot;red&quot;)
+        }
+      },error:  error &#x3D;&gt; {
+        this.loading &#x3D; false;
+        this.msg.error(error.message);
+      }, complete: () &#x3D;&gt; {}
+    });
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;browser&quot; class&#x3D;&quot;nextgendem-msa&quot;&gt;&lt;/div&gt;
+&lt;div class&#x3D;&quot;nextgendem-msa init-loader&quot; *ngIf&#x3D;&quot;initLoading&quot;&gt;&lt;/div&gt;
+&lt;div class&#x3D;&quot;.nextgendem-msa loader&quot;&gt;&lt;/div&gt;
+&lt;app-dynamic-input-modal  #dynamicInputModalRef [title]&#x3D;&quot;modalTitle&quot; [fields]&#x3D;&quot;modalFields&quot; [(isVisible)]&#x3D;&quot;isVisibleModal&quot; (acceptInput)&#x3D;&quot;saveFunction($event)&quot;&gt;&lt;/app-dynamic-input-modal&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./nextgendem-msa-browser.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">rect.nextgendem-msa.column
+  stroke: #fff
+  stroke-width: 0
+  shape-rendering: crispEdges
+
+g.nextgendem-msa
+  shape-rendering: crispEdges
+
+text.nextgendem-msa
+  -webkit-touch-callout: none /* iOS Safari */
+  -webkit-user-select: none /* Safari */
+  -moz-user-select: none /* Old versions of Firefox */
+  -ms-user-select: none /* Internet Explorer/Edge */
+  user-select: none /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+
+div#header.nextgendem-msa
+  display: inline-block
+  white-space: nowrap
+  margin-top: 20px
+
+
+div#forms.nextgendem-msa
+  input
+    margin-right: 10px
+  #checkbox
+    margin-left: 5px
+  #go_to
+    margin-bottom: 10px
+
+div#info.nextgendem-msa
+  display: grid
+  position: absolute
+  left: 207px
+  top: 140px
+  label
+    margin-right: 10px
+  label#cursor_key
+      margin-bottom: 7px
+
+.nextgendem-msa.arrow
+  border: solid black
+  border-width: 0 2px 2px 0
+  display: inline-block
+  padding: 3px
+  -webkit-touch-callout: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+
+.nextgendem-msa.right
+  transform: rotate(-45deg)
+
+.nextgendem-msa.left
+  transform: rotate(135deg)
+
+.nextgendem-msa.up
+  transform: rotate(-135deg)
+
+.nextgendem-msa.down
+  transform: rotate(45deg)
+
+.nextgendem-msa.init-loader
+  border: 8px solid #f3f3f3 /* Light grey */
+  border-top: 8px solid #073642 /* Dark Blue */
+  border-bottom: 8px solid #073642
+  border-radius: 50%
+  width: 80px
+  height: 80px
+  animation: spin 1.5s linear infinite
+  position: fixed
+  left: 50%
+  top: 50%
+
+.nextgendem-msa.loader
+  border: 2px solid #f3f3f3 /* Light grey */
+  border-top: 2px solid #073642 /* Dark Blue */
+  border-bottom: 2px solid #073642
+  border-radius: 50%
+  width: 30px
+  height: 30px
+  animation: spin 1.5s linear infinite
+  position: absolute
+  left: 85px
+  top: 170px
+  visibility: hidden
+
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="browser" class="nextgendem-msa"></div><div class="nextgendem-msa init-loader" *ngIf="initLoading"></div><div class=".nextgendem-msa loader"></div><app-dynamic-input-modal  #dynamicInputModalRef [title]="modalTitle" [fields]="modalFields" [(isVisible)]="isVisibleModal" (acceptInput)="saveFunction($event)"></app-dynamic-input-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'NextgendemMsaBrowserComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NextgendemMsaBrowserComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

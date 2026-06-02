@@ -1,0 +1,47 @@
+
+.sidebar
+  height: 100% 
+  width: 100%
+  padding: 0
+  margin: 0
+  display: flex
+  flex-direction: column
+  max-width: 100%
+
+.clearButton 
+  position: absolute
+  top: 0.001em
+  right: 0.5em
+  background: transparent
+  border: none
+  font-size: 18px
+  cursor: pointer
+  color: #888
+  line-height: 1
+  padding: 0
+
+.clearButton:hover 
+  color: #000
+
+  
+.searchContainer
+  display: inline
+  position: relative
+  margin-right: 15px
+  .searchIcon
+    position: absolute
+    left: 16px
+    top: 50%
+    transform: translateY(-50%)
+    opacity: 0.6
+    pointer-events: none
+  .searchInput
+    width: 100%
+    padding-left: 36px
+    height: 32px
+    box-sizing: border-box
+    
+li[disabled] 
+  background: #fff
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1)
+

@@ -1,0 +1,2698 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  NextgendemGeolayerConfigurationPanelComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-nextgendem-geolayer-configuration-panel</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./nextgendem-geolayer-configuration-panel.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./nextgendem-geolayer-configuration-panel.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attributes" >attributes</a>
+                            </li>
+                            <li>
+                                <a href="#colorMapsList" >colorMapsList</a>
+                            </li>
+                            <li>
+                                <a href="#idMap" >idMap</a>
+                            </li>
+                            <li>
+                                <a href="#layersData" >layersData</a>
+                            </li>
+                            <li>
+                                <a href="#nameMap" >nameMap</a>
+                            </li>
+                            <li>
+                                <a href="#nextAttributeZIndex" >nextAttributeZIndex</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#nextgendemGeolayerConfigurationPanelWindowComponent" >nextgendemGeolayerConfigurationPanelWindowComponent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#nextgendemGeolayerCreateMapComponent" >nextgendemGeolayerCreateMapComponent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#nextgendemGeolayerEditStyleModalComponent" >nextgendemGeolayerEditStyleModalComponent</a>
+                            </li>
+                            <li>
+                                <a href="#openSettingsPropertySelected" >openSettingsPropertySelected</a>
+                            </li>
+                            <li>
+                                <a href="#singleMode" >singleMode</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#addPropertiesInPanel" >addPropertiesInPanel</a>
+                            </li>
+                            <li>
+                                <a href="#changeFilterSelected" >changeFilterSelected</a>
+                            </li>
+                            <li>
+                                <a href="#changeOpacity" >changeOpacity</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createNewMap" >createNewMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createStylesForNewMap" >createStylesForNewMap</a>
+                            </li>
+                            <li>
+                                <a href="#dropAttribute" >dropAttribute</a>
+                            </li>
+                            <li>
+                                <a href="#editStyleProperty" >editStyleProperty</a>
+                            </li>
+                            <li>
+                                <a href="#filterCQLChange" >filterCQLChange</a>
+                            </li>
+                            <li>
+                                <a href="#formatterOpacitySlider" >formatterOpacitySlider</a>
+                            </li>
+                            <li>
+                                <a href="#onAddAPropertyButtonClick" >onAddAPropertyButtonClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#onCheckProperty" >onCheckProperty</a>
+                            </li>
+                            <li>
+                                <a href="#openCreateModalMap" >openCreateModalMap</a>
+                            </li>
+                            <li>
+                                <a href="#openEditStyleProperty" >openEditStyleProperty</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#overwriteMap" >overwriteMap</a>
+                            </li>
+                            <li>
+                                <a href="#removeAttribute" >removeAttribute</a>
+                            </li>
+                            <li>
+                                <a href="#removeFilterLayer" >removeFilterLayer</a>
+                            </li>
+                            <li>
+                                <a href="#showLegend" >showLegend</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#attributesChange" >attributesChange</a>
+                            </li>
+                            <li>
+                                <a href="#attributesZIndexChange" >attributesZIndexChange</a>
+                            </li>
+                            <li>
+                                <a href="#changeFilterCQLayer" >changeFilterCQLayer</a>
+                            </li>
+                            <li>
+                                <a href="#changeFilterSelectedProperty" >changeFilterSelectedProperty</a>
+                            </li>
+                            <li>
+                                <a href="#changeOpacityProperty" >changeOpacityProperty</a>
+                            </li>
+                            <li>
+                                <a href="#changeWhereClickMapInfo" >changeWhereClickMapInfo</a>
+                            </li>
+                            <li>
+                                <a href="#checkProperty" >checkProperty</a>
+                            </li>
+                            <li>
+                                <a href="#createMap" >createMap</a>
+                            </li>
+                            <li>
+                                <a href="#editStyleProperty" >editStyleProperty</a>
+                            </li>
+                            <li>
+                                <a href="#geolayerLoading" >geolayerLoading</a>
+                            </li>
+                            <li>
+                                <a href="#openModalAddProperty" >openModalAddProperty</a>
+                            </li>
+                            <li>
+                                <a href="#openModalMapSettings" >openModalMapSettings</a>
+                            </li>
+                            <li>
+                                <a href="#overwriteMap" >overwriteMap</a>
+                            </li>
+                            <li>
+                                <a href="#removeAttribute" >removeAttribute</a>
+                            </li>
+                            <li>
+                                <a href="#removeFilterLayer" >removeFilterLayer</a>
+                            </li>
+                            <li>
+                                <a href="#showLegendProperty" >showLegendProperty</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, modalInfoService: <a href="../injectables/ModalInfoService.html" target="_self">ModalInfoService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:56</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>modalInfoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ModalInfoService.html" target="_self" >ModalInfoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attributesChange"></a>
+                        <b>attributesChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:37</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="attributesZIndexChange"></a>
+                        <b>attributesZIndexChange</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:40</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeFilterCQLayer"></a>
+                        <b>changeFilterCQLayer</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:44</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeFilterSelectedProperty"></a>
+                        <b>changeFilterSelectedProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:43</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeOpacityProperty"></a>
+                        <b>changeOpacityProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:42</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="changeWhereClickMapInfo"></a>
+                        <b>changeWhereClickMapInfo</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:52</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="checkProperty"></a>
+                        <b>checkProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:41</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createMap"></a>
+                        <b>createMap</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:50</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editStyleProperty"></a>
+                        <b>editStyleProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:48</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="geolayerLoading"></a>
+                        <b>geolayerLoading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:49</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openModalAddProperty"></a>
+                        <b>openModalAddProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:39</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="openModalMapSettings"></a>
+                        <b>openModalMapSettings</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:38</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="overwriteMap"></a>
+                        <b>overwriteMap</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:51</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeAttribute"></a>
+                        <b>removeAttribute</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:47</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="removeFilterLayer"></a>
+                        <b>removeFilterLayer</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:45</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="showLegendProperty"></a>
+                        <b>showLegendProperty</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:46</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addPropertiesInPanel"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>addPropertiesInPanel</b></span>
+                        <a href="#addPropertiesInPanel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addPropertiesInPanel(elements: any[])</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="70"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:70</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>elements</td>
+                                            <td>
+                                                        <code>any[]</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>unknown</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeFilterSelected"></a>
+                    <span class="name">
+                        <span ><b>changeFilterSelected</b></span>
+                        <a href="#changeFilterSelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeFilterSelected(item, event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="162"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:162</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changeOpacity"></a>
+                    <span class="name">
+                        <span ><b>changeOpacity</b></span>
+                        <a href="#changeOpacity"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changeOpacity(item, event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="157"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:157</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createNewMap"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createNewMap</b></span>
+                        <a href="#createNewMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createNewMap(event: <a href="../interfaces/ICreateMapEvent.html" target="_self">ICreateMapEvent</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="255"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:255</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../interfaces/ICreateMapEvent.html" target="_self" >ICreateMapEvent</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createStylesForNewMap"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createStylesForNewMap</b></span>
+                        <a href="#createStylesForNewMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createStylesForNewMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dropAttribute"></a>
+                    <span class="name">
+                        <span ><b>dropAttribute</b></span>
+                        <a href="#dropAttribute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>dropAttribute(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="124"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:124</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editStyleProperty"></a>
+                    <span class="name">
+                        <span ><b>editStyleProperty</b></span>
+                        <a href="#editStyleProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>editStyleProperty(event: <a href="../interfaces/IEditStylePropertyEditValue.html" target="_self">IEditStylePropertyEditValue</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="225"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:225</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IEditStylePropertyEditValue.html" target="_self" >IEditStylePropertyEditValue</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterCQLChange"></a>
+                    <span class="name">
+                        <span ><b>filterCQLChange</b></span>
+                        <a href="#filterCQLChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>filterCQLChange(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="212"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:212</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatterOpacitySlider"></a>
+                    <span class="name">
+                        <span ><b>formatterOpacitySlider</b></span>
+                        <a href="#formatterOpacitySlider"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>formatterOpacitySlider(value)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="172"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:172</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onAddAPropertyButtonClick"></a>
+                    <span class="name">
+                        <span ><b>onAddAPropertyButtonClick</b></span>
+                        <a href="#onAddAPropertyButtonClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onAddAPropertyButtonClick()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="66"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:66</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onCheckProperty"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>onCheckProperty</b></span>
+                        <a href="#onCheckProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>onCheckProperty(event, property)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="152"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:152</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>property</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openCreateModalMap"></a>
+                    <span class="name">
+                        <span ><b>openCreateModalMap</b></span>
+                        <a href="#openCreateModalMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openCreateModalMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:235</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openEditStyleProperty"></a>
+                    <span class="name">
+                        <span ><b>openEditStyleProperty</b></span>
+                        <a href="#openEditStyleProperty"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>openEditStyleProperty(property)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="220"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:220</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>property</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overwriteMap"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>overwriteMap</b></span>
+                        <a href="#overwriteMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>overwriteMap()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="240"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:240</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeAttribute"></a>
+                    <span class="name">
+                        <span ><b>removeAttribute</b></span>
+                        <a href="#removeAttribute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeAttribute(item)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="176"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:176</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeFilterLayer"></a>
+                    <span class="name">
+                        <span ><b>removeFilterLayer</b></span>
+                        <a href="#removeFilterLayer"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeFilterLayer(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLegend"></a>
+                    <span class="name">
+                        <span ><b>showLegend</b></span>
+                        <a href="#showLegend"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showLegend(item, event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="167"
+                                    class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:167</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>item</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attributes"></a>
+                    <span class="name">
+                        <span ><b>attributes</b></span>
+                        <a href="#attributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="colorMapsList"></a>
+                    <span class="name">
+                        <span ><b>colorMapsList</b></span>
+                        <a href="#colorMapsList"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="idMap"></a>
+                    <span class="name">
+                        <span ><b>idMap</b></span>
+                        <a href="#idMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layersData"></a>
+                    <span class="name">
+                        <span ><b>layersData</b></span>
+                        <a href="#layersData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{}</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nameMap"></a>
+                    <span class="name">
+                        <span ><b>nameMap</b></span>
+                        <a href="#nameMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:33</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextAttributeZIndex"></a>
+                    <span class="name">
+                        <span ><b>nextAttributeZIndex</b></span>
+                        <a href="#nextAttributeZIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>1</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextgendemGeolayerConfigurationPanelWindowComponent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>nextgendemGeolayerConfigurationPanelWindowComponent</b></span>
+                        <a href="#nextgendemGeolayerConfigurationPanelWindowComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/NextgendemGeolayerConfigurationPanelWindowComponent.html" target="_self" >NextgendemGeolayerConfigurationPanelWindowComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(NextgendemGeolayerConfigurationPanelWindowComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:54</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextgendemGeolayerCreateMapComponent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>nextgendemGeolayerCreateMapComponent</b></span>
+                        <a href="#nextgendemGeolayerCreateMapComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/NextgendemGeolayerCreateMapComponent.html" target="_self" >NextgendemGeolayerCreateMapComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(NextgendemGeolayerCreateMapComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="56" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:56</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nextgendemGeolayerEditStyleModalComponent"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>nextgendemGeolayerEditStyleModalComponent</b></span>
+                        <a href="#nextgendemGeolayerEditStyleModalComponent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../components/NextgendemGeolayerEditStyleModalComponent.html" target="_self" >NextgendemGeolayerEditStyleModalComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(NextgendemGeolayerEditStyleModalComponent)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openSettingsPropertySelected"></a>
+                    <span class="name">
+                        <span ><b>openSettingsPropertySelected</b></span>
+                        <a href="#openSettingsPropertySelected"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="singleMode"></a>
+                    <span class="name">
+                        <span ><b>singleMode</b></span>
+                        <a href="#singleMode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/components/display/nextgendem-geolayer/nextgendem-geolayer-configuration-panel/nextgendem-geolayer-configuration-panel.component.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component, EventEmitter, Output, ViewChild} from &#x27;@angular/core&#x27;;
+import {
+  NextgendemGeolayerConfigurationPanelWindowComponent
+} from &quot;../nextgendem-geolayer-configuration-panel-window/nextgendem-geolayer-configuration-panel-window.component&quot;;
+import {BackendService} from &quot;../../../../services/backend.service&quot;;
+import {forkJoin, lastValueFrom} from &quot;rxjs&quot;;
+import {AuthService} from &quot;../../../../services/auth.service&quot;;
+import {
+  IEditStylePropertyEditValue,
+  NextgendemGeolayerEditStyleModalComponent
+} from &quot;../nextgendem-geolayer-edit-style-modal/nextgendem-geolayer-edit-style-modal.component&quot;;
+import {
+  ICreateMapEvent,
+  NextgendemGeolayerCreateMapComponent
+} from &quot;../nextgendem-geolayer-create-map/nextgendem-geolayer-create-map.component&quot;;
+import {MessageLogService} from &quot;../../../../services/message-log.service&quot;;
+import {ModalInfoService} from &quot;../../../../services/modal-info.service&quot;;
+import {v4 as uuidv4} from &#x27;uuid&#x27;;
+
+@Component({
+    selector: &#x27;app-nextgendem-geolayer-configuration-panel&#x27;,
+    templateUrl: &#x27;./nextgendem-geolayer-configuration-panel.component.html&#x27;,
+    styleUrls: [&#x27;./nextgendem-geolayer-configuration-panel.component.sass&#x27;],
+    standalone: false
+})
+export class NextgendemGeolayerConfigurationPanelComponent {
+
+  attributes &#x3D; []
+  nextAttributeZIndex &#x3D; 1
+  openSettingsPropertySelected;
+  layersData: any &#x3D; {}
+  idMap;
+  nameMap &#x3D; &#x27;&#x27;
+  colorMapsList &#x3D; {}
+  singleMode &#x3D; false
+
+  @Output() attributesChange &#x3D; new EventEmitter&lt;any[]&gt;()
+  @Output() openModalMapSettings &#x3D; new EventEmitter&lt;null&gt;()
+  @Output() openModalAddProperty &#x3D; new EventEmitter&lt;null&gt;()
+  @Output() attributesZIndexChange &#x3D; new EventEmitter&lt;any[]&gt;()
+  @Output(&#x27;checkProperty&#x27;) checkPropertyEmitter &#x3D; new EventEmitter&lt;{ property: any }&gt;()
+  @Output(&#x27;changeOpacityProperty&#x27;) changeOpacityPropertyEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;changeFilterSelectedProperty&#x27;) changeFilterSelectedPropertyEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;changeFilterCQLayer&#x27;) changeFilterCQLayerEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;removeFilterLayer&#x27;) removeFilterLayerEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;showLegendProperty&#x27;) showLegendPropertyEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;removeAttribute&#x27;) removeAttributeEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;editStyleProperty&#x27;) editStylePropertyEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;geolayerLoading&#x27;) geolayerLoading &#x3D; new EventEmitter&lt;boolean&gt;()
+  @Output(&#x27;createMap&#x27;) createMapEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;overwriteMap&#x27;) overwriteMapEmitter &#x3D; new EventEmitter&lt;any&gt;()
+  @Output(&#x27;changeWhereClickMapInfo&#x27;) changeWhereClickMapInfoEmitter &#x3D; new EventEmitter&lt;string&gt;()
+
+  @ViewChild(NextgendemGeolayerConfigurationPanelWindowComponent) nextgendemGeolayerConfigurationPanelWindowComponent: NextgendemGeolayerConfigurationPanelWindowComponent
+  @ViewChild(NextgendemGeolayerEditStyleModalComponent) nextgendemGeolayerEditStyleModalComponent: NextgendemGeolayerEditStyleModalComponent
+  @ViewChild(NextgendemGeolayerCreateMapComponent) nextgendemGeolayerCreateMapComponent: NextgendemGeolayerCreateMapComponent
+
+  constructor(
+    private readonly backendService: BackendService,
+    private readonly authService: AuthService,
+    private readonly messageLogService: MessageLogService,
+    private readonly modalInfoService: ModalInfoService,
+  ) {
+  }
+
+  onAddAPropertyButtonClick() {
+    this.openModalAddProperty.emit()
+  }
+
+  async addPropertiesInPanel(elements: any[]) {
+    this.geolayerLoading.emit(true)
+    const newItems &#x3D; new Map&lt;string, any&gt;()
+    try {
+      const styleRequests: any &#x3D; {}
+      for (let item of elements.reverse()) {
+        const itemFound &#x3D; this.attributes.find(element &#x3D;&gt; {
+          return (item.id &#x3D;&#x3D;&#x3D; element.id)
+        })
+        if (!itemFound) {
+          const idLayer &#x3D; item.id.split(&#x27;$&#x27;)[0]
+          item.opacity &#x3D; 70
+          item.checkbox &#x3D; false
+          item.filterSelected &#x3D; null
+          item.legend &#x3D; false
+          item.ZIndex &#x3D; this.nextAttributeZIndex
+          item.style &#x3D; {
+            layer_id: idLayer,
+            property: item.name,
+            colormap: &#x27;&#x27;
+          }
+          if (!this.idMap) {
+            const session: any &#x3D; await lastValueFrom(this.backendService.getSession())
+            item.style.style_name &#x3D; &#x60;${idLayer}_${item.name}_${session.identity_id}&#x60;
+          } else {
+            item.style.map_id &#x3D; uuidv4()
+          }
+          item.style.colormap &#x3D; item.colormap;
+          styleRequests[item.id] &#x3D; this.backendService.postGeoStyle(item.style)
+          this.nextAttributeZIndex++
+          newItems.set(item.id, item)
+          if (!this.layersData[idLayer]) {
+            this.layersData[idLayer] &#x3D; {
+              filters: {},
+              layer: item.layer
+            }
+          }
+        }
+      }
+      if (Object.keys(styleRequests).length &gt; 0) {
+        const responseStyles &#x3D; await lastValueFrom(forkJoin(styleRequests))
+        Object.keys(responseStyles).forEach(key &#x3D;&gt; {
+          const item &#x3D; newItems.get(key)
+          item.style.style_name &#x3D; responseStyles[key].content.style_name
+        })
+      }
+      this.attributes &#x3D; [...newItems.values(), ...this.attributes]
+    } catch (e) {
+      console.log(e)
+    }
+    this.geolayerLoading.emit(false)
+    return newItems
+  }
+
+  dropAttribute(event) {
+    if (event.previousIndex &#x3D;&#x3D;&#x3D; event.currentIndex) return
+    let attributesChangesZIndex &#x3D; []
+    if (event.previousIndex &lt; event.currentIndex) {
+      for (let i &#x3D; event.previousIndex; i &lt; event.currentIndex; i++) {
+        const auxElement &#x3D; this.attributes[i]
+        const auxZIndex &#x3D; this.attributes[i].ZIndex
+        this.attributes[i].ZIndex &#x3D; this.attributes[i + 1].ZIndex
+        this.attributes[i + 1].ZIndex &#x3D; auxZIndex
+        this.attributes[i] &#x3D; this.attributes[i + 1]
+        this.attributes[i + 1] &#x3D; auxElement
+        attributesChangesZIndex.push(this.attributes[i])
+      }
+    } else {
+      for (let i &#x3D; event.previousIndex; i &gt; event.currentIndex; i--) {
+        const auxElement &#x3D; this.attributes[i]
+        const auxZIndex &#x3D; this.attributes[i].ZIndex
+        this.attributes[i].ZIndex &#x3D; this.attributes[i - 1].ZIndex
+        this.attributes[i - 1].ZIndex &#x3D; auxZIndex
+        this.attributes[i] &#x3D; this.attributes[i - 1]
+        this.attributes[i - 1] &#x3D; auxElement
+        attributesChangesZIndex.push(this.attributes[i])
+      }
+    }
+    attributesChangesZIndex.push(this.attributes[event.currentIndex])
+    this.attributesZIndexChange.emit(attributesChangesZIndex)
+  }
+
+  async onCheckProperty(event, property) {
+    property.checkbox &#x3D; event
+    this.checkPropertyEmitter.emit(property)
+  }
+
+  changeOpacity(item, event) {
+    item.opacity &#x3D; event
+    this.changeOpacityPropertyEmitter.emit(item)
+  }
+
+  changeFilterSelected(item, event) {
+    item.filterSelected &#x3D; event
+    this.changeFilterSelectedPropertyEmitter.emit(item)
+  }
+
+  showLegend(item, event): void {
+    item.legend &#x3D; event
+    this.showLegendPropertyEmitter.emit(item)
+  }
+
+  formatterOpacitySlider(value) {
+    return &#x60;${value}%&#x60;;
+  }
+
+  removeAttribute(item) {
+    let indexAttribute &#x3D; -1
+    const attributte &#x3D; this.attributes.find((element, index) &#x3D;&gt; {
+      if (element.id &#x3D;&#x3D;&#x3D; item.id) {
+        indexAttribute &#x3D; index
+        return true
+      }
+    })
+    if (indexAttribute &gt; -1) {
+      // Remove attribute
+      this.attributes.splice(indexAttribute, 1)
+
+      // Remove layer if required
+      let needRemoveLayer &#x3D; true
+      const layerId &#x3D; attributte.id.split(&#x27;$&#x27;)[0]
+      this.attributes.find(element &#x3D;&gt; {
+        const auxLayerId &#x3D; element.id.split(&#x27;$&#x27;)[0]
+        if (layerId &#x3D;&#x3D; auxLayerId) {
+          needRemoveLayer &#x3D; false
+          return true
+        }
+      })
+      if (needRemoveLayer) {
+        delete this.layersData[layerId]
+        const windowLayerSelected &#x3D; this.nextgendemGeolayerConfigurationPanelWindowComponent.layerSelectedFilter
+        if (windowLayerSelected &#x3D;&#x3D; layerId) {
+          this.nextgendemGeolayerConfigurationPanelWindowComponent.layerSelectedFilter &#x3D; null
+          this.nextgendemGeolayerConfigurationPanelWindowComponent.filterSelected &#x3D; null
+        }
+      }
+
+      // Remove attribute on map if it is rendered
+      this.removeAttributeEmitter.emit(item)
+    }
+  }
+
+  filterCQLChange(event) {
+    this.changeFilterCQLayerEmitter.emit(event)
+  }
+
+  removeFilterLayer(event) {
+    this.removeFilterLayerEmitter.emit(event)
+  }
+
+  openEditStyleProperty(property) {
+    this.nextgendemGeolayerEditStyleModalComponent.colorMapsList &#x3D; this.colorMapsList
+    this.nextgendemGeolayerEditStyleModalComponent.openModal(property)
+  }
+
+  editStyleProperty(event: IEditStylePropertyEditValue) {
+    const property &#x3D; this.attributes.find(element &#x3D;&gt; {
+      return element.id &#x3D;&#x3D; event.idProperty
+    })
+    if (property) {
+      property.style.colormap &#x3D; event.colormap
+      this.editStylePropertyEmitter.emit(property)
+    }
+  }
+
+  openCreateModalMap() {
+    this.nextgendemGeolayerCreateMapComponent.nameMap &#x3D; this.nameMap
+    this.nextgendemGeolayerCreateMapComponent.openModal(this.idMap)
+  }
+
+  async overwriteMap(): Promise&lt;void&gt; {
+    try {
+      this.geolayerLoading.emit(true)
+      await this.createStylesForNewMap()
+      this.overwriteMapEmitter.emit({
+        attributes: this.attributes,
+        idMap: this.idMap,
+        nameMap: this.nameMap
+      })
+    } catch (e) {
+      this.messageLogService.addResponseIssues(e)
+      this.modalInfoService.showModalInfoDefaultError(e)
+    }
+  }
+
+  async createNewMap(event: ICreateMapEvent): Promise&lt;void&gt; {
+    try {
+      this.geolayerLoading.emit(true)
+      await this.createStylesForNewMap()
+      this.createMapEmitter.emit({
+        attributes: this.attributes,
+        name: event.name
+      })
+    } catch (e) {
+      this.messageLogService.addResponseIssues(e)
+      this.modalInfoService.showModalInfoDefaultError(e)
+    }
+  }
+
+  async createStylesForNewMap() {
+    const map_id_random &#x3D; uuidv4()
+    const requestsNewStyles &#x3D; {}
+    const attributesMap &#x3D; new Map(this.attributes.map((element) &#x3D;&gt; {
+      const idLayer &#x3D; element.id.split(&#x27;$&#x27;)[0]
+      requestsNewStyles[element.id] &#x3D; this.backendService.postGeoStyle({
+        layer_id: idLayer,
+        property: element.name,
+        colormap: element.style.colormap,
+        map_id: map_id_random
+      })
+      return [element.id, element]
+    }))
+    if (Object.keys(requestsNewStyles).length &gt; 0) {
+      const response: any &#x3D; await lastValueFrom(forkJoin(requestsNewStyles))
+      Object.keys(response).forEach(key &#x3D;&gt; {
+        const content &#x3D; response[key].content
+        attributesMap.get(key).style.style_name &#x3D; content.style_name
+      })
+    }
+  }
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;nextgendem-geolayer-configuration-panel-container&quot;&gt;
+
+  &lt;div style&#x3D;&quot;display: flex; flex: 0 0 auto; align-items: center&quot;&gt;
+    &lt;input nz-input [(ngModel)]&#x3D;&quot;nameMap&quot; disabled [placeholder]&#x3D;&quot;&#x27;DISPLAY.GIS.NAME_MAP_INPUT.PLACEHOLDER&#x27; | translate&quot;/&gt;
+    &lt;span style&#x3D;&quot;font-size: 1rem; margin-left: 5px; cursor: pointer&quot; nz-icon nzType&#x3D;&quot;save&quot; nzTheme&#x3D;&quot;outline&quot; (click)&#x3D;&quot;openCreateModalMap()&quot; *ngIf&#x3D;&quot;!singleMode&quot;&gt;&lt;/span&gt;
+    &lt;span style&#x3D;&quot;font-size: 1rem; margin-left: 5px; cursor: pointer&quot; nz-icon nzType&#x3D;&quot;setting&quot; nzTheme&#x3D;&quot;outline&quot; (click)&#x3D;&quot;openModalMapSettings.emit()&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+
+  &lt;div style&#x3D;&quot;margin-top: 10px; display: flex; justify-content: space-between; flex: 0 0 auto&quot;&gt;
+    &lt;div style&#x3D;&quot;font-size: 1.4rem; font-weight: 500&quot;&gt;
+      {{ &quot;DISPLAY.GIS.PROPERTIES&quot; | translate }}
+    &lt;/div&gt;
+    &lt;div style&#x3D;&quot;align-self: flex-end&quot;&gt;
+      &lt;button nz-button nzType&#x3D;&quot;default&quot; style&#x3D;&quot;padding: 6px 10px&quot; (click)&#x3D;&quot;onAddAPropertyButtonClick()&quot;&gt;
+        &lt;span nz-icon nzType&#x3D;&quot;plus&quot;&gt;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div style&#x3D;&quot;flex: 1 1 auto; min-height: 0; overflow: auto; padding: 10px 5px&quot; cdkDropList
+       (cdkDropListDropped)&#x3D;&quot;dropAttribute($event)&quot;&gt;
+    &lt;ng-container *ngFor&#x3D;&quot;let item of attributes&quot;&gt;
+      &lt;div
+        [ngClass]&#x3D;&quot;{ &#x27;nextgendem-geolayer-configuration-panel-attribute-box-shadow&#x27;: (openSettingsPropertySelected &#x3D;&#x3D;&#x3D; item.id || true) }&quot;
+        style&#x3D;&quot;padding: 5px 5px 5px 5px; margin-bottom: 10px&quot;&gt;
+        &lt;div class&#x3D;&quot;nextgendem-geolayer-configuration-panel-attribute&quot;
+             cdkDrag&gt;
+          &lt;div style&#x3D;&quot;flex: 1 1 auto; padding-left: 8px; min-width: 0&quot; cdkDragHandle
+               class&#x3D;&quot;nextgendem-geolayer-configuration-panel-attribute-name&quot;&gt;
+            {{ item.layerName }} - {{ item.name }}
+          &lt;/div&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;eye&quot; style&#x3D;&quot;font-size: 1rem; cursor: pointer; margin-right: 5px;&quot;
+                (click)&#x3D;&quot;onCheckProperty(false, item)&quot; *ngIf&#x3D;&quot;item.checkbox&quot;&gt;&lt;/span&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;eye-invisible&quot; style&#x3D;&quot;font-size: 1rem; cursor: pointer; margin-right: 5px;&quot;
+                (click)&#x3D;&quot;onCheckProperty(true, item)&quot; *ngIf&#x3D;&quot;!item.checkbox&quot;&gt;&lt;/span&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;profile&quot; nzTheme&#x3D;&quot;outline&quot; style&#x3D;&quot;margin-right: 5px; cursor: pointer;&quot;
+                *ngIf&#x3D;&quot;!item.legend&quot; (click)&#x3D;&quot;showLegend(item, true)&quot;&gt;&lt;/span&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;profile&quot; nzTheme&#x3D;&quot;fill&quot; style&#x3D;&quot;margin-right: 5px; cursor: pointer;&quot; *ngIf&#x3D;&quot;item.legend&quot;
+                (click)&#x3D;&quot;showLegend(item, false)&quot;&gt;&lt;/span&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;bg-colors&quot; style&#x3D;&quot;font-size: 1rem; cursor: pointer; margin-right: 5px;&quot;
+                (click)&#x3D;&quot;openEditStyleProperty(item)&quot;&gt;&lt;/span&gt;
+          &lt;span nz-icon nzType&#x3D;&quot;delete&quot; [nzTheme]&#x3D;&quot;&#x27;twotone&#x27;&quot; [nzTwotoneColor]&#x3D;&quot;&#x27;#ff0000&#x27;&quot;
+                style&#x3D;&quot;font-size: 1rem; cursor: pointer&quot; (click)&#x3D;&quot;removeAttribute(item)&quot;&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;ng-container *ngIf&#x3D;&quot;openSettingsPropertySelected &#x3D;&#x3D;&#x3D; item.id || true&quot;&gt;
+          &lt;div style&#x3D;&quot;margin-bottom: 5px; display: flex&quot;&gt;
+            &lt;nz-slider style&#x3D;&quot;width: 50%&quot; [nzTipFormatter]&#x3D;&quot;null&quot; [ngModel]&#x3D;&quot;item.opacity&quot;
+                       (nzOnAfterChange)&#x3D;&quot;changeOpacity(item, $event)&quot;
+                       [nzTipFormatter]&#x3D;&quot;formatterOpacitySlider&quot;&gt;&lt;/nz-slider&gt;
+            &lt;nz-select style&#x3D;&quot;width: 50%&quot; [ngModel]&#x3D;&quot;item.filterSelected&quot;
+                       (ngModelChange)&#x3D;&quot;changeFilterSelected(item, $event)&quot; nzAllowClear
+                       [nzPlaceHolder]&#x3D;&quot;&#x27;DISPLAY.GIS.SELECT_FILTER&#x27; | translate&quot;&gt;
+              &lt;nz-option *ngFor&#x3D;&quot;let filter of layersData[item.id.split(&#x27;$&#x27;)[0]]?.filters | keyvalue&quot;
+                         [nzLabel]&#x3D;&quot;filter.value.name&quot; [nzValue]&#x3D;&quot;filter.key&quot;&gt;&lt;/nz-option&gt;
+            &lt;/nz-select&gt;
+          &lt;/div&gt;
+        &lt;/ng-container&gt;
+      &lt;/div&gt;
+    &lt;/ng-container&gt;
+  &lt;/div&gt;
+
+
+  &lt;div style&#x3D;&quot;flex: 0 0 auto&quot;&gt;
+    &lt;app-nextgendem-geolayer-configuration-panel-window [layersData]&#x3D;&quot;layersData&quot;
+                                                        (filterChange)&#x3D;&quot;filterCQLChange($event)&quot;
+                                                        (removeFilterLayer)&#x3D;&quot;removeFilterLayer($event)&quot;
+                                                        (changeWhereClickMapInfo)&#x3D;&quot;changeWhereClickMapInfoEmitter.emit($event)&quot;
+    /&gt;
+  &lt;/div&gt;
+
+
+&lt;/div&gt;
+
+&lt;app-nextgendem-geolayer-edit-style-modal (editStyleProperty)&#x3D;&quot;editStyleProperty($event)&quot;/&gt;
+
+&lt;app-nextgendem-geolayer-create-map (createMap)&#x3D;&quot;createNewMap($event)&quot; (overwrite)&#x3D;&quot;overwriteMap()&quot;/&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./nextgendem-geolayer-configuration-panel.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.nextgendem-geolayer-configuration-panel-container
+  height: 100%
+  display: flex
+  flex-direction: column
+  padding: 10px
+
+.nextgendem-geolayer-configuration-panel-attribute
+  display: flex
+  align-items: center
+
+.nextgendem-geolayer-configuration-panel-attribute-box-shadow
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+
+.nextgendem-geolayer-configuration-panel-attribute.cdk-drag-preview &gt; .nextgendem-geolayer-configuration-panel-attribute-name
+  cursor: grabbing !important
+  pointer-events: auto !important
+
+.nextgendem-geolayer-configuration-panel-attribute-name
+  cursor: grab
+  pointer-events: auto !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="nextgendem-geolayer-configuration-panel-container">  <div style="display: flex; flex: 0 0 auto; align-items: center">    <input nz-input [(ngModel)]="nameMap" disabled [placeholder]="\'DISPLAY.GIS.NAME_MAP_INPUT.PLACEHOLDER\' | translate"/>    <span style="font-size: 1rem; margin-left: 5px; cursor: pointer" nz-icon nzType="save" nzTheme="outline" (click)="openCreateModalMap()" *ngIf="!singleMode"></span>    <span style="font-size: 1rem; margin-left: 5px; cursor: pointer" nz-icon nzType="setting" nzTheme="outline" (click)="openModalMapSettings.emit()"></span>  </div>  <div style="margin-top: 10px; display: flex; justify-content: space-between; flex: 0 0 auto">    <div style="font-size: 1.4rem; font-weight: 500">      {{ "DISPLAY.GIS.PROPERTIES" | translate }}    </div>    <div style="align-self: flex-end">      <button nz-button nzType="default" style="padding: 6px 10px" (click)="onAddAPropertyButtonClick()">        <span nz-icon nzType="plus"></span>      </button>    </div>  </div>  <div style="flex: 1 1 auto; min-height: 0; overflow: auto; padding: 10px 5px" cdkDropList       (cdkDropListDropped)="dropAttribute($event)">    <ng-container *ngFor="let item of attributes">      <div        [ngClass]="{ \'nextgendem-geolayer-configuration-panel-attribute-box-shadow\': (openSettingsPropertySelected === item.id || true) }"        style="padding: 5px 5px 5px 5px; margin-bottom: 10px">        <div class="nextgendem-geolayer-configuration-panel-attribute"             cdkDrag>          <div style="flex: 1 1 auto; padding-left: 8px; min-width: 0" cdkDragHandle               class="nextgendem-geolayer-configuration-panel-attribute-name">            {{ item.layerName }} - {{ item.name }}          </div>          <span nz-icon nzType="eye" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"                (click)="onCheckProperty(false, item)" *ngIf="item.checkbox"></span>          <span nz-icon nzType="eye-invisible" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"                (click)="onCheckProperty(true, item)" *ngIf="!item.checkbox"></span>          <span nz-icon nzType="profile" nzTheme="outline" style="margin-right: 5px; cursor: pointer;"                *ngIf="!item.legend" (click)="showLegend(item, true)"></span>          <span nz-icon nzType="profile" nzTheme="fill" style="margin-right: 5px; cursor: pointer;" *ngIf="item.legend"                (click)="showLegend(item, false)"></span>          <span nz-icon nzType="bg-colors" style="font-size: 1rem; cursor: pointer; margin-right: 5px;"                (click)="openEditStyleProperty(item)"></span>          <span nz-icon nzType="delete" [nzTheme]="\'twotone\'" [nzTwotoneColor]="\'#ff0000\'"                style="font-size: 1rem; cursor: pointer" (click)="removeAttribute(item)"></span>        </div>        <ng-container *ngIf="openSettingsPropertySelected === item.id || true">          <div style="margin-bottom: 5px; display: flex">            <nz-slider style="width: 50%" [nzTipFormatter]="null" [ngModel]="item.opacity"                       (nzOnAfterChange)="changeOpacity(item, $event)"                       [nzTipFormatter]="formatterOpacitySlider"></nz-slider>            <nz-select style="width: 50%" [ngModel]="item.filterSelected"                       (ngModelChange)="changeFilterSelected(item, $event)" nzAllowClear                       [nzPlaceHolder]="\'DISPLAY.GIS.SELECT_FILTER\' | translate">              <nz-option *ngFor="let filter of layersData[item.id.split(\'$\')[0]]?.filters | keyvalue"                         [nzLabel]="filter.value.name" [nzValue]="filter.key"></nz-option>            </nz-select>          </div>        </ng-container>      </div>    </ng-container>  </div>  <div style="flex: 0 0 auto">    <app-nextgendem-geolayer-configuration-panel-window [layersData]="layersData"                                                        (filterChange)="filterCQLChange($event)"                                                        (removeFilterLayer)="removeFilterLayer($event)"                                                        (changeWhereClickMapInfo)="changeWhereClickMapInfoEmitter.emit($event)"    />  </div></div><app-nextgendem-geolayer-edit-style-modal (editStyleProperty)="editStyleProperty($event)"/><app-nextgendem-geolayer-create-map (createMap)="createNewMap($event)" (overwrite)="overwriteMap()"/></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'NextgendemGeolayerConfigurationPanelComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'NextgendemGeolayerConfigurationPanelComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

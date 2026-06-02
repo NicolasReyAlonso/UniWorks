@@ -1,0 +1,22 @@
+<nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"
+    [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>
+    <ng-template #modalTitle>
+        {{'STUDY_CASES.CREATE_MODAL.TITLE' | translate}}
+    </ng-template>
+    <ng-template #modalContent>
+        <nz-spin [nzSpinning]="loading">
+            <form [formGroup]="formGroup" style="padding: 0px 0px 15px 0px;">
+                <div>
+                    <nz-form-label nzFor="name">{{'STUDY_CASES.CREATE_MODAL.INPUTS.NAME.LABEL' | translate}}</nz-form-label>
+                    <input nz-input formControlName="name" type="text" [placeholder]="'STUDY_CASES.CREATE_MODAL.INPUTS.NAME.LABEL' | translate" [ngClass]="{'input-error': showNameError()}">
+                    <div *ngIf="showNameError()" class="message-error">{{getMessageNameError()}}</div>
+                </div>
+            </form>
+        </nz-spin>
+    </ng-template>
+    <ng-template #modalFooter>
+        <button nz-button nzType="primary" nzDanger (click)="cancelModal()">{{'STUDY_CASES.CREATE_MODAL.CANCEL_BUTTON' | translate}}</button>
+        <button nz-button nzType="default" [disabled]="!formGroup.valid || loading" (click)="createCaseStudy()">{{'STUDY_CASES.CREATE_MODAL.CREATE_BUTTON' | translate}}</button>
+    </ng-template>
+</nz-modal>
+

@@ -1,0 +1,13 @@
+<app-dynamic-browse [Loading]="loading" BrowserTitle="ANNOTATIONS.FIELDS.BROWSE.TITLE"
+                    [BrowserType]="'annotation_form_fields'"
+                    (CreateEvent)="openCreateField()" [Checkable]="false"
+                    (DeleteItemEvent)="deleteField($event)" [HiddenDelete]="!authService.havePermission('gui-annotation-field-delete')"
+                    (OpenItemEvent)="openField($event)"
+                    (PermissionItemEvent)="permissionItem($event)"
+                    [HiddenPermissions]="!authService.havePermission('gui-annotation-field-acl')"
+>
+</app-dynamic-browse>
+
+<app-field-modal-create #fieldModalCreateRef (createSuccessEvent)="createSuccessEvent()"></app-field-modal-create>
+
+<app-acl-modal  #modalAclRef [(isVisible)]="isVisibleAclModal"></app-acl-modal>

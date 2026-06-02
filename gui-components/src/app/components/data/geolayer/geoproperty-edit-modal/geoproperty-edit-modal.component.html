@@ -1,0 +1,156 @@
+<nz-modal [(nzVisible)]="isVisible" nzCentered [nzClosable]="false" [nzWidth]="'70vw'">
+  <ng-container *nzModalTitle>
+    Editar propiedad - {{ name }}
+  </ng-container>
+  <ng-container *nzModalContent>
+    <div style="max-height: 70vh; overflow-y: auto; padding: 5px;">
+      <nz-spin [nzSpinning]="loading">
+        <form nz-form [formGroup]="formGroup" [nzLayout]="'vertical'">
+
+          <nz-form-item>
+            <nz-form-label nzFor="data_type">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.DATA_TYPE.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="data_type"
+                [nzPlaceHolder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.DATA_TYPE.PLACEHOLDER' | translate">
+                <nz-option nzLabel="int" nzValue="int"></nz-option>
+                <nz-option nzLabel="numeric" nzValue="numeric"></nz-option>
+                <nz-option nzLabel="string" nzValue="string"></nz-option>
+                <nz-option nzLabel="category" nzValue="category"></nz-option>
+                <nz-option nzLabel="time" nzValue="time"></nz-option>
+                <nz-option nzLabel="geometry" nzValue="geometry"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item *ngIf="formGroup.get('data_type').value == 'category'">
+            <nz-form-label nzFor="cat_type">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.CAT_TYPE.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="cat_type"
+                [nzPlaceHolder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.CAT_TYPE.PLACEHOLDER' | translate">
+                <nz-option nzLabel="int" nzValue="int"></nz-option>
+                <nz-option nzLabel="numeric" nzValue="numeric"></nz-option>
+                <nz-option nzLabel="string" nzValue="string"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item *ngIf="formGroup.get('data_type').value == 'category' && false">
+            <nz-form-label nzFor="categories">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.CATEGORIES.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <input nz-input (keyup.enter)="addCategoryByInput($event)"
+                [placeholder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.CATEGORIES.PLACEHOLDER' | translate"
+                [ngClass]="{'input-error': formGroup.errors && formGroup.errors.categoriesError}" [disabled]="this.formGroup.get('autodetect_categories').value">
+              <label nz-checkbox formControlName="autodetect_categories" style="margin-top: 3px;">
+                {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.AUTODETECT_CATEGORIES.PLACEHOLDER' | translate }}
+              </label>
+              <ng-container *ngIf="formGroup.errors && formGroup.errors.categoriesError">
+                <div *ngFor="let error of formGroup.errors.categoriesError" class="message-error">
+                  {{ error | translate }}
+                </div>
+              </ng-container>
+              <div style="margin-top: 5px" *ngIf="!this.formGroup.get('autodetect_categories').value">
+                <nz-tag *ngFor="let item of formGroup.get('categories').value; let i = index" nzMode="closeable"
+                  (nzOnClose)="removeCategoryByTag(i)">
+                  {{ item }}
+                </nz-tag>
+              </div>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item
+            *ngIf="formGroup.get('data_type').value == 'int' || formGroup.get('data_type').value == 'numeric'">
+            <nz-form-label nzFor="min">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.MIN.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="min"
+                [ngClass]="{'input-error': formGroup.errors && formGroup.errors.minError}"
+                [placeholder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.MIN.PLACEHOLDER' | translate">
+              <ng-container *ngIf="formGroup.errors && formGroup.errors.minError">
+                <div *ngFor="let error of formGroup.errors.minError" class="message-error">
+                  {{ error | translate }}
+                </div>
+              </ng-container>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item
+            *ngIf="formGroup.get('data_type').value == 'int' || formGroup.get('data_type').value == 'numeric'">
+            <nz-form-label nzFor="max">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.MAX.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="max"
+                [ngClass]="{'input-error': formGroup.errors && formGroup.errors.maxError}"
+                [placeholder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.MAX.PLACEHOLDER' | translate">
+              <ng-container *ngIf="formGroup.errors && formGroup.errors.maxError">
+                <div *ngFor="let error of formGroup.errors.maxError" class="message-error">
+                  {{ error | translate }}
+                </div>
+              </ng-container>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label nzFor="col_type">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.COL_TYPE.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="col_type"
+                [nzPlaceHolder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.COL_TYPE.PLACEHOLDER' | translate">
+                <nz-option nzLabel="dimension" nzValue="dimension"></nz-option>
+                <nz-option nzLabel="measure" nzValue="measure"></nz-option>
+                <nz-option nzLabel="attribute" nzValue="attribute"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label nzFor="nature">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.NATURE.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="nature"
+                [placeholder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.NATURE.PLACEHOLDER' | translate">
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-label nzFor="unit">
+              {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.UNIT.LABEL' | translate }}
+            </nz-form-label>
+            <nz-form-control>
+              <input nz-input formControlName="unit"
+                [placeholder]="'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.UNIT.PLACEHOLDER' | translate ">
+            </nz-form-control>
+          </nz-form-item>
+
+          <nz-form-item>
+            <nz-form-control>
+              <label nz-checkbox formControlName="representable">
+                {{ 'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.INPUTS.REPRESENTABLE.PLACEHOLDER' | translate }}
+              </label>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-spin>
+    </div>
+  </ng-container>
+  <ng-container *nzModalFooter>
+    <button nz-button nzType="primary" nzDanger [disabled]="loading"
+      (click)="closeModal()">{{'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.CANCEL_BUTTON' | translate}}</button>
+    <button nz-button (click)="acceptModal()" nzType="primary"
+      [disabled]="!formGroup.valid || loading">{{'GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.ACCEPT_BUTTON' |
+      translate}}</button>
+  </ng-container>
+</nz-modal>
+
+<app-info-modal [(isVisible)]="isVisibleModalError" typeIcon="exclamation-circle"
+  title="GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.ERROR_MODAL.TITLE"
+  content="GEOGRAPHICAL_DATA.LAYERS.PROPERTY_EDIT_MODAL.ERROR_MODAL.CONTENT"></app-info-modal>

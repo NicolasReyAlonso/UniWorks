@@ -1,0 +1,118 @@
+<nz-page-header nzTitle="{{'MOLECULAR_DATA.SEQUENCES.IMPORT.TITLE' | translate}}">
+</nz-page-header>
+<form nz-form [formGroup]="dataForm">
+  <nz-divider nzText="{{'MOLECULAR_DATA.IMPORT.FORMS.INFO_TITLE' | translate}}"></nz-divider>
+  <nz-collapse nzAccordion>
+    <nz-collapse-panel nzHeader="{{'MOLECULAR_DATA.IMPORT.FORMS.DATA_COLLAPSE' | translate}}">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.LABEL' |
+          translate}}</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <app-select-lazy-loading object_type="case_studies" variableLabel="name" variableValue="id"
+                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.STUDY_CASES.PLACEHOLDER"
+                                   [value]="this.dataForm.get('case_study_id').value" [multiple]="true" allowClear
+                                   (valueChange)="selectDynamicValueChange($event, 'case_study_id')"></app-select-lazy-loading>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.LABEL' |
+          translate}}</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <app-select-lazy-loading object_type="collections" variableLabel="name" variableValue="id"
+                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.COLLECTIONS.PLACEHOLDER"
+                                   [value]="this.dataForm.get('collection_id').value" [multiple]="true"
+                                   (valueChange)="selectDynamicValueChange($event, 'collection_id')"></app-select-lazy-loading>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel nzHeader="{{'MOLECULAR_DATA.IMPORT.FORMS.BIODATA_COLLAPSE' | translate}}">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.LABEL' | translate}}</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <app-select-lazy-loading object_type="organisms" variableLabel="name" variableValue="organism_id"
+                                   placeholder="MOLECULAR_DATA.IMPORT.FORMS.INPUTS.ORG.PLACEHOLDER"
+                                   [value]="this.dataForm.get('organism_id').value" [multiple]="false" allowClear
+                                   (valueChange)="selectDynamicValueChange($event, 'organism_id')"></app-select-lazy-loading>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="!only_individuals">
+        <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.LABEL' | translate}}</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select [nzDisabled]="loading || (dataForm.value.target_genes && dataForm.value.target_genes.length > 0)"
+                     nzShowSearch nzAllowClear formControlName="gene_tags" nzMode="multiple"
+                     [nzDropdownRender]="customGene"
+                     nzPlaceHolder="{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.GENE_TAGS.PLACEHOLDER' | translate}}">
+            <nz-option *ngFor="let gene of data.genes" nzLabel="{{gene.value}}" nzValue="{{gene.value}}"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+  <nz-divider nzText="{{'MOLECULAR_DATA.IMPORT.FORMS.CONF_TITLE' | translate}}"></nz-divider>
+  <nz-form-item>
+    <nz-form-label
+      [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_INDIVIDUALS' | translate}}</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-switch [nzDisabled]="loading" [(ngModel)]="only_individuals"
+                 [ngModelOptions]="{standalone: true}"></nz-switch>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="!only_individuals">
+    <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.LABEL' | translate}}</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-select [nzDisabled]="loading || (dataForm.value.gene_tags && dataForm.value.gene_tags.length > 0)"
+                 nzShowSearch nzAllowClear formControlName="target_genes" nzMode="multiple"
+                 [nzDropdownRender]="customGene"
+                 nzPlaceHolder="{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.TARGET_GENES.PLACEHOLDER' | translate}}">
+        <nz-option *ngFor="let gene of data.genes" nzLabel="{{gene.value}}" nzValue="{{gene.value}}"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item *ngIf="!only_individuals">
+    <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.LABEL' | translate}}</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <label nz-checkbox
+             formControlName="no_annotations">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.ONLY_RESIDUES' |
+        translate}}</label>
+      <label nz-checkbox formControlName="split_genes"
+             [nzDisabled]="loading || (dataForm.value.gene_tags && dataForm.value.gene_tags.length > 0)">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.MORE_OPTIONS.SPLIT_GENES'
+        | translate}}</label>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.LABEL' | translate}}</nz-form-label>
+    <nz-radio-group formControlName="duplicates">
+      <label nz-radio nzValue="">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.DEFAULT' | translate}}</label>
+      <label nz-radio nzValue="ignore">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.IGNORE' | translate}}</label>
+      <label nz-radio nzValue="update">{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.DUPLICATES.UPDATE' | translate}}</label>
+    </nz-radio-group>
+  </nz-form-item>
+
+  <nz-divider nzText="{{'MOLECULAR_DATA.IMPORT.FORMS.FILES_TITLE' | translate}}"></nz-divider>
+  <div nz-row nzJustify='center'>
+    <button nz-button [nzType]="'primary'" (click)="importFiles()" [nzLoading]="loading"
+            [disabled]="fileList.length == 0 || !dataForm.valid">
+      {{ (loading ? 'IMPORT_BUTTON.LOADING' : 'IMPORT_BUTTON.START_UPLOADING') | translate }}
+    </button>
+  </div>
+  <br>
+  <nz-upload nzType="drag" [nzMultiple]="true" nzListType="picture" [(nzFileList)]="fileList" [nzRemove]="removeFile"
+             [nzBeforeUpload]="beforeUpload">
+    <p class="ant-upload-drag-icon">
+      <i nz-icon nzType="inbox"></i>
+    </p>
+    <p class="ant-upload-text">{{'MISC.IMPORTS.TEXT_LABEL' | translate}}</p>
+    <p class="ant-upload-hint">{{'MISC.IMPORTS.HINT_LABEL' | translate}}</p>
+  </nz-upload>
+</form>
+<ng-template #customGene>
+  <nz-divider></nz-divider>
+  <div class="container">
+    <input type="text" nz-input #inputElement/>
+    <a nz-button nzType="link" (click)="addGene(inputElement.value)" [disabled]="!inputElement">
+      <i nz-icon nzType="plus"></i>{{'MOLECULAR_DATA.IMPORT.FORMS.INPUTS.SUGGEST_OPTION' | translate}}
+    </a>
+  </div>
+</ng-template>

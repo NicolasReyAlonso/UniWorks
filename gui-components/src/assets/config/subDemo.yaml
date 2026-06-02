@@ -1,0 +1,264 @@
+sub1:
+  icon: "database"
+  code: "SIDEBAR.sub1.title"
+  routes:
+    sequences:
+      code: "SIDEBAR.sub1.routes.sequences.title"
+      routerLink: "sequencesBrowse"
+      routes: ["/sequencesBrowse", "/sequencesImport", "/sequenceDetail"]
+      permission: "gui-seqs"
+
+    multiple_alignments:
+      code: "SIDEBAR.sub1.routes.multiple_alignments.title"
+      routerLink: "alignmentsBrowse"
+      routes: ["/alignmentsBrowse", "/alignmentsImport", "/alignmentDetail", "/alignmentNextgendemMissingEditor"]
+      permission: "gui-mas"
+
+    phylogenetic_trees:
+      code: "SIDEBAR.sub1.routes.phylogenetic_trees.title"
+      routerLink: "phylotreesBrowse"
+      routes: ["/phylotreesBrowse", "/phylotreesImport", "/phylotreeDetail", "/archaeopteryxBrowser"]
+      permission: "gui-pts"
+
+    discriminant_matrix:
+      code: "SIDEBAR.sub1.routes.discriminant_matrix.title"
+      routerLink: "discriminantMatricesBrowse"
+      routes: ["/discriminantMatricesBrowse", "/discriminantMatrixDetail", "/ngdBarconding"]
+      permission: "gui-cmatrices"
+
+    supermatrices:
+      code: "SIDEBAR.sub1.routes.supermatrices.title"
+      routerLink: "supermatricesBrowse"
+      routes: ["/supermatricesBrowse", "/supermatrixDetail", "/supermatricesImport", "/supermatrixNextgendemMissingEditor"]
+      permission: "gui-smatrices"
+
+    collections:
+      code: "SIDEBAR.sub1.routes.collections.title"
+      routerLink: "collectionsBrowse"
+      routes: ["/collectionsBrowse", "/collectionDetail"]
+      permission: "gui-collections"
+
+sub2:
+  icon: "database"
+  code: "SIDEBAR.sub2.title"
+  routes:
+    layers:
+      code: "SIDEBAR.sub2.routes.layers.title"
+      routerLink: "geolayersBrowse"
+      routes: ["/geolayersBrowse", "/geolayerImport", "/geolayerDetail"]
+      permission: "gui-layers"
+
+    pda:
+      code: "SIDEBAR.sub2.routes.pda.title"
+      routerLink: "pdaBrowse"
+      routes: ["/pdaBrowse"]
+      permission: "gui-pda"
+
+    regions:
+      code: "SIDEBAR.sub2.routes.regions.title"
+      routerLink: "regionsBrowse"
+      routes: ["/regionsBrowse"]
+      permission: "gui-regions"
+
+sub3:
+  icon: "play-circle"
+  code: "SIDEBAR.sub3.title"
+  routes:
+    launch:
+      code: "SIDEBAR.sub3.routes.launch.title"
+      routerLink: "process/processSetup"
+      routes: ["/process/processSetup"]
+      permission: "gui-job-create"
+
+    pending:
+      code: "SIDEBAR.sub3.routes.pending.title"
+      routerLink: "process/processesBrowseToDo"
+      routes: ["/process/processesBrowseToDo?status=todo"]
+      queryParams:
+        status: "todo"
+      permission: "gui-jobs-executing"
+
+    completed:
+      code: "SIDEBAR.sub3.routes.completed.title"
+      routerLink: "process/processesBrowseDone"
+      routes: ["/process/processesBrowseDone?status=done"]
+      queryParams:
+        status: "done"
+      permission: "gui-jobs-finished"
+
+sub4:
+  icon: "eye"
+  code: "SIDEBAR.sub4.title"
+  routes:
+    viewers:
+      code: "SIDEBAR.sub4.routes.viewers.title"
+      routerLink: "viewersBrowse"
+      routes: ["/viewersBrowse"]
+      permission: "gui-viewers"
+
+    gis:
+      code: "SIDEBAR.sub4.routes.gis.title"
+      routerLink: "phylogeographyBrowse"
+      routes: ["/phylogeographyBrowse"]
+      permission: "gui-layers-graphical"
+
+sub5:
+  icon: "folder"
+  code: "SIDEBAR.sub5.title"
+  routes:
+    list:
+      code: "SIDEBAR.sub5.routes.list.title"
+      routerLink: "caseStudiesBrowse"
+      routes: ["/caseStudiesBrowse", "/caseStudiesDetail"]
+      permission: "gui-case-studies"
+
+sub6:
+  icon: "cloud-server"
+  code: "SIDEBAR.sub6.title"
+  routes:
+    ontologies:
+      code: "SIDEBAR.sub6.routes.ontologies.title"
+      routerLink: "ontologiesBrowse"
+      routes: ["/ontologiesBrowse", "/ontologyDetail", "/ontologiesImport"]
+      permission: "gui-ontologies"
+
+    terms:
+      code: "SIDEBAR.sub6.routes.terms.title"
+      routerLink: "termsBrowse"
+      routes: ["/termsBrowse", "/termDetail"]
+      permission: "gui-terms"
+
+    taxonomies:
+      code: "SIDEBAR.sub6.routes.taxonomies.title"
+      routerLink: "taxonomiesBrowse"
+      routes: ["/taxonomiesBrowse", "/taxonomiesImport", "/taxonomyDetail"]
+      permission: "gui-taxonomies"
+
+    organisms:
+      code: "SIDEBAR.sub6.routes.organisms.title"
+      routerLink: "organismsBrowse"
+      routes: ["/organismsBrowse", "/organismsImport", "/organismDetail"]
+      permission: "gui-organisms"
+
+    individuals:
+      code: "SIDEBAR.sub6.routes.individuals.title"
+      routerLink: "individualsBrowse"
+      routes: ["/individualsBrowse", "/individualDetail"]
+      permission: "gui-individuals"
+
+    analysis:
+      code: "SIDEBAR.sub6.routes.analysis.title"
+      routerLink: "analysesBrowse"
+      routes: ["/analysesBrowse", "/analysisDetail"]
+      permission: "gui-analyses"
+
+    publications:
+      code: "SIDEBAR.sub6.routes.publications.title"
+      routerLink: "publicationsBrowse"
+      routes: ["/publicationsBrowse"]
+      permission: "gui-publications"
+
+    subject:
+      code: "SIDEBAR.sub6.routes.subject.title"
+      routerLink: "themesBrowse"
+      routes: ["/themesBrowse"]
+      permission: "gui-subjects"
+
+    sources:
+      code: "SIDEBAR.sub6.routes.sources.title"
+      routerLink: "sourcesBrowse"
+      routes: ["/sourcesBrowse"]
+      permission: "gui-sources"
+
+    crs:
+      code: "SIDEBAR.sub6.routes.crs.title"
+      routerLink: "crsBrowse"
+      routes: ["/crsBrowse", "/crsDetail"]
+      permission: "gui-crs"
+
+sub7:
+  icon: "setting"
+  code: "SIDEBAR.sub7.title"
+  routes:
+    process_types:
+      code: "SIDEBAR.sub7.routes.process_types.title"
+      routerLink: "processTypesBrowse"
+      routes: ["/processTypesBrowse", "/processTypeDetail"]
+      permission: "gui-process-types"
+
+    computing_resources:
+      code: "SIDEBAR.sub7.routes.computing_resources.title"
+      routerLink: "computeResourcesBrowse"
+      routes: ["/computeResourcesBrowse", "/computeResourcesDetail"]
+      permission: "gui-cresources"
+
+    containerization_images:
+      code: "SIDEBAR.sub7.routes.containerization_images.title"
+      routerLink: "containerizationImagesBrowse"
+      routes: ["/containerizationImagesBrowse", "/containerizationImagesDetail"]
+      permission: "gui-container-images"
+
+sub8:
+  icon: "lock"
+  code: "SIDEBAR.sub8.title"
+  routes:
+    users:
+      code: "SIDEBAR.sub8.routes.users.title"
+      routerLink: "identitiesBrowse"
+      routes: ["/identitiesBrowse", "/identityDetail", "/identityModify"]
+      permission: "gui-users"
+
+    organizations:
+      code: "SIDEBAR.sub8.routes.organizations.title"
+      routerLink: "organizationsBrowse"
+      routes: ["/organizationsBrowse", "/organizationDetail", "/organizationModify"]
+      permission: "gui-organizations"
+
+    roles:
+      code: "SIDEBAR.sub8.routes.roles.title"
+      routerLink: "rolesBrowse"
+      routes: ["/rolesBrowse", "/roleDetail", "/roleModify"]
+      permission: "gui-roles"
+
+    references_acl:
+      code: "SIDEBAR.sub8.routes.references_acl.title"
+      routerLink: "referencesAclBrowse"
+      routes: ["/referencesAclBrowse"]
+      permission: "gui-references-acl"
+
+    system_functions:
+      code: "SIDEBAR.sub8.routes.system_functions.title"
+      routerLink: "systemFunctionsBrowse"
+      routes: ["/systemFunctionsBrowse"]
+      permission: "gui-system-functions"
+
+    status_checkers:
+      code: "SIDEBAR.sub8.routes.status_checkers.title"
+      routerLink: "statusCheckersDetail"
+      routes: ["/statusCheckersDetail"]
+      permission: "gui-status-checkers"
+
+sub9:
+  icon: "cloud-server"
+  code: "SIDEBAR.sub10.title"
+  routes:
+    fields:
+      code: "SIDEBAR.sub10.routes.fields.title"
+      routerLink: "annotationsFieldsBrowse"
+      routes: ["/annotationsFieldsBrowse", "/annotationsFieldDetail"]
+      permission: "gui-annotation-fields"
+
+    templates:
+      code: "SIDEBAR.sub10.routes.templates.title"
+      routerLink: "annotationsTemplatesBrowse"
+      routes: ["/annotationsTemplatesBrowse", "/annotationsTemplateDetail"]
+      permission: "gui-annotation-templates"
+sub10:
+  icon: "cloud-server"
+  code: "SIDEBAR.sub11.title"
+  routes:
+    pag:
+      code: "SIDEBAR.sub10.routes.fields.title"
+      routerLink: "annotationsFieldsBrowse"
+      routes: ["/testpage"]
+      permission: "gui-annotation-fields"

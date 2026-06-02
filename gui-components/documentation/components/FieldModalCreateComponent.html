@@ -1,0 +1,2542 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  FieldModalCreateComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-field-modal-create</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzSelectModule</code>
+                            <code>NzFormModule</code>
+                            <code>NzInputModule</code>
+                            <code>NzButtonModule</code>
+                            <code>NzTagModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzSpinModule</code>
+                            <code>NzModalModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./field-modal-create.component.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./field-modal-create.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#formGroup" >formGroup</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#objectTypesOptions" >objectTypesOptions</a>
+                            </li>
+                            <li>
+                                <a href="#props" >props</a>
+                            </li>
+                            <li>
+                                <a href="#showModal" >showModal</a>
+                            </li>
+                            <li>
+                                <a href="#typeRange" >typeRange</a>
+                            </li>
+                            <li>
+                                <a href="#typeRangeOptions" >typeRangeOptions</a>
+                            </li>
+                            <li>
+                                <a href="#viewTypeOptions" >viewTypeOptions</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#cancelModal" >cancelModal</a>
+                            </li>
+                            <li>
+                                <a href="#clearForm" >clearForm</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#createField" >createField</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageNameError" >getMessageNameError</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageObjectTypeError" >getMessageObjectTypeError</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageRangeError" >getMessageRangeError</a>
+                            </li>
+                            <li>
+                                <a href="#getMessageViewTypeError" >getMessageViewTypeError</a>
+                            </li>
+                            <li>
+                                <a href="#getMultipleValue" >getMultipleValue</a>
+                            </li>
+                            <li>
+                                <a href="#getRangeControlValue" >getRangeControlValue</a>
+                            </li>
+                            <li>
+                                <a href="#getRangeValue" >getRangeValue</a>
+                            </li>
+                            <li>
+                                <a href="#keyEnterTextOptionsRange" >keyEnterTextOptionsRange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#nameValidator" >nameValidator</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#objectTypeValidator" >objectTypeValidator</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#openModal" >openModal</a>
+                            </li>
+                            <li>
+                                <a href="#rangeTextOptionsValidator" >rangeTextOptionsValidator</a>
+                            </li>
+                            <li>
+                                <a href="#rangeValidator" >rangeValidator</a>
+                            </li>
+                            <li>
+                                <a href="#removeTextOptionsRange" >removeTextOptionsRange</a>
+                            </li>
+                            <li>
+                                <a href="#showMultipleInput" >showMultipleInput</a>
+                            </li>
+                            <li>
+                                <a href="#showNameError" >showNameError</a>
+                            </li>
+                            <li>
+                                <a href="#showObjectTypeError" >showObjectTypeError</a>
+                            </li>
+                            <li>
+                                <a href="#showRangeError" >showRangeError</a>
+                            </li>
+                            <li>
+                                <a href="#showViewTypeError" >showViewTypeError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#viewTypeValidator" >viewTypeValidator</a>
+                            </li>
+                            <li>
+                                <a href="#viewTypeValueChage" >viewTypeValueChage</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#createSuccessEvent" >createSuccessEvent</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(fb: UntypedFormBuilder, backendService: <a href="../injectables/BackendService.html" target="_self">BackendService</a>, messageLogService: <a href="../injectables/MessageLogService.html" target="_self">MessageLogService</a>, notificationService: <a href="../injectables/NotificationService.html" target="_self">NotificationService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>fb</td>
+                                                  
+                                                        <td>
+                                                                    <code>UntypedFormBuilder</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>backendService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/BackendService.html" target="_self" >BackendService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>messageLogService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/MessageLogService.html" target="_self" >MessageLogService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>notificationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/NotificationService.html" target="_self" >NotificationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-outputs">
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="createSuccessEvent"></a>
+                        <b>createSuccessEvent</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:50</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cancelModal"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>cancelModal</b></span>
+                        <a href="#cancelModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cancelModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clearForm"></a>
+                    <span class="name">
+                        <span ><b>clearForm</b></span>
+                        <a href="#clearForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearForm()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="150"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:150</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createField"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>createField</b></span>
+                        <a href="#createField"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createField()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="122"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:122</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageNameError"></a>
+                    <span class="name">
+                        <span ><b>getMessageNameError</b></span>
+                        <a href="#getMessageNameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageNameError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="223"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:223</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageObjectTypeError"></a>
+                    <span class="name">
+                        <span ><b>getMessageObjectTypeError</b></span>
+                        <a href="#getMessageObjectTypeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageObjectTypeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="291"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:291</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageRangeError"></a>
+                    <span class="name">
+                        <span ><b>getMessageRangeError</b></span>
+                        <a href="#getMessageRangeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageRangeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="361"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:361</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMessageViewTypeError"></a>
+                    <span class="name">
+                        <span ><b>getMessageViewTypeError</b></span>
+                        <a href="#getMessageViewTypeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMessageViewTypeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="257"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:257</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>string[]</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getMultipleValue"></a>
+                    <span class="name">
+                        <span ><b>getMultipleValue</b></span>
+                        <a href="#getMultipleValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getMultipleValue()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="161"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:161</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRangeControlValue"></a>
+                    <span class="name">
+                        <span ><b>getRangeControlValue</b></span>
+                        <a href="#getRangeControlValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRangeControlValue()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="303"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:303</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getRangeValue"></a>
+                    <span class="name">
+                        <span ><b>getRangeValue</b></span>
+                        <a href="#getRangeValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getRangeValue()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="189"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:189</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="keyEnterTextOptionsRange"></a>
+                    <span class="name">
+                        <span ><b>keyEnterTextOptionsRange</b></span>
+                        <a href="#keyEnterTextOptionsRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>keyEnterTextOptionsRange(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="307"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:307</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nameValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>nameValidator</b></span>
+                        <a href="#nameValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>nameValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="201"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:201</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectTypeValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>objectTypeValidator</b></span>
+                        <a href="#objectTypeValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>objectTypeValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="269"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:269</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="openModal"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>openModal</b></span>
+                        <a href="#openModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>openModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:104</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rangeTextOptionsValidator"></a>
+                    <span class="name">
+                        <span ><b>rangeTextOptionsValidator</b></span>
+                        <a href="#rangeTextOptionsValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rangeTextOptionsValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="339"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:339</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="rangeValidator"></a>
+                    <span class="name">
+                        <span ><b>rangeValidator</b></span>
+                        <a href="#rangeValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>rangeValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="328"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:328</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeTextOptionsRange"></a>
+                    <span class="name">
+                        <span ><b>removeTextOptionsRange</b></span>
+                        <a href="#removeTextOptionsRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeTextOptionsRange(index)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="319"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:319</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMultipleInput"></a>
+                    <span class="name">
+                        <span ><b>showMultipleInput</b></span>
+                        <a href="#showMultipleInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showMultipleInput()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="175"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:175</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showNameError"></a>
+                    <span class="name">
+                        <span ><b>showNameError</b></span>
+                        <a href="#showNameError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showNameError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="216"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:216</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showObjectTypeError"></a>
+                    <span class="name">
+                        <span ><b>showObjectTypeError</b></span>
+                        <a href="#showObjectTypeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showObjectTypeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="284"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:284</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showRangeError"></a>
+                    <span class="name">
+                        <span ><b>showRangeError</b></span>
+                        <a href="#showRangeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showRangeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="354"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:354</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showViewTypeError"></a>
+                    <span class="name">
+                        <span ><b>showViewTypeError</b></span>
+                        <a href="#showViewTypeError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showViewTypeError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="250"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:250</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewTypeValidator"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>viewTypeValidator</b></span>
+                        <a href="#viewTypeValidator"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>viewTypeValidator(control: AbstractControl)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="235"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:235</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>control</td>
+                                            <td>
+                                                        <code>AbstractControl</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>ValidationErrors | null</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewTypeValueChage"></a>
+                    <span class="name">
+                        <span ><b>viewTypeValueChage</b></span>
+                        <a href="#viewTypeValueChage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>viewTypeValueChage(viewType: <a href="../interfaces/IViewTypes.html" target="_self">IViewTypes</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="93"
+                                    class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>viewType</td>
+                                            <td>
+                                                            <code><a href="../interfaces/IViewTypes.html" target="_self" >IViewTypes</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formGroup"></a>
+                    <span class="name">
+                        <span ><b>formGroup</b></span>
+                        <a href="#formGroup"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>UntypedFormGroup</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:47</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:45</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="objectTypesOptions"></a>
+                    <span class="name">
+                        <span ><b>objectTypesOptions</b></span>
+                        <a href="#objectTypesOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:52</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="props"></a>
+                    <span class="name">
+                        <span ><b>props</b></span>
+                        <a href="#props"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showModal"></a>
+                    <span class="name">
+                        <span ><b>showModal</b></span>
+                        <a href="#showModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeRange"></a>
+                    <span class="name">
+                        <span ><b>typeRange</b></span>
+                        <a href="#typeRange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:48</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typeRangeOptions"></a>
+                    <span class="name">
+                        <span ><b>typeRangeOptions</b></span>
+                        <a href="#typeRangeOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>TYPE_RANGE</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewTypeOptions"></a>
+                    <span class="name">
+                        <span ><b>viewTypeOptions</b></span>
+                        <a href="#viewTypeOptions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>viewTypes</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/components/data/annotations/fields/field-modal-create/field-modal-create.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, EventEmitter, OnInit, Output } from &#x27;@angular/core&#x27;;
+import {
+  AbstractControl,
+  FormsModule,
+  ReactiveFormsModule,
+  UntypedFormBuilder,
+  UntypedFormGroup,
+  ValidationErrors
+} from &#x27;@angular/forms&#x27;;
+import { BackendService } from &#x27;src/app/services/backend.service&#x27;;
+import { MessageLogService } from &#x27;src/app/services/message-log.service&#x27;;
+import {NotificationService, TypeNotificationEnum} from &#x27;src/app/services/notification.service&#x27;;
+import { forkJoin } from &#x27;rxjs&#x27;;
+import { viewTypes, IViewTypes, TYPE_RANGE } from &#x27;../field-view-types&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import {SharedModule} from &quot;../../../../../shared-module/shared.module&quot;;
+import {NzSelectModule} from &quot;ng-zorro-antd/select&quot;;
+import {NzFormModule} from &quot;ng-zorro-antd/form&quot;;
+import {NzInputModule} from &quot;ng-zorro-antd/input&quot;;
+import {NzButtonModule} from &quot;ng-zorro-antd/button&quot;;
+import {NzTagModule} from &quot;ng-zorro-antd/tag&quot;;
+import {NzSpinModule} from &quot;ng-zorro-antd/spin&quot;;
+import {NzModalModule} from &quot;ng-zorro-antd/modal&quot;;
+
+@Component({
+    selector: &#x27;app-field-modal-create&#x27;,
+    imports: [
+        CommonModule,
+        SharedModule,
+        NzSelectModule,
+        NzFormModule,
+        NzInputModule,
+        NzButtonModule,
+        NzTagModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NzSpinModule,
+        NzModalModule,
+    ],
+    templateUrl: &#x27;./field-modal-create.component.html&#x27;,
+    styleUrls: [&#x27;./field-modal-create.component.sass&#x27;]
+})
+export class FieldModalCreateComponent implements OnInit {
+
+  loading &#x3D; false;
+  showModal &#x3D; false;
+  formGroup: UntypedFormGroup;
+  typeRange;
+  typeRangeOptions &#x3D; TYPE_RANGE;
+  @Output() createSuccessEvent &#x3D; new EventEmitter&lt;any&gt;();
+
+  objectTypesOptions &#x3D; [];
+  props &#x3D; [];
+
+  viewTypeOptions &#x3D; viewTypes;
+
+  constructor(
+    private readonly fb: UntypedFormBuilder,
+    private readonly backendService: BackendService,
+    private readonly messageLogService: MessageLogService,
+    private readonly notificationService: NotificationService,
+  ) { }
+
+  ngOnInit(): void {
+    this.formGroup &#x3D; this.fb.group({
+      name: [&#x27;&#x27;],
+      object_type: [[]],
+      template_id: [[]],
+      view_type: [null],
+      multiple: [false],
+      range: [{}],
+      standard: [&#x27;&#x27;],
+      unique: [false],
+    }, {
+      validators: [
+        this.nameValidator.bind(this),
+        this.viewTypeValidator.bind(this),
+        this.objectTypeValidator.bind(this),
+        this.rangeValidator.bind(this),
+      ]
+    });
+    this.formGroup.get(&#x27;view_type&#x27;).valueChanges.subscribe(async (newValue) &#x3D;&gt; {
+      this.typeRange &#x3D; null;
+      if (newValue &amp;&amp; newValue !&#x3D; &#x27;&#x27;) {
+        const viewTypeOption &#x3D; this.viewTypeOptions.find((value) &#x3D;&gt; {
+          return value.value &#x3D;&#x3D;&#x3D; newValue;
+        });
+        if (viewTypeOption) this.viewTypeValueChage(viewTypeOption);
+      }
+    });
+  }
+
+  viewTypeValueChage(viewType: IViewTypes) {
+    switch(viewType.typeRange) {
+      case this.typeRangeOptions.TEXT_OPTIONS:
+        this.formGroup.get(&#x27;range&#x27;).setValue({
+          options: [],
+        });
+        break;
+    }
+    this.typeRange &#x3D; !viewType.typeRange ?  null : viewType.typeRange;
+  }
+
+  async openModal(): Promise&lt;void&gt; {
+    this.clearForm();
+    this.loading &#x3D; true;
+    try {
+      const observables &#x3D; {
+        objectTypes: this.backendService.getObjectTypes(),
+        templates: this.backendService.getAnnotationsTemplates(),
+      };
+      const response: any &#x3D; await forkJoin(observables).toPromise();
+      this.objectTypesOptions &#x3D; response.objectTypes.content;
+      this.props &#x3D; response.templates.content;
+      this.showModal &#x3D; true;
+    } catch (e) {
+      this.showModal &#x3D; false;
+    }
+    this.loading &#x3D; false;
+  }
+
+  async createField(): Promise&lt;void&gt; {
+    this.loading &#x3D; true;
+    const value &#x3D; {
+      name: this.formGroup.get(&#x27;name&#x27;).value,
+      unique: this.formGroup.get(&#x27;unique&#x27;).value,
+      standard: this.formGroup.get(&#x27;standard&#x27;).value,
+      object_type: this.formGroup.get(&#x27;object_type&#x27;).value,
+      template_id: this.formGroup.get(&#x27;template_id&#x27;).value,
+      view_type: this.formGroup.get(&#x27;view_type&#x27;).value,
+      multiple: this.getMultipleValue(),
+      range: this.getRangeValue(),
+    };
+    try {
+      const response: any &#x3D; await this.backendService.postAnnotationField(value).toPromise();
+      this.clearForm();
+      this.createSuccessEvent.emit();
+      this.messageLogService.addIssues(response.issues);
+    } catch (e) {
+      await this.notificationService.createNotificationWithType(TypeNotificationEnum.error, &#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.ERROR_UNKNOWN_ERROR.TITLE&#x27;, &#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.ERROR_UNKNOWN_ERROR.CONTENT&#x27;, &#x27;bottomRight&#x27;);
+      this.loading &#x3D; false;
+    }
+  }
+
+  async cancelModal(): Promise&lt;void&gt; {
+    this.showModal &#x3D; false;
+    this.loading &#x3D; false;
+  }
+
+  clearForm() {
+    this.formGroup.get(&#x27;name&#x27;).setValue(&#x27;&#x27;);
+    this.formGroup.get(&#x27;unique&#x27;).setValue(false);
+    this.formGroup.get(&#x27;standard&#x27;).setValue(&#x27;&#x27;);
+    this.formGroup.get(&#x27;object_type&#x27;).setValue([]);
+    this.formGroup.get(&#x27;view_type&#x27;).setValue(null);
+    this.formGroup.get(&#x27;multiple&#x27;).setValue(false);
+    this.formGroup.get(&#x27;template_id&#x27;).setValue([]);
+    this.formGroup.get(&#x27;range&#x27;).setValue({});
+  }
+
+  getMultipleValue(): boolean {
+    const viewType &#x3D; this.formGroup.get(&#x27;view_type&#x27;).value;
+    if (!viewType) {
+      return false;
+    }
+    const viewTypeOption &#x3D; this.viewTypeOptions.find((value) &#x3D;&gt; {
+      return value.value &#x3D;&#x3D;&#x3D; viewType;
+    });
+    if (!viewTypeOption) {
+      return false;
+    }
+    return this.formGroup.get(&#x27;multiple&#x27;).value;
+  }
+
+  showMultipleInput(): boolean {
+    const viewType &#x3D; this.formGroup.get(&#x27;view_type&#x27;).value;
+    if (!viewType) {
+      return false;
+    }
+    const viewTypeOption &#x3D; this.viewTypeOptions.find((value) &#x3D;&gt; {
+      return value.value &#x3D;&#x3D;&#x3D; viewType;
+    });
+    if (!viewTypeOption) {
+      return false;
+    }
+    return viewTypeOption.canMultiple;
+  }
+
+  getRangeValue() {
+    if (!this.typeRange) {
+      return {
+        multiple: this.getMultipleValue(),
+      };
+    }
+    const range &#x3D; this.formGroup.get(&#x27;range&#x27;).value;
+    range.multiple &#x3D; this.getMultipleValue();
+    return range;
+  }
+
+  // Name
+  private nameValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const name &#x3D; control.get(&#x27;name&#x27;).value;
+    if (!name || name &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      nameError: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showNameError(): boolean {
+    if (!this.formGroup.errors || !this.formGroup.errors.nameError) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageNameError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroup.errors || !this.formGroup.errors.nameError) {
+      return null;
+    }
+    if (this.formGroup.errors.nameError.empty) {
+      message.push(&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.NAME_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+  // View type
+  private viewTypeValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const viewTYpe &#x3D; control.get(&#x27;view_type&#x27;).value;
+    if (!viewTYpe || viewTYpe &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      view_type: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showViewTypeError(): boolean {
+    if (!this.formGroup.errors || !this.formGroup.errors.view_type) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageViewTypeError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroup.errors || !this.formGroup.errors.view_type) {
+      return null;
+    }
+    if (this.formGroup.errors.view_type.empty) {
+      message.push(&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.VIEW_TYPE_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+  // Object type
+  private objectTypeValidator(control: AbstractControl): ValidationErrors | null {
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    const objectType &#x3D; control.get(&#x27;object_type&#x27;).value;
+    if (!objectType || objectType.length &#x3D;&#x3D;&#x3D; 0) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      object_type: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showObjectTypeError(): boolean {
+    if (!this.formGroup.errors || !this.formGroup.errors.object_type) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageObjectTypeError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroup.errors || !this.formGroup.errors.object_type) {
+      return null;
+    }
+    if (this.formGroup.errors.object_type.empty) {
+      message.push(&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.OBJECT_TYPE_INPUT.ERROR_EMPTY&#x27;);
+    }
+    return message;
+  }
+
+  //Range
+  getRangeControlValue() {
+    return this.formGroup.get(&#x27;range&#x27;).value.options;
+  }
+
+  keyEnterTextOptionsRange(event) {
+    const input &#x3D; event.target
+    const value &#x3D; input.value;
+    if (value &amp;&amp; value !&#x3D;&#x3D; &#x27;&#x27;) {
+      const controlRange &#x3D; this.formGroup.get(&#x27;range&#x27;);
+      controlRange.setValue({
+        options: [...controlRange.value.options, value],
+      });
+      input.value &#x3D; &#x27;&#x27;;
+    }
+  }
+
+  removeTextOptionsRange(index) {
+    const controlRange &#x3D; this.formGroup.get(&#x27;range&#x27;);
+    const newArray &#x3D; [...controlRange.value.options];
+    newArray.splice(index, 1);
+    controlRange.setValue({
+      options: newArray,
+    });
+  }
+
+  rangeValidator(control: AbstractControl): ValidationErrors | null {
+    if (!this.typeRange) {
+      return null;
+    }
+    switch (this.typeRange) {
+      case this.typeRangeOptions.TEXT_OPTIONS:
+        return this.rangeTextOptionsValidator(control);
+    }
+    return null;
+  }
+
+  rangeTextOptionsValidator(control: AbstractControl): ValidationErrors | null {
+    const range &#x3D; control.get(&#x27;range&#x27;).value;
+    let error &#x3D; false;
+    let emptyError &#x3D; false;
+    if (!range || !range.options || range.options.length &#x3D;&#x3D;&#x3D; 0) {
+      error &#x3D; true;
+      emptyError &#x3D; true;
+    }
+    return error ? {
+      range: {
+        empty: emptyError,
+      }
+    } : null;
+  }
+
+  showRangeError(): boolean {
+    if (!this.formGroup.errors || !this.formGroup.errors.range) {
+      return false;
+    }
+    return true;
+  }
+
+  getMessageRangeError(): string[] {
+    const message &#x3D; [];
+    if (!this.formGroup.errors || !this.formGroup.errors.range) {
+      return null;
+    }
+    switch(this.typeRange) {
+      case this.typeRangeOptions.TEXT_OPTIONS:
+        if (this.formGroup.errors.range.empty) {
+          message.push(&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.RANGE_INPUT.TEXT_OPTIONS.ERROR_EMPTY&#x27;);
+        }
+        break;
+    }
+    return message;
+  }
+}
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;nz-modal [(nzVisible)]&#x3D;&quot;showModal&quot; (nzOnCancel)&#x3D;&quot;cancelModal()&quot; [nzMaskClosable]&#x3D;&quot;false&quot; [nzTitle]&#x3D;&quot;modalTitle&quot;
+          [nzContent]&#x3D;&quot;modalContent&quot; [nzFooter]&#x3D;&quot;modalFooter&quot; nzCentered&gt;
+  &lt;ng-template #modalTitle&gt;
+    {{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.TITLE&#x27; | translate}}
+  &lt;/ng-template&gt;
+  &lt;ng-template #modalContent&gt;
+    &lt;nz-spin [nzSpinning]&#x3D;&quot;loading&quot;&gt;
+      &lt;form [formGroup]&#x3D;&quot;formGroup&quot; style&#x3D;&quot;padding: 0px 0px 15px 0px;&quot;&gt;
+
+        &lt;!-- NAME --&gt;
+        &lt;div&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;name&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.NAME_INPUT.LABEL&#x27; | translate}}
+          &lt;/nz-form-label&gt;
+          &lt;input nz-input formControlName&#x3D;&quot;name&quot; type&#x3D;&quot;text&quot;
+                 [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.NAME_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                 [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;: showNameError()}&quot;&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;showNameError()&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let item of getMessageNameError()&quot; class&#x3D;&quot;message-error&quot;&gt;{{item | translate}}&lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;!-- VIEW TYPE --&gt;
+        &lt;div style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;view_type&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.VIEW_TYPE_INPUT.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;nz-select nzShowSearch nzMode&#x3D;&quot;default&quot; formControlName&#x3D;&quot;view_type&quot;
+                     [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.VIEW_TYPE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                     style&#x3D;&quot;width: 100%&quot; [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: showViewTypeError()}&quot;&gt;
+            &lt;nz-option *ngFor&#x3D;&quot;let item of viewTypeOptions&quot; [nzValue]&#x3D;&quot;item.value&quot;
+                       [nzLabel]&#x3D;&quot;item.label | translate&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;showViewTypeError()&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let item of getMessageViewTypeError()&quot; class&#x3D;&quot;message-error&quot;&gt;{{item | translate}}
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;!-- UNIQUE --&gt;
+        &lt;div style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;unique&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;nz-select nzMode&#x3D;&quot;default&quot; formControlName&#x3D;&quot;unique&quot;
+                     [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                     style&#x3D;&quot;width: 100%&quot;&gt;
+            &lt;nz-option [nzValue]&#x3D;&quot;false&quot;
+                       [nzLabel]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.NO&#x27; | translate&quot;&gt;
+            &lt;/nz-option&gt;
+            &lt;nz-option [nzValue]&#x3D;&quot;true&quot;
+                       [nzLabel]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.YES&#x27; | translate&quot;&gt;
+            &lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/div&gt;
+
+        &lt;!-- STANDARD --&gt;
+        &lt;div&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;standard&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.STANDARD_INPUT.LABEL&#x27; | translate}}
+          &lt;/nz-form-label&gt;
+          &lt;input nz-input formControlName&#x3D;&quot;standard&quot; type&#x3D;&quot;text&quot;
+                 [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.STANDARD_INPUT.PLACEHOLDER&#x27; | translate&quot;&gt;
+        &lt;/div&gt;
+
+        &lt;!-- RANGE --&gt;
+        &lt;div *ngIf&#x3D;&quot;typeRange &amp;&amp; typeRange &#x3D;&#x3D;&#x3D; typeRangeOptions.TEXT_OPTIONS&quot; style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;range&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.RANGE_INPUT.TEXT_OPTIONS.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;input nz-input type&#x3D;&quot;text&quot;
+                 [placeholder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.RANGE_INPUT.TEXT_OPTIONS.PLACEHOLDER&#x27; | translate&quot;
+                 [ngClass]&#x3D;&quot;{&#x27;input-error&#x27;: showRangeError()}&quot; (keyup.enter)&#x3D;&quot;keyEnterTextOptionsRange($event)&quot;&gt;
+          &lt;div&gt;
+            &lt;nz-tag *ngFor&#x3D;&quot;let item of getRangeControlValue(); let i &#x3D; index&quot; nzMode&#x3D;&quot;closeable&quot;
+                    (nzOnClose)&#x3D;&quot;removeTextOptionsRange(i)&quot;&gt;
+              {{ item }}
+            &lt;/nz-tag&gt;
+          &lt;/div&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;showRangeError()&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let item of getMessageRangeError()&quot; class&#x3D;&quot;message-error&quot;&gt;{{item | translate}}
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;!-- MULTIPLE --&gt;
+        &lt;div *ngIf&#x3D;&quot;showMultipleInput()&quot; style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;multiple&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;nz-select nzShowSearch nzMode&#x3D;&quot;default&quot; formControlName&#x3D;&quot;multiple&quot;
+                     [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                     style&#x3D;&quot;width: 100%&quot;&gt;
+            &lt;nz-option [nzValue]&#x3D;&quot;false&quot;
+                       [nzLabel]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.OPTIONS.NO&#x27; | translate&quot;&gt;
+            &lt;/nz-option&gt;
+            &lt;nz-option [nzValue]&#x3D;&quot;true&quot;
+                       [nzLabel]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.OPTIONS.YES&#x27; | translate&quot;&gt;
+            &lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/div&gt;
+
+        &lt;!-- OBJECT TYPE --&gt;
+        &lt;div style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;object_type&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.OBJECT_TYPE_INPUT.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;nz-select nzShowSearch nzMode&#x3D;&quot;multiple&quot; formControlName&#x3D;&quot;object_type&quot; nzAllowClear
+                     [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.OBJECT_TYPE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                     style&#x3D;&quot;width: 100%&quot; [ngClass]&#x3D;&quot;{&#x27;select-error&#x27;: showObjectTypeError()}&quot;&gt;
+            &lt;nz-option *ngFor&#x3D;&quot;let item of objectTypesOptions&quot; [nzValue]&#x3D;&quot;item.name&quot;
+                       [nzLabel]&#x3D;&quot;item.name | translate&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+          &lt;ng-container *ngIf&#x3D;&quot;showObjectTypeError()&quot;&gt;
+            &lt;div *ngFor&#x3D;&quot;let item of getMessageObjectTypeError()&quot; class&#x3D;&quot;message-error&quot;&gt;{{item | translate}}
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;/div&gt;
+
+        &lt;!-- TEMPLATES --&gt;
+        &lt;div style&#x3D;&quot;margin-top: 5px&quot;&gt;
+          &lt;nz-form-label nzFor&#x3D;&quot;template_id&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.TEMPLATE_INPUT.LABEL&#x27; |
+            translate}}&lt;/nz-form-label&gt;
+          &lt;nz-select nzShowSearch nzMode&#x3D;&quot;multiple&quot; formControlName&#x3D;&quot;template_id&quot; nzAllowClear
+                     [nzPlaceHolder]&#x3D;&quot;&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.TEMPLATE_INPUT.PLACEHOLDER&#x27; | translate&quot;
+                     style&#x3D;&quot;width: 100%&quot;&gt;
+            &lt;nz-option *ngFor&#x3D;&quot;let item of props&quot; [nzValue]&#x3D;&quot;item.id&quot;
+                       [nzLabel]&#x3D;&quot;item.name | translate&quot;&gt;&lt;/nz-option&gt;
+          &lt;/nz-select&gt;
+        &lt;/div&gt;
+
+
+      &lt;/form&gt;
+    &lt;/nz-spin&gt;
+  &lt;/ng-template&gt;
+  &lt;ng-template #modalFooter&gt;
+    &lt;button nz-button nzType&#x3D;&quot;primary&quot; nzDanger
+            (click)&#x3D;&quot;cancelModal()&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.CANCEL_BUTTON&#x27; | translate}}&lt;/button&gt;
+    &lt;button nz-button nzType&#x3D;&quot;default&quot; [disabled]&#x3D;&quot;!formGroup.valid || loading&quot;
+            (click)&#x3D;&quot;createField()&quot;&gt;{{&#x27;ANNOTATIONS.FIELDS.CREATE_MODAL.CREATE_BUTTON&#x27; | translate}}&lt;/button&gt;
+  &lt;/ng-template&gt;
+&lt;/nz-modal&gt;
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./field-modal-create.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">::ng-deep .input-error
+    border: 1px solid #ff4d4f
+    &amp;:focus
+        box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2)
+        border-right-width: 1px !important
+        outline: 0
+        border: 1px solid #ff7875
+    &amp;:hover
+        border: 1px solid #ff4d4f
+
+::ng-deep .select-error .ant-select-selector
+    border: 1px solid #ff0000 !important
+
+::ng-deep .select-error.ant-select-focused .ant-select-selector
+    box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3) !important
+
+.message-error
+    color: #ff0000
+    font-size: 12px
+    margin-top: 2px
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><nz-modal [(nzVisible)]="showModal" (nzOnCancel)="cancelModal()" [nzMaskClosable]="false" [nzTitle]="modalTitle"          [nzContent]="modalContent" [nzFooter]="modalFooter" nzCentered>  <ng-template #modalTitle>    {{\'ANNOTATIONS.FIELDS.CREATE_MODAL.TITLE\' | translate}}  </ng-template>  <ng-template #modalContent>    <nz-spin [nzSpinning]="loading">      <form [formGroup]="formGroup" style="padding: 0px 0px 15px 0px;">        <!-- NAME -->        <div>          <nz-form-label nzFor="name">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.NAME_INPUT.LABEL\' | translate}}          </nz-form-label>          <input nz-input formControlName="name" type="text"                 [placeholder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.NAME_INPUT.PLACEHOLDER\' | translate"                 [ngClass]="{\'input-error\': showNameError()}">          <ng-container *ngIf="showNameError()">            <div *ngFor="let item of getMessageNameError()" class="message-error">{{item | translate}}</div>          </ng-container>        </div>        <!-- VIEW TYPE -->        <div style="margin-top: 5px">          <nz-form-label nzFor="view_type">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.VIEW_TYPE_INPUT.LABEL\' |            translate}}</nz-form-label>          <nz-select nzShowSearch nzMode="default" formControlName="view_type"                     [nzPlaceHolder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.VIEW_TYPE_INPUT.PLACEHOLDER\' | translate"                     style="width: 100%" [ngClass]="{\'select-error\': showViewTypeError()}">            <nz-option *ngFor="let item of viewTypeOptions" [nzValue]="item.value"                       [nzLabel]="item.label | translate"></nz-option>          </nz-select>          <ng-container *ngIf="showViewTypeError()">            <div *ngFor="let item of getMessageViewTypeError()" class="message-error">{{item | translate}}            </div>          </ng-container>        </div>        <!-- UNIQUE -->        <div style="margin-top: 5px">          <nz-form-label nzFor="unique">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.LABEL\' |            translate}}</nz-form-label>          <nz-select nzMode="default" formControlName="unique"                     [nzPlaceHolder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.PLACEHOLDER\' | translate"                     style="width: 100%">            <nz-option [nzValue]="false"                       [nzLabel]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.NO\' | translate">            </nz-option>            <nz-option [nzValue]="true"                       [nzLabel]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.UNIQUE_INPUT.OPTIONS.YES\' | translate">            </nz-option>          </nz-select>        </div>        <!-- STANDARD -->        <div>          <nz-form-label nzFor="standard">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.STANDARD_INPUT.LABEL\' | translate}}          </nz-form-label>          <input nz-input formControlName="standard" type="text"                 [placeholder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.STANDARD_INPUT.PLACEHOLDER\' | translate">        </div>        <!-- RANGE -->        <div *ngIf="typeRange && typeRange === typeRangeOptions.TEXT_OPTIONS" style="margin-top: 5px">          <nz-form-label nzFor="range">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.RANGE_INPUT.TEXT_OPTIONS.LABEL\' |            translate}}</nz-form-label>          <input nz-input type="text"                 [placeholder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.RANGE_INPUT.TEXT_OPTIONS.PLACEHOLDER\' | translate"                 [ngClass]="{\'input-error\': showRangeError()}" (keyup.enter)="keyEnterTextOptionsRange($event)">          <div>            <nz-tag *ngFor="let item of getRangeControlValue(); let i = index" nzMode="closeable"                    (nzOnClose)="removeTextOptionsRange(i)">              {{ item }}            </nz-tag>          </div>          <ng-container *ngIf="showRangeError()">            <div *ngFor="let item of getMessageRangeError()" class="message-error">{{item | translate}}            </div>          </ng-container>        </div>        <!-- MULTIPLE -->        <div *ngIf="showMultipleInput()" style="margin-top: 5px">          <nz-form-label nzFor="multiple">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.LABEL\' |            translate}}</nz-form-label>          <nz-select nzShowSearch nzMode="default" formControlName="multiple"                     [nzPlaceHolder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.PLACEHOLDER\' | translate"                     style="width: 100%">            <nz-option [nzValue]="false"                       [nzLabel]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.OPTIONS.NO\' | translate">            </nz-option>            <nz-option [nzValue]="true"                       [nzLabel]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.MULTIPLE_INPUT.OPTIONS.YES\' | translate">            </nz-option>          </nz-select>        </div>        <!-- OBJECT TYPE -->        <div style="margin-top: 5px">          <nz-form-label nzFor="object_type">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.OBJECT_TYPE_INPUT.LABEL\' |            translate}}</nz-form-label>          <nz-select nzShowSearch nzMode="multiple" formControlName="object_type" nzAllowClear                     [nzPlaceHolder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.OBJECT_TYPE_INPUT.PLACEHOLDER\' | translate"                     style="width: 100%" [ngClass]="{\'select-error\': showObjectTypeError()}">            <nz-option *ngFor="let item of objectTypesOptions" [nzValue]="item.name"                       [nzLabel]="item.name | translate"></nz-option>          </nz-select>          <ng-container *ngIf="showObjectTypeError()">            <div *ngFor="let item of getMessageObjectTypeError()" class="message-error">{{item | translate}}            </div>          </ng-container>        </div>        <!-- TEMPLATES -->        <div style="margin-top: 5px">          <nz-form-label nzFor="template_id">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.TEMPLATE_INPUT.LABEL\' |            translate}}</nz-form-label>          <nz-select nzShowSearch nzMode="multiple" formControlName="template_id" nzAllowClear                     [nzPlaceHolder]="\'ANNOTATIONS.FIELDS.CREATE_MODAL.TEMPLATE_INPUT.PLACEHOLDER\' | translate"                     style="width: 100%">            <nz-option *ngFor="let item of props" [nzValue]="item.id"                       [nzLabel]="item.name | translate"></nz-option>          </nz-select>        </div>      </form>    </nz-spin>  </ng-template>  <ng-template #modalFooter>    <button nz-button nzType="primary" nzDanger            (click)="cancelModal()">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.CANCEL_BUTTON\' | translate}}</button>    <button nz-button nzType="default" [disabled]="!formGroup.valid || loading"            (click)="createField()">{{\'ANNOTATIONS.FIELDS.CREATE_MODAL.CREATE_BUTTON\' | translate}}</button>  </ng-template></nz-modal></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'FieldModalCreateComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'FieldModalCreateComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

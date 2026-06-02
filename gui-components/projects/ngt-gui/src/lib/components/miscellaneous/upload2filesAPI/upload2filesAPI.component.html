@@ -1,0 +1,46 @@
+<div class="file-addition-container">
+  <div class="file-addition-files">
+    <div class="theme-header-background-color file-addition-files-title">
+      {{ header }}
+    </div>
+    <div style="display: flex; justify-content: center" *ngIf="files.length > 1">
+      <button nz-button nzType="default" [nzBlock]="true" style="margin: 5px" (click)="orderFiles()">Order List</button>
+    </div>
+    <div class="file-addition-files-list" cdkDropList (cdkDropListDropped)="drop($event)" style="height: 75%">
+      <div cdkDrag *ngFor="let f of files; let i = index" class="file-addition-files-list-item">
+        <div class="file-addition-files-list-item-name">
+          {{ f.filename }}
+        </div>
+        <div>
+          <button nz-button nzType="primary" nzDanger nzShape="circle" class="file-addition-files-list-item-delete-button"
+                  (click)="removeFile(i)">
+            <span nz-icon nzType="delete"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="file-addition-file">
+    <nz-upload
+      style="width: 100%; height: 100%"
+      nzType="drag"
+      [nzBeforeUpload]="beforeUploadFile.bind(this)"
+      [nzLimit]="1"
+      [nzAccept]="fileExtensions"
+      [nzShowUploadList]="false"
+    >
+      <p class="ant-upload-drag-icon">
+        <i nz-icon nzType="inbox"></i>
+      </p>
+      <p class="ant-upload-text">Click or drag file to this area to upload</p>
+      <p class="ant-upload-hint">
+        {{acceptedExtensionsString}}
+      </p>
+    </nz-upload>
+  </div>
+</div>
+
+<app-info-modal [(isVisible)]="isVisibleModal" typeIcon="warning" themeIcon="twotone"
+                twotoneColorIcon="#f44336" [title]="modalTitle"
+                [content]="modalContent"
+                [contentParams]="contentParamsModal"></app-info-modal>

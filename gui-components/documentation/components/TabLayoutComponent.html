@@ -1,0 +1,2151 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>bcs-gui documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+          <script>
+              // --- Iframe navigation tracking for Template Playground ---
+              function sendCurrentUrlToParent() {
+                  if (window.parent && window.parent !== window) {
+                      window.parent.postMessage({
+                          type: 'compodoc-iframe-navigate',
+                          url: window.location.pathname + window.location.hash
+                      }, '*');
+                  }
+              }
+              window.addEventListener('hashchange', sendCurrentUrlToParent, false);
+              window.addEventListener('popstate', sendCurrentUrlToParent, false);
+              window.addEventListener('DOMContentLoaded', sendCurrentUrlToParent, false);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">bcs-gui documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  TabLayoutComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/layout/tab-layout/tab-layout.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-tab-layout</code></td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>CommonModule</code>
+                                <code><a href="../modules/SharedModule.html" target="_self" >SharedModule</a></code>
+                            <code>NzSelectModule</code>
+                            <code>FormsModule</code>
+                            <code>ReactiveFormsModule</code>
+                            <code>NzModalModule</code>
+                            <code>NzSpinModule</code>
+                                <code><a href="../classes/Message.html" target="_self" >NzMessageModule</a></code>
+                            <code>NzNotificationModule</code>
+                            <code>NzIconModule</code>
+                            <code>AngularFireAuthModule</code>
+                                <code><a href="../components/MessageGridComponent.html" target="_self" >MessageGridComponent</a></code>
+                                <code><a href="../components/SidebarComponent.html" target="_self" >SidebarComponent</a></code>
+                                <code><a href="../components/TopAreaComponent.html" target="_self" >TopAreaComponent</a></code>
+                            <code>RouterOutlet</code>
+                                <code><a href="../components/ModalsComponent.html" target="_self" >ModalsComponent</a></code>
+                            <code>SplitAreaComponent</code>
+                            <code>SplitComponent</code>
+                            <code>SplitGutterDirective</code>
+                            <code>MatTabsModule</code>
+                            <code>MatIconModule</code>
+                            <code>MatButtonModule</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./tab-layout.component.sass,<br>./ng-zorro.sass</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./tab-layout.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#auth" >auth</a>
+                            </li>
+                            <li>
+                                <a href="#isActiveRegister" >isActiveRegister</a>
+                            </li>
+                            <li>
+                                <a href="#isSidebarCollapsed" >isSidebarCollapsed</a>
+                            </li>
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                            <li>
+                                <a href="#navigate" >navigate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#router" >router</a>
+                            </li>
+                            <li>
+                                <a href="#selectedIndex" >selectedIndex</a>
+                            </li>
+                            <li>
+                                <a href="#selectedOptionLanguage" >selectedOptionLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#showSidebar" >showSidebar</a>
+                            </li>
+                            <li>
+                                <a href="#sidebarSize" >sidebarSize</a>
+                            </li>
+                            <li>
+                                <a href="#tabs" >tabs</a>
+                            </li>
+                            <li>
+                                <a href="#title" >title</a>
+                            </li>
+                            <li>
+                                <a href="#validateLogin" >validateLogin</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#closeTab" >closeTab</a>
+                            </li>
+                            <li>
+                                <a href="#finishEditing" >finishEditing</a>
+                            </li>
+                            <li>
+                                <a href="#getLabelFromRoute" >getLabelFromRoute</a>
+                            </li>
+                            <li>
+                                <a href="#getLanguageTypeLabel" >getLanguageTypeLabel</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onActivate" >onActivate</a>
+                            </li>
+                            <li>
+                                <a href="#selectTab" >selectTab</a>
+                            </li>
+                            <li>
+                                <a href="#showModal" >showModal</a>
+                            </li>
+                            <li>
+                                <a href="#startEditing" >startEditing</a>
+                            </li>
+                            <li>
+                                <a href="#swicthLanguage" >swicthLanguage</a>
+                            </li>
+                            <li>
+                                <a href="#toggleSidebar" >toggleSidebar</a>
+                            </li>
+                            <li>
+                                <a href="#validateLoginChange" >validateLoginChange</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#LanguageItemType" >LanguageItemType</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(auth: <a href="../injectables/AuthService.html" target="_self">AuthService</a>, router: Router, internacionalizationService: <a href="../injectables/InternationalizationService.html" target="_self">InternationalizationService</a>, router_path: <a href="../injectables/RoutePathService.html" target="_self">RoutePathService</a>, stateService: <a href="../injectables/StateService.html" target="_self">StateService</a>, cdf: ChangeDetectorRef)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:107</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>auth</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>internacionalizationService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/InternationalizationService.html" target="_self" >InternationalizationService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>router_path</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/RoutePathService.html" target="_self" >RoutePathService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>stateService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/StateService.html" target="_self" >StateService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>cdf</td>
+                                                  
+                                                        <td>
+                                                                    <code>ChangeDetectorRef</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="closeTab"></a>
+                    <span class="name">
+                        <span ><b>closeTab</b></span>
+                        <a href="#closeTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>closeTab(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="222"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:222</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="finishEditing"></a>
+                    <span class="name">
+                        <span ><b>finishEditing</b></span>
+                        <a href="#finishEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>finishEditing(tab: <a href="../interfaces/DynamicTab.html" target="_self">DynamicTab</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="247"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:247</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tab</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DynamicTab.html" target="_self" >DynamicTab</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLabelFromRoute"></a>
+                    <span class="name">
+                        <span ><b>getLabelFromRoute</b></span>
+                        <a href="#getLabelFromRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLabelFromRoute(route: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="210"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:210</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>route</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLanguageTypeLabel"></a>
+                    <span class="name">
+                        <span ><b>getLanguageTypeLabel</b></span>
+                        <a href="#getLanguageTypeLabel"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLanguageTypeLabel(key)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="191"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:191</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>key</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="120"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:120</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onActivate"></a>
+                    <span class="name">
+                        <span ><b>onActivate</b></span>
+                        <a href="#onActivate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onActivate(event)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="177"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:177</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectTab"></a>
+                    <span class="name">
+                        <span ><b>selectTab</b></span>
+                        <a href="#selectTab"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>selectTab(index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="218"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:218</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>index</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showModal"></a>
+                    <span class="name">
+                        <span ><b>showModal</b></span>
+                        <a href="#showModal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showModal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="195"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:195</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="startEditing"></a>
+                    <span class="name">
+                        <span ><b>startEditing</b></span>
+                        <a href="#startEditing"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>startEditing(tab: <a href="../interfaces/DynamicTab.html" target="_self">DynamicTab</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="238"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>tab</td>
+                                            <td>
+                                                            <code><a href="../interfaces/DynamicTab.html" target="_self" >DynamicTab</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="swicthLanguage"></a>
+                    <span class="name">
+                        <span ><b>swicthLanguage</b></span>
+                        <a href="#swicthLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>swicthLanguage(value)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="173"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:173</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>value</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="toggleSidebar"></a>
+                    <span class="name">
+                        <span ><b>toggleSidebar</b></span>
+                        <a href="#toggleSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>toggleSidebar()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="198"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:198</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateLoginChange"></a>
+                    <span class="name">
+                        <span ><b>validateLoginChange</b></span>
+                        <a href="#validateLoginChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>validateLoginChange(status)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="169"
+                                    class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:169</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>status</td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="auth"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>auth</b></span>
+                        <a href="#auth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:110</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isActiveRegister"></a>
+                    <span class="name">
+                        <span ><b>isActiveRegister</b></span>
+                        <a href="#isActiveRegister"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSidebarCollapsed"></a>
+                    <span class="name">
+                        <span ><b>isSidebarCollapsed</b></span>
+                        <a href="#isSidebarCollapsed"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="loading"></a>
+                    <span class="name">
+                        <span ><b>loading</b></span>
+                        <a href="#loading"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:94</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigate"></a>
+                    <span class="name">
+                        <span ><b>navigate</b></span>
+                        <a href="#navigate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="router"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>router</b></span>
+                        <a href="#router"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Router</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:111</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedIndex"></a>
+                    <span class="name">
+                        <span ><b>selectedIndex</b></span>
+                        <a href="#selectedIndex"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOptionLanguage"></a>
+                    <span class="name">
+                        <span ><b>selectedOptionLanguage</b></span>
+                        <a href="#selectedOptionLanguage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:99</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showSidebar"></a>
+                    <span class="name">
+                        <span ><b>showSidebar</b></span>
+                        <a href="#showSidebar"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sidebarSize"></a>
+                    <span class="name">
+                        <span ><b>sidebarSize</b></span>
+                        <a href="#sidebarSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>30</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:100</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="tabs"></a>
+                    <span class="name">
+                        <span ><b>tabs</b></span>
+                        <a href="#tabs"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/DynamicTab.html" target="_self" >DynamicTab[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:102</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="title"></a>
+                    <span class="name">
+                        <span ><b>title</b></span>
+                        <a href="#title"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;bcs-gui&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:93</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="validateLogin"></a>
+                    <span class="name">
+                        <span ><b>validateLogin</b></span>
+                        <a href="#validateLogin"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-accessors">
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="LanguageItemType"></a>
+                        <span class="name"><b>LanguageItemType</b><a href="#LanguageItemType"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>LanguageItemType()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/components/layout/tab-layout/tab-layout.component.ts:105</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  ChangeDetectorRef,
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  OnInit,
+} from &#x27;@angular/core&#x27;;
+
+import { AuthService } from &#x27;@services/auth.service&#x27;;
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router, RouterOutlet
+} from &#x27;@angular/router&#x27;;
+
+import { InternationalizationService, LANGUAGE_OPTION_TYPES } from &#x27;@services/internationalization.service&#x27;;
+import { URLBuilder } from &#x27;@wizpanda/url-builder&#x27;;
+import { RoutePathService } from &#x27;@services/route-path.service&#x27;;
+import { StateService } from &quot;@services/state.service&quot;;
+import { animate, state, style, transition, trigger } from &quot;@angular/animations&quot;;
+import { SharedModule } from &quot;@shared-module/shared.module&quot;;
+import { NzSelectModule } from &quot;ng-zorro-antd/select&quot;;
+import { FormsModule, ReactiveFormsModule } from &quot;@angular/forms&quot;;
+import { NzModalModule } from &quot;ng-zorro-antd/modal&quot;;
+import { NzSpinModule } from &quot;ng-zorro-antd/spin&quot;;
+import { NzMessageModule } from &quot;ng-zorro-antd/message&quot;;
+import { NzNotificationModule } from &quot;ng-zorro-antd/notification&quot;;
+import { NzIconModule } from &quot;ng-zorro-antd/icon&quot;;
+import { AngularFireAuthModule } from &quot;@angular/fire/compat/auth&quot;;
+import { MessageGridComponent } from &quot;@components/layout/message-grid/message-grid.component&quot;;
+import { SidebarComponent } from &quot;@components/layout/sidebar/sidebar.component&quot;;
+import { TopAreaComponent } from &quot;@components/layout/top-area/top-area.component&quot;;
+import { CommonModule } from &quot;@angular/common&quot;;
+import { ModalsComponent } from &quot;@components/layout/modals/modals.component&quot;;
+import {
+  SplitAreaComponent,
+  SplitComponent,
+  SplitGutterDirective,
+} from &#x27;angular-split&#x27;
+import { MatTabsModule } from &#x27;@angular/material/tabs&#x27;;
+import { MatIconModule } from &#x27;@angular/material/icon&#x27;;
+import { MatButtonModule } from &#x27;@angular/material/button&#x27;;
+import { DynamicTab } from &#x27;@interfaces/dynamic-tab.interfaces&#x27;;
+
+
+const sidebarOpenCloseAnimation &#x3D; trigger(&#x27;sidebarOpenClose&#x27;, [
+  state(&#x27;true&#x27;, style({ width: &#x27;*&#x27; })),
+  state(&#x27;false&#x27;, style({ width: &#x27;0px&#x27; })),
+  transition(&#x27;false &lt;&#x3D;&gt; true&#x27;, animate(100))
+]);
+
+@Component({
+  selector: &#x27;app-tab-layout&#x27;,
+  imports: [
+    CommonModule,
+    SharedModule,
+    NzSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NzModalModule,
+    NzSpinModule,
+    NzMessageModule,
+    NzNotificationModule,
+    NzIconModule,
+    AngularFireAuthModule,
+    // Components
+    MessageGridComponent,
+    SidebarComponent,
+    TopAreaComponent,
+    RouterOutlet,
+    ModalsComponent,
+    //SplitArea
+    SplitAreaComponent,
+    SplitComponent,
+    SplitGutterDirective,
+    //Tabs
+    MatTabsModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
+  templateUrl: &#x27;./tab-layout.component.html&#x27;,
+  styleUrls: [
+    &#x27;./tab-layout.component.sass&#x27;,
+    &quot;./ng-zorro.sass&quot;
+  ],
+  animations: [
+    sidebarOpenCloseAnimation,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class TabLayoutComponent implements OnInit {
+  title &#x3D; &#x27;bcs-gui&#x27;;
+  loading &#x3D; true;
+  validateLogin &#x3D; false;
+  isActiveRegister &#x3D; false;
+  showSidebar &#x3D; true;
+  navigate &#x3D; false;
+  selectedOptionLanguage;
+  sidebarSize &#x3D; 30;
+  isSidebarCollapsed &#x3D; false;
+  tabs: DynamicTab[] &#x3D; [];
+  selectedIndex &#x3D; 0;
+
+  get LanguageItemType() {
+    return LANGUAGE_OPTION_TYPES;
+  }
+
+  constructor(
+    public readonly auth: AuthService,
+    public readonly router: Router,
+    private readonly internacionalizationService: InternationalizationService,
+    private readonly router_path: RoutePathService,
+    private readonly stateService: StateService,
+    private readonly cdf: ChangeDetectorRef
+  ) {
+
+  }
+
+  ngOnInit() {
+    this.internacionalizationService.changeCurrentLanguage(&#x27;private-es&#x27;);
+    this.internacionalizationService.setDefaultLanguage(&#x27;private-empty&#x27;);
+    this.selectedOptionLanguage &#x3D; this.internacionalizationService.getCurrentLanguage();
+    this.internacionalizationService.getLangChangeEvent().subscribe({
+      next: (value) &#x3D;&gt; {
+        this.selectedOptionLanguage &#x3D; value.lang;
+      }
+    });
+    this.router.events.subscribe({
+      next: ev &#x3D;&gt; {
+        if (ev instanceof NavigationStart) {
+          this.loading &#x3D; true;
+          this.navigate &#x3D; true;
+        }
+        if (ev instanceof NavigationEnd || ev instanceof NavigationCancel || ev instanceof NavigationError) {
+          this.loading &#x3D; false;
+          this.stateService.currentUrl &#x3D; ev.url;
+        }
+        if (ev instanceof NavigationEnd) {
+          this.router_path.routePathCounter++;
+          setTimeout(() &#x3D;&gt; this.navigate &#x3D; false, 200)
+        }
+      }
+    });
+    this.auth.initializeAngularFireAuthChange();
+    this.router.events.subscribe(event &#x3D;&gt; {
+      if (event instanceof NavigationEnd) {
+        const route &#x3D; event.urlAfterRedirects;
+        const existingTab &#x3D; this.tabs.find(t &#x3D;&gt; t.route &#x3D;&#x3D;&#x3D; route);
+        console.log(route)
+        if (route &#x3D;&#x3D; &#x27;/home&#x27; || route &#x3D;&#x3D; &#x27;/&#x27;) {
+          console.log(&#x27;estas en home&#x27;);
+        } else {
+
+          if (!existingTab) {
+            // Creamos una pestaña nueva
+            this.tabs.push({ label: this.getLabelFromRoute(route), route });
+            this.selectedIndex &#x3D; this.tabs.length - 1;
+          } else {
+            // Seleccionamos la pestaña existente
+            this.selectedIndex &#x3D; this.tabs.indexOf(existingTab);
+          }
+        }
+      }
+    });
+
+  }
+
+  validateLoginChange(status) {
+    console.log(status);
+  }
+
+  swicthLanguage(value): void {
+    this.internacionalizationService.changeCurrentLanguage(value);
+  }
+
+  onActivate(event) {
+    const URL &#x3D; new URLBuilder(&#x27;http://unusefulurl.com&#x27; + this.router.url);
+    const params &#x3D; {};
+    URL.getParams().forEach((value, key) &#x3D;&gt; {
+      params[key] &#x3D; value;
+    });
+    this.router_path.refresh_path({
+      rawUrl: this.router.url,
+      url: URL.getPath(),
+      queryParams: params,
+      breadcrumbName: event.BREADCRUMB_NAME ? event.BREADCRUMB_NAME : this.router.url,
+    });
+  }
+
+  getLanguageTypeLabel(key): string {
+    return &#x60;AUTH_MODAL.INPUTS.LANGUAGE.TYPES.${key}&#x60;;
+  }
+
+  showModal(): boolean {
+    return (!this.auth.isEmailVerified &amp;&amp; !this.auth.isAnonymous) &amp;&amp; !this.auth.hiddenAuthModal &amp;&amp; !this.navigate;
+  }
+  toggleSidebar() {
+    console.log(&quot;funciona&quot;)
+    this.isSidebarCollapsed &#x3D; !this.isSidebarCollapsed;
+
+    if (this.isSidebarCollapsed) {
+      // Guardamos el tamaño actual y ocultamos
+      this.sidebarSize &#x3D; 0;
+    } else {
+      // Restauramos tamaño (puedes poner 30% u otro valor)
+      this.sidebarSize &#x3D; 30;
+    }
+  }
+  getLabelFromRoute(route: string): string {
+    // Podés personalizar los títulos según tus rutas
+    if (route.includes(&#x27;inicio&#x27;)) return &#x27;Inicio&#x27;;
+    if (route.includes(&#x27;perfil&#x27;)) return &#x27;Perfil&#x27;;
+    if (route.includes(&#x27;configuracion&#x27;)) return &#x27;Configuración&#x27;;
+    return route.split(&#x27;/&#x27;).pop() || &#x27;Página&#x27;;
+  }
+
+  selectTab(index: number) {
+    this.router.navigate([this.tabs[index].route]);
+  }
+
+  closeTab(index: number) {
+    const closed &#x3D; this.tabs[index];
+    this.tabs.splice(index, 1);
+
+    // Si cerrás la pestaña activa, navegar a otra abierta
+    if (this.selectedIndex &gt;&#x3D; this.tabs.length) {
+      this.selectedIndex &#x3D; this.tabs.length - 1;
+    }
+
+    if (this.tabs.length &gt; 0) {
+      this.router.navigate([this.tabs[this.selectedIndex].route]);
+    } else {
+      // Si no quedan pestañas, podés definir una ruta por defecto
+      this.router.navigate([&#x27;/&#x27;]);
+    }
+  }
+  startEditing(tab: DynamicTab) {
+  tab.editing &#x3D; true;
+  setTimeout(() &#x3D;&gt; {
+    const input &#x3D; document.querySelector(&#x27;.tab-edit-input:last-of-type&#x27;) as HTMLInputElement;
+    input?.focus();
+    input?.select();
+  });
+}
+
+finishEditing(tab: DynamicTab) {
+  tab.editing &#x3D; false;
+  tab.label &#x3D; tab.label.trim() || &#x27;Sin título&#x27;;
+}
+
+
+
+}
+
+
+
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;height: 100%; display: flex; flex-direction: column;&quot;&gt;
+    &lt;!-- Header --&gt;
+    &lt;div class&#x3D;&quot;theme-header-background-color&quot; style&#x3D;&quot;flex: 0 0 auto;&quot;&gt;
+        &lt;app-top-area [title]&#x3D;&quot;&#x27;NextGenGUIDemo&#x27;&quot; [icon]&#x3D;&quot;&#x27;assets/images/icon_working.png&#x27;&quot;&gt;
+        &lt;/app-top-area&gt;
+    &lt;/div&gt;
+
+    &lt;!-- Body --&gt;
+    &lt;div style&#x3D;&quot;flex: 1 1 auto; display: flex; height: 100%; position: relative;&quot;&gt;
+        &lt;!-- Botón flotante --&gt;
+
+        &lt;as-split direction&#x3D;&quot;horizontal&quot; #mainSplit [gutterSize]&#x3D;&quot;1&quot; [unit]&#x3D;&quot;&#x27;percent&#x27;&quot;
+            style&#x3D;&quot;flex: 1 1 auto; height: 100%;&quot; (gutterDblClick)&#x3D;&quot;toggleSidebar()&quot; [gutterDblClickDuration]&#x3D;&quot;500&quot;
+            [useTransition]&#x3D;&quot;true&quot;&gt;
+            &lt;div *asSplitGutter&#x3D;&quot;let isDragged &#x3D; isDragged&quot; class&#x3D;&quot;custom-shade-gutter&quot; [class.dragged]&#x3D;&quot;isDragged&quot;&gt;
+                &lt;div class&#x3D;&quot;custom-shade-gutter-icon&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Sidebar --&gt;
+            &lt;as-split-area [size]&#x3D;&quot;sidebarSize&quot; [minSize]&#x3D;&quot;20&quot; [maxSize]&#x3D;&quot;35&quot;&gt;
+                &lt;div style&#x3D;&quot;display: flex; flex: 1 1 auto; height: 100%;&quot; class&#x3D;&quot;block1&quot;&gt;
+                    &lt;div style&#x3D;&quot;position: relative; height: 100%;&quot; class&#x3D;&quot;sidebarComponent&quot;
+                        [@sidebarOpenClose]&#x3D;&quot;!isSidebarCollapsed&quot;&gt;
+                        &lt;app-sidebar&gt;&lt;/app-sidebar&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/as-split-area&gt;
+
+            &lt;!-- Content --&gt;
+            &lt;as-split-area [size]&#x3D;&quot;100 - sidebarSize&quot; [minSize]&#x3D;&quot;20&quot; [maxSize]&#x3D;&quot;100&quot;&gt;
+                &lt;div style&#x3D;&quot;display: flex; flex: 1 1 auto; height: 100%;&quot; class&#x3D;&quot;block2&quot;&gt;
+                    &lt;div style&#x3D;&quot;flex: 1 1 auto; min-width: 0;&quot; class&#x3D;&quot;theme-body-background-color&quot;&gt;
+                        &lt;mat-tab-group [(selectedIndex)]&#x3D;&quot;selectedIndex&quot; (selectedIndexChange)&#x3D;&quot;selectTab($event)&quot; &gt;
+                            &lt;mat-tab *ngFor&#x3D;&quot;let tab of tabs; let i &#x3D; index&quot;&gt;
+                                &lt;ng-template mat-tab-label&gt;
+  &lt;span *ngIf&#x3D;&quot;!tab.editing&quot; (dblclick)&#x3D;&quot;startEditing(tab)&quot;&gt;
+    {{ tab.label }}
+  &lt;/span&gt;
+
+  &lt;input *ngIf&#x3D;&quot;tab.editing&quot;
+         type&#x3D;&quot;text&quot;
+         [(ngModel)]&#x3D;&quot;tab.label&quot;
+         (blur)&#x3D;&quot;finishEditing(tab)&quot;
+         (keydown.enter)&#x3D;&quot;finishEditing(tab)&quot;
+         (click)&#x3D;&quot;$event.stopPropagation()&quot;
+         class&#x3D;&quot;tab-edit-input&quot;/&gt;
+
+  &lt;button mat-icon-button
+          (click)&#x3D;&quot;closeTab(i); $event.stopPropagation();&quot;
+          style&#x3D;&quot;margin-left: 8px;&quot;&gt;
+    &lt;mat-icon&gt;close&lt;/mat-icon&gt;
+  &lt;/button&gt;
+&lt;/ng-template&gt;
+
+                            &lt;/mat-tab&gt;
+                        &lt;/mat-tab-group&gt;
+                        &lt;div *ngIf&#x3D;&quot;!loading; else loadingTemplate&quot;&gt;
+                            &lt;router-outlet (activate)&#x3D;&quot;onActivate($event)&quot;&gt;&lt;/router-outlet&gt;
+                        &lt;/div&gt;
+
+                        &lt;ng-template #loadingTemplate&gt;
+                            &lt;nz-spin nzTip&#x3D;&quot;Loading...&quot; style&#x3D;&quot;height: 100%;&quot; class&#x3D;&quot;spin&quot;&gt;&lt;/nz-spin&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/as-split-area&gt;
+        &lt;/as-split&gt;
+
+    &lt;/div&gt;
+
+    &lt;div style&#x3D;&quot;position: fixed; bottom: 0; right: 0;&quot;&gt;
+        &lt;app-message-grid&gt;&lt;/app-message-grid&gt;
+    &lt;/div&gt;
+    &lt;app-modals&gt;&lt;/app-modals&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./tab-layout.component.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">html, body, app-root
+  height: 100%
+  margin: 0
+
+.main-container
+  display: flex
+  flex-direction: column
+  height: 100%
+
+.header
+  flex: 0 0 auto  // ocupa solo su contenido
+
+nz-splitter 
+  height: 200px
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+
+.box 
+  height: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+    
+.body
+  flex: 1 1 auto
+  display: flex
+  flex-direction: row
+  min-height: 0
+
+nz-splitter
+  flex: 1
+  height: 100%
+
+.sidebarComponent
+  height: 100%
+  width: 100%
+  background-color: #fafafa
+  border-right: 1px solid #e0e0e0
+
+.contentArea
+  height: 100%
+  overflow: auto
+  padding: 16px
+
+</code></pre>
+                <p class="comment">
+                    <code>./ng-zorro.sass</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tbody &gt; tr &gt; td,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tfoot &gt; tr &gt; t::ng-deep d,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tfoot &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; thead &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tbody &gt; tr &gt; td,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tfoot &gt; tr &gt; td,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tfoot &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; thead &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tbody &gt; tr &gt; td,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tfoot &gt; tr &gt; td,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tfoot &gt; tr &gt; th
+    border-right: 1px solid #cbcbcb !important
+
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tbody &gt; tr &gt; td
+    &amp;:last-child
+        border-right: none !important
+
+::ng-deep .ant-table-thead &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; thead &gt; tr:not(:last-child) &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; thead &gt; tr:not(:last-child) &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; thead &gt; tr:not(:last-child) &gt; th
+    border-bottom: none !important
+
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tbody &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tbody &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after
+    border-right: none
+
+::ng-deep .ant-table-thead &gt; tr &gt; th
+    border-right: none !important
+
+::ng-deep .ant-table-tbody &gt; .ant-table-row:nth-of-type(odd) &gt; .ant-table-cell
+    background-color: #ffffff
+
+::ng-deep .ant-table-tbody &gt; .ant-table-row:nth-of-type(even) &gt; .ant-table-cell
+    background-color: #f0f0f0
+
+::ng-deep .ant-table-tbody &gt; .ant-table-row:hover &gt; .ant-table-cell
+    background-color: #e0e0e0
+
+::ng-deep .ant-table-cell &gt; .ant-list-item-action &gt; li &gt; .ant-list-item-action-split
+    background-color: rgba(0,0,0,.25)
+
+::ng-deep .ant-modal-content
+    border-radius: 5px
+
+::ng-deep .ant-modal-close-x:hover
+    color: #f00
+
+::ng-deep .ant-modal-title
+    font-weight: bold
+    font-size: 17px
+
+::ng-deep .ant-modal-header
+    border-bottom: 1px solid #d8d8d8
+    border-top-left-radius: 5px
+    border-top-right-radius: 5px
+
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; thead &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; thead &gt; tr &gt; th,
+::ng-deep .ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tfoot &gt; tr &gt; th
+    border-right: none !important
+
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; thead &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tbody &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tbody &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tbody &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-content &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-header &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered &gt; .ant-table-container &gt; .ant-table-body &gt; table &gt; tfoot &gt; tr &gt; .ant-table-cell-fix-right-first::after
+    border-right: none !important
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis-network.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div style="height: 100%; display: flex; flex-direction: column;">    <!-- Header -->    <div class="theme-header-background-color" style="flex: 0 0 auto;">        <app-top-area [title]="\'NextGenGUIDemo\'" [icon]="\'assets/images/icon_working.png\'">        </app-top-area>    </div>    <!-- Body -->    <div style="flex: 1 1 auto; display: flex; height: 100%; position: relative;">        <!-- Botón flotante -->        <as-split direction="horizontal" #mainSplit [gutterSize]="1" [unit]="\'percent\'"            style="flex: 1 1 auto; height: 100%;" (gutterDblClick)="toggleSidebar()" [gutterDblClickDuration]="500"            [useTransition]="true">            <div *asSplitGutter="let isDragged = isDragged" class="custom-shade-gutter" [class.dragged]="isDragged">                <div class="custom-shade-gutter-icon"></div>            </div>            <!-- Sidebar -->            <as-split-area [size]="sidebarSize" [minSize]="20" [maxSize]="35">                <div style="display: flex; flex: 1 1 auto; height: 100%;" class="block1">                    <div style="position: relative; height: 100%;" class="sidebarComponent"                        [@sidebarOpenClose]="!isSidebarCollapsed">                        <app-sidebar></app-sidebar>                    </div>                </div>            </as-split-area>            <!-- Content -->            <as-split-area [size]="100 - sidebarSize" [minSize]="20" [maxSize]="100">                <div style="display: flex; flex: 1 1 auto; height: 100%;" class="block2">                    <div style="flex: 1 1 auto; min-width: 0;" class="theme-body-background-color">                        <mat-tab-group [(selectedIndex)]="selectedIndex" (selectedIndexChange)="selectTab($event)" >                            <mat-tab *ngFor="let tab of tabs; let i = index">                                <ng-template mat-tab-label>  <span *ngIf="!tab.editing" (dblclick)="startEditing(tab)">    {{ tab.label }}  </span>  <input *ngIf="tab.editing"         type="text"         [(ngModel)]="tab.label"         (blur)="finishEditing(tab)"         (keydown.enter)="finishEditing(tab)"         (click)="$event.stopPropagation()"         class="tab-edit-input"/>  <button mat-icon-button          (click)="closeTab(i); $event.stopPropagation();"          style="margin-left: 8px;">    <mat-icon>close</mat-icon>  </button></ng-template>                            </mat-tab>                        </mat-tab-group>                        <div *ngIf="!loading; else loadingTemplate">                            <router-outlet (activate)="onActivate($event)"></router-outlet>                        </div>                        <ng-template #loadingTemplate>                            <nz-spin nzTip="Loading..." style="height: 100%;" class="spin"></nz-spin>                        </ng-template>                    </div>                </div>            </as-split-area>        </as-split>    </div>    <div style="position: fixed; bottom: 0; right: 0;">        <app-message-grid></app-message-grid>    </div>    <app-modals></app-modals></div></div>'
+    var COMPONENTS = [{'name': 'AclModalComponent', 'selector': 'app-acl-modal'},{'name': 'AclRulesModalComponent', 'selector': 'app-acl-rules-modal'},{'name': 'AdvancedParametersWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'AligmentNextgendemMissingEditorComponent', 'selector': 'app-alignment-nextgendem-missing-editor'},{'name': 'AlignmentBrowseComponent', 'selector': 'app-aligment-browse'},{'name': 'AlignmentDetailComponent', 'selector': 'app-alignment-detail'},{'name': 'AlignmentSelectorComponent', 'selector': 'app-alignment-selector'},{'name': 'AlignmentsImportComponent', 'selector': 'app-alignments-import'},{'name': 'AnalysesBrowseComponent', 'selector': 'app-analyses-browse'},{'name': 'AnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'AnnotationsFormComponent', 'selector': 'app-annotations-form'},{'name': 'AnnotationTextFieldComponent', 'selector': 'app-annotation-text-field'},{'name': 'AnnotationTextFieldReadComponent', 'selector': 'app-annotation-text-field-read'},{'name': 'AnnotationTextOptionsComponent', 'selector': 'app-annotation-text-options'},{'name': 'AnnotationTextOptionsReadComponent', 'selector': 'app-annotation-text-options-read'},{'name': 'AnonymousSvgComponent', 'selector': 'anonymous-svg'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'ArchaeopteryxBrowserComponent', 'selector': 'app-archaeopteryx-browser'},{'name': 'ArchaeopteryxPageComponent', 'selector': 'app-archaeopteryx-page'},{'name': 'BackButtonComponent', 'selector': 'app-back-button'},{'name': 'BasiclayoutComponent', 'selector': 'app-basiclayout'},{'name': 'BlasterjsComponent', 'selector': 'app-blasterjs'},{'name': 'BlasterjsPageComponent', 'selector': 'app-blasterjs-page'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-result-detail'},{'name': 'BlastResultsBrowseComponent', 'selector': 'app-blast-results-browse'},{'name': 'BOCardComponent', 'selector': 'app-bo-card'},{'name': 'CaseStudiesAddItemsModalComponent', 'selector': 'app-case-studies-add-items-modal'},{'name': 'CaseStudiesBrowseComponent', 'selector': 'app-case-studies-browse'},{'name': 'CaseStudiesDetailComponent', 'selector': 'app-case-studies-detail'},{'name': 'CaseStudiesModalCreateComponent', 'selector': 'app-case-studies-modal-create'},{'name': 'CollectionsAddItemsModalComponent', 'selector': 'app-collections-add-items-modal'},{'name': 'CollectionsBrowseComponent', 'selector': 'app-collections-browse'},{'name': 'CollectionsDetailComponent', 'selector': 'app-collections-detail'},{'name': 'CollectionsModalCreateComponent', 'selector': 'app-collections-modal-create'},{'name': 'ComputeResourcesBrowseComponent', 'selector': 'app-compute-resources-browse'},{'name': 'ComputeResourcesDetailComponent', 'selector': 'app-compute-resources-detail'},{'name': 'ComputeResourcesModalCreateComponent', 'selector': 'app-compute-resources-modal-create'},{'name': 'ContainerizationImagesBrowserComponent', 'selector': 'app-containerization-images-browser'},{'name': 'ContainerizationImagesDetailComponent', 'selector': 'app-containerization-images-detail'},{'name': 'ContainerizationImagesDetailGeneralTabComponent', 'selector': 'app-containerization-images-detail-general-tab'},{'name': 'ContainerizationImagesModalCreateComponent', 'selector': 'app-containerization-images-modal-create'},{'name': 'CrsBrowseComponent', 'selector': 'app-crs-browse'},{'name': 'CrsCreateModalComponent', 'selector': 'app-crs-create-modal'},{'name': 'CrsDetailComponent', 'selector': 'app-crs-detail'},{'name': 'DataWrapperComponent', 'selector': 'app-data-wrapper'},{'name': 'DiscriminantMatrixBrowseComponent', 'selector': 'app-discriminant-matrix-browse'},{'name': 'DiscriminantMatrixDetailComponent', 'selector': 'app-discriminant-matrix-detail'},{'name': 'DynamicAnalysesImportComponent', 'selector': 'app-dynamic-analyses-import'},{'name': 'DynamicAnalysisDetailComponent', 'selector': 'app-dynamic-analysis-detail'},{'name': 'DynamicBrowseComponent', 'selector': 'app-dynamic-browse'},{'name': 'DynamicEntitiesTableComponent', 'selector': 'app-dynamic-entities-table'},{'name': 'DynamicInputModalComponent', 'selector': 'app-dynamic-input-modal'},{'name': 'DynamicTableComponent', 'selector': 'app-dynamic-table'},{'name': 'DynamicTableObjectsComponent', 'selector': 'app-dynamic-table-objects'},{'name': 'FieldDetailComponent', 'selector': 'app-field-detail'},{'name': 'FieldModalCreateComponent', 'selector': 'app-field-modal-create'},{'name': 'FieldsBrowseComponent', 'selector': 'app-fields-browse'},{'name': 'FileAdditionSelectorComponent', 'selector': 'app-file-addition-selector'},{'name': 'FilterDetailComponent', 'selector': 'app-filter-detail'},{'name': 'GenerateLayerViewerModalComponent', 'selector': 'app-generate-layer-viewer-modal'},{'name': 'GeolayerBrowseComponent', 'selector': 'app-geolayer-browse'},{'name': 'GeolayerDetailComponent', 'selector': 'app-geolayer-detail'},{'name': 'GeolayerExportModalComponent', 'selector': 'app-geolayer-export-modal'},{'name': 'GeolayerImportComponent', 'selector': 'app-geolayer-import'},{'name': 'GeolayerSelectorComponent', 'selector': 'app-geolayer-selector'},{'name': 'GeolayersViewerComponent', 'selector': 'app-geolayers-viewer'},{'name': 'GeopropertyEditModalComponent', 'selector': 'app-geoproperty-edit-modal'},{'name': 'GoogleSvgComponent', 'selector': 'google-svg'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'IdentitiesBrowserComponent', 'selector': 'app-identities-browser'},{'name': 'IdentityDetailsComponent', 'selector': 'app-identity-details'},{'name': 'IdentityFormComponent', 'selector': 'app-identity-form'},{'name': 'IdentityModifyComponent', 'selector': 'app-identity-modify'},{'name': 'IndividualBrowseComponent', 'selector': 'app-individual-browse'},{'name': 'IndividualDetailComponent', 'selector': 'app-individual-detail'},{'name': 'IndividualsModalCreateComponent', 'selector': 'app-individuals-modal-create'},{'name': 'InfoModalComponent', 'selector': 'app-info-modal'},{'name': 'InputFormlyComponent', 'selector': 'app-input-formly'},{'name': 'InputRangeFormlyComponent', 'selector': 'app-input-range-formly'},{'name': 'JqueryQuerybuilderComponent', 'selector': 'app-jquery-querybuilder'},{'name': 'LabelComponent', 'selector': 'app-label'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MessageGridComponent', 'selector': 'app-message-grid'},{'name': 'ModalInfoComponent', 'selector': 'app-modal-info'},{'name': 'ModalsComponent', 'selector': 'app-modals'},{'name': 'MonophylyComponent', 'selector': 'app-monophyly-component'},{'name': 'MsaBrowserComponent', 'selector': 'app-msa-browser'},{'name': 'MultipleSelectorComponent', 'selector': 'app-multiple-selector'},{'name': 'NextgendemGeolayerAddAttributeModalComponent', 'selector': 'app-nextgendem-geolayer-add-attribute-modal'},{'name': 'NextgendemGeolayerComponent', 'selector': 'app-nextgendem-geolayer'},{'name': 'NextgendemGeolayerConfigurationPanelComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel'},{'name': 'NextgendemGeolayerConfigurationPanelWindowComponent', 'selector': 'app-nextgendem-geolayer-configuration-panel-window'},{'name': 'NextgendemGeolayerCreateMapComponent', 'selector': 'app-nextgendem-geolayer-create-map'},{'name': 'NextgendemGeolayerEditStyleModalComponent', 'selector': 'app-nextgendem-geolayer-edit-style-modal'},{'name': 'NextgendemGeolayerMapComponent', 'selector': 'app-nextgendem-geolayer-map'},{'name': 'NextgendemGeolayerMapSettingsComponent', 'selector': 'app-nextgendem-geolayer-map-settings'},{'name': 'NextgendemGeolayerModalCqlGenerateByFilterComponent', 'selector': 'app-nextgendem-geolayer-modal-cql-generate-by-filter'},{'name': 'NextgendemGeolayerTopAreaComponent', 'selector': 'app-nextgendem-geolayer-top-area'},{'name': 'NextgendemMissingEditorComponent', 'selector': 'app-nextgendem-missing-editor'},{'name': 'NextgendemMsaBrowserComponent', 'selector': 'app-nextgendem-msa-browser'},{'name': 'NextgendemMsaPageComponent', 'selector': 'app-nextgendem-msa-page'},{'name': 'NexusTreeSelectorComponent', 'selector': 'app-nexus-tree-selector'},{'name': 'NgdBarcodingComponent', 'selector': 'app-ngd-barcoding'},{'name': 'NgdBarcodingPageComponent', 'selector': 'app-ngd-barcoding-page'},{'name': 'OntologiesBrowseComponent', 'selector': 'app-ontologies-browse'},{'name': 'OntologiesImportComponent', 'selector': 'app-ontologies-import'},{'name': 'OntologyDetailComponent', 'selector': 'app-ontology-detail'},{'name': 'OrganismDetailComponent', 'selector': 'app-organism-detail'},{'name': 'OrganismsBrowseComponent', 'selector': 'app-organisms-browse'},{'name': 'OrganizationDetailsComponent', 'selector': 'app-organization-details'},{'name': 'OrganizationFormComponent', 'selector': 'app-organization-form'},{'name': 'OrganizationModifyComponent', 'selector': 'app-organization-modify'},{'name': 'OrganizationsBrowserComponent', 'selector': 'app-organizations-browser'},{'name': 'PhylotreeDetailComponent', 'selector': 'app-phylotree-detail'},{'name': 'PhylotreesBrowseComponent', 'selector': 'app-phylotress-browse'},{'name': 'PhylotreeSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'PhylotreesImportComponent', 'selector': 'app-phylotrees-import'},{'name': 'PreferencesModalComponent', 'selector': 'preferences-modal'},{'name': 'ProcessDetailComponent', 'selector': 'app-process-detail'},{'name': 'ProcessesBrowseComponent', 'selector': 'app-processes-browse'},{'name': 'ProcessesTypesBrowserComponent', 'selector': 'app-processes-types-browser'},{'name': 'ProcessesTypesDetailAnnotationsTabComponent', 'selector': 'app-processes-types-detail-annotations-tab'},{'name': 'ProcessesTypesDetailComponent', 'selector': 'app-processes-types-detail'},{'name': 'ProcessesTypesDetailGeneralTabComponent', 'selector': 'app-processes-types-detail-general-tab'},{'name': 'ProcessesTypesDetailSchemaInputTabComponent', 'selector': 'app-processes-types-detail-schema-input-tab'},{'name': 'ProcessesTypesDetailSchemaOutputTabComponent', 'selector': 'app-processes-types-detail-schema-output-tab'},{'name': 'ProcessesTypesDetailSourceCodeTabComponent', 'selector': 'app-processes-types-detail-source-code-tab'},{'name': 'ProcessesTypesModalCreateComponent', 'selector': 'app-processes-types-modal-create'},{'name': 'ProcessLogComponent', 'selector': 'app-process-log'},{'name': 'ProcessSetupComponent', 'selector': 'app-process-setup'},{'name': 'ReferencesAclBrowseComponent', 'selector': 'app-references-acl-browse'},{'name': 'RegistrationComponent', 'selector': 'app-registration'},{'name': 'RoleDetailsComponent', 'selector': 'app-role-details'},{'name': 'RoleFormComponent', 'selector': 'app-role-form'},{'name': 'RoleModifyComponent', 'selector': 'app-role-modify'},{'name': 'RolesBrowserComponent', 'selector': 'app-roles-browser'},{'name': 'SelectComponent', 'selector': 'app-select'},{'name': 'SelectLazyLoadingComponent', 'selector': 'app-select-lazy-loading'},{'name': 'SelectLazyLoadingFormlyComponent', 'selector': 'app-select-lazy-loading-formly'},{'name': 'SequenceDetailComponent', 'selector': 'app-sequence-detail'},{'name': 'SequencesBrowseComponent', 'selector': 'app-sequences-browse'},{'name': 'SequenceSelectorComponent', 'selector': 'app-sequence-selector'},{'name': 'SequencesImportComponent', 'selector': 'app-sequences-import'},{'name': 'SidebarComponent', 'selector': 'app-sidebar'},{'name': 'SourceCreateModalComponent', 'selector': 'app-source-create-modal'},{'name': 'SourcesBrowseComponent', 'selector': 'app-sources-browse'},{'name': 'StatusCheckersDetailComponent', 'selector': 'app-status-checkers-detail'},{'name': 'SubprocessWrapperComponent', 'selector': 'app-subprocess-wrapper'},{'name': 'SuperMatrixBrowseComponent', 'selector': 'app-super-matrix-browse'},{'name': 'SuperMatrixDetailComponent', 'selector': 'app-super-matrix-detail'},{'name': 'SuperMatrixImportComponent', 'selector': 'app-super-matrix-import'},{'name': 'SuperMatrixNextgendemMissingEditorComponent', 'selector': 'app-super-matrix-nextgendem-missing-editor'},{'name': 'SystemFunctionsBrowseComponent', 'selector': 'app-system-functions-browse'},{'name': 'TabLayoutComponent', 'selector': 'app-tab-layout'},{'name': 'TaxonomiesBrowseComponent', 'selector': 'app-taxonomies-browse'},{'name': 'TaxonomiesImportComponent', 'selector': 'app-taxonomies-import'},{'name': 'TaxonomyDetailComponent', 'selector': 'app-taxonomy-detail'},{'name': 'TaxsetComponent', 'selector': 'taxset-component'},{'name': 'TaxsetFieldComponent', 'selector': 'app-taxset-field'},{'name': 'TemplateDetailComponent', 'selector': 'app-template-detail'},{'name': 'TemplateModalCreateComponent', 'selector': 'app-template-modal-create'},{'name': 'TemplatesBrowseComponent', 'selector': 'app-templates-browse'},{'name': 'TermDetailComponent', 'selector': 'app-term-detail'},{'name': 'TermsBrowseComponent', 'selector': 'app-terms-browse'},{'name': 'TestPageComponent', 'selector': 'app-test-page'},{'name': 'ThemeCreateModalComponent', 'selector': 'app-theme-create-modal'},{'name': 'ThemesBrowseComponent', 'selector': 'app-themes-browse'},{'name': 'TopAreaComponent', 'selector': 'app-top-area'},{'name': 'Upload2filesAPIComponent', 'selector': 'app-upload-2-files-api'},{'name': 'ViewersBrowseComponent', 'selector': 'app-viewers-browse'},{'name': 'WoodedSelectorComponent', 'selector': 'app-wooded-selector'}];
+    var DIRECTIVES = [{'name': 'AutofocusDirective', 'selector': '[appAutofocus]'},{'name': 'DisableControlDirective', 'selector': '[disableControl]'},{'name': 'FormlyUser', 'selector': ''}];
+    var ACTUAL_COMPONENT = {'name': 'TabLayoutComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TabLayoutComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

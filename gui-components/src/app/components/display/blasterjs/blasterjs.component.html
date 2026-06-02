@@ -1,0 +1,28 @@
+<div>
+  <div class="theme-header-background-color toolbar">
+    <div>
+      Blaster
+    </div>
+    <div style="flex: 1 1 auto; min-width: 0"></div>
+    <div style="width: 250px">
+      <nz-select [(ngModel)]="selectSequenceValue" (ngModelChange)="onSelectSequenceChange($event)" style="width: 100%">
+        <nz-option [nzLabel]="item.label" [nzValue]="item.value" *ngFor="let item of selectSequenceOptions">
+
+        </nz-option>
+      </nz-select>
+    </div>
+  </div>
+  <div style="background-color: #ffffff; border: 1px solid #c4c4c4">
+    <nz-tabset nzType="card" class="blaster-tabset" [nzSelectedIndex]="0">
+      <nz-tab nzTitle="Alignments Table" nzForceRender>
+        <div id="blast-alignments-table"></div>
+      </nz-tab>
+      <nz-tab nzTitle="Multiple Alignments" nzForceRender>
+        <div id="blast-multiple-alignments"></div>
+      </nz-tab>
+      <nz-tab nzTitle="Single Alignment" nzForceRender>
+        <div id="blast-single-alignment"></div>
+      </nz-tab>
+    </nz-tabset>
+  </div>
+</div>
