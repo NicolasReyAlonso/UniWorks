@@ -47,7 +47,7 @@ services:
       - "8000"
     volumes:
       - ./:/app
-      - ../private-conf:/private-conf
+      - ../../private-conf:/private-conf
     working_dir: /app
     environment:
       - PYTHONPATH=/app/src
@@ -74,7 +74,7 @@ services:
       - "8000"
     volumes:
       - ./:/app
-      - ../private-conf:/private-conf
+      - ../../private-conf:/private-conf
     working_dir: /app
     environment:
       - PYTHONPATH=/app/src
@@ -101,7 +101,7 @@ services:
       - "8000"
     volumes:
       - ./:/app
-      - ../private-conf:/private-conf
+      - ../../private-conf:/private-conf
     working_dir: /app
     environment:
       - PYTHONPATH=/app/src
@@ -128,7 +128,7 @@ services:
       - "8000"
     volumes:
       - ./:/app
-      - ../private-conf:/private-conf
+      - ../../private-conf:/private-conf
     working_dir: /app
     environment:
       - PYTHONPATH=/app/src
@@ -155,7 +155,7 @@ services:
       - "8000"
     volumes:
       - ./:/app
-      - ../private-conf:/private-conf
+      - ../../private-conf:/private-conf
     working_dir: /app
     environment:
       - PYTHONPATH=/app/src
