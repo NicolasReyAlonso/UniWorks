@@ -91,7 +91,7 @@ function propertyToField(
   isRequired: boolean,
   opts: SchemaToFormlyOptions,
 ): FormlyFieldConfig {
-  const schema = resolveRef(rawSchema, opts.rootSchema ?? rawSchema);
+  const schema = resolveSchema(rawSchema, opts.rootSchema ?? rawSchema);
   const type = pickFormlyType(schema);
 
   const props: Record<string, unknown> = {
@@ -220,6 +220,38 @@ function buildExpressions(schema: JsonSchema): Record<string, string> | undefine
   const disabledWhen = schema['x-disabled-when'];
   if (typeof disabledWhen === 'string') expressions['props.disabled'] = disabledWhen;
   return Object.keys(expressions).length ? expressions : undefined;
+}
+
+/**
+ * Resolves a property schema to the shape the converter can reason about.
+ *
+ * Beyond a direct `$ref`, this also unwraps the nullable/optional pattern that
+ * Pydantic v2 emits for `Optional[...]` fields: the meaningful branch (often a
+ * `$ref` to an enum in `$defs`) combined with a `{ "type": "null" }` branch
+ * under `anyOf`/`oneOf`/`allOf`. Without unwrapping, an optional enum like
+ * `health` carries neither a top-level `type` nor `enum`, so it would fall back
+ * to a plain text input instead of a `select`. Outer keywords on the wrapper
+ * (e.g. `default`) win over the branch; the branch's own `title`/`description`
+ * (typically the `$defs` class name) are dropped so the field falls back to the
+ * humanized property key.
+ */
+export function resolveSchema(rawSchema: JsonSchema, root: JsonSchema): JsonSchema {
+  const schema = resolveRef(rawSchema, root);
+
+  const variants = (schema.anyOf ?? schema.oneOf ?? schema['allOf']) as JsonSchema[] | undefined;
+  const alreadyTyped = schema.type !== undefined || schema.enum !== undefined || !!schema.properties;
+  if (!Array.isArray(variants) || alreadyTyped) return schema;
+
+  const meaningful = variants
+    .map(variant => resolveRef(variant, root))
+    .filter(variant => variant.type !== 'null');
+  if (meaningful.length !== 1) return schema;
+
+  const { anyOf, oneOf, allOf, ...outer } = schema as JsonSchema & { allOf?: unknown };
+  const merged: JsonSchema = { ...meaningful[0], ...outer };
+  if (outer.title === undefined) delete merged.title;
+  if (outer.description === undefined) delete merged.description;
+  return merged;
 }
 
 function resolveRef(schema: JsonSchema, root: JsonSchema): JsonSchema {

@@ -125,6 +125,33 @@ describe('schemaToFormly', () => {
     ]);
   });
 
+  it('unwraps a nullable enum (Pydantic anyOf + $ref) into a select', () => {
+    // Shape emitted by Pydantic v2 for an `Optional[Enum]` field with a default.
+    const schema: JsonSchema = {
+      type: 'object',
+      properties: {
+        health: {
+          anyOf: [{ $ref: '#/$defs/PlantHealth' }, { type: 'null' }],
+          default: 'healthy',
+        } as JsonSchema,
+      },
+      $defs: {
+        PlantHealth: { type: 'string', title: 'PlantHealth', enum: ['healthy', 'attention', 'sick', 'dead'] },
+      },
+    };
+    const [health] = schemaToFormly(schema);
+    expect(health.type).toBe('select');
+    expect(health.props!['options']).toEqual([
+      { value: 'healthy', label: 'healthy' },
+      { value: 'attention', label: 'attention' },
+      { value: 'sick', label: 'sick' },
+      { value: 'dead', label: 'dead' },
+    ]);
+    // Outer `default` is preserved; the $defs class name does not leak as the label.
+    expect(health.defaultValue).toBe('healthy');
+    expect(health.props!['label']).toBe('Health');
+  });
+
   it('applies overrides via deep merge', () => {
     const [name] = schemaToFormly(buildSchema({ name: { type: 'string' } }), {
       overrides: {

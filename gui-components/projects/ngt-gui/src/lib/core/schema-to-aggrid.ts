@@ -1,5 +1,6 @@
 import type { ColDef } from 'ag-grid-community';
 import type { JsonSchema } from './schema-to-formly';
+import { resolveSchema } from './schema-to-formly';
 
 /**
  * Per-column metadata as emitted by the backend's `_synthetic_editable_table`
@@ -85,7 +86,10 @@ export function schemaToColDefs(
   const opts = { ...DEFAULTS, ...options };
   const columns: ScreenEditableColumn[] = [];
   for (const [field, prop] of Object.entries(schema.properties)) {
-    columns.push(jsonSchemaToScreenColumn(field, prop, required.has(field)));
+    // Flatten Pydantic's nullable anyOf/$ref wrapper so enum/type/format that
+    // live behind a `$ref` (e.g. an optional enum) are visible to the grid.
+    const resolved = resolveSchema(prop, schema);
+    columns.push(jsonSchemaToScreenColumn(field, resolved, required.has(field)));
   }
   return columns.map(col => columnToColDef(col, opts));
 }

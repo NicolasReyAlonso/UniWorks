@@ -24,6 +24,47 @@ INTERNAL_FIELDS = {"id", "uuid", "creation_time", "deactivation_time"}
 router = APIRouter(tags=["GUI Config"])
 
 
+def _resolve_ref(node: Dict[str, Any], defs: Dict[str, Any]) -> Dict[str, Any]:
+    """Resolve a local ``#/$defs/<name>`` ``$ref`` against the schema's defs."""
+    ref = node.get("$ref")
+    if not isinstance(ref, str) or not ref.startswith("#/$defs/"):
+        return node
+    resolved = defs.get(ref.split("/")[-1])
+    return resolved if isinstance(resolved, dict) else node
+
+
+def _effective_prop(prop: Dict[str, Any], defs: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Flatten the nullable/optional wrapper Pydantic v2 emits for ``Optional[...]``
+    fields into a single dict the column/field builders can read directly.
+
+    A field like ``health`` arrives as
+    ``{"anyOf": [{"$ref": "#/$defs/PlantHealth"}, {"type": "null"}], ...}`` — the
+    ``enum``/``type`` live behind the ``$ref``, so without flattening the grid
+    select shows no options and the type falls back to ``string``. Outer keywords
+    (``default``, ``title``, ``x-*``) win over the resolved branch; the branch's
+    own ``title``/``description`` (the ``$defs`` class name) are dropped so the
+    column falls back to the humanized field name.
+    """
+    prop = _resolve_ref(prop, defs)
+    variants = prop.get("anyOf") or prop.get("oneOf") or prop.get("allOf")
+    if not variants or prop.get("type") or prop.get("enum"):
+        return prop
+
+    meaningful = [_resolve_ref(v, defs) for v in variants if isinstance(v, dict)]
+    meaningful = [v for v in meaningful if v.get("type") != "null"]
+    if len(meaningful) != 1:
+        return prop
+
+    outer = {k: v for k, v in prop.items() if k not in ("anyOf", "oneOf", "allOf")}
+    merged = {**meaningful[0], **outer}
+    if "title" not in outer:
+        merged.pop("title", None)
+    if "description" not in outer:
+        merged.pop("description", None)
+    return merged
+
+
 def _json_schema_type(prop: Dict[str, Any]) -> str:
     """Extract the effective JSON Schema type, handling nullable anyOf."""
     t = prop.get("type")
@@ -66,8 +107,10 @@ def _split_screen_name(name: str) -> Optional[tuple[str, str]]:
 def _synthetic_browser(entity_name: str, schema: Dict[str, Any], endpoint: str) -> Dict[str, Any]:
     """Build a synthetic browser-screen definition from a JSON Schema."""
     properties = schema.get("properties", {}) or {}
+    defs = schema.get("$defs", {}) or {}
     columns: List[Dict[str, Any]] = []
     for field, prop in properties.items():
+        prop = _effective_prop(prop, defs)
         if field in INTERNAL_FIELDS or prop.get("x-readonly"):
             continue
         jtype = _json_schema_type(prop)
@@ -98,9 +141,11 @@ def _synthetic_browser(entity_name: str, schema: Dict[str, Any], endpoint: str) 
 def _synthetic_form(entity_name: str, schema: Dict[str, Any], endpoint: str) -> Dict[str, Any]:
     """Build a synthetic form-screen definition from a JSON Schema."""
     properties = schema.get("properties", {}) or {}
+    defs = schema.get("$defs", {}) or {}
     required = set(schema.get("required", []) or [])
     fields: List[Dict[str, Any]] = []
     for field, prop in properties.items():
+        prop = _effective_prop(prop, defs)
         if field in INTERNAL_FIELDS:
             continue
         if prop.get("x-readonly"):
@@ -152,10 +197,12 @@ def _synthetic_editable_table(entity_name: str, schema: Dict[str, Any], endpoint
     type, editable/readonly, required, FK options endpoint, and validators.
     """
     properties = schema.get("properties", {}) or {}
+    defs = schema.get("$defs", {}) or {}
     required = set(schema.get("required", []) or [])
     columns: List[Dict[str, Any]] = []
 
     for field, prop in properties.items():
+        prop = _effective_prop(prop, defs)
         if field in INTERNAL_FIELDS:
             continue
         jtype = _json_schema_type(prop)
