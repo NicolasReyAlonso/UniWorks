@@ -172,6 +172,38 @@ services:
       - traefik.http.routers.annotations.rule=PathPrefix(`/api/annotation_form_templates`) || PathPrefix(`/api/annotation_form_fields`) || PathPrefix(`/api/annotation_form_relationships`) || PathPrefix(`/api/annotations`) || PathPrefix(`/api/relationships`)
       - traefik.http.routers.annotations.entrypoints=web
       - traefik.http.routers.annotations.priority=10
+  # Nodo de demo hot-plug: NO arranca con el stack por defecto (profiles).
+  # Lanzarlo en vivo con:  docker compose up -d seedbeds_node
+  # Al arrancar siembra su tabla, los datos demo y el menú del sidebar; Traefik
+  # detecta el contenedor y enruta /api/seed_batches hacia él automáticamente.
+  seedbeds_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_seedbeds
+    container_name: uniback_seedbeds
+    profiles: ["seedbeds"]
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=seedbeds
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.seedbeds.rule=PathPrefix(`/api/seed_batches`)
+      - traefik.http.routers.seedbeds.entrypoints=web
+      - traefik.http.routers.seedbeds.priority=10
   traefik:
     image: traefik:v3.6.2
     container_name: traefik
