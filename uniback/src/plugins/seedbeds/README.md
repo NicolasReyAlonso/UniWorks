@@ -2,8 +2,8 @@
 
 Plugin de demostración para la defensa del TFG: añade al sistema una entidad de
 dominio nueva (**lotes de semillero**, `seed_batches`) empaquetada como un nodo
-independiente que se puede enchufar **en caliente**, sin tocar el núcleo, sin
-tocar el front y sin reiniciar ningún servicio.
+independiente que se puede enchufar y desenchufar **en caliente**, sin tocar el
+núcleo, sin tocar el front y sin recargar siquiera la página del navegador.
 
 ## Qué demuestra
 
@@ -16,7 +16,15 @@ tocar el front y sin reiniciar ningún servicio.
 3. **Hot-plug de infraestructura**: el servicio `seedbeds_node` del
    docker-compose está detrás de un *profile*, así que no arranca con el stack.
    Al lanzarlo, Traefik detecta el contenedor y enruta `/api/seed_batches`
-   hacia él; el nodo siembra sus datos y su menú en la BD compartida.
+   hacia él.
+4. **Tiempo real**: el nodo mantiene un *heartbeat* en Redis
+   (`uniback:node:seedbeds:alive`, ver `uniback.utils.realtime`) y todos los
+   nodos comparten un bus Socket.IO sobre Redis. Al enchufar el nodo se emite
+   `navigation_changed` y el sidebar de los navegadores conectados se refresca
+   solo; al pararlo (o matarlo), la clave expira por TTL, el *watcher* del nodo
+   core emite el evento y la sección **desaparece en vivo** porque
+   `/gui/navigation` oculta los menús con `definition.requires_node` cuyo nodo
+   no late.
 
 ## Guion de la demo
 
@@ -27,12 +35,16 @@ docker compose up -d
 
 # 2. Enchufar el nodo en caliente (un solo comando):
 docker compose up -d seedbeds_node
-
-# 3. Refrescar el navegador:
-# → Aparece "Semillero (demo)" en el sidebar con dos pantallas generadas
-#   automáticamente (navegador CRUD y tabla de alta masiva).
+# → SIN recargar la página, en unos segundos aparece "Semillero (demo)" en el
+#   sidebar con dos pantallas generadas automáticamente (navegador CRUD y
+#   tabla de alta masiva).
 # → En el dashboard de Traefik (http://localhost:8080) se ve el router nuevo
 #   de /api/seed_batches apuntando al contenedor uniback_seedbeds.
+
+# 3. Desenchufarlo en caliente:
+docker compose stop seedbeds_node
+# → En ~10 s (TTL del heartbeat) la sección desaparece del sidebar, también
+#   sin tocar el navegador.
 ```
 
 Comprobaciones útiles durante la demo:
@@ -41,14 +53,18 @@ Comprobaciones útiles durante la demo:
 # El nodo responde a través del gateway:
 curl http://localhost:8000/api/seed_batches/
 
+# El heartbeat de presencia en Redis (TTL ≈ 10 s mientras el nodo vive):
+docker compose exec redis redis-cli ttl uniback:node:seedbeds:alive
+
 # Logs del nodo (se ve el sembrado y las peticiones llegando a ESTE nodo):
 docker logs -f uniback_seedbeds
 ```
 
-## Resetear la demo (para poder repetirla)
+## Resetear los datos (opcional)
 
-Los datos y el menú persisten en el volumen de Postgres, así que para volver al
-estado "sin semillero":
+El menú se oculta solo cuando el nodo no está, así que no hace falta borrar
+nada para repetir la demo. Si además se quieren eliminar los datos sembrados
+(p. ej. para enseñar el sembrado inicial otra vez):
 
 ```bash
 docker compose stop seedbeds_node
@@ -62,5 +78,3 @@ docker compose exec ub_pg psql -U postgres -d ub_db -c "
   DELETE FROM ub_functional_objects WHERE object_type_id = 210;
 "
 ```
-
-(Refrescar el navegador: la sección desaparece del sidebar.)

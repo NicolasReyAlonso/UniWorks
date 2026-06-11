@@ -209,7 +209,10 @@ class SeedbedsPlugin(UnibackPlugin):
                 name="Seedbeds Demo",
                 icon="experiment",
                 order=61,  # tras "Plants Demo" (60)
-                definition={"code": "Semillero (demo)"},
+                # requires_node: /gui/navigation oculta esta sección cuando el
+                # nodo seedbeds no tiene heartbeat vivo en Redis → al parar el
+                # contenedor, el menú desaparece del sidebar en caliente.
+                definition={"code": "Semillero (demo)", "requires_node": "seedbeds"},
             )
             db.add(parent)
             db.flush()  # necesitamos parent.id para los hijos
@@ -229,4 +232,15 @@ class SeedbedsPlugin(UnibackPlugin):
         print("[SeedbedsApp] Menú 'Semillero (demo)' registrado en el sidebar.")
 
     def on_app_ready(self, app: Any) -> None:
+        # Presencia hot-plug: SOLO el nodo dedicado late. Mientras el heartbeat
+        # esté vivo, /gui/navigation muestra la sección del semillero; el primer
+        # latido emite navigation_changed y los sidebars conectados se refrescan
+        # solos. Al parar el contenedor la clave expira por TTL y el watcher del
+        # core vuelve a avisar → el menú desaparece sin recargar la página.
+        import os
+
+        if os.getenv("UNIBACK_NODE_TYPE", "monolith") in ("seedbeds", "monolith"):
+            from uniback.utils.realtime import start_node_presence
+
+            start_node_presence("seedbeds")
         print("[SeedbedsApp] Plugin de semillero montado. Entidad 'seed_batches' disponible en /api/seed_batches/.")

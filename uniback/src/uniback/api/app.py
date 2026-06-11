@@ -124,11 +124,27 @@ def create_app(
     async def root() -> dict[str, str]:
         return {"status": "ok"}
 
-    # Set up basic socket.io wrapper to absorb /socket.io polling
+    # Set up socket.io wrapper. The AsyncRedisManager attaches every node to a
+    # shared Redis channel, so an emit from ANY node (e.g. a hot-plugged one)
+    # reaches the browsers connected to this node (the core, per Traefik).
     try:
         import socketio
-        sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*')
+        from uniback.utils.realtime import redis_url, start_presence_watcher
+
+        try:
+            client_manager = socketio.AsyncRedisManager(redis_url())
+        except Exception as e:
+            print(f"[Socket.IO] Redis manager unavailable ({e}); running standalone.")
+            client_manager = None
+        sio = socketio.AsyncServer(async_mode='asgi', cors_allowed_origins='*',
+                                   client_manager=client_manager)
         socket_app = socketio.ASGIApp(sio, other_asgi_app=app)
+
+        # The core serves /gui/navigation: it watches node presence and emits
+        # navigation_changed when a node appears or dies, so sidebars refresh
+        # live without a page reload.
+        if node_type in ("monolith", "core"):
+            start_presence_watcher()
 
         @sio.event
         async def connect(sid, environ):

@@ -350,6 +350,26 @@ async def get_gui_navigation(
             stmt = stmt.where(Menu.app_flavor_id == flavor.id)
 
     menus = list(db.scalars(stmt).all())
+
+    # Hot-plug: hide menus tied to a node that is not alive right now. A menu
+    # opts in by carrying ``definition.requires_node = "<node_type>"``; the
+    # node keeps a heartbeat key in Redis (see uniback.utils.realtime) and the
+    # frontend refreshes the sidebar on the ``navigation_changed`` event.
+    from uniback.utils.realtime import node_is_alive
+
+    required = {m.definition.get("requires_node") for m in menus if m.definition}
+    required.discard(None)
+    dead = {node for node in required if not node_is_alive(node)}
+    if dead:
+        hidden_parents = {
+            m.id for m in menus
+            if m.definition and m.definition.get("requires_node") in dead
+        }
+        menus = [
+            m for m in menus
+            if m.id not in hidden_parents and m.parent_menu_id not in hidden_parents
+        ]
+
     tree = _build_tree(menus)
 
     return ResponseEnvelope.ok(content={"menus": tree, "permissions": {}})

@@ -28,6 +28,10 @@ export class SocketService implements SocketServiceInterface {
 
   public readonly processStatusChangeSubject = new Subject<any>()
 
+  /** Emitted when the backend signals that the navigation tree changed
+   *  (e.g. a node was hot-plugged/unplugged). Consumers reload the sidebar. */
+  public readonly navigationChangedSubject = new Subject<any>()
+
   constructor(
     @Optional() @Inject(GLOBAL_SERVICE) private readonly injectedGlobalService: GlobalServiceInterface,
     private readonly notificationService: NotificationService,
@@ -46,6 +50,11 @@ export class SocketService implements SocketServiceInterface {
   }
 
   initEventsProccess() {
+    this.socket.on('navigation_changed', (event) => {
+      console.log('🔄 navigation_changed recibido:', event);
+      this.navigationChangedSubject.next(event);
+    });
+
     this.socket.on('process_status_change', (event) => {
       console.log({
         job_id: event.id,

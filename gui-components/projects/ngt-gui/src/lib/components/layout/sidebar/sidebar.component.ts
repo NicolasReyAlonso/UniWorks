@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, Optional } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NzMenuModule } from "ng-zorro-antd/menu";
@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 //Library Services
 import {AUTH_SERVICE_TOKEN, AuthServiceInterface} from "ngt-gui/core";
+import {SOCKET_SERVICE, SocketServiceInterface, SocketService} from "ngt-gui/core";
 
 //Library Services (NOT CORE)
 import { SidebarService } from '../../../services/sidebar.service';
@@ -64,30 +65,29 @@ export class SidebarComponent implements OnInit {
     this.lastState = { ...this.openMap };
   }
 
+  private readonly socketService: SocketServiceInterface;
+
   constructor(
     public activeRoute: ActivatedRoute,
     private router: Router,
     private sidebarService: SidebarService,
     @Inject(AUTH_SERVICE_TOKEN) public authService: AuthServiceInterface,
     private translate: TranslateService,
-  ) { }
+    @Optional() @Inject(SOCKET_SERVICE) injectedSocketService: SocketServiceInterface,
+    defaultSocketService: SocketService,
+  ) {
+    this.socketService = injectedSocketService || defaultSocketService;
+  }
 
   async ngOnInit(): Promise<void> {
-    
-    // Try loading navigation from the backend (dynamic).
-    // Falls back to YAML if the backend is unreachable.
-    try {
-      this.items = await this.sidebarService.loadSidebarFromBackend();
-    } catch (_) {
-      this.items = await this.sidebarService.loadSidebarItems('/assets/config/subDemo.yaml');
-    }
-    this.filteredItems = { ...this.items };
 
-    if (this.items) {
-      Object.keys(this.items).forEach(submenu => {
-        this.openMap[submenu] = false;
-      });
-    }
+    await this.loadItems();
+
+    // Hot-plug: when the backend signals that the navigation tree changed
+    // (a node was plugged in or died), reload the sidebar in place.
+    this.socketService.navigationChangedSubject?.subscribe(async () => {
+      await this.loadItems(true);
+    });
 
     this.sidebarService.sidebarEventEmitter.subscribe((event: { type: string, value: any }) => {
       switch (event.type) {
@@ -107,6 +107,33 @@ export class SidebarComponent implements OnInit {
         this.openMenuDependCurrentView();
       }
     });
+  }
+
+  /**
+   * Load (or reload) the sidebar tree from the backend, keeping the
+   * open/closed state of the menus that survive the reload.
+   */
+  private async loadItems(keepState: boolean = false): Promise<void> {
+    // Try loading navigation from the backend (dynamic).
+    // Falls back to YAML if the backend is unreachable.
+    try {
+      this.items = await this.sidebarService.loadSidebarFromBackend();
+    } catch (_) {
+      this.items = await this.sidebarService.loadSidebarItems('/assets/config/subDemo.yaml');
+    }
+    this.filteredItems = { ...this.items };
+
+    const previousOpenMap = this.openMap;
+    this.openMap = {};
+    if (this.items) {
+      Object.keys(this.items).forEach(submenu => {
+        this.openMap[submenu] = keepState ? (previousOpenMap[submenu] ?? false) : false;
+      });
+    }
+    this.updateLastState();
+    if (this.searchText) {
+      this.onSearchChange();
+    }
   }
 
   debugClick(item: any) {
