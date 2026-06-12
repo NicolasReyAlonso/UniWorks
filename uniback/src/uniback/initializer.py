@@ -100,9 +100,15 @@ def initialize(
 
     settings = _load_settings(config)
 
-    # Discover and initialize plugins early
+    # Node type decides which plugins activate their routers/seeding on this
+    # process; "monolith" activates everything.
+    node_type = os.getenv("UNIBACK_NODE_TYPE", "monolith")
+
+    # Discover and initialize plugins early. Contrib (de serie) primero, asi
+    # un plugin externo puede sobreescribir extensiones registrando otras con
+    # el mismo ``name``.
     from uniback.plugins import plugin_manager
-    import os
+    plugin_manager.discover_internal()
     # Default plugin directory: src/plugins, one level up from uniback
     # Depending on structure, it could be configurable. For now we use the env var or default path
     plugin_dir = os.getenv("UNIBACK_PLUGINS_PATH", os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "plugins"))
@@ -163,17 +169,16 @@ def initialize(
 
     if settings.database.auto_seed:
         with session_manager.session_scope() as db:
-            from uniback.persistence.seeding import initialize_database_data
-            
-            # Pre-seed plugins
-            from uniback.plugins import plugin_manager
-            plugin_manager.emit_on_seed(db)
+            from uniback.persistence.seeding import initialize_kernel_data
 
-            initialize_database_data(db)
+            # Kernel primero (identidades, permisos, object types base...),
+            # asi los plugins pueden referenciar esos datos en su on_seed.
+            initialize_kernel_data(db)
+            plugin_manager.emit_on_seed(db, node_type)
 
-    app = create_app(settings.api, session_manager)
-    
+    app = create_app(settings.api, session_manager, node_type=node_type)
+
     # Let plugins configure the app directly
-    plugin_manager.emit_on_app_ready(app)
+    plugin_manager.emit_on_app_ready(app, node_type)
 
     return orm_base, session_manager, app

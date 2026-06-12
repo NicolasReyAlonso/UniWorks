@@ -1232,7 +1232,7 @@ def _load_bootstrap_menus(db: Session):
     db.flush()
 
 
-def initialize_database_data(db: Session):
+def initialize_kernel_data(db: Session):
     load_table(db, Identity, tm_default_users)
     load_table(db, Authenticator, tm_authenticators)
     load_table_extended(db, ObjectType, tm_object_type_fields, tm_object_types)
@@ -1373,5 +1373,11 @@ def initialize_database_data(db: Session):
     load_many_to_many_table(db, GroupIdentity, Group, Identity, ["group_id", "identity_id"],
                             [("all-identified", test_user_id)])
 
-        
+
     db.commit()
+
+
+# Alias deprecado: la semilla "de todo" pre-micronucleo. Hoy la semilla de
+# dominios vive en el on_seed de cada plugin contrib y esta funcion solo
+# siembra el kernel.
+initialize_database_data = initialize_kernel_data

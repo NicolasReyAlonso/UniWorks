@@ -1,4 +1,5 @@
-from typing import List, Any
+from typing import Any, List, Optional, Set
+
 from fastapi import APIRouter, FastAPI
 from sqlalchemy.orm import Session
 
@@ -23,6 +24,31 @@ class UnibackPlugin:
     name: str = "BasePlugin"
     description: str = "Base plugin description"
     version: str = "0.1.0"
+
+    # Nodos (UNIBACK_NODE_TYPE) en los que el plugin esta ACTIVO: monta sus
+    # routers, siembra y arranca presencia. ``None`` = activo en todos los
+    # nodos (comportamiento historico de los plugins externos tipo seedbeds).
+    # OJO: ``get_model_modules`` y ``get_routers`` se invocan en TODOS los
+    # nodos aunque el plugin no este activo: el ORM necesita todos los modelos
+    # polimorficos y el schema_registry el bundle completo; solo el MONTAJE de
+    # los routers se restringe a los nodos activos.
+    node_types: Optional[Set[str]] = None
+
+    # Orden de siembra entre plugins (menor = antes). El kernel siembra
+    # siempre primero (identidades, permisos, object types base).
+    seed_priority: int = 100
+
+    # Tags OpenAPI que aporta el plugin (mismo formato que openapi_tags de
+    # FastAPI). Solo se agregan en los nodos donde el plugin esta activo.
+    openapi_tags: List[dict] = []
+
+    def is_active(self, node_type: str) -> bool:
+        """True si el plugin debe montar routers/sembrar en este nodo."""
+        return (
+            node_type == "monolith"
+            or self.node_types is None
+            or node_type in self.node_types
+        )
 
     def on_init(self, settings: Any) -> None:
         """

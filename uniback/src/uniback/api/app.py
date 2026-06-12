@@ -11,10 +11,17 @@ from uniback.persistence.session import SessionManager
 def create_app(
     api_settings: APISettings | None = None,
     session_manager: SessionManager | None = None,
+    node_type: str | None = None,
 ) -> FastAPI:
     """Create and configure the FastAPI application."""
 
     settings = api_settings or APISettings()
+
+    import os
+    if node_type is None:
+        node_type = os.getenv("UNIBACK_NODE_TYPE", "monolith")
+
+    from uniback.plugins import plugin_manager
 
     tags_metadata = [
         {"name": "Authentication", "description": "Authentication, session management and access explanation"},
@@ -35,6 +42,7 @@ def create_app(
         {"name": "Screens, Menus and App Flavors", "description": "Screen definitions, Menus and App variants for UI"},
         {"name": "Internationalization", "description": "Labels and translations"},
     ]
+    tags_metadata = tags_metadata + plugin_manager.get_openapi_tags_for_node(node_type)
 
     app = FastAPI(
         title=settings.title,
@@ -51,9 +59,6 @@ def create_app(
         app.state.session_manager = session_manager
 
     add_middlewares(app, settings)
-
-    import os
-    node_type = os.getenv("UNIBACK_NODE_TYPE", "monolith")
 
     # Routers
     prefix = "/api"
@@ -116,8 +121,7 @@ def create_app(
         from uniback.api.routers.species import router as species_router
         app.include_router(species_router, prefix=prefix)
         
-    from uniback.plugins import plugin_manager
-    for router in plugin_manager.get_all_routers():
+    for router in plugin_manager.get_routers_for_node(node_type):
         app.include_router(router, prefix=prefix)
 
     @app.get("/", tags=["System"])
