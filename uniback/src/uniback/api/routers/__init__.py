@@ -1,30 +1,21 @@
-"""API routers exposed by Uniback."""
+"""API routers del kernel de Uniback.
+
+Los routers de dominio (auth, files, annotations, species, hierarchies,
+collections, gui_crud...) viven en sus plugins de ``uniback.contrib``.
+"""
 
 from uniback.api.routers.gui import router as gui_router
 from uniback.api.routers.health import router as health_router
-from uniback.api.routers.auth import router as auth_router
 from uniback.api.routers.sys import router as sys_router
 from uniback.api.routers.discovery import router as discovery_router
 from uniback.api.routers.generic_import import router as generic_import_router
-from uniback.api.routers.acl import router as acl_router
-from uniback.api.routers.identity_store import router as identity_store_router
-
-from uniback.api.routers.gui import router as gui_router
 from uniback.api.routers.simple_routers import (
     router_functional_objects,
-    router_identities, router_identities_authenticators, router_roles,
-    router_identities_roles, router_groups, router_organizations,
-    router_system_functions, router_acl_expressions,
+    router_system_functions,
 )
 
 __all__ = [
-    "gui_router", "health_router", "auth_router", "sys_router", "discovery_router",
-    "acl_router", "identity_store_router",
+    "gui_router", "health_router", "sys_router", "discovery_router",
     "generic_import_router",
-    "router_functional_objects",
-    "router_identities", "router_identities_authenticators", "router_roles",
-    "router_identities_roles", "router_groups", "router_organizations",
-    "router_system_functions", "router_acl_expressions",
-    
-    
+    "router_functional_objects", "router_system_functions",
 ]

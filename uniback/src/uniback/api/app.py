@@ -3,7 +3,6 @@ from __future__ import annotations
 from fastapi import FastAPI
 
 from uniback.api.middleware import add_middlewares
-from uniback.api.routers import health_router, auth_router, gui_router
 from uniback.config.settings import APISettings
 from uniback.persistence.session import SessionManager
 
@@ -23,24 +22,13 @@ def create_app(
 
     from uniback.plugins import plugin_manager
 
+    # Tags del kernel; los de dominio los aportan los plugins activos.
     tags_metadata = [
-        {"name": "Authentication", "description": "Authentication, session management and access explanation"},
-        {"name": "Identities, Roles, Organizations and Groups", "description": "Management of identities, roles, organizations and groups"},
-        {"name": "Identity Stores", "description": "Convenience for GUI to have a per-user (key, value) storage"},
-        {"name": "System Functions", "description": "System-wide executable functions"},
-        {"name": "ACLs", "description": "Access Control Lists and Expressions"},
-        {"name": "Files and File stores", "description": "File system and storage backend configurations"},
-        {"name": "Annotations", "description": "Annotation templates and instances"},
-        {"name": "Browser Filters", "description": "System browser filters"},
-        {"name": "Functional Objects", "description": "Core functional objects"},
         {"name": "System", "description": "General system endpoints"},
-        {"name": "Collections", "description": "Collections and objects in them"},
-        {"name": "Case Studies", "description": "Case studies and objects associated with them"},
-        {"name": "Hierarchies", "description": "Hierarchy nodes and navigation"},
-        {"name": "Views", "description": "User views"},
-        {"name": "Dashboards", "description": "User dashboards"},
+        {"name": "System Functions", "description": "System-wide executable functions"},
+        {"name": "Functional Objects", "description": "Core functional objects"},
+        {"name": "Browser Filters", "description": "System browser filters"},
         {"name": "Screens, Menus and App Flavors", "description": "Screen definitions, Menus and App variants for UI"},
-        {"name": "Internationalization", "description": "Labels and translations"},
     ]
     tags_metadata = tags_metadata + plugin_manager.get_openapi_tags_for_node(node_type)
 
@@ -60,41 +48,29 @@ def create_app(
 
     add_middlewares(app, settings)
 
-    # Routers
+    # Routers del kernel. Los de dominio los montan los plugins activos.
     prefix = "/api"
-    from uniback.api.routers import gui_router
     from uniback.api.routers import (
-        sys_router, discovery_router, generic_import_router,
-        acl_router, identity_store_router,
-
-        router_functional_objects, router_identities, router_identities_authenticators,
-        router_roles, router_identities_roles, router_groups, router_organizations,
-        router_system_functions, router_acl_expressions,
+        discovery_router,
+        generic_import_router,
+        gui_router,
+        health_router,
+        router_functional_objects,
+        router_system_functions,
+        sys_router,
     )
-    
+
+    # Servicios de sistema presentes en TODOS los nodos.
     app.include_router(health_router, prefix=prefix)
     app.include_router(gui_router, prefix=prefix)
 
-    if node_type in ["monolith", "auth"]:
-        app.include_router(auth_router, prefix=prefix)
-        app.include_router(router_identities, prefix=prefix)
-        app.include_router(router_identities_authenticators, prefix=prefix)
-        app.include_router(router_roles, prefix=prefix)
-        app.include_router(router_identities_roles, prefix=prefix)
-        app.include_router(router_groups, prefix=prefix)
-        app.include_router(router_organizations, prefix=prefix)
-        app.include_router(identity_store_router, prefix=prefix)
-        app.include_router(acl_router, prefix=prefix)
-        app.include_router(router_acl_expressions, prefix=prefix)
-        
+    # Servicios de sistema que sirve el nodo core (agregacion/descubrimiento).
     if node_type in ["monolith", "core"]:
         app.include_router(sys_router, prefix=prefix)
         app.include_router(discovery_router, prefix=prefix)
         app.include_router(generic_import_router, prefix=prefix)
         app.include_router(router_functional_objects, prefix=prefix)
         app.include_router(router_system_functions, prefix=prefix)
-
-
 
     for router in plugin_manager.get_routers_for_node(node_type):
         app.include_router(router, prefix=prefix)

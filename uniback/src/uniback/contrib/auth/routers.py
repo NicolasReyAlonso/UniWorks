@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 from uniback.api.dependencies import AppSession, get_db, get_n_session
 from uniback.api.schemas.responses import Issue, ResponseEnvelope
 from uniback.persistence.models.sysadmin import Identity, SystemFunction
-from uniback.services.auth import ApiKeyService, AuthService, firebase_auth
+from uniback.contrib.auth.service import ApiKeyService, AuthService, firebase_auth
 from uniback.utils.serialization import compress_session, serialize_from_object
 
 router = APIRouter(tags=["Authentication"])

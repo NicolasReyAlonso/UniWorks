@@ -74,6 +74,12 @@ from uniback.persistence.models.views_dashboards import (
     Dashboard,
 )
 from uniback.persistence.models.species import DwcTaxon
+from uniback.persistence.models.screens import (
+    Screen,
+    ScreenType,
+    AppFlavor,
+    Menu,
+)
 
 __all__ = [
     # Core
@@ -136,4 +142,9 @@ __all__ = [
     # Views/Dashboards
     "View",
     "Dashboard",
+    # Screens/Menus
+    "Screen",
+    "ScreenType",
+    "AppFlavor",
+    "Menu",
 ]

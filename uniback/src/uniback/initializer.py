@@ -31,7 +31,17 @@ def _native_versioning_enabled() -> bool:
     return not os.getenv("UNIBACK_DB_URL", "postgresql://").startswith("sqlite")
 
 
-# Initialize SQLAlchemy-Continuum BEFORE any model is defined or base is created
+# Orden de carga DELIBERADO (comportamiento historico del framework):
+# los modulos de modelos de serie se importan ANTES de make_versioned, de modo
+# que SQLAlchemy-Continuum no los instrumenta (su listener 'instrument_class'
+# solo recoge clases definidas DESPUES de make_versioned). Antes del
+# micronucleo este orden lo provocaba una cadena de imports accidental via
+# api.app -> routers -> seeding; ahora se declara explicitamente. Cambiarlo
+# requiere arreglar la incompatibilidad de Continuum con polymorphic_on en
+# estilo SQLAlchemy 2.0 (MappedColumn) y migrar las tablas *_version.
+import uniback.persistence.models  # noqa: E402,F401
+
+# Initialize SQLAlchemy-Continuum (after the built-in models, see above).
 make_versioned(user_cls=None, options={"native_versioning": _native_versioning_enabled()})
 
 
