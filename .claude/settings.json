@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sed -i '' -e 's/from uniback.persistence.models.core import CollectionDetail, FunctionalObject, CaseStudy, CaseStudy2FunctionalObject, EntityLabel/from uniback.persistence.models.core import CollectionDetail, FunctionalObject, CaseStudy2FunctionalObject/' -e '/from uniback.persistence.models.views_dashboards import View, Dashboard/d' -e '/from uniback.persistence.models.screens import Screen, AppFlavor, Menu/d' src/uniback/api/routers/simple_routers.py)",
+      "Bash(sed -i '' -e 's/    router_system_functions, router_acl_expressions,\\\\n    router_viewz, router_dashboards,//' -e '/    router_viewz, router_dashboards,/d' -e '/    router_screens, router_app_flavors, router_menus, router_entity_labels/d' -e 's/\"router_viewz\", \"router_dashboards\",//' -e 's/\"router_screens\", \"router_app_flavors\", \"router_menus\", \"router_entity_labels\"//' src/uniback/api/routers/__init__.py)",
+      "Bash(sed -i '' -e '/    router_viewz, router_dashboards,/d' -e '/        router_screens, router_app_flavors, router_menus, router_entity_labels/d' -e '/app.include_router\\(router_viewz, prefix=prefix\\)/d' -e '/app.include_router\\(router_dashboards, prefix=prefix\\)/d' -e '/app.include_router\\(router_screens, prefix=prefix\\)/d' -e '/app.include_router\\(router_app_flavors, prefix=prefix\\)/d' -e '/app.include_router\\(router_menus, prefix=prefix\\)/d' -e '/app.include_router\\(router_entity_labels, prefix=prefix\\)/d' src/uniback/api/app.py)",
+      "Bash(python3 -c \"import ast; [ast.parse\\(open\\(f\\).read\\(\\)\\) for f in ['src/uniback/api/app.py','src/uniback/api/routers/__init__.py','src/uniback/api/routers/simple_routers.py']]; print\\('sintaxis OK'\\)\")",
+      "Bash(sed -i '' 's/^from sqlalchemy.orm import Session$/from sqlalchemy import select\\\\nfrom sqlalchemy.orm import Session/' src/uniback/contrib/gui_crud/seed.py)",
+      "Bash(sed -n '8,16p' src/uniback/contrib/gui_crud/seed.py)",
+      "Bash(git commit -q -m 'F4b+F4c: gui_crud and geographics domains extracted to contrib *)",
+      "Bash(git stash *)",
+      "Bash(docker restart *)",
+      "Bash(git commit -q -m 'F5: auth domain extracted to uniback.contrib.auth *)",
+      "Bash(git commit -q -m 'F6: microkernel cleanup — kernel-only model imports, docs, changelog *)"
+    ]
+  }
+}

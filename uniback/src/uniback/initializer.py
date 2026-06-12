@@ -144,16 +144,11 @@ def initialize(
 
     orm_base: type[DeclarativeBase] = create_orm_base(base_mixin)
 
-    # Ensure all models are registered with the ORM base
-    from uniback.persistence.models import (
-        annotations,
-        core,
-        files,
-        geographics,
-        hierarchies,
-        sysadmin,
-        views_dashboards,
-    )
+    # Modelos del KERNEL (core, sysadmin, screens). Los de dominio llegan via
+    # get_model_modules() de cada plugin contrib/externo, mas abajo. La
+    # fachada uniback.persistence.models ya se importo a nivel de modulo
+    # (ver nota sobre make_versioned), esto solo lo hace explicito.
+    from uniback.persistence.models import core, screens, sysadmin  # noqa: F401
 
     # Import external models if provided
     if external_model_modules is None:

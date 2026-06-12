@@ -250,30 +250,62 @@ ruff check src tests
 mypy src
 ```
 
-## Project Structure
+## Project Structure (microkernel)
+
+Uniback sigue una arquitectura de **micronúcleo**: el paquete `uniback` es el
+kernel (persistencia, autenticación/autorización, app factory, plugin manager,
+schema registry y servicios de sistema) y cada dominio funcional es un plugin
+de serie en `uniback/contrib/`. Los plugins externos (p.ej. los de `src/plugins/`)
+usan exactamente el mismo contrato (`UnibackPlugin`).
 
 ```
 uniback/
-├── src/uniback/
+├── src/uniback/             # KERNEL
 │   ├── __init__.py          # Package initialization
-│   ├── initializer.py       # Main entry point
+│   ├── initializer.py       # Main entry point (descubre y activa plugins)
 │   ├── persistence/         # SQLAlchemy persistence layer
 │   │   ├── base.py          # ORM base, GUID type, mixins
 │   │   ├── session.py       # Session management
-│   │   └── models/          # Pre-built models
-│   │       ├── core.py      # FunctionalObject
-│   │       ├── sysadmin.py  # Auth/Authz models
-│   │       └── annotations.py
+│   │   ├── seeding.py       # Kernel seed + helpers para plugins
+│   │   └── models/          # Modelos de sistema (core, sysadmin, screens)
+│   │                        #   (+ shims de compat hacia contrib)
 │   ├── api/                 # FastAPI REST layer
-│   │   ├── app.py           # App factory
-│   │   ├── dependencies.py  # DI components
-│   │   ├── middleware.py    # Middleware
-│   │   └── routers/         # API routers
+│   │   ├── app.py           # App factory (kernel routers + plugins activos)
+│   │   ├── crud_factory.py  # CRUD REST generico + registro de schemas
+│   │   ├── crudie.py        # CRUDIE + registro extensible de entidades
+│   │   ├── dependencies.py  # DI: sesiones, get_n_session (auth en todo nodo)
+│   │   └── routers/         # Solo system services: health, gui, sys,
+│   │                        #   discovery, generic_import
+│   ├── contrib/             # PLUGINS DE SERIE (dominios)
+│   │   ├── auth/            # /authn, identidades, roles, grupos, ACLs
+│   │   ├── files/           # Ficheros y almacenes
+│   │   ├── annotations/     # Sistema de anotaciones
+│   │   ├── species/         # Catalogo Darwin Core
+│   │   ├── hierarchies/     # Jerarquias y code-lists
+│   │   ├── collections/     # Colecciones y casos de estudio
+│   │   ├── gui_crud/        # CRUD de pantallas/menus/vistas/dashboards/i18n
+│   │   └── geographics/     # Capas geograficas
+│   ├── plugins/             # Contrato y manager de plugins
 │   ├── config/              # Configuration
-│   └── utils/               # Utilities
+│   └── utils/               # Utilities (redis, realtime/presencia...)
+├── src/plugins/             # Plugins EXTERNOS (seedbeds, plants, ...)
 ├── tests/                   # Test suite
 ├── docs/                    # Documentation
 └── pyproject.toml           # Package configuration
+```
+
+### Activación por nodo
+
+`UNIBACK_NODE_TYPE` decide qué plugins montan sus routers y siembran en cada
+proceso (`monolith` = todos). Todos los nodos importan los modelos de todos
+los plugins (necesario para el polimorfismo de `FunctionalObject`) y registran
+el catálogo completo de entidades para `/sys/schemas`; Traefik enruta cada
+path al nodo que lo sirve. Un plugin declara dónde está activo con:
+
+```python
+class FilesPlugin(UnibackPlugin):
+    node_types = {"files"}   # None = activo en todos los nodos
+    seed_priority = 50        # menor = siembra antes
 ```
 
 ## License

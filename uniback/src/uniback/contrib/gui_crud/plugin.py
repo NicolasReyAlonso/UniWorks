@@ -27,10 +27,10 @@ class GuiCrudPlugin(UnibackPlugin):
     # Los menus bootstrap referencian pantallas de todos los dominios:
     # sembrar al final.
     seed_priority = 90
+    # "Screens, Menus and App Flavors" lo declara ya el kernel (gui.py).
     openapi_tags = [
         {"name": "Views", "description": "User views"},
         {"name": "Dashboards", "description": "User dashboards"},
-        {"name": "Screens, Menus and App Flavors", "description": "Screen definitions, Menus and App variants for UI"},
         {"name": "Internationalization", "description": "Labels and translations"},
     ]
 
