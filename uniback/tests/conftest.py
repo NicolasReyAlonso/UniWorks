@@ -6,6 +6,9 @@ import os
 # environment sets (the layered docker-compose images export NODE_TYPE=core,
 # which would otherwise unmount the auth router and 404 every logged-in test).
 os.environ["UNIBACK_NODE_TYPE"] = "monolith"
+# Tests run on SQLite, which cannot execute the PostgreSQL trigger DDL that
+# SQLAlchemy-Continuum's native versioning generates.
+os.environ["UNIBACK_NATIVE_VERSIONING"] = "false"
 
 import pytest
 from fastapi.testclient import TestClient

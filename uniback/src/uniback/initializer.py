@@ -9,6 +9,7 @@ configuration.
 from __future__ import annotations
 
 import importlib
+import os
 from typing import Any
 
 from fastapi import FastAPI
@@ -21,8 +22,17 @@ from uniback.persistence.base import create_orm_base, set_table_prefix
 from uniback.persistence.session import SessionManager, create_session_factory
 
 
+def _native_versioning_enabled() -> bool:
+    """Native versioning emits PostgreSQL trigger DDL, so it must be disabled
+    for other dialects (e.g. the SQLite database used by the test suite)."""
+    override = os.getenv("UNIBACK_NATIVE_VERSIONING")
+    if override is not None:
+        return override.lower() in ("1", "true", "yes")
+    return not os.getenv("UNIBACK_DB_URL", "postgresql://").startswith("sqlite")
+
+
 # Initialize SQLAlchemy-Continuum BEFORE any model is defined or base is created
-make_versioned(user_cls=None, options={"native_versioning": True})
+make_versioned(user_cls=None, options={"native_versioning": _native_versioning_enabled()})
 
 
 def _load_settings(config: dict[str, Any] | Settings) -> Settings:
