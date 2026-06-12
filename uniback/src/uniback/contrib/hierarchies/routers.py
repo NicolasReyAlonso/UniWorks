@@ -17,10 +17,12 @@ async def get_hierarchies(
 ):
     db = sess.db_session
     if id_ is None:
-        params = parse_request_params(request.query_params if request else None)
+        params = await parse_request_params(request) if request else {}
         from uniback.persistence.query import get_query
         stmt, count = get_query(db, Hierarchy, **params)
         results = db.execute(stmt).scalars().all()
+        from uniback.utils.common import prepare_content
+        results = prepare_content(results)
         return ResponseEnvelope(content=results, count=count)
     else:
         content = service.get_hierarchy(db, id_, format)
