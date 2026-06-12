@@ -1,10 +1,10 @@
 from typing import Any, Tuple, List
 from sqlalchemy import select, delete
-from ...api.crudie import BasicService, get_orm, get_or_create
-from ...persistence.models.core import ObjectType
-from ...persistence.models.annotations import AnnotationFormItemObjectType
-from ...persistence.query import filter_parse
-from ...utils.common import listify
+from uniback.api.crudie import BasicService, get_orm, get_or_create
+from uniback.persistence.models.core import ObjectType
+from uniback.contrib.annotations.models import AnnotationFormItemObjectType
+from uniback.persistence.query import filter_parse
+from uniback.utils.common import listify
 
 class FormItemService(BasicService):
     def prepare_values(self, **values) -> dict:

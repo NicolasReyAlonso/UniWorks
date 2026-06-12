@@ -84,53 +84,69 @@ def get_or_create(session, model, no_flush=False, **params):
         session.flush()
     return instance
 
+# ---------------------------------------------------------------------------
+# Registro extensible de entidades CRUDIE. El kernel registra las suyas abajo
+# y cada plugin (contrib o externo) registra las propias con
+# ``register_crudie_entity`` usando loaders perezosos (los imports de modelos
+# solo se ejecutan al resolver, nunca al registrar).
+# La resolucion es por prefijo mas largo que case con ``entity`` (reproduce el
+# antiguo encadenado de ``startswith``: 'annotation_text' gana a 'annotation').
+# ---------------------------------------------------------------------------
+
+_ORM_LOADERS: Dict[str, Any] = {}
+_SERVICE_LOADERS: Dict[str, Any] = {}
+
+
+def register_crudie_entity(prefix: str, orm_loader=None, service_loader=None):
+    """Register lazy loaders for an entity prefix handled by CRUDIE routers."""
+    if orm_loader is not None:
+        _ORM_LOADERS[prefix] = orm_loader
+    if service_loader is not None:
+        _SERVICE_LOADERS[prefix] = service_loader
+
+
+def _lookup(loaders: Dict[str, Any], entity: str):
+    best = None
+    for prefix in loaders:
+        if entity.startswith(prefix) and (best is None or len(prefix) > len(best)):
+            best = prefix
+    return loaders[best]() if best else None
+
+
 def get_orm(entity: str):
-    orm = None
-    # Filtered version from biobarcoding.services.main.get_orm
-    if entity.startswith('browser_filter'):
-        from ..persistence.models.sysadmin import BrowserFilter as orm
-    elif entity.startswith('collection'):
-        from ..persistence.models.core import Collection as orm
-    # ANNOTATION ORMS
-    elif entity.startswith('form_template'):
-        from ..persistence.models.annotations import AnnotationFormTemplate as orm
-    elif entity.startswith('form_field'):
-        from ..persistence.models.annotations import AnnotationFormField as orm
-    elif entity.startswith('annotation_template'):
-        from ..persistence.models.annotations import AnnotationTemplate as orm
-    elif entity.startswith('annotation_field'):
-        from ..persistence.models.annotations import AnnotationField as orm
-    elif entity.startswith('annotation_text'):
-        from ..persistence.models.annotations import AnnotationText as orm
-    elif entity.startswith('annotation'):
-        from ..persistence.models.annotations import AnnotationItem as orm
-    elif entity.startswith('form_relationship'):
-        from ..persistence.models.annotations import AnnotationFormTemplateField as orm
-    elif entity.startswith('relationship'):
-        from ..persistence.models.annotations import AnnotationRelationship as orm
-    return orm
+    return _lookup(_ORM_LOADERS, entity)
 
 def get_service(entity: str):
-    Service = None
-    # SYS SERVICES
-    if entity.startswith('browser_filter_form'):
-        from ..services.sys.browser_filters import FormService as Service
-    elif entity.startswith('browser_filter'):
-        from ..services.sys.browser_filters import Service
-    elif entity.startswith('collection'):
-        from ..services.collections import Service
-    # ANNOTATION SERVICES
-    elif entity.startswith('form_template'):
-        from ..services.annotation_forms.templates import Service
-    elif entity.startswith('form_field'):
-        from ..services.annotation_forms.fields import Service
-    elif entity.startswith('annotation'):
-        from ..services.annotation_forms.annotations import Service
-    elif entity.startswith('form_relationship'):
-        from ..services.annotation_forms.relationships import FormRelationshipService as Service
-    elif entity.startswith('relationship'):
-        from ..services.annotation_forms.relationships import RelationshipService as Service
-    return Service
+    return _lookup(_SERVICE_LOADERS, entity)
+
+
+def _register_kernel_crudie_entities():
+    def _browser_filter_orm():
+        from uniback.persistence.models.sysadmin import BrowserFilter
+        return BrowserFilter
+
+    def _browser_filter_service():
+        from uniback.services.sys.browser_filters import Service
+        return Service
+
+    def _browser_filter_form_service():
+        from uniback.services.sys.browser_filters import FormService
+        return FormService
+
+    def _collection_orm():
+        from uniback.persistence.models.core import Collection
+        return Collection
+
+    def _collection_service():
+        from uniback.services.collections import Service
+        return Service
+
+    register_crudie_entity("browser_filter", _browser_filter_orm, _browser_filter_service)
+    register_crudie_entity("browser_filter_form", service_loader=_browser_filter_form_service)
+    register_crudie_entity("collection", _collection_orm, _collection_service)
+
+
+_register_kernel_crudie_entities()
 
 class BasicService:
     formats = ['json', 'tsv', 'csv', 'xlsx']

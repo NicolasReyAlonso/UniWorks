@@ -64,7 +64,7 @@ def create_app(
     prefix = "/api"
     from uniback.api.routers import gui_router
     from uniback.api.routers import (
-        annotations_router, sys_router, discovery_router, generic_import_router,
+        sys_router, discovery_router, generic_import_router,
         acl_router, identity_store_router, hierarchies_router, collections_router,
         router_collection_items,
         router_functional_objects, router_identities, router_identities_authenticators,
@@ -109,9 +109,6 @@ def create_app(
         app.include_router(router_entity_labels, prefix=prefix)
 
 
-
-    if node_type in ["monolith", "annotations"]:
-        app.include_router(annotations_router, prefix=prefix)
 
     for router in plugin_manager.get_routers_for_node(node_type):
         app.include_router(router, prefix=prefix)

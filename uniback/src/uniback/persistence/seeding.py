@@ -72,10 +72,6 @@ tm_object_types = [  # ObjectType
     (data_object_type_id["dashboard"], "633a7f00-4019-4302-9067-611bea1fc934", "dashboard"),
     (data_object_type_id["sys-function"], "ad83dcb0-e479-4a44-acf5-387b9731e8da", "sys-function"),
     (data_object_type_id["none"], "b5371878-582a-4758-9c7c-9e536c477992", "none"),  # Nulled items
-    (data_object_type_id["annotation_item"], "848b46b0-8602-42a2-a3fd-1b9be728d729", "annotation_item"),
-    (data_object_type_id["annotation_template"], "79668ea7-80fa-4327-a433-721a69582542", "annotation_template"),
-    (data_object_type_id["annotation_field"], "35313fd1-484e-48af-b6e2-e4b7464abb64", "annotation_field"),
-    (data_object_type_id["annotation_text"], "dc50990e-f4ad-4ef3-80c8-f68fd0b1a412", "annotation_text"),
     (data_object_type_id["dataframe"], "78009a6b-63f5-41df-b20b-5642214b9f03", "dataframe"),
     (data_object_type_id["screen"], "2a06cec0-0f04-470f-8640-7b86ac023962", "screen"),
     (data_object_type_id["app_flavor"], "c778c6a7-4a96-4bdf-a193-88063d0e6c7d", "app_flavor"),

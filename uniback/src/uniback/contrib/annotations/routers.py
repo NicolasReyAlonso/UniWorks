@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from ..crudie import make_crudie_rest_crud
+from uniback.api.crudie import make_crudie_rest_crud
 
 router = APIRouter(tags=["Annotations"])
 

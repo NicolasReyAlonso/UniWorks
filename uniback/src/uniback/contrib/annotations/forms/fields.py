@@ -1,8 +1,8 @@
 from . import FormItemService
-from ...api.crudie import get_orm, get_or_create
-from ...persistence.query import filter_parse
-from ...utils.common import listify
-from ...persistence.models.annotations import AnnotationFormTemplate, AnnotationFormTemplateField
+from uniback.api.crudie import get_orm, get_or_create
+from uniback.persistence.query import filter_parse
+from uniback.utils.common import listify
+from uniback.contrib.annotations.models import AnnotationFormTemplate, AnnotationFormTemplateField
 
 class Service(FormItemService):
     def __init__(self, sess):

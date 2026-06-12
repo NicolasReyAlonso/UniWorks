@@ -1,7 +1,7 @@
-from ...api.crudie import BasicService, get_orm
+from uniback.api.crudie import BasicService, get_orm
 from sqlalchemy import select
-from ...persistence.models.annotations import AnnotationFormTemplate, AnnotationFormField
-from ...persistence.models.core import FunctionalObject
+from uniback.contrib.annotations.models import AnnotationFormTemplate, AnnotationFormField
+from uniback.persistence.models.core import FunctionalObject
 
 class FormRelationshipService(BasicService):
     def __init__(self, sess):
