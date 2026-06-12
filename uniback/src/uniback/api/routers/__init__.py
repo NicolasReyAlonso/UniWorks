@@ -15,8 +15,6 @@ from uniback.api.routers.simple_routers import (
     router_identities, router_identities_authenticators, router_roles,
     router_identities_roles, router_groups, router_organizations,
     router_system_functions, router_acl_expressions,
-    router_viewz, router_dashboards,
-    router_screens, router_app_flavors, router_menus, router_entity_labels
 )
 
 __all__ = [
@@ -27,6 +25,6 @@ __all__ = [
     "router_identities", "router_identities_authenticators", "router_roles",
     "router_identities_roles", "router_groups", "router_organizations",
     "router_system_functions", "router_acl_expressions",
-    "router_viewz", "router_dashboards",
-    "router_screens", "router_app_flavors", "router_menus", "router_entity_labels"
+    
+    
 ]

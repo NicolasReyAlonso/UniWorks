@@ -70,8 +70,6 @@ def create_app(
         router_functional_objects, router_identities, router_identities_authenticators,
         router_roles, router_identities_roles, router_groups, router_organizations,
         router_system_functions, router_acl_expressions,
-        router_viewz, router_dashboards,
-        router_screens, router_app_flavors, router_menus, router_entity_labels
     )
     
     app.include_router(health_router, prefix=prefix)
@@ -95,12 +93,6 @@ def create_app(
         app.include_router(generic_import_router, prefix=prefix)
         app.include_router(router_functional_objects, prefix=prefix)
         app.include_router(router_system_functions, prefix=prefix)
-        app.include_router(router_viewz, prefix=prefix)
-        app.include_router(router_dashboards, prefix=prefix)
-        app.include_router(router_screens, prefix=prefix)
-        app.include_router(router_app_flavors, prefix=prefix)
-        app.include_router(router_menus, prefix=prefix)
-        app.include_router(router_entity_labels, prefix=prefix)
 
 
 

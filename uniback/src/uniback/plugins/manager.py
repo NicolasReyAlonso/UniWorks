@@ -44,9 +44,15 @@ class PluginManager:
         self._router_cache: Dict[int, List] = {}
 
     def _load_from_module(self, module) -> None:
-        """Instancia y registra las subclases de UnibackPlugin de un modulo."""
+        """Instancia y registra las subclases de UnibackPlugin de un modulo.
+
+        Idempotente por clase: ``initialize()`` puede llamarse varias veces en
+        un mismo proceso (p.ej. la suite de tests) sin duplicar plugins.
+        """
         for name, obj in inspect.getmembers(module):
             if inspect.isclass(obj) and issubclass(obj, UnibackPlugin) and obj is not UnibackPlugin:
+                if any(type(p) is obj for p in self.plugins):
+                    continue
                 plugin_instance = obj()
                 self.plugins.append(plugin_instance)
                 print(f"[*] Loaded plugin: {plugin_instance.name} (v{plugin_instance.version})")
