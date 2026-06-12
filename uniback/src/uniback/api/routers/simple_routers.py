@@ -12,7 +12,6 @@ from uniback.persistence.models.sysadmin import (
     Identity, IdentityAuthenticator, Role, RoleIdentity, Group, Organization, 
     SystemFunction, ACLExpression, ACL
 )
-from uniback.persistence.models.hierarchies import HierarchyNode
 from uniback.persistence.models.views_dashboards import View, Dashboard
 from uniback.persistence.models.screens import Screen, AppFlavor, Menu
 from uniback.persistence.seeding import tm_default_users
@@ -138,7 +137,6 @@ router_groups = make_simple_rest_crud(Group, "groups", tags=["Identities, Roles,
 router_organizations = make_simple_rest_crud(Organization, "organizations", tags=["Identities, Roles, Organizations and Groups"])
 router_system_functions = make_simple_rest_crud(SystemFunction, "system_functions", alt_methods=dict(get=get_sf), tags=["System Functions"])
 router_acl_expressions = make_simple_rest_crud(ACLExpression, "acl_expressions", disabled_methods={'list', 'create', 'get', 'delete'}, tags=["ACLs"])
-router_hierarchy_nodes = make_simple_rest_crud(HierarchyNode, "hierarchy_nodes", tags=["Hierarchies"])
 router_viewz = make_simple_rest_crud(View, "viewz", tags=["Views"])
 router_dashboards = make_simple_rest_crud(Dashboard, "dashboards", tags=["Dashboards"])
 router_case_studies = make_simple_rest_crud(CaseStudy, "case_studies", aux_filter=custom_case_studies_filter, control_acl=True, tags=["Case Studies"])

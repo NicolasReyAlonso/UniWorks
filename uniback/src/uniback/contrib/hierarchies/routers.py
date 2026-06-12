@@ -2,8 +2,8 @@ from typing import Optional, Any
 from fastapi import APIRouter, Depends, Request, HTTPException
 from uniback.api.dependencies import get_n_session, AppSession, parse_request_params
 from uniback.api.schemas.responses import ResponseEnvelope, Issue, IType
-from uniback.persistence.models.hierarchies import Hierarchy
-from uniback.services import hierarchies as service
+from uniback.contrib.hierarchies.models import Hierarchy
+from uniback.contrib.hierarchies import service
 
 router = APIRouter(prefix="/hierarchies", tags=["Hierarchies"])
 
@@ -98,3 +98,9 @@ async def update_hierarchy(
             issues=[Issue(type=IType.ERROR, message=f"Error updating hierarchy: {str(e)}")],
             count=0
         )
+
+
+from uniback.api.crud_factory import make_simple_rest_crud
+from uniback.contrib.hierarchies.models import HierarchyNode
+
+router_hierarchy_nodes = make_simple_rest_crud(HierarchyNode, "hierarchy_nodes", tags=["Hierarchies"])

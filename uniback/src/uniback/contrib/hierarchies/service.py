@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from sqlalchemy import and_, select
 from sqlalchemy.orm import Session
 
-from uniback.persistence.models.hierarchies import Hierarchy, HierarchyNode, HierarchyLevel
+from uniback.contrib.hierarchies.models import Hierarchy, HierarchyNode, HierarchyLevel
 from uniback.persistence.query import get_query
 
 def list_hierarchies(session: Session, **kwargs) -> List[Hierarchy]:
