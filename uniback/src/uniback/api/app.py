@@ -117,10 +117,6 @@ def create_app(
     if node_type in ["monolith", "annotations"]:
         app.include_router(annotations_router, prefix=prefix)
 
-    if node_type in ["monolith", "species"]:
-        from uniback.api.routers.species import router as species_router
-        app.include_router(species_router, prefix=prefix)
-        
     for router in plugin_manager.get_routers_for_node(node_type):
         app.include_router(router, prefix=prefix)
 

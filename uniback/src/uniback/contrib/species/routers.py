@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends, Request
 from uniback.api.crud_factory import make_simple_rest_crud
 from uniback.api.dependencies import AppSession, get_n_session, parse_request_params
 from uniback.api.schemas.responses import ResponseEnvelope
-from uniback.persistence.models.species import DwcTaxon
+from uniback.contrib.species.models import DwcTaxon
 from sqlalchemy.orm import Session
 from uniback.api.dependencies import get_db
 
