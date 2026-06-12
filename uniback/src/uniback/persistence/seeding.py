@@ -1157,8 +1157,6 @@ def initialize_kernel_data(db: Session):
 
     # Create or update reference objects and set their permissions
     refs = [
-        (CaseStudy, "c2880b3b-65f1-44b1-940b-a3769eb16499", [("role", "sys-admin", "read")]),
-        (Dataset, "95c9e713-092b-4068-af3a-d9ae2059c5d2", [("role", "sys-admin", "read")]),
         (GeographicLayer, "d0f0ee40-7595-4581-8f5b-bccac087c8b9", [("role", "sys-admin", "read")]),
         (View, "f9e5bbe1-0acf-4d9b-a564-db180f106695", [("role", "sys-admin", "read")]),
         (Dashboard, "ae4e074c-3dd9-4eae-8fc3-6b54a623cbc7", [("role", "sys-admin", "read")]),

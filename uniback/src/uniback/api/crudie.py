@@ -133,17 +133,8 @@ def _register_kernel_crudie_entities():
         from uniback.services.sys.browser_filters import FormService
         return FormService
 
-    def _collection_orm():
-        from uniback.persistence.models.core import Collection
-        return Collection
-
-    def _collection_service():
-        from uniback.services.collections import Service
-        return Service
-
     register_crudie_entity("browser_filter", _browser_filter_orm, _browser_filter_service)
     register_crudie_entity("browser_filter_form", service_loader=_browser_filter_form_service)
-    register_crudie_entity("collection", _collection_orm, _collection_service)
 
 
 _register_kernel_crudie_entities()

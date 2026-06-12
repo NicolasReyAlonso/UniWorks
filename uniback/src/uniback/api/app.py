@@ -65,12 +65,12 @@ def create_app(
     from uniback.api.routers import gui_router
     from uniback.api.routers import (
         sys_router, discovery_router, generic_import_router,
-        acl_router, identity_store_router, collections_router,
-        router_collection_items,
+        acl_router, identity_store_router,
+
         router_functional_objects, router_identities, router_identities_authenticators,
         router_roles, router_identities_roles, router_groups, router_organizations,
         router_system_functions, router_acl_expressions,
-        router_viewz, router_dashboards, router_case_study_items, router_case_studies,
+        router_viewz, router_dashboards,
         router_screens, router_app_flavors, router_menus, router_entity_labels
     )
     
@@ -93,14 +93,10 @@ def create_app(
         app.include_router(sys_router, prefix=prefix)
         app.include_router(discovery_router, prefix=prefix)
         app.include_router(generic_import_router, prefix=prefix)
-        app.include_router(collections_router, prefix=prefix)
-        app.include_router(router_collection_items, prefix=prefix)
         app.include_router(router_functional_objects, prefix=prefix)
         app.include_router(router_system_functions, prefix=prefix)
         app.include_router(router_viewz, prefix=prefix)
         app.include_router(router_dashboards, prefix=prefix)
-        app.include_router(router_case_study_items, prefix=prefix)
-        app.include_router(router_case_studies, prefix=prefix)
         app.include_router(router_screens, prefix=prefix)
         app.include_router(router_app_flavors, prefix=prefix)
         app.include_router(router_menus, prefix=prefix)
