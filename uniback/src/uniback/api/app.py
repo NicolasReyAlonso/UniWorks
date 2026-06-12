@@ -3,7 +3,7 @@ from __future__ import annotations
 from fastapi import FastAPI
 
 from uniback.api.middleware import add_middlewares
-from uniback.api.routers import health_router, files_router, auth_router, router_file_stores, gui_router
+from uniback.api.routers import health_router, auth_router, gui_router
 from uniback.config.settings import APISettings
 from uniback.persistence.session import SessionManager
 
@@ -109,10 +109,6 @@ def create_app(
         app.include_router(router_entity_labels, prefix=prefix)
 
 
-
-    if node_type in ["monolith", "files"]:
-        app.include_router(files_router, prefix=prefix)
-        app.include_router(router_file_stores, prefix=prefix)
 
     if node_type in ["monolith", "annotations"]:
         app.include_router(annotations_router, prefix=prefix)

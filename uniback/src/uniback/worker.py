@@ -23,7 +23,7 @@ celery_app.conf.update(
 # Autodiscover tasks from uniback modules
 celery_app.autodiscover_tasks([
     "uniback.services.sys",
-    "uniback.services.files",
+    "uniback.contrib.files",
 ])
 
 if __name__ == "__main__":

@@ -4,8 +4,8 @@ from fastapi.responses import HTMLResponse
 
 from uniback.api.crud_factory import make_simple_rest_crud
 from uniback.api.dependencies import get_n_session, AppSession
-from uniback.services import files as files_service
-from uniback.persistence.models.files import File, Folder, FileSystemStorage
+from uniback.contrib.files import service as files_service
+from uniback.contrib.files.models import File, Folder, FileSystemStorage
 
 router = APIRouter(prefix="/files", tags=["Files and File stores"])
 

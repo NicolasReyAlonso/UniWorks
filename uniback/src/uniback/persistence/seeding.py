@@ -7,7 +7,6 @@ from sqlalchemy import and_, select
 from sqlalchemy.orm import Session
 
 from uniback.persistence.models import HierarchyType, Hierarchy, HierarchyNode
-from uniback.persistence.models.files import FileSystemStorage
 from uniback.persistence.models.sysadmin import (
     ACL,
     ACLExpression,
@@ -78,9 +77,6 @@ tm_object_types = [  # ObjectType
     (data_object_type_id["annotation_field"], "35313fd1-484e-48af-b6e2-e4b7464abb64", "annotation_field"),
     (data_object_type_id["annotation_text"], "dc50990e-f4ad-4ef3-80c8-f68fd0b1a412", "annotation_text"),
     (data_object_type_id["dataframe"], "78009a6b-63f5-41df-b20b-5642214b9f03", "dataframe"),
-    (data_object_type_id["file_system_object"], "45f747dd-f4b3-4f0c-b2ec-b7d6bd36b070", "file_system_object"),
-    (data_object_type_id["folder"], "860fcfb0-b8a5-4b6e-a678-830c2c70f805", "folder"),
-    (data_object_type_id["file"], "eafd228c-386a-4910-85c6-5edc188e6b41", "file"),
     (data_object_type_id["screen"], "2a06cec0-0f04-470f-8640-7b86ac023962", "screen"),
     (data_object_type_id["app_flavor"], "c778c6a7-4a96-4bdf-a193-88063d0e6c7d", "app_flavor"),
     (data_object_type_id["menu"], "f8f71917-96cc-4835-888d-2e750019a9eb", "menu"),
@@ -135,16 +131,6 @@ tm_object_types_permissions = [
                                ["dashboard", "create"],
                                ["dashboard", "edit"],
                                ["dashboard", "delete"],
-                               ["folder", "read"],
-                               ["folder", "annotate"],
-                               ["folder", "create"],
-                               ["folder", "edit"],
-                               ["folder", "delete"],
-                               ["file", "read"],
-                               ["file", "annotate"],
-                               ["file", "create"],
-                               ["file", "edit"],
-                               ["file", "delete"],
 ]
 
 tm_default_users = {  # Identities
@@ -477,11 +463,6 @@ tm_code_list_base_maps = [
     (h_base_maps_name, "b4f90851-250e-425f-9a94-b677b593c842", "Grafcan Modelo LIDAR - https://idecan1.grafcan.es/ServicioWMS/MTL"),
     (h_base_maps_name, "d04fc218-8dea-4938-a4d0-49e3d8174715", "Grafcan Modelo Sombras - https://idecan2.grafcan.es/ServicioWMS/MDSombras"),
     (h_base_maps_name, "07c7512b-d7ce-4162-85c4-cda2503f290c", "Grafcan Alta Resolución - https://idecan2.grafcan.es/ServicioWMS/Gigapan")
-]
-
-tm_file_system_storages_fields = ["uuid", "storage_type"]
-tm_file_system_storages = [
-    ("20fbce2d-17a6-400a-8a34-73a6fc07a098", "embedded")
 ]
 
 # ---------------------------------------------------------------------------
@@ -1247,7 +1228,6 @@ def initialize_kernel_data(db: Session):
     load_table_extended(db, HierarchyNode, tm_code_list_fields, tm_code_list_sources)
     load_table_extended(db, HierarchyNode, tm_code_list_fields, tm_code_list_crs)
     load_table_extended(db, HierarchyNode, tm_code_list_fields, tm_code_list_base_maps)
-    load_table_extended(db, FileSystemStorage, tm_file_system_storages_fields, tm_file_system_storages)
 
     # Load bootstrap screens for UI management
     _load_bootstrap_screens(db)

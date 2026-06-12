@@ -12,7 +12,7 @@ from typing import Union, List, Tuple
 import fsspec
 import filetype
 
-from uniback.persistence.models.files import File, FileSystemObject, Folder, FileSystemStorage
+from uniback.contrib.files.models import File, FileSystemObject, Folder, FileSystemStorage
 from uniback.persistence.models.core import FunctionalObject
 
 # Add more mime types
