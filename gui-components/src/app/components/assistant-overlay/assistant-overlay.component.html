@@ -1,6 +1,7 @@
 <!-- Botón flotante para abrir/cerrar -->
 <button class="assistant-fab" (click)="toggleOpen()" title="Asistente">
-  <span>{{ open ? '×' : '🤖' }}</span>
+  <img *ngIf="!open" src="assets/images/Robot.svg" class="assistant-fab-icon" alt="Asistente IA" />
+  <span *ngIf="open" class="assistant-fab-close">×</span>
 </button>
 
 <div class="assistant-panel" *ngIf="open" [class.minimized]="minimized">

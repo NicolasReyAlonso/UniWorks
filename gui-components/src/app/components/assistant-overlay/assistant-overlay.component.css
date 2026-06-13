@@ -12,6 +12,20 @@
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
   z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.assistant-fab-icon {
+  width: 34px;
+  height: 34px;
+  /* Colores nativos del SVG: cuerpo negro con cara blanca (contrasta sobre el azul). */
+}
+
+.assistant-fab-close {
+  line-height: 1;
 }
 
 .assistant-panel {
