@@ -1,0 +1,76 @@
+<!-- Botón flotante para abrir/cerrar -->
+<button class="assistant-fab" (click)="toggleOpen()" title="Asistente">
+  <span>{{ open ? '×' : '🤖' }}</span>
+</button>
+
+<div class="assistant-panel" *ngIf="open" [class.minimized]="minimized">
+  <div class="assistant-header">
+    <span class="assistant-title">Asistente</span>
+    <div class="assistant-header-actions">
+      <button (click)="minimized = !minimized" [title]="minimized ? 'Restaurar' : 'Minimizar'">
+        {{ minimized ? '▢' : '—' }}
+      </button>
+      <button (click)="open = false" title="Cerrar">×</button>
+    </div>
+  </div>
+
+  <div class="assistant-body" *ngIf="!minimized">
+    <!-- Selección de modelo + herramientas -->
+    <div class="assistant-controls">
+      <label class="assistant-field">
+        <span>Modelo</span>
+        <select [(ngModel)]="selectedModel">
+          <option *ngFor="let m of models" [value]="m.name">{{ m.label }}</option>
+        </select>
+      </label>
+
+      <details class="assistant-tools">
+        <summary>Herramientas ({{ enabledTools.size }}/{{ tools.length }})</summary>
+        <label class="assistant-tool" *ngFor="let t of tools" [title]="t.description">
+          <input type="checkbox" [checked]="enabledTools.has(t.name)" (change)="toggleTool(t.name)" />
+          {{ t.name }}
+        </label>
+      </details>
+    </div>
+
+    <!-- Conversación -->
+    <div class="assistant-messages">
+      <div *ngFor="let msg of messages" class="assistant-msg" [class.user]="msg.role === 'user'">
+        <div class="assistant-bubble">{{ msg.text }}</div>
+      </div>
+
+      <div *ngIf="toolTrace.length" class="assistant-tooltrace">
+        ⚙ {{ toolTrace.join(', ') }}
+      </div>
+
+      <!-- Tarjeta de confirmación de altas propuestas -->
+      <div *ngIf="pending" class="assistant-proposal">
+        <div class="assistant-proposal-head">
+          Proponer {{ pending.rows.length }} fila(s) en <strong>{{ pending.entity }}</strong>
+        </div>
+        <pre class="assistant-proposal-rows">{{ pending.rows | json }}</pre>
+        <div class="assistant-proposal-actions">
+          <button (click)="confirmProposal()" [disabled]="confirming">
+            {{ confirming ? 'Añadiendo…' : 'Confirmar' }}
+          </button>
+          <button class="secondary" (click)="cancelProposal()" [disabled]="confirming">Cancelar</button>
+        </div>
+      </div>
+
+      <div *ngIf="errorMsg" class="assistant-error">{{ errorMsg }}</div>
+    </div>
+
+    <!-- Entrada -->
+    <div class="assistant-input">
+      <textarea
+        [(ngModel)]="input"
+        (keydown.enter)="$event.preventDefault(); send()"
+        placeholder="Pregunta o pide algo… (p. ej. «añade 3 lotes de tomate»)"
+        rows="2"
+      ></textarea>
+      <button (click)="send()" [disabled]="streaming || !input.trim()">
+        {{ streaming ? '…' : 'Enviar' }}
+      </button>
+    </div>
+  </div>
+</div>

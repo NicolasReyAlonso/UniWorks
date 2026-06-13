@@ -10,6 +10,7 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {CommonModule} from "@angular/common";
 //import { TabLayoutComponent } from '@components/layout/tab-layout/tab-layout.component';
 import { TabLayoutComponent } from 'ngt-gui/gui';
+import { AssistantOverlayComponent } from './components/assistant-overlay/assistant-overlay.component';
 
 @Component({
   imports: [
@@ -24,7 +25,8 @@ import { TabLayoutComponent } from 'ngt-gui/gui';
     NzNotificationModule,
     NzIconModule,
     // Components
-    TabLayoutComponent
+    TabLayoutComponent,
+    AssistantOverlayComponent
 ],
   selector: 'app-root',
   templateUrl: './app.component.html',
