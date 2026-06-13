@@ -10,10 +10,12 @@ from sqlalchemy.orm import Session
 
 from uniback.plugins.base import UnibackPlugin
 from uniback.plugins.registries import (
+    assistant_tool_registry,
     exporter_registry,
     field_widget_registry,
     fk_resolver_registry,
     importer_registry,
+    model_provider_registry,
     source_adapter_registry,
 )
 
@@ -174,6 +176,8 @@ class PluginManager:
         ("get_exporters", exporter_registry, "exporter"),
         ("get_field_widgets", field_widget_registry, "field widget"),
         ("get_fk_resolvers", fk_resolver_registry, "fk resolver"),
+        ("get_model_providers", model_provider_registry, "model provider"),
+        ("get_assistant_tools", assistant_tool_registry, "assistant tool"),
     )
 
     def populate_registries(self) -> None:

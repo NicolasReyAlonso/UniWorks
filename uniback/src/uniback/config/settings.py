@@ -205,6 +205,47 @@ class WorkerSettings(BaseSettings):
     )
 
 
+class AssistantSettings(BaseSettings):
+    """LLM assistant settings.
+
+    Los proveedores Claude se construyen a partir de ``anthropic_api_key``.
+    Para modelos locales/empresa, ``extra_providers`` admite una lista JSON de
+    objetos ``{name, label, base_url, api_key, model_id}`` (formato
+    OpenAI-compatible), p.ej.::
+
+        UNIBACK_ASSISTANT_EXTRA_PROVIDERS='[{"name":"local-llama",
+          "label":"Llama 3 (local)","base_url":"http://ollama:11434/v1",
+          "api_key":"-","model_id":"llama3.1"}]'
+    """
+
+    model_config = SettingsConfigDict(env_prefix="UNIBACK_ASSISTANT_")
+
+    enabled: bool = Field(
+        default=True,
+        description="Enable the LLM assistant plugin endpoints",
+    )
+    anthropic_api_key: str | None = Field(
+        default=None,
+        description="API key for Anthropic (Claude) models; backend-only",
+    )
+    default_model: str = Field(
+        default="claude-opus-4-8",
+        description="Provider name selected by default in the UI",
+    )
+    max_tokens: int = Field(
+        default=8192,
+        description="Max output tokens per assistant turn",
+    )
+    max_tool_iterations: int = Field(
+        default=8,
+        description="Safety cap on tool-use loop iterations per message",
+    )
+    extra_providers: list[dict[str, Any]] = Field(
+        default_factory=list,
+        description="OpenAI-compatible custom/local model providers (URL + key)",
+    )
+
+
 class Settings(BaseSettings):
     """Main settings class combining all configuration sections."""
 
@@ -218,6 +259,7 @@ class Settings(BaseSettings):
     auth: AuthSettings = Field(default_factory=AuthSettings)
     redis: RedisSettings = Field(default_factory=RedisSettings)
     worker: WorkerSettings = Field(default_factory=WorkerSettings)
+    assistant: AssistantSettings = Field(default_factory=AssistantSettings)
 
     # Application-level settings
     app_name: str = Field(
@@ -246,6 +288,7 @@ class Settings(BaseSettings):
         auth_config = config.get("auth", {})
         redis_config = config.get("redis", {})
         worker_config = config.get("worker", {})
+        assistant_config = config.get("assistant", {})
 
         return cls(
             database=DatabaseSettings(**db_config),
@@ -253,6 +296,7 @@ class Settings(BaseSettings):
             auth=AuthSettings(**auth_config),
             redis=RedisSettings(**redis_config),
             worker=WorkerSettings(**worker_config),
+            assistant=AssistantSettings(**assistant_config),
             app_name=config.get("app_name", "uniback"),
             table_prefix=config.get("table_prefix", "ub_"),
         )

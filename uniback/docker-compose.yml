@@ -172,6 +172,37 @@ services:
       - traefik.http.routers.annotations.rule=PathPrefix(`/api/annotation_form_templates`) || PathPrefix(`/api/annotation_form_fields`) || PathPrefix(`/api/annotation_form_relationships`) || PathPrefix(`/api/annotations`) || PathPrefix(`/api/relationships`)
       - traefik.http.routers.annotations.entrypoints=web
       - traefik.http.routers.annotations.priority=10
+  assistant_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: uniback_assistant
+    container_name: uniback_assistant
+    expose:
+      - "8000"
+    volumes:
+      - ./:/app
+      - ../../private-conf:/private-conf
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+      - UNIBACK_DB_URL=postgresql://postgres:pg_passwd@ub_pg:5432/ub_db
+      - UNIBACK_REDIS_HOST=redis
+      - UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH=/private-conf/firebase-service-account.json
+      - UNIBACK_NODE_TYPE=assistant
+      # Clave de Anthropic (Claude). Para modelos locales/empresa, define
+      # UNIBACK_ASSISTANT_EXTRA_PROVIDERS con la lista JSON {name,label,base_url,api_key,model_id}.
+      - UNIBACK_ASSISTANT_ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+    command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - ub_pg
+      - redis
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.assistant.rule=PathPrefix(`/api/assistant`)
+      - traefik.http.routers.assistant.entrypoints=web
+      - traefik.http.routers.assistant.priority=10
+
   # Nodo de demo hot-plug: NO arranca con el stack por defecto (profiles).
   # Lanzarlo en vivo con:  docker compose up -d seedbeds_node
   # Al arrancar siembra su tabla, los datos demo y el menú del sidebar; Traefik
@@ -223,5 +254,6 @@ services:
       - species_node
       - files_node
       - annotations_node
+      - assistant_node
 volumes:
   ub_pg_data:

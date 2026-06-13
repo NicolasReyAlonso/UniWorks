@@ -18,6 +18,8 @@ from threading import RLock
 from typing import Any, Dict, Generic, Iterable, List, Optional, TypeVar
 
 from uniback.plugins.contracts import (
+    AssistantModelProvider,
+    AssistantTool,
     Exporter,
     FieldWidget,
     FKResolver,
@@ -148,11 +150,33 @@ class FKResolverRegistry(Registry[FKResolver]):
         return None
 
 
+class ModelProviderRegistry(Registry[AssistantModelProvider]):
+    """Modelos LLM seleccionables. Cada entrada = una opcion del selector."""
+
+    def describe_all(self) -> List[dict]:
+        return [p.describe() for p in self.all()]
+
+
+class AssistantToolRegistry(Registry[AssistantTool]):
+    """Herramientas del asistente (de servidor y de UI)."""
+
+    def describe_all(self) -> List[dict]:
+        return [t.describe() for t in self.all()]
+
+    def server_tools(self) -> List[AssistantTool]:
+        return [t for t in self.all() if t.side == "server"]
+
+    def ui_tools(self) -> List[AssistantTool]:
+        return [t for t in self.all() if t.side == "ui"]
+
+
 source_adapter_registry = SourceAdapterRegistry("SourceAdapterRegistry")
 importer_registry = ImporterRegistry("ImporterRegistry")
 exporter_registry = ExporterRegistry("ExporterRegistry")
 field_widget_registry = FieldWidgetRegistry("FieldWidgetRegistry")
 fk_resolver_registry = FKResolverRegistry("FKResolverRegistry")
+model_provider_registry = ModelProviderRegistry("ModelProviderRegistry")
+assistant_tool_registry = AssistantToolRegistry("AssistantToolRegistry")
 
 
 __all__ = [
@@ -162,9 +186,13 @@ __all__ = [
     "ExporterRegistry",
     "FieldWidgetRegistry",
     "FKResolverRegistry",
+    "ModelProviderRegistry",
+    "AssistantToolRegistry",
     "source_adapter_registry",
     "importer_registry",
     "exporter_registry",
     "field_widget_registry",
     "fk_resolver_registry",
+    "model_provider_registry",
+    "assistant_tool_registry",
 ]

@@ -4,6 +4,8 @@ from fastapi import APIRouter, FastAPI
 from sqlalchemy.orm import Session
 
 from uniback.plugins.contracts import (
+    AssistantModelProvider,
+    AssistantTool,
     Exporter,
     FieldWidget,
     FKResolver,
@@ -108,4 +110,12 @@ class UnibackPlugin:
 
     def get_fk_resolvers(self) -> List[FKResolver]:
         """Resolvers para lookups FK ``{by, value}`` en payloads de importacion."""
+        return []
+
+    def get_model_providers(self) -> List[AssistantModelProvider]:
+        """Modelos LLM que este plugin pone a disposicion del asistente."""
+        return []
+
+    def get_assistant_tools(self) -> List[AssistantTool]:
+        """Herramientas (de servidor o de UI) que el asistente puede usar."""
         return []
