@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,14 @@ interface PendingProposal {
   entity: string;
   rows: Record<string, any>[];
 }
+
+type Corner = 'tl' | 'tr' | 'bl' | 'br';
+
+const FAB_SIZE = 52;
+const MARGIN = 20;
+const PANEL_W = 380;
+const PANEL_H = 540;
+const CORNER_KEY = 'assistant_fab_corner';
 
 /**
  * Ventana flotante minimizable del asistente LLM.
@@ -60,6 +68,16 @@ export class AssistantOverlayComponent implements OnInit {
   pending: PendingProposal | null = null;
   confirming = false;
 
+  // --- Botón flotante arrastrable ---
+  corner: Corner = 'br';
+  fabPos = { left: 0, top: 0 };
+  dragging = false;
+  private dragStartX = 0;
+  private dragStartY = 0;
+  private dragOrigLeft = 0;
+  private dragOrigTop = 0;
+  private moved = false;
+
   constructor(
     private readonly assistant: AssistantService,
     private readonly entityClient: EntityClient,
@@ -67,6 +85,10 @@ export class AssistantOverlayComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    const saved = (typeof localStorage !== 'undefined' && localStorage.getItem(CORNER_KEY)) as Corner | null;
+    if (saved && ['tl', 'tr', 'bl', 'br'].includes(saved)) this.corner = saved;
+    this.applyCorner();
+
     try {
       const [{ models, default: def }, tools] = await Promise.all([
         this.assistant.listModels(),
@@ -84,6 +106,90 @@ export class AssistantOverlayComponent implements OnInit {
   toggleOpen(): void {
     this.open = !this.open;
     if (this.open) this.minimized = false;
+  }
+
+  // ------------------------------------------------------------------
+  // Botón flotante: arrastrar y enganchar a la esquina más cercana
+  // ------------------------------------------------------------------
+
+  private clamp(v: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, v));
+  }
+
+  /** Coloca el botón en la esquina activa (y al iniciar / redimensionar). */
+  private applyCorner(): void {
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const right = W - FAB_SIZE - MARGIN;
+    const bottom = H - FAB_SIZE - MARGIN;
+    const map: Record<Corner, { left: number; top: number }> = {
+      tl: { left: MARGIN, top: MARGIN },
+      tr: { left: right, top: MARGIN },
+      bl: { left: MARGIN, top: bottom },
+      br: { left: right, top: bottom },
+    };
+    this.fabPos = map[this.corner];
+  }
+
+  onFabPointerDown(ev: PointerEvent): void {
+    this.dragging = true;
+    this.moved = false;
+    this.dragStartX = ev.clientX;
+    this.dragStartY = ev.clientY;
+    this.dragOrigLeft = this.fabPos.left;
+    this.dragOrigTop = this.fabPos.top;
+    (ev.target as HTMLElement).setPointerCapture?.(ev.pointerId);
+    ev.preventDefault();
+  }
+
+  @HostListener('document:pointermove', ['$event'])
+  onPointerMove(ev: PointerEvent): void {
+    if (!this.dragging) return;
+    const dx = ev.clientX - this.dragStartX;
+    const dy = ev.clientY - this.dragStartY;
+    if (Math.abs(dx) + Math.abs(dy) > 4) this.moved = true;
+    this.fabPos = {
+      left: this.clamp(this.dragOrigLeft + dx, MARGIN, window.innerWidth - FAB_SIZE - MARGIN),
+      top: this.clamp(this.dragOrigTop + dy, MARGIN, window.innerHeight - FAB_SIZE - MARGIN),
+    };
+  }
+
+  @HostListener('document:pointerup')
+  onPointerUp(): void {
+    if (!this.dragging) return;
+    this.dragging = false;
+    if (!this.moved) {
+      this.toggleOpen(); // fue un clic, no un arrastre
+      return;
+    }
+    // Engancha a la esquina más cercana al centro del botón.
+    const cx = this.fabPos.left + FAB_SIZE / 2;
+    const cy = this.fabPos.top + FAB_SIZE / 2;
+    const horiz = cx < window.innerWidth / 2 ? 'l' : 'r';
+    const vert = cy < window.innerHeight / 2 ? 't' : 'b';
+    this.corner = `${vert}${horiz}` as Corner;
+    if (typeof localStorage !== 'undefined') localStorage.setItem(CORNER_KEY, this.corner);
+    this.applyCorner();
+  }
+
+  @HostListener('window:resize')
+  onResize(): void {
+    if (!this.dragging) this.applyCorner();
+  }
+
+  /** Posición del panel anclado a la esquina activa del botón. */
+  get panelStyle(): { [k: string]: string } {
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const onRight = this.corner === 'tr' || this.corner === 'br';
+    const onBottom = this.corner === 'bl' || this.corner === 'br';
+    const left = onRight
+      ? this.clamp(W - PANEL_W - MARGIN, MARGIN, Math.max(MARGIN, W - PANEL_W - MARGIN))
+      : MARGIN;
+    const top = onBottom
+      ? this.clamp(H - PANEL_H - MARGIN - FAB_SIZE - 8, MARGIN, H - 120)
+      : MARGIN + FAB_SIZE + 8;
+    return { left: `${left}px`, top: `${top}px` };
   }
 
   toggleTool(name: string): void {

@@ -1,10 +1,18 @@
-<!-- Botón flotante para abrir/cerrar -->
-<button class="assistant-fab" (click)="toggleOpen()" title="Asistente">
+<!-- Botón flotante arrastrable (clic = abrir/cerrar; arrastrar = mover y
+     engancharse a la esquina más cercana). -->
+<button
+  class="assistant-fab"
+  [class.dragging]="dragging"
+  [style.left.px]="fabPos.left"
+  [style.top.px]="fabPos.top"
+  (pointerdown)="onFabPointerDown($event)"
+  title="Asistente (arrástrame para moverme)"
+>
   <img *ngIf="!open" src="assets/images/Robot.svg" class="assistant-fab-icon" alt="Asistente IA" />
   <span *ngIf="open" class="assistant-fab-close">×</span>
 </button>
 
-<div class="assistant-panel" *ngIf="open" [class.minimized]="minimized">
+<div class="assistant-panel" *ngIf="open && !dragging" [class.minimized]="minimized" [ngStyle]="panelStyle">
   <div class="assistant-header">
     <span class="assistant-title">Asistente</span>
     <div class="assistant-header-actions">
