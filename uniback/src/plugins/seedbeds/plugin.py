@@ -114,6 +114,15 @@ class SeedbedsPlugin(UnibackPlugin):
     description = "App demo hot-plug: gestión de lotes de semillero"
     version = "1.0.0"
 
+    # Activo SOLO en su propio nodo (y en monolith). Sin esto, el router de
+    # ``seed_batches`` se montaría en todos los nodos (incluido el core) y, al
+    # parar el nodo seedbeds, Traefik haría caer ``/api/seed_batches`` en el
+    # comodín del core, que lo seguiría sirviendo: la entidad quedaría accesible
+    # por URL pese a estar "desenchufada". Restringiéndolo, solo lo sirve su
+    # nodo; el core sigue registrando la entidad en el schema_registry (para el
+    # catálogo/pantallas sintéticas) pero NO monta el endpoint -> 404 al caer.
+    node_types = {"seedbeds"}
+
     # 1) Modelos: el initializer importa estos módulos antes de configurar los
     #    mappers, de modo que ``SeedBatch`` quede registrado en el ORM base.
     #    Esto SÍ corre en todos los nodos: el ORM necesita conocer todas las
