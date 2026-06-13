@@ -214,7 +214,16 @@ class OpenAICompatibleProvider(AssistantModelProvider):
         with httpx.Client(timeout=httpx.Timeout(120.0, connect=10.0)) as client:
             with client.stream("POST", f"{self._base_url}/chat/completions",
                                json=payload, headers=headers) as resp:
-                resp.raise_for_status()
+                if resp.status_code >= 400:
+                    # Surface the provider's real reason (LM Studio, vLLM... lo
+                    # devuelven en el cuerpo), no un genérico "400 Bad Request".
+                    resp.read()
+                    detail = resp.text.strip()
+                    try:
+                        detail = json.loads(detail).get("error", {}).get("message", detail)
+                    except (json.JSONDecodeError, AttributeError):
+                        pass
+                    raise RuntimeError(f"{self.label}: {detail or f'HTTP {resp.status_code}'}")
                 for line in resp.iter_lines():
                     if not line or not line.startswith("data:"):
                         continue
