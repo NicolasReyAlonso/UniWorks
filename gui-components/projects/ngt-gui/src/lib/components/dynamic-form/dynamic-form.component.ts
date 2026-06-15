@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -94,6 +95,7 @@ export class DynamicFormComponent implements OnChanges {
   loadError: string | null = null;
 
   private readonly schemas = inject(SchemaService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['entityPath'] || changes['schema'] || changes['fields'] || changes['overrides'] || changes['mode']) {
@@ -131,8 +133,14 @@ export class DynamicFormComponent implements OnChanges {
           } catch (err) {
             this.loadError = (err as Error).message;
           }
+          // OnPush: the schema arrives async, outside any input/event change,
+          // so we must trigger a re-check or the view stays on "loading".
+          this.cdr.markForCheck();
         },
-        error: (err: Error) => (this.loadError = err.message),
+        error: (err: Error) => {
+          this.loadError = err.message;
+          this.cdr.markForCheck();
+        },
       });
       return;
     }
