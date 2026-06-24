@@ -526,6 +526,7 @@
   },
   "DYNAMIC_BROWSER": {
     "BUTTONS": {
+      "BULK_INSERT": "Inserção em massa",
       "CONFIRM_SELECTED": "Confirmar selecionados",
       "CREATE": "Criar",
       "DELETE_SELECTED": "Remover selecionados",
