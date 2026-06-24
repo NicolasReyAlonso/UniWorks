@@ -12,6 +12,7 @@ from uniback.config.settings import get_cached_settings
 from uniback.persistence.models.sysadmin import (
     ACL,
     ACLDetail,
+    ACLExpression,
     Authorizable,
     GroupIdentity,
     Identity,
@@ -19,8 +20,9 @@ from uniback.persistence.models.sysadmin import (
     PermissionType,
     Role,
     RoleIdentity,
+    SystemFunction,
 )
-from uniback.persistence.models.core import FunctionalObject
+from uniback.persistence.models.core import FunctionalObject, ObjectType
 
 # Collection and CollectionDetail are required for full biobarcoding compatibility.
 # If they are not yet migrated to uniback, they should be added to persistence/models/core.py
@@ -29,6 +31,34 @@ try:
 except ImportError:
     Collection = None
     CollectionDetail = None
+
+
+def effective_can_execute_rule(db: Session, sf: SystemFunction) -> str | None:
+    """Resolve the authorization rule currently in force for a SystemFunction.
+
+    The seeding (and GUI editing) flow stores the editable rule as an
+    ``ACLExpression`` tied to the function's ACL and leaves
+    ``SystemFunction.can_execute_rule`` empty. Route guards (``get_n_session``)
+    already resolve the rule this way, so any other consumer that needs the same
+    authorization decision must do likewise: reading the column alone yields
+    ``None``, and ``can_execute(None)`` then allows *everyone*.
+    """
+    sys_func_type = db.scalar(select(ObjectType).where(ObjectType.name == "sys-function"))
+    if sys_func_type is not None:
+        now = datetime.now(timezone.utc)
+        rule_obj = db.scalar(
+            select(ACLExpression).join(ACL).where(
+                and_(
+                    ACL.object_type == sys_func_type.id,
+                    ACL.object_uuid == sf.uuid,
+                    or_(ACLExpression.validity_start == None, ACLExpression.validity_start <= now),  # noqa: E711
+                    or_(ACLExpression.validity_end == None, ACLExpression.validity_end >= now),  # noqa: E711
+                )
+            )
+        )
+        if rule_obj is not None:
+            return rule_obj.expression
+    return sf.can_execute_rule
 
 
 def can_execute(db: Session, rule: str | None, identity_id: Optional[int] = None) -> bool:

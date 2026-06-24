@@ -107,6 +107,29 @@ export class SidebarComponent implements OnInit {
         this.openMenuDependCurrentView();
       }
     });
+
+    // Reload the menu whenever the active user changes (login / logout /
+    // account switch). The backend filters /gui/navigation by the current
+    // user's permissions, so a stale tree from a previous session would
+    // otherwise keep showing menus the new account is not allowed to see.
+    this.authService.changeUserEvent.subscribe(async (user) => {
+      if (user) {
+        await this.loadItems();
+      } else {
+        this.clearItems();
+      }
+    });
+  }
+
+  /**
+   * Clear the menu tree (used on logout) so no menus from the previous
+   * session remain visible.
+   */
+  private clearItems(): void {
+    this.items = null;
+    this.filteredItems = {};
+    this.openMap = {};
+    this.updateLastState();
   }
 
   /**

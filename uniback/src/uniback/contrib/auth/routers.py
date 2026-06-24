@@ -199,13 +199,18 @@ async def get_user_functions(
     prefix: str, sess: AppSession = Depends(get_n_session()), db: Session = Depends(get_db)
 ):
     """List functions the current user can execute."""
-    from uniback.authorization.authr_filters import can_execute
+    from uniback.authorization.authr_filters import can_execute, effective_can_execute_rule
 
     functions = db.query(SystemFunction).filter(SystemFunction.name.startswith(prefix + "-")).all()
 
     content = []
     for f in functions:
-        allowed = can_execute(db, f.can_execute_rule, sess.identity_id)
+        # Use the rule actually enforced by the route guards (stored as an
+        # ACLExpression), not the (usually empty) can_execute_rule column.
+        # Reading the column alone makes can_execute(None) return True and would
+        # grant every menu permission to every user, including guests.
+        rule = effective_can_execute_rule(db, f)
+        allowed = can_execute(db, rule, sess.identity_id)
         content.append({"name": f.name, "permissions": ["read"] if allowed else []})
 
     return ResponseEnvelope.ok(content=content)

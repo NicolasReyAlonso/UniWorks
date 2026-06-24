@@ -267,6 +267,7 @@ tm_bootstrap_screens = [
         "definition": {
             "type": "browser",
             "title": "SCREENS.VIEWS.BROWSER_TITLE",
+            "permission": "gui-viewers",
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -287,6 +288,7 @@ tm_bootstrap_screens = [
         "definition": {
             "type": "browser",
             "title": "SCREENS.DASHBOARDS.BROWSER_TITLE",
+            "permission": "gui-viewers",
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -307,6 +309,7 @@ tm_bootstrap_screens = [
         "definition": {
             "type": "browser",
             "title": "SCREENS.HIERARCHY_NODES.BROWSER_TITLE",
+            "permission": "gui-system-functions",
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -328,6 +331,7 @@ tm_bootstrap_screens = [
         "definition": {
             "type": "browser",
             "title": "SCREENS.ENTITY_LABELS.BROWSER_TITLE",
+            "permission": "gui-system-functions",
             "fieldId": "id",
             "columns": [
                 {"field": "language_id", "header": "FIELDS.LANGUAGE", "sortable": True},
@@ -418,6 +422,7 @@ tm_bootstrap_screens = [
         "definition": {
             "type": "browser",
             "title": "SCREENS.DATASETS.BROWSER_TITLE",
+            "permission": "gui-collections",
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},

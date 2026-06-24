@@ -195,7 +195,7 @@ services:
       - UNIBACK_ASSISTANT_ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
       # Modelos locales via LM Studio (OpenAI-compatible) en el host. Desde el
       # contenedor el host se alcanza por host.docker.internal (Docker Desktop).
-      - 'UNIBACK_ASSISTANT_EXTRA_PROVIDERS=[{"name":"lmstudio-gemma-e4b","label":"Gemma 4 e4b (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"google/gemma-4-e4b"},{"name":"lmstudio-qwen3","label":"Qwen3 4B Thinking (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"qwen/qwen3-4b-thinking-2507"},{"name":"lmstudio-gemma-e2b","label":"Gemma 4 e2b (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"google/gemma-4-e2b"}]'
+      - 'UNIBACK_ASSISTANT_EXTRA_PROVIDERS=[{"name":"lmstudio-gemma-e12b-qat","label":"Gemma 4 e12b (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"google/gemma-4-12b-qat"},{"name":"lmstudio-gemma-e4b","label":"Gemma 4 e4b (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"google/gemma-4-e4b"},{"name":"lmstudio-qwen3","label":"Qwen3 4B Thinking (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"qwen/qwen3-4b-thinking-2507"},{"name":"lmstudio-gemma-e2b","label":"Gemma 4 e2b (LM Studio)","base_url":"http://host.docker.internal:1234/v1","api_key":"lm-studio","model_id":"google/gemma-4-e2b"}]'
     command: uvicorn run_server:create_initialized_app --factory --host 0.0.0.0 --port 8000 --reload
     extra_hosts:
       # Necesario en Linux para que host.docker.internal resuelva al host
