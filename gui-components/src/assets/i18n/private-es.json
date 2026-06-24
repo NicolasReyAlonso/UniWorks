@@ -2780,7 +2780,18 @@
       }
     }
   },
+  "DYNAMIC_PAGE": {
+    "SAVE": "Guardar",
+    "CREATE": "Crear",
+    "CANCEL": "Cancelar",
+    "GO_BACK": "Volver",
+    "NOT_FOUND": "Pantalla no encontrada"
+  },
   "SIDEBAR": {
+    "DATA": {
+      "TITLE": "Datos",
+      "CASE_STUDIES": "Casos de estudio"
+    },
     "sub1": {
       "routes": {
         "blast": {

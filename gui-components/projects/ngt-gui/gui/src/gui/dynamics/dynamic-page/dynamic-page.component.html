@@ -11,11 +11,11 @@
       [BrowserTitle]="browserTitle"
       [BrowserType]="browserType"
       [DefaultShowFields]="browserColumns"
-      [HiddenCreate]="!hasCreateAction"
-      [HiddenDelete]="!hasDeleteAction"
-      [HiddenOpen]="!hasViewAction"
-      [HiddenModify]="!hasEditAction"
-      [HiddenBulkInsert]="!hasCreateAction"
+      [HiddenCreate]="!canCreate"
+      [HiddenDelete]="!canDelete"
+      [HiddenOpen]="!canView"
+      [HiddenModify]="!canEdit"
+      [HiddenBulkInsert]="!canCreate"
       [HiddenImport]="true"
       [HiddenExport]="true"
       [HiddenSelect]="true"
@@ -116,7 +116,7 @@
 
           <!-- Action buttons -->
           <nz-space>
-            <button nz-button nzType="primary" [nzLoading]="formSaving"
+            <button *ngIf="canSubmitForm" nz-button nzType="primary" [nzLoading]="formSaving"
                     [disabled]="form.invalid" type="submit">
               {{ (entityId ? 'DYNAMIC_PAGE.SAVE' : 'DYNAMIC_PAGE.CREATE') | translate }}
             </button>

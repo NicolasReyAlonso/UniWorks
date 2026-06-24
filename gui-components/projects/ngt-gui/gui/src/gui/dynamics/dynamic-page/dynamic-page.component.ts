@@ -38,6 +38,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import {
   BACKEND_SERVICE, BackendServiceInterface,
   MESSAGE_LOG_SERVICE, MessageLogServiceInterface,
+  AUTH_SERVICE_TOKEN, AuthServiceInterface,
 } from 'ngt-gui/core';
 import { BulkEditGridComponent, ScreenEditableColumn } from 'ngt-gui';
 import { DynamicBrowseComponent } from '../dynamic-browse/dynamic-browse.component';
@@ -109,6 +110,7 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
     private http: HttpClient,
     @Inject(BACKEND_SERVICE) private backendService: BackendServiceInterface,
     @Inject(MESSAGE_LOG_SERVICE) private logService: MessageLogServiceInterface,
+    @Inject(AUTH_SERVICE_TOKEN) private authService: AuthServiceInterface,
     private translateService: TranslateService,
     private messageService: NzMessageService,
   ) {}
@@ -379,6 +381,49 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
 
   get hasViewAction(): boolean {
     return (this.screenDef?.definition?.actions || []).includes('view');
+  }
+
+  /**
+   * Per-action ACL check. The screen definition may declare the permission code
+   * required for each action under ``definition.permissions`` e.g.
+   * ``{ "create": "gui-collection-create", "edit": "...", "delete": "..." }``.
+   * When a code is declared the button is shown only if the current user holds
+   * that permission; when no code is declared the action is not gated here (the
+   * backend still enforces its own rule on the CRUD endpoint).
+   */
+  private actionAllowed(action: string): boolean {
+    const code = this.screenDef?.definition?.permissions?.[action];
+    if (!code) {
+      return true;
+    }
+    return !!this.authService?.havePermission(code);
+  }
+
+  /** Action available AND allowed for the current user. Used to hide buttons. */
+  get canCreate(): boolean {
+    return this.hasCreateAction && this.actionAllowed('create');
+  }
+
+  get canDelete(): boolean {
+    return this.hasDeleteAction && this.actionAllowed('delete');
+  }
+
+  get canEdit(): boolean {
+    return this.hasEditAction && this.actionAllowed('edit');
+  }
+
+  get canView(): boolean {
+    return this.hasViewAction && this.actionAllowed('view');
+  }
+
+  /**
+   * Whether the current user may submit the form. Editing an existing entity
+   * (``entityId`` set) requires the ``edit`` permission, creating a new one
+   * requires ``create``. Falls back to allowed when the form screen does not
+   * declare per-action permissions (the backend still enforces its rule).
+   */
+  get canSubmitForm(): boolean {
+    return this.actionAllowed(this.entityId ? 'edit' : 'create');
   }
 
   get bulkColumns(): ScreenEditableColumn[] {

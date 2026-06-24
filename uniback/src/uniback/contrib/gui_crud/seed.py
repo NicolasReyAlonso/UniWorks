@@ -36,6 +36,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.COLLECTIONS.BROWSER_TITLE",
             "permission": "gui-collections",
+            "permissions": {
+                "create": "gui-collection-create",
+                "edit": "gui-collection-edit",
+                "delete": "gui-collection-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -56,6 +61,10 @@ tm_bootstrap_screens = [
             "type": "form",
             "title": "SCREENS.COLLECTIONS.FORM_TITLE",
             "permission": "gui-collection-read",
+            "permissions": {
+                "create": "gui-collection-create",
+                "edit": "gui-collection-edit",
+            },
             "sections": [
                 {
                     "name": "basic", "title": "SECTIONS.BASIC",
@@ -77,6 +86,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.CASE_STUDIES.BROWSER_TITLE",
             "permission": "gui-case-studies",
+            "permissions": {
+                "create": "gui-case-study-create",
+                "edit": "gui-case-study-edit",
+                "delete": "gui-case-study-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -98,6 +112,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.IDENTITIES.BROWSER_TITLE",
             "permission": "gui-users",
+            "permissions": {
+                "create": "gui-user-create",
+                "edit": "gui-user-edit",
+                "delete": "gui-user-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -119,6 +138,10 @@ tm_bootstrap_screens = [
             "type": "form",
             "title": "SCREENS.IDENTITIES.FORM_TITLE",
             "permission": "gui-user-read",
+            "permissions": {
+                "create": "gui-user-create",
+                "edit": "gui-user-edit",
+            },
             "sections": [
                 {
                     "name": "basic", "title": "SECTIONS.BASIC",
@@ -141,6 +164,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.ROLES.BROWSER_TITLE",
             "permission": "gui-roles",
+            "permissions": {
+                "create": "gui-role-create",
+                "edit": "gui-role-edit",
+                "delete": "gui-role-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -162,6 +190,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.ORGANIZATIONS.BROWSER_TITLE",
             "permission": "gui-organizations",
+            "permissions": {
+                "create": "gui-organization-create",
+                "edit": "gui-organization-edit",
+                "delete": "gui-organization-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -226,6 +259,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.ANNOTATION_FIELDS.BROWSER_TITLE",
             "permission": "gui-annotation-fields",
+            "permissions": {
+                "create": "gui-annotation-field-create",
+                "edit": "gui-annotation-field-edit",
+                "delete": "gui-annotation-field-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},
@@ -247,6 +285,11 @@ tm_bootstrap_screens = [
             "type": "browser",
             "title": "SCREENS.ANNOTATION_TEMPLATES.BROWSER_TITLE",
             "permission": "gui-annotation-templates",
+            "permissions": {
+                "create": "gui-annotation-template-create",
+                "edit": "gui-annotation-template-edit",
+                "delete": "gui-annotation-template-delete",
+            },
             "fieldId": "id",
             "columns": [
                 {"field": "name", "header": "FIELDS.NAME", "sortable": True},

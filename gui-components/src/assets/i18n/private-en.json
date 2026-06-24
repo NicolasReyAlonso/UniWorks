@@ -2578,7 +2578,18 @@
       }
     }
   },
+  "DYNAMIC_PAGE": {
+    "SAVE": "Save",
+    "CREATE": "Create",
+    "CANCEL": "Cancel",
+    "GO_BACK": "Go back",
+    "NOT_FOUND": "Screen not found"
+  },
   "SIDEBAR": {
+    "DATA": {
+      "TITLE": "Data",
+      "CASE_STUDIES": "Case studies"
+    },
     "sub1": {
       "routes": {
         "blast": {
