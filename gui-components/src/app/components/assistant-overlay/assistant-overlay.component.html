@@ -16,6 +16,8 @@
   <div class="assistant-header">
     <span class="assistant-title">Asistente</span>
     <div class="assistant-header-actions">
+      <button (click)="newChat()" title="Nueva conversación">✎</button>
+      <button (click)="toggleHistory()" [class.active]="showHistory" title="Historial">🕑</button>
       <button (click)="minimized = !minimized" [title]="minimized ? 'Restaurar' : 'Minimizar'">
         {{ minimized ? '▢' : '—' }}
       </button>
@@ -23,7 +25,34 @@
     </div>
   </div>
 
-  <div class="assistant-body" *ngIf="!minimized">
+  <!-- Panel de historial de conversaciones -->
+  <div class="assistant-body assistant-history" *ngIf="!minimized && showHistory">
+    <div class="assistant-history-head">
+      <span>Conversaciones</span>
+      <button class="assistant-newchat" (click)="newChat()">+ Nueva</button>
+    </div>
+
+    <div *ngIf="loadingHistory" class="assistant-history-empty">Cargando…</div>
+    <div *ngIf="!loadingHistory && conversations.length === 0" class="assistant-history-empty">
+      Aún no tienes conversaciones guardadas.
+    </div>
+
+    <ul class="assistant-history-list">
+      <li *ngFor="let c of conversations"
+          class="assistant-history-item"
+          [class.active]="c.uuid === currentConversationId"
+          (click)="openConversation(c.uuid)">
+        <div class="assistant-history-item-main">
+          <div class="assistant-history-title">{{ c.title || 'Sin título' }}</div>
+          <div class="assistant-history-meta">{{ c.message_count }} mensajes</div>
+        </div>
+        <button class="assistant-history-del" title="Borrar"
+                (click)="removeConversation(c.uuid, $event)">🗑</button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="assistant-body" *ngIf="!minimized && !showHistory">
     <!-- Selección de modelo + herramientas -->
     <div class="assistant-controls">
       <label class="assistant-field">

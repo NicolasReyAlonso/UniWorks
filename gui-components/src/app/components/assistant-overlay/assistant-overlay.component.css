@@ -217,3 +217,92 @@
   font-family: inherit;
   font-size: 13px;
 }
+
+/* --- Historial de conversaciones --- */
+.assistant-header-actions button.active {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+}
+
+.assistant-history {
+  overflow-y: auto;
+}
+
+.assistant-history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.assistant-newchat {
+  background: #1677ff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.assistant-history-empty {
+  padding: 24px 12px;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+
+.assistant-history-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.assistant-history-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid #f4f4f4;
+  cursor: pointer;
+}
+
+.assistant-history-item:hover {
+  background: #f6faff;
+}
+
+.assistant-history-item.active {
+  background: #e9f2ff;
+}
+
+.assistant-history-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.assistant-history-title {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.assistant-history-meta {
+  font-size: 11px;
+  color: #999;
+}
+
+.assistant-history-del {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.assistant-history-del:hover {
+  opacity: 1;
+}

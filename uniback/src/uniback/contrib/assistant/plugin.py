@@ -31,6 +31,13 @@ class AssistantPlugin(UnibackPlugin):
         {"name": "Assistant", "description": "LLM assistant: models, tools and chat"},
     ]
 
+    # El initializer importa estos módulos antes de configurar los mappers, de
+    # modo que la tabla de conversaciones quede registrada en el ORM base y
+    # ``create_tables`` la cree. Corre en todos los nodos (el ORM necesita
+    # conocer todas las tablas), aunque el router solo se monte en 'assistant'.
+    def get_model_modules(self) -> List[str]:
+        return ["uniback.contrib.assistant.models"]
+
     def get_model_providers(self) -> List[Any]:
         from uniback.config.settings import get_settings
         from uniback.contrib.assistant.providers import build_providers_from_settings
@@ -44,5 +51,6 @@ class AssistantPlugin(UnibackPlugin):
 
     def get_routers(self) -> List[APIRouter]:
         from uniback.contrib.assistant.routers import router
+        from uniback.contrib.assistant.conversations import router as conversations_router
 
-        return [router]
+        return [router, conversations_router]

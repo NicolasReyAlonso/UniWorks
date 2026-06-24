@@ -50,6 +50,8 @@ async def chat(
         current_context=body.get("current_context") or {},
         default_model=settings.default_model,
         max_iterations=settings.max_tool_iterations,
+        identity_id=sess.identity_id,
+        conversation_id=body.get("conversation_id"),
     )
     return StreamingResponse(
         generator,

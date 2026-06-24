@@ -83,6 +83,45 @@ def _select_tools(enabled_tool_names: List[str] | None) -> List[Any]:
     return [t for t in everything if t.name in wanted]
 
 
+def _persist_turn(
+    *,
+    identity_id: int,
+    conversation_id: str | None,
+    user_messages: List[Mapping[str, Any]],
+    assistant_text: str,
+    model_name: str | None,
+) -> str | None:
+    """Guarda el turno en la conversación del usuario con una sesión propia.
+
+    El chat usa una sesión ``read_only`` que no hace commit y se cierra al acabar
+    el stream, así que abrimos una sesión fresca y la confirmamos aquí. Devuelve
+    el uuid de la conversación (nueva o existente) para que el cliente lo siga.
+    """
+    from uniback.persistence.session import get_session_manager
+    from uniback.contrib.assistant.conversations import upsert_conversation
+
+    full = [dict(m) for m in user_messages]
+    if assistant_text:
+        full.append({"role": "assistant", "content": assistant_text})
+
+    db = get_session_manager().get_session()
+    try:
+        conv = upsert_conversation(
+            db,
+            identity_id=identity_id,
+            conversation_uuid=conversation_id,
+            messages=full,
+            model=model_name,
+        )
+        db.commit()
+        return str(conv.uuid)
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.close()
+
+
 def run_chat_stream(
     *,
     session: Any,
@@ -92,8 +131,17 @@ def run_chat_stream(
     current_context: Mapping[str, Any] | None,
     default_model: str = "claude-opus-4-8",
     max_iterations: int = 8,
+    identity_id: int | None = None,
+    conversation_id: str | None = None,
+    persist: bool = True,
 ) -> Iterator[str]:
-    """Generador síncrono de líneas SSE para ``POST /assistant/chat``."""
+    """Generador síncrono de líneas SSE para ``POST /assistant/chat``.
+
+    Si ``persist`` y hay ``identity_id``, al cerrar el turno guarda el historial
+    (mensajes de entrada + respuesta del asistente) en la conversación del
+    usuario y emite un evento ``{"type":"conversation","uuid":...}`` para que el
+    cliente pueda seguir la conversación y reanudarla más tarde.
+    """
 
     provider = _resolve_provider(model, default_model)
     if provider is None:
@@ -112,6 +160,10 @@ def run_chat_stream(
 
     yield _sse({"type": "model", "name": provider.name, "label": provider.label})
 
+    # Texto del asistente visible para el usuario (concatenación de todos los
+    # deltas de todas las iteraciones), tal y como lo pinta el overlay.
+    full_assistant_text = ""
+
     try:
         for _ in range(max_iterations):
             assistant_text = ""
@@ -120,6 +172,7 @@ def run_chat_stream(
             for ev in provider.stream_turn(system=system, messages=history, tools=tool_schemas):
                 if ev.type == "text":
                     assistant_text += ev.text
+                    full_assistant_text += ev.text
                     yield _sse({"type": "text", "text": ev.text})
                 elif ev.type == "tool_use":
                     tool_calls.append(ev)
@@ -167,5 +220,21 @@ def run_chat_stream(
     except Exception as e:
         log.exception("[assistant] error en el bucle de chat")
         yield _sse({"type": "error", "message": str(e)})
+
+    # Persistimos el turno (entrada + respuesta) en la conversación del usuario.
+    # Se hace al final, cuando ya tenemos el texto completo del asistente.
+    if persist and identity_id is not None:
+        try:
+            conv_uuid = _persist_turn(
+                identity_id=identity_id,
+                conversation_id=conversation_id,
+                user_messages=messages,
+                assistant_text=full_assistant_text,
+                model_name=provider.name,
+            )
+            if conv_uuid:
+                yield _sse({"type": "conversation", "uuid": conv_uuid})
+        except Exception:
+            log.exception("[assistant] no se pudo persistir la conversación")
 
     yield _sse({"type": "done"})

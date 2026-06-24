@@ -10,6 +10,7 @@ import {
   AssistantModel,
   AssistantService,
   AssistantTool,
+  ConversationSummary,
 } from '../../services/assistant.service';
 
 interface ChatMessage {
@@ -68,6 +69,12 @@ export class AssistantOverlayComponent implements OnInit {
   pending: PendingProposal | null = null;
   confirming = false;
 
+  // --- Historial de conversaciones (persistido por usuario) ---
+  conversations: ConversationSummary[] = [];
+  currentConversationId: string | null = null;
+  showHistory = false;
+  loadingHistory = false;
+
   // --- Botón flotante arrastrable ---
   corner: Corner = 'br';
   fabPos = { left: 0, top: 0 };
@@ -101,6 +108,64 @@ export class AssistantOverlayComponent implements OnInit {
     } catch {
       this.errorMsg = 'No se pudo contactar con el asistente.';
     }
+
+    this.refreshConversations();
+  }
+
+  // ------------------------------------------------------------------
+  // Historial de conversaciones
+  // ------------------------------------------------------------------
+
+  async refreshConversations(): Promise<void> {
+    this.loadingHistory = true;
+    try {
+      this.conversations = await this.assistant.listConversations();
+    } catch {
+      /* lista vacía si falla */
+    } finally {
+      this.loadingHistory = false;
+    }
+  }
+
+  toggleHistory(): void {
+    this.showHistory = !this.showHistory;
+    if (this.showHistory) this.refreshConversations();
+  }
+
+  /** Empieza una conversación nueva (sin borrar las guardadas). */
+  newChat(): void {
+    this.messages = [];
+    this.currentConversationId = null;
+    this.pending = null;
+    this.errorMsg = '';
+    this.toolTrace = [];
+    this.showHistory = false;
+  }
+
+  /** Carga una conversación guardada y la deja lista para continuar. */
+  async openConversation(uuid: string): Promise<void> {
+    if (this.streaming) return;
+    const conv = await this.assistant.getConversation(uuid);
+    if (!conv) {
+      this.errorMsg = 'No se pudo cargar la conversación.';
+      return;
+    }
+    this.messages = (conv.messages || [])
+      .filter((m) => m.role === 'user' || m.role === 'assistant')
+      .map((m) => ({ role: m.role as 'user' | 'assistant', text: m.content }));
+    this.currentConversationId = conv.uuid;
+    this.pending = null;
+    this.errorMsg = '';
+    this.toolTrace = [];
+    this.showHistory = false;
+  }
+
+  async removeConversation(uuid: string, ev: Event): Promise<void> {
+    ev.stopPropagation();
+    const ok = await this.assistant.deleteConversation(uuid);
+    if (!ok) return;
+    if (this.currentConversationId === uuid) this.newChat();
+    await this.refreshConversations();
   }
 
   toggleOpen(): void {
@@ -227,6 +292,7 @@ export class AssistantOverlayComponent implements OnInit {
         enabled_tools: Array.from(this.enabledTools),
         messages: history,
         current_context: this.deriveContext(),
+        conversation_id: this.currentConversationId,
       })
       .subscribe({
         next: (ev: AssistantEvent) => this.handleEvent(ev, assistantMsg),
@@ -248,6 +314,12 @@ export class AssistantOverlayComponent implements OnInit {
         break;
       case 'ui_action':
         this.handleUiAction(ev.action, ev.input);
+        break;
+      case 'conversation':
+        // El backend confirma en qué conversación se guardó el turno (nueva o
+        // existente). La adoptamos como actual y refrescamos el listado.
+        this.currentConversationId = ev.uuid;
+        this.refreshConversations();
         break;
       case 'error':
         this.errorMsg = ev.message;

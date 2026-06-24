@@ -26,12 +26,28 @@ export interface AssistantMessage {
   content: string;
 }
 
+/** Resumen de una conversación guardada (GET /assistant/conversations). */
+export interface ConversationSummary {
+  uuid: string;
+  title: string;
+  model: string | null;
+  message_count: number;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+/** Conversación completa con sus mensajes (GET /assistant/conversations/:uuid). */
+export interface ConversationFull extends ConversationSummary {
+  messages: AssistantMessage[];
+}
+
 /** Eventos del stream SSE de /assistant/chat. */
 export type AssistantEvent =
   | { type: 'model'; name: string; label: string }
   | { type: 'text'; text: string }
   | { type: 'tool'; name: string; status: 'running' | 'done' }
   | { type: 'ui_action'; action: string; input: Record<string, any>; tool_id?: string }
+  | { type: 'conversation'; uuid: string }
   | { type: 'error'; message: string }
   | { type: 'done' };
 
@@ -63,6 +79,46 @@ export class AssistantService {
     return body.content || [];
   }
 
+  // ----------------------------------------------------------------------
+  // Historial de conversaciones (persistido por usuario en el backend)
+  // ----------------------------------------------------------------------
+
+  /** Lista las conversaciones del usuario actual (más recientes primero). */
+  async listConversations(): Promise<ConversationSummary[]> {
+    const res = await fetch(`${this.baseUrl}/assistant/conversations`, { credentials: 'include' });
+    if (!res.ok) return [];
+    const body = await res.json();
+    return body.content || [];
+  }
+
+  /** Carga una conversación completa (con sus mensajes) para reanudarla. */
+  async getConversation(uuid: string): Promise<ConversationFull | null> {
+    const res = await fetch(`${this.baseUrl}/assistant/conversations/${uuid}`, { credentials: 'include' });
+    if (!res.ok) return null;
+    const body = await res.json();
+    return body.content || null;
+  }
+
+  /** Borra una conversación del usuario. */
+  async deleteConversation(uuid: string): Promise<boolean> {
+    const res = await fetch(`${this.baseUrl}/assistant/conversations/${uuid}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    return res.ok;
+  }
+
+  /** Renombra una conversación. */
+  async renameConversation(uuid: string, title: string): Promise<boolean> {
+    const res = await fetch(`${this.baseUrl}/assistant/conversations/${uuid}`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    });
+    return res.ok;
+  }
+
   /**
    * Abre un turno de chat. Devuelve un Observable que emite cada evento SSE.
    * El llamante puede cancelar la suscripción para abortar el stream.
@@ -72,6 +128,7 @@ export class AssistantService {
     enabled_tools: string[];
     messages: AssistantMessage[];
     current_context: Record<string, unknown>;
+    conversation_id?: string | null;
   }): Observable<AssistantEvent> {
     const url = `${this.baseUrl}/assistant/chat`;
     return new Observable<AssistantEvent>((subscriber) => {
