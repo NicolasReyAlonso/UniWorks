@@ -35,7 +35,18 @@ import { AUTH_SERVICE_TOKEN } from "ngt-gui/core";
 import { CoreModule } from "ngt-gui/core";
 
 registerLocaleData(localePy, 'es');
-firebase.initializeApp(environment.firebase_config);
+
+// Firebase is optional. When no web config is provided we still initialise with a
+// harmless placeholder so the application boots and the (server-gated) Basic
+// username/password provider can be used. Whether Firebase login options are
+// actually shown is decided by the backend's /authn/providers discovery, not here.
+const firebaseConfig = (environment as any).firebase_config || {
+  apiKey: 'demo-firebase-disabled',
+  authDomain: 'demo.local',
+  projectId: 'demo',
+  appId: 'demo',
+};
+firebase.initializeApp(firebaseConfig);
 
 const routerFeatures: RouterFeatures[] = isDevMode() ? [withHashLocation()] : []
 
@@ -72,7 +83,7 @@ export const appConfig: ApplicationConfig = {
     
     provideRouter(routes, ...routerFeatures),
     importProvidersFrom(
-      AngularFireModule.initializeApp(environment.firebase_config),
+      AngularFireModule.initializeApp(firebaseConfig),
       NzModalModule,
       FormlyComponentsModule,
       CoreModule

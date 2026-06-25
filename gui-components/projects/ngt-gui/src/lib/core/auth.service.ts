@@ -224,46 +224,98 @@ constructor(
   async login(currentUser) {
     console.log('🔐 Logging in user:', currentUser);
     const token = await this.getJWT(currentUser);
-    
+
     if (token) {
       this.updateToken(token);
       try {
-        await lastValueFrom(this.backend.putSession());
-        const response = await forkJoin({
-          functionsGui: this.backend.getFunctionsGui() as Observable<any>,
-          currentUserRoles: this.backend.getCurrentUserRoles() as Observable<any>,
-        }).toPromise();
-        
-        this.permissions.clear();
-
-        if (this.USE_ACL_OF_SCREENS) {
-          for (const permissionResponse of response.functionsGui.content) {
-            this.permissions.set(permissionResponse.name, permissionResponse.permissions);
-          }
-        } else {
-          for (const permissionResponse of TEST_PERMISSIONS) {
-            this.permissions.set(permissionResponse.name, permissionResponse.permissions);
-          }
-        }
-
-        this.user = currentUser; // Emitirá el cambio
-        this.authInit = true; // Emitirá el cambio
-        this.currentRoles = response.currentUserRoles.content;
-        this.changeUserEvent.emit(currentUser);
-        
-        console.log('✅ User logged in and saved as:', this.user);
-        await this.stateService.loadGlobalService();
-
-        if (this.USE_WEBSOCKETS) {
-          this.socketService.connect();
-        }
+        await this.bootstrapSession(currentUser);
       } catch (e) {
-        console.error('❌ Error during login:', e);
-        this.user = null; // Emitirá el cambio
-        this.authInit = true; // Emitirá el cambio
-        this.hiddenAuthModal = false;
+        // State already reset inside bootstrapSession; swallow here so the
+        // Firebase auth-state listener path does not raise an unhandled error.
       }
     }
+  }
+
+  /**
+   * Shared post-authentication bootstrap, independent of the provider:
+   * establishes the backend session (cookie), loads permissions/roles and
+   * connects realtime. The caller must have set the appropriate auth header
+   * beforehand (Bearer for Firebase, Basic for username/password).
+   */
+  private async bootstrapSession(user: any) {
+    try {
+      await lastValueFrom(this.backend.putSession());
+      const response = await forkJoin({
+        functionsGui: this.backend.getFunctionsGui() as Observable<any>,
+        currentUserRoles: this.backend.getCurrentUserRoles() as Observable<any>,
+      }).toPromise();
+
+      this.permissions.clear();
+
+      if (this.USE_ACL_OF_SCREENS) {
+        for (const permissionResponse of response.functionsGui.content) {
+          this.permissions.set(permissionResponse.name, permissionResponse.permissions);
+        }
+      } else {
+        for (const permissionResponse of TEST_PERMISSIONS) {
+          this.permissions.set(permissionResponse.name, permissionResponse.permissions);
+        }
+      }
+
+      this.user = user; // Emitirá el cambio
+      this.authInit = true; // Emitirá el cambio
+      this.currentRoles = response.currentUserRoles.content;
+      this.changeUserEvent.emit(user);
+
+      console.log('✅ User logged in and saved as:', this.user);
+      await this.stateService.loadGlobalService();
+
+      if (this.USE_WEBSOCKETS) {
+        this.socketService.connect();
+      }
+    } catch (e) {
+      console.error('❌ Error during login:', e);
+      this.user = null; // Emitirá el cambio
+      this.authInit = true; // Emitirá el cambio
+      this.hiddenAuthModal = false;
+      throw e;
+    }
+  }
+
+  /** Auth providers advertised by the backend (e.g. basic, firebase). */
+  getAuthProviders(): Observable<any> {
+    return this.backend.getAuthProviders();
+  }
+
+  /** Set the Authorization header for the basic (username/password) provider. */
+  updateBasicToken(username: string, password: string) {
+    const encoded = btoa(`${username}:${password}`);
+    const headers = new HttpHeaders({
+      Authorization: 'Basic ' + encoded,
+      'Cache-Control': 'no-cache',
+      'Access-Control-Allow-Origin': 'http://localhost:4200'
+    });
+    this.globalVariablesServices.authOptions = { withCredentials: true, headers };
+  }
+
+  /** Login through the built-in basic (username/password) provider. */
+  async loginWithBasic(username: string, password: string) {
+    this.updateBasicToken(username, password);
+    const basicUser = {
+      uid: username,
+      displayName: username,
+      email: null,
+      isAnonymous: false,
+      emailVerified: true,
+      provider: 'basic',
+    };
+    await this.bootstrapSession(basicUser);
+  }
+
+  /** Self-registration for the basic provider, followed by an automatic login. */
+  async registerBasic(data: { username: string; email?: string; password: string }) {
+    await lastValueFrom(this.backend.register(data));
+    await this.loginWithBasic(data.username, data.password);
   }
 
   async createUserWithEmailAndPassword(email, password) {

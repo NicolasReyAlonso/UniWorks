@@ -11,8 +11,14 @@ from sqlalchemy.orm import Session
 
 from uniback.api.dependencies import AppSession, get_db, get_n_session
 from uniback.api.schemas.responses import Issue, ResponseEnvelope
-from uniback.persistence.models.sysadmin import Identity, SystemFunction
+from uniback.persistence.models.sysadmin import (
+    Authenticator,
+    Identity,
+    IdentityAuthenticator,
+    SystemFunction,
+)
 from uniback.contrib.auth.service import ApiKeyService, AuthService, firebase_auth
+from uniback.utils.common import hash_password
 from uniback.utils.serialization import compress_session, serialize_from_object
 
 router = APIRouter(tags=["Authentication"])
@@ -110,6 +116,96 @@ async def logout(request: Request, response: Response):
 
     response.delete_cookie(key="session")
     return ResponseEnvelope.ok(content={"status": "success", "message": "Logged out"})
+
+
+@router.get("/authn/providers", response_model=ResponseEnvelope)
+async def list_auth_providers():
+    """List the authentication providers currently available to the client.
+
+    Unavailable providers (e.g. Firebase without configured credentials) are
+    omitted so the login/registration UI can render itself dynamically.
+    """
+    from uniback.config.settings import get_cached_settings
+
+    settings = get_cached_settings()
+    providers: List[dict] = []
+
+    if settings.auth.basic_auth_enabled:
+        providers.append(
+            {
+                "id": "basic",
+                "label": "Usuario y contraseña",
+                "kind": "password",
+                "supports_register": True,
+            }
+        )
+
+    firebase_available = bool(settings.auth.firebase_credentials_path) and firebase_auth is not None
+    if firebase_available:
+        providers.append(
+            {
+                "id": "firebase",
+                "label": "Google",
+                "kind": "oauth",
+                "methods": ["google", "anonymous"],
+            }
+        )
+
+    return ResponseEnvelope.ok(content=providers)
+
+
+class RegisterRequest(BaseModel):
+    username: str
+    password: str
+    email: Optional[str] = None
+
+
+@router.post("/authn/register", response_model=ResponseEnvelope)
+async def register(payload: RegisterRequest, db: Session = Depends(get_db)):
+    """Self-registration for the built-in basic (username/password) provider."""
+    from uniback.config.settings import get_cached_settings
+
+    settings = get_cached_settings()
+    if not settings.auth.basic_auth_enabled:
+        raise HTTPException(status_code=404, detail="Basic authentication is disabled")
+
+    username = (payload.username or "").strip()
+    if not username:
+        raise HTTPException(status_code=400, detail="Username is required")
+
+    min_len = settings.auth.password_min_length
+    if len(payload.password or "") < min_len:
+        raise HTTPException(
+            status_code=400, detail=f"Password must be at least {min_len} characters long"
+        )
+
+    if db.query(Identity).filter(Identity.name == username).first():
+        raise HTTPException(status_code=409, detail="Username already exists")
+
+    authenticator = db.query(Authenticator).filter(Authenticator.name == "basic").first()
+    if not authenticator:
+        authenticator = Authenticator(name="basic")
+        db.add(authenticator)
+        db.flush()
+
+    identity = Identity(name=username, email=payload.email, can_login=True)
+    db.add(identity)
+    db.flush()
+
+    db.add(
+        IdentityAuthenticator(
+            identity_id=identity.id,
+            authenticator_id=authenticator.id,
+            name=username,
+            email=payload.email,
+            authenticator_info={"password_hash": hash_password(payload.password)},
+        )
+    )
+    db.commit()
+
+    return ResponseEnvelope.ok(
+        content={"status": "success", "identity": username, "message": "Registered"}
+    )
 
 
 @router.get("/user_roles", response_model=ResponseEnvelope)

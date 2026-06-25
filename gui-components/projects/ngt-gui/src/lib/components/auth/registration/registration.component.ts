@@ -41,6 +41,9 @@ export class RegistrationComponent implements OnInit {
   loading = false;
   registerFormGroup;
 
+  hasBasic = false;
+  hasFirebase = false;
+
   constructor(
     private fb: UntypedFormBuilder,
     @Inject(AUTH_SERVICE_TOKEN) private authService: AuthServiceInterface,
@@ -49,15 +52,15 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerFormGroup = this.fb.group({
-      email: [null, this.emailValidator],
+      email: [null, this.requiredValidator],
       password: [null, this.passwordValidator],
     });
+    this.loadProviders();
   }
 
-  emailValidator(control: UntypedFormControl): { [s: string]: any } {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(control.value).toLowerCase())) {
-      return { invalidEmail: true };
+  requiredValidator(control: UntypedFormControl): { [s: string]: any } {
+    if (!control.value || String(control.value).trim() === '') {
+      return { required: true };
     }
     return {};
   }
@@ -66,10 +69,23 @@ export class RegistrationComponent implements OnInit {
     if (!control.value || control.value === '') {
       return { invalidPassword: true };
     }
-    if (typeof control.value !== 'string' || control.value.length < 6) {
+    if (typeof control.value !== 'string' || control.value.length < 8) {
       return { invalidPassword: true };
     }
     return {};
+  }
+
+  private loadProviders() {
+    this.authService.getAuthProviders().subscribe({
+      next: (res: any) => {
+        const providers = (res && res.content) || [];
+        this.hasBasic = providers.some((p: any) => p.id === 'basic');
+        this.hasFirebase = providers.some((p: any) => p.id === 'firebase');
+      },
+      error: () => {
+        this.hasBasic = true;
+      },
+    });
   }
 
   async submitRegister() {
@@ -77,32 +93,54 @@ export class RegistrationComponent implements OnInit {
       this.registerFormGroup.controls[i].markAsDirty();
       this.registerFormGroup.controls[i].updateValueAndValidity();
     }
-    if (this.registerFormGroup.valid) {
-      this.loading = true;
-      try {
-        await this.authService.createUserWithEmailAndPassword(this.registerFormGroup.get('email').value, this.registerFormGroup.get('password').value);
+    if (!this.registerFormGroup.valid) {
+      return;
+    }
+    this.loading = true;
+    const identifier = this.registerFormGroup.get('email').value;
+    const password = this.registerFormGroup.get('password').value;
+    try {
+      if (this.hasBasic) {
+        // Basic provider: register and auto-login.
+        await this.authService.registerBasic({ username: identifier, password });
+        this.desactiveRegister.emit();
+      } else {
+        await this.authService.createUserWithEmailAndPassword(identifier, password);
         this.nzModalService.info({
-          nzTitle: 'Verifición',
+          nzTitle: 'Verificación',
           nzContent: 'Se ha enviado a su email un correo para verificar el usuario.',
           nzCentered: true,
         });
         this.desactiveRegister.emit();
-      } catch (e) {
-        console.log(e);
-        if (e.code) {
-          switch (e.code) {
-            case "auth/email-already-in-use":
-              this.nzModalService.error({
-                nzTitle: 'Error',
-                nzContent: 'El email ya esta en uso o esta a la espera de verificación.',
-                nzCentered: true,
-              });
-              break;
-          }
-        }
       }
+    } catch (e: any) {
       this.loading = false;
+      this.handleRegisterError(e);
     }
+  }
+
+  private handleRegisterError(e: any) {
+    if (e && e.status === 409 || e?.code === 'auth/email-already-in-use') {
+      this.nzModalService.error({
+        nzTitle: 'Error',
+        nzContent: 'El usuario ya existe.',
+        nzCentered: true,
+      });
+      return;
+    }
+    if (e && e.status === 400) {
+      this.nzModalService.error({
+        nzTitle: 'Error',
+        nzContent: 'La contraseña no cumple los requisitos mínimos.',
+        nzCentered: true,
+      });
+      return;
+    }
+    this.nzModalService.error({
+      nzTitle: 'Error',
+      nzContent: 'No se ha podido completar el registro.',
+      nzCentered: true,
+    });
   }
 
   onClickLinkLogin() {

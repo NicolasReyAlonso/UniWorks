@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import bcrypt
 import uuid
 from datetime import datetime, timezone
@@ -21,6 +22,7 @@ from uniback.persistence.models.sysadmin import (
     Role,
     RoleIdentity,
 )
+from uniback.utils.common import verify_password
 
 TM_DEFAULT_ROLES = {
     "sys-admin": "c79b4ff7-9576-45f6-a439-551ac23c563b",
@@ -47,18 +49,29 @@ class AuthService:
         # 1. Extract credentials
         tok_dict: Dict[str, Any] = {}
         if "Authorization" in request.headers:
-            # Firebase token
-            auth_token = request.headers["Authorization"].split(" ")[1]
-            if firebase_auth:
+            auth_header = request.headers["Authorization"]
+            scheme, _, credentials = auth_header.partition(" ")
+            if scheme.lower() == "basic":
+                # Basic provider: base64("username:password")
                 try:
-                    tok_dict = firebase_auth.verify_id_token(auth_token)
-                    tok_dict["auth_method"] = "firebase"
-                except Exception as e:
-                    print(f"DEBUG AUTH 401 Firebase: {str(e)}", flush=True)
-                    raise HTTPException(status_code=401, detail=f"Invalid Firebase token: {str(e)}")
+                    decoded = base64.b64decode(credentials).decode("utf-8")
+                    username, _, password = decoded.partition(":")
+                except Exception:
+                    raise HTTPException(status_code=401, detail="Invalid Basic credentials")
+                tok_dict = {"user": username, "password": password, "auth_method": "basic"}
             else:
-                # Fallback or placeholder if firebase_admin is not installed
-                tok_dict = {"firebase": {"token": auth_token}, "auth_method": "firebase"}
+                # Firebase bearer token
+                auth_token = credentials
+                if firebase_auth:
+                    try:
+                        tok_dict = firebase_auth.verify_id_token(auth_token)
+                        tok_dict["auth_method"] = "firebase"
+                    except Exception as e:
+                        print(f"DEBUG AUTH 401 Firebase: {str(e)}", flush=True)
+                        raise HTTPException(status_code=401, detail=f"Invalid Firebase token: {str(e)}")
+                else:
+                    # Fallback or placeholder if firebase_admin is not installed
+                    tok_dict = {"firebase": {"token": auth_token}, "auth_method": "firebase"}
         elif "X-API-Key" in request.headers:
             user = request.query_params.get("user")
             tok_dict = {
@@ -180,6 +193,33 @@ class AuthService:
                     identity_id=identity.id, authenticator_id=authenticator.id, name=name
                 )
                 db.add(ident_auth)
+
+        elif auth_method == "basic":
+            password = tok_dict.get("password") or ""
+            authenticator = db.query(Authenticator).filter(Authenticator.name == "basic").first()
+            if not authenticator:
+                raise HTTPException(status_code=401, detail="Basic authentication is not available")
+
+            identity = db.query(Identity).filter(Identity.name == name).first()
+            if not identity and email:
+                identity = db.query(Identity).filter(Identity.email == email).first()
+            if not identity:
+                raise HTTPException(status_code=401, detail="Invalid credentials")
+
+            ident_auth = (
+                db.query(IdentityAuthenticator)
+                .filter(
+                    and_(
+                        IdentityAuthenticator.identity_id == identity.id,
+                        IdentityAuthenticator.authenticator_id == authenticator.id,
+                    )
+                )
+                .first()
+            )
+            info = ident_auth.authenticator_info if ident_auth else None
+            stored_hash = info.get("password_hash") if isinstance(info, dict) else None
+            if not stored_hash or not verify_password(password, stored_hash):
+                raise HTTPException(status_code=401, detail="Invalid credentials")
 
         elif auth_method == "firebase":
             authenticator = db.query(Authenticator).filter(Authenticator.name == "firebase").first()

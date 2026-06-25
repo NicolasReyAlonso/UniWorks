@@ -6,10 +6,10 @@
 
           <form nz-form nzLayout="vertical" style="margin-top: 15px;" [formGroup]="registerFormGroup" (keydown.enter)="submitRegister()">
             <nz-form-item>
-              <nz-form-label>Email</nz-form-label>
+              <nz-form-label>{{ hasBasic ? 'Usuario' : 'Email' }}</nz-form-label>
               <nz-form-control>
                 <nz-input-group>
-                  <input type="text" nz-input formControlName="email" placeholder="Email" />
+                  <input type="text" nz-input formControlName="email" [placeholder]="hasBasic ? 'Usuario' : 'Email'" />
                 </nz-input-group>
               </nz-form-control>
             </nz-form-item>

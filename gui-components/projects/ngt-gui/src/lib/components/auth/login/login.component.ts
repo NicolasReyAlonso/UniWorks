@@ -59,6 +59,11 @@ export class LoginComponent implements OnInit {
 
   isVisibleForgetPasswordModal = false;
 
+  // Available auth providers, discovered from the backend.
+  hasBasic = false;
+  hasFirebase = false;
+  supportsRegister = false;
+
   constructor(
     @Inject(AUTH_SERVICE_TOKEN) public authService: AuthServiceInterface,
     private router: Router,
@@ -69,9 +74,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginFormGroup = this.fb.group({
-      email: [null, this.emailValidator],
+      email: [null, this.requiredValidator],
       password: [null, this.passwordValidator],
     });
+    this.loadProviders();
 
     this.forgetPasswordFormGroup = this.fb.group({
       email: ["", this.emailValidator],
@@ -118,51 +124,78 @@ export class LoginComponent implements OnInit {
     await this.authService.loginAnonymous();
   }
 
+  requiredValidator(control: UntypedFormControl): { [s: string]: any } {
+    if (!control.value || String(control.value).trim() === "") {
+      return { required: true };
+    }
+    return {};
+  }
+
+  private loadProviders() {
+    this.authService.getAuthProviders().subscribe({
+      next: (res: any) => {
+        const providers = (res && res.content) || [];
+        this.hasBasic = providers.some((p: any) => p.id === 'basic');
+        this.hasFirebase = providers.some((p: any) => p.id === 'firebase');
+        this.supportsRegister = providers.some((p: any) => p.supports_register);
+      },
+      error: () => {
+        // Fallback so the demo stays usable if discovery fails.
+        this.hasBasic = true;
+        this.supportsRegister = true;
+      },
+    });
+  }
+
   async submitLogin() {
     for (const i in this.loginFormGroup.controls) {
       this.loginFormGroup.controls[i].markAsDirty();
       this.loginFormGroup.controls[i].updateValueAndValidity();
     }
-    if (this.loginFormGroup.valid) {
-      this.loading = true;
-      try {
-        console.log('Attempting login with email:', this.loginFormGroup.get('email').value);
-        await this.authService.loginWithEmailAndPassword(this.loginFormGroup.get('email').value, this.loginFormGroup.get('password').value);
-        console.log('Login successful for email:', this.authService.user);
-        this.loginFormGroup.get('email').setValue("");
-        this.loginFormGroup.get('password').setValue("");
-      } catch (e) {
-        console.log(e);
-        if (e.code) {
-          switch (e.code) {
-            case "auth/user-not-found":
-              this.nzModalService.error({
-                nzTitle: 'Error',
-                nzContent: 'No existe ningún usuario con ese email.',
-                nzCentered: true,
-              });
-              this.loading = false;
-              break;
-            case "auth/wrong-password":
-              this.nzModalService.error({
-                nzTitle: 'Error',
-                nzContent: 'La contraseña no es correcta.',
-                nzCentered: true,
-              });
-              this.loading = false;
-              break;
-            case "auth/email-not-verified":
-              this.nzModalService.error({
-                nzTitle: 'Error',
-                nzContent: 'El email no esta verificado. Se le ha enviado al email un correo de verificación.',
-                nzCentered: true,
-              });
-              this.loading = false;
-              break;
-          }
-        }
-      }
+    if (!this.loginFormGroup.valid) {
+      return;
     }
+    this.loading = true;
+    const identifier = this.loginFormGroup.get('email').value;
+    const password = this.loginFormGroup.get('password').value;
+    try {
+      // Basic provider takes precedence when available (the framework default);
+      // Firebase email/password is used when only Firebase is configured.
+      if (this.hasBasic) {
+        await this.authService.loginWithBasic(identifier, password);
+      } else {
+        await this.authService.loginWithEmailAndPassword(identifier, password);
+      }
+      this.loginFormGroup.get('email').setValue("");
+      this.loginFormGroup.get('password').setValue("");
+    } catch (e) {
+      this.loading = false;
+      this.handleLoginError(e);
+    }
+  }
+
+  private handleLoginError(e: any) {
+    if (e && (e.status === 401 || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found')) {
+      this.nzModalService.error({
+        nzTitle: 'Error',
+        nzContent: 'Usuario o contraseña incorrectos.',
+        nzCentered: true,
+      });
+      return;
+    }
+    if (e && e.code === 'auth/email-not-verified') {
+      this.nzModalService.error({
+        nzTitle: 'Error',
+        nzContent: 'El email no está verificado. Se le ha enviado un correo de verificación.',
+        nzCentered: true,
+      });
+      return;
+    }
+    this.nzModalService.error({
+      nzTitle: 'Error',
+      nzContent: 'No se ha podido iniciar sesión.',
+      nzCentered: true,
+    });
   }
 
   error(event) {

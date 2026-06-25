@@ -145,6 +145,10 @@ class AuthSettings(BaseSettings):
         default=True,
         description="Enable authentication endpoints",
     )
+    basic_auth_enabled: bool = Field(
+        default=True,
+        description="Enable the built-in username/password (basic) auth provider",
+    )
     firebase_credentials_path: str | None = Field(
         default=None,
         description="Path to the Firebase service account JSON file",

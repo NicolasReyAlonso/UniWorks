@@ -35,6 +35,7 @@ from uniback.persistence.utils import (
     load_many_to_many_table as load_many_to_many_table_util,
     create_or_update_acl_reference_object as create_or_update_acl_reference_object_util
 )
+from uniback.utils.common import hash_password
 
 def load_table(db: Session, model: Any, data: Dict[str, str]):
     load_table_util(db, model, data)
@@ -103,7 +104,8 @@ tm_default_users = {  # Identities
     "0fc2b361-847c-4b2e-8fbd-533092133eef": "admin",
     "74d20b2c-5b49-462c-8d19-8a72f47b5d1b": "_anonymous",
     "91c8008e-97d5-440c-b3fc-f5a409a44768": "test_user",
-    "1c8b0500-32d2-40ce-8da0-4fc772f4c3a3": "celery_user"
+    "1c8b0500-32d2-40ce-8da0-4fc772f4c3a3": "celery_user",
+    "2b6d4f8a-1c3e-4d5b-8a9f-0e1d2c3b4a56": "demo"
 }
 
 tm_default_groups = {
@@ -129,7 +131,8 @@ tm_default_roles = {
 tm_authenticators = {  # Authenticator
     "5b7e9e40-040b-40fc-9db3-7d707fe9617f": "firebase",
     "5f32a593-306f-4b69-983c-0a5680556fae": "local",
-    "15aa399f-dd58-433f-8e94-5b2222cd06c9": "local-api-key"
+    "15aa399f-dd58-433f-8e94-5b2222cd06c9": "local-api-key",
+    "8d1f0a2c-3b4e-4a6d-9c0f-2e7a1b5c9d34": "basic",
 }
 
 tm_system_functions = {
@@ -472,11 +475,36 @@ def initialize_kernel_data(db: Session):
         iden_authentication.name = anonymous_user_id
         iden_authentication.email = "_@anonymous.org"
         session.add(iden_authentication)
+
+    # Demo user for the built-in "basic" (username/password) provider, so the
+    # multi-provider login can be showcased out of the box (demo / demo1234).
+    demo_user_id = "demo"
+    basic_authenticator_uuid = "8d1f0a2c-3b4e-4a6d-9c0f-2e7a1b5c9d34"
+    stmt = select(Identity).where(Identity.name == demo_user_id)
+    iden = session.scalar(stmt)
+    if iden:
+        iden.can_login = True
+        stmt = select(Authenticator).where(Authenticator.uuid == basic_authenticator_uuid)
+        basic_authenticator = session.scalar(stmt)
+        stmt = select(IdentityAuthenticator).where(
+            and_(IdentityAuthenticator.identity == iden,
+                 IdentityAuthenticator.authenticator == basic_authenticator))
+        iden_authentication = session.scalar(stmt)
+        if not iden_authentication and basic_authenticator:
+            iden_authentication = IdentityAuthenticator()
+            iden_authentication.identity = iden
+            iden_authentication.authenticator = basic_authenticator
+            iden_authentication.name = demo_user_id
+            iden_authentication.email = "demo@demo.org"
+            iden_authentication.authenticator_info = {"password_hash": hash_password("demo1234")}
+            session.add(iden_authentication)
+
     # Set test_user roles and groups
     load_many_to_many_table(db, RoleIdentity, Role, Identity, ["role_id", "identity_id"],
                             [("sys-admin", test_user_id),
                              ("sys-admin", celery_user_id),
-                             ("guest", anonymous_user_id)])
+                             ("guest", anonymous_user_id),
+                             ("guest", demo_user_id)])
     load_many_to_many_table(db, GroupIdentity, Group, Identity, ["group_id", "identity_id"],
                             [("all-identified", test_user_id)])
 

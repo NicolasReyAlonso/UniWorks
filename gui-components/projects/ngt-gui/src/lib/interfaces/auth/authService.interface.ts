@@ -35,6 +35,10 @@ export interface AuthServiceInterface {
   loginAnonymous(): any;
   loginWithGoogle(): any;
   logout(): any;
+  getAuthProviders(): Observable<any>;
+  loginWithBasic(username: string, password: string): any;
+  registerBasic(data: { username: string; email?: string; password: string }): any;
+  updateBasicToken(username: string, password: string): any;
   havePermission(permissionCode: string): boolean;
   haveOnePermissionForApiKeys(): boolean;
   haveRole(name: string): boolean;

@@ -75,6 +75,16 @@ export class BackendService implements BackendServiceInterface{
     return this.http.delete(this.base_url + '/authn', this.globalVariablesService.authOptions);
   }
 
+  // Multi-provider authentication
+
+  getAuthProviders() {
+    return this.http.get(this.base_url + '/authn/providers', this.globalVariablesService.authOptions);
+  }
+
+  register(body: { username: string; email?: string; password: string }) {
+    return this.http.post(this.base_url + '/authn/register', body, this.globalVariablesService.authOptions);
+  }
+
   // Functions GUI
 
   getFunctionsGui() {

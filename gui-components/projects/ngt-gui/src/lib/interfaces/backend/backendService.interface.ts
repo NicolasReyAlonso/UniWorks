@@ -19,6 +19,8 @@ export interface BackendServiceInterface extends backendAnnotationsInterface, ba
   getSession(): Observable<any>;
   putSession(): Observable<any>;
   deleteSession(): Observable<any>;
+  getAuthProviders(): Observable<any>;
+  register(body: { username: string; email?: string; password: string }): Observable<any>;
 
   // Functions GUI
 
