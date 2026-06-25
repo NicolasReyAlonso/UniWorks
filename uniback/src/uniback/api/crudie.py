@@ -428,7 +428,7 @@ def make_crudie_rest_crud(entity: str, prefix: str = None, tags: List[str] = Non
     async def update_item(id: Any, request: Request, sess: AppSession = Depends(get_n_session())):
         crudie = getCRUDIE(entity, sess)
         params = await parse_request_params(request)
-        issues, content, count, status = crudie.update(id=id, **params.get('values', {}))
+        issues, content, count, status = crudie.update(id=id, values=params.get('values', {}))
         return ResponseEnvelope(content=prepare_content(content), count=count, issues=issues)
 
     @router.delete("/{id}", response_model=ResponseEnvelope)

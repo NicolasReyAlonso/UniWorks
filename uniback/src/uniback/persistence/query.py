@@ -213,8 +213,13 @@ def get_query(
         stmt = select(model)
         
     if id:
-        stmt = stmt.where(model.id == id)
-        # For single ID, count is usually 1 if found
+        # ``id`` may be a single value or a collection (CRUD handlers normalise
+        # it through ``listify``); use IN(...) for collections so the query does
+        # not try to bind a list to an equality comparison.
+        if isinstance(id, (list, tuple, set)):
+            stmt = stmt.where(model.id.in_(id))
+        else:
+            stmt = stmt.where(model.id == id)
         count = session.scalar(select(func.count()).select_from(stmt.subquery()))
     else:
         if not kwargs.get('values'):
