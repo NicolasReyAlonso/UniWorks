@@ -6,7 +6,8 @@
   height: 52px;
   border-radius: 50%;
   border: none;
-  background: #1677ff;
+  /* Color del tema activo (lo expone cada tema como --mat-sys-primary). */
+  background: var(--mat-sys-primary, #073642);
   color: #fff;
   font-size: 22px;
   cursor: grab;
@@ -31,7 +32,9 @@
   width: 34px;
   height: 34px;
   pointer-events: none; /* el arrastre lo captura el botón, no la imagen */
-  /* Colores nativos del SVG: cuerpo negro con cara blanca (contrasta sobre el azul). */
+  /* SVG nativo: cuerpo negro con cara blanca. Lo invertimos (blanco/negro y
+     viceversa) para que contraste sobre el color del tema. */
+  filter: invert(1);
 }
 
 .assistant-fab-close {
