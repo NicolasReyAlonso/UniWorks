@@ -1,0 +1,99 @@
+<div style="height: 100%; display: flex; flex-direction: column;">
+  <!-- Header -->
+  <div class="theme-header-background-color" style="flex: 0 0 auto;">
+    <app-top-area [title]="topBarTitle" [icon]="topBarIcon"></app-top-area>
+  </div>
+
+  <!-- Body -->
+  <div style="flex: 1 1 auto; display: flex; min-height: 0; position: relative;">
+    <as-split direction="horizontal" #mainSplit [gutterSize]="1" [unit]="'percent'"
+      style="flex: 1 1 auto; height: 100%;" (gutterDblClick)="toggleSidebar()" [gutterDblClickDuration]="500"
+      [useTransition]="true">
+
+      <div *asSplitGutter="let isDragged = isDragged" class="custom-shade-gutter" [class.dragged]="isDragged">
+        <div class="custom-shade-gutter-icon"></div>
+      </div>
+
+      <!-- Sidebar -->
+      <as-split-area [size]="sidebarSize" [minSize]="20" [maxSize]="35">
+        <div style="display: flex; flex: 1 1 auto; height: 100%;" class="block1">
+          <div style="position: relative; height: 100%;" class="sidebarComponent"
+            [@sidebarOpenClose]="!isSidebarCollapsed">
+            <app-sidebar></app-sidebar>
+          </div>
+        </div>
+      </as-split-area>
+
+      <!-- Content: gestor de ventanas MDI -->
+      <as-split-area [size]="100 - sidebarSize" [minSize]="20" [maxSize]="100">
+        <div class="mdi-content theme-body-background-color">
+
+          <!-- Barra de pestañas acopladas (tipo navegador) -->
+          <div class="mdi-tabbar" *ngIf="wm.dockedWindows().length">
+            <div class="mdi-tab" *ngFor="let w of wm.dockedWindows()"
+                 [class.active]="w.id === activeDockedId()"
+                 (click)="wm.focus(w.id)">
+              <i *ngIf="w.icon" class="mdi-tab-icon" [ngClass]="w.icon"></i>
+              <span class="mdi-tab-label">{{ w.title }}</span>
+              <button type="button" class="mdi-tab-btn" title="Desacoplar"
+                      (click)="wm.undock(w.id); $event.stopPropagation()">⧉</button>
+              <button type="button" class="mdi-tab-btn" title="Cerrar"
+                      (click)="wm.close(w.id); $event.stopPropagation()">✕</button>
+            </div>
+          </div>
+
+          <!-- Zona principal: contenido acoplado + ventanas flotantes -->
+          <div class="mdi-main">
+
+            <!-- Contenido de las pestañas acopladas (todas vivas, sólo una visible) -->
+            <div class="mdi-docked-stack">
+              <div class="mdi-docked-page" *ngFor="let w of wm.dockedWindows(); trackBy: trackById"
+                   [hidden]="w.id !== activeDockedId()">
+                <ng-container *ngComponentOutlet="w.component; injector: w.injector"></ng-container>
+              </div>
+            </div>
+
+            <!-- Ventanas flotantes (boundary de arrastre). Se renderizan todas
+                 las no acopladas; las minimizadas se ocultan por CSS para
+                 conservar su estado vivo. -->
+            <div class="mdi-workspace">
+              <app-window-frame *ngFor="let w of wm.nonDockedWindows(); trackBy: trackById"
+                                [win]="w"
+                                [active]="w.id === wm.activeId()"></app-window-frame>
+            </div>
+
+            <!-- Escritorio vacío -->
+            <div class="mdi-empty"
+                 *ngIf="!wm.dockedWindows().length && !wm.floatingWindows().length && !wm.minimizedWindows().length">
+              <div class="mdi-empty-inner">
+                <div class="mdi-empty-icon">🗔</div>
+                <p>Selecciona una opción del menú para abrir una ventana.</p>
+              </div>
+            </div>
+
+            <!-- Barra de carga fina durante la navegación -->
+            <div class="mdi-loadingbar" *ngIf="loading"></div>
+          </div>
+
+          <!-- Bandeja de ventanas minimizadas -->
+          <div class="mdi-tray" *ngIf="wm.minimizedWindows().length">
+            <div class="mdi-tray-item" *ngFor="let w of wm.minimizedWindows()"
+                 (click)="wm.restore(w.id)" [title]="w.title">
+              <i *ngIf="w.icon" class="mdi-tray-icon" [ngClass]="w.icon"></i>
+              <span class="mdi-tray-label">{{ w.title }}</span>
+              <button type="button" class="mdi-tab-btn" title="Cerrar"
+                      (click)="wm.close(w.id); $event.stopPropagation()">✕</button>
+            </div>
+          </div>
+
+        </div>
+      </as-split-area>
+    </as-split>
+  </div>
+
+  <div style="position: fixed; bottom: 0; right: 0;">
+    <app-message-grid></app-message-grid>
+  </div>
+
+  <app-modals></app-modals>
+</div>

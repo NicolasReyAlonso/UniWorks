@@ -8,8 +8,9 @@ import {NzMessageModule} from "ng-zorro-antd/message";
 import {NzNotificationModule} from "ng-zorro-antd/notification";
 import {NzIconModule} from "ng-zorro-antd/icon";
 import {CommonModule} from "@angular/common";
-//import { TabLayoutComponent } from '@components/layout/tab-layout/tab-layout.component';
-import { TabLayoutComponent } from 'ngt-gui/gui';
+// Layout MDI (ventanas). Para volver al layout de pestañas clásico, importa
+// TabLayoutComponent en su lugar y usa <app-tab-layout> en app.component.html.
+import { MdiLayoutComponent } from 'ngt-gui/gui';
 import { AssistantOverlayComponent } from './components/assistant-overlay/assistant-overlay.component';
 
 @Component({
@@ -25,7 +26,7 @@ import { AssistantOverlayComponent } from './components/assistant-overlay/assist
     NzNotificationModule,
     NzIconModule,
     // Components
-    TabLayoutComponent,
+    MdiLayoutComponent,
     AssistantOverlayComponent
 ],
   selector: 'app-root',

@@ -1,0 +1,164 @@
+.sidebarComponent
+  height: 100%
+  width: 100%
+  background-color: #fafafa
+  border-right: 1px solid #e0e0e0
+
+.mdi-content
+  display: flex
+  flex-direction: column
+  height: 100%
+  min-height: 0
+
+// ── Barra de pestañas acopladas ──────────────────────────────────────
+.mdi-tabbar
+  flex: 0 0 auto
+  display: flex
+  align-items: stretch
+  gap: 2px
+  padding: 4px 6px 0 6px
+  background: #ececec
+  border-bottom: 1px solid #dcdcdc
+  overflow-x: auto
+
+.mdi-tab
+  display: flex
+  align-items: center
+  gap: 6px
+  max-width: 220px
+  padding: 6px 8px 6px 12px
+  background: #f7f7f7
+  border: 1px solid #dcdcdc
+  border-bottom: none
+  border-radius: 8px 8px 0 0
+  cursor: pointer
+  font-size: 13px
+  color: #555
+  white-space: nowrap
+  &:hover
+    background: #fff
+  &.active
+    background: #fff
+    color: #1677ff
+    font-weight: 600
+    box-shadow: 0 -2px 0 #1677ff inset
+
+.mdi-tab-icon, .mdi-tray-icon
+  font-size: 14px
+
+.mdi-tab-label
+  overflow: hidden
+  text-overflow: ellipsis
+
+.mdi-tab-btn
+  width: 20px
+  height: 20px
+  display: inline-flex
+  align-items: center
+  justify-content: center
+  border: none
+  background: transparent
+  border-radius: 4px
+  cursor: pointer
+  font-size: 11px
+  color: #888
+  &:hover
+    background: rgba(0, 0, 0, 0.1)
+    color: #333
+
+// ── Zona principal ───────────────────────────────────────────────────
+.mdi-main
+  flex: 1 1 auto
+  position: relative
+  min-height: 0
+  overflow: hidden
+
+.mdi-docked-stack
+  position: absolute
+  inset: 0
+
+.mdi-docked-page
+  position: absolute
+  inset: 0
+  overflow: auto
+  // El componente hospedado ocupa toda la página
+  ::ng-deep > *
+    display: block
+    height: 100%
+    width: 100%
+
+// Capa de ventanas flotantes: no captura clics salvo sobre las ventanas
+.mdi-workspace
+  position: absolute
+  inset: 0
+  pointer-events: none
+  overflow: hidden
+  ::ng-deep .window-frame
+    pointer-events: auto
+
+.mdi-empty
+  position: absolute
+  inset: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  color: #9aa0a6
+  pointer-events: none
+
+.mdi-empty-inner
+  text-align: center
+
+.mdi-empty-icon
+  font-size: 48px
+  margin-bottom: 12px
+  opacity: 0.6
+
+.mdi-loadingbar
+  position: absolute
+  top: 0
+  left: 0
+  height: 3px
+  width: 100%
+  background: linear-gradient(90deg, transparent, #1677ff, transparent)
+  background-size: 40% 100%
+  background-repeat: no-repeat
+  animation: mdi-loading 1s linear infinite
+  pointer-events: none
+  z-index: 9999
+
+@keyframes mdi-loading
+  0%
+    background-position: -40% 0
+  100%
+    background-position: 140% 0
+
+// ── Bandeja de minimizadas ───────────────────────────────────────────
+.mdi-tray
+  flex: 0 0 auto
+  display: flex
+  align-items: center
+  gap: 6px
+  padding: 6px 8px
+  background: #ececec
+  border-top: 1px solid #dcdcdc
+  overflow-x: auto
+
+.mdi-tray-item
+  display: flex
+  align-items: center
+  gap: 6px
+  max-width: 200px
+  padding: 4px 6px 4px 10px
+  background: #fff
+  border: 1px solid #d0d0d0
+  border-radius: 6px
+  cursor: pointer
+  font-size: 12px
+  color: #555
+  white-space: nowrap
+  &:hover
+    border-color: #1677ff
+
+.mdi-tray-label
+  overflow: hidden
+  text-overflow: ellipsis

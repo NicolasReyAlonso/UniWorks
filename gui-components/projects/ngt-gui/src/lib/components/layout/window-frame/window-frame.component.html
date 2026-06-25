@@ -1,0 +1,53 @@
+<div
+  class="window-frame"
+  cdkDrag
+  cdkDragBoundary=".mdi-workspace"
+  [cdkDragFreeDragPosition]="dragPosition"
+  [cdkDragDisabled]="dragDisabled"
+  (cdkDragEnded)="onDragEnded($event)"
+  (mousedown)="onFocus()"
+  [class.active]="active"
+  [class.minimized]="win.state === 'minimized'"
+  [class.maximized]="win.state === 'maximized'"
+  [style.width.px]="win.state === 'maximized' ? null : win.width"
+  [style.height.px]="win.state === 'maximized' ? null : win.height"
+  [style.zIndex]="win.zIndex"
+>
+  <!-- Barra de título (asa de arrastre) -->
+  <div class="window-titlebar" cdkDragHandle (dblclick)="toggleMaximize()">
+    <span class="window-title">
+      <i *ngIf="win.icon" class="window-title-icon" [ngClass]="win.icon"></i>
+      {{ win.title }}
+    </span>
+
+    <div class="window-actions">
+      <button type="button" class="win-btn" title="Acoplar como pestaña"
+              (click)="dock(); $event.stopPropagation()">⊟</button>
+      <button type="button" class="win-btn" title="Minimizar"
+              (click)="minimize(); $event.stopPropagation()">—</button>
+      <button type="button" class="win-btn" title="Maximizar / Restaurar"
+              (click)="toggleMaximize(); $event.stopPropagation()">
+        {{ win.state === 'maximized' ? '❐' : '▢' }}
+      </button>
+      <button type="button" class="win-btn win-btn-close" title="Cerrar"
+              (click)="close(); $event.stopPropagation()">✕</button>
+    </div>
+  </div>
+
+  <!-- Contenido hospedado dinámicamente -->
+  <div class="window-content">
+    <ng-container *ngComponentOutlet="win.component; injector: win.injector"></ng-container>
+  </div>
+
+  <!-- Tiradores de redimensionado (ocultos en maximizado vía CSS) -->
+  <ng-container *ngIf="win.state !== 'maximized'">
+    <div class="rh rh-n"  (pointerdown)="startResize($event, 'n')"></div>
+    <div class="rh rh-s"  (pointerdown)="startResize($event, 's')"></div>
+    <div class="rh rh-e"  (pointerdown)="startResize($event, 'e')"></div>
+    <div class="rh rh-w"  (pointerdown)="startResize($event, 'w')"></div>
+    <div class="rh rh-ne" (pointerdown)="startResize($event, 'ne')"></div>
+    <div class="rh rh-nw" (pointerdown)="startResize($event, 'nw')"></div>
+    <div class="rh rh-se" (pointerdown)="startResize($event, 'se')"></div>
+    <div class="rh rh-sw" (pointerdown)="startResize($event, 'sw')"></div>
+  </ng-container>
+</div>
