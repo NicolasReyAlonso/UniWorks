@@ -13,6 +13,7 @@ import {
 
 import { ManagedWindow } from '../../../interfaces/window-instance.interface';
 import { WindowManagerService } from '../../../services/window-manager.service';
+import { WindowHostDirective } from '../window-host.directive';
 
 /** Dirección de un tirador de redimensionado. */
 type ResizeDir = 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw';
@@ -37,7 +38,7 @@ const MIN_HEIGHT = 160;
 @Component({
   selector: 'app-window-frame',
   standalone: true,
-  imports: [CommonModule, CdkDrag, CdkDragHandle],
+  imports: [CommonModule, CdkDrag, CdkDragHandle, WindowHostDirective],
   templateUrl: './window-frame.component.html',
   styleUrls: ['./window-frame.component.sass'],
   changeDetection: ChangeDetectionStrategy.OnPush,

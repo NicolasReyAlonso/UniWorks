@@ -34,9 +34,9 @@
     </div>
   </div>
 
-  <!-- Contenido hospedado dinámicamente -->
+  <!-- Contenido hospedado dinámicamente (host movible: ver WindowHostDirective) -->
   <div class="window-content">
-    <ng-container *ngComponentOutlet="win.component; injector: win.injector"></ng-container>
+    <ng-container [wmWindowHost]="win"></ng-container>
   </div>
 
   <!-- Tiradores de redimensionado (ocultos en maximizado vía CSS) -->

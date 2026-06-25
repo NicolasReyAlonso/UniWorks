@@ -56,6 +56,7 @@ import { TopAreaComponent } from '../top-area/top-area.component';
 import { ModalsComponent } from '../modals/modals.component';
 import { MessageGridComponent } from '../message-grid/message-grid.component';
 import { WindowFrameComponent } from '../window-frame/window-frame.component';
+import { WindowHostDirective } from '../window-host.directive';
 
 // Library modules / services
 import { SharedModule } from '../../../modules/shared.module';
@@ -102,6 +103,7 @@ const DESKTOP_ROUTES = new Set(['', '/', '/home', 'home']);
     TopAreaComponent,
     ModalsComponent,
     WindowFrameComponent,
+    WindowHostDirective,
     // Split
     SplitAreaComponent,
     SplitComponent,
@@ -115,6 +117,13 @@ const DESKTOP_ROUTES = new Set(['', '/', '/home', 'home']);
 export class MdiLayoutComponent implements OnInit {
   @Input() topBarTitle = 'TITLE NOT DEFINED';
   @Input() topBarIcon = 'assets/images/main_icon_ngtgui_white.png';
+
+  /**
+   * Modo en que se abren las ventanas al navegar:
+   *  - `'floating'`: ventana flotante en el workspace (por defecto).
+   *  - `'docked'`  : pestaña tipo navegador en la barra superior.
+   */
+  @Input() defaultWindowMode: 'floating' | 'docked' = 'floating';
 
   loading = false;
   navigate = false;
@@ -202,9 +211,11 @@ export class MdiLayoutComponent implements OnInit {
 
     this.wm.open({
       route: url,
+      layoutKey: this.deriveLayoutKey(snapshot),
       title: this.deriveTitle(snapshot, url),
       component,
       injector: this.buildWindowInjector(snapshot),
+      docked: this.defaultWindowMode === 'docked',
     });
     this.cdf.markForCheck();
   }
@@ -231,6 +242,24 @@ export class MdiLayoutComponent implements OnInit {
       return loaded?.default ?? loaded ?? null;
     }
     return null;
+  }
+
+  /**
+   * Clave de disposición = patrón de ruta (`sequenceDetail/:id`), uniendo los
+   * `path` de la cadena de rutas. Así todas las instancias de una página
+   * comparten geometría/acoplado guardados.
+   */
+  private deriveLayoutKey(snapshot: ActivatedRouteSnapshot): string {
+    const parts: string[] = [];
+    let node: ActivatedRouteSnapshot | null = snapshot;
+    while (node) {
+      const path = node.routeConfig?.path;
+      if (path) {
+        parts.unshift(path);
+      }
+      node = node.parent;
+    }
+    return parts.join('/') || snapshot.url.map((s) => s.path).join('/');
   }
 
   /** Título de la ventana a partir del snapshot o del último segmento de URL. */

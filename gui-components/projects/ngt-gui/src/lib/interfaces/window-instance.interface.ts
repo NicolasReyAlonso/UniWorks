@@ -40,6 +40,13 @@ export interface ManagedWindow extends WindowGeometry {
    */
   route: string;
 
+  /**
+   * Clave para recordar la disposición (geometría/acoplado) en localStorage.
+   * Suele ser el patrón de ruta (`sequenceDetail/:id`) para que todas las
+   * instancias de una misma página compartan disposición. Por defecto, `route`.
+   */
+  layoutKey: string;
+
   /** Clase de componente que se hospeda en la ventana. */
   component: Type<unknown>;
 

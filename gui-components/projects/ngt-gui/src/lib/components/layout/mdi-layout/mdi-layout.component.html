@@ -49,7 +49,7 @@
             <div class="mdi-docked-stack">
               <div class="mdi-docked-page" *ngFor="let w of wm.dockedWindows(); trackBy: trackById"
                    [hidden]="w.id !== activeDockedId()">
-                <ng-container *ngComponentOutlet="w.component; injector: w.injector"></ng-container>
+                <ng-container [wmWindowHost]="w"></ng-container>
               </div>
             </div>
 
