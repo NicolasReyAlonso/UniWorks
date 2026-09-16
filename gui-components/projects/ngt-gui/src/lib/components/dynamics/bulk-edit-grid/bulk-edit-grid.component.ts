@@ -24,7 +24,10 @@ import {
   ColDef,
   GridApi,
   GridReadyEvent,
+  IRowNode,
   ModuleRegistry,
+  RowClassParams,
+  RowClassRules,
   RowSelectedEvent,
 } from 'ag-grid-community';
 
@@ -99,7 +102,7 @@ interface GridRow extends Record<string, unknown> {
       [rowSelection]="'multiple'"
       [stopEditingWhenCellsLoseFocus]="true"
       [getRowId]="getRowId"
-      [getRowClass]="getRowClass"
+      [rowClassRules]="rowClassRules"
       (gridReady)="onGridReady($event)"
       (cellValueChanged)="onCellValueChanged($event)"
       (rowSelected)="onRowSelected($event)">
@@ -127,11 +130,13 @@ interface GridRow extends Record<string, unknown> {
     .bulk-grid-error { padding: .5rem 1rem; background: #fff1f0; color: #b00020; border-bottom: 1px solid #ffa39e; }
     .bulk-grid-summary { padding: .5rem; background: #f6ffed; border-top: 1px solid #b7eb8f; font-size: .9em; }
 
-    /* Row state visual cues. */
-    ::ng-deep .ag-row.row-state-new      { background-color: #e6f7ff !important; }
-    ::ng-deep .ag-row.row-state-modified { background-color: #fffbe6 !important; }
-    ::ng-deep .ag-row.row-state-deleted  { background-color: #fff1f0 !important; text-decoration: line-through; }
-    ::ng-deep .ag-cell.cell-invalid      { background-color: #ffccc7 !important; }
+    /* Row-state visual cues: pending changes stay tinted until the user saves.
+       !important because ag-grid drives the row background through CSS variables
+       at higher specificity, and the tint must also win over hover/selection. */
+    ::ng-deep .ag-row.row-state-new      { background-color: #bae7ff !important; }        /* nueva: azul */
+    ::ng-deep .ag-row.row-state-modified { background-color: #ffd666 !important; }        /* editada: amarillo/naranja */
+    ::ng-deep .ag-row.row-state-deleted  { background-color: #ffa39e !important; color: #820014; text-decoration: line-through; } /* a eliminar: rojo */
+    ::ng-deep .ag-cell.cell-invalid      { background-color: #fff1f0 !important; box-shadow: inset 0 0 0 2px #ff4d4f; }
   `],
 })
 export class BulkEditGridComponent implements OnInit, OnChanges {
@@ -203,7 +208,12 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
     }
     this.validateRow(event.data);
     this.recountDirty();
-    this.gridApi?.refreshCells({ rowNodes: [event.node!], force: true });
+    // Re-render this row in place so its state class (row-state-modified) and
+    // the cell-invalid classes are re-evaluated. `refreshCells` alone refreshes
+    // cell contents but does NOT re-run the row-level class rules, so the
+    // "modified" tint would never appear; `setData` triggers a full row refresh
+    // (re-applying rowClassRules) without a disruptive redraw of the DOM.
+    event.node?.setData(event.data);
   }
 
   onRowSelected(_event: RowSelectedEvent): void {
@@ -232,6 +242,14 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
     }
     this.gridApi.deselectAll();
     this.gridApi.setGridOption('rowData', this.rowData);
+    // setGridOption keeps existing row instances (same id) untouched, so rows we
+    // just flagged 'deleted' in place would not repaint. Redraw exactly those so
+    // the red "to be deleted" tint shows until the change is saved.
+    const deletedNodes: IRowNode<GridRow>[] = [];
+    this.gridApi.forEachNode(node => {
+      if ((node.data as GridRow | undefined)?._rowState === 'deleted') deletedNodes.push(node);
+    });
+    if (deletedNodes.length) this.gridApi.redrawRows({ rowNodes: deletedNodes });
     this.recountDirty();
   }
 
@@ -273,7 +291,10 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
           this.lastSummary = content.summary;
           this.applyBackendResults(content.results);
           this.recountDirty();
-          this.gridApi?.refreshCells({ force: true });
+          // Redraw so rowClassRules re-run: rows saved OK drop their tint (now
+          // 'unchanged') while rows that failed keep it and show cell errors.
+          // refreshCells would repaint cell contents but not the row-level class.
+          this.gridApi?.redrawRows();
           this.saved.emit({ results: content.results, summary: content.summary });
           this.cdr.markForCheck();
         },
@@ -289,9 +310,16 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
 
   getRowId = (params: { data: GridRow }) => String(params.data.id);
 
-  getRowClass = (params: { data: GridRow }) => {
-    const state = params.data?._rowState;
-    return state && state !== 'unchanged' ? `row-state-${state}` : '';
+  /**
+   * Reactive per-row classes keyed on `_rowState`. Unlike `getRowClass` (only
+   * evaluated when a row is first drawn), `rowClassRules` are re-evaluated on
+   * every row refresh, so a row edited or flagged for deletion is re-tinted
+   * without a full grid rebuild. Styling lives in the component `styles`.
+   */
+  rowClassRules: RowClassRules<GridRow> = {
+    'row-state-new': (p: RowClassParams<GridRow>) => p.data?._rowState === 'new',
+    'row-state-modified': (p: RowClassParams<GridRow>) => p.data?._rowState === 'modified',
+    'row-state-deleted': (p: RowClassParams<GridRow>) => p.data?._rowState === 'deleted',
   };
 
   /* --- internals ---------------------------------------------------------- */

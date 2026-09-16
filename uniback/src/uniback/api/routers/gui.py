@@ -7,7 +7,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from uniback.api.dependencies import AppSession, get_n_session
-from uniback.api.schema_registry import build_entity_schema, get_entity
+from uniback.api.schema_registry import EntityRegistration, build_entity_schema, get_entity
 from uniback.api.schemas.responses import ResponseEnvelope
 from uniback.persistence.models.screens import AppFlavor, Menu, Screen
 
@@ -246,7 +246,45 @@ def _synthetic_editable_table(entity_name: str, schema: Dict[str, Any], endpoint
     }
 
 
-def _build_synthetic_screen(name: str) -> Optional[Dict[str, Any]]:
+def _entity_name_from_endpoint(endpoint: str) -> str:
+    """``/api/functional_objects`` → ``functional_objects`` (last path segment)."""
+    return endpoint.rstrip("/").rsplit("/", 1)[-1]
+
+
+def _resolve_registration(
+    entity_name: str, db: Optional[Session]
+) -> tuple[Optional[EntityRegistration], Optional[str]]:
+    """
+    Resolve the entity registration for a synthetic-screen prefix.
+
+    Screen names follow ``<prefix>_<type>`` where ``<prefix>`` is *usually* the
+    registered CRUD entity name. A few screens use a display prefix that differs
+    from the entity (e.g. ``datasets_browser`` → ``functional_objects``,
+    ``views_browser`` → ``viewz``, ``annotation_fields_browser`` →
+    ``annotation_form_fields``). When the prefix is not a registered entity, fall
+    back to a sibling screen that shares the prefix and read the real entity from
+    its ``endpoint``.
+
+    Returns ``(registration, endpoint_override)``. ``endpoint_override`` is the
+    sibling's endpoint when resolved indirectly, else ``None``.
+    """
+    reg = get_entity(entity_name)
+    if reg or db is None:
+        return reg, None
+
+    sibling = db.scalar(
+        select(Screen).where(
+            Screen.name.in_([f"{entity_name}{suffix}" for suffix in SCREEN_SUFFIXES])
+        )
+    )
+    if not sibling or not sibling.endpoint:
+        return None, None
+
+    resolved = get_entity(_entity_name_from_endpoint(sibling.endpoint))
+    return resolved, (sibling.endpoint if resolved else None)
+
+
+def _build_synthetic_screen(name: str, db: Optional[Session] = None) -> Optional[Dict[str, Any]]:
     """
     Build a screen dict on-the-fly from the registered JSON Schema of an entity.
     Returns ``None`` if the name cannot be mapped or no schema is available.
@@ -256,7 +294,7 @@ def _build_synthetic_screen(name: str) -> Optional[Dict[str, Any]]:
         return None
     entity_name, screen_type = parsed
 
-    reg = get_entity(entity_name)
+    reg, endpoint_override = _resolve_registration(entity_name, db)
     if not reg:
         return None
 
@@ -264,7 +302,7 @@ def _build_synthetic_screen(name: str) -> Optional[Dict[str, Any]]:
     if not schema:
         return None
 
-    endpoint = reg.path or f"/{entity_name}"
+    endpoint = endpoint_override or reg.path or f"/{reg.name}"
     if not endpoint.startswith("/api/"):
         endpoint = "/api" + (endpoint if endpoint.startswith("/") else f"/{endpoint}")
     if screen_type == "form":
@@ -391,7 +429,7 @@ async def get_screen_by_name(
     if screen:
         return ResponseEnvelope.ok(content=_screen_to_dict(screen))
 
-    synthetic = _build_synthetic_screen(name)
+    synthetic = _build_synthetic_screen(name, db)
     if synthetic:
         return ResponseEnvelope.ok(content=synthetic)
 
