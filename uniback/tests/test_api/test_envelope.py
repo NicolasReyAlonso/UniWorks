@@ -99,3 +99,18 @@ def test_envelope_issue_has_optional_code_field():
 
     issue2 = Issue(type=IType.WARNING, message="legacy")
     assert issue2.code is None
+
+
+def test_sys_entities_lists_only_addressable_resources(client: TestClient):
+    """Discovery is consumed blindly by generic clients: every entry must be a
+    resource they can address by name and path."""
+    entities = client.get("/api/sys/entities").json()["content"]
+    names = [e["name"] for e in entities]
+
+    assert all(names), "an entity without a name leaked into discovery"
+    assert len(names) == len(set(names)), "ambiguous (duplicated) entity names"
+    assert not [e["path"] for e in entities if "{" in e["path"]]
+    # Lookup helpers (GET by key only) are not entities.
+    assert "by-name" not in names
+    # ...while real resources stay, factory-made or hand-written.
+    assert {"plants", "screens", "hierarchies", "files"} <= set(names)

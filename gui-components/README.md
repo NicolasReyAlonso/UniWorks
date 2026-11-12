@@ -15,3 +15,26 @@ Para ejecutar el proyecto por primera vez es necesario construir primero la libr
 ```bash
 ng build ngt-gui
 ```
+
+## Pruebas
+Los tests de la librería importan de `ngt-gui/*` (el paquete compilado), así que
+hay que construirla antes:
+```bash
+ng build ngt-gui
+ng test ngt-gui --watch=false --browsers=ChromeHeadless   # librería
+ng test bcs-gui --watch=false --browsers=ChromeHeadless   # aplicación de demostración
+```
+Para probar un campo Formly propio (`FieldType`) de forma aislada, la librería
+publica un arnés en `ngt-gui/testing`:
+```ts
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
+
+await configureFieldTestBed(MiCampoComponent);
+const fixture = createField(MiCampoComponent, { label: 'Nombre' });
+```
+
+## Tiempo real
+`SocketService.entityChangedSubject` emite `{entity, created, updated, deleted}`
+(solo ids) cada vez que el backend confirma una escritura. Una página que
+muestra datos se suscribe, filtra por su entidad y vuelve a pedir el listado
+(véase `src/app/pages/plants/plants-map.component.ts`).

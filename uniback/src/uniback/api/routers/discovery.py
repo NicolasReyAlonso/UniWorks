@@ -2,7 +2,6 @@ import re
 import httpx
 from collections import defaultdict
 from fastapi import APIRouter, Request, Response
-from fastapi.routing import APIRoute
 from pydantic import BaseModel
 from typing import List, Dict, Any
 
@@ -52,16 +51,16 @@ async def discover_services():
 
 
 _PK_PARAM = re.compile(r"\{([^}/]+)\}/?$")
+_HTTP_METHODS = {"GET", "POST", "PUT", "PATCH", "DELETE"}
 
 
 @router.get("/sys/entities", response_model=ResponseEnvelope)
 async def list_entities(request: Request):
     """
     List CRUD-style entity resources exposed by this app, derived from the
-    registered routes. An entity is detected when a base path supports the
+    mounted operations. An entity is detected when a base path supports the
     list/create pattern (GET/POST on /<path>/) or an item pattern (GET/PUT/DELETE on /<path>/{id}).
     """
-    app = request.app
     routes_by_base: Dict[str, Dict[str, Any]] = defaultdict(lambda: {
         "methods": set(),
         "has_schema": False,
@@ -69,36 +68,32 @@ async def list_entities(request: Request):
         "tags": set(),
     })
 
-    for route in app.routes:
-        if not isinstance(route, APIRoute):
-            continue
-        path = route.path
-        methods = route.methods or set()
+    # The OpenAPI document is the framework's public, version-stable view of
+    # the mounted operations. (``app.routes`` is not: newer FastAPI releases
+    # keep included routers nested instead of flattening them.)
+    for path, operations in request.app.openapi().get("paths", {}).items():
+        methods = {m.upper() for m in operations if m.upper() in _HTTP_METHODS}
+        tags = {t for m, op in operations.items() if m.upper() in _HTTP_METHODS
+                for t in (op.get("tags") or [])}
 
         if path.endswith("/schema.json"):
             base = path[: -len("/schema.json")].rstrip("/")
             routes_by_base[base]["has_schema"] = True
-            for t in (route.tags or []):
-                routes_by_base[base]["tags"].add(t)
+            routes_by_base[base]["tags"] |= tags
             continue
 
         m = _PK_PARAM.search(path)
         if m:
             base = path[: m.start()].rstrip("/")
-            pk = m.group(1)
             entry = routes_by_base[base]
-            entry["pk"] = pk
-            for method in methods:
-                entry["methods"].add(("item", method))
-            for t in (route.tags or []):
-                entry["tags"].add(t)
+            entry["pk"] = m.group(1)
+            entry["methods"] |= {("item", method) for method in methods}
+            entry["tags"] |= tags
         elif path.endswith("/"):
             base = path.rstrip("/")
             entry = routes_by_base[base]
-            for method in methods:
-                entry["methods"].add(("collection", method))
-            for t in (route.tags or []):
-                entry["tags"].add(t)
+            entry["methods"] |= {("collection", method) for method in methods}
+            entry["tags"] |= tags
 
     content: List[Dict[str, Any]] = []
     for base, info in sorted(routes_by_base.items()):
@@ -112,11 +107,16 @@ async def list_entities(request: Request):
             "delete": "DELETE" in item,
             "schema": info["has_schema"],
         }
-        if not any(capabilities.values()):
-            continue
         if not (capabilities["list"] or capabilities["get"] or capabilities["create"]):
             continue
-        name = base.rstrip("/").rsplit("/", 1)[-1] or base
+        name = base.rstrip("/").rsplit("/", 1)[-1]
+        # Not resources a generic client can address: the app root, bases
+        # nested under another resource's parameter (``/browser/{type}/filters``)
+        # and lookup helpers that only answer ``GET /<path>/{key}``.
+        if not name or "{" in base:
+            continue
+        if not any(v for k, v in capabilities.items() if k != "get"):
+            continue
         content.append({
             "name": name,
             "path": base,

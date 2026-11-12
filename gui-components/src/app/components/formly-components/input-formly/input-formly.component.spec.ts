@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { InputFormlyComponent } from './input-formly.component';
 
 describe('InputFormlyComponent', () => {
@@ -7,16 +8,9 @@ describe('InputFormlyComponent', () => {
   let fixture: ComponentFixture<InputFormlyComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ InputFormlyComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(InputFormlyComponent);
+    await configureFieldTestBed(InputFormlyComponent);
+    fixture = createField(InputFormlyComponent, { label: 'Nombre' });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

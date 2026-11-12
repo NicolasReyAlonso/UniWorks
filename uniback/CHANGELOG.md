@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — Tiempo real de datos
+- Evento Socket.IO `entity_changed {entity, created, updated, deleted}` (solo
+  ids) tras el commit raíz de cualquier escritura sobre una entidad registrada
+  (`uniback.utils.realtime.install_entity_change_broadcast`). Se emite fuera
+  del hilo de la petición, nunca tras un savepoint o un rollback, y también
+  para las entidades base del objeto (una planta notifica `plants` y
+  `functional_objects`). Se desactiva con `UNIBACK_API_REALTIME_ENTITY_EVENTS=false`.
+
+### Added — Asistente: navegación validada
+- `AssistantTool` gana dos ganchos opcionales: `prompt_context(session)`
+  (texto que la herramienta aporta al prompt) y `prepare(session, **input)`
+  (valida la entrada de una herramienta de UI; `ToolInputError` devuelve el
+  error al modelo y la acción no llega al navegador).
+- `navigate_to` solo acepta rutas del catálogo de pantallas navegables
+  (`contrib/assistant/navigation.py`), construido con los mismos menús que
+  sirve `/gui/navigation`.
+
+### Fixed
+- `/sys/entities` se deriva del documento OpenAPI en lugar de `app.routes`:
+  las versiones recientes de FastAPI no aplanan los routers incluidos y el
+  descubrimiento devolvía una lista vacía. Deja además de listar falsos
+  positivos (la raíz de la app, rutas anidadas bajo un parámetro y ayudas de
+  búsqueda de solo `GET /<ruta>/{clave}`), que producían entidades sin nombre
+  o con nombre duplicado.
+
+### Changed — Reproducibilidad
+- `constraints.txt` fija las versiones con las que se verificó el stack y el
+  `Dockerfile` instala con `-c constraints.txt`: reconstruir la imagen ya no
+  arrastra versiones nuevas sin probar.
+- La batería de pruebas es autónoma: no necesita Redis ni credenciales
+  externas, y no publica sesiones ni presencia de nodos en un despliegue vivo.
+
 ### Changed — Arquitectura de micronúcleo
 - El paquete `uniback` queda reducido al núcleo: app factory, plugin manager,
   persistencia (base/sesión/query), modelos de sistema (`core`, `sysadmin`,

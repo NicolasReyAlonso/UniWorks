@@ -114,6 +114,13 @@ class APISettings(BaseSettings):
         default="",
         description="Root path for the API (useful for reverse proxies)",
     )
+    realtime_entity_events: bool = Field(
+        default=True,
+        description=(
+            "Broadcast an 'entity_changed' Socket.IO event (ids only) after "
+            "every committed write on a registered entity"
+        ),
+    )
 
 
 class AuthSettings(BaseSettings):

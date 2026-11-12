@@ -9,6 +9,8 @@ affected ids and no data.
 
 from __future__ import annotations
 
+import time
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -97,6 +99,12 @@ def test_bulk_endpoint_emits_once_after_commit(dispatched, logged_in_client: Tes
     assert r.status_code == 200, r.text
     created = [res["id"] for res in r.json()["content"]["results"] if res["ok"]]
     assert len(created) == 2
+
+    # The request session commits when its dependency closes, which FastAPI
+    # runs after the response is already out: wait for the event, don't race it.
+    deadline = time.monotonic() + 5
+    while not _plants(dispatched) and time.monotonic() < deadline:
+        time.sleep(0.01)
 
     events = _plants(dispatched)
     assert len(events) == 1

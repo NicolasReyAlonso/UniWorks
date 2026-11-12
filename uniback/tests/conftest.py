@@ -9,6 +9,13 @@ os.environ["UNIBACK_NODE_TYPE"] = "monolith"
 # Tests run on SQLite, which cannot execute the PostgreSQL trigger DDL that
 # SQLAlchemy-Continuum's native versioning generates.
 os.environ["UNIBACK_NATIVE_VERSIONING"] = "false"
+# The suite assumes no external identity provider: the docker-compose images
+# export real Firebase credentials, which would otherwise make the provider
+# list (and token verification) depend on the host environment.
+os.environ.pop("UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH", None)
+# Sessions travel in the cookie, so the suite needs no Redis and never writes
+# test sessions into a live one.
+os.environ["UNIBACK_AUTH_SESSION_STORE"] = "cookie"
 
 import pytest
 from fastapi.testclient import TestClient
@@ -25,8 +32,26 @@ DEFAULT_CONFIG = {
         "auto_seed": True,
         "pool_recycle": 3600,
     },
-    "api": {"title": "Uniback Test API"},
+    # Realtime broadcast off: tests must not publish to the shared Redis bus
+    # (test_entity_events installs it explicitly with a captured dispatcher).
+    "api": {"title": "Uniback Test API", "realtime_entity_events": False},
 }
+
+
+@pytest.fixture(autouse=True)
+def isolated_node_presence(monkeypatch):
+    """Keep the suite off the shared realtime bus.
+
+    Initializing the app starts node heartbeats and a presence watcher against
+    Redis; from a test run that would publish fake presence into a live
+    deployment and make hot-plug menus depend on whatever nodes happen to be
+    up. Tests see every node as alive unless they patch ``node_is_alive``.
+    """
+    from uniback.utils import realtime
+
+    monkeypatch.setattr(realtime, "start_node_presence", lambda *a, **k: None)
+    monkeypatch.setattr(realtime, "start_presence_watcher", lambda *a, **k: None)
+    monkeypatch.setattr(realtime, "node_is_alive", lambda node_type: True)
 
 
 @pytest.fixture(autouse=True)

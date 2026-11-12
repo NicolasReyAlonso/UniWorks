@@ -231,6 +231,22 @@ class AssistantTool(ABC):
         respeta el ACL. Las herramientas de UI no la implementan."""
         raise NotImplementedError(f"Tool '{self.name}' no es de servidor")
 
+    def prompt_context(self, session: Any) -> Optional[str]:
+        """Texto opcional que la herramienta añade al system prompt del turno
+        (p.ej. el catálogo de pantallas a las que se puede navegar)."""
+        return None
+
+    def prepare(self, session: Any, **tool_input: Any) -> Mapping[str, Any]:
+        """Valida y normaliza la entrada de una herramienta de UI antes de
+        emitirla al cliente. Devuelve la entrada (quizá corregida) o lanza
+        ``ToolInputError``: el mensaje vuelve al modelo para que corrija y la
+        acción no llega al navegador."""
+        return tool_input
+
+
+class ToolInputError(ValueError):
+    """Entrada inválida de una herramienta; su mensaje se devuelve al modelo."""
+
 
 __all__ = [
     "ImportRowResult",
@@ -242,4 +258,5 @@ __all__ = [
     "StreamEvent",
     "AssistantModelProvider",
     "AssistantTool",
+    "ToolInputError",
 ]

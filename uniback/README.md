@@ -234,8 +234,11 @@ config = {
 # Install development dependencies
 pip install -e ".[dev]"
 
-# Run tests
+# Run tests (self-contained: in-memory SQLite, no Redis or credentials needed)
 pytest
+
+# ...or inside the docker-compose stack
+docker exec uniback_web python -m pytest tests/
 
 # Run tests with coverage
 pytest --cov=uniback --cov-report=html

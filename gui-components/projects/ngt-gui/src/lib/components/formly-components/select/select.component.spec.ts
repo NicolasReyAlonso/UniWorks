@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
@@ -7,16 +8,9 @@ describe('SelectComponent', () => {
   let fixture: ComponentFixture<SelectComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ SelectComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SelectComponent);
+    await configureFieldTestBed(SelectComponent);
+    fixture = createField(SelectComponent, { label: 'Estado', options: [{ label: 'Sana', value: 'healthy' }] });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

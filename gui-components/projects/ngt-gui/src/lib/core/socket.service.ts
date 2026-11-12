@@ -5,7 +5,7 @@ import {NotificationService} from './notification.service';
 import { TypeNotificationEnum } from '../interfaces/notification/notification.interface';
 
 // Class interfaces
-import { SocketServiceInterface } from '../interfaces/socket/socketService.interface';
+import { EntityChangedEvent, SocketServiceInterface } from '../interfaces/socket/socketService.interface';
 
 // Library Services
 import {GlobalService} from "./global.service";
@@ -32,6 +32,10 @@ export class SocketService implements SocketServiceInterface {
    *  (e.g. a node was hot-plugged/unplugged). Consumers reload the sidebar. */
   public readonly navigationChangedSubject = new Subject<any>()
 
+  /** Emitted after any committed write on a backend entity. Carries ids only
+   *  (never data): consumers re-fetch what they show. */
+  public readonly entityChangedSubject = new Subject<EntityChangedEvent>()
+
   constructor(
     @Optional() @Inject(GLOBAL_SERVICE) private readonly injectedGlobalService: GlobalServiceInterface,
     private readonly notificationService: NotificationService,
@@ -53,6 +57,10 @@ export class SocketService implements SocketServiceInterface {
     this.socket.on('navigation_changed', (event) => {
       console.log('🔄 navigation_changed recibido:', event);
       this.navigationChangedSubject.next(event);
+    });
+
+    this.socket.on('entity_changed', (event: EntityChangedEvent) => {
+      this.entityChangedSubject.next(event);
     });
 
     this.socket.on('process_status_change', (event) => {

@@ -17,9 +17,9 @@ navegador; el backend solo las emite:
 from __future__ import annotations
 
 import logging
-from typing import Any, List
+from typing import Any, List, Mapping
 
-from uniback.plugins.contracts import AssistantTool
+from uniback.plugins.contracts import AssistantTool, ToolInputError
 
 log = logging.getLogger(__name__)
 
@@ -136,17 +136,38 @@ class NavigateToTool(AssistantTool):
     name = "navigate_to"
     side = "ui"
     description = (
-        "Lleva al usuario a una pantalla del frontend. Usa rutas de pantalla "
-        "dinámica como '/d/<screen_name>' (p.ej. '/d/seed_batches_browser')."
+        "Lleva al usuario a una pantalla del frontend. La ruta debe ser EXACTAMENTE "
+        "una de las del catálogo 'Pantallas navegables' del contexto; no inventes "
+        "rutas. Si la ruta no existe recibirás un error con las rutas válidas."
     )
     input_schema = {
         "type": "object",
         "properties": {
-            "route": {"type": "string", "description": "Ruta del front, p.ej. '/d/seed_batches_browser'"},
+            "route": {"type": "string", "description": "Ruta exacta del catálogo de pantallas navegables"},
             "reason": {"type": "string", "description": "Breve motivo mostrado al usuario (opcional)"},
         },
         "required": ["route"],
     }
+
+    def prompt_context(self, session: Any) -> str | None:
+        from uniback.contrib.assistant.navigation import format_catalog, navigable_pages
+
+        pages = navigable_pages(session.db_session)
+        return format_catalog(pages) if pages else None
+
+    def prepare(self, session: Any, **tool_input: Any) -> Mapping[str, Any]:
+        from uniback.contrib.assistant.navigation import navigable_pages, resolve_route
+
+        requested = str(tool_input.get("route") or "")
+        pages = navigable_pages(session.db_session)
+        route = resolve_route(session.db_session, requested, pages)
+        if route is None:
+            valid = "; ".join(f"{p.route} ({p.label})" for p in pages)
+            raise ToolInputError(
+                f"La ruta '{requested}' no existe. No se ha navegado. "
+                f"Vuelve a llamar a navigate_to con una ruta válida: {valid}"
+            )
+        return {**tool_input, "route": route}
 
 
 class ProposeTableRowsTool(AssistantTool):

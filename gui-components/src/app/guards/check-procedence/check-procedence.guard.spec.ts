@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { CheckProcedenceGuard } from './check-procedence.guard';
 
-describe('CheckStateGuard', () => {
+describe('CheckProcedenceGuard', () => {
   let guard: CheckProcedenceGuard;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({ providers: [provideRouter([])] });
     guard = TestBed.inject(CheckProcedenceGuard);
   });
 

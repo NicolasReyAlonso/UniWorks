@@ -181,6 +181,13 @@ def initialize(
             initialize_kernel_data(db)
             plugin_manager.emit_on_seed(db, node_type)
 
+    # Tiempo real: tras el sembrado (que no debe inundar el bus), cada commit
+    # sobre una entidad registrada avisa a los navegadores con 'entity_changed'.
+    if settings.api.realtime_entity_events:
+        from uniback.utils.realtime import install_entity_change_broadcast
+
+        install_entity_change_broadcast(session_manager.session_factory)
+
     app = create_app(settings.api, session_manager, node_type=node_type)
 
     # Let plugins configure the app directly

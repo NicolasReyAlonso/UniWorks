@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { AnnotationTextOptionsComponent } from './annotation-text-options.component';
 
 describe('AnnotationTextOptionsComponent', () => {
@@ -7,16 +8,9 @@ describe('AnnotationTextOptionsComponent', () => {
   let fixture: ComponentFixture<AnnotationTextOptionsComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AnnotationTextOptionsComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AnnotationTextOptionsComponent);
+    await configureFieldTestBed(AnnotationTextOptionsComponent);
+    fixture = createField(AnnotationTextOptionsComponent, { label: 'Uso', range: { multiple: false, options: ['a', 'b'] } });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

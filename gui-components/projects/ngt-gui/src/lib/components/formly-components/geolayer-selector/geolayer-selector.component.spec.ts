@@ -1,5 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { BackendService } from 'ngt-gui/core';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { GeolayerSelectorComponent } from './geolayer-selector.component';
 
 describe('GeolayerSelectorComponent', () => {
@@ -7,16 +10,11 @@ describe('GeolayerSelectorComponent', () => {
   let fixture: ComponentFixture<GeolayerSelectorComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ GeolayerSelectorComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(GeolayerSelectorComponent);
+    await configureFieldTestBed(GeolayerSelectorComponent, [
+      { provide: BackendService, useValue: { getLayerGIS: () => of({ content: [] }) } },
+    ]);
+    fixture = createField(GeolayerSelectorComponent, { extension: 'shp', filename: 'capa' });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

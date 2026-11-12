@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { MonophylyComponent } from './monophyly.component';
 
 describe('MonophylyComponent', () => {
@@ -7,16 +8,9 @@ describe('MonophylyComponent', () => {
   let fixture: ComponentFixture<MonophylyComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ MonophylyComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MonophylyComponent);
+    await configureFieldTestBed(MonophylyComponent);
+    fixture = createField(MonophylyComponent, { taxons: [] });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

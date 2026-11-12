@@ -8,9 +8,10 @@ RUN apt-get update && apt-get install -y build-essential gcc libpq-dev && rm -rf
 # Copy project files
 COPY . /app
 
-# Install project in editable mode with dev extras
+# Install project in editable mode with dev extras. constraints.txt pins the
+# versions the stack was verified with, so the image is reproducible.
 RUN pip install --upgrade pip setuptools wheel
-RUN pip install -e ".[dev]"
+RUN pip install -e ".[dev]" -c constraints.txt
 
 ENV PYTHONPATH=/app/src
 

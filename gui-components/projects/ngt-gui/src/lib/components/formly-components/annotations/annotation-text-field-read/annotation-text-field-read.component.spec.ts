@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture } from '@angular/core/testing';
 
+import { configureFieldTestBed, createField } from 'ngt-gui/testing';
 import { AnnotationTextFieldReadComponent } from './annotation-text-field-read.component';
 
 describe('AnnotationTextFieldReadComponent', () => {
@@ -7,16 +8,9 @@ describe('AnnotationTextFieldReadComponent', () => {
   let fixture: ComponentFixture<AnnotationTextFieldReadComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AnnotationTextFieldReadComponent ]
-    })
-    .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AnnotationTextFieldReadComponent);
+    await configureFieldTestBed(AnnotationTextFieldReadComponent);
+    fixture = createField(AnnotationTextFieldReadComponent, { label: 'Notas' });
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

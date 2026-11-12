@@ -367,20 +367,14 @@ def _build_tree(menus: List[Menu]) -> List[Dict[str, Any]]:
     return build(None)
 
 
-@router.get("/gui/navigation", response_model=ResponseEnvelope)
-async def get_gui_navigation(
-    app_flavor: Optional[str] = Query(default=None, description="Optional app flavor name to filter menus"),
-    sess: AppSession = Depends(get_n_session(read_only=True)),
-):
+def visible_menus(db: Session, app_flavor: Optional[str] = None) -> List[Menu]:
     """
-    Return the hierarchical navigation tree used by the frontend sidebar.
+    Menus the sidebar shows right now: optionally filtered by app flavor and
+    without the ones tied to a node that is not alive (hot-plug).
 
-    The frontend filters items by permission using its own permission map
-    (loaded from ``/authn/functions/gui`` at login). The ``permissions``
-    field is currently returned empty for that reason.
+    Shared by ``/gui/navigation`` and the assistant's page catalog so both
+    agree on what is navigable.
     """
-    db: Session = sess.db_session
-
     stmt = select(Menu)
     if app_flavor:
         flavor = db.scalar(select(AppFlavor).where(AppFlavor.name == app_flavor))
@@ -408,7 +402,33 @@ async def get_gui_navigation(
             if m.id not in hidden_parents and m.parent_menu_id not in hidden_parents
         ]
 
-    tree = _build_tree(menus)
+    return menus
+
+
+def resolve_screen(name: str, db: Session) -> Optional[Dict[str, Any]]:
+    """
+    Screen definition by name: the DB screen if it exists, else a synthetic one
+    built from the entity's registered JSON Schema. ``None`` if neither.
+    """
+    screen = db.scalar(select(Screen).where(Screen.name == name))
+    if screen:
+        return _screen_to_dict(screen)
+    return _build_synthetic_screen(name, db)
+
+
+@router.get("/gui/navigation", response_model=ResponseEnvelope)
+async def get_gui_navigation(
+    app_flavor: Optional[str] = Query(default=None, description="Optional app flavor name to filter menus"),
+    sess: AppSession = Depends(get_n_session(read_only=True)),
+):
+    """
+    Return the hierarchical navigation tree used by the frontend sidebar.
+
+    The frontend filters items by permission using its own permission map
+    (loaded from ``/authn/functions/gui`` at login). The ``permissions``
+    field is currently returned empty for that reason.
+    """
+    tree = _build_tree(visible_menus(sess.db_session, app_flavor))
 
     return ResponseEnvelope.ok(content={"menus": tree, "permissions": {}})
 
@@ -424,14 +444,9 @@ async def get_screen_by_name(
     If no screen exists in the database, fall back to a synthetic definition
     built from the entity's registered JSON Schema (see ``schema_registry``).
     """
-    db: Session = sess.db_session
-    screen = db.scalar(select(Screen).where(Screen.name == name))
+    screen = resolve_screen(name, sess.db_session)
     if screen:
-        return ResponseEnvelope.ok(content=_screen_to_dict(screen))
-
-    synthetic = _build_synthetic_screen(name, db)
-    if synthetic:
-        return ResponseEnvelope.ok(content=synthetic)
+        return ResponseEnvelope.ok(content=screen)
 
     raise HTTPException(status_code=404, detail=f"Screen '{name}' not found")
 

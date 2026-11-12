@@ -24,6 +24,8 @@ import {
   firstError,
   hasErrors,
 } from 'ngt-gui';
+import { SocketService } from 'ngt-gui/core';
+import { Subscription, debounceTime, filter } from 'rxjs';
 
 // OpenLayers
 import Map from 'ol/Map';
@@ -90,6 +92,8 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
 
   private readonly client = inject(EntityClient);
   private readonly message = inject(NzMessageService);
+  private readonly socket = inject(SocketService);
+  private liveSub?: Subscription;
 
   /** Recurso tipado del cliente genérico. */
   private readonly plants$ = this.client.for<Plant>('/plants');
@@ -112,9 +116,16 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.initMap();
     this.loadPlants();
+    // Tiempo real: si alguien (otro usuario, el asistente...) escribe plantas,
+    // el mapa se recarga solo. El evento solo trae ids, así que se vuelve a
+    // pedir el listado; el debounce agrupa ráfagas (p.ej. un alta masiva).
+    this.liveSub = this.socket.entityChangedSubject
+      .pipe(filter(e => e?.entity === 'plants'), debounceTime(250))
+      .subscribe(() => this.loadPlants());
   }
 
   ngOnDestroy(): void {
+    this.liveSub?.unsubscribe();
     this.map?.setTarget(undefined);
   }
 
