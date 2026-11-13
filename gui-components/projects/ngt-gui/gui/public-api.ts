@@ -6,6 +6,7 @@
 export * from './src/gui/layout/tab-layout/tab-layout.component';
 export * from './src/gui/layout/mdi-layout/mdi-layout.component';
 export * from './src/gui/layout/window-frame/window-frame.component';
+export * from './src/gui/layout/scope-chips/scope-chips.component';
 export * from './src/services/window-manager.service';
 export * from './src/interfaces/window-instance.interface';
 export * from './src/tokens/sidebar-config.token';

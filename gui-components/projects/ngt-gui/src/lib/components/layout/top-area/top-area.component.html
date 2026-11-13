@@ -6,12 +6,17 @@
     {{title}}
   </div>
 
-  <div class="container-case-study theme-header-background-color-tint-15">
-    <nz-select nzPlaceHolder="{{'MISC.BREADCRUMB.CASE_STUDIES' | translate}}" nzBorderless nzAllowClear
-               class="theme-header-background-color-tint-15" [(ngModel)]="caseStudySelectValue"
-               [nzDisabled]="caseStudySelectDisable" [nzLoading]="caseStudySelectDisable"
-               (ngModelChange)="caseStudySelectValueChange($event)" style="text-align: center">
-      <nz-option *ngFor="let item of caseStudiesOptions" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+  <!-- Global work scopes (zone, project, case study...). The backend declares
+       them; with none declared the header shows no selector at all. -->
+  <div class="container-case-study theme-header-background-color-tint-15"
+       *ngFor="let scope of scopeService.scopes(); trackBy: trackScope">
+    <nz-select [nzPlaceHolder]="scope.label | translate" nzBorderless nzAllowClear nzShowSearch
+               class="theme-header-background-color-tint-15"
+               [ngModel]="scopeService.selection()[scope.name]?.id ?? null"
+               [nzLoading]="scopeLoading[scope.name]"
+               (nzOpenChange)="$event && loadScopeOptions(scope)"
+               (ngModelChange)="scopeValueChange(scope, $event)" style="text-align: center">
+      <nz-option *ngFor="let item of scopeOptionsFor(scope)" [nzValue]="item.id" [nzLabel]="item.label"></nz-option>
     </nz-select>
   </div>
 

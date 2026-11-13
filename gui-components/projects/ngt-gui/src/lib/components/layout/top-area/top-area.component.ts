@@ -32,12 +32,14 @@ import { StateServiceInterface } from 'ngt-gui/core';
 import { STATE_SERVICE } from 'ngt-gui/core';
 import { ROUTE_PATH_SERVICE } from 'ngt-gui/core';
 import { RoutePathServiceInterface } from 'ngt-gui/core';
+import { GlobalScopeDefinition, GlobalScopeService, ScopeOption } from 'ngt-gui/core';
 
 /**
  * Componente que representa el área superior de la aplicación (header).
  * 
  * Muestra el título, el icono principal, el breadcrumb, las opciones de usuario
- * y un selector de “case studies” (estudios de caso).
+ * y un selector por cada ámbito global que declare el backend (zona, proyecto,
+ * caso de estudio...). Sin ámbitos declarados no se muestra ningún selector.
  * 
  * También gestiona los cambios de idioma, la sesión de usuario, 
  * y la apertura de preferencias.
@@ -90,14 +92,11 @@ export class TopAreaComponent implements OnInit {
   /** Indica si la ventana modal de preferencias está visible. */
   isVisiblePreferencesModal = false;
 
-  /** Indica si el selector de estudios de caso está deshabilitado. */
-  caseStudySelectDisable = true;
+  /** Registros seleccionables de cada ámbito global, por nombre de ámbito. */
+  scopeOptions: Record<string, ScopeOption[]> = {};
 
-  /** Lista de opciones de “case studies” obtenidas del backend. */
-  caseStudiesOptions = [];
-
-  /** Valor actualmente seleccionado en el selector de “case studies”. */
-  caseStudySelectValue = null;
+  /** Ámbitos cuyas opciones se están cargando. */
+  scopeLoading: Record<string, boolean> = {};
 
   /** Cadena del título final mostrado en el componente. */
   titleString: string;
@@ -121,6 +120,7 @@ export class TopAreaComponent implements OnInit {
     @Inject(BACKEND_SERVICE) private backendService: BackendServiceInterface,
     private topAreaService: TopAreaService,
     @Inject(STATE_SERVICE) private readonly stateService: StateServiceInterface,
+    public readonly scopeService: GlobalScopeService,
   ) {
     this.breadcrumb = this.route_path._log;
   }
@@ -134,87 +134,70 @@ export class TopAreaComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.i18n.setLocale(es_ES);
 
-    this.topAreaService.topAreaEventEmitter.subscribe(async (event: { type: string, value: any }) => {
+    this.topAreaService.topAreaEventEmitter.subscribe((event: { type: string, value: any }) => {
       switch (event.type) {
+        // Evento heredado: alguien creó o borró un caso de estudio. Se recargan
+        // las opciones de todos los ámbitos; si el seleccionado ya no existe,
+        // el propio servicio lo retira.
         case 'load-case-studies':
-          const caseStudySelected = this.stateService.getState('gbl_cs');
-          if (event.value && event.value.deleteCaseStudy && caseStudySelected == event.value.deleteCaseStudy) {
-            await this.stateService.setState('gbl_cs', null);
-          }
-          this.loadCaseStudies().then();
+          this.reloadScopeOptions();
           break;
       }
     });
 
     if (this.auth_service.user) {
-      await this.loadCaseStudies();
-      const gbl_cs = this.stateService.getState('gbl_cs');
-      if (gbl_cs) {
-        this.caseStudySelectValue = gbl_cs;
-      }
+      await this.loadScopes();
     }
 
-    this.stateService.stateServiceEvent.subscribe((event) => {
-      switch (event.type) {
-        case 'gbl_cs':
-          this.caseStudySelectValue = event.event;
-          break;
-      }
-    });
-
-    this.initializerSubscriptionLoadCasesStudies();
-  }
-
-  /**
-   * Inicializa la suscripción al cambio de usuario para
-   * actualizar dinámicamente la lista de estudios de caso.
-   */
-  initializerSubscriptionLoadCasesStudies(): void {
     this.auth_service.changeUserEvent.subscribe(async (user) => {
       if (user) {
-        await this.loadCaseStudies();
-        await this.removeCaseStudySelectIfNotExist();
+        await this.loadScopes();
       } else {
-        this.caseStudySelectDisable = true;
-        this.caseStudiesOptions = [];
-        this.caseStudySelectValue = null;
+        this.scopeService.reset();
+        this.scopeOptions = {};
       }
     });
   }
 
-  /**
-   * Verifica si el estudio de caso seleccionado sigue existiendo en el backend.
-   * Si no existe, se limpia del estado global.
-   */
-  async removeCaseStudySelectIfNotExist(): Promise<void> {
-    const caseStudySelectedId = this.stateService.getState('gbl_cs');
-    if (!caseStudySelectedId) {
-      return;
-    }
-    const response: any = await lastValueFrom(this.backendService.getCaseStudies(caseStudySelectedId));
-    if (!response.content) {
-      this.stateService.setState('gbl_cs', null);
+  /** Carga los ámbitos declarados por el backend y sus opciones. */
+  async loadScopes(): Promise<void> {
+    await this.scopeService.load();
+    this.reloadScopeOptions();
+  }
+
+  reloadScopeOptions(): void {
+    for (const scope of this.scopeService.scopes()) {
+      this.loadScopeOptions(scope);
     }
   }
 
-  /**
-   * Carga la lista de estudios de caso disponibles desde el backend.
-   */
-  async loadCaseStudies(): Promise<void> {
-    this.caseStudySelectDisable = true;
-    const caseStudiesResponse: any = await this.backendService.getCaseStudies().toPromise();
-    this.caseStudiesOptions = caseStudiesResponse.content;
-    this.caseStudySelectDisable = false;
+  /** Carga (o refresca) los registros seleccionables de un ámbito. */
+  loadScopeOptions(scope: GlobalScopeDefinition): void {
+    this.scopeLoading[scope.name] = true;
+    this.scopeService.options(scope).subscribe(options => {
+      this.scopeOptions[scope.name] = options;
+      this.scopeLoading[scope.name] = false;
+    });
   }
 
   /**
-   * Evento al cambiar el valor del selector de estudios de caso.
-   * 
-   * @param event Valor seleccionado.
+   * Opciones a pintar: las cargadas y, mientras llegan, la ya seleccionada
+   * (para que el selector muestre su nombre y no un id suelto).
    */
-  async caseStudySelectValueChange(event): Promise<void> {
-    await this.stateService.setState('gbl_cs', event);
+  scopeOptionsFor(scope: GlobalScopeDefinition): ScopeOption[] {
+    const loaded = this.scopeOptions[scope.name];
+    if (loaded?.length) return loaded;
+    const selected = this.scopeService.selected(scope.name);
+    return selected ? [selected] : [];
   }
+
+  /** El usuario fija o limpia el valor de un ámbito. */
+  scopeValueChange(scope: GlobalScopeDefinition, id: number | string | null): void {
+    const option = (this.scopeOptions[scope.name] || []).find(o => o.id === id) ?? null;
+    this.scopeService.select(scope.name, option);
+  }
+
+  trackScope = (_: number, scope: GlobalScopeDefinition) => scope.name;
 
   /**
    * Cambia el idioma de la interfaz.

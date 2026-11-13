@@ -17,6 +17,7 @@ export * from './src/core/state.service';
 export * from './src/core/theme.service';
 export * from './src/core/top-area.service';
 export * from './src/core/files.service';
+export * from './src/core/global-scope.service';
 
 //SERVICE INTERFACES
 export * from './src/interfaces/auth/authService.interface';
@@ -40,6 +41,7 @@ export * from './src/interfaces/state/state.interface';
 export * from './src/interfaces/theme/theme.interface';
 export * from './src/interfaces/notification/notification.interface';
 export * from './src/interfaces/files/files.interface';
+export * from './src/interfaces/scope/global-scope.interface';
 
 //INJECTION TOKENS
 export * from './src/tokens/config.token';
