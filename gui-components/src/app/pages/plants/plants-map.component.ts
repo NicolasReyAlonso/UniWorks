@@ -24,7 +24,8 @@ import {
   firstError,
   hasErrors,
 } from 'ngt-gui';
-import { SocketService } from 'ngt-gui/core';
+import { GlobalScopeService, SocketService } from 'ngt-gui/core';
+import { ScopeChipsComponent } from 'ngt-gui/gui';
 import { Subscription, debounceTime, filter } from 'rxjs';
 
 // OpenLayers
@@ -45,6 +46,7 @@ interface Plant {
   id?: number;
   name?: string;          // nombre común (heredado de FunctionalObject)
   species?: string;       // nombre científico
+  zone_id?: number | null; // zona (ámbito global)
   latitude?: number;
   longitude?: number;
   planted_on?: string;
@@ -83,6 +85,7 @@ const HEALTH_COLORS: Record<string, string> = {
     NzCardModule,
     NzTagModule,
     DynamicFormComponent,
+    ScopeChipsComponent,
   ],
   templateUrl: './plants-map.component.html',
   styleUrls: ['./plants-map.component.sass'],
@@ -93,7 +96,9 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
   private readonly client = inject(EntityClient);
   private readonly message = inject(NzMessageService);
   private readonly socket = inject(SocketService);
+  private readonly scope = inject(GlobalScopeService);
   private liveSub?: Subscription;
+  private scopeSub?: Subscription;
 
   /** Recurso tipado del cliente genérico. */
   private readonly plants$ = this.client.for<Plant>('/plants');
@@ -122,10 +127,18 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
     this.liveSub = this.socket.entityChangedSubject
       .pipe(filter(e => e?.entity === 'plants'), debounceTime(250))
       .subscribe(() => this.loadPlants());
+
+    // Ámbito global: al fijar o quitar una zona en la cabecera, el mapa se
+    // acota a ella y la planta nueva que se esté dando de alta la hereda.
+    this.scopeSub = this.scope.changes$.subscribe(() => {
+      if (this.formMode === 'create') this.model = { ...this.model, ...this.scope.defaultsFor('/plants') };
+      this.loadPlants();
+    });
   }
 
   ngOnDestroy(): void {
     this.liveSub?.unsubscribe();
+    this.scopeSub?.unsubscribe();
     this.map?.setTarget(undefined);
   }
 
@@ -190,7 +203,10 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
   // ── CRUD vía cliente genérico ───────────────────────────────────
   loadPlants(): void {
     this.loading = true;
-    this.plants$.list().subscribe({
+    // El framework dice qué filtro implica el ámbito activo para /plants
+    // (hoy { zone_id }); la página no sabe ni cuántos ámbitos hay.
+    const filter = this.scope.filterFor('/plants');
+    this.plants$.list(Object.keys(filter).length ? { filter } : undefined).subscribe({
       next: (res: ApiResponse<Plant[]>) => {
         this.loading = false;
         this.plants = res.content ?? [];
@@ -218,7 +234,7 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
   newPlant(): void {
     this.selected = null;
     this.formMode = 'create';
-    this.model = {};
+    this.model = { ...this.scope.defaultsFor('/plants') };
     this.issues = [];
     this.draftSource.clear();
     this.renderMarkers();
