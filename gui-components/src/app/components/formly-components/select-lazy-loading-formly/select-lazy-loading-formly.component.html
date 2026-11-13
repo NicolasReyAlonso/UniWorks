@@ -5,9 +5,13 @@
   <div [ngStyle]="props.fieldStyle">
     <!--    <input nz-input [ngModel]="props.value" (ngModelChange)="changeValueEvent($event)" style="width: 100%;"-->
     <!--           [ngStyle]="props.styleInput"/>-->
-    <app-select-lazy-loading [object_type]="props.object_type" [variableLabel]="props.variableLabel"
-                             [variableValue]="props.variableValue" [multiple]="props.multiple"
-                             [allowClear]="props.allowClear" [placeholder]="props.placeholder"
+    <!-- Two ways in: hand-written fields name a registered `object_type`;
+         fields generated from the JSON Schema carry the foreign key's entity
+         path and label/value fields (optionsEndpoint/optionsLabelField/...). -->
+    <app-select-lazy-loading [object_type]="props.object_type" [endpoint]="props.optionsEndpoint"
+                             [variableLabel]="props.variableLabel ?? props.optionsLabelField"
+                             [variableValue]="props.variableValue ?? props.optionsValueField" [multiple]="props.multiple"
+                             [allowClear]="props.allowClear ?? !props.required" [placeholder]="props.placeholder"
                              [sizePage]="props.sizePage" [disableSelect]="props.disableSelect"
                              [customFilter]="props.customFilter" [variableGroup]="props.variableGroup"
                              [customParams]="props.customParams"

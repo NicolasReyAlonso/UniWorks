@@ -40,6 +40,12 @@ export class SelectLazyLoadingComponent implements OnInit, OnChanges, AfterViewI
   @Input() value: any[] | any;
   @Input() variableValue: string;
   @Input() object_type: string;
+  /**
+   * Entity path to list the options from (`/zones`), as published by the
+   * backend schema for a foreign key. Takes precedence over `object_type`,
+   * which needs the entity to be registered in the BackendService.
+   */
+  @Input() endpoint: string;
   @Input() variableLabel: string | { template: string, variablesLabel: string[] };
   @Input() variableGroup: string;
   @Input() msWaitToLoadOnSearch: number;
@@ -102,8 +108,21 @@ export class SelectLazyLoadingComponent implements OnInit, OnChanges, AfterViewI
     };
   }
 
+  /** Options request: by entity path when given, else by registered object type. */
+  private request(params: any) {
+    return this.endpoint
+      ? this.backendService.getPathRequest(this.endpoint, params)
+      : this.backendService.getGenericRequest(this.object_type, null, params);
+  }
+
   async loadInitialValueData() {
-    const response: any = await lastValueFrom(this.backendService.getGenericRequest(this.object_type, null, {
+    // Nothing selected: there is no option to resolve (and "id = null" would
+    // only ask the backend for records without identifier).
+    if (this.value === null || this.value === undefined || this.value === ''
+        || (Array.isArray(this.value) && !this.value.length)) {
+      return;
+    }
+    const response: any = await lastValueFrom(this.request({
       filter: {
         [this.variableValue]: {
           op: this.multiple ? 'in' : 'eq',
@@ -138,7 +157,7 @@ export class SelectLazyLoadingComponent implements OnInit, OnChanges, AfterViewI
         unary: `%${searchValue}%`,
       }
     }
-    const response: any = await lastValueFrom(this.backendService.getGenericRequest(this.object_type, null, {
+    const response: any = await lastValueFrom(this.request({
       filter,
       pagination: {
         pageIndex: this.pageIndex,

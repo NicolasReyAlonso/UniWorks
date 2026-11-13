@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added — Ámbitos globales de trabajo
+- Contrato `GlobalScope` y gancho `UnibackPlugin.get_global_scopes()`: un
+  plugin declara una entidad (zona, proyecto, caso de estudio...) que el
+  usuario fija en la cabecera para acotar toda la aplicación.
+- `GET /gui/scopes` resuelve cada ámbito contra el ORM: toda entidad
+  registrada con una clave foránea DIRECTA a la del ámbito queda como destino
+  (`{entity, endpoint, field, kind: "fk"}`), sin que el plugin la enumere. Las
+  relaciones por tabla de pertenencia se declaran en `GlobalScope.membership`
+  (`kind: "membership"`). No se siguen relaciones transitivas.
+- Los casos de estudio pasan a ser un ámbito más (plugin de colecciones), y el
+  plugin de plantas añade la entidad `Zone` (`Plant.zone_id`) como ejemplo.
+
+### Fixed — Listados
+- Los listados por GET ignoraban `filter`, `order`, `pagination` y
+  `searchValue` de la query string: el parser solo aceptaba `dict` y recibía
+  el `QueryParams` de Starlette. Ahora se aplican (y el orden `descend` que
+  envía la tabla del front se reconoce como descendente).
+
 ### Added — Tiempo real de datos
 - Evento Socket.IO `entity_changed {entity, created, updated, deleted}` (solo
   ids) tras el commit raíz de cualquier escritura sobre una entidad registrada

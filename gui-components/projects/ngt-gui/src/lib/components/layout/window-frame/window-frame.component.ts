@@ -41,7 +41,11 @@ const MIN_HEIGHT = 160;
   imports: [CommonModule, CdkDrag, CdkDragHandle, WindowHostDirective],
   templateUrl: './window-frame.component.html',
   styleUrls: ['./window-frame.component.sass'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // Default (not OnPush) on purpose: the hosted page's view lives inside this
+  // frame's view, so an OnPush frame would freeze it between user events and a
+  // page that receives data asynchronously (HTTP, sockets) would not repaint
+  // until the next click.
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class WindowFrameComponent {
   @Input({ required: true }) win!: ManagedWindow;

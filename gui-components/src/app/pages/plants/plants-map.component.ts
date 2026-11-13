@@ -120,7 +120,9 @@ export class PlantsMapComponent implements AfterViewInit, OnDestroy {
   // ── Ciclo de vida ───────────────────────────────────────────────
   ngAfterViewInit(): void {
     this.initMap();
-    this.loadPlants();
+    // Fuera del ciclo de detección en curso: loadPlants() cambia `loading`, y
+    // hacerlo dentro de ngAfterViewInit modifica la vista recién comprobada.
+    queueMicrotask(() => this.loadPlants());
     // Tiempo real: si alguien (otro usuario, el asistente...) escribe plantas,
     // el mapa se recarga solo. El evento solo trae ids, así que se vuelve a
     // pedir el listado; el debounce agrupa ráfagas (p.ej. un alta masiva).

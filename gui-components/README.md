@@ -46,3 +46,24 @@ La configuración web de Firebase vive fuera del repositorio, en
 de `tsconfig.json`, que cae en `src/environments/firebase.disabled.json` cuando
 la carpeta no existe. Sin ella la aplicación compila y arranca igual: el login
 ofrece solo los proveedores que anuncia el backend (usuario y contraseña).
+
+## Ámbito global (zona, proyecto, caso de estudio...)
+La cabecera muestra un selector por cada ámbito que declare el backend
+(`GET /gui/scopes`); sin ámbitos declarados no muestra ninguno.
+`GlobalScopeService` (`ngt-gui/core`) guarda la selección y responde, para
+cualquier entidad, qué implica:
+```ts
+scope.filterFor('/plants');    // { zone_id: 3 }  → filtro del listado
+scope.defaultsFor('/plants');  // { zone_id: 3 }  → valores de un alta nueva
+scope.changes$;                // avisa cuando hay que volver a pedir datos
+```
+Las pantallas dinámicas (`/d/...`) ya lo aplican solas. Una página propia lo
+aplica con esas tres llamadas y muestra `<ngt-scope-chips entityPath="/plants">`
+para que el filtro sea visible y se pueda quitar ahí mismo. Solo se siguen
+claves foráneas directas; la selección se recuerda en el navegador.
+
+## Servicios del núcleo: una sola instancia
+`CoreModule` se registra UNA vez, en la configuración de la aplicación
+(`importProvidersFrom(CoreModule)`), y no en los `imports` de componentes
+standalone: Angular daría a ese árbol de componentes su propio juego de
+servicios y, por ejemplo, un login hecho en uno no lo vería el otro.
