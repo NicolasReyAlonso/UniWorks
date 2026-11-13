@@ -198,6 +198,16 @@ export class DynamicBrowseComponent implements OnInit, AfterViewInit, OnDestroy 
     this.searchEvent();
   }
 
+  /**
+   * Run the search again from the first page. For hosts whose
+   * `CustomFiltersRequest` changed (e.g. the global scope).
+   */
+  reload(): void {
+    if (!this.dynamicTable) return;
+    this.dynamicTable.pageIndex = 1;
+    this.searchEvent();
+  }
+
   checkedChangeEvent(event: { items: Set<number>, checkedAll: boolean }): void {
     if (!this.itemsSelectionWhenConfirmed) {
       this.confirmState = false;

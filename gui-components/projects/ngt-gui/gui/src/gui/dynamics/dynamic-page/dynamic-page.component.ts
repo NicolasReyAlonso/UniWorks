@@ -39,9 +39,11 @@ import {
   BACKEND_SERVICE, BackendServiceInterface,
   MESSAGE_LOG_SERVICE, MessageLogServiceInterface,
   AUTH_SERVICE_TOKEN, AuthServiceInterface,
+  GlobalScopeService,
 } from 'ngt-gui/core';
 import { BulkEditGridComponent, ScreenEditableColumn } from 'ngt-gui';
 import { DynamicBrowseComponent } from '../dynamic-browse/dynamic-browse.component';
+import { ScopeChipsComponent } from '../../layout/scope-chips/scope-chips.component';
 import { SharedModule } from '../../../modules/shared.module';
 import { IView } from '../../../interfaces/view.interface';
 import { HttpClient } from '@angular/common/http';
@@ -67,6 +69,7 @@ import { firstValueFrom } from 'rxjs';
     NzSpaceModule,
     DynamicBrowseComponent,
     BulkEditGridComponent,
+    ScopeChipsComponent,
   ],
   templateUrl: './dynamic-page.component.html',
   styleUrls: ['./dynamic-page.component.sass'],
@@ -97,6 +100,20 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
   endpoint = '';
 
   private routeSub: Subscription | null = null;
+  private scopeSub: Subscription | null = null;
+
+  /**
+   * Global scope (zone, project...) as it applies to this screen's entity.
+   * `scopeFilter` is handed to the browser as custom filters and is mutated in
+   * place (the browser keeps the reference and adds its own keys to it);
+   * `bulkFilter`/`scopeDefaults` are fresh objects so the grid sees a change.
+   */
+  scopeFilter: Record<string, unknown> = {};
+  bulkFilter: Record<string, unknown> = {};
+  scopeDefaults: Record<string, unknown> = {};
+  private scopeKeys: string[] = [];
+
+  @ViewChild(DynamicBrowseComponent) browse?: DynamicBrowseComponent;
 
   /** Event emitters for DynamicBrowseComponent */
   openItemEvent = new EventEmitter<any>();
@@ -113,6 +130,7 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
     @Inject(AUTH_SERVICE_TOKEN) private authService: AuthServiceInterface,
     private translateService: TranslateService,
     private messageService: NzMessageService,
+    private scopeService: GlobalScopeService,
   ) {}
 
   ngOnInit(): void {
@@ -125,10 +143,43 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
         this.loading = false;
       }
     });
+
+    // The user pinned or lifted a scope in the header: narrow what is shown.
+    this.scopeSub = this.scopeService.changes$.subscribe(() => {
+      if (!this.screenDef) return;
+      const before = JSON.stringify(this.bulkFilter);
+      this._applyScope();
+      if (JSON.stringify(this.bulkFilter) === before) return;
+      this.browse?.reload();
+      this._prefillFromScope();
+    });
   }
 
   ngOnDestroy(): void {
     this.routeSub?.unsubscribe();
+    this.scopeSub?.unsubscribe();
+  }
+
+  // ------------------------------------------------------------------
+  // Global scope
+  // ------------------------------------------------------------------
+
+  private _applyScope(): void {
+    const filter = this.endpoint ? this.scopeService.filterFor(this.endpoint) : {};
+    for (const key of this.scopeKeys) delete this.scopeFilter[key];
+    Object.assign(this.scopeFilter, filter);
+    this.scopeKeys = Object.keys(filter);
+    this.bulkFilter = { ...filter };
+    this.scopeDefaults = this.endpoint ? this.scopeService.defaultsFor(this.endpoint) : {};
+  }
+
+  /** A NEW record starts inside the active scope; fields the user touched are left alone. */
+  private _prefillFromScope(): void {
+    if (!this.form || this.entityId) return;
+    for (const [field, value] of Object.entries(this.scopeDefaults)) {
+      const control = this.form.get(field);
+      if (control && control.pristine) control.setValue(value);
+    }
   }
 
   // ------------------------------------------------------------------
@@ -141,6 +192,7 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
     this.browserTitle = def.title || this.screenDef.name || '';
     this.BREADCRUMB_NAME = this.browserTitle;
     this.endpoint = this.screenDef.endpoint || '';
+    this._applyScope();
 
     // Register a dynamic browser type in the backend service
     // so that getGenericRequest / getFieldID work for this entity.
@@ -296,6 +348,7 @@ export class DynamicPageComponent implements OnInit, OnDestroy, IView {
     }
 
     this.form = new FormGroup(group);
+    this._prefillFromScope();
   }
 
   get formSections(): any[] {

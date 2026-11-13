@@ -150,6 +150,17 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
    * if not set; ultimately defaults to `/api`.
    */
   @Input() apiBase?: string;
+  /**
+   * Filter applied to the listing, in the backend's filter DSL
+   * (`{ zone_id: 3 }`). Typically `GlobalScopeService.filterFor(path)`.
+   */
+  @Input() listFilter?: Record<string, unknown>;
+  /**
+   * Values every NEW row starts with (`{ zone_id: 3 }`), sent even when the
+   * field is not one of the visible columns. Typically
+   * `GlobalScopeService.defaultsFor(path)`.
+   */
+  @Input() rowDefaults?: Record<string, unknown>;
 
   @Output() readonly saved = new EventEmitter<{ results: BulkResultRow[]; summary: BulkSummary }>();
 
@@ -194,6 +205,11 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
     }
     if (changes['entityPath'] && !changes['entityPath'].firstChange && this.autoLoad) {
       this.loadRows();
+    } else if (changes['listFilter'] && !changes['listFilter'].firstChange && this.autoLoad
+               && !sameFilter(changes['listFilter'].previousValue, changes['listFilter'].currentValue)) {
+      // Reloading would throw away what the user has typed: with unsaved
+      // changes the rows stay until they save (which is their decision).
+      if (this.dirtyCount === 0) this.loadRows();
     }
   }
 
@@ -224,6 +240,9 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
     const fresh: GridRow = { id: this.nextTempId--, _rowState: 'new' };
     for (const col of this.columnDefs) {
       if (col.field && !(col.field in fresh)) fresh[col.field] = null;
+    }
+    for (const [field, value] of Object.entries(this.rowDefaults ?? {})) {
+      if (field !== 'id' && !field.startsWith('_')) fresh[field] = value;
     }
     this.rowData = [...this.rowData, fresh];
     this.recountDirty();
@@ -366,7 +385,7 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
     const url = this.listUrl();
     this.http.get<{ content: Record<string, unknown>[] | null }>(
       url,
-      { ...this.authOptions(), params: { page_size: String(this.pageSize) } },
+      { ...this.authOptions(), params: this.listParams() },
     ).subscribe({
       next: response => {
         const rows = (response?.content ?? []) as Record<string, unknown>[];
@@ -379,6 +398,14 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
         this.cdr.markForCheck();
       },
     });
+  }
+
+  private listParams(): Record<string, string> {
+    const params: Record<string, string> = { page_size: String(this.pageSize) };
+    if (this.listFilter && Object.keys(this.listFilter).length) {
+      params['filter'] = JSON.stringify(this.listFilter);
+    }
+    return params;
   }
 
   private base(): string {
@@ -496,6 +523,10 @@ export class BulkEditGridComponent implements OnInit, OnChanges {
   private recountDirty(): void {
     this.dirtyCount = this.rowData.filter(r => r._rowState !== 'unchanged').length;
   }
+}
+
+function sameFilter(a: unknown, b: unknown): boolean {
+  return JSON.stringify(a ?? {}) === JSON.stringify(b ?? {});
 }
 
 interface BulkSummary {

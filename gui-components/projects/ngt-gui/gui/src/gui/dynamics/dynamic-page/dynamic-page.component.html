@@ -7,7 +7,9 @@
   <!-- BROWSER MODE (read-only table)                              -->
   <!-- ═══════════════════════════════════════════════════════════ -->
   <ng-container *ngIf="!loading && screenType === 'browser'">
+    <ngt-scope-chips [entityPath]="endpoint"></ngt-scope-chips>
     <app-dynamic-browse
+      [CustomFiltersRequest]="scopeFilter"
       [BrowserTitle]="browserTitle"
       [BrowserType]="browserType"
       [DefaultShowFields]="browserColumns"
@@ -31,9 +33,12 @@
   <!-- ═══════════════════════════════════════════════════════════ -->
   <ng-container *ngIf="!loading && screenType === 'editable_table'">
     <nz-page-header [nzTitle]="browserTitle | translate"></nz-page-header>
+    <ngt-scope-chips [entityPath]="endpoint"></ngt-scope-chips>
     <ngt-bulk-edit-grid
       [entityPath]="bulkEntityPath"
-      [screenColumns]="bulkColumns">
+      [screenColumns]="bulkColumns"
+      [listFilter]="bulkFilter"
+      [rowDefaults]="scopeDefaults">
     </ngt-bulk-edit-grid>
   </ng-container>
 
