@@ -43,8 +43,7 @@ import {GoogleSvgComponent} from "../../miscellaneous/icons/google-svg/google-sv
         NzSpinModule,
         AnonymousSvgComponent,
         GoogleSvgComponent,
-        NzButtonModule,
-        CoreModule
+        NzButtonModule
     ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.sass']

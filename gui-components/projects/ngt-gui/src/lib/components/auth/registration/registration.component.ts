@@ -28,8 +28,7 @@ import { AUTH_SERVICE_TOKEN } from 'ngt-gui/core';
         NzButtonModule,
         NzAvatarModule,
         FormsModule,
-        ReactiveFormsModule,
-        CoreModule
+        ReactiveFormsModule
     ],
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.sass']

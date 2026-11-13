@@ -621,6 +621,16 @@ export class BackendService implements BackendServiceInterface{
     return this.http.get(url, {...this.globalVariablesService.authOptions, params: this.setParams(params)});
   }
 
+  /**
+   * List request against an entity PATH as the backend publishes it in the
+   * schema (`x-options-endpoint`, e.g. `/zones`), for callers that know the
+   * path but have no registered object type.
+   */
+  getPathRequest(path: string, params?) {
+    const clean = '/' + String(path || '').replace(/^\/+|\/+$/g, '');
+    return this.http.get(this.base_url + clean + '/', {...this.globalVariablesService.authOptions, params: this.setParams(params)});
+  }
+
   postFromChado(objType, value) {
     return this.http.post(this.getEndpoint(objType) + '/', value, this.globalVariablesService.authOptions);
   }

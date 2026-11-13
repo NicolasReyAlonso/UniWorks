@@ -7,7 +7,8 @@ import { AuthService } from './core/auth.service';
 
 @NgModule({
   providers: [
-    { provide: AUTH_SERVICE_TOKEN, useClass: AuthService }
+    AuthService,
+    { provide: AUTH_SERVICE_TOKEN, useExisting: AuthService }
   ]
 })
 export class CoreModule {}
