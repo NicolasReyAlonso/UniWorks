@@ -17,7 +17,7 @@ from sqlalchemy.orm import DeclarativeBase, configure_mappers
 from sqlalchemy_continuum import make_versioned
 
 from uniback.api.app import create_app
-from uniback.config.settings import Settings, AuthSettings, WorkerSettings
+from uniback.config.settings import Settings, AuthSettings, WorkerSettings, use_settings
 from uniback.persistence.base import create_orm_base, set_table_prefix
 from uniback.persistence.session import SessionManager, create_session_factory
 
@@ -108,7 +108,7 @@ def initialize(
         A tuple of (ORMBase, SessionManager, FastAPI app).
     """
 
-    settings = _load_settings(config)
+    settings = use_settings(_load_settings(config))
 
     # Node type decides which plugins activate their routers/seeding on this
     # process; "monolith" activates everything.

@@ -16,6 +16,9 @@ os.environ.pop("UNIBACK_AUTH_FIREBASE_CREDENTIALS_PATH", None)
 # Sessions travel in the cookie, so the suite needs no Redis and never writes
 # test sessions into a live one.
 os.environ["UNIBACK_AUTH_SESSION_STORE"] = "cookie"
+# The suite logs in by name (PUT /authn?user=test_user): a development-only
+# shortcut that is off unless asked for.
+os.environ["UNIBACK_AUTH_LOCAL_LOGIN_ENABLED"] = "true"
 
 import pytest
 from fastapi.testclient import TestClient

@@ -156,6 +156,14 @@ class AuthSettings(BaseSettings):
         default=True,
         description="Enable the built-in username/password (basic) auth provider",
     )
+    local_login_enabled: bool = Field(
+        default=False,
+        description=(
+            "DEVELOPMENT ONLY. Accept 'PUT /authn?user=<name>' as a login with no "
+            "credentials at all (it even creates the identity). Never enable it "
+            "on a deployment reachable by anyone else."
+        ),
+    )
     firebase_credentials_path: str | None = Field(
         default=None,
         description="Path to the Firebase service account JSON file",
@@ -342,6 +350,20 @@ def reset_settings() -> None:
     """Reset the global settings instance. Useful for testing."""
     global _settings
     _settings = None
+    get_cached_settings.cache_clear()
+
+
+def use_settings(settings: Settings) -> Settings:
+    """Make ``settings`` the application-wide instance.
+
+    ``initialize(config)`` calls this so that code running later (request
+    handlers, dependencies) reads the very configuration the application was
+    started with, not a second instance built from the environment alone.
+    """
+    global _settings
+    _settings = settings
+    get_cached_settings.cache_clear()
+    return settings
 
 
 @lru_cache

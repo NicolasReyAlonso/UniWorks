@@ -67,7 +67,6 @@ class AuthService:
                         tok_dict = firebase_auth.verify_id_token(auth_token)
                         tok_dict["auth_method"] = "firebase"
                     except Exception as e:
-                        print(f"DEBUG AUTH 401 Firebase: {str(e)}", flush=True)
                         raise HTTPException(status_code=401, detail=f"Invalid Firebase token: {str(e)}")
                 else:
                     # Fallback or placeholder if firebase_admin is not installed
@@ -80,10 +79,15 @@ class AuthService:
                 "user": user,
             }
         elif "user" in request.query_params:
+            # Passwordless login by name: a development convenience that must
+            # be switched on explicitly (UNIBACK_AUTH_LOCAL_LOGIN_ENABLED).
+            from uniback.config.settings import get_cached_settings
+
+            if not get_cached_settings().auth.local_login_enabled:
+                raise HTTPException(status_code=401, detail="Local login is disabled")
             tok_dict = {"user": request.query_params.get("user"), "auth_method": "local"}
 
         if not tok_dict:
-            print("DEBUG AUTH 401 NO INFO PROVIDED", flush=True)
             raise HTTPException(status_code=401, detail="No authentication information provided")
 
         return AuthService.prepare_identity(tok_dict, db)

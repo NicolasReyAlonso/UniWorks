@@ -39,7 +39,10 @@ def test_firebase_hidden_when_credentials_file_is_missing(test_config):
     file absent) must still boot and must not offer a login that cannot work."""
     from uniback import initialize
 
-    test_config["auth"] = {"firebase_credentials_path": "/no/such/firebase-service-account.json"}
+    test_config["auth"] = {
+        "firebase_credentials_path": "/no/such/firebase-service-account.json",
+        "session_store": "cookie",
+    }
     _, _, app = initialize(test_config)
     with TestClient(app) as client:
         ids = {p["id"] for p in _content(client.get("/api/authn/providers"))}
@@ -99,3 +102,33 @@ def test_seeded_demo_user_can_login(client: TestClient):
     login = client.put("/api/authn", headers=_basic_header("demo", "demo1234"))
     assert login.status_code == 200, login.text
     assert _content(login)["identity"] == "demo"
+
+
+# ---------------------------------------------------------------- local (dev) login
+
+def test_passwordless_login_is_refused_unless_enabled(test_config, monkeypatch):
+    """``PUT /authn?user=<name>`` logs in with no credentials. It is a
+    development shortcut: out of the box it must not work."""
+    from uniback import initialize
+
+    # conftest switches it on for the rest of the suite; this is a deployment
+    # that never asked for it.
+    monkeypatch.delenv("UNIBACK_AUTH_LOCAL_LOGIN_ENABLED")
+    test_config["auth"] = {"session_store": "cookie"}
+    _, _, app = initialize(test_config)
+    with TestClient(app) as client:
+        refused = client.put("/api/authn?user=demo")
+        assert refused.status_code == 401, refused.text
+        assert "session" not in client.cookies
+
+        # No account is conjured for a name that does not exist either.
+        assert client.put("/api/authn?user=intruder").status_code == 401
+
+        # Real credentials keep working.
+        assert client.put("/api/authn", headers=_basic_header("demo", "demo1234")).status_code == 200
+
+
+def test_passwordless_login_is_off_by_default():
+    from uniback.config.settings import AuthSettings
+
+    assert AuthSettings.model_fields["local_login_enabled"].default is False
