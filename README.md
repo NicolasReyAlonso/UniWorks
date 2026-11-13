@@ -6,6 +6,7 @@ de él se derivan los endpoints, el esquema, el contrato con el frontend y los
 formularios, de modo que exponer y editar una entidad nueva consiste en
 declararla.
 
+
 Versión: **0.1.0-beta.1** · Trabajo de Fin de Grado (ULPGC, curso 2025-2026).
 
 | Carpeta | Qué es |
