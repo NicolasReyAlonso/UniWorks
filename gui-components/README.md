@@ -67,3 +67,8 @@ claves foráneas directas; la selección se recuerda en el navegador.
 (`importProvidersFrom(CoreModule)`), y no en los `imports` de componentes
 standalone: Angular daría a ese árbol de componentes su propio juego de
 servicios y, por ejemplo, un login hecho en uno no lo vería el otro.
+
+## Licencia
+GPL-3.0-or-later; véase [LICENSE](LICENSE). La librería incluye CKEditor 5
+(GPL-2.0-or-later), por lo que cualquier redistribución debe mantener una
+licencia compatible con la GPL.

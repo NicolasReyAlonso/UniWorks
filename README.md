@@ -79,3 +79,15 @@ cualquier otro uso:
 - [`uniback/README.md`](uniback/README.md): arquitectura de micronúcleo, uso como librería, migraciones y cómo escribir un *plugin*.
 - [`uniback/CHANGELOG.md`](uniback/CHANGELOG.md): cambios de cada versión.
 - [`gui-components/README.md`](gui-components/README.md): desarrollo con la librería, pruebas, tiempo real y ámbito global.
+
+## Licencia
+
+Cada parte conserva la licencia de su origen:
+
+| Parte | Licencia | Texto |
+|---|---|---|
+| `uniback/` (backend) | MIT | [`uniback/LICENSE`](uniback/LICENSE) |
+| `gui-components/` (librería `ngt-gui` y aplicación de demostración) | GPL-3.0-or-later | [`gui-components/LICENSE`](gui-components/LICENSE) |
+
+El código de terceros incluido en el repositorio mantiene su propia licencia,
+indicada en la cabecera de sus ficheros.
