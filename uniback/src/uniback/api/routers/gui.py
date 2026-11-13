@@ -416,6 +416,23 @@ def resolve_screen(name: str, db: Session) -> Optional[Dict[str, Any]]:
     return _build_synthetic_screen(name, db)
 
 
+@router.get("/gui/scopes", response_model=ResponseEnvelope)
+async def get_gui_scopes(
+    sess: AppSession = Depends(get_n_session(read_only=True)),
+):
+    """
+    Global work scopes the header offers (zone, project, case study...) and,
+    for each, the entities it narrows down. Declared by plugins
+    (``UnibackPlugin.get_global_scopes``) and resolved against the ORM, so the
+    frontend filters listings and pre-fills new records without knowing the
+    domain. An empty list means the application has no global scope.
+    """
+    from uniback.api.scopes import resolve_global_scopes
+
+    scopes = resolve_global_scopes()
+    return ResponseEnvelope.ok(content=scopes, count=len(scopes))
+
+
 @router.get("/gui/navigation", response_model=ResponseEnvelope)
 async def get_gui_navigation(
     app_flavor: Optional[str] = Query(default=None, description="Optional app flavor name to filter menus"),

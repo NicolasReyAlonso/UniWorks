@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 from uniback.plugins.base import UnibackPlugin
 from uniback.plugins.registries import (
     assistant_tool_registry,
+    global_scope_registry,
     exporter_registry,
     field_widget_registry,
     fk_resolver_registry,
@@ -178,6 +179,7 @@ class PluginManager:
         ("get_fk_resolvers", fk_resolver_registry, "fk resolver"),
         ("get_model_providers", model_provider_registry, "model provider"),
         ("get_assistant_tools", assistant_tool_registry, "assistant tool"),
+        ("get_global_scopes", global_scope_registry, "global scope"),
     )
 
     def populate_registries(self) -> None:

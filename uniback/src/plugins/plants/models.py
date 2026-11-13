@@ -15,11 +15,11 @@ from __future__ import annotations
 import enum
 from datetime import date
 
-from sqlalchemy import BigInteger, Date, Float, ForeignKey, String
+from sqlalchemy import BigInteger, Date, Float, ForeignKey, Integer, String
 from sqlalchemy import Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column
 
-from uniback.persistence.base import get_table_prefix
+from uniback.persistence.base import ORMBase, get_table_prefix
 from uniback.persistence.models.core import (
     FunctionalObject,
     class_to_object_type_id,
@@ -46,6 +46,23 @@ class PlantHealth(str, enum.Enum):
 def _tn(name: str) -> str:
     """Aplica el prefijo de tablas global (``ub_``) al nombre de la tabla."""
     return f"{get_table_prefix()}plants_{name}"
+
+
+class Zone(ORMBase):
+    """Zona de trabajo del jardín (un sector, una finca, una parcela).
+
+    Es una tabla corriente, sin herencia de ``FunctionalObject``: basta para
+    que el plugin la declare como ÁMBITO GLOBAL (``get_global_scopes``). A
+    partir de ahí el framework deduce solo, por la clave foránea
+    ``Plant.zone_id``, que los listados de plantas se acotan a la zona elegida
+    en la cabecera y que las altas la traen ya rellena.
+    """
+
+    __tablename__ = _tn("zones")
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    name: Mapped[str] = mapped_column(String(120), unique=True)
+    description: Mapped[str | None] = mapped_column(String(500))
 
 
 class Plant(FunctionalObject):
@@ -75,6 +92,14 @@ class Plant(FunctionalObject):
 
     # Nombre científico (Dracaena draco, Phoenix canariensis, ...).
     species: Mapped[str | None] = mapped_column(String(200))
+
+    # Zona a la que pertenece. Clave foránea directa: el schema la publica
+    # como selector contra /zones y el ámbito global "zona" filtra por ella.
+    zone_id: Mapped[int | None] = mapped_column(
+        Integer,
+        ForeignKey(f"{_tn('zones')}.id", ondelete="SET NULL"),
+        index=True,
+    )
 
     # Coordenadas geográficas (WGS84). El frontend las pinta en el mapa.
     latitude: Mapped[float | None] = mapped_column(Float)

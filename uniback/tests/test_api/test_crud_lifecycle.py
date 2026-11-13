@@ -78,3 +78,52 @@ def test_entity_schema_json_and_etag(logged_in_client: TestClient, base: str):
     # Conditional GET with the same ETag must short-circuit to 304.
     r2 = logged_in_client.get(f"{base}schema.json", headers={"If-None-Match": etag})
     assert r2.status_code == 304
+
+
+# ------------------------------------------------- listing parameters over GET
+#
+# Regression: a GET listing receives its parameters as Starlette ``QueryParams``,
+# which the parser rejected for not being a ``dict``. Every filter, order and
+# pagination sent in the query string was silently ignored.
+
+
+def _roles(client: TestClient, **params):
+    import json
+
+    encoded = {k: v if isinstance(v, str) else json.dumps(v) for k, v in params.items()}
+    response = client.get("/api/roles/", params=encoded)
+    assert response.status_code == 200, response.text
+    return response.json()
+
+
+def test_list_applies_filter_from_query_string(logged_in_client: TestClient):
+    everything = _roles(logged_in_client)
+    name = everything["content"][0]["name"]
+
+    filtered = _roles(logged_in_client, filter={"name": name})
+
+    assert [r["name"] for r in filtered["content"]] == [name]
+    assert filtered["count"] == 1 < everything["count"]
+
+
+def test_list_applies_pagination_and_reports_the_total(logged_in_client: TestClient):
+    total = _roles(logged_in_client)["count"]
+    assert total > 2
+
+    page = _roles(logged_in_client, pagination={"pageIndex": 1, "pageSize": 2})
+
+    assert len(page["content"]) == 2
+    assert page["count"] == total  # the pager needs the total, not the page size
+
+
+def test_list_applies_order_as_the_table_sends_it(logged_in_client: TestClient):
+    ascending = [r["name"] for r in _roles(logged_in_client, order=[{"field": "name", "order": "ascend"}])["content"]]
+    descending = [r["name"] for r in _roles(logged_in_client, order=[{"field": "name", "order": "descend"}])["content"]]
+
+    assert ascending == sorted(ascending)
+    assert descending == ascending[::-1]
+
+
+def test_list_treats_a_plain_query_parameter_as_an_equality_filter(logged_in_client: TestClient):
+    name = _roles(logged_in_client)["content"][0]["name"]
+    assert [r["name"] for r in _roles(logged_in_client, name=name)["content"]] == [name]

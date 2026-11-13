@@ -9,6 +9,7 @@ from uniback.plugins.contracts import (
     Exporter,
     FieldWidget,
     FKResolver,
+    GlobalScope,
     Importer,
     SourceAdapter,
 )
@@ -118,4 +119,9 @@ class UnibackPlugin:
 
     def get_assistant_tools(self) -> List[AssistantTool]:
         """Herramientas (de servidor o de UI) que el asistente puede usar."""
+        return []
+
+    def get_global_scopes(self) -> List[GlobalScope]:
+        """Ámbitos globales de trabajo (zona, proyecto, caso de estudio...)
+        que el usuario puede fijar en la cabecera para acotar toda la app."""
         return []

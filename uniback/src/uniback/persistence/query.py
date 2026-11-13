@@ -2,7 +2,7 @@ from __future__ import annotations
 import traceback
 import json
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple, Type, Union, Callable
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Type, Union, Callable
 from urllib.parse import unquote
 
 from sqlalchemy import and_, or_, func, select, String, DateTime, inspect
@@ -52,7 +52,10 @@ def decode_request_params(data: Any) -> Dict[str, Any]:
                 for key in obj:
                     obj[key] = chew_data(obj[key])
         return params
-    elif isinstance(params, dict):
+    elif isinstance(params, Mapping):
+        # Any mapping, not just ``dict``: a GET listing hands over Starlette's
+        # ``QueryParams``, and rejecting it silently dropped every filter,
+        # order and pagination sent in the query string.
         for key in params:
             res[key] = chew_data(params[key])
     return res
@@ -184,10 +187,10 @@ def order_parse(model: Type, sort: List[Dict], aux_order: Optional[Callable] = N
         if not isinstance(item, dict):
             continue
         field = item.get("field")
-        order = item.get("order", "asc").lower()
-        if hasattr(model, field):
+        order = str(item.get("order") or "asc").lower()
+        if field and hasattr(model, field):
             col = getattr(model, field)
-            if order == "desc":
+            if order.startswith("desc"):  # "desc" or the table's "descend"
                 order_clause.append(col.desc())
             else:
                 order_clause.append(col.asc())

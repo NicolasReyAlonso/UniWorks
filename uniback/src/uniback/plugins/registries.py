@@ -23,6 +23,7 @@ from uniback.plugins.contracts import (
     Exporter,
     FieldWidget,
     FKResolver,
+    GlobalScope,
     Importer,
     SourceAdapter,
 )
@@ -170,6 +171,13 @@ class AssistantToolRegistry(Registry[AssistantTool]):
         return [t for t in self.all() if t.side == "ui"]
 
 
+class GlobalScopeRegistry(Registry[GlobalScope]):
+    """Ámbitos globales de trabajo declarados por los plugins."""
+
+    def ordered(self) -> List[GlobalScope]:
+        return sorted(self.all(), key=lambda scope: (scope.order, scope.name))
+
+
 source_adapter_registry = SourceAdapterRegistry("SourceAdapterRegistry")
 importer_registry = ImporterRegistry("ImporterRegistry")
 exporter_registry = ExporterRegistry("ExporterRegistry")
@@ -177,6 +185,7 @@ field_widget_registry = FieldWidgetRegistry("FieldWidgetRegistry")
 fk_resolver_registry = FKResolverRegistry("FKResolverRegistry")
 model_provider_registry = ModelProviderRegistry("ModelProviderRegistry")
 assistant_tool_registry = AssistantToolRegistry("AssistantToolRegistry")
+global_scope_registry = GlobalScopeRegistry("GlobalScopeRegistry")
 
 
 __all__ = [
@@ -188,6 +197,7 @@ __all__ = [
     "FKResolverRegistry",
     "ModelProviderRegistry",
     "AssistantToolRegistry",
+    "GlobalScopeRegistry",
     "source_adapter_registry",
     "importer_registry",
     "exporter_registry",
@@ -195,4 +205,5 @@ __all__ = [
     "fk_resolver_registry",
     "model_provider_registry",
     "assistant_tool_registry",
+    "global_scope_registry",
 ]

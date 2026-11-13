@@ -41,40 +41,48 @@ class MapCoordinatesWidget:
 # Plantas de ejemplo alrededor de Gran Canaria (lat, lng en WGS84).
 _SAMPLE_PLANTS = [
     {
-        "name": "Drago centenario",
+        "name": "Drago centenario", "zone": "Tafira",
         "species": "Dracaena draco",
         "latitude": 28.070800, "longitude": -15.469400,
         "planted_on": date(1998, 3, 12), "health": "healthy",
         "notes": "Ejemplar del Jardín Botánico Canario Viera y Clavijo.",
     },
     {
-        "name": "Palmera canaria del campus",
+        "name": "Palmera canaria del campus", "zone": "Tafira",
         "species": "Phoenix canariensis",
         "latitude": 28.072700, "longitude": -15.453300,
         "planted_on": date(2005, 11, 2), "health": "healthy",
         "notes": "Campus de Tafira (ULPGC).",
     },
     {
-        "name": "Tajinaste rojo",
+        "name": "Tajinaste rojo", "zone": "Las Palmas ciudad",
         "species": "Echium wildpretii",
         "latitude": 28.110600, "longitude": -15.436100,
         "planted_on": date(2021, 5, 20), "health": "attention",
         "notes": "Necesita riego de apoyo en verano. Parque Doramas.",
     },
     {
-        "name": "Cardón",
+        "name": "Cardón", "zone": "Sur de Gran Canaria",
         "species": "Euphorbia canariensis",
         "latitude": 27.737600, "longitude": -15.586600,
         "planted_on": date(2019, 1, 8), "health": "healthy",
         "notes": "Zona de Maspalomas.",
     },
     {
-        "name": "Pino canario joven",
+        "name": "Pino canario joven", "zone": "Las Palmas ciudad",
         "species": "Pinus canariensis",
         "latitude": 28.107500, "longitude": -15.418900,
         "planted_on": date(2023, 2, 14), "health": "sick",
         "notes": "Detectada plaga; en seguimiento. Parque San Telmo.",
     },
+]
+
+
+# Zonas de ejemplo. Las plantas de muestra referencian una por nombre.
+_SAMPLE_ZONES = [
+    {"name": "Tafira", "description": "Jardín Botánico Viera y Clavijo y campus universitario."},
+    {"name": "Las Palmas ciudad", "description": "Parques urbanos de la capital."},
+    {"name": "Sur de Gran Canaria", "description": "Maspalomas y franja costera del sur."},
 ]
 
 
@@ -93,7 +101,7 @@ class PlantsPlugin(UnibackPlugin):
     #    invoca tras configure_mappers, cuando el modelo ya está listo.
     def get_routers(self) -> List[APIRouter]:
         from uniback.api.crud_factory import make_simple_rest_crud
-        from plants.models import Plant
+        from plants.models import Plant, Zone
 
         # /schema.json se genera a partir del create_schema. Por defecto incluye
         # toda la "fontanería" heredada de FunctionalObject (object_type_id,
@@ -109,6 +117,15 @@ class PlantsPlugin(UnibackPlugin):
         ]
 
         return [
+            # Las zonas primero: así, cuando se genera el schema de ``plants``,
+            # la clave foránea ``zone_id`` ya resuelve contra la entidad
+            # registrada ``zones`` (endpoint y campo etiqueta del selector).
+            make_simple_rest_crud(
+                Zone,
+                "zones",
+                tags=["Plants"],
+                soft_delete_by_default=False,
+            ),
             make_simple_rest_crud(
                 Plant,
                 "plants",
@@ -116,8 +133,16 @@ class PlantsPlugin(UnibackPlugin):
                 soft_delete_by_default=False,
                 exclude_from_create=list(FRAMEWORK_FIELDS),
                 exclude_from_update=list(FRAMEWORK_FIELDS),
-            )
+            ),
         ]
+
+    # 2b) Ámbito global: la zona se puede fijar en la cabecera. No se enumera
+    #     a qué entidades afecta: el framework lo deduce de las claves foráneas
+    #     (hoy ``Plant.zone_id``; mañana cualquier modelo que apunte a ``zones``).
+    def get_global_scopes(self) -> List[Any]:
+        from uniback.plugins.contracts import GlobalScope
+
+        return [GlobalScope(name="zone", entity="zones", label="Zona", order=10)]
 
     # 3) Pistas de UI inyectables para el mapa.
     def get_field_widgets(self) -> List[Any]:
@@ -137,17 +162,68 @@ class PlantsPlugin(UnibackPlugin):
             db.add(ObjectType(id=plant_type_id, uuid=_uuid.uuid4(), name="plant"))
             db.flush()
 
+        self._ensure_zone_column(db)
+
         # Plantas de ejemplo (idempotente: solo si la tabla está vacía).
         if db.query(Plant).count() == 0:
             for sample in _SAMPLE_PLANTS:
-                db.add(Plant(**sample))
+                db.add(Plant(**{k: v for k, v in sample.items() if k != "zone"}))
             db.flush()
             print(f"[PlantsApp] Sembradas {len(_SAMPLE_PLANTS)} plantas de ejemplo.")
+
+        self._seed_zones(db)
 
         # Entrada en el sidebar. El menú lateral lo sirve el backend desde la
         # tabla ``ub_gui_menus`` (endpoint /gui/navigation); el YAML del front es
         # solo un fallback. Por eso registramos aquí el menú padre + hijo.
         self._seed_menu(db)
+
+    def _ensure_zone_column(self, db: Session) -> None:
+        """Añade ``zone_id`` a una tabla de plantas creada antes de existir las zonas.
+
+        Las tablas de los plugins las crea ``create_all``, que no altera las que
+        ya existen. Un plugin de producción llevaría esto en una migración de
+        Alembic; para la demo basta este paso idempotente (en PostgreSQL,
+        ``IF NOT EXISTS`` lo hace seguro aunque varios nodos arranquen a la vez).
+        """
+        from sqlalchemy import inspect, text
+        from plants.models import Plant, Zone
+
+        plants, zones = Plant.__table__.name, Zone.__table__.name
+        connection = db.connection()
+        if "zone_id" in {c["name"] for c in inspect(connection).get_columns(plants)}:
+            return
+        guard = "IF NOT EXISTS " if connection.dialect.name == "postgresql" else ""
+        db.execute(text(
+            f'ALTER TABLE "{plants}" ADD COLUMN {guard}zone_id INTEGER '
+            f'REFERENCES "{zones}"(id) ON DELETE SET NULL'
+        ))
+        print("[PlantsApp] Columna zone_id añadida a la tabla de plantas existente.")
+
+    def _seed_zones(self, db: Session) -> None:
+        """Zonas de ejemplo y su reparto entre las plantas de muestra.
+
+        Solo la primera vez (tabla de zonas vacía) y solo en ``core``/``monolith``,
+        por el mismo motivo que el menú: evitar que los nodos siembren en paralelo.
+        Las plantas que el usuario haya creado no se tocan.
+        """
+        import os
+        from plants.models import Plant, Zone
+
+        if os.getenv("UNIBACK_NODE_TYPE", "monolith") not in ("core", "monolith"):
+            return
+        if db.query(Zone).count():
+            return
+
+        zones = {z["name"]: Zone(**z) for z in _SAMPLE_ZONES}
+        db.add_all(zones.values())
+        db.flush()
+        for sample in _SAMPLE_PLANTS:
+            plant = db.query(Plant).filter(Plant.name == sample["name"], Plant.zone_id.is_(None)).first()
+            if plant is not None:
+                plant.zone_id = zones[sample["zone"]].id
+        db.flush()
+        print(f"[PlantsApp] Sembradas {len(zones)} zonas de ejemplo.")
 
     def _seed_menu(self, db: Session) -> None:
         """Registra el menú lateral de la demo (idempotente, por nombre).
@@ -186,6 +262,7 @@ class PlantsPlugin(UnibackPlugin):
         children = [
             ("Plants Map", 1, {"code": "Plantas en el mapa", "route": "/plantsMap"}),
             ("Plants Table", 2, {"code": "Plantas (alta masiva)", "route": "/d/plants_editable_table"}),
+            ("Plant Zones", 3, {"code": "Zonas", "route": "/d/zones_editable_table"}),
         ]
         for name, order, definition in children:
             if db.query(Menu).filter(Menu.name == name).count():

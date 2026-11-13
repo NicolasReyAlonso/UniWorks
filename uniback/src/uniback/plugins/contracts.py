@@ -13,7 +13,7 @@ ser usado por mas de un subsistema (importer, exporter, ingesta CLI, etc.).
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, BinaryIO, Dict, Iterable, Iterator, List, Mapping, Optional, Protocol, Type
 
 
@@ -248,6 +248,36 @@ class ToolInputError(ValueError):
     """Entrada inválida de una herramienta; su mensaje se devuelve al modelo."""
 
 
+@dataclass(frozen=True)
+class GlobalScope:
+    """Ámbito global de trabajo que un plugin ofrece a la aplicación.
+
+    Un ámbito es una entidad (una zona, un proyecto, un caso de estudio...)
+    que el usuario fija una vez en la cabecera y que acota todo lo que ve
+    después. El framework deduce a qué entidades afecta a partir del ORM: toda
+    entidad registrada con una clave foránea DIRECTA a la del ámbito se filtra
+    por ella, y sus altas la traen ya rellena. El plugin no enumera nada.
+
+    * ``name``: identificador estable del ámbito (``"zone"``).
+    * ``entity``: nombre con el que la entidad está registrada (``"zones"``).
+    * ``label``: texto o clave i18n que el front muestra en el selector.
+    * ``membership``: para relaciones que NO son una clave foránea directa
+      (tablas de pertenencia N:M): ``{entidad: clave de filtro}`` que el
+      listado de esa entidad ya sabe interpretar (p. ej.
+      ``{"functional_objects": "case_study_id"}``).
+    * ``state_key``: clave del estado global heredado en la que el front
+      replica la selección, para pantallas anteriores al contrato de ámbitos.
+    * ``order``: posición del selector en la cabecera (menor = antes).
+    """
+
+    name: str
+    entity: str
+    label: str
+    membership: Mapping[str, str] = field(default_factory=dict)
+    state_key: Optional[str] = None
+    order: int = 100
+
+
 __all__ = [
     "ImportRowResult",
     "SourceAdapter",
@@ -259,4 +289,5 @@ __all__ = [
     "AssistantModelProvider",
     "AssistantTool",
     "ToolInputError",
+    "GlobalScope",
 ]

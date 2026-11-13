@@ -55,6 +55,24 @@ class CollectionsPlugin(UnibackPlugin):
 
         return [router, router_collection_items, router_case_studies, router_case_study_items]
 
+    def get_global_scopes(self):
+        from uniback.plugins.contracts import GlobalScope
+
+        # Los casos de estudio agrupan objetos por tabla de pertenencia (N:M),
+        # no por clave foránea: se declara la clave de filtro que el listado de
+        # functional_objects ya interpreta. ``state_key`` mantiene vivas las
+        # pantallas anteriores al contrato de ámbitos, que leen ``gbl_cs``.
+        return [
+            GlobalScope(
+                name="case_study",
+                entity="case_studies",
+                label="MISC.BREADCRUMB.CASE_STUDIES",
+                membership={"functional_objects": "case_study_id"},
+                state_key="gbl_cs",
+                order=50,
+            )
+        ]
+
     def on_seed(self, db: Session) -> None:
         from uniback.persistence.models.core import CaseStudy, Dataset
         from uniback.persistence.seeding import create_or_update_acl_reference_object
