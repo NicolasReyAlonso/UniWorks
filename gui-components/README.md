@@ -38,3 +38,11 @@ const fixture = createField(MiCampoComponent, { label: 'Nombre' });
 (solo ids) cada vez que el backend confirma una escritura. Una página que
 muestra datos se suscribe, filtra por su entidad y vuelve a pedir el listado
 (véase `src/app/pages/plants/plants-map.component.ts`).
+
+## Configuración privada (opcional)
+La configuración web de Firebase vive fuera del repositorio, en
+`private-conf/ngd-firebase.json` (junto a la carpeta del repositorio). Los
+`environment*.ts` la importan a través del alias `@private-conf/ngd-firebase.json`
+de `tsconfig.json`, que cae en `src/environments/firebase.disabled.json` cuando
+la carpeta no existe. Sin ella la aplicación compila y arranca igual: el login
+ofrece solo los proveedores que anuncia el backend (usuario y contraseña).

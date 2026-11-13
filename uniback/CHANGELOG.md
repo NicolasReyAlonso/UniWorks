@@ -32,6 +32,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   búsqueda de solo `GET /<ruta>/{clave}`), que producían entidades sin nombre
   o con nombre duplicado.
 
+### Fixed — Despliegue sin credenciales privadas
+- `/authn/providers` solo anuncia `firebase` si el SDK llegó a inicializarse.
+  Con la ruta de credenciales configurada pero el fichero ausente (despliegue
+  sin la carpeta `private-conf`) el backend arrancaba bien pero ofrecía un
+  login con Google que solo podía fallar.
+
 ### Changed — Reproducibilidad
 - `constraints.txt` fija las versiones con las que se verificó el stack y el
   `Dockerfile` instala con `-c constraints.txt`: reconstruir la imagen ya no

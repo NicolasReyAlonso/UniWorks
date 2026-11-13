@@ -118,6 +118,24 @@ async def logout(request: Request, response: Response):
     return ResponseEnvelope.ok(content={"status": "success", "message": "Logged out"})
 
 
+def _firebase_ready() -> bool:
+    """Whether the Firebase Admin SDK is installed AND was initialised.
+
+    A configured credentials path is not enough: if the file is missing or
+    invalid the SDK never starts, and advertising the provider would show a
+    login option that can only fail.
+    """
+    if firebase_auth is None:
+        return False
+    try:
+        import firebase_admin
+
+        firebase_admin.get_app()
+        return True
+    except Exception:
+        return False
+
+
 @router.get("/authn/providers", response_model=ResponseEnvelope)
 async def list_auth_providers():
     """List the authentication providers currently available to the client.
@@ -140,7 +158,7 @@ async def list_auth_providers():
             }
         )
 
-    firebase_available = bool(settings.auth.firebase_credentials_path) and firebase_auth is not None
+    firebase_available = bool(settings.auth.firebase_credentials_path) and _firebase_ready()
     if firebase_available:
         providers.append(
             {

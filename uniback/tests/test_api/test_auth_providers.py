@@ -34,6 +34,23 @@ def test_providers_lists_basic_and_hides_firebase(client: TestClient):
     assert basic["supports_register"] is True
 
 
+def test_firebase_hidden_when_credentials_file_is_missing(test_config):
+    """A deployment without the private credentials folder (path configured,
+    file absent) must still boot and must not offer a login that cannot work."""
+    from uniback import initialize
+
+    test_config["auth"] = {"firebase_credentials_path": "/no/such/firebase-service-account.json"}
+    _, _, app = initialize(test_config)
+    with TestClient(app) as client:
+        ids = {p["id"] for p in _content(client.get("/api/authn/providers"))}
+        assert ids == {"basic"}
+
+        # ...and the built-in provider is fully usable.
+        client.post("/api/authn/register", json={"username": "reviewer", "password": "sup3rsecret"})
+        login = client.put("/api/authn", headers=_basic_header("reviewer", "sup3rsecret"))
+        assert login.status_code == 200, login.text
+
+
 # ---------------------------------------------------------------- register + login
 
 def test_register_then_login_roundtrip(client: TestClient):

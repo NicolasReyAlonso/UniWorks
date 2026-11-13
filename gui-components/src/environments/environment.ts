@@ -2,12 +2,16 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-import * as firebase_private from '../../../../private-conf/ngd-firebase.json';
+// Optional private Firebase web config. The alias (tsconfig.json) resolves to
+// the private-conf folder kept outside the repository and, when that folder is
+// absent, to firebase.disabled.json (null): the app then boots without Firebase
+// and offers only the providers the backend advertises.
+import * as firebase_private from '@private-conf/ngd-firebase.json';
 
 export const environment = {
   production: false,
   backend_url: 'http://localhost:8000',
-  firebase_config: firebase_private.default,
+  firebase_config: (firebase_private as { default: unknown }).default,
   firebaseui_config: {
     enableFirestoreSync: true, // enable/disable autosync users with firestore
     toastMessageOnAuthSuccess: false, // whether to open/show a snackbar message on auth success - default : true

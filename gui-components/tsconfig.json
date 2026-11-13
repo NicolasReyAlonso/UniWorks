@@ -19,6 +19,11 @@
       "@tokens/*": [
         "src/app/tokens/*"
       ],
+      "@private-conf/ngd-firebase.json": [
+        "../../private-conf/ngd-firebase.json",
+        "../private-conf/ngd-firebase.json",
+        "src/environments/firebase.disabled.json"
+      ],
       "ngt-gui": [
         "dist/ngt-gui"
       ],
