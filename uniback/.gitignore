@@ -28,3 +28,9 @@ venv/
 .venv/
 
 .claude/settings.json
+
+# Test and coverage output
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/

@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0-beta.1] - 2026-11-13
+
+Primera versión beta del framework UniWorks (backend `uniback` 0.1.0b1 +
+librería `ngt-gui` 0.1.0-beta.1).
+
+### Security
+- El inicio de sesión sin credenciales (`PUT /authn?user=<nombre>`) queda
+  DESACTIVADO por defecto. Es un atajo de desarrollo que entra como cualquier
+  identidad (y la crea si no existe); solo se activa con
+  `UNIBACK_AUTH_LOCAL_LOGIN_ENABLED=true`.
+- El frontend ya no escribe en la consola del navegador las cabeceras de
+  autenticación (token o credenciales) ni el objeto de usuario.
+
+### Fixed — Configuración
+- `initialize(config)` hace de esa configuración la instancia global: el
+  código en tiempo de petición leía otra, construida solo desde el entorno, e
+  ignoraba lo pasado en el diccionario (p. ej. `auth.session_store`).
+
 ### Added — Ámbitos globales de trabajo
 - Contrato `GlobalScope` y gancho `UnibackPlugin.get_global_scopes()`: un
   plugin declara una entidad (zona, proyecto, caso de estudio...) que el

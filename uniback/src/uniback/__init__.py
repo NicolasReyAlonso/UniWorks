@@ -7,7 +7,7 @@ This package provides:
 - Flexible initialization through configuration dictionaries
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.0b1"
 __author__ = "NextGenDem Team"
 
 from uniback.initializer import initialize

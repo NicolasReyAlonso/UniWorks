@@ -196,7 +196,7 @@ Una vez cargado el plugin, **sin una línea más** de backend:
 
 ```bash
 # Login local de conveniencia (ver reference de la BD)
-curl -X PUT "http://localhost:8000/api/authn?user=test_user" -c cookies.txt
+curl -u demo:demo1234 -X PUT "http://localhost:8000/api/authn" -c cookies.txt
 
 # CRUD genérico
 curl -b cookies.txt http://localhost:8000/api/plants/

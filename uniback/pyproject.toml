@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uniback"
-version = "0.1.0"
+version = "0.1.0b1"
 description = "A framework for quickly developing standardized backend components with persistence (SQLAlchemy 2.x) and REST API (FastAPI)"
 readme = "README.md"
 license = {text = "MIT"}

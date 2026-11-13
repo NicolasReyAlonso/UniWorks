@@ -20,21 +20,15 @@ A Python framework for quickly developing standardized backend components with p
 
 ## Installation
 
+Uniback is not published on PyPI; install it from this repository:
+
 ```bash
-# Basic installation
-pip install uniback
-
-# With PostgreSQL support
-pip install uniback[postgres]
-
-# With development dependencies
-pip install uniback[dev]
-
-# From source
-git clone https://github.com/nextgendem/uniback.git
 cd uniback
-pip install -e ".[dev]"
+pip install -e ".[dev]" -c constraints.txt   # constraints.txt = the verified versions
 ```
+
+To run the whole stack (API nodes, PostgreSQL, Redis, Traefik) use Docker
+Compose instead — see [Infrastructure](#infrastructure-and-development-services).
 
 ## Quick Start
 
@@ -315,6 +309,4 @@ class FilesPlugin(UnibackPlugin):
 
 MIT License - see [LICENSE](LICENSE) for details.
 
-## Contributing
 
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.

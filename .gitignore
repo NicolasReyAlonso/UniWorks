@@ -1,0 +1,7 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Private configuration lives OUTSIDE the repository (../private-conf);
+# this entry only guards against copying it in by mistake.
+private-conf/

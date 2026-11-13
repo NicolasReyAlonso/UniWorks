@@ -23,6 +23,14 @@ export API_BASE_URL=http://localhost:8000/api
 ## 1. Authentication (Login/Logout)
 
 ### Login
+With username and password (the seeded demo user):
+```bash
+curl --cookie-jar app-cookies.txt -u demo:demo1234 -X PUT "$API_BASE_URL/authn"
+```
+
+By name, with no credentials. **Development only**: it is refused unless the
+server runs with `UNIBACK_AUTH_LOCAL_LOGIN_ENABLED=true`. The examples below
+assume a session opened one way or the other.
 ```bash
 curl --cookie-jar app-cookies.txt -X PUT "$API_BASE_URL/authn?user=test_user"
 ```

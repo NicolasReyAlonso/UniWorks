@@ -211,8 +211,6 @@ constructor(
       });
       this.globalVariablesServices.authOptions = {withCredentials: true, headers}; // Previously it was just { withCredentials: true, headers}
     }
-    console.log('Update Token');
-    console.log(this.globalVariablesServices.authOptions);
   }
 
   // JWT_fields = {acr, amr, at_hash, aud, auth_time, azp, cnf, c_hash,
@@ -267,7 +265,6 @@ constructor(
       this.currentRoles = response.currentUserRoles.content;
       this.changeUserEvent.emit(user);
 
-      console.log('✅ User logged in and saved as:', this.user);
       await this.stateService.loadGlobalService();
 
       if (this.USE_WEBSOCKETS) {
